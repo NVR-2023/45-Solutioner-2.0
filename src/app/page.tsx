@@ -1,8 +1,11 @@
 import ABC from "@/components/unique/abc";
 import LogoIcon from "@/sections/navbar/logoicon";
+import Navbar
+ from "@/sections/navbar/navbar";
 export default function Home() {
   return (
     <main className="">
+      <Navbar/>
       <ABC />
       <div className="bg-zinc-400 flex">
         <span>ZX</span>
