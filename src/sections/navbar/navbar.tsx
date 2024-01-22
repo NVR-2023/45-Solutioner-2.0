@@ -20,18 +20,17 @@ const Navbar: FC = () => {
             {" "}
             aperçu: solutioner
           </div>
-          <div
-            style={{ letterSpacing: 1.2, fontSize: 12 }}
-            className=" font-medium font-interTight">
+       
+          <div style={{ letterSpacing: 0.9, fontSize: 12 }} className=" font-medium  font-aperçu ">
             {" "}
             Services
           </div>
-          <div style={{ letterSpacing: 0.7, fontSize: 12 }} className=" font-bold italic font-aperçu ">
+          <div style={{ letterSpacing: 0.7, fontSize: 12 }} className=" font-bold  font-aperçu ">
             {" "}
             Services
           </div>
 
-          <div className="tracking-wider  font-basis" style={{ fontWeight: 500, fontSize: 14 }}>
+          <div className="font-aperçu" style={{ fontWeight: 500, fontSize: 12 }}>
             basis: secondary links
           </div>
         </div>
