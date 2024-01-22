@@ -1,12 +1,49 @@
-import ABC from "@/components/unique/abc";
-import LogoIcon from "@/sections/navbar/logoicon";
-import Navbar
- from "@/sections/navbar/navbar";
+import Navbar from "@/sections/navbar/navbar";
 export default function Home() {
   return (
     <main className="">
-      <Navbar/>
-      <ABC />
+          <Navbar />
+      
+      <div className="z-40">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus id ex quisquam ducimus
+        odio cumque quis eaque! Cupiditate tempore rerum iste, nulla officia aliquid possimus
+        expedita enim labore nostrum quam. Lorem ipsum dolor sit amet consectetur adipisicing elit.
+        Doloribus id ex quisquam ducimus odio cumque quis eaque! Cupiditate tempore rerum iste,
+        nulla officia aliquid possimus expedita enim labore nostrum quam. Lorem ipsum dolor sit amet
+        consectetur adipisicing elit. Doloribus id ex quisquam ducimus odio cumque quis eaque!
+        Cupiditate tempore rerum iste, nulla officia aliquid possimus expedita enim labore nostrum
+        quam. Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus id ex quisquam
+        ducimus odio cumque quis eaque! Cupiditate tempore rerum iste, nulla officia aliquid
+        possimus expedita enim labore nostrum quam. Lorem ipsum dolor sit amet consectetur
+        adipisicing elit. Doloribus id ex quisquam ducimus odio cumque quis eaque! Cupiditate
+        tempore rerum iste, nulla officia aliquid possimus expedita enim labore nostrum quam. Lorem
+        ipsum dolor sit amet consectetur adipisicing elit. Doloribus id ex quisquam ducimus odio
+        cumque quis eaque! Cupiditate tempore rerum iste, nulla officia aliquid possimus expedita
+        enim labore nostrum quam. Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus
+        id ex quisquam ducimus odio cumque quis eaque! Cupiditate tempore rerum iste, nulla officia
+        aliquid possimus expedita enim labore nostrum quam. Lorem ipsum dolor sit amet consectetur
+        adipisicing elit. Doloribus id ex quisquam ducimus odio cumque quis eaque! Cupiditate
+        tempore rerum iste, nulla officia aliquid possimus expedita enim labore nostrum quam. Lorem
+        ipsum dolor sit amet consectetur adipisicing elit. Doloribus id ex quisquam ducimus odio
+        cumque quis eaque! Cupiditate tempore rerum iste, nulla officia aliquid possimus expedita
+        enim labore nostrum quam. Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus
+        id ex quisquam ducimus odio cumque quis eaque! Cupiditate tempore rerum iste, nulla officia
+        aliquid possimus expedita enim labore nostrum quam. Lorem ipsum dolor sit amet consectetur
+        adipisicing elit. Doloribus id ex quisquam ducimus odio cumque quis eaque! Cupiditate
+        tempore rerum iste, nulla officia aliquid possimus expedita enim labore nostrum quam. Lorem
+        ipsum dolor sit amet consectetur adipisicing elit. Doloribus id ex quisquam ducimus odio
+        cumque quis eaque! Cupiditate tempore rerum iste, nulla officia aliquid possimus expedita
+        enim labore nostrum quam. Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus
+        id ex quisquam ducimus odio cumque quis eaque! Cupiditate tempore rerum iste, nulla officia
+        aliquid possimus expedita enim labore nostrum quam. Lorem ipsum dolor sit amet consectetur
+        adipisicing elit. Doloribus id ex quisquam ducimus odio cumque quis eaque! Cupiditate
+        tempore rerum iste, nulla officia aliquid possimus expedita enim labore nostrum quam.
+      </div>
+    </main>
+  );
+}
+
+/*       <ABC />
       <div className="bg-zinc-400 flex">
         <span>ZX</span>
         <span><LogoIcon /></span>
@@ -19,7 +56,4 @@ export default function Home() {
       </p>
       <p className="font-aperçu italic">Testing font Aperçu: Italic</p>
       <p className="font-aperçu font-semibold	">Testing font Aperçu: Semi Bold</p>
-      <p className="font-aperçu font-bold ">Testing font Aperçu: Bold</p>
-    </main>
-  );
-}
+      <p className="font-aperçu font-bold ">Testing font Aperçu: Bold</p> */
