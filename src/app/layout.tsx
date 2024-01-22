@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { interTightFont, basisFont } from "@/utils/localfontloader";
+import { interTightFont, aperçuFont, basisFont } from "@/utils/localfontloader";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -14,7 +14,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${interTightFont.variable} ${basisFont.variable}`}>{children}</body>
+      <body
+        className={`${interTightFont.variable} ${aperçuFont.variable} ${basisFont.variable}`}>
+        {children}
+      </body>
     </html>
   );
 }

@@ -6,10 +6,34 @@ const Navbar: FC = () => {
     <header className="relative z-50 w-full">
       <nav className="fixed top-1.5 w-full">
         <div className="flex align-middle justify-between rounded mx-12 px-7 py-3 bg-zinc-300 ">
-            <div><LogoComponent/></div>
-            <div className=" font-medium font-interTight"> Inter: Primary links</div>
-            <div className=" font-medium font-basis-">Basis: Primary links</div>
-            <div className="tracking-wider " style={{fontWeight: 500, fontSize: 14}}>secondary links</div>
+          <div>
+            <LogoComponent />
+          </div>
+          <div
+            style={{
+              letterSpacing: 2.3,
+              fontWeight: 1000,
+              fontSize: 12,
+              fontVariant: "small-caps",
+            }}
+            className=" font-medium font-aperçu ">
+            {" "}
+            aperçu: solutioner
+          </div>
+          <div
+            style={{ letterSpacing: 1.2, fontSize: 12 }}
+            className=" font-medium font-interTight">
+            {" "}
+            Services
+          </div>
+          <div style={{ letterSpacing: 0.7, fontSize: 12 }} className=" font-bold italic font-aperçu ">
+            {" "}
+            Services
+          </div>
+
+          <div className="tracking-wider  font-basis" style={{ fontWeight: 500, fontSize: 14 }}>
+            basis: secondary links
+          </div>
         </div>
       </nav>
     </header>
