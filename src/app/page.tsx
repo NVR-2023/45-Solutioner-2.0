@@ -1,43 +1,11 @@
 import Navbar from "@/sections/navbar/navbar";
 export default function Home() {
   return (
-    <main className="">
+    <main className="bg-[#e9e9e9]">
           <Navbar />
       
-      <div className="z-40">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus id ex quisquam ducimus
-        odio cumque quis eaque! Cupiditate tempore rerum iste, nulla officia aliquid possimus
-        expedita enim labore nostrum quam. Lorem ipsum dolor sit amet consectetur adipisicing elit.
-        Doloribus id ex quisquam ducimus odio cumque quis eaque! Cupiditate tempore rerum iste,
-        nulla officia aliquid possimus expedita enim labore nostrum quam. Lorem ipsum dolor sit amet
-        consectetur adipisicing elit. Doloribus id ex quisquam ducimus odio cumque quis eaque!
-        Cupiditate tempore rerum iste, nulla officia aliquid possimus expedita enim labore nostrum
-        quam. Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus id ex quisquam
-        ducimus odio cumque quis eaque! Cupiditate tempore rerum iste, nulla officia aliquid
-        possimus expedita enim labore nostrum quam. Lorem ipsum dolor sit amet consectetur
-        adipisicing elit. Doloribus id ex quisquam ducimus odio cumque quis eaque! Cupiditate
-        tempore rerum iste, nulla officia aliquid possimus expedita enim labore nostrum quam. Lorem
-        ipsum dolor sit amet consectetur adipisicing elit. Doloribus id ex quisquam ducimus odio
-        cumque quis eaque! Cupiditate tempore rerum iste, nulla officia aliquid possimus expedita
-        enim labore nostrum quam. Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus
-        id ex quisquam ducimus odio cumque quis eaque! Cupiditate tempore rerum iste, nulla officia
-        aliquid possimus expedita enim labore nostrum quam. Lorem ipsum dolor sit amet consectetur
-        adipisicing elit. Doloribus id ex quisquam ducimus odio cumque quis eaque! Cupiditate
-        tempore rerum iste, nulla officia aliquid possimus expedita enim labore nostrum quam. Lorem
-        ipsum dolor sit amet consectetur adipisicing elit. Doloribus id ex quisquam ducimus odio
-        cumque quis eaque! Cupiditate tempore rerum iste, nulla officia aliquid possimus expedita
-        enim labore nostrum quam. Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus
-        id ex quisquam ducimus odio cumque quis eaque! Cupiditate tempore rerum iste, nulla officia
-        aliquid possimus expedita enim labore nostrum quam. Lorem ipsum dolor sit amet consectetur
-        adipisicing elit. Doloribus id ex quisquam ducimus odio cumque quis eaque! Cupiditate
-        tempore rerum iste, nulla officia aliquid possimus expedita enim labore nostrum quam. Lorem
-        ipsum dolor sit amet consectetur adipisicing elit. Doloribus id ex quisquam ducimus odio
-        cumque quis eaque! Cupiditate tempore rerum iste, nulla officia aliquid possimus expedita
-        enim labore nostrum quam. Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus
-        id ex quisquam ducimus odio cumque quis eaque! Cupiditate tempore rerum iste, nulla officia
-        aliquid possimus expedita enim labore nostrum quam. Lorem ipsum dolor sit amet consectetur
-        adipisicing elit. Doloribus id ex quisquam ducimus odio cumque quis eaque! Cupiditate
-        tempore rerum iste, nulla officia aliquid possimus expedita enim labore nostrum quam.
+      <div className="z-40 h-[1500px]">
+        
       </div>
     </main>
   );

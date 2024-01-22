@@ -15,7 +15,8 @@ const config: Config = {
       },
     },
     fontFamily: {
-      aperçu: ["var(--font-Aperçu)"],
+      interTight: ["var(--font-InterTight)"],
+      basis: ["var(--font-Basis)"],
     },
   },
   plugins: [],
