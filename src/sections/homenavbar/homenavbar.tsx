@@ -8,9 +8,9 @@ const HomeNavbar: FC = () => {
     <header className="relative z-50 w-full">
       <nav className="fixed top-1.5 w-full">
         <div className="flex align-middle justify-between mx-12 px-7 py-3">
-          <LogoComponent />
-          <HomeLinks />
-          <AuthButtons />
+          <div><LogoComponent /></div>
+          <div><HomeLinks /></div>
+          <div><AuthButtons /></div>
         </div>
       </nav>
     </header>

@@ -13,9 +13,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${interTightFont.variable} ${aperçuFont.variable} ${basisFont.variable}`}>
+    <html lang="en" className="scroll-smooth">
+      <body className={`${interTightFont.variable} ${aperçuFont.variable} ${basisFont.variable}`}>
         {children}
       </body>
     </html>
