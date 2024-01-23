@@ -1,18 +1,16 @@
 export type basicComponentPropsType = {
-    size?:number,
-    color?: string,
-}
+  size?: number;
+  color?: string;
+};
 
 export type scaledComponentPropsType = {
-    scale?:number,
-    color?: string,
-}
-
-
+  scale?: number;
+  color?: string;
+};
 
 export type linkType = {
-    link: string,
-    path: string
-}
+  name: string;
+  sectionHash: string;
+};
 
 export type linkListType = linkType[];

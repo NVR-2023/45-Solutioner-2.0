@@ -5,20 +5,20 @@ import { linkListType } from "@/types/componentpopstypes";
 
 const HomeLinks: FC = () => {
   const linkArray: linkListType = [
-    { link: "Services", path: "/services" },
-    { link: "Security", path: "/security" },
-    { link: "Pricing", path: "/pricing" },
+    { name: "Services", sectionHash: "#services" },
+    { name: "Security", sectionHash: "#security" },
+    { name: "Pricing", sectionHash: "#pricing" },
   ];
 
   return (
     <div className="flex space-x-7">
       {linkArray.map((link, index) => (
         <Link
-          key={index}
-          href={link.path}
+          key={link.sectionHash}
+          href={link.sectionHash}
           className="flex items-center font-aperçu font-bold text-base tracking-wide"
           style={{}}>
-          {link.link}
+          {link.name}
         </Link>
       ))}
     </div>

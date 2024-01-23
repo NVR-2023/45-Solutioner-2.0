@@ -3,8 +3,16 @@ import Image from "next/image";
 
 const ServicesHomeSection: FC = () => {
   return (
-    <section>
-      <Image src="/images/homepage/plumbing.png" alt="plumbing" width={1920} height={1080} />
+    <section id="services">
+      <div>
+        <Image
+          src="/images/homepage/plumbing.png"
+          alt="plumbing"
+          width={1920}
+          height={1080}
+          priority={true}
+        />
+      </div>
     </section>
   );
 };
