@@ -1,12 +1,16 @@
 import Navbar from "@/sections/navbar/navbar";
+import Image from "next/image";
+
 export default function Home() {
   return (
     <main className="bg-[#e9e9e9]">
-          <Navbar />
-      
-      <div className="z-40 h-[1500px]">
-        
-      </div>
+      <Navbar />
+      <Image
+        src="/images/homepage/wepik-export-20240123002737bfR7.png"
+        alt="plumbing"
+        width={1920} // Set the desired width
+        height={1080} // Set the desired height
+      />
     </main>
   );
 }
