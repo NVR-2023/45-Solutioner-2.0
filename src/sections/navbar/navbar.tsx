@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import LogoComponent from "../logocomponent";
+import LogoComponent from "./logocomponent";
 
 const Navbar: FC = () => {
   return (
@@ -20,7 +20,7 @@ const Navbar: FC = () => {
             {" "}
             aperçu: solutioner
           </div>
-       
+
           <div style={{ letterSpacing: 0.9, fontSize: 12 }} className=" font-medium  font-aperçu ">
             {" "}
             Services
