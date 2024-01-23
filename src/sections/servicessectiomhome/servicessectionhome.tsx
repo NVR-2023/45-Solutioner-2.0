@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import Image from "next/image";
 
-const ServicesSection: FC = () => {
+const ServicesHomeSection: FC = () => {
   return (
     <section>
       <Image src="/images/homepage/plumbing.png" alt="plumbing" width={1920} height={1080} />
@@ -9,4 +9,4 @@ const ServicesSection: FC = () => {
   );
 };
 
-export default ServicesSection;
+export default ServicesHomeSection;
