@@ -5,7 +5,7 @@ import LogoIcon from "./logoicon";
 const LogoComponent: FC = () => {
   return (
     <div className="flex h-full items-center">
-      <Link href={"/"} className="h-full flex items-center space-x-.5">
+      <Link href={"/#services"} className="h-full flex items-center space-x-.5">
         <LogoIcon size={1.5} />
         <span className=" font-aperçu font-bold text-black text-base tracking-wide">olutioner</span>
       </Link>

@@ -16,7 +16,7 @@ const HomeLinks: FC = () => {
         <li className="list-none" key={link.sectionHash}>
           <Link
             href={link.sectionHash}
-            className="flex h-full items-center font-aperçu font-bold text-base tracking-wide"
+            className="flex h-full items-center font-aperçu font-bold text-sm tracking-wide"
             style={{}}>
             {link.name}
           </Link>
