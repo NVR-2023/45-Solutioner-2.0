@@ -7,9 +7,15 @@ export default function Home() {
   return (
     <main className="">
       <HomeNavbar />
-      <ServicesHomeSection />
-      <SecuritySectionHome />
-      <PricingSectionHome/>
+      <div className="border-b-4 border-neutral-300">
+        <ServicesHomeSection />
+      </div>
+      <div className="border-b-4 border-neutral-300">
+        <SecuritySectionHome />
+      </div>
+      <div className="border-b-4 border-neutral-300">
+        <PricingSectionHome />
+      </div>
     </main>
   );
 }
