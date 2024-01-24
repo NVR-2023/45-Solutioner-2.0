@@ -5,8 +5,8 @@ import RegisterButton from "./registerbutton";
 const AuthButtons:FC = () => {
   return (
     <div className="flex space-x-3">
-      <SigninButton />
-      <RegisterButton />
+      <div><SigninButton /></div>
+      <div><RegisterButton /></div>
     </div>
   )
 };

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { interTightFont, aperçuFont, basisFont } from "@/utils/localfontloader";
+import { aperçuFont } from "@/utils/localfontloader";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -14,9 +14,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scroll-smooth">
-      <body className={`${interTightFont.variable} ${aperçuFont.variable} ${basisFont.variable}`}>
-        {children}
-      </body>
+      <body className={`${aperçuFont.variable}`}>{children}</body>
     </html>
   );
 }

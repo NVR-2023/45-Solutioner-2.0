@@ -11,15 +11,16 @@ const HomeLinks: FC = () => {
   ];
 
   return (
-    <div className="flex space-x-7">
+    <div className="flex h-full space-x-7">
       {linkArray.map((link, index) => (
-        <Link
-          key={link.sectionHash}
-          href={link.sectionHash}
-          className="flex items-center font-aperçu font-bold text-base tracking-wide"
-          style={{}}>
-          {link.name}
-        </Link>
+        <li className="list-none" key={link.sectionHash}>
+          <Link
+            href={link.sectionHash}
+            className="flex h-full items-center font-aperçu font-bold text-base tracking-wide"
+            style={{}}>
+            {link.name}
+          </Link>
+        </li>
       ))}
     </div>
   );
