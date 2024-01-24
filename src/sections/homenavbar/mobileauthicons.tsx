@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import MobileSigninIcon from "./MobileSigninIcon";
+import MobileSigninIcon from "./mobilesigninicon";
 import MobileRegisterIcon from "./mobileregistericon";
 
 const MobileAuthIcons: FC = () => {

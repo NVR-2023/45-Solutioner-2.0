@@ -1,14 +1,22 @@
-import React , {FC} from "react"
-import SigninButton from "./signinbutton";
-import RegisterButton from "./registerbutton";
+import React, { FC } from "react";
+import BasicButton from "@/components/common/basicrbutton";
+import Link from "next/link";
 
-const AuthButtons:FC = () => {
+const AuthButtons: FC = () => {
   return (
     <div className="flex space-x-3">
-      <div><SigninButton /></div>
-      <div><RegisterButton /></div>
+      <div>
+        <BasicButton type="outlined" size="md">
+          <Link href="/signin">Sign in</Link>
+        </BasicButton>
+      </div>
+      <div>
+        <BasicButton type="filled" size="md">
+          <Link href="/register">Register</Link>
+        </BasicButton>
+      </div>
     </div>
-  )
+  );
 };
 
 export default AuthButtons;

@@ -19,7 +19,7 @@ const HomeNavbar: FC = () => {
           <div className="hidden md:flex">
             <AuthButtons />
           </div>
-          <div className="md:hidden">
+          <div className="flex md:hidden">
             <MobileAuthIcons />
           </div>
           <div className="md:hidden">
