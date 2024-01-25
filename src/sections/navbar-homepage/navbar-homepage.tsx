@@ -2,7 +2,7 @@ import React, { FC } from "react";
 import LogoComponent from "./logo-component";
 import HomeSectionLinks from "./navbar-links-homepage";
 import AuthButtons from "./auth-buttons";
-import MobileHomeMenu from "./mobile-sidemenu-homepage";
+import NobileIconsHomepage from "./mobile-icons-homepage";
 
 const NavbarHomepage: FC = () => {
   return (
@@ -19,7 +19,7 @@ const NavbarHomepage: FC = () => {
             <AuthButtons />
           </div>
           <div className="md:hidden">
-            <MobileHomeMenu />
+            <NobileIconsHomepage />
           </div>
         </div>
       </nav>

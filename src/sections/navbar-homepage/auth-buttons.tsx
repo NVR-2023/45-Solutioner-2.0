@@ -1,20 +1,12 @@
 import React, { FC } from "react";
-import BasicButton from "@/components/common/basic-button";
-import Link from "next/link";
+import SigninButton from "./signin-button";
+import RegisterButton from "./register-button";
 
 const AuthButtons: FC = () => {
   return (
     <div className="flex space-x-3">
-      <div>
-        <BasicButton type="outlined" size="md">
-          <Link className=" text-base " href="/signin">Sign in</Link>
-        </BasicButton>
-      </div>
-      <div>
-        <BasicButton type="filled" size="md">
-          <Link className=" text-base " href="/register">Register</Link>
-        </BasicButton>
-      </div>
+      <SigninButton />
+      <RegisterButton/>
     </div>
   );
 };
