@@ -1,10 +1,9 @@
 import React, { FC } from "react";
 import Link from "next/link";
 import { getSectionFomString } from "@/utils/getsectionfromurl";
+import sectionLinksArray from "./section-list-array.t";
 
 const HomeSectionLinks: FC = () => {
-  const sectionLinksArray: string[] = ["Services", "Security", "Pricing"];
-
   return (
     <div className="flex h-full space-x-7">
       {sectionLinksArray.map((link, index) => (

@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import LogoComponent from "./logo-component";
-import HomeSectionLinks from "./nav-links-homepage";
+import HomeSectionLinks from "./navbar-links-homepage";
 import AuthButtons from "./auth-buttons";
 import MobileHomeMenu from "./mobile-sidemenu-homepage";
 
