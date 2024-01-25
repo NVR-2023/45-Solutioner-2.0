@@ -1,4 +1,4 @@
-import HomeNavbar from "@/sections/navbar-home/navbar-home";
+import HomeNavbar from "@/sections/navbar-homepage/navbar-homepage";
 import ServicesHomeSection from "@/sections/services-sectiom-home/servicessectionhome";
 import SecuritySectionHome from "@/sections/security-section-home/securitysectionhome";
 import PricingSectionHome from "@/sections/pricing-section-home/pricingsectionhome";

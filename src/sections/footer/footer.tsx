@@ -2,7 +2,7 @@ import React, { FC } from "react";
 import Link from "next/link";
 import getURLfromString from "@/utils/geturlfromstring";
 import getCurrentYear from "@/utils/getCurrentYear";
-
+import SocialMediaIcons from "./social-media-icons-footer";
 const Footer: FC = () => {
   type footerLinkList = {
     about: string[];
@@ -16,7 +16,6 @@ const Footer: FC = () => {
 
   return (
     <footer className=" ps-20 bg-zinc-900 text-neutral-300">
-      
       <nav className="flex">
         <div className="block space-y-1">
           <div className="">Company</div>
@@ -35,9 +34,11 @@ const Footer: FC = () => {
             </div>
           ))}
         </div>
-        <div className="block">
-          <div className="">1212121212</div>
-          <div className="copyright">{`© ${getCurrentYear()} Nuno Rodrigues`}</div>
+        <div className="block space-y-1">
+          <div className="">
+            <SocialMediaIcons />
+          </div>
+          <div className="">{`© ${getCurrentYear()} Nuno Rodrigues`}</div>
         </div>
       </nav>
     </footer>
