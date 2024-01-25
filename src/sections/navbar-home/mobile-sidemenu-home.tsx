@@ -1,7 +1,7 @@
 "use client";
 
 import React, { FC, useState } from "react";
-import HamburgerIcon from "./hamburgericon";
+import HamburgerIcon from "./hamburger-icon";
 
 const MobileHomeMenu: FC = () => {
   const [isSheetOpen, setIsSheetOpen] = useState<boolean>(false);

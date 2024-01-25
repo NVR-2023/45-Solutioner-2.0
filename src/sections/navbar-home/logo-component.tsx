@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import Link from "next/link";
-import LogoIcon from "./logoicon";
+import LogoIcon from "./logo-icon";
 
 const LogoComponent: FC = () => {
   return (

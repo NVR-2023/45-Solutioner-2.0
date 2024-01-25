@@ -16,6 +16,7 @@ const Footer: FC = () => {
 
   return (
     <footer className=" ps-20 bg-zinc-900 text-neutral-300">
+      
       <nav className="flex">
         <div className="block space-y-1">
           <div className="">Company</div>
@@ -34,7 +35,6 @@ const Footer: FC = () => {
             </div>
           ))}
         </div>
-
         <div className="block">
           <div className="">1212121212</div>
           <div className="copyright">{`© ${getCurrentYear()} Nuno Rodrigues`}</div>

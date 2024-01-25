@@ -1,6 +1,6 @@
 import React, { FC } from "react";
-import MobileSigninIcon from "./mobilesigninicon";
-import MobileRegisterIcon from "./mobileregistericon";
+import MobileSigninIcon from "./mobile-signin-icon";
+import MobileRegisterIcon from "./mobile-register-icon";
 
 const MobileAuthIcons: FC = () => {
   return (

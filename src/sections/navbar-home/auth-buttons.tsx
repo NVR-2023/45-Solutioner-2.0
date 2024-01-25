@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import BasicButton from "@/components/common/basicrbutton";
+import BasicButton from "@/components/common/basic-button";
 import Link from "next/link";
 
 const AuthButtons: FC = () => {

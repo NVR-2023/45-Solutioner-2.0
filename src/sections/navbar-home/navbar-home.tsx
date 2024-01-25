@@ -1,9 +1,9 @@
 import React, { FC } from "react";
-import LogoComponent from "./logocomponent";
-import HomeSectionLinks from "./homelinks";
-import AuthButtons from "./authbuttons";
-import MobileHomeMenu from "./mobilehomemenu";
-import MobileAuthIcons from "./mobileauthicons";
+import LogoComponent from "./logo-component";
+import HomeSectionLinks from "./nav-links-home";
+import AuthButtons from "./auth-buttons";
+import MobileHomeMenu from "./mobile-sidemenu-home";
+import MobileAuthIcons from "./mobile-auth-icons";
 
 const HomeNavbar: FC = () => {
   return (
