@@ -19,7 +19,7 @@ const Footer: FC = () => {
       label: "company",
       links: ["About us", "Contact us", "Providers", "Jobs", "Press kit"],
     },
-    { label: "legal", links: ["Terms of use", "Privacy policy", "Cookie policy"] },
+    { label: "legal", links: ["Terms of use", "Privacy policy", "Cookie policy"] ,},
     {
       label: "social media",
       socialMediaIcons: { children: <SocialMediaIcons /> },
