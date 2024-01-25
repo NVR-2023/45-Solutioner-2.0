@@ -3,9 +3,8 @@ import LogoComponent from "./logo-component";
 import HomeSectionLinks from "./nav-links-homepage";
 import AuthButtons from "./auth-buttons";
 import MobileHomeMenu from "./mobile-sidemenu-homepage";
-import MobileAuthIcons from "./mobile-auth-icons";
 
-const HomeNavbar: FC = () => {
+const NavbarHomepage: FC = () => {
   return (
     <header className="relative z-50 w-full">
       <nav className="fixed top-1.5 w-full">
@@ -19,9 +18,6 @@ const HomeNavbar: FC = () => {
           <div className="hidden md:flex">
             <AuthButtons />
           </div>
-          <div className="flex md:hidden">
-            <MobileAuthIcons />
-          </div>
           <div className="md:hidden">
             <MobileHomeMenu />
           </div>
@@ -31,4 +27,4 @@ const HomeNavbar: FC = () => {
   );
 };
 
-export default HomeNavbar;
+export default NavbarHomepage;

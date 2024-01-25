@@ -7,12 +7,12 @@ const AuthButtons: FC = () => {
     <div className="flex space-x-3">
       <div>
         <BasicButton type="outlined" size="md">
-          <Link href="/signin">Sign in</Link>
+          <Link className=" text-base " href="/signin">Sign in</Link>
         </BasicButton>
       </div>
       <div>
         <BasicButton type="filled" size="md">
-          <Link href="/register">Register</Link>
+          <Link className=" text-base " href="/register">Register</Link>
         </BasicButton>
       </div>
     </div>

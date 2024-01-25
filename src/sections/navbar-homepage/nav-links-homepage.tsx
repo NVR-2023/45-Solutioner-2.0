@@ -11,7 +11,7 @@ const HomeSectionLinks: FC = () => {
         <li className="list-none" key={index}>
           <Link
             href={getSectionFomString(link)}
-            className="flex h-full items-center font-aperçu font-bold text-sm text-green-700 tracking-wide"
+            className="flex h-full items-center font-aperçu font-bold text-base text-green-700 tracking-wide"
             style={{}}>
             {link}
           </Link>

@@ -1,5 +1,6 @@
 import React, { FC } from "react";
 import { basicComponentPropsType } from "@/types/componentpopstypes";
+
 const MobileSigninIcon: FC<basicComponentPropsType> = ({scale=1, color="black"}) => {
   return (
     <div>

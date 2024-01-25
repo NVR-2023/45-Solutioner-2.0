@@ -3,7 +3,7 @@ import { basicComponentPropsType } from "@/types/componentpopstypes";
 
 const XIcon: FC<basicComponentPropsType> = ({ scale = 1, color = "black" }) => {
   return (
-    <a href="https://www.twitter.com" target="_blank" rel="noopener noreferrer">
+    <a href="https://www.twitter.com" title="twitter.com" target="_blank" rel="noopener noreferrer">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         shapeRendering="geometricPrecision"
