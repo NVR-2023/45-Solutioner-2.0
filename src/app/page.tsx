@@ -17,7 +17,9 @@ export default function Home() {
       <div className="border-b-2 border-neutral-300">
         <PricingSectionHome />
       </div>
-      <div><Footer/></div>
+      <div>
+        <Footer />
+      </div>
     </main>
   );
 }

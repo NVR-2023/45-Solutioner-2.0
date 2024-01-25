@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import LogoComponent from "./logocomponent";
-import HomeLinks from "./homelinks";
+import HomeSectionLinks from "./homelinks";
 import AuthButtons from "./authbuttons";
 import MobileHomeMenu from "./mobilehomemenu";
 import MobileAuthIcons from "./mobileauthicons";
@@ -14,7 +14,7 @@ const HomeNavbar: FC = () => {
             <LogoComponent />
           </div>
           <div className="hidden md:flex">
-            <HomeLinks />
+            <HomeSectionLinks />
           </div>
           <div className="hidden md:flex">
             <AuthButtons />

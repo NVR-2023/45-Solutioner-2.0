@@ -1,24 +1,19 @@
 import React, { FC } from "react";
 import Link from "next/link";
+import { getSectionFomString } from "@/utils/getsectionfromurl";
 
-import { linkListType } from "@/types/componentpopstypes";
-
-const HomeLinks: FC = () => {
-  const linkArray: linkListType = [
-    { name: "Services", url: "#services" },
-    { name: "Security", url: "#security" },
-    { name: "Pricing", url: "#pricing" },
-  ];
+const HomeSectionLinks: FC = () => {
+  const sectionLinksArray: string[] = ["Services", "Security", "Pricing"];
 
   return (
     <div className="flex h-full space-x-7">
-      {linkArray.map((link, index) => (
-        <li className="list-none" key={link.url}>
+      {sectionLinksArray.map((link, index) => (
+        <li className="list-none" key={index}>
           <Link
-            href={link.url}
+            href={getSectionFomString(link)}
             className="flex h-full items-center font-aperçu font-bold text-sm text-green-700 tracking-wide"
             style={{}}>
-            {link.name}
+            {link}
           </Link>
         </li>
       ))}
@@ -26,4 +21,4 @@ const HomeLinks: FC = () => {
   );
 };
 
-export default HomeLinks;
+export default HomeSectionLinks;
