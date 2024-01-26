@@ -17,23 +17,23 @@ const MobileSidemenuHomepage: FC = () => {
   return (
     <>
       {homepageContext && (
-        <div className="z-[999] absolute right-0 h-full w-1/4 bg-neutral-200">
-          <nav className="flex justify-center">
-            <ul className="mt-5">
-              <div className="flex justify-between mb-8">
-                <ThemeSwitch color="#15803d" />
-                <CloseButton
-                  onClick={() => {
-                    closeHomepageSideMenu();
-                  }}
-                  color="#15803d"
-                />
-              </div>
+        <div className="z-[999] absolute right-0 h-full w-1/5 ps-2.5 bg-neutral-200">
+          <div className="flex w-full justify-between mt-3 me-3">
+            <ThemeSwitch color="#15803d" />
+            <CloseButton
+              onClick={() => {
+                closeHomepageSideMenu();
+              }}
+              color="#15803d"
+            />
+          </div>
+          <nav className="flex justify-start ">
+            <ul className="mt-3">
               {sectionLinksArray &&
                 sectionLinksArray.map((section, index) => (
                   <li
                     key={index}
-                    className="ms-1 mb-1.5 font-aperçu font-bold text-base text-green-700 tracking-wide"
+                    className="mb-2 font-aperçu font-bold text-base text-green-700 tracking-wide"
                     onClick={() => {
                       console.log("sss");
                     }}>
@@ -42,12 +42,12 @@ const MobileSidemenuHomepage: FC = () => {
                 ))}
               <br />
               <li
-                className="ms-1 mb-1.5 font-aperçu font-bold text-base text-green-700 tracking-wide"
+                className="mb-2 font-aperçu font-bold text-base text-green-700 tracking-wide"
                 key="signIn">
                 <Link href="/signin">Sign in</Link>
               </li>
               <li
-                className="ms-1 mb-1.5 font-aperçu font-bold text-base text-green-700 tracking-wide"
+                className="mb-2 font-aperçu font-bold text-base text-green-700 tracking-wide"
                 key="register">
                 <Link href="/register">Register</Link>
               </li>

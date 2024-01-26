@@ -1,8 +1,11 @@
 import React, { FC } from "react";
 import { onClickComponentPropsType } from "@/types/componentpopstypes";
 
-const HamburgerButton: FC<onClickComponentPropsType> = ({ scale = 1, color = "black", onClick }) => {
-  console.log("****", onClick)
+const HamburgerButton: FC<onClickComponentPropsType> = ({
+  scale = 1,
+  color = "black",
+  onClick,
+}) => {
   return (
     <div>
       <svg

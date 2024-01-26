@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import MobileSigninIcon from "./mobile-signin-icon";
+import MobileSigninIcon from "./mobile-signin-button";
 
 const MobileAuthIcons: FC = () => {
   return (
@@ -12,4 +12,3 @@ const MobileAuthIcons: FC = () => {
 };
 
 export default MobileAuthIcons;
-
