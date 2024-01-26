@@ -5,19 +5,13 @@ const XIcon: FC<basicComponentPropsType> = ({ scale = 1, color = "black" }) => {
   return (
     <a href="https://www.twitter.com" title="twitter.com" target="_blank" rel="noopener noreferrer">
       <svg
-        xmlns="http://www.w3.org/2000/svg"
-        shapeRendering="geometricPrecision"
-        textRendering="geometricPrecision"
-        imageRendering="optimizeQuality"
-        fillRule="evenodd"
-        clipRule="evenodd"
-        viewBox="0 0 512 512"
         width={24 * scale}
         height={24 * scale}
-        fill={color}>
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 512 512">
         <path
-          fillRule="nonzero"
-          d="M403.229 0h78.506L310.219 196.04 512 462.799H354.002L230.261 301.007 88.669 462.799h-78.56l183.455-209.683L0 0h161.999l111.856 147.88L403.229 0zm-27.556 415.805h43.505L138.363 44.527h-46.68l283.99 371.278z"
+          fill={color}
+          d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"
         />
       </svg>
     </a>
