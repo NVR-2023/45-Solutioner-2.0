@@ -28,7 +28,7 @@ const Footer: FC = () => {
   ];
 
   const classNameForFooterLinks =
-    " font-aperçu font-bold text-xs tracking-wide text-neutral-300 mb-1.5";
+    " ";
 
   return (
     <footer id="footer" className="py-5 bg-zinc-900">
@@ -44,18 +44,24 @@ const Footer: FC = () => {
               </div>
               <ul className="">
                 {linksColumn.links?.map((link, index) => (
-                  <li className={classNameForFooterLinks} key={index}>
+                  <li
+                    className="font-aperçu font-bold text-xs tracking-wide text-neutral-300 mb-1.5"
+                    key={index}>
                     <Link href={getURLfromString(link)}>{link}</Link>
                   </li>
                 ))}
                 {linksColumn.socialMediaIcons && (
-                  <li className={classNameForFooterLinks} key="social-media-icons">
+                  <li
+                    className="font-aperçu font-bold text-xs tracking-wide text-neutral-300 mb-1.5"
+                    key="social-media-icons">
                     {linksColumn.socialMediaIcons.children}
                   </li>
                 )}
                 <br />
                 {linksColumn.caption && (
-                  <li className={classNameForFooterLinks} key="caption">
+                  <li
+                    className="font-aperçu font-bold text-xs tracking-wide text-neutral-300 mb-1.5"
+                    key="caption">
                     {linksColumn.caption}
                   </li>
                 )}

@@ -1,3 +1,8 @@
+"use client";
+
+import React from "react";
+import { HomepageContextProvider } from "@/contextes/homepage-context";
+
 import MobileSidemenuHomepage from "@/sections/navbar-homepage/mobile-sidemenu-homepage";
 import NavbarHomepage from "@/sections/navbar-homepage/navbar-homepage";
 import ServicesHomeSection from "@/sections/services-sectiom-home/servicessectionhome";
@@ -6,26 +11,29 @@ import PricingSectionHome from "@/sections/pricing-section-home/pricingsectionho
 import Footer from "@/sections/footer/footer";
 
 export default function Home() {
+
   return (
-    <main id="homePage" className="relative">
-      <div className="md:hidden">
-        <MobileSidemenuHomepage />
-      </div>
-      <div>
-        <NavbarHomepage />
-      </div>
-      <div className="border-b-2 border-neutral-300">
-        <ServicesHomeSection />
-      </div>
-      <div className="border-b-2 border-neutral-300">
-        <SecuritySectionHome />
-      </div>
-      <div className="border-b-2 border-neutral-300">
-        <PricingSectionHome />
-      </div>
-      <div>
-        <Footer />
-      </div>
-    </main>
+    <HomepageContextProvider>
+      <main id="homePage" className="relative">
+        <div className="md:hidden">
+          <MobileSidemenuHomepage />
+        </div>
+        <div>
+          <NavbarHomepage />
+        </div>
+        <div className="border-b-2 border-neutral-300">
+          <ServicesHomeSection />
+        </div>
+        <div className="border-b-2 border-neutral-300">
+          <SecuritySectionHome />
+        </div>
+        <div className="border-b-2 border-neutral-300">
+          <PricingSectionHome />
+        </div>
+        <div>
+          <Footer />
+        </div>
+      </main>
+    </HomepageContextProvider>
   );
 }

@@ -5,6 +5,12 @@ export type basicComponentPropsType = {
   color?: string;
 };
 
+export type onClickComponentPropsType = {
+  scale?: number;
+  color?: string;
+  onClick?: () => void;
+};
+
 export type basicButtonType = {
   type?: "outlined" | "filled";
   size?: "sm" | "md" | "lg";
