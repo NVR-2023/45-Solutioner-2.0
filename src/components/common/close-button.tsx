@@ -1,18 +1,16 @@
-import React , {FC} from "react"
+import React, { FC } from "react";
 import { basicComponentPropsType } from "@/types/componentpopstypes";
 
-const CloseButton:FC<basicComponentPropsType> = ({scale=1 , color="black"}) => {
+const CloseButton: FC<basicComponentPropsType> = ({ scale = 1, color = "black" }) => {
   return (
-    <div>
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        height={24*scale}
-        viewBox="0 -960 960 960"
-        width={24*scale}
-        fill={color}>
-        <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" />
-      </svg>
-    </div>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      height={24 * scale}
+      viewBox="0 -960 960 960"
+      width={24 * scale}
+      fill={color}>
+      <path d="m336-280-56-56 144-144-144-143 56-56 144 144 143-144 56 56-144 143 144 144-56 56-143-144-144 144Z" />
+    </svg>
   );
 };
 
