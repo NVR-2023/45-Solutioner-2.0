@@ -6,12 +6,16 @@ import Link from "next/link";
 import SigninButton from "./signin-button";
 import RegisterButton from "./register-button";
 import { getSectionFomString } from "@/utils/getsectionfromurl";
+import CloseButton from "@/components/common/close-button";
 
 const MobileSidemenuHomepage: FC = () => {
   return (
     <div className="z-[999] absolute right-0 h-full w-1/4 bg-neutral-200">
       <nav className="flex justify-center">
         <ul className="mt-5">
+          <div className="flex justify-end mb-8">
+            <CloseButton color="#15803d" />
+          </div>
           {sectionLinksArray &&
             sectionLinksArray.map((section, index) => (
               <li
@@ -23,7 +27,7 @@ const MobileSidemenuHomepage: FC = () => {
                 <Link href={getSectionFomString(section)}>{section}</Link>
               </li>
             ))}
-          <li className="mt-16" key="signInButton">
+          <li className="mt-8" key="signInButton">
             <SigninButton />
           </li>
           <li className="mt-4" key="registerButton">
