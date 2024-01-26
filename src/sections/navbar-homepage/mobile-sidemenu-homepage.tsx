@@ -5,16 +5,15 @@ import sectionLinksArray from "./section-list-array.t";
 import Link from "next/link";
 import { getSectionFomString } from "@/utils/getsectionfromurl";
 import CloseButton from "@/components/common/close-button";
-import ThemeSwapper from "@/components/common/theme-swapper/themeSwapper";
+import ThemeSwitch from "@/components/common/theme-switch/theme-switch";
 
 const MobileSidemenuHomepage: FC = () => {
-
   return (
     <div className="z-[999] absolute right-0 h-full w-1/4 bg-neutral-200">
       <nav className="flex justify-center">
         <ul className="mt-5">
           <div className="flex justify-between mb-8">
-            <ThemeSwapper/>
+            <ThemeSwitch color="#15803d" />
             <CloseButton color="#15803d" />
           </div>
           {sectionLinksArray &&
@@ -28,7 +27,7 @@ const MobileSidemenuHomepage: FC = () => {
                 <Link href={getSectionFomString(section)}>{section}</Link>
               </li>
             ))}
-          <br/>
+          <br />
           <li
             className="ms-1 mb-1.5 font-aperçu font-bold text-base text-green-700 tracking-wide"
             key="signIn">

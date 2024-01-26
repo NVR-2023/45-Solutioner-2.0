@@ -14,4 +14,4 @@ const RegisterButton: FC = () => {
   );
 };
 
-export default RegisterButton
+export default RegisterButton;

@@ -18,21 +18,24 @@ const Footer: FC = () => {
     {
       label: "company",
       links: ["About us", "Contact us", "Providers", "Jobs", "Press kit"],
+      caption: `© ${getCurrentYear()} Nuno Rodrigues`,
     },
-    { label: "legal", links: ["Terms of use", "Privacy policy", "Cookie policy"] ,},
+    { label: "legal", links: ["Terms of use", "Privacy policy", "Cookie policy"] },
     {
       label: "social media",
       socialMediaIcons: { children: <SocialMediaIcons /> },
-      caption: `© ${getCurrentYear()} Nuno Rodrigues`,
     },
   ];
+
+  const classNameForFooterLinks =
+    " font-aperçu font-bold text-xs tracking-wide text-neutral-300 mb-1.5";
 
   return (
     <footer id="footer" className="py-5 bg-zinc-900">
       <div className="flex justify-center ">
-        <nav className="flex space-x-3 md:space-x-32 ">
+        <nav className="flex space-x-1 md:space-x-24 ">
           {footerLinkArray.map((linksColumn, index) => (
-            <div className="block md:w-48" key={index}>
+            <div className="block w-36 md:w-48" key={index}>
               <div
                 className=" font-aperçu font-bold text-md tracking-wider text-neutral-500 mb-2 "
                 style={{ fontVariant: "small-caps" }}
@@ -41,19 +44,18 @@ const Footer: FC = () => {
               </div>
               <ul className="">
                 {linksColumn.links?.map((link, index) => (
-                  <li
-                    className=" font-aperçu font-bold text-xs tracking-wide text-neutral-300 mb-1.5"
-                    key={index}>
+                  <li className={classNameForFooterLinks} key={index}>
                     <Link href={getURLfromString(link)}>{link}</Link>
                   </li>
                 ))}
                 {linksColumn.socialMediaIcons && (
-                  <li key="social-media-icons">{linksColumn.socialMediaIcons.children}</li>
+                  <li className={classNameForFooterLinks} key="social-media-icons">
+                    {linksColumn.socialMediaIcons.children}
+                  </li>
                 )}
+                <br />
                 {linksColumn.caption && (
-                  <li
-                    className=" font-aperçu font-bold text-xs tracking-wide text-neutral-300"
-                    key="caption">
+                  <li className={classNameForFooterLinks} key="caption">
                     {linksColumn.caption}
                   </li>
                 )}

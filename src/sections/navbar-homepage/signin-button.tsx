@@ -1,8 +1,8 @@
-import React , {FC} from "react"
+import React, { FC } from "react";
 import BasicButton from "@/components/common/basic-button";
 import Link from "next/link";
 
-const SigninButton:FC = () => {
+const SigninButton: FC = () => {
   return (
     <div>
       <BasicButton type="outlined" size="md">

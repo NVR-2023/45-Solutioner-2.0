@@ -11,7 +11,7 @@ const XIcon: FC<basicComponentPropsType> = ({ scale = 1, color = "black" }) => {
         imageRendering="optimizeQuality"
         fillRule="evenodd"
         clipRule="evenodd"
-        viewBox="0 0 512 462.799"
+        viewBox="0 0 512 512"
         width={24 * scale}
         height={24 * scale}
         fill={color}>
