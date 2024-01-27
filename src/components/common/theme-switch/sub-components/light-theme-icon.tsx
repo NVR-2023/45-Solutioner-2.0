@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { basicComponentPropsType } from "@/types/component-props-types";
 
-const LightThemeTcon: FC<basicComponentPropsType> = ({ scale = 1, color = "black" }) => {
+const LightThemeIcon: FC<basicComponentPropsType> = ({ scale = 1, color = "black" }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -16,4 +16,4 @@ const LightThemeTcon: FC<basicComponentPropsType> = ({ scale = 1, color = "black
   );
 };
 
-export default LightThemeTcon;
+export default LightThemeIcon;

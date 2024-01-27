@@ -9,11 +9,11 @@ import CloseButton from "@/components/common/close-button";
 import ThemeSwitch from "@/components/common/theme-switch/theme-switch";
 
 const MobileSidemenuHomepage: FC = () => {
-  const { mobileNavbarContext: homepageContext, setMobileNavbarContext: setHomepageContext } =
+  const { mobileNavbarContext: homepageContext, setMobileNavbarContext: setMobileNavbarContext } =
     useMobileNavbarContext();
 
   const closeHomepageSideMenu = () => {
-    setHomepageContext(false);
+    setMobileNavbarContext(false);
   };
   return (
     <>

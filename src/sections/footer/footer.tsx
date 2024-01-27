@@ -2,7 +2,7 @@ import React, { ReactNode, FC } from "react";
 import Link from "next/link";
 import getURLfromString from "@/utils/geturlfromstring";
 import getCurrentYear from "@/utils/getCurrentYear";
-import SocialMediaIcons from "./social-media-icons-footer";
+import SocialMediaIcons from "./sub-components/social-media-icons-footer";
 
 const Footer: FC = () => {
   type FooterLinkColumnType = {
@@ -27,17 +27,14 @@ const Footer: FC = () => {
     },
   ];
 
-  const classNameForFooterLinks =
-    " ";
-
   return (
     <footer id="footer" className="py-5 bg-zinc-900">
-      <div className="flex justify-center ">
-        <nav className="flex space-x-1 md:space-x-24 ">
+      <div className="flex justify-center">
+        <nav className="flex md:space-x-24">
           {footerLinkArray.map((linksColumn, index) => (
-            <div className="block w-36 md:w-48" key={index}>
+            <div className="block w-28 md:w-48" key={index}>
               <div
-                className=" font-aperçu font-bold text-md tracking-wider text-neutral-500 mb-2 "
+                className="font-aperçu font-bold text-md tracking-wider text-neutral-500 mb-2"
                 style={{ fontVariant: "small-caps" }}
                 key={`column-${index}`}>
                 {linksColumn.label}
