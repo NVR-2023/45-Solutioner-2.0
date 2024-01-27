@@ -3,7 +3,6 @@
 import React from "react";
 import { HomepageContextProvider } from "@/contextes/homepage-context";
 
-import MobileSidemenuHomepage from "@/sections/navbar-homepage/mobile-sidemenu-homepage";
 import NavbarHomepage from "@/sections/navbar-homepage/navbar-homepage";
 import ServicesHomeSection from "@/sections/services-sectiom-home/servicessectionhome";
 import SecuritySectionHome from "@/sections/security-section-home/securitysectionhome";
@@ -15,9 +14,6 @@ export default function Home() {
   return (
     <HomepageContextProvider>
       <main id="homePage" className="relative">
-        <div className="md:hidden">
-          <MobileSidemenuHomepage />
-        </div>
         <div>
           <NavbarHomepage />
         </div>

@@ -17,7 +17,7 @@ const MobileSidemenuHomepage: FC = () => {
   return (
     <>
       {homepageContext && (
-        <div className="z-[999] absolute right-0 h-full w-1/5 ps-2.5 bg-neutral-200">
+        <div className="z-[999] absolute right-1 px-2 bg-neutral-200">
           <div className="flex w-full justify-between mt-3 me-3">
             <ThemeSwitch color="#15803d" />
             <CloseButton
@@ -35,22 +35,12 @@ const MobileSidemenuHomepage: FC = () => {
                     key={index}
                     className="mb-2 font-aperçu font-bold text-base text-green-700 tracking-wide"
                     onClick={() => {
-                      console.log("sss");
+                      closeHomepageSideMenu();
                     }}>
                     <Link href={getSectionFomString(section)}>{section}</Link>
                   </li>
                 ))}
               <br />
-              <li
-                className="mb-2 font-aperçu font-bold text-base text-green-700 tracking-wide"
-                key="signIn">
-                <Link href="/signin">Sign in</Link>
-              </li>
-              <li
-                className="mb-2 font-aperçu font-bold text-base text-green-700 tracking-wide"
-                key="register">
-                <Link href="/register">Register</Link>
-              </li>
             </ul>
           </nav>
         </div>
