@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { basicComponentPropsType } from "@/types/componentpopstypes";
+import { basicComponentPropsType } from "@/types/component-props-types";
 
 const LogoIcon: FC<basicComponentPropsType> = ({ size = 1, color = "black" }) => {
   return (

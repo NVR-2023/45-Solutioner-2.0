@@ -1,5 +1,5 @@
 import React, { FC, ReactNode } from "react";
-import { basicButtonType } from "@/types/componentpopstypes";
+import { basicButtonType } from "@/types/component-props-types";
 
 const BasicButton: FC<basicButtonType> = ({ type = "filled", size = "md", children }) => {
   const baseStyle: string =

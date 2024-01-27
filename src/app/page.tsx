@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { HomepageContextProvider } from "@/contextes/homepage-context";
+import { MobileNavbarContextProvider } from "@/contextes/mobile-navbar-pulldown";
 
 import NavbarHomepage from "@/sections/navbar-homepage/navbar-homepage";
 import ServicesHomeSection from "@/sections/services-sectiom-home/servicessectionhome";
@@ -10,9 +10,8 @@ import PricingSectionHome from "@/sections/pricing-section-home/pricingsectionho
 import Footer from "@/sections/footer/footer";
 
 export default function Home() {
-
   return (
-    <HomepageContextProvider>
+    <MobileNavbarContextProvider>
       <main id="homePage" className="relative">
         <div>
           <NavbarHomepage />
@@ -30,6 +29,6 @@ export default function Home() {
           <Footer />
         </div>
       </main>
-    </HomepageContextProvider>
+    </MobileNavbarContextProvider>
   );
 }

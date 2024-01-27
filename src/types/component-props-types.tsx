@@ -22,4 +22,9 @@ export type linkType = {
   url: string;
 };
 
+
+export type basicChildrenType = {
+  children: ReactNode;
+}
+
 export type linkListType = linkType[];

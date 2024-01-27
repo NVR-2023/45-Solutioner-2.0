@@ -4,10 +4,10 @@ import HomeSectionLinks from "./navbar-links-homepage";
 import AuthButtons from "./auth-buttons";
 import MobileButtonsHomepage from "./mobile-buttons-homepage";
 import MobileSidemenuHomepage from "./mobile-sidemenu-homepage";
-import { useHomepageContext } from "@/contextes/homepage-context";
+import { useMobileNavbarContext } from "@/contextes/mobile-navbar-pulldown";
 
 const NavbarHomepage: FC = () => {
-  const { homepageContext } = useHomepageContext();
+  const { mobileNavbarContext: homepageContext } = useMobileNavbarContext();
   return (
     <header className="relative z-50 w-full">
       <nav className="fixed top-1.5 w-full">
@@ -25,9 +25,11 @@ const NavbarHomepage: FC = () => {
             <MobileButtonsHomepage />
           </div>
         </div>
-        { homepageContext && (<div className="md:hidden">
-          <MobileSidemenuHomepage />
-        </div>) }
+        {homepageContext && (
+          <div className="md:hidden">
+            <MobileSidemenuHomepage />
+          </div>
+        )}
       </nav>
     </header>
   );

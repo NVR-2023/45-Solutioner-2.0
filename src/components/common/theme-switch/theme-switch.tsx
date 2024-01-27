@@ -1,9 +1,9 @@
 import React, { FC, useState } from "react";
-import { basicComponentPropsType } from "@/types/componentpopstypes";
+import { basicComponentPropsType } from "@/types/component-props-types";
 import LightThemeTcon from "./light-theme-icon";
 import DarkThemeIcon from "./dark-theme-icon";
 
-const ThemeSwitch: FC<basicComponentPropsType> = ({ scale=1, color="black"}) => {
+const ThemeSwitch: FC<basicComponentPropsType> = ({ scale = 1, color = "black" }) => {
   const [isFirstIconVisible, setIsFirstIconVisible] = useState(true);
 
   const handleClick = () => {

@@ -1,7 +1,7 @@
 "use client";
 
 import React, { FC } from "react";
-import { useHomepageContext } from "@/contextes/homepage-context";
+import { useMobileNavbarContext } from "@/contextes/mobile-navbar-pulldown";
 import sectionLinksArray from "./section-list-array.t";
 import Link from "next/link";
 import { getSectionFomString } from "@/utils/getsectionfromurl";
@@ -9,7 +9,8 @@ import CloseButton from "@/components/common/close-button";
 import ThemeSwitch from "@/components/common/theme-switch/theme-switch";
 
 const MobileSidemenuHomepage: FC = () => {
-  const { homepageContext, setHomepageContext } = useHomepageContext();
+  const { mobileNavbarContext: homepageContext, setMobileNavbarContext: setHomepageContext } =
+    useMobileNavbarContext();
 
   const closeHomepageSideMenu = () => {
     setHomepageContext(false);

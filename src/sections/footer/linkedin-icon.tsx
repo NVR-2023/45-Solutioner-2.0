@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { basicComponentPropsType } from "@/types/componentpopstypes";
+import { basicComponentPropsType } from "@/types/component-props-types";
 
 const LinkedinIcon: FC<basicComponentPropsType> = ({ scale = 1, color = "white" }) => {
   return (

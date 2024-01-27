@@ -1,12 +1,12 @@
 "use client";
 
 import React, { FC } from "react";
-import { useHomepageContext } from "@/contextes/homepage-context";
+import { useMobileNavbarContext } from "@/contextes/mobile-navbar-pulldown";
 import HamburgerButton from "./hamburger-button";
 import MobileSigninIcon from "./mobile-signin-button";
 
 const MobileButtonsHomepage: FC = () => {
-  const { setHomepageContext } = useHomepageContext();
+  const { setMobileNavbarContext: setHomepageContext } = useMobileNavbarContext();
 
   const openHomepageSidemenu = () => {
     setHomepageContext(true);

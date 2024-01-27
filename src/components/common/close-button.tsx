@@ -1,8 +1,7 @@
 import React, { FC } from "react";
-import { onClickComponentPropsType } from "@/types/componentpopstypes";
+import { onClickComponentPropsType } from "@/types/component-props-types";
 
 const CloseButton: FC<onClickComponentPropsType> = ({ scale = 1, color = "black", onClick }) => {
-
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

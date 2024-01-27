@@ -1,9 +1,14 @@
 import React, { FC } from "react";
-import { basicComponentPropsType } from "@/types/componentpopstypes";
+import { basicComponentPropsType } from "@/types/component-props-types";
 
 const LogoIcon: FC<basicComponentPropsType> = ({ scale = 1, color = "black" }) => {
   return (
-    <svg width={8*scale} height={11*scale} viewBox="0 0 8 11" fill={color} xmlns="http://www.w3.org/2000/svg">
+    <svg
+      width={8 * scale}
+      height={11 * scale}
+      viewBox="0 0 8 11"
+      fill={color}
+      xmlns="http://www.w3.org/2000/svg">
       <circle cx="2.56667" cy="10.0833" r="0.916667" fill={color} />
       <circle cx="0.916667" cy="8.8" r="0.916667" fill={color} />
       <circle cx="2.56667" cy="5.5" r="0.916667" fill={color} />
