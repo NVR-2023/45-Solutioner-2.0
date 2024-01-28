@@ -34,7 +34,7 @@ const Footer: FC = () => {
           {footerLinkArray.map((linksColumn, index) => (
             <div className="block w-28 md:w-48" key={index}>
               <div
-                className="font-aperçu font-bold text-md tracking-wider text-neutral-500 mb-2"
+                className="font-aperçu font-semibold text-sm text-neutral-500 tracking-wide mb-2"
                 style={{ fontVariant: "small-caps" }}
                 key={`column-${index}`}>
                 {linksColumn.label}
@@ -42,14 +42,14 @@ const Footer: FC = () => {
               <ul className="">
                 {linksColumn.links?.map((link, index) => (
                   <li
-                    className="font-aperçu font-bold text-xs tracking-wide text-neutral-300 mb-1.5"
+                    className="font-aperçu font-semibold text-xs tracking-wide text-neutral-300 mb-1.5"
                     key={index}>
                     <Link href={getURLfromString(link)}>{link}</Link>
                   </li>
                 ))}
                 {linksColumn.socialMediaIcons && (
                   <li
-                    className="font-aperçu font-bold text-xs tracking-wide text-neutral-300 mb-1.5"
+                    className="font-aperçu font-semibold text-xs text-neutral-300 mb-1.5"
                     key="social-media-icons">
                     {linksColumn.socialMediaIcons.children}
                   </li>
@@ -57,7 +57,7 @@ const Footer: FC = () => {
                 <br />
                 {linksColumn.caption && (
                   <li
-                    className="font-aperçu font-bold text-xs tracking-wide text-neutral-300 mb-1.5"
+                    className="font-aperçu font-bold text-xs text-neutral-300 mb-1.5"
                     key="caption">
                     {linksColumn.caption}
                   </li>
