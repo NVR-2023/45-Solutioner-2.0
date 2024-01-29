@@ -2,8 +2,9 @@ import React, { FC, ReactNode } from "react";
 import { basicButtonType } from "@/types/component-props-types";
 
 const BasicButton: FC<basicButtonType> = ({ type = "filled", size = "md", children }) => {
+  
   const baseStyle: string =
-    "flex justify-center items-center rounded font-aperçu font-bold text-sm tracking-wide";
+    "flex justify-center items-center rounded font-aperçu font-bold text-base";
 
   const typeMap = new Map();
   typeMap.set("outlined", "border-black border-2 ");

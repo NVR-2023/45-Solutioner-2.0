@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import LogoComponent from "./sub-components/logo-component";
 import HomeSectionLinks from "./sub-components/navbar-links-homepage";
-import SigninSegment from "./sub-components/signin-segment";
+import SigninSegment from "./sub-components/auth-segment";
 import MobileButtonsHomepage from "./sub-components/mobile-buttons-homepage";
 import MobileSidemenuHomepage from "./sub-components/mobile-sidemenu-homepage";
 import { useMobileNavbarContext } from "@/contextes/mobile-navbar-pulldown";

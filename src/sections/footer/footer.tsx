@@ -1,7 +1,7 @@
 import React, { ReactNode, FC } from "react";
 import Link from "next/link";
-import getURLfromString from "@/utils/geturlfromstring";
-import getCurrentYear from "@/utils/getCurrentYear";
+import getURLfromString from "@/utils/functions/geturlfromstring";
+import getCurrentYear from "@/utils/functions/getCurrentYear";
 import SocialMediaIcons from "./sub-components/social-media-icons-footer";
 
 const Footer: FC = () => {

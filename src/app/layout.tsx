@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { aperçuFont } from "@/utils/localfontloader";
+import { aperçuFont } from "@/utils/functions/localfontloader";
 import "./globals.css";
 
 export const metadata: Metadata = {

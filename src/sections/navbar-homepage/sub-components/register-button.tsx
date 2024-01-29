@@ -6,7 +6,7 @@ const RegisterButton: FC = () => {
   return (
     <div>
       <BasicButton type="filled" size="md">
-        <Link className=" text-base " href="/register">
+        <Link href="/register">
           Register
         </Link>
       </BasicButton>
