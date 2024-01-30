@@ -1,4 +1,4 @@
-import React, { ReactNode, FC } from "react";
+import React, { FC } from "react";
 import Link from "next/link";
 import getURLfromString from "@/utils/functions/geturlfromstring";
 
@@ -11,8 +11,7 @@ import {
   LIGHT_THEME_FOOTER_TEXT,
   DARK_THEME_FOOTER_TEXT,
   LIGHT_THEME_FOOTER_CAPTION,
-  DARK_THEME_FOOTER_CAPTION
-
+  DARK_THEME_FOOTER_CAPTION,
 } from "@/app/global-text-styles";
 
 const Footer: FC = () => {
@@ -23,34 +22,30 @@ const Footer: FC = () => {
         <nav className="flex md:space-x-24">
           {footerLinkArray.map((linksColumn, index) => (
             <div className="block w-28 md:w-48" key={index}>
-              <div className="mb-1" key={`column-${index}`}>
+              <div className="mb-2" key={`column-${index}`}>
                 <span className={`${LIGHT_THEME_FOOTER_LABELS} ${DARK_THEME_FOOTER_LABELS}`}>
                   {linksColumn.label}
                 </span>
               </div>
-              <ul className="m-0 p-0">
+              <ul className="list-none flex flex-col space-y-2">
                 {linksColumn.links?.map((link, index) => (
-                  <li className="m-0 p-0" key={index}>
+                  <li className="flex" key={index}>
                     <Link
-                      className={`m-0 p-0 ${LIGHT_THEME_FOOTER_TEXT} ${DARK_THEME_FOOTER_TEXT}`}
+                      className={`flex items-center ${LIGHT_THEME_FOOTER_TEXT} ${DARK_THEME_FOOTER_TEXT}`}
                       href={getURLfromString(link)}>
                       {link}
                     </Link>
                   </li>
                 ))}
                 {linksColumn.socialMediaIcons && (
-                  <li
-                    className=""
-                    key="social-media-icons">
-                      <div className="">
-                    {linksColumn.socialMediaIcons.children}
-                    </div>
+                  <li className="flex" key="social-media-icons">
+                    <div className="flex items-center">{linksColumn.socialMediaIcons.children}</div>
                   </li>
                 )}
                 <br />
                 {linksColumn.caption && (
                   <li
-                    className={`${LIGHT_THEME_FOOTER_CAPTION} ${DARK_THEME_FOOTER_CAPTION}`}
+                    className={`${LIGHT_THEME_FOOTER_CAPTION} ${DARK_THEME_FOOTER_CAPTION} flex items-center`}
                     key="caption">
                     {linksColumn.caption}
                   </li>

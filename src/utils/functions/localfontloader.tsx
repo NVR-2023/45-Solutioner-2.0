@@ -42,6 +42,11 @@ export const aperçuFont = localFont({
       weight: "700",
       style: "italic",
     },
+    {
+      path: "../../../public/fonts/Apercu-Pro-Black.ttf",
+      weight: "900",
+      style: "normal",
+    },
   ],
   variable: "--font-Aperçu",
 });
