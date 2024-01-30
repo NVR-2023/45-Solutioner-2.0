@@ -15,8 +15,8 @@ const MobileButtonsHomepage: FC = () => {
   return (
     <div className="relative flex">
       <div className="flex justify-between space-x-4">
-        <MobileSigninIcon color="#15803d" />
-        <HamburgerButton onClick={openHomepageSidemenu} color="#15803d" />
+        <MobileSigninIcon />
+        <HamburgerButton onClick={openHomepageSidemenu} />
       </div>
     </div>
   );

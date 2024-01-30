@@ -15,8 +15,8 @@ export const MobileNavbarContextProvider: FC<basicChildrenType> = ({ children })
   return (
     <MobileNavbarContext.Provider
       value={{
-        mobileNavbarContext: mobileNavbarContext,
-        setMobileNavbarContext: setMobileNavbarContext,
+        mobileNavbarContext,
+        setMobileNavbarContext
       }}>
       {children}
     </MobileNavbarContext.Provider>

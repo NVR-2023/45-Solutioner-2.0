@@ -7,7 +7,7 @@ import MobileSidemenuHomepage from "./sub-components/mobile-sidemenu-homepage";
 import { useMobileNavbarContext } from "@/contextes/mobile-navbar-pulldown";
 
 const NavbarHomepage: FC = () => {
-  const { mobileNavbarContext: homepageContext } = useMobileNavbarContext();
+  const { mobileNavbarContext } = useMobileNavbarContext();
   return (
     <header className="relative z-50 w-full">
       <nav className="fixed top-1.5 w-full">
@@ -25,7 +25,7 @@ const NavbarHomepage: FC = () => {
             <MobileButtonsHomepage />
           </div>
         </div>
-        {homepageContext && (
+        {mobileNavbarContext && (
           <div className="md:hidden">
             <MobileSidemenuHomepage />
           </div>

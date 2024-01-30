@@ -26,21 +26,27 @@ const ThemeSwitch: FC = () => {
         className={`absolute flex items-center justify-center transform rotate-${
           currentTheme === "light" ? "0" : "180"
         } opacity-${currentTheme === "light" ? "100" : "0"} transition-all duration-500`}
-        onClick={handleSwitchTheme}>
+        onClick={handleSwitchTheme}
+        role="button"
+        aria-label="Switch to Dark theme">
         <LightThemeIcon />
       </div>
       <div
         className={`absolute flex items-center justify-center transform rotate-${
           currentTheme === "dark" ? "0" : "180"
         } opacity-${currentTheme === "dark" ? "100" : "0"} transition-all duration-500`}
-        onClick={handleSwitchTheme}>
+        onClick={handleSwitchTheme}
+        role="button"
+        aria-label="Switch to System theme">
         <DarkThemeIcon />
       </div>
       <div
         className={`absolute flex items-center justify-center transform rotate-${
           currentTheme === "system" ? "0" : "180"
         } opacity-${currentTheme === "system" ? "100" : "0"} transition-all duration-500`}
-        onClick={handleSwitchTheme}>
+        onClick={handleSwitchTheme}
+        role="button"
+        aria-label="Switch to Light theme">
         <SystemThemeIcon />
       </div>
     </div>
