@@ -2,7 +2,7 @@
 
 import React, { FC } from "react";
 import { useMobileNavbarContext } from "@/contextes/mobile-navbar-pulldown";
-import homepageSections from "@/utils/data/homepageSections";
+import homepageSections from "@/sections/navbar-homepage/sub-components/homepageSections";
 import Link from "next/link";
 import { getSectionFomString } from "@/utils/functions/getsectionfromurl";
 import CloseButton from "@/components/common/close-button";

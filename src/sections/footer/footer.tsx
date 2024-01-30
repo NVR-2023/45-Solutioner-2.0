@@ -1,63 +1,56 @@
 import React, { ReactNode, FC } from "react";
 import Link from "next/link";
 import getURLfromString from "@/utils/functions/geturlfromstring";
-import getCurrentYear from "@/utils/functions/getCurrentYear";
-import SocialMediaIcons from "./sub-components/social-media-icons-footer";
+
+import footerLinkArray from "./sub-components/footerLinks";
+import {
+  LIGHT_THEME_BACKGROUND,
+  DARK_THEME_BACKGROUND,
+  LIGHT_THEME_FOOTER_LABELS,
+  DARK_THEME_FOOTER_LABELS,
+  LIGHT_THEME_FOOTER_TEXT,
+  DARK_THEME_FOOTER_TEXT,
+  LIGHT_THEME_FOOTER_CAPTION,
+  DARK_THEME_FOOTER_CAPTION
+
+} from "@/app/global-text-styles";
 
 const Footer: FC = () => {
-  type FooterLinkColumnType = {
-    label: string;
-    links?: string[];
-    socialMediaIcons?: { children: ReactNode };
-    caption?: string;
-  };
-
-  type FooterLinkListType = FooterLinkColumnType[];
-
-  const footerLinkArray: FooterLinkListType = [
-    {
-      label: "company",
-      links: ["About us", "Contact us", "Providers", "Jobs", "Press kit"],
-      caption: `© ${getCurrentYear()} Nuno Rodrigues`,
-    },
-    { label: "legal", links: ["Terms of use", "Privacy policy", "Cookie policy"] },
-    {
-      label: "social media",
-      socialMediaIcons: { children: <SocialMediaIcons /> },
-    },
-  ];
-
   return (
-    <footer id="footer" className="py-5 bg-zinc-900">
-      <div className="flex justify-center">
+    <footer id="footer" className="">
+      <div
+        className={`flex justify-center py-5 ${LIGHT_THEME_BACKGROUND} ${DARK_THEME_BACKGROUND}`}>
         <nav className="flex md:space-x-24">
           {footerLinkArray.map((linksColumn, index) => (
             <div className="block w-28 md:w-48" key={index}>
-              <div
-                className="font-aperçu font-semibold text-sm text-neutral-500 tracking-wide mb-2"
-                style={{ fontVariant: "small-caps" }}
-                key={`column-${index}`}>
-                {linksColumn.label}
+              <div className="mb-1" key={`column-${index}`}>
+                <span className={`${LIGHT_THEME_FOOTER_LABELS} ${DARK_THEME_FOOTER_LABELS}`}>
+                  {linksColumn.label}
+                </span>
               </div>
-              <ul className="">
+              <ul className="m-0 p-0">
                 {linksColumn.links?.map((link, index) => (
-                  <li
-                    className="font-aperçu font-semibold text-xs tracking-wide text-neutral-300 mb-1.5"
-                    key={index}>
-                    <Link href={getURLfromString(link)}>{link}</Link>
+                  <li className="m-0 p-0" key={index}>
+                    <Link
+                      className={`m-0 p-0 ${LIGHT_THEME_FOOTER_TEXT} ${DARK_THEME_FOOTER_TEXT}`}
+                      href={getURLfromString(link)}>
+                      {link}
+                    </Link>
                   </li>
                 ))}
                 {linksColumn.socialMediaIcons && (
                   <li
-                    className="font-aperçu font-semibold text-xs text-neutral-300 mb-1.5"
+                    className=""
                     key="social-media-icons">
+                      <div className="">
                     {linksColumn.socialMediaIcons.children}
+                    </div>
                   </li>
                 )}
                 <br />
                 {linksColumn.caption && (
                   <li
-                    className="font-aperçu font-bold text-xs text-neutral-300 mb-1.5"
+                    className={`${LIGHT_THEME_FOOTER_CAPTION} ${DARK_THEME_FOOTER_CAPTION}`}
                     key="caption">
                     {linksColumn.caption}
                   </li>

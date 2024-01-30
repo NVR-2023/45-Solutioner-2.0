@@ -20,4 +20,10 @@
   background-color: #575757;
 }
 
-/* Navbar customization */
+/* OpenType classes */
+
+@layer utilities {
+  .font-small-caps {
+    font-variant: small-caps;
+  }
+}
