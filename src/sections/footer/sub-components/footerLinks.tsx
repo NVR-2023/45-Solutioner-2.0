@@ -15,7 +15,7 @@ const footerLinkArray: FooterLinkListType = [
   {
     label: "company",
     links: ["About us", "Contact us", "Providers", "Jobs", "Press kit"],
-    caption: `© ${getCurrentYear()} Nuno Rodrigues`,
+    caption: `©${getCurrentYear()} Nuno Rodrigues`,
   },
   { label: "legal", links: ["Terms of use", "Privacy policy", "Cookie policy"] },
   {
