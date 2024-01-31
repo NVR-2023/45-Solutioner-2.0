@@ -8,7 +8,7 @@ export type basicComponentPropsType = {
 export type onClickComponentPropsType = {
   scale?: number;
   color?: string;
-  onClick?: () => void;
+  onClick: () => void;
 };
 
 export type basicButtonType = {

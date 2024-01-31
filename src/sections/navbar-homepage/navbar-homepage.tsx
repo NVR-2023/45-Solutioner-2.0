@@ -6,9 +6,7 @@ import MobileButtonsHomepage from "./sub-components/mobile-buttons-homepage";
 import MobileSidemenuHomepage from "./sub-components/mobile-sidemenu-homepage";
 import { useMobileNavbarContext } from "@/contextes/mobile-navbar-pulldown";
 
-import YourComponent from "@/components/common/menu-toggle/menu-toggle";
-
-
+import MenuToggle from "@/components/common/menu-toggle/menu-toggle";
 
 const NavbarHomepage: FC = () => {
   const { mobileNavbarContext } = useMobileNavbarContext();
@@ -28,12 +26,9 @@ const NavbarHomepage: FC = () => {
           <div className="md:hidden">
             <MobileButtonsHomepage />
           </div>
-<div>
-  <YourComponent/>
-</div>
-
-
-
+          <div>
+            <MenuToggle />
+          </div>
         </div>
         {mobileNavbarContext && (
           <div className="md:hidden">
