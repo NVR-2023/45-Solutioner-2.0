@@ -19,11 +19,13 @@ const Footer: FC = () => {
     <footer id="footer" className="">
       <div
         className={`flex justify-center py-5 ${LIGHT_THEME_BACKGROUND} ${DARK_THEME_BACKGROUND}`}>
-        <nav className="flex md:space-x-24">
+        <nav className="flex md:space-x-24" aria-labelledby="footerHeading">
           {footerLinkArray.map((linksColumn, index) => (
             <div className="block w-28 md:w-48" key={index}>
               <div className="mb-2" key={`column-${index}`}>
-                <span className={`${LIGHT_THEME_FOOTER_LABELS} ${DARK_THEME_FOOTER_LABELS}`}>
+                <span
+                  className={`${LIGHT_THEME_FOOTER_LABELS} ${DARK_THEME_FOOTER_LABELS}`}
+                  id="footerHeading">
                   {linksColumn.label}
                 </span>
               </div>
@@ -32,7 +34,8 @@ const Footer: FC = () => {
                   <li className="flex" key={index}>
                     <Link
                       className={`flex items-center ${LIGHT_THEME_FOOTER_TEXT} ${DARK_THEME_FOOTER_TEXT}`}
-                      href={getURLfromString(link)}>
+                      href={getURLfromString(link)}
+                      aria-current="page">
                       {link}
                     </Link>
                   </li>
@@ -43,11 +46,11 @@ const Footer: FC = () => {
                   </li>
                 )}
                 <br />
-                {linksColumn.caption && (
+                {linksColumn.notice && (
                   <li
                     className={`${LIGHT_THEME_FOOTER_CAPTION} ${DARK_THEME_FOOTER_CAPTION} flex items-center`}
                     key="caption">
-                    {linksColumn.caption}
+                    {linksColumn.notice}
                   </li>
                 )}
               </ul>

@@ -2,7 +2,7 @@
 
 import React, { FC } from "react";
 import { useMobileNavbarContext } from "@/contextes/mobile-navbar-pulldown";
-import MobileSigninIcon from "./mobile-signin-button";
+import SigninIcon from "../../../components/icons/signin-icon";
 import MenuToggle from "@/components/common/menu-toggle/menu-toggle";
 
 const MobileButtonsHomepage: FC = () => {
@@ -15,7 +15,7 @@ const MobileButtonsHomepage: FC = () => {
   return (
     <div className="relative flex">
       <div className="flex justify-between space-x-4">
-        <MobileSigninIcon />
+        <SigninIcon />
         <MenuToggle />
       </div>
     </div>

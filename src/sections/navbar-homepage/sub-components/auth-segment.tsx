@@ -3,14 +3,14 @@ import ThemeSwitch from "@/components/common/theme-switch/theme-switch";
 import SigninButton from "./signin-button";
 import RegisterButton from "./register-button";
 
-const SigninSegment: FC = () => {
+const AuthSegment: FC = () => {
   return (
     <div className="flex items-center space-x-4">
-      <ThemeSwitch/>
-      <SigninButton />
-      <RegisterButton/>
+      <div><ThemeSwitch/></div>
+      <div className="hidden md:flex"><SigninButton /></div>
+      <div className="hidden md:flex"><RegisterButton /></div>
     </div>
   );
 };
 
-export default SigninSegment;
+export default AuthSegment;

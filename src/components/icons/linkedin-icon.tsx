@@ -3,7 +3,11 @@ import { basicComponentPropsType } from "@/types/component-props-types";
 
 const LinkedinIcon: FC<basicComponentPropsType> = ({ scale = 1, color = "currentColor" }) => {
   return (
-    <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer">
+    <a
+      aria-label="LinkedIn"
+      href="https://www.linkedin.com"
+      target="_blank"
+      rel="noopener noreferrer">
       <svg
         width={24 * scale}
         height={24 * scale}
