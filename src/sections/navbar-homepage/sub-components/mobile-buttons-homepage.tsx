@@ -2,8 +2,8 @@
 
 import React, { FC } from "react";
 import { useMobileNavbarContext } from "@/contextes/mobile-navbar-pulldown";
-import HamburgerButton from "./hamburger-button";
 import MobileSigninIcon from "./mobile-signin-button";
+import MenuToggle from "@/components/common/menu-toggle/menu-toggle";
 
 const MobileButtonsHomepage: FC = () => {
   const { setMobileNavbarContext: setHomepageContext } = useMobileNavbarContext();
@@ -16,7 +16,7 @@ const MobileButtonsHomepage: FC = () => {
     <div className="relative flex">
       <div className="flex justify-between space-x-4">
         <MobileSigninIcon />
-        <HamburgerButton onClick={openHomepageSidemenu} />
+        <MenuToggle />
       </div>
     </div>
   );
