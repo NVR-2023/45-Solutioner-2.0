@@ -31,9 +31,9 @@ const Footer: FC = () => {
               </div>
               <ul className="list-none flex flex-col space-y-2">
                 {linksColumn.links?.map((link, index) => (
-                  <li className="flex" key={index}>
+                  <li className="flex " key={index}>
                     <Link
-                      className={`flex items-center ${LIGHT_THEME_FOOTER_TEXT} ${DARK_THEME_FOOTER_TEXT}`}
+                      className={`flex items-center ${LIGHT_THEME_FOOTER_TEXT} ${DARK_THEME_FOOTER_TEXT} pb-[2px] border-b-[1px] border-solid border-transparent transition-all duration-300 hover:border-black`}
                       href={getURLfromString(link)}
                       aria-current="page">
                       {link}
