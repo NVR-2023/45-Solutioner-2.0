@@ -1,6 +1,6 @@
 import React, { FC } from "react";
-import LogoComponent from "./sub-components/logo-component";
-import HomeSectionLinks from "./sub-components/navbar-links-homepage";
+import LogoSegment from "./sub-components/logo-segment";
+import HomeSectionLinks from "./sub-components/home-section-links";
 import AuthSegment from "./sub-components/auth-segment";
 import MobileButtonsHomepage from "./sub-components/mobile-buttons-homepage";
 import MobileSidemenuHomepage from "./sub-components/mobile-sidemenu-homepage";
@@ -13,7 +13,7 @@ const NavbarHomepage: FC = () => {
       <nav className="fixed top-0 md:top-3 w-full">
         <div className="flex align-middle justify-between mx-4 md:mx-12 px-7 py-3">
           <div className="">
-            <LogoComponent />
+            <LogoSegment />
           </div>
           <div className="hidden md:flex">
             <HomeSectionLinks />
