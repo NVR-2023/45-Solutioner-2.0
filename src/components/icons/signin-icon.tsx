@@ -6,6 +6,7 @@ const SigninIcon: FC<basicComponentPropsType> = ({ scale = 1, color = "currentCo
   return (
     <Link href="/sugnin">
       <svg
+      className="flex m-0 p-0 items-center justify-center"
         xmlns="http://www.w3.org/2000/svg"
         height={24 * scale}
         viewBox="0 -960 960 960"

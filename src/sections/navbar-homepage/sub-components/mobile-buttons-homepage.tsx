@@ -13,9 +13,11 @@ const MobileButtonsHomepage: FC = () => {
   };
 
   return (
-    <div className="relative flex">
-      <div className="flex justify-between space-x-4">
+    <div className="flex h-full items-center justify-between space-x-4">
+      <div className="flex items-center">
         <SigninIcon />
+      </div>
+      <div className="flex items-center">
         <MenuToggle />
       </div>
     </div>

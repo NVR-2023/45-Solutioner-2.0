@@ -21,7 +21,7 @@ const NavbarHomepage: FC = () => {
           <div className="flex justify-between">
             <AuthSegment />
           </div>
-          <div className="md:hidden">
+          <div className="flex items-center md:hidden">
             <MobileButtonsHomepage />
           </div>
         </div>

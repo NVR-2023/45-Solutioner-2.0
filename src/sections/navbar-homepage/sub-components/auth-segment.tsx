@@ -5,10 +5,10 @@ import RegisterButton from "./register-button";
 
 const AuthSegment: FC = () => {
   return (
-    <div className="flex items-center space-x-4">
-      <div><ThemeSwitch/></div>
-      <div className="hidden md:flex"><SigninButton /></div>
-      <div className="hidden md:flex"><RegisterButton /></div>
+    <div className="flex items-center justify-between space-x-4">
+      <div className="flex items-center"><ThemeSwitch/></div>
+      <div className="hidden md:flex md:items-center"><SigninButton /></div>
+      <div className="hidden md:flex md:items-center"><RegisterButton /></div>
     </div>
   );
 };
