@@ -1,7 +1,7 @@
 import React, { FC } from "react";
-import XIcon from "./x-icon";
-import FacebookIcon from "./facebook-icon";
-import LinkedinIcon from "./linkedin-icon";
+import XIcon from "../../../components/icons/x-icon";
+import FacebookIcon from "../../../components/icons/facebook-icon";
+import LinkedinIcon from "../../../components/icons/linkedin-icon";
 
 const SocialMediaIcons: FC = () => {
   return (

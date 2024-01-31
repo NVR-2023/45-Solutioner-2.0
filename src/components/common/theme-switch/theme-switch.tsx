@@ -1,7 +1,7 @@
 import React, { FC, useState } from "react";
-import LightThemeIcon from "./sub-components/light-theme-icon";
-import DarkThemeIcon from "./sub-components/dark-theme-icon";
-import SystemThemeIcon from "./sub-components/system-theme-icon";
+import LightThemeIcon from "../../icons/light-theme-icon";
+import DarkThemeIcon from "../../icons/dark-theme-icon";
+import SystemThemeIcon from "../../icons/system-theme-icon";
 
 const ThemeSwitch: FC = () => {
   const [currentTheme, setCurrentTheme] = useState("light");

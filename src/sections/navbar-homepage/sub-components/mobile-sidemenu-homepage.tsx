@@ -19,10 +19,10 @@ const MobileSidemenuHomepage: FC = () => {
     setMobileNavbarContext(false);
   };
   return (
-    <>
+    <nav>
       {mobileNavbarContext && (
         <div className={`z-[999] absolute right-3 ${LIGHT_THEME_BACKGROUND}`}>
-          <nav className="flex justify-start">
+          <div className="flex justify-start">
             <ul className="list-none flex flex-col space-y-1 mt-3 mx-3">
               {homepageSections &&
                 homepageSections.map((section, index) => (
@@ -38,10 +38,10 @@ const MobileSidemenuHomepage: FC = () => {
                 ))}
               <br />
             </ul>
-          </nav>
+          </div>
         </div>
       )}
-    </>
+    </nav>
   );
 };
 

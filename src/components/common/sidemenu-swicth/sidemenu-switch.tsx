@@ -1,9 +1,9 @@
 import React, { FC, useState } from "react";
 import { basicComponentPropsType } from "@/types/component-props-types";
-import LightThemeTcon from "./light-theme-icon";
-import DarkThemeIcon from "./dark-theme-icon";
+import LightThemeIcon from "../../icons/light-theme-icon";
+import DarkThemeIcon from "../../icons/dark-theme-icon";
 
-const ThemeSwitch: FC<basicComponentPropsType> = ({ scale = 1, color = "black" }) => {
+const SidemenuSwitch: FC<basicComponentPropsType> = ({ scale = 1, color = "black" }) => {
   const [isFirstDivVisible, setIsFirstDivVisible] = useState(true);
 
   const handleClick = () => {
@@ -19,7 +19,7 @@ const ThemeSwitch: FC<basicComponentPropsType> = ({ scale = 1, color = "black" }
             : "rotate-180 opacity-0 duration-500"
         }`}
         onClick={handleClick}>
-        <LightThemeTcon scale={scale} color={color} />
+        <LightThemeIcon scale={scale} color={color} />
       </div>
       <div
         className={`absolute w-5 h-5 flex items-center justify-center transform transition-transform ${
@@ -34,4 +34,4 @@ const ThemeSwitch: FC<basicComponentPropsType> = ({ scale = 1, color = "black" }
   );
 };
 
-export default ThemeSwitch;
+export default SidemenuSwitch;

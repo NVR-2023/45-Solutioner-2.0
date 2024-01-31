@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import LogoIcon from "./logo-icon";
+import LogoIcon from "../../../components/icons/logo-icon";
 import { LOGO_TEXT } from "@/app/global-text-styles";
 import Link from "next/link";
 
