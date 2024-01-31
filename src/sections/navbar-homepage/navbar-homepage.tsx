@@ -10,7 +10,7 @@ const NavbarHomepage: FC = () => {
   const { mobileNavbarContext } = useMobileNavbarContext();
   return (
     <header className="relative z-50 w-full">
-      <nav className="fixed top-1.5 w-full">
+      <nav className="fixed top-0 md:top-3 w-full">
         <div className="flex align-middle justify-between mx-4 md:mx-12 px-7 py-3">
           <div className="">
             <LogoComponent />
