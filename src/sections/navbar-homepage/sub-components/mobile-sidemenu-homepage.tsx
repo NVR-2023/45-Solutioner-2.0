@@ -31,7 +31,9 @@ const MobileSidemenuHomepage: FC = () => {
                     onClick={() => {
                       closeHomepageSideMenu();
                     }}>
-                    <Link className={HOME_NAVBAR_LINKS_TEXT} href={getSectionFomString(section)}>
+                    <Link
+                      className={`${HOME_NAVBAR_LINKS_TEXT} pb-[2px] border-b-[1px] border-solid border-transparent transition-all duration-300 hover:border-black`}
+                      href={getSectionFomString(section)}>
                       {section}
                     </Link>
                   </li>
