@@ -6,12 +6,12 @@ import { HOME_NAVBAR_LINKS_TEXT } from "@/app/global-text-styles";
 
 const HomeSectionLinks: FC = () => {
   return (
-    <nav role="navigation" aria-label="Homepage Sections Navigation">
+    <nav className="flex items-center" role="navigation" aria-label="Homepage Sections Navigation">
       <ul className="flex items-center space-x-7 list-none">
         {homepageSections.map((link, index) => (
-          <li className="list-none" key={index}>
+          <li key={index}>
             <Link href={getSectionFomString(link)} className="flex items-center">
-              <span className={HOME_NAVBAR_LINKS_TEXT}>{link}</span>
+              <span className={` ${HOME_NAVBAR_LINKS_TEXT}`}>{link}</span>
             </Link>
           </li>
         ))}
