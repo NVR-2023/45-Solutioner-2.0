@@ -1,7 +1,7 @@
 "use client";
 
 import React, { FC } from "react";
-import { useMobileNavbarContext } from "@/contextes/mobile-navbar-pulldown";
+import { useMobileNavbarPulldownContext } from "@/contextes/mobile-navbar-pulldown-context";
 import homepageSections from "@/sections/navbar-homepage/sub-components/homepageSections";
 import Link from "next/link";
 import { getSectionFomString } from "@/utils/functions/getsectionfromurl";
@@ -13,7 +13,10 @@ import {
 } from "@/app/global-text-styles";
 
 const MobileSidemenuHomepage: FC = () => {
-  const { mobileNavbarContext, setMobileNavbarContext } = useMobileNavbarContext();
+  const {
+    isMobileNavbarPulldownOpen: mobileNavbarContext,
+    setIsMobileNavbarPulldownOpen: setMobileNavbarContext,
+  } = useMobileNavbarPulldownContext();
 
   const closeHomepageSideMenu = () => {
     setMobileNavbarContext(false);

@@ -4,10 +4,10 @@ import HomeSectionLinks from "./sub-components/home-section-links";
 import AuthSegment from "./sub-components/auth-segment";
 import MobileButtonsHomepage from "./sub-components/mobile-buttons-homepage";
 import MobileSidemenuHomepage from "./sub-components/mobile-sidemenu-homepage";
-import { useMobileNavbarContext } from "@/contextes/mobile-navbar-pulldown";
+import { useMobileNavbarPulldownContext } from "@/contextes/mobile-navbar-pulldown-context";
 
 const NavbarHomepage: FC = () => {
-  const { mobileNavbarContext } = useMobileNavbarContext();
+  const { isMobileNavbarPulldownOpen: mobileNavbarContext } = useMobileNavbarPulldownContext();
   return (
     <header className="relative z-50 w-full">
       <nav className="fixed top-0 md:top-3 w-full">

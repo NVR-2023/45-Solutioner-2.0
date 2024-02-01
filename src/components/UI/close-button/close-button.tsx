@@ -8,7 +8,7 @@ const CloseButton: FC<onClickComponentPropsType> = ({
 }) => {
   return (
     <div onClick={onClick}>
-      <CloseButton scale={scale} color={color}/>
+      <CloseButton scale={scale} color={color} />
     </div>
   );
 };

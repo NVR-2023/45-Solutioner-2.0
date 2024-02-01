@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { aperçuFont } from "@/utils/functions/localfontloader";
+import { ThemeContextProvider } from "@/contextes/theme-context";
+
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -14,7 +16,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scroll-smooth">
-      <body className={`${aperçuFont.variable}`}>{children}</body>
+      <body className={`${aperçuFont.variable}`}>
+        <ThemeContextProvider>{children}</ThemeContextProvider>
+      </body>
     </html>
   );
 }

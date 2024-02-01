@@ -2,13 +2,13 @@ import React, { useState } from "react";
 import CloseICon from "../../icons/close-icon";
 import HamburgerIcon from "@/components/icons/hamburger-icon";
 import { basicComponentPropsType } from "@/types/component-props-types";
-import { useMobileNavbarContext } from "@/contextes/mobile-navbar-pulldown";
+import { useMobileNavbarPulldownContext } from "@/contextes/mobile-navbar-pulldown-context";
 
-const MenuToggle: React.FC<basicComponentPropsType> = ({
-  scale = 1,
-  color = "currentColor"
-}) => {
-  const {mobileNavbarContext , setMobileNavbarContext } = useMobileNavbarContext()
+const MenuToggle: React.FC<basicComponentPropsType> = ({ scale = 1, color = "currentColor" }) => {
+  const {
+    isMobileNavbarPulldownOpen: mobileNavbarContext,
+    setIsMobileNavbarPulldownOpen: setMobileNavbarContext,
+  } = useMobileNavbarPulldownContext();
 
   const handleToggle = () => {
     setMobileNavbarContext(!mobileNavbarContext);

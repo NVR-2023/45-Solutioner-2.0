@@ -1,12 +1,12 @@
 "use client";
 
 import React, { FC } from "react";
-import { useMobileNavbarContext } from "@/contextes/mobile-navbar-pulldown";
+import { useMobileNavbarPulldownContext } from "@/contextes/mobile-navbar-pulldown-context";
 import SigninIcon from "../../../components/icons/signin-icon";
-import MenuToggle from "@/components/common/menu-toggle/menu-toggle";
+import MenuToggle from "@/components/UI/menu-toggle/menu-toggle";
 
 const MobileButtonsHomepage: FC = () => {
-  const { setMobileNavbarContext: setHomepageContext } = useMobileNavbarContext();
+  const { setIsMobileNavbarPulldownOpen: setHomepageContext } = useMobileNavbarPulldownContext();
 
   const openHomepageSidemenu = () => {
     setHomepageContext(true);
