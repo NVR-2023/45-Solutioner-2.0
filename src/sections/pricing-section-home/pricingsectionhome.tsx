@@ -5,7 +5,13 @@ const PricingSectionHome: FC = () => {
   return (
     <section id="pricing">
       <div>
-        <Image src="/images/homepage/dogwaling.jpg" alt="dog walking" width={1920} height={1080} priority={true} />
+        <Image
+          src="/images/homepage/dogwalking.webp"
+          alt="dog walking"
+          width={1920}
+          height={1080}
+          priority={true}
+        />
       </div>
     </section>
   );

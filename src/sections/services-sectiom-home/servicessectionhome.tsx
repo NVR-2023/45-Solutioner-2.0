@@ -6,7 +6,7 @@ const ServicesHomeSection: FC = () => {
     <section id="services">
       <div>
         <Image
-          src="/images/homepage/plumbing.png"
+          src="/images/homepage/plumbing.webp"
           alt="plumbing"
           width={1920}
           height={1080}
