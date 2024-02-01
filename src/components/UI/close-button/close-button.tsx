@@ -1,6 +1,7 @@
 import React, { FC } from "react";
 import { onClickComponentPropsType } from "@/types/component-props-types";
-import CloseICon from "../../icons/close-icon";
+import CloseICon from "@/components/icons/close-icon";
+
 const CloseButton: FC<onClickComponentPropsType> = ({
   scale = 1,
   color = "currentColor",
@@ -8,7 +9,7 @@ const CloseButton: FC<onClickComponentPropsType> = ({
 }) => {
   return (
     <div onClick={onClick}>
-      <CloseButton scale={scale} color={color} />
+      <CloseICon scale={scale} color={color} />
     </div>
   );
 };

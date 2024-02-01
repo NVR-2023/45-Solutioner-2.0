@@ -1,21 +1,27 @@
 import React, { FC, useState } from "react";
+import { themeModeType } from "@/types/component-props-types";
 import LightThemeIcon from "../../icons/light-theme-icon";
 import DarkThemeIcon from "../../icons/dark-theme-icon";
 import SystemThemeIcon from "../../icons/system-theme-icon";
 
+import setThemeModeToLocalStorage from "@/utils/functions/setThemeToLocalStorage";
+
 const ThemeSwitch: FC = () => {
-  const [currentTheme, setCurrentTheme] = useState("light");
+  const [currentThemeMode, setCurrentThemeMode] = useState<themeModeType>("light");
 
   const handleSwitchTheme = () => {
-    switch (currentTheme) {
+    switch (currentThemeMode) {
       case "light":
-        setCurrentTheme("dark");
+        setThemeModeToLocalStorage("dark");
+        setCurrentThemeMode("dark");
         break;
       case "dark":
-        setCurrentTheme("system");
+        setThemeModeToLocalStorage("system");
+        setCurrentThemeMode("system");
         break;
       case "system":
-        setCurrentTheme("light");
+        setThemeModeToLocalStorage("light");
+        setCurrentThemeMode("light");
         break;
     }
   };
@@ -24,8 +30,8 @@ const ThemeSwitch: FC = () => {
     <div className="relative h-6 w-6">
       <div
         className={`absolute flex items-center justify-center transform rotate-${
-          currentTheme === "light" ? "0" : "180"
-        } opacity-${currentTheme === "light" ? "100" : "0"} transition-all duration-500`}
+          currentThemeMode === "light" ? "0" : "180"
+        } opacity-${currentThemeMode === "light" ? "100" : "0"} transition-all duration-500`}
         onClick={handleSwitchTheme}
         role="button"
         aria-label="Switch to Dark theme">
@@ -33,8 +39,8 @@ const ThemeSwitch: FC = () => {
       </div>
       <div
         className={`absolute flex items-center justify-center transform rotate-${
-          currentTheme === "dark" ? "0" : "180"
-        } opacity-${currentTheme === "dark" ? "100" : "0"} transition-all duration-500`}
+          currentThemeMode === "dark" ? "0" : "180"
+        } opacity-${currentThemeMode === "dark" ? "100" : "0"} transition-all duration-500`}
         onClick={handleSwitchTheme}
         role="button"
         aria-label="Switch to System theme">
@@ -42,8 +48,8 @@ const ThemeSwitch: FC = () => {
       </div>
       <div
         className={`absolute flex items-center justify-center transform rotate-${
-          currentTheme === "system" ? "0" : "180"
-        } opacity-${currentTheme === "system" ? "100" : "0"} transition-all duration-500`}
+          currentThemeMode === "system" ? "0" : "180"
+        } opacity-${currentThemeMode === "system" ? "100" : "0"} transition-all duration-500`}
         onClick={handleSwitchTheme}
         role="button"
         aria-label="Switch to Light theme">
