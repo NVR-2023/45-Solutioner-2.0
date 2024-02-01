@@ -1,20 +1,44 @@
-import React, { FC, useState , useEffect } from "react";
+import React, { FC, useState, useEffect } from "react";
 import { themeModeType } from "@/types/component-props-types";
 import LightThemeIcon from "../../icons/light-theme-icon";
 import DarkThemeIcon from "../../icons/dark-theme-icon";
 import SystemThemeIcon from "../../icons/system-theme-icon";
 
 import getThemeModeFromLocalStorage from "@/utils/functions/getThemeModeFromLocalStorage";
+import getSystemThemePreference from "@/utils/functions/getSystemThemePreference";
 import setThemeModeToLocalStorage from "@/utils/functions/setThemeToLocalStorage";
+
+import { useThemeContext } from "@/contextes/theme-context";
 
 const ThemeSwitch: FC = () => {
   const [currentThemeMode, setCurrentThemeMode] = useState<themeModeType>("light");
+  const { isDarkThemeOn, setIsDarkThemeOn } = useThemeContext();
 
   useEffect(() => {
-    alert(getThemeModeFromLocalStorage());
-
-
-  } , [])
+    const themeMode = getThemeModeFromLocalStorage();
+    switch (themeMode) {
+      case null:
+        setCurrentThemeMode("light");
+        setIsDarkThemeOn(false);
+        break;
+      case "light":
+        setCurrentThemeMode("light");
+        setIsDarkThemeOn(false);
+        break;
+      case "dark":
+        setCurrentThemeMode("dark");
+        setIsDarkThemeOn(true);
+        break;
+      case "system":
+        setCurrentThemeMode("system");
+        if (getSystemThemePreference()==="dark") 
+        {
+        setIsDarkThemeOn(true);
+        }
+        else {setIsDarkThemeOn(false);}
+        break;
+    }
+  }, []);
 
   const handleSwitchTheme = () => {
     switch (currentThemeMode) {
