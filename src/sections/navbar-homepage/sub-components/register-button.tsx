@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import BasicButton from "@/components/UI/menu-toggle/basic-button/basic-button";
+import BasicButton from "@/components/ui/basic-button/basic-button";
 import Link from "next/link";
 
 const RegisterButton: FC = () => {
