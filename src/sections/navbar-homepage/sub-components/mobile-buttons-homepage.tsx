@@ -3,7 +3,7 @@
 import React, { FC } from "react";
 import { useMobileNavbarPulldownContext } from "@/contexts/mobile-navbar-pulldown-context";
 import SigninIcon from "../../../components/icons/signin-icon";
-import MenuToggle from "@/components/UI/menu-toggle/menu-toggle";
+import MenuToggle from "@/components/ui/menu-toggle/menu-toggle";
 
 const MobileButtonsHomepage: FC = () => {
   const { setIsMobileNavbarPulldownOpen: setHomepageContext } = useMobileNavbarPulldownContext();
