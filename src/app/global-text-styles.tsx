@@ -5,7 +5,10 @@ export const LIGHT_THEME_BASE_TEXT: string = " font-aperçu text-black";
 export const DARK_THEME_BASE_TEXT: string = " dark:font-aperçu dark:text-white";
 
 export const LIGHT_THEME_DEFAULT: string = LIGHT_THEME_BACKGROUND + LIGHT_THEME_BASE_TEXT;
+export const TRANSPARENT_THEME_DEFAULT: string = "bg-transparent " + LIGHT_THEME_BASE_TEXT
 export const DARK_THEME_DEFAULT: string = DARK_THEME_BACKGROUND + DARK_THEME_BASE_TEXT;
+export const DARK_THEME_NAVBAR: string = DARK_THEME_BACKGROUND + DARK_THEME_BASE_TEXT ; 
+
 
 export const LOGO_TEXT: string = LIGHT_THEME_BASE_TEXT + " font-bold text-lg tracking-wide";
 export const HOME_NAVBAR_LINKS_TEXT: string = " font-semibold text-sm";

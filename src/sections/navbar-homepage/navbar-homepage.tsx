@@ -4,13 +4,17 @@ import HomeSectionLinks from "./sub-components/home-section-links";
 import AuthSegment from "./sub-components/auth-segment";
 import MobileButtonsHomepage from "./sub-components/mobile-buttons-homepage";
 
+import { TRANSPARENT_THEME_DEFAULT , DARK_THEME_DEFAULT as DARK_THEME_NAVBAR } from "@/app/global-text-styles";
+import { useThemeContext } from "@/contexts/theme-context";
+
 
 const NavbarHomepage: FC = () => {
+  const { isDarkThemeOn } = useThemeContext();
 
   return (
-    <header className="relative z-50 w-full">
-      <nav className="fixed top-0 md:top-3 w-full">
-        <div className="flex align-middle justify-between mx-4 md:mx-12 px-7 py-3">
+    <header className={`relative z-50 w-full ${isDarkThemeOn ? "dark" : "" }`}>
+      <nav className={`fixed justify-center top-0 md:top-3 mx-7 w-full ${TRANSPARENT_THEME_DEFAULT} ${DARK_THEME_NAVBAR} dark:font-light `}>
+        <div className="flex align-middle justify-between mx-4 md:mx-12 px-7 py-1">
           <div className="">
             <LogoSegment />
           </div>
