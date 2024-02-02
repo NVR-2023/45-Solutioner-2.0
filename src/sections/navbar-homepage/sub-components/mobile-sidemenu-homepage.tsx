@@ -1,7 +1,7 @@
 "use client";
 
 import React, { FC } from "react";
-import { useMobileNavbarPulldownContext } from "@/contextes/mobile-navbar-pulldown-context";
+import { useMobileNavbarPulldownContext } from "@/contexts/mobile-navbar-pulldown-context";
 import homepageSections from "@/sections/navbar-homepage/sub-components/homepageSections";
 import Link from "next/link";
 import { getSectionFomString } from "@/utils/functions/getsectionfromurl";

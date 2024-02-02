@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import CloseICon from "../../icons/close-icon";
 import HamburgerIcon from "@/components/icons/hamburger-icon";
 import { basicComponentPropsType } from "@/types/component-props-types";
-import { useMobileNavbarPulldownContext } from "@/contextes/mobile-navbar-pulldown-context";
+import { useMobileNavbarPulldownContext } from "@/contexts/mobile-navbar-pulldown-context";
 
 const MenuToggle: React.FC<basicComponentPropsType> = ({ scale = 1, color = "currentColor" }) => {
   const {

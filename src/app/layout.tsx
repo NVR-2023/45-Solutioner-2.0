@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { aperçuFont } from "@/utils/functions/localfontloader";
-import { ThemeContextProvider } from "@/contextes/theme-context";
+import { ThemeContextProvider } from "@/contexts/theme-context";
 
 import "./globals.css";
 

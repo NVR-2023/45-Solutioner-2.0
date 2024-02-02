@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { MobileNavbarContextProvider } from "@/contextes/mobile-navbar-pulldown-context";
+import { MobileNavbarContextProvider } from "@/contexts/mobile-navbar-pulldown-context";
 
 import NavbarHomepage from "@/sections/navbar-homepage/navbar-homepage";
 import ServicesHomeSection from "@/sections/services-sectiom-home/servicessectionhome";

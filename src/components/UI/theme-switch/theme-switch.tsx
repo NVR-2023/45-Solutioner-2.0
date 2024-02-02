@@ -8,7 +8,7 @@ import getThemeModeFromLocalStorage from "@/utils/functions/getThemeModeFromLoca
 import getSystemThemePreference from "@/utils/functions/getSystemThemePreference";
 import setThemeModeToLocalStorage from "@/utils/functions/setThemeToLocalStorage";
 
-import { useThemeContext } from "@/contextes/theme-context";
+import { useThemeContext } from "@/contexts/theme-context";
 
 const ThemeSwitch: FC = () => {
   const [currentThemeMode, setCurrentThemeMode] = useState<themeModeType>("light");
@@ -16,30 +16,20 @@ const ThemeSwitch: FC = () => {
 
   useEffect(() => {
     const themeMode = getThemeModeFromLocalStorage();
-    switch (themeMode) {
-      case null:
-        setCurrentThemeMode("light");
-        setIsDarkThemeOn(false);
-        break;
-      case "light":
-        setCurrentThemeMode("light");
-        setIsDarkThemeOn(false);
-        break;
-      case "dark":
-        setCurrentThemeMode("dark");
-        setIsDarkThemeOn(true);
-        break;
-      case "system":
-        setCurrentThemeMode("system");
-        if (getSystemThemePreference()==="dark") 
-        {
-        setIsDarkThemeOn(true);
-        }
-        else {setIsDarkThemeOn(false);}
-        break;
+    if (themeMode === null) {
+      setCurrentThemeMode("light");
+    } else {
+      setCurrentThemeMode(themeMode);
     }
-  }, []);
+  }, [setIsDarkThemeOn]);
 
+  useEffect(() => {
+    setIsDarkThemeOn(
+      currentThemeMode === "dark" ||
+        (currentThemeMode === "system" && getSystemThemePreference() === "dark")
+    );
+  }, [currentThemeMode, setIsDarkThemeOn]);
+  
   const handleSwitchTheme = () => {
     switch (currentThemeMode) {
       case "light":

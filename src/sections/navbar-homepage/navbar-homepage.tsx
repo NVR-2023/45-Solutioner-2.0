@@ -4,7 +4,7 @@ import HomeSectionLinks from "./sub-components/home-section-links";
 import AuthSegment from "./sub-components/auth-segment";
 import MobileButtonsHomepage from "./sub-components/mobile-buttons-homepage";
 import MobileSidemenuHomepage from "./sub-components/mobile-sidemenu-homepage";
-import { useMobileNavbarPulldownContext } from "@/contextes/mobile-navbar-pulldown-context";
+import { useMobileNavbarPulldownContext } from "@/contexts/mobile-navbar-pulldown-context";
 
 const NavbarHomepage: FC = () => {
   const { isMobileNavbarPulldownOpen: mobileNavbarContext } = useMobileNavbarPulldownContext();
