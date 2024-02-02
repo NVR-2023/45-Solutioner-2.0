@@ -6,8 +6,8 @@ import { useThemeContext } from "@/contexts/theme-context";
 import footerLinkArray from "./sub-components/footerLinks";
 
 import {
-  LIGHT_THEME_BACKGROUND,
-  DARK_THEME_BACKGROUND,
+  LIGHT_THEME_DEFAULT,
+  DARK_THEME_DEFAULT,
   LIGHT_THEME_FOOTER_LABELS,
   DARK_THEME_FOOTER_LABELS,
   LIGHT_THEME_FOOTER_TEXT,
@@ -21,7 +21,7 @@ const Footer: FC = () => {
 
   return (
     <footer id="footer" className={isDarkThemeOn ? "dark" : ""}>
-      <div className="flex justify-center py-5 bg-neutral-400 text-black  dark:bg-neutral-800 dark:text-neutral-200">
+      <div className={`flex justify-center py-5 ${LIGHT_THEME_DEFAULT} ${DARK_THEME_DEFAULT}`}>
         <nav className="flex md:space-x-24" aria-labelledby="footerHeading">
           {footerLinkArray.map((linksColumn, index) => (
             <div className="block w-28 md:w-48" key={index}>

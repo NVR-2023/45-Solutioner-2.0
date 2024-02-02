@@ -42,7 +42,7 @@ const MenuToggle: React.FC<basicComponentPropsType> = ({ scale = 1, color = "cur
         </div>
       </div>
       {isMenuOpen && (
-        <div className="absolute right-1">
+        <div className="absolute right-9">
           <MobileSidemenuHomepage action={handleCloseMenu} />{" "}
         </div>
       )}

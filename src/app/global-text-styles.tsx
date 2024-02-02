@@ -1,8 +1,13 @@
-export const LIGHT_THEME_BACKGROUND: string = " bg-neutral-200";
-export const DARK_THEME_BACKGROUND: string = " dark:bg-green-900";
+export const LIGHT_THEME_BACKGROUND: string = " bg-neutral-400";
+export const DARK_THEME_BACKGROUND: string = " dark:bg-neutral-700";
 
 export const LIGHT_THEME_BASE_TEXT: string = " font-aperçu text-black";
-export const DARK_THEME_BASE_TEXT: string = " dark:font-aperçu dark:text-neutral-300";
+export const DARK_THEME_BASE_TEXT: string = " dark:font-aperçu dark:text-white";
+
+export const LIGHT_THEME_DEFAULT: string = LIGHT_THEME_BACKGROUND + LIGHT_THEME_BASE_TEXT
+export const DARK_THEME_DEFAULT: string = DARK_THEME_BACKGROUND + DARK_THEME_BASE_TEXT;
+
+
 
 export const LOGO_TEXT: string = LIGHT_THEME_BASE_TEXT + " font-bold text-lg tracking-wide";
 export const HOME_NAVBAR_LINKS_TEXT: string = LIGHT_THEME_BASE_TEXT + " font-semibold text-sm";
