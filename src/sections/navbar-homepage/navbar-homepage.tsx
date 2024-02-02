@@ -12,7 +12,7 @@ const NavbarHomepage: FC = () => {
   const { isDarkThemeOn } = useThemeContext();
 
   return (
-    <header className={`relative z-50 w-full ${isDarkThemeOn ? "dark" : "" }`}>
+    <header className={`relative z-50 w-full flex justify-center  ${isDarkThemeOn ? "dark" : "" }`}>
       <nav className={`fixed justify-center top-0 md:top-3 mx-7 dark:bg-red-500 rounded`}>
         <div className="flex align-middle justify-between mx-4 md:mx-12 px-3 py-1 dark:bg-green-500 ">
           <div className="">
