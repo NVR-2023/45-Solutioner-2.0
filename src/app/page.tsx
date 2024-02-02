@@ -10,8 +10,8 @@ import Footer from "@/sections/footer/footer";
 
 export default function Home() {
   return (
-    <main id="homePage" className="relative">
-      <div>
+    <main id="homePage" className="w-full">
+      <div className="flex w-full justify-center">
         <NavbarHomepage />
       </div>
       <div className="border-b-2 border-neutral-300">

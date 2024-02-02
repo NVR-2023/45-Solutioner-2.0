@@ -3,7 +3,7 @@ import localFont from "next/font/local";
 export const aperçuFont = localFont({
   src: [
     {
-      path: "../../../public/fonts/Apercu-Pro-Bold-Italic.otf",
+      path: "../../../public/fonts/Apercu-Pro-Light.otf",
       weight: "300",
       style: "normal",
     },
