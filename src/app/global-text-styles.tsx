@@ -1,5 +1,5 @@
 export const LIGHT_THEME_BACKGROUND: string = " bg-neutral-200";
-export const DARK_THEME_BACKGROUND: string = " dark:bg-neutral-900";
+export const DARK_THEME_BACKGROUND: string = " dark:bg-green-900";
 
 export const LIGHT_THEME_BASE_TEXT: string = " font-aperçu text-black";
 export const DARK_THEME_BASE_TEXT: string = " dark:font-aperçu dark:text-neutral-300";

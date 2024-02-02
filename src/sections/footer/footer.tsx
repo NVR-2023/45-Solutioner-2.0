@@ -17,12 +17,11 @@ import {
 } from "@/app/global-text-styles";
 
 const Footer: FC = () => {
-const { isDarkThemeOn } = useThemeContext();
+  const { isDarkThemeOn } = useThemeContext();
 
   return (
     <footer id="footer" className={isDarkThemeOn ? "dark" : ""}>
-      <div
-        className="flex justify-center py-5 bg-green-500 dark:bg-red-500">
+      <div className="flex justify-center py-5 bg-neutral-400 text-black  dark:bg-neutral-800 dark:text-neutral-200">
         <nav className="flex md:space-x-24" aria-labelledby="footerHeading">
           {footerLinkArray.map((linksColumn, index) => (
             <div className="block w-28 md:w-48" key={index}>
@@ -37,7 +36,7 @@ const { isDarkThemeOn } = useThemeContext();
                 {linksColumn.links?.map((link, index) => (
                   <li className="flex " key={index}>
                     <Link
-                      className={`flex items-center ${LIGHT_THEME_FOOTER_TEXT} ${DARK_THEME_FOOTER_TEXT} pb-[2px] border-b-[1px] border-solid border-transparent transition-all duration-300 hover:border-black`}
+                      className={`flex items-center ${LIGHT_THEME_FOOTER_TEXT} ${DARK_THEME_FOOTER_TEXT} pb-[2px] border-b-[1px] border-solid border-transparent transition-all duration-300 hover:border-current`}
                       href={getURLfromString(link)}
                       aria-current="page">
                       {link}
