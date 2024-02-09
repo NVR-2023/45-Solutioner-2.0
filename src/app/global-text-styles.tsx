@@ -9,11 +9,11 @@ export const TRANSPARENT_THEME_DEFAULT: string = "bg-transparent " + LIGHT_THEME
 export const DARK_THEME_DEFAULT: string = DARK_THEME_BACKGROUND + DARK_THEME_BASE_TEXT;
 
 export const DARK_THEME_NAVBAR: string =
-  DARK_THEME_BACKGROUND + DARK_THEME_BASE_TEXT + "font-light" +"rounded-lg";
+  DARK_THEME_BACKGROUND + DARK_THEME_BASE_TEXT +"rounded-lg";
 
 export const LOGO_TEXT: string = LIGHT_THEME_BASE_TEXT + " font-bold text-lg tracking-wide";
 export const HOME_NAVBAR_LINKS_TEXT_LIGHT: string = " font-semibold text-sm ";
-export const HOME_NAVBAR_LINKS_TEXT_DARK: string = " dark:font-light";
+export const HOME_NAVBAR_LINKS_TEXT_DARK: string = " dark:font-semibold dark:text-smt";
 
 export const LIGHT_THEME_FOOTER_LABELS: string =
   LIGHT_THEME_BASE_TEXT + " text-sm font-black font-small-caps tracking-wider";
