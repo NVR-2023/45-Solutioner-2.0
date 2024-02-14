@@ -3,6 +3,7 @@
 @tailwind utilities;
 
 /* Navbar customization */
+/* Light theme */
 
 ::-webkit-scrollbar {
   width: 0.5rem;
