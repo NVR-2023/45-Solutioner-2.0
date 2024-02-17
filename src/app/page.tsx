@@ -1,22 +1,31 @@
-import ABC from "@/components/unique/abc";
-import LogoIcon from "@/sections/navbar/logoicon";
+"use client";
+
+import React from "react";
+
+import NavbarHomepage from "@/sections/navbar-homepage/navbar-homepage";
+import ServicesHomeSection from "@/sections/services-sectiom-home/servicessectionhome";
+import SecuritySectionHome from "@/sections/security-section-home/securitysectionhome";
+import PricingSectionHome from "@/sections/pricing-section-home/pricingsectionhome";
+import Footer from "@/sections/footer/footer";
+
 export default function Home() {
   return (
-    <main className="">
-      <ABC />
-      <div className="bg-zinc-400 flex">
-        <span>ZX</span>
-        <span><LogoIcon /></span>
-        <span><LogoIcon size={2} color={"yellow"}/></span>
+    <main id="homePage" className="w-full">
+      <div className="flex w-full justify-center">
+        <NavbarHomepage />
       </div>
-      <p>Solutioner App development started. 19-01-2024</p>
-      <p className="">Testing font Aperçu: Regular</p>
-      <p className="font-normal" style={{ fontVariant: "small-caps" }}>
-        Testing font Aperçu: small caps
-      </p>
-      <p className="font-aperçu italic">Testing font Aperçu: Italic</p>
-      <p className="font-aperçu font-semibold	">Testing font Aperçu: Semi Bold</p>
-      <p className="font-aperçu font-bold ">Testing font Aperçu: Bold</p>
+      <div className="border-b-2 border-neutral-300">
+        <ServicesHomeSection />
+      </div>
+      <div className="border-b-2 border-neutral-300">
+        <SecuritySectionHome />
+      </div>
+      <div className="border-b-2 border-neutral-300">
+        <PricingSectionHome />
+      </div>
+      <div>
+        <Footer />
+      </div>
     </main>
   );
 }

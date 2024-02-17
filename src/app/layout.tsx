@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import { aperçuFont } from "@/utils/localfontloader";
-import "./globals.css";
+import { aperçuFont } from "@/utils/functions/localfontloader";
+import { ThemeContextProvider } from "@/contexts/theme-context";
 
-const inter = Inter({ subsets: ["latin"] });
+import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -16,8 +15,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${aperçuFont.variable}`}>{children}</body>
+    <html lang="en" className="!scroll-smooth">
+      <body className={`${aperçuFont.variable}`}>
+        <ThemeContextProvider>{children}</ThemeContextProvider>
+      </body>
     </html>
   );
 }

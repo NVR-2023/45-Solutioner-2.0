@@ -1,11 +1,11 @@
 import React, { FC } from "react";
-import { BasicComponentPropsType } from "@/types/componentpopstypes";
+import { BasicComponentPropsType } from "@/types/component-props-types";
 
-const LogoIcon: FC<BasicComponentPropsType> = ({ size = 1, color = "black" }) => {
+const LogoIcon: FC<BasicComponentPropsType> = ({ scale = 1, color = "black" }) => {
   return (
     <svg
-      width={`${size}rem`}
-      height={`${size * 1.5}rem`}
+      width={`${scale}rem`}
+      height={`${scale * 1.5}rem`}
       viewBox="0 0 36 54"
       fill="none"
       xmlns="http://www.w3.org/2000/svg">
