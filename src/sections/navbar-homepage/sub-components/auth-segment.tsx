@@ -1,5 +1,5 @@
 import React, { FC, use } from "react";
-import ThemeSwitch from "@/components/ui/theme-switch/theme-switch";
+import ThemeSwitch from "@/components/UI/theme-switch/theme-switch";;
 import SigninButton from "./signin-button";
 import RegisterButton from "./register-button";
 import { useThemeContext } from "@/contexts/theme-context";
@@ -7,7 +7,7 @@ import { useThemeContext } from "@/contexts/theme-context";
 const AuthSegment: FC = () => {
   const { isDarkThemeOn, setIsDarkThemeOn } = useThemeContext();
   return (
-    <div className="flex items-center justify-between space-x-4">
+    <div className="flex items-center justify-between space-x-7">
       <div className="flex items-center">
         <ThemeSwitch />
       </div>

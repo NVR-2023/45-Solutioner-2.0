@@ -21,7 +21,7 @@ const Footer: FC = () => {
 
   return (
     <footer id="footer" className={isDarkThemeOn ? "dark" : ""}>
-      <div className={`flex justify-center py-5 ${LIGHT_THEME_DEFAULT} ${DARK_THEME_DEFAULT}`}>
+      <div className={`flex justify-center py-4 ${LIGHT_THEME_DEFAULT} ${DARK_THEME_DEFAULT}`}>
         <nav className="flex md:space-x-24" aria-labelledby="footerHeading">
           {footerLinkArray.map((linksColumn, index) => (
             <div className="block w-28 md:w-48" key={index}>
@@ -32,30 +32,29 @@ const Footer: FC = () => {
                   {linksColumn.label}
                 </span>
               </div>
+              {linksColumn.socialMediaIcons && (
+                <li className="ist-none flex flex-col space-y-2" key="social-media-icons">
+                  <div className="flex">{linksColumn.socialMediaIcons.children}</div>
+                </li>
+              )}
               <ul className="list-none flex flex-col space-y-2">
                 {linksColumn.links?.map((link, index) => (
-                  <li className="flex " key={index}>
-                    <Link
-                      className={`flex items-center ${LIGHT_THEME_FOOTER_TEXT} ${DARK_THEME_FOOTER_TEXT} pb-[2px] border-b-[1px] border-solid border-transparent transition-all duration-300 hover:border-current`}
-                      href={getURLfromString(link)}
-                      aria-current="page">
-                      {link}
-                    </Link>
+                  <li className="flex" key={index}>
+                    {link[0] === "©" ? (
+                      <p
+                        className={`${LIGHT_THEME_FOOTER_CAPTION} ${DARK_THEME_FOOTER_CAPTION}`}>
+                        {link}
+                      </p>
+                    ) : (
+                      <Link
+                        className={`flex ${LIGHT_THEME_FOOTER_TEXT} ${DARK_THEME_FOOTER_TEXT} pb-[2px] border-b-[1px] border-solid border-transparent transition-all duration-300 hover:border-current`}
+                        href={getURLfromString(link)}
+                        aria-current="page">
+                        {link}
+                      </Link>
+                    )}
                   </li>
                 ))}
-                {linksColumn.socialMediaIcons && (
-                  <li className="flex" key="social-media-icons">
-                    <div className="flex items-center">{linksColumn.socialMediaIcons.children}</div>
-                  </li>
-                )}
-                <br />
-                {linksColumn.notice && (
-                  <li
-                    className={`${LIGHT_THEME_FOOTER_CAPTION} ${DARK_THEME_FOOTER_CAPTION} flex items-center`}
-                    key="caption">
-                    {linksColumn.notice}
-                  </li>
-                )}
               </ul>
             </div>
           ))}
@@ -66,3 +65,11 @@ const Footer: FC = () => {
 };
 
 export default Footer;
+
+/*    {
+     linksColumn.notice && (
+       <li className={`${LIGHT_THEME_FOOTER_CAPTION} ${DARK_THEME_FOOTER_CAPTION} `} key="caption">
+         {linksColumn.notice}
+       </li>
+     );
+   } */
