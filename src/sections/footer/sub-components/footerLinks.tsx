@@ -14,7 +14,7 @@ type FooterLinkListType = FooterLinkColumnType[];
 const footerLinkArray: FooterLinkListType = [
   {
     label: "company",
-    links: ["About us", "Contact us", "Providers", "Jobs", "Press kit"],
+    links: ["About us", "Contact", "Providers", "Jobs", "Press kit"],
     notice: `©${getCurrentYear()} Nuno Violante odrigues`,
   },
   { label: "legal", links: ["Terms of use", "Privacy policy", "Cookie policy"] },
