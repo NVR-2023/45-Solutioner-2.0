@@ -21,9 +21,9 @@ export const LIGHT_THEME_FOOTER_LABELS: string =
 export const DARK_THEME_FOOTER_LABELS: string =
   DARK_THEME_BASE_TEXT + " dark:text-sm dark:font-black dark:font-small-caps dark:tracking-wider";
 
-export const LIGHT_THEME_FOOTER_TEXT: string =
+export const LIGHT_THEME_FOOTER_LINK: string =
   LIGHT_THEME_BASE_TEXT + " text-xs font-semibold text-sm";
-export const DARK_THEME_FOOTER_TEXT: string =
+export const DARK_THEME_FOOTER_LINK: string =
   DARK_THEME_BASE_TEXT + " dark:text-xs dark:font-semibold dark:text-sm";
 
 export const LIGHT_THEME_FOOTER_CAPTION: string =

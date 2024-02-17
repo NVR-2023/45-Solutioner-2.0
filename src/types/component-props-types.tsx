@@ -31,3 +31,9 @@ export type LinkListType = LinkType[];
 export type ThemeModeType = "light" | "dark" | "system";
 
 export type SystemThemePreference = "light" | "dark" | "no-preference";
+
+export type FooterLinkColumnType = {
+  label: string;
+  links: string[];
+  socialMediaIcons?: { children: ReactNode };
+};

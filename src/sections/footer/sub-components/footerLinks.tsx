@@ -1,12 +1,8 @@
 import React, { ReactNode } from "react";
 import getCurrentYearSpan from "@/utils/functions/getCurrentYearSpan";
 import SocialMediaIcons from "./social-media-icons-footer";
+import { FooterLinkColumnType } from "@/types/component-props-types";
 
-type FooterLinkColumnType = {
-  label: string;
-  links?: string[];
-  socialMediaIcons?: { children: ReactNode };
-};
 
 type FooterLinkListType = FooterLinkColumnType[];
 

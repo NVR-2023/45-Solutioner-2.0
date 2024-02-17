@@ -10,7 +10,7 @@ const LogoSegment: FC = () => {
         <div>
           <LogoIcon />
         </div>
-        <div className={LOGO_TEXT}>Solutioner</div>
+        <div className={`hidden md:flex ${LOGO_TEXT}`}>Solutioner</div>
       </Link>
     </div>
   );
