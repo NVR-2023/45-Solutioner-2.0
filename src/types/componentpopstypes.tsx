@@ -1,4 +1,4 @@
-export type basicComponentPropsType = {
-    size?:number,
-    color?: string,
-}
+export type BasicComponentPropsType = {
+  size?: number;
+  color?: string;
+};
