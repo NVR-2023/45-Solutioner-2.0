@@ -1,13 +1,13 @@
-import React, { FC, use } from "react";
+import React, { FC } from "react";
 import ThemeSwitch from "@/components/UI/theme-switch/theme-switch";;
 import SigninButton from "./signin-button";
 import RegisterButton from "./register-button";
-import { useThemeContext } from "@/contexts/theme-context";
+import SigninIcon from "../../../components/icons/signin-icon";
+import MenuToggle from "@/components/UI/menu-toggle/menu-toggle";
 
 const AuthSegment: FC = () => {
-  const { isDarkThemeOn, setIsDarkThemeOn } = useThemeContext();
   return (
-    <div className="flex items-center justify-between space-x-7">
+    <div className="flex items-center justify-between space-x-6">
       <div className="flex items-center">
         <ThemeSwitch />
       </div>
@@ -17,6 +17,13 @@ const AuthSegment: FC = () => {
       <div className="hidden md:flex md:items-center">
         <RegisterButton />
       </div>
+      <div className="md:hidden flex items-center">
+        <SigninIcon />
+      </div>
+      <div className="md:hidden flex items-center">
+        <MenuToggle />
+      </div>
+
     </div>
   );
 };

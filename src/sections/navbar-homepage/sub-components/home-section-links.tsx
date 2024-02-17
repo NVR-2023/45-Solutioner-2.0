@@ -15,7 +15,7 @@ const HomeSectionLinks: FC = () => {
 
   return (
     <nav className="flex items-center" role="navigation" aria-label="Homepage Sections Navigation">
-      <ul className="flex items-center space-x-7 list-none">
+      <ul className="flex items-center space-x-6 list-none">
         {homepageSections.map((link, index) => (
           <li key={index} className="relative">
             <Link
@@ -28,7 +28,7 @@ const HomeSectionLinks: FC = () => {
               </span>
             </Link>
             {link === currentSection ? (
-              <div className="absolute top-full left-0 w-full mt-0.5 border-t-[1.5px] border-current"></div>
+              <div className="absolute top-full left-0 w-full mt-0.5 border-t-[1px] border-current"></div>
             ) : null}
           </li>
         ))}

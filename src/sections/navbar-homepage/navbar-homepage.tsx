@@ -2,7 +2,6 @@ import React, { FC } from "react";
 import LogoSegment from "./sub-components/logo-segment";
 import HomeSectionLinks from "./sub-components/home-section-links";
 import AuthSegment from "./sub-components/auth-segment";
-import MobileButtonsHomepage from "./sub-components/mobile-buttons-homepage";
 
 import {
   TRANSPARENT_THEME_DEFAULT,
@@ -24,12 +23,9 @@ const NavbarHomepage: FC = () => {
           <div className="hidden md:flex">
             <HomeSectionLinks />
           </div>
-          <div className="flex justify-between">
+          <div className="">
             <AuthSegment />
-          </div>
-          <div className="flex items-center md:hidden">
-            <MobileButtonsHomepage />
-          </div>
+          </div>       
         </div>
       </nav>
     </header>

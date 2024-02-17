@@ -1,13 +1,10 @@
 import React, { FC } from "react";
-import BasicButton from "@/components/ui/basic-button/basic-button";
 import Link from "next/link";
 
 const RegisterButton: FC = () => {
   return (
     <div>
-      <BasicButton type="filled" size="md">
-        <Link href="/register">Register</Link>
-      </BasicButton>
+        <Link className=" font-semibold " href="/register">Register</Link>
     </div>
   );
 };
