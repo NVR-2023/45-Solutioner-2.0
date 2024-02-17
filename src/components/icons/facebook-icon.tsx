@@ -1,7 +1,7 @@
 import React, { FC } from "react";
-import { basicComponentPropsType } from "@/types/component-props-types";
+import { BasicComponentPropsType } from "@/types/component-props-types";
 
-const FacebookIcon: FC<basicComponentPropsType> = ({ scale = 1, color = "currentColor" }) => {
+const FacebookIcon: FC<BasicComponentPropsType> = ({ scale = 1, color = "currentColor" }) => {
   return (
     <a
       aria-label="Facebook"

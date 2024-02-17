@@ -1,8 +1,7 @@
 import React, { FC, ReactNode } from "react";
-import { basicButtonType } from "@/types/component-props-types";
+import { BasicButtonType } from "@/types/component-props-types";
 
-const BasicButton: FC<basicButtonType> = ({ type = "filled", size = "md", children }) => {
-  
+const BasicButton: FC<BasicButtonType> = ({ type = "filled", size = "md", children }) => {
   const baseStyle: string =
     "flex justify-center items-center rounded font-aperçu font-bold text-base";
 

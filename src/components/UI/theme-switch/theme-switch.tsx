@@ -1,5 +1,5 @@
 import React, { FC, useState, useEffect } from "react";
-import { themeModeType } from "@/types/component-props-types";
+import { ThemeModeType } from "@/types/component-props-types";
 import LightThemeIcon from "../../icons/light-theme-icon";
 import DarkThemeIcon from "../../icons/dark-theme-icon";
 import SystemThemeIcon from "../../icons/system-theme-icon";
@@ -11,7 +11,7 @@ import setThemeModeToLocalStorage from "@/utils/functions/setThemeToLocalStorage
 import { useThemeContext } from "@/contexts/theme-context";
 
 const ThemeSwitch: FC = () => {
-  const [currentThemeMode, setCurrentThemeMode] = useState<themeModeType>("light");
+  const [currentThemeMode, setCurrentThemeMode] = useState<ThemeModeType>("light");
   const { isDarkThemeOn, setIsDarkThemeOn } = useThemeContext();
 
   useEffect(() => {
@@ -29,7 +29,7 @@ const ThemeSwitch: FC = () => {
         (currentThemeMode === "system" && getSystemThemePreference() === "dark")
     );
   }, [currentThemeMode, setIsDarkThemeOn]);
-  
+
   const handleSwitchTheme = () => {
     switch (currentThemeMode) {
       case "light":

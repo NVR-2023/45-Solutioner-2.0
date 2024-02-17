@@ -1,7 +1,7 @@
 import React, { FC } from "react";
-import { onClickComponentPropsType } from "@/types/component-props-types";
+import { OnClickComponentPropsType } from "@/types/component-props-types";
 
-const HamburgerButton: FC<onClickComponentPropsType> = ({
+const HamburgerButton: FC<OnClickComponentPropsType> = ({
   scale = 1,
   color = "black",
   onClick,

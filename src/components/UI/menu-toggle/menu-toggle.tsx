@@ -3,9 +3,9 @@ import CloseICon from "../../icons/close-icon";
 import HamburgerIcon from "@/components/icons/hamburger-icon";
 import MobileSidemenuHomepage from "@/sections/navbar-homepage/sub-components/mobile-sidemenu-homepage";
 
-import { basicComponentPropsType } from "@/types/component-props-types";
+import { BasicComponentPropsType } from "@/types/component-props-types";
 
-const MenuToggle: React.FC<basicComponentPropsType> = ({ scale = 1, color = "currentColor" }) => {
+const MenuToggle: React.FC<BasicComponentPropsType> = ({ scale = 1, color = "currentColor" }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const handleToggle = () => {

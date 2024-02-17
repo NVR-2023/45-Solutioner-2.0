@@ -1,33 +1,33 @@
 import { ReactNode } from "react";
 
-export type basicComponentPropsType = {
+export type BasicComponentPropsType = {
   scale?: number;
   color?: string;
 };
 
-export type onClickComponentPropsType = {
+export type OnClickComponentPropsType = {
   scale?: number;
   color?: string;
   onClick: () => void;
 };
 
-export type basicButtonType = {
+export type BasicButtonType = {
   type?: "outlined" | "filled";
   size?: "sm" | "md" | "lg";
   children?: ReactNode;
 };
 
-export type linkType = {
+export type LinkType = {
   name: string;
   url: string;
 };
 
-export type basicChildrenType = {
+export type BasicChildrenType = {
   children: ReactNode;
 };
 
-export type linkListType = linkType[];
+export type LinkListType = LinkType[];
 
-export type themeModeType = "light" | "dark" | "system";
+export type ThemeModeType = "light" | "dark" | "system";
 
-export type systemThemePreference = "light" | "dark" | "no-preference";
+export type SystemThemePreference = "light" | "dark" | "no-preference";

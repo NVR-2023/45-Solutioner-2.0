@@ -1,7 +1,7 @@
 import React, { FC } from "react";
-import { basicComponentPropsType } from "@/types/component-props-types";
+import { BasicComponentPropsType } from "@/types/component-props-types";
 
-const DarkThemeIcon: FC<basicComponentPropsType> = ({ scale = 1, color = "currentColor" }) => {
+const DarkThemeIcon: FC<BasicComponentPropsType> = ({ scale = 1, color = "currentColor" }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

@@ -1,12 +1,12 @@
 import React, { FC } from "react";
 import Link from "next/link";
-import { basicComponentPropsType } from "@/types/component-props-types";
+import { BasicComponentPropsType } from "@/types/component-props-types";
 
-const SigninIcon: FC<basicComponentPropsType> = ({ scale = 1, color = "currentColor" }) => {
+const SigninIcon: FC<BasicComponentPropsType> = ({ scale = 1, color = "currentColor" }) => {
   return (
     <Link href="/sugnin">
       <svg
-      className="flex m-0 p-0 items-center justify-center"
+        className="flex m-0 p-0 items-center justify-center"
         xmlns="http://www.w3.org/2000/svg"
         height={24 * scale}
         viewBox="0 -960 960 960"

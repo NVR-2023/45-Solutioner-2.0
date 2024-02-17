@@ -1,6 +1,6 @@
-import { systemThemePreference } from "@/types/component-props-types";
+import { SystemThemePreference } from "@/types/component-props-types";
 
-const getSystemThemePreference = (): systemThemePreference => {
+const getSystemThemePreference = (): SystemThemePreference => {
   const prefersDarkMode =
     window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
   if (prefersDarkMode) {
@@ -10,4 +10,4 @@ const getSystemThemePreference = (): systemThemePreference => {
   }
 };
 
-export default getSystemThemePreference;;
+export default getSystemThemePreference;

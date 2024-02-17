@@ -1,9 +1,9 @@
 import React, { FC, useState } from "react";
-import { basicComponentPropsType } from "@/types/component-props-types";
+import { BasicComponentPropsType } from "@/types/component-props-types";
 import LightThemeIcon from "../../icons/light-theme-icon";
 import DarkThemeIcon from "../../icons/dark-theme-icon";
 
-const SidemenuSwitch: FC<basicComponentPropsType> = ({ scale = 1, color = "black" }) => {
+const SidemenuSwitch: FC<BasicComponentPropsType> = ({ scale = 1, color = "black" }) => {
   const [isFirstDivVisible, setIsFirstDivVisible] = useState(true);
 
   const handleClick = () => {

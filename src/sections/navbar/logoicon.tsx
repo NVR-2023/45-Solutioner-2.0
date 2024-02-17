@@ -1,7 +1,7 @@
 import React, { FC } from "react";
-import { basicComponentPropsType } from "@/types/component-props-types";
+import { BasicComponentPropsType } from "@/types/component-props-types";
 
-const LogoIcon: FC<basicComponentPropsType> = ({ size = 1, color = "black" }) => {
+const LogoIcon: FC<BasicComponentPropsType> = ({ size = 1, color = "black" }) => {
   return (
     <svg
       width={`${size}rem`}
