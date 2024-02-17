@@ -21,10 +21,10 @@ const Footer: FC = () => {
 
   return (
     <footer id="footer" className={isDarkThemeOn ? "dark" : ""}>
-      <div className={`flex justify-center py-4 ${LIGHT_THEME_DEFAULT} ${DARK_THEME_DEFAULT}`}>
-        <nav className="flex md:space-x-24" aria-labelledby="footerHeading">
+      <div className={`flex justify-around py-4 ${LIGHT_THEME_DEFAULT} ${DARK_THEME_DEFAULT}`}>
+        <nav className="flex" aria-labelledby="footerHeading">
           {footerLinkArray.map((linksColumn, index) => (
-            <div className="block w-28 md:w-48" key={index}>
+            <div className="block w-28 md:w-64" key={index}>
               <div className="mb-2" key={`column-${index}`}>
                 <span
                   className={`${LIGHT_THEME_FOOTER_LABELS} ${DARK_THEME_FOOTER_LABELS}`}
@@ -41,8 +41,7 @@ const Footer: FC = () => {
                 {linksColumn.links?.map((link, index) => (
                   <li className="flex" key={index}>
                     {link[0] === "©" ? (
-                      <p
-                        className={`${LIGHT_THEME_FOOTER_CAPTION} ${DARK_THEME_FOOTER_CAPTION}`}>
+                      <p className={`${LIGHT_THEME_FOOTER_CAPTION} ${DARK_THEME_FOOTER_CAPTION} mt-3.5`}>
                         {link}
                       </p>
                     ) : (

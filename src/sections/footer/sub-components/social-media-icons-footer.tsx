@@ -5,7 +5,7 @@ import LinkedinIcon from "../../../components/icons/linkedin-icon";
 
 const SocialMediaIcons: FC = () => {
   return (
-    <nav className="flex space-x-5 h-42">
+    <nav className="flex space-x-7 h-42">
       <a
         aria-label="X"
         href="https://www.twitter.com"

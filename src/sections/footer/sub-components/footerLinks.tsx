@@ -19,7 +19,7 @@ const footerLinkArray: FooterLinkListType = [
   {
     label: "social media",
     socialMediaIcons: { children: <SocialMediaIcons /> },
-    links: [`©${getCurrentYearSpan()} Nuno Violante odrigues`],
+    links: [`©${getCurrentYearSpan()} Nuno Violante Rodrigues. All rights reserved.`],
   },
 ];
 
