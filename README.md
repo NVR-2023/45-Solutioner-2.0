@@ -1,5 +1,5 @@
 
-# Project Title
+## Project Title
 
 Solutioner, a home services app
 
@@ -7,7 +7,7 @@ Solutioner, a home services app
 
 A SPA Full Stack app that allows users and service providers to connect and book appointments
 
-### Stack
+## Stack
 
 Front End: Typescript 5.3, Next.js 14.1, Tailwind CSS 3.3  
 Back End:
