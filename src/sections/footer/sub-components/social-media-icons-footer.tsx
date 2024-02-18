@@ -5,13 +5,15 @@ import LinkedinIcon from "../../../components/icons/linkedin-icon";
 
 const SocialMediaIcons: FC = () => {
   return (
-    <nav className="flex space-x-2 md:space-x-7 h-42">
+    <nav className="flex space-x-7">
       <a
         aria-label="X"
         href="https://www.twitter.com"
         title="twitter.com"
         target="_blank"
-        rel="noopener noreferrer">
+        rel="noopener noreferrer"
+        className=""
+        >
         <XIcon scale={0.7} />
       </a>
       <a

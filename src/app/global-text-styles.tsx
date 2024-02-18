@@ -27,9 +27,10 @@ export const DARK_THEME_FOOTER_LINK: string =
   DARK_THEME_BASE_TEXT + " dark:text-xs dark:font-semibold dark:text-sm";
 
 export const LIGHT_THEME_FOOTER_CAPTION: string =
-  LIGHT_THEME_BASE_TEXT + " font-semibold text-[0.6rem] tracking-wider";
+  LIGHT_THEME_BASE_TEXT + " font-bold text-xs sm:text-[0.5rem] tracking-wider";
 export const DARK_THEME_FOOTER_CAPTION: string =
-  DARK_THEME_BASE_TEXT + " dark:font-semibold dark:text-[0.6rem] dark:tracking-wider";
+  DARK_THEME_BASE_TEXT +
+  " dark:font-bold dark:text-[0.6rem] dark:md:text-[0.8rem] dark:tracking-wider";
 
 export const LIGHT_THEME_OUTLINED_BUTTON_TEXT: string = "";
 export const DARK_THEME_OUTLINED_BUTTON_TEXT: string = "dark:font-bold";

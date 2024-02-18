@@ -17,23 +17,15 @@ export type BasicButtonType = {
   children?: ReactNode;
 };
 
-export type LinkType = {
-  name: string;
-  url: string;
-};
-
 export type BasicChildrenType = {
   children: ReactNode;
 };
-
-export type LinkListType = LinkType[];
 
 export type ThemeModeType = "light" | "dark" | "system";
 
 export type SystemThemePreference = "light" | "dark" | "no-preference";
 
-export type FooterLinkColumnType = {
+export type FooterLinkSegmentType = {
   label: string;
   links: string[];
-  socialMediaIcons?: { children: ReactNode };
 };

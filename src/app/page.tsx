@@ -3,9 +3,9 @@
 import React from "react";
 
 import NavbarHomepage from "@/sections/navbar-homepage/navbar-homepage";
-import ServicesHomeSection from "@/sections/services-sectiom-home/servicessectionhome";
-import SecuritySectionHome from "@/sections/security-section-home/securitysectionhome";
-import PricingSectionHome from "@/sections/pricing-section-home/pricingsectionhome";
+import ServicesHomeSection from "@/sections/services-section-home/services-section-home";
+import SecuritySectionHome from "@/sections/security-section-home/security-section-home";
+import PricingSectionHome from "@/sections/pricing-section-home/pricing-section-home";
 import Footer from "@/sections/footer/footer";
 
 export default function Home() {
@@ -23,7 +23,7 @@ export default function Home() {
       <div className="border-b-2 border-neutral-300">
         <PricingSectionHome />
       </div>
-      <div>
+      <div className="hidden md:block">
         <Footer />
       </div>
     </main>
