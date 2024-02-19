@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import CloseICon from "../../icons/close-icon";
+import CloseICon from "../../../components/icons/close-icon";
 import HamburgerIcon from "@/components/icons/hamburger-icon";
 import MobileSidemenuHomepage from "@/sections/navbar-homepage/sub-components/mobile-sidemenu-homepage";
 

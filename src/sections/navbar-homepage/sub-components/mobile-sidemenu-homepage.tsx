@@ -10,7 +10,7 @@ type MobileSidemenuPropsType = {
 
 const MobileSidemenuHomepage: FC<MobileSidemenuPropsType> = ({ action }) => {
   return (
-    <nav className="z-[999] mt-3 -me-3 text-base font-semibold bg-neutral-300 dark:bg-neutral-700">
+    <nav className="z-[999] mt-3.5 -me-3 text-base font-semibold bg-neutral-300 dark:bg-neutral-700 bg-opacity-70 dark:bg-opacity-70">
       <div className="flex justify-start">
         <ul className="list-none flex flex-col space-y-1 mt-3 mx-3">
           {homepageSections &&
