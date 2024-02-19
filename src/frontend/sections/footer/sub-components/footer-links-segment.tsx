@@ -2,11 +2,6 @@ import React, { FC } from "react";
 import getURLfromString from "@/utils/functions/geturlfromstring";
 import Link from "next/link";
 
-import {
-  LIGHT_THEME_FOOTER_LINK,
-  DARK_THEME_FOOTER_LINK,
-} from "@/app/global-text-styles";
-
 type LinkListType = {
   label: string;
   links: string[];

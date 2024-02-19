@@ -1,4 +1,4 @@
-import { SystemThemePreference } from "@/types/component-props-types";
+type SystemThemePreference = "light" | "dark" | "no-preference";
 
 const getSystemThemePreference = (): SystemThemePreference => {
   const prefersDarkMode =

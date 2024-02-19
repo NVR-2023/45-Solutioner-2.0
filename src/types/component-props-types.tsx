@@ -20,12 +20,3 @@ export type BasicButtonType = {
 export type BasicChildrenType = {
   children: ReactNode;
 };
-
-export type ThemeModeType = "light" | "dark" | "system";
-
-export type SystemThemePreference = "light" | "dark" | "no-preference";
-
-export type FooterLinkSegmentType = {
-  label: string;
-  links: string[];
-};
