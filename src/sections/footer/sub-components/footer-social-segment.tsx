@@ -13,7 +13,7 @@ const FooterSocialSegment: FC = () => {
         </div>
         <SocialMediaIcons />
       </div>
-      <div className="pt-2 flex flex-col md:flex-row font-semibold md:font-bold md:text-[0.6rem] text-xs tracking-wide">
+      <div className="pt-2 flex flex-col md:flex-row font-semibold md:text-[0.6rem] text-xs tracking-wide">
         {`©${getCurrentYearSpan()} Nuno Violante Rodrigues. All rights reserved.`}
       </div>
     </nav>
