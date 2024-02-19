@@ -9,7 +9,7 @@
 }
 
 ::-webkit-scrollbar-track {
-  background-color: #a3a3a3;
+  background-color: #b3b3b3;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -24,16 +24,16 @@
 /* Navbar customization: Dark mode */
 
 .dark ::-webkit-scrollbar-track {
-  background-color: #44403c;
+  background-color: #4c4c4c;
 }
 
 .dark ::-webkit-scrollbar-thumb {
-  background-color: rgb(23, 23, 23);
+  background-color: rgb(48, 48, 48);
   height: 1rem;
 }
 
 .dark ::-webkit-scrollbar-thumb:hover {
-  background-color: black;
+  background-color: rgb(32, 32, 32);
 }
 
 /* Navbar customization: Dark mode */
