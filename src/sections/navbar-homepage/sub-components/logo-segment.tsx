@@ -5,12 +5,12 @@ import Link from "next/link";
 
 const LogoSegment: FC = () => {
   return (
-    <div className="flex h-full items-center">
+    <div className="flex h-full items-left">
       <Link href={"/#services"} className="flex items-center">
         <div>
           <LogoIcon />
         </div>
-        <div className={`hidden md:flex ${LOGO_TEXT}`}>Solutioner</div>
+        <div className="hidden md:flex ">Solutioner</div>
       </Link>
     </div>
   );

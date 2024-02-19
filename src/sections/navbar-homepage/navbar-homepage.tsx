@@ -7,8 +7,8 @@ const NavbarHomepage: FC = () => {
 
   return (
     <header className="relative z-50 flex justify-center">
-      <nav className="fixed w-11/12 top-1 md:top-3 rounded bg-blue-400  dark:bg-red-400">
-        <div className="flex align-middle justify-between p-3">
+      <nav className="fixed w-11/12 top-1 md:top-3 rounded dark:bg-neutral-700 dark:bg-opacity-70 dark:text-white">
+        <div className="flex align-middle justify-between py-3 px-5">
           <div className="">
             <LogoSegment />
           </div>
@@ -17,7 +17,7 @@ const NavbarHomepage: FC = () => {
           </div>
           <div className="">
             <AuthSegment />
-          </div>       
+          </div>
         </div>
       </nav>
     </header>
