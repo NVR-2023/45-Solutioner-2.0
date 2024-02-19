@@ -21,7 +21,6 @@ export type BasicChildrenType = {
   children: ReactNode;
 };
 
-export type ThemeModeType = "light" | "dark" | "system";
 
 export type SystemThemePreference = "light" | "dark" | "no-preference";
 

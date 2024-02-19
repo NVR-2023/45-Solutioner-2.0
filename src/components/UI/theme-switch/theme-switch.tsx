@@ -1,5 +1,4 @@
 import React, { FC, useState, useEffect } from "react";
-import { ThemeModeType } from "@/types/component-props-types";
 import LightThemeIcon from "../../icons/light-theme-icon";
 import DarkThemeIcon from "../../icons/dark-theme-icon";
 import SystemThemeIcon from "../../icons/system-theme-icon";
@@ -8,16 +7,12 @@ import getThemeModeFromLocalStorage from "@/utils/functions/getThemeModeFromLoca
 import getSystemThemePreference from "@/utils/functions/getSystemThemePreference";
 import setThemeModeToLocalStorage from "@/utils/functions/setThemeToLocalStorage";
 
-import { useThemeContext } from "@/contexts/theme-context";
-
 const ThemeSwitch: FC = () => {
+
+  type ThemeModeType = "light" | "dark" | "system";
+
   const [currentThemeMode, setCurrentThemeMode] = useState<ThemeModeType>("light");
-  const { isDarkThemeOn, setIsDarkThemeOn } = useThemeContext();
 
-
-
-
-  
   useEffect(() => {
     const themeMode = getThemeModeFromLocalStorage();
     if (themeMode === null) {
@@ -25,30 +20,52 @@ const ThemeSwitch: FC = () => {
     } else {
       setCurrentThemeMode(themeMode);
     }
-  }, [setIsDarkThemeOn]);
+  }, []);
 
   useEffect(() => {
-    setIsDarkThemeOn(
+    const addClassDarkToHtml = (): void => {
+      const htmlElement = document.documentElement;
+      if (!htmlElement.classList.contains("dark")) {
+        htmlElement.classList.add("dark");
+      }
+    };
+
+    const removeClassDarkFromHtml = (): void => {
+      const htmlElement = document.documentElement;
+      if (htmlElement.classList.contains("dark")) {
+        htmlElement.classList.remove("dark");
+      }
+    };
+
+    if (
       currentThemeMode === "dark" ||
-        (currentThemeMode === "system" && getSystemThemePreference() === "dark")
-    );
-  }, [currentThemeMode, setIsDarkThemeOn]);
+      (currentThemeMode === "system" && getSystemThemePreference() === "dark")
+    ) {
+      addClassDarkToHtml();
+    } else if (
+      currentThemeMode === "light" ||
+      (currentThemeMode === "system" && getSystemThemePreference() === "light")
+    ) {
+      removeClassDarkFromHtml();
+    }
+  }, [currentThemeMode]);
 
   const handleSwitchTheme = () => {
+    let newThemeMode: ThemeModeType;
+
     switch (currentThemeMode) {
       case "light":
-        setThemeModeToLocalStorage("dark");
-        setCurrentThemeMode("dark");
+        newThemeMode = "dark";
         break;
       case "dark":
-        setThemeModeToLocalStorage("system");
-        setCurrentThemeMode("system");
+        newThemeMode = "system";
         break;
       case "system":
-        setThemeModeToLocalStorage("light");
-        setCurrentThemeMode("light");
+        newThemeMode = "light";
         break;
     }
+    setThemeModeToLocalStorage(newThemeMode);
+    setCurrentThemeMode(newThemeMode);
   };
 
   return (
