@@ -1,9 +1,9 @@
 import React, { FC } from "react";
-import ThemeSwitch from "@/components/ui/theme-switch/theme-switch";
+import ThemeSwitch from "@/frontend/components/ui/theme-switch/theme-switch";
 import SigninButton from "./signin-button";
 import RegisterButton from "./register-button";
 import SigninIcon from "../../../components/icons/signin-icon";
-import MenuToggle from "@/sections/navbar-homepage/sub-components/menu-toggle";
+import MenuToggle from "@/frontend/sections/navbar-homepage/sub-components/menu-toggle";
 
 const AuthSegment: FC = () => {
   return (

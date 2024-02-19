@@ -1,7 +1,7 @@
 import React, { FC, useState } from "react";
 import Link from "next/link";
 import { getSectionFomString } from "@/utils/functions/getsectionfromurl";
-import homepageSections from "@/sections/navbar-homepage/sub-components/homepage-sections";
+import homepageSections from "@/frontend/sections/navbar-homepage/sub-components/homepage-sections";
 
 
 const HomeSectionLinks: FC = () => {

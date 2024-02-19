@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import CloseICon from "../../../components/icons/close-icon";
-import HamburgerIcon from "@/components/icons/hamburger-icon";
-import MobileSidemenuHomepage from "@/sections/navbar-homepage/sub-components/mobile-sidemenu-homepage";
+import HamburgerIcon from "@/frontend/components/icons/hamburger-icon";
+import MobileSidemenuHomepage from "@/frontend/sections/navbar-homepage/sub-components/mobile-sidemenu-homepage";
 
 import { BasicComponentPropsType } from "@/types/component-props-types";
 

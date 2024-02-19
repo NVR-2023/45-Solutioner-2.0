@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import homepageSections from "@/sections/navbar-homepage/sub-components/homepage-sections";
+import homepageSections from "@/frontend/sections/navbar-homepage/sub-components/homepage-sections";
 import Link from "next/link";
 import { getSectionFomString } from "@/utils/functions/getsectionfromurl";
 
