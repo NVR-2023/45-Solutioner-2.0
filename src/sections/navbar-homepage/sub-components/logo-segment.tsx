@@ -1,6 +1,5 @@
 import React, { FC } from "react";
 import LogoIcon from "../../../components/icons/logo-icon";
-import { LOGO_TEXT } from "@/app/global-text-styles";
 import Link from "next/link";
 
 const LogoSegment: FC = () => {
@@ -10,7 +9,7 @@ const LogoSegment: FC = () => {
         <div>
           <LogoIcon />
         </div>
-        <div className="hidden md:flex ">Solutioner</div>
+        <div className="hidden md:flex font-bold ">Solutioner</div>
       </Link>
     </div>
   );

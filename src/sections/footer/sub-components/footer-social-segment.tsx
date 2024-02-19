@@ -7,7 +7,7 @@ const FooterSocialSegment: FC = () => {
     <nav key="social" className="flex flex-col">
       <div className="flex md:block">
         <div
-          className="text-sm font-black font-small-caps tracking-wide me-2 md:me-0 md:mb-2"
+          className="text-sm font-bold small-caps tracking-wide me-2 md:me-0 md:mb-2"
           id="footerHeading">
           social
         </div>

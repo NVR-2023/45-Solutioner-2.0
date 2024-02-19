@@ -17,7 +17,7 @@ const FooterLinksSegment: FC<{ linkList: LinkListType }> = ({ linkList }) => {
     <nav key={linkList.label}>
       <div className="flex flex-row md:flex-col w-26 md:w-64">
         <div
-          className="text-sm font-black font-small-caps tracking-wide md:mb-2 pe-2 md:pe-0"
+          className="text-sm font-bold small-caps tracking-wide md:mb-2 pe-2 md:pe-0"
           id="footerHeading">
           {linkList.label}
         </div>

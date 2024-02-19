@@ -20,7 +20,7 @@ const config: Config = {
       basis: ["var(--font-Basis)"],
     },
   },
-  plugins: [],
+  plugins: [require("tailwindcss-opentype")],
   darkMode: "class",
 };
 export default config;
