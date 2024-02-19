@@ -1,11 +1,8 @@
-import React, { FC, useState, useEffect } from "react";
+import React, { FC, useState } from "react";
 import Link from "next/link";
 import { getSectionFomString } from "@/utils/functions/getsectionfromurl";
 import homepageSections from "@/sections/navbar-homepage/sub-components/homepage-sections";
-import {
-  HOME_NAVBAR_LINKS_TEXT_LIGHT,
-  HOME_NAVBAR_LINKS_TEXT_DARK,
-} from "@/app/global-text-styles";
+
 
 const HomeSectionLinks: FC = () => {
   const [currentSection, setCurrentSection] = useState(homepageSections[0]);
@@ -23,7 +20,7 @@ const HomeSectionLinks: FC = () => {
               onClick={() => {
                 handleChangeSection(link);
               }}>
-              <span className={` ${HOME_NAVBAR_LINKS_TEXT_LIGHT} ${HOME_NAVBAR_LINKS_TEXT_DARK}`}>
+              <span className="font-semibold text-sm">
                 {link}
               </span>
             </Link>
