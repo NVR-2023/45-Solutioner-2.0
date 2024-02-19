@@ -14,6 +14,10 @@ const ThemeSwitch: FC = () => {
   const [currentThemeMode, setCurrentThemeMode] = useState<ThemeModeType>("light");
   const { isDarkThemeOn, setIsDarkThemeOn } = useThemeContext();
 
+
+
+
+  
   useEffect(() => {
     const themeMode = getThemeModeFromLocalStorage();
     if (themeMode === null) {
