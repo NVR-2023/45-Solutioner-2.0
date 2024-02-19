@@ -3,13 +3,12 @@ import LightThemeIcon from "../../icons/light-theme-icon";
 import DarkThemeIcon from "../../icons/dark-theme-icon";
 import SystemThemeIcon from "../../icons/system-theme-icon";
 
+import { ThemeModeType } from "@/types/component-props-types";
 import getThemeModeFromLocalStorage from "@/utils/functions/getThemeModeFromLocalStorage";
 import getSystemThemePreference from "@/utils/functions/getSystemThemePreference";
 import setThemeModeToLocalStorage from "@/utils/functions/setThemeToLocalStorage";
 
 const ThemeSwitch: FC = () => {
-
-  type ThemeModeType = "light" | "dark" | "system";
 
   const [currentThemeMode, setCurrentThemeMode] = useState<ThemeModeType>("light");
 

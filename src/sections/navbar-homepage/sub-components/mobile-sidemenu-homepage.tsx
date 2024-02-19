@@ -2,7 +2,6 @@ import React, { FC } from "react";
 import homepageSections from "@/sections/navbar-homepage/sub-components/homepage-sections";
 import Link from "next/link";
 import { getSectionFomString } from "@/utils/functions/getsectionfromurl";
-import { useThemeContext } from "@/contexts/theme-context";
 
 import {
   HOME_NAVBAR_LINKS_TEXT_LIGHT,
@@ -15,10 +14,8 @@ type MobileSidemenuPropsType = {
 };
 
 const MobileSidemenuHomepage: FC<MobileSidemenuPropsType> = ({ action }) => {
-  const { isDarkThemeOn } = useThemeContext();
   return (
-    <nav className={isDarkThemeOn ? "dark" : ""}>
-      <div className={`z-[999] top-3 right-3 ${LIGHT_THEME_DEFAULT} ${DARK_THEME_DEFAULT}`}>
+      <nav className={`z-[999] top-3 right-3 ${LIGHT_THEME_DEFAULT} ${DARK_THEME_DEFAULT}`}>
         <div className="flex justify-start">
           <ul className="list-none flex flex-col space-y-1 mt-3 mx-3">
             {homepageSections &&
@@ -34,8 +31,7 @@ const MobileSidemenuHomepage: FC<MobileSidemenuPropsType> = ({ action }) => {
             <br />
           </ul>
         </div>
-      </div>
-    </nav>
+      </nav>
   );
 };
 

@@ -23,7 +23,6 @@ const AuthSegment: FC = () => {
       <div className="md:hidden flex items-center">
         <MenuToggle />
       </div>
-
     </div>
   );
 };
