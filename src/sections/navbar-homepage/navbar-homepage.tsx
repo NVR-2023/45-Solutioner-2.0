@@ -7,7 +7,7 @@ const NavbarHomepage: FC = () => {
 
   return (
     <header className="relative z-50 flex justify-center">
-      <nav className="fixed w-11/12 top-1 md:top-3 rounded dark:bg-neutral-700 dark:bg-opacity-70 dark:text-white">
+      <nav className="fixed w-11/12 top-1 md:top-3 rounded dark:bg-neutral-700 dark:bg-opacity-70 dark:text-white darkModeTransition">
         <div className="flex align-middle justify-between py-3 px-5">
           <div className="">
             <LogoSegment />
