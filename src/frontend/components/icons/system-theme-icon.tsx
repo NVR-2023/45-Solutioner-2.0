@@ -1,6 +1,5 @@
-import React, { FC } from "react";
-import { BasicComponentPropsType } from "@/types/component-props-types";
-const SystemThemeIcon: FC<BasicComponentPropsType> = ({ scale = 1, color = "currentColor" }) => {
+import { BasicComponentProps } from "@/types/component-props-types";
+const SystemThemeIcon = ({ scale = 1, color = "currentColor" }: BasicComponentProps) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

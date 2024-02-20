@@ -1,4 +1,3 @@
-import React, { FC } from "react";
 import getURLfromString from "@/utils/functions/geturlfromstring";
 import Link from "next/link";
 
@@ -7,7 +6,10 @@ type LinkListType = {
   links: string[];
 };
 
-const FooterLinksSegment: FC<{ linkList: LinkListType }> = ({ linkList }) => {
+type LinkListProps = {
+  linkList: LinkListType;
+}
+const FooterLinksSegment = ({linkList}: LinkListProps) => {
   return (
     <nav key={linkList.label}>
       <div className="flex flex-row md:flex-col w-26 md:w-64">
@@ -16,7 +18,9 @@ const FooterLinksSegment: FC<{ linkList: LinkListType }> = ({ linkList }) => {
           id="footerHeading">
           {linkList.label}
         </div>
-        <ul className="list-none flex flex-row md:flex-col space-x-0.5 md:space-x-0 md:space-y-2" aria-label="List of Links">
+        <ul
+          className="list-none flex flex-row md:flex-col space-x-0.5 md:space-x-0 md:space-y-2"
+          aria-label="List of Links">
           {linkList.links?.map((link, index) => (
             <li className="flex" key={index}>
               <Link

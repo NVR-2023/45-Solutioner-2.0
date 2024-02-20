@@ -1,7 +1,7 @@
-import React, { FC } from "react";
+import { FC } from "react";
 import Link from "next/link";
 
-const RegisterButton: FC = () => {
+const RegisterButton = () => {
   return (
     <div>
         <Link className=" font-semibold " href="/register">Register</Link>

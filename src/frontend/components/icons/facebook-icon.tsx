@@ -1,7 +1,6 @@
-import React, { FC } from "react";
-import { BasicComponentPropsType } from "@/types/component-props-types";
+import { BasicComponentProps } from "@/types/component-props-types";
 
-const FacebookIcon: FC<BasicComponentPropsType> = ({ scale = 1, color = "currentColor" }) => {
+const FacebookIcon = ({ scale = 1, color = "currentColor" }: BasicComponentProps) => {
   return (
     <svg
       width={24 * scale}

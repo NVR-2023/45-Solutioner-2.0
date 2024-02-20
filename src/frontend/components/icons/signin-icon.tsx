@@ -1,8 +1,7 @@
-import React, { FC } from "react";
 import Link from "next/link";
-import { BasicComponentPropsType } from "@/types/component-props-types";
+import { BasicComponentProps } from "@/types/component-props-types";
 
-const SigninIcon: FC<BasicComponentPropsType> = ({ scale = 1, color = "currentColor" }) => {
+const SigninIcon = ({ scale = 1, color = "currentColor" }: BasicComponentProps) => {
   return (
     <Link href="/sugnin">
       <svg

@@ -1,7 +1,6 @@
-import React, { FC } from "react";
-import { BasicComponentPropsType } from "@/types/component-props-types";
+import { BasicComponentProps } from "@/types/component-props-types";
 
-const CloseICon: FC<BasicComponentPropsType> = ({ scale = 1, color = "currentColor" }) => {
+const CloseICon = ({ scale = 1, color = "currentColor" }: BasicComponentProps) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

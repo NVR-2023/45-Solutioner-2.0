@@ -1,7 +1,6 @@
-import React, { FC } from "react";
 import Image from "next/image";
 
-const ServicesHomeSection: FC = () => {
+const ServicesHomeSection = () => {
   return (
     <section id="services">
       <div>

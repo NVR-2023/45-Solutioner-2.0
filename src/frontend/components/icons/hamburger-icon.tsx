@@ -1,7 +1,6 @@
-import React, { FC } from "react";
-import { BasicComponentPropsType } from "@/types/component-props-types";
+import { BasicComponentProps } from "@/types/component-props-types";
 
-const HamburgerIcon: FC<BasicComponentPropsType> = ({ scale = 1, color = "currentColor" }) => {
+const HamburgerIcon = ({ scale = 1, color = "currentColor" }: BasicComponentProps) => {
   return (
     <div>
       <svg

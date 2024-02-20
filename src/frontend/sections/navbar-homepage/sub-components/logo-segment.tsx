@@ -1,8 +1,7 @@
-import React, { FC } from "react";
 import LogoIcon from "../../../components/icons/logo-icon";
 import Link from "next/link";
 
-const LogoSegment: FC = () => {
+const LogoSegment = () => {
   return (
     <div className="flex h-full items-left">
       <Link href={"/#services"} className="flex items-center">

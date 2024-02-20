@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import CloseICon from "../../../components/icons/close-icon";
 import HamburgerIcon from "@/frontend/components/icons/hamburger-icon";
 import MobileSidemenuHomepage from "@/frontend/sections/navbar-homepage/sub-components/mobile-sidemenu-homepage";
 
-import { BasicComponentPropsType } from "@/types/component-props-types";
+import { BasicComponentProps } from "@/types/component-props-types";
 
-const MenuToggle: React.FC<BasicComponentPropsType> = ({ scale = 1, color = "currentColor" }) => {
+const MenuToggle = ({ scale = 1, color = "currentColor" }: BasicComponentProps) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const handleToggle = () => {

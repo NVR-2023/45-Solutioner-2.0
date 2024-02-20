@@ -1,9 +1,8 @@
-import React, { FC } from "react";
 import XIcon from "../../../components/icons/x-icon";
 import FacebookIcon from "../../../components/icons/facebook-icon";
 import LinkedinIcon from "../../../components/icons/linkedin-icon";
 
-const SocialMediaIcons: FC = () => {
+const SocialMediaIcons = () => {
   return (
     <nav className="flex space-x-7">
       <a

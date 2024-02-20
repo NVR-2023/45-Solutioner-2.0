@@ -1,4 +1,4 @@
-import React, { FC, useState, useEffect } from "react";
+import {useState, useEffect } from "react";
 import LightThemeIcon from "../../icons/light-theme-icon";
 import DarkThemeIcon from "../../icons/dark-theme-icon";
 import SystemThemeIcon from "../../icons/system-theme-icon";
@@ -7,7 +7,7 @@ import getThemeModeFromLocalStorage from "@/utils/functions/getThemeModeFromLoca
 import getSystemThemePreference from "@/utils/functions/getSystemThemePreference";
 import setThemeModeToLocalStorage from "@/utils/functions/setThemeToLocalStorage";
 
-const ThemeSwitch: FC = () => {
+const ThemeSwitch = () => {
   
   type ThemeModeType = "light" | "dark" | "system";
 

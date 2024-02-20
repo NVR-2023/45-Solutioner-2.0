@@ -1,7 +1,6 @@
-import React, { FC } from "react";
 import Link from "next/link";
 
-const SigninButton: FC = () => {
+const SigninButton = () => {
   return (
     <div>
         <Link className=" font-semibold " href="/signin">

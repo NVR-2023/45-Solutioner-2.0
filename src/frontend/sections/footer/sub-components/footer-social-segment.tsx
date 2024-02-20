@@ -1,8 +1,7 @@
-import React, { FC } from "react";
 import SocialMediaIcons from "./social-media-icons-footer";
 import getCurrentYearSpan from "@/utils/functions/getCurrentYearSpan";
 
-const FooterSocialSegment: FC = () => {
+const FooterSocialSegment = () => {
   return (
     <nav key="social" className="flex flex-col">
       <div className="flex md:block">

@@ -1,10 +1,10 @@
-import React, { FC, useState } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import { getSectionFomString } from "@/utils/functions/getsectionfromurl";
 import homepageSections from "@/frontend/sections/navbar-homepage/sub-components/homepage-sections";
 
 
-const HomeSectionLinks: FC = () => {
+const HomeSectionLinks = () => {
   const [currentSection, setCurrentSection] = useState(homepageSections[0]);
   const handleChangeSection = (section: string) => {
     setCurrentSection(section);

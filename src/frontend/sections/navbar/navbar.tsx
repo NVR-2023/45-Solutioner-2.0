@@ -1,7 +1,6 @@
-import React, { FC } from "react";
 import LogoComponent from "./logocomponent";
 
-const Navbar: FC = () => {
+const Navbar = () => {
   return (
     <header className="relative z-50 w-full">
       <nav className="fixed top-1.5 w-full">
