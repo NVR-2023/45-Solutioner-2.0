@@ -1,6 +1,6 @@
-import { ThemeModeType } from "@/types/component-props-types";
+import { ThemeMode } from "@/types/component-props-types";
 
-const setThemeModeToLocalStorage = (themeMode: ThemeModeType): void => {
+const setThemeModeToLocalStorage = (themeMode: ThemeMode): void => {
   localStorage.setItem("solutionerThemeMode", themeMode);
 };
 

@@ -20,3 +20,5 @@ export type BasicButtonProps = {
 export type BasicChildrenProps = {
   children: ReactNode;
 };
+
+export type ThemeMode = "light" | "dark" | "system";
