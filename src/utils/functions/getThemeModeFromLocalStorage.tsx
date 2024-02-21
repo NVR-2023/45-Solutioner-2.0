@@ -1,4 +1,4 @@
-type ThemeMode = "light" | "dark" | "system";
+import { ThemeMode } from "@/types/component-props-types";
 
 const validThemeModes: ThemeMode[] = ["light", "dark", "system"];
 
