@@ -5,7 +5,7 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Solutioner",
-  description: "A Next,js 14 home services app by Nuno Rodriguesp",
+  description: "A Next.js 14 home services app by Nuno Rodrigues",
 };
 
 export default function RootLayout({
