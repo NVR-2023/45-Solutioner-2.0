@@ -1,18 +1,18 @@
-import { ThemeModeType } from "@/types/component-props-types";
+type ThemeMode = "light" | "dark" | "system";
 
-const validThemeModes: ThemeModeType[] = ["light", "dark", "system"];
+const validThemeModes: ThemeMode[] = ["light", "dark", "system"];
 
-const isValidThemeMode = (value: string) => {
-  return validThemeModes.includes(value as ThemeModeType);
+const isValidThemeMode = (value: string): value is ThemeMode => {
+  return validThemeModes.includes(value as ThemeMode);
 };
 
-const getThemeModeFromLocalStorage = (): ThemeModeType | null => {
+const getThemeModeFromLocalStorage = (): ThemeMode | null => {
   const themeMode = localStorage.getItem("solutionerThemeMode");
 
   if (themeMode === null) return null;
   if (!isValidThemeMode(themeMode)) return validThemeModes[0];
 
-  return themeMode as ThemeModeType;
+  return themeMode as ThemeMode;
 };
 
 export default getThemeModeFromLocalStorage;
