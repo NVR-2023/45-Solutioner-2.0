@@ -1,5 +1,5 @@
 {
-  "id": "e48baf4e-e5ff-4e60-ad53-fc9c18f89d5d",
+  "id": "e53021cb-e590-4954-9142-6a28059ba2d8",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "5",
   "dialect": "pg",
@@ -26,14 +26,21 @@
           "primaryKey": false,
           "notNull": true
         },
-        "image": {
-          "name": "image",
+        "password": {
+          "name": "password",
           "type": "text",
           "primaryKey": false,
           "notNull": true
         },
         "createdAt": {
           "name": "createdAt",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "modifiedAt": {
+          "name": "modifiedAt",
           "type": "timestamp",
           "primaryKey": false,
           "notNull": true,
