@@ -7,12 +7,15 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "db:generate": "npx drizzle-kit generate:pg --config ./src/backend/database/drizzle/drizzle.config.ts"
+    "db:generate": "npx drizzle-kit generate:pg --config=./src/backend/database/drizzle/drizzle.config.ts",
+    "db:migrate": "npx tsx src/backend/database/drizzle/scripts/migrate.ts",
+    "db:seed": "npx tsx src/backend/database/drizzle/scripts/seed.ts"
   },
   "dependencies": {
     "@vercel/postgres": "^0.7.2",
     "drizzle-orm": "^0.29.4",
     "next": "14.1.0",
+    "pg": "^8.11.3",
     "react": "^18",
     "react-dom": "^18",
     "tailwindcss-opentype": "^1.1.0"
