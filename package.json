@@ -9,7 +9,8 @@
     "lint": "next lint",
     "db:generate": "npx drizzle-kit generate:pg --config=./src/backend/database/drizzle/drizzle.config.ts",
     "db:migrate": "npx tsx src/backend/database/drizzle/scripts/migrate.ts",
-    "db:seed": "npx tsx src/backend/database/drizzle/scripts/seed.ts"
+    "db:seed": "npx tsx src/backend/database/drizzle/scripts/seed.ts",
+    "db:push": "npx drizzle-kit push:pg --config=./src/backend/database/drizzle/drizzle.config.ts"
   },
   "dependencies": {
     "@vercel/postgres": "^0.7.2",
