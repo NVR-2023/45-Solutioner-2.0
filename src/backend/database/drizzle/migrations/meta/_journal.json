@@ -8,6 +8,13 @@
       "when": 1709062072976,
       "tag": "0000_green_jack_power",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1709131366876,
+      "tag": "0001_fresh_crystal",
+      "breakpoints": true
     }
   ]
 }
