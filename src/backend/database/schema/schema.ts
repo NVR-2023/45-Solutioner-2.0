@@ -5,6 +5,7 @@ import {
   integer,
   serial,
   text,
+  date,
   timestamp,
   uniqueIndex,
   boolean,
@@ -34,7 +35,7 @@ export const userRelations = relations(users, ({ one }) => ({
 
 export const userProfiles = pgTable("user_profiles", {
   id: serial("id").primaryKey(),
-  userId: integer("user_id").references(() => users.id),
+  userId: integer("user_id").notNull().references(() => users.id),
   avatar: text("avatar"),
   mustHaveCertificate: boolean("must_have_certificate"),
   requiredExperience: numeric("required_experience"),
@@ -60,11 +61,12 @@ export const providers = pgTable(
 
 export const providerRelations = relations(providers, ({ one }) => ({
   providerProfiles: one(providerProfiles),
+  addresses: one(addresses),
 }));
 
 export const providerProfiles = pgTable("provider_profiles", {
   id: serial("id").primaryKey(),
-  providerId: integer("provider_id").references(() => providers.id),
+  providerId: integer("provider_id").notNull().references(() => providers.id),
   avatar: text("avatar"),
   hasCertificate: boolean("has_certificate"),
   experience: numeric("experience"),
@@ -75,19 +77,38 @@ export const providerProfiles = pgTable("provider_profiles", {
 
 });
 
+export const addresses = pgTable("addresses", {
+  id: serial("id").primaryKey(),
+  userId: integer("user_id").notNull().references(() => users.id),
+  isMain: boolean("id:mai"),
+  providerId: integer("provider_id").notNull().references(() => providers.id),
+  street: text("street"),
+  apartment: text("apartment"),
+  city: text("city"),
+  state: text("state"),
+  country: text("country"),
+  latitude: numeric("latitude"),
+  longitude: numeric("longitude"),
+  // missing connection with services_required
+});
+
+
+
 export const serviceDescriptions = pgTable("service_descriptions", {
   id: serial("id").primaryKey(),
   category: varchar("category", { length: 25 }).notNull(),
   service: varchar("service", { length: 25 }).notNull(),
-  description: text("description").notNull(),
-  unit: text("unit").notNull(),
+  description: varchar("description", { length: 120}).notNull(),
+  unit: varchar("unit", { length: 120}).notNull(),
   duration: numeric("duration", { precision: 3, scale: 2 }).notNull(),
   personnel: integer("personnel").notNull(),
-  included: text("included").notNull(),
+  included: varchar("included", { length: 120}).notNull(),
 });
 
 export const serviceProfiles = pgTable("serviceProfiles", {
   id: serial("id").primaryKey(),
-  serviceId: integer("service_id").references(() => serviceDescriptions.id),
-  price: numeric("price")
+  serviceId: integer("service_id").notNull().references(() => serviceDescriptions.id),
+  price: numeric("price"),
+  sale: numeric("sale"),
+  saleExpiresBy: date("sale_expires_by"),  
 });
