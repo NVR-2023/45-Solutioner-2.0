@@ -6,7 +6,8 @@
     "unit": "1 area of up to 100 m²",
     "duration": 3,
     "personnel": 1,
-    "included": "cleaning products"
+    "included": "cleaning products",
+    "price": 50
   },
   {
     "category": "cleaning",
@@ -15,7 +16,8 @@
     "unit": "1 area of up to 100 m²",
     "duration": 7,
     "personnel": 2,
-    "included": "cleaning products"
+    "included": "cleaning products",
+    "price": 150
   },
   {
     "category": "cleaning",
@@ -24,7 +26,8 @@
     "unit": "1 area of up to 100 m²",
     "duration": 7,
     "personnel": 1,
-    "included": "cleaning products"
+    "included": "cleaning products",
+    "price": 110
   },
   {
     "category": "cleaning",
@@ -33,7 +36,8 @@
     "unit": "1 carpet of up to 12 m²",
     "duration": 2,
     "personnel": 1,
-    "included": "carpet cleaning equipment and consumables"
+    "included": "carpet cleaning equipment and consumables",
+    "price": 80
   },
   {
     "category": "wardrobe",
@@ -42,7 +46,8 @@
     "unit": "Up to 20 items of clothing",
     "duration": 1,
     "personnel": 1,
-    "included": "professional vapor iron for the session"
+    "included": "professional vapor iron for the session",
+    "price": 50
   },
   {
     "category": "wardrobe",
@@ -51,7 +56,8 @@
     "unit": "1 wardrobe of up to 7m³",
     "duration": 2,
     "personnel": 1,
-    "included": "cleaning products"
+    "included": "cleaning products",
+    "price": 60
   },
   {
     "category": "wardrobe",
@@ -60,7 +66,8 @@
     "unit": "up to 5 pairs of shoes",
     "duration": 0.5,
     "personnel": 1,
-    "included": "tools and consumables"
+    "included": "tools and consumables",
+    "price": 60
   },
   {
     "category": "plumbing",
@@ -69,7 +76,8 @@
     "unit": "1 leak",
     "duration": 1.5,
     "personnel": 1,
-    "included": "tools and consumables"
+    "included": "tools and consumables",
+    "price": 60
   },
   {
     "category": "plumbing",
@@ -78,7 +86,8 @@
     "unit": "1 drain",
     "duration": 1.5,
     "personnel": 1,
-    "included": "tools and consumables"
+    "included": "tools and consumables",
+    "price": 70
   },
   {
     "category": "plumbing",
@@ -87,7 +96,8 @@
     "unit": "1 exterior faucet in a block of up to 20 flats",
     "duration": 6,
     "personnel": 2,
-    "included": "tools and consumables"
+    "included": "tools and consumables",
+    "price": 190
   },
   {
     "category": "electrical",
@@ -96,7 +106,8 @@
     "unit": "1 fixture",
     "duration": 1,
     "personnel": 1,
-    "included": "fixture provided by client, all else included"
+    "included": "ffxture provided by client, all else included",
+    "price": 60
   },
   {
     "category": "hvac",
@@ -105,7 +116,8 @@
     "unit": "1 HVAC unit",
     "duration": 2,
     "personnel": 1,
-    "included": "eventual required spare parts not included, all else included"
+    "included": "eventual required spare parts not included, all else included",
+    "price": 70
   },
   {
     "category": "security",
@@ -114,7 +126,8 @@
     "unit": "1 alarm system",
     "duration": 2,
     "personnel": 1,
-    "included": "tools and consumables"
+    "included": "tools and consumables",
+    "price": 70
   },
   {
     "category": "security",
@@ -123,7 +136,8 @@
     "unit": "Up to 2 surveillance cameras",
     "duration": 2,
     "personnel": 1,
-    "included": "eventual required spare parts not included, all else included"
+    "included": "eventual requried spare parts not included, all else included",
+    "price": 60
   },
   {
     "category": "handyman",
@@ -132,7 +146,8 @@
     "unit": "Up to 5 shelves",
     "duration": 1,
     "personnel": 1,
-    "included": " shelves and brackets provided by client, all else included"
+    "included": " shelves and brackets provided by client, all else included",
+    "price": 40
   },
   {
     "category": "handyman",
@@ -141,7 +156,8 @@
     "unit": "1 door",
     "duration": 1,
     "personnel": 1,
-    "included": "tools and consumables"
+    "included": "tools and consumables",
+    "price": 60
   },
   {
     "category": "handyman",
@@ -150,7 +166,8 @@
     "unit": "1 window of up to 2 m²",
     "duration": 1,
     "personnel": 1,
-    "included": "tools, consumables and one simple 2 square meters glass pane"
+    "included": "Tools, consumables and one simple 2 square meters glass pane",
+    "price": 90
   },
 
   {
@@ -160,7 +177,8 @@
     "unit": "1 lock",
     "duration": 1,
     "personnel": 1,
-    "included": "tools and consumables provided, eventual required spare parts not provided"
+    "included": "tools and consumables provided, eventual required spare parts not provided",
+    "price": 80
   },
   {
     "category": "handyman",
@@ -169,7 +187,8 @@
     "unit": "1 blind",
     "duration": 2,
     "personnel": 1,
-    "included": "spare blind slats provided by client, all else included"
+    "included": "spare blind slats provided by client, all else included",
+    "price": 70
   },
   {
     "category": "handyman",
@@ -178,7 +197,8 @@
     "unit": "1 small appliance",
     "duration": 2,
     "personnel": 1,
-    "included": "eventual required spare parts not included, all else included"
+    "included": "eventual required spare parts not included, all else included",
+    "price": 70
   },
   {
     "category": "patching",
@@ -187,7 +207,8 @@
     "unit": "1 surface of up 20 m²",
     "duration": 3,
     "personnel": 1,
-    "included": "tools and consumables"
+    "included": "tools and consumables",
+    "price": 60
   },
   {
     "category": "patching",
@@ -196,7 +217,8 @@
     "unit": "1 wall of up to 25 square meters",
     "duration": 3,
     "personnel": 1,
-    "included": "paint provided by client, all else included"
+    "included": "paint provided by client, all else included",
+    "price": 80
   },
   {
     "category": "patching",
@@ -205,7 +227,8 @@
     "unit": "1 wall of up to 25 m²s",
     "duration": 3,
     "personnel": 1,
-    "included": "paint provided by client, all else included"
+    "included": "paint provided by client, all else included",
+    "price": 80
   },
 
   {
@@ -215,7 +238,8 @@
     "unit": "1 ceiling of up to 25 m²",
     "duration": 3,
     "personnel": 1,
-    "included": "paint provided by client, all else included"
+    "included": "paint provided by client, all else included",
+    "price": 70
   },
 
   {
@@ -225,7 +249,8 @@
     "unit": "1 ground floor exterior wall of up to 40 m²",
     "duration": 4,
     "personnel": 1,
-    "included": "paint provided by client, all else included"
+    "included": "paint provided by client, all else included",
+    "price": 80
   },
 
   {
@@ -235,7 +260,8 @@
     "unit": "1 wall of up to 30 m²",
     "duration": 3,
     "personnel": 1,
-    "included": "tools and consumables"
+    "included": "tools and consummabels",
+    "price": 60
   },
   {
     "category": "patching",
@@ -244,7 +270,8 @@
     "unit": "1 interior wall of up to 25 m²",
     "duration": 4,
     "personnel": 1,
-    "included": "paint provided by client, all else included"
+    "included": "paint provided by client, all else included",
+    "price": 90
   },
   {
     "category": "gardening",
@@ -253,7 +280,8 @@
     "unit": "1 lawn of up to 250 m²",
     "duration": 1,
     "personnel": 1,
-    "included": "lawnmower"
+    "included": "lawnmower",
+    "price": 50
   },
   {
     "category": "gardening",
@@ -262,7 +290,8 @@
     "unit": "Up to 40 m",
     "duration": 2,
     "personnel": 1,
-    "included": "trimming tools"
+    "included": "trimming tools",
+    "price": 50
   },
   {
     "category": "gardening",
@@ -271,7 +300,8 @@
     "unit": "up to 4 medium-sized trees",
     "duration": 2,
     "personnel": 1,
-    "included": "trimming tools"
+    "included": "trimming tools",
+    "price": 50
   },
   {
     "category": "gardening",
@@ -280,7 +310,8 @@
     "unit": "1 area of up to 500 m²",
     "duration": 2,
     "personnel": 1,
-    "included": "fertilizer provided by client, all else included"
+    "included": "fertilizer provided by client, all else included",
+    "price": 60
   },
   {
     "category": "gardening",
@@ -289,7 +320,8 @@
     "unit": "1 garden of up to 150 m²",
     "duration": 2,
     "personnel": 1,
-    "included": "weeding tools"
+    "included": "weeding tools",
+    "price": 60
   },
   {
     "category": "extermination",
@@ -298,7 +330,8 @@
     "unit": "1 area of up to 150 m²",
     "duration": 2,
     "personnel": 1,
-    "included": "tools and insecticides"
+    "included": "tools and insecticides",
+    "price": 90
   },
   {
     "category": "extermination",
@@ -307,7 +340,8 @@
     "unit": "1 area of up to 150 m²",
     "duration": 2,
     "personnel": 1,
-    "included": "traps and baits"
+    "included": "traps and baits",
+    "price": 130
   },
   {
     "category": "extermination",
@@ -316,7 +350,8 @@
     "unit": "1 area of up to 150 m²",
     "duration": 2,
     "personnel": 1,
-    "included": "tools and products"
+    "included": "tools and products",
+    "price": 90
   },
   {
     "category": "extermination",
@@ -325,7 +360,8 @@
     "unit": "1 nest",
     "duration": 1.5,
     "personnel": 1,
-    "included": "utensils and consumables"
+    "included": "utensils and consumables",
+    "price": 130
   },
   {
     "category": "petcare",
@@ -334,7 +370,8 @@
     "unit": "1 30-minute dog walk",
     "duration": 0.66,
     "personnel": 1,
-    "included": "no consumables required"
+    "included": "no consumables required",
+    "price": 30
   },
   {
     "category": "petcare",
@@ -343,25 +380,28 @@
     "unit": "1 grooming session for 1 dog",
     "duration": 1,
     "personnel": 1,
-    "included": "grooming tools and products"
+    "included": "grooming tools and products",
+    "price": 60
   },
   {
     "category": "petcare",
     "service": "transportation to vet",
-    "description": "transporting cat, dog or other pets to veterinary appointments, ensuring their safe and comfortable travel to receive necessary medical care.",
+    "description": "transporting cat, dog or otehr pets to veterinary appointments, ensuring their safe and comfortable travel to receive necessary medical care.",
     "duration": 2,
     "unit": "1 transportation of 1 pet to the designated vet within 5 km of client's address",
     "personnel": 1,
-    "included": "pet carrier provided by client"
+    "included": "pet carrier provided by client",
+    "price": 80
   },
   {
     "category": "grooming",
     "service": "hairdressing",
     "description": "providing professional hairdressing services, including hair washing, cutting, and styling, to enhance personal grooming and appearance",
-    "unit": "1 session comprising of wash, cut and basic styling",
+    "unit": "1 session comprising of wash, cut and bsic styling",
     "duration": 1,
     "personnel": 1,
-    "included": "utensils and hair products"
+    "included": "utensils and hair products",
+    "price": 90
   },
   {
     "category": "grooming",
@@ -370,7 +410,8 @@
     "unit": "1 manicure session for both hands",
     "duration": 1,
     "personnel": 1,
-    "included": "nail care utensils and products"
+    "included": "nail care utensils and products",
+    "price": 50
   },
   {
     "category": "grooming",
@@ -379,7 +420,8 @@
     "unit": "1 pedicure session for both feet",
     "duration": 1.5,
     "personnel": 1,
-    "included": "nail care utensils and products"
+    "included": "nail care utensils and products",
+    "price": 70
   },
   {
     "category": "grooming",
@@ -388,7 +430,8 @@
     "unit": "1 face makeup",
     "duration": 1.5,
     "personnel": 1,
-    "included": "makeup utensils and products"
+    "included": "makeup utensils and products",
+    "price": 120
   },
 
   {
@@ -398,7 +441,8 @@
     "unit": "1 nanny session for 1 child",
     "duration": 3,
     "personnel": 1,
-    "included": "eventual child meals provided by client"
+    "included": "eventual child meals provided by client",
+    "price": 80
   },
 
   {
@@ -408,7 +452,8 @@
     "unit": "1 pressure and temperature measurement",
     "duration": 0.5,
     "personnel": 1,
-    "included": "gauge and thermometer provided for the session"
+    "included": "gauge and thermometer provided for the session",
+    "price": 35
   },
 
   {
@@ -418,7 +463,8 @@
     "unit": "1 session for 1 client",
     "duration": 1.5,
     "personnel": 1,
-    "included": "hygiene products provided by client"
+    "included": "hygene products provided by cleint",
+    "price": 90
   },
 
   {
@@ -428,17 +474,19 @@
     "unit": "1 hour session for 1 client",
     "duration": 0.75,
     "personnel": 1,
-    "included": "weights for session"
+    "included": "weights for session",
+    "price": 60
   },
 
   {
     "category": "wellness",
     "service": "tai chi training",
-    "description": "providing guided one-on-one training in Chen Tai Chi, a traditional Chinese relaxing martial art.",
+    "description": "providing guiided one-on-one training in Chen Tai Chi, a traditional Chinese relaxing martial art.",
     "unit": "1 session for 1 client",
     "duration": 1,
     "personnel": 1,
-    "included": "no consumables required"
+    "included": "no consummables required",
+    "price": 70
   },
 
   {
@@ -448,7 +496,8 @@
     "unit": "1 session for 1 client",
     "duration": 0.75,
     "personnel": 1,
-    "included": "cushions and meditation mats"
+    "included": "cushions and meditation mats",
+    "price": 40
   },
 
   {
@@ -458,7 +507,8 @@
     "unit": "1 massage for 1 person",
     "duration": 0.75,
     "personnel": 1,
-    "included": "towels provided by client, all else included"
+    "included": "towels provided by client, all else included",
+    "price": 40
   },
 
   {
@@ -468,7 +518,8 @@
     "unit": "1 conversation with 1 client",
     "duration": 1,
     "personnel": 1,
-    "included": "no consumables required"
+    "included": "no consumables required",
+    "price": 40
   },
   {
     "category": "companionship",
@@ -477,7 +528,8 @@
     "unit": "1 social event",
     "duration": 2,
     "personnel": 1,
-    "included": "No consumables required"
+    "included": "No consumables required",
+    "price": 110
   },
   {
     "category": "companionship",
@@ -486,7 +538,8 @@
     "unit": "1 session of card or board games with 1 client",
     "duration": 1,
     "personnel": 1,
-    "included": "1 card game and 1 board game"
+    "included": "1 card game and 1 board game",
+    "price": 60
   },
   {
     "category": "eventing",
@@ -495,6 +548,7 @@
     "unit": "1 DJ set featuring contemporary House and Techno music",
     "duration": 3,
     "personnel": 1,
-    "included": "sound system setup provided by client, all else included"
+    "included": "sound system setup provided by client, all else includedd",
+    "price": 180
   }
 ]
