@@ -30,12 +30,17 @@ export const users = pgTable(
 );
 
 export const userRelations = relations(users, ({ one }) => ({
-  userProfiles: one(userProfiles),
+  profile: one(userProfiles, {
+    fields: [users.id],
+    references: [userProfiles.userId],
+  }),
 }));
 
 export const userProfiles = pgTable("user_profiles", {
   id: serial("id").primaryKey(),
-  userId: integer("user_id").notNull().references(() => users.id),
+  userId: integer("user_id")
+    .notNull()
+    .references(() => users.id),
   avatar: text("avatar"),
   mustHaveCertificate: boolean("must_have_certificate"),
   requiredExperience: numeric("required_experience"),
@@ -60,28 +65,39 @@ export const providers = pgTable(
 );
 
 export const providerRelations = relations(providers, ({ one }) => ({
-  providerProfiles: one(providerProfiles),
-  addresses: one(addresses),
+  profile: one(providerProfiles, {
+    fields: [providers.id],
+    references: [providerProfiles.providerId],
+  }),
+  address: one(addresses, {
+    fields: [providers.id],
+    references: [addresses.providerId],
+  }),
 }));
+
 
 export const providerProfiles = pgTable("provider_profiles", {
   id: serial("id").primaryKey(),
-  providerId: integer("provider_id").notNull().references(() => providers.id),
+  providerId: integer("provider_id")
+    .notNull()
+    .references(() => providers.id),
   avatar: text("avatar"),
   hasCertificate: boolean("has_certificate"),
   experience: numeric("experience"),
   serviceRadius: numeric("service_radius"),
   averageRating: numeric("average_rating"),
   ratingsCounter: integer("ratings_counter"),
-
-
 });
 
 export const addresses = pgTable("addresses", {
   id: serial("id").primaryKey(),
-  userId: integer("user_id").notNull().references(() => users.id),
+  userId: integer("user_id")
+    .notNull()
+    .references(() => users.id),
   isMain: boolean("id:mai"),
-  providerId: integer("provider_id").notNull().references(() => providers.id),
+  providerId: integer("provider_id")
+    .notNull()
+    .references(() => providers.id),
   street: text("street"),
   apartment: text("apartment"),
   city: text("city"),
@@ -93,22 +109,29 @@ export const addresses = pgTable("addresses", {
 });
 
 
-
-export const serviceDescriptions = pgTable("service_descriptions", {
+export const services = pgTable("services", {
   id: serial("id").primaryKey(),
   category: varchar("category", { length: 25 }).notNull(),
   service: varchar("service", { length: 25 }).notNull(),
-  description: varchar("description", { length: 120}).notNull(),
-  unit: varchar("unit", { length: 120}).notNull(),
+  description: varchar("description", { length: 120 }).notNull(),
+  unit: varchar("unit", { length: 120 }).notNull(),
   duration: numeric("duration", { precision: 3, scale: 2 }).notNull(),
   personnel: integer("personnel").notNull(),
-  included: varchar("included", { length: 120}).notNull(),
+  included: varchar("included", { length: 120 }).notNull(),
 });
 
+export const serviceRelations = relations(services, ({ one }) => ({
+  profile: one(serviceProfiles, {
+    fields: [services.id],
+    references: [serviceProfiles.serviceId],
+  }),
+}));
 export const serviceProfiles = pgTable("serviceProfiles", {
   id: serial("id").primaryKey(),
-  serviceId: integer("service_id").notNull().references(() => serviceDescriptions.id),
+  serviceId: integer("service_id")
+    .notNull()
+    .references(() => services.id),
   price: numeric("price"),
   sale: numeric("sale"),
-  saleExpiresBy: date("sale_expires_by"),  
+  saleExpiresBy: date("sale_expires_by"),
 });
