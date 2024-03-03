@@ -6,6 +6,7 @@ import {
   serial,
   text,
   date,
+  time,
   timestamp,
   uniqueIndex,
   boolean,
@@ -35,6 +36,8 @@ export const userRelations = relations(users, ({ one, many }) => ({
     references: [userProfiles.userId],
   }),
   addresses: many(userAddresses),
+  requests: many(serviceRequests),
+  exclusions: many(userExclusions),
 }));
 
 export const userProfiles = pgTable("user_profiles", {
@@ -55,18 +58,52 @@ export const userAddresses = pgTable("user_addresses", {
     .references(() => users.id),
   isPrimary: boolean("is_primary"),
   street: text("street"),
-  apartment: text("apartment"),
-  city: text("city"),
-  state: text("state"),
-  country: text("country"),
-  latitude: numeric("latitude"),
-  longitude: numeric("longitude"),
-  // missing connection with services_required
+  apartment: varchar("apartment"),
+  city: varchar("city", { length: 25 }),
+  state: varchar("state", { length: 25 }),
+  country: varchar("country", { length: 25 }),
+  latitude: numeric("latitude").notNull(),
+  longitude: numeric("longitude").notNull(),
 });
 
 export const userAddressesRelations = relations(userAddresses, ({ one }) => ({
   user: one(users, {
     fields: [userAddresses.userId],
+    references: [users.id],
+  }),
+}));
+
+export const userNotifications = pgTable("notifications", {
+  id: serial("id").primaryKey(),
+  userId: integer("user_id")
+    .notNull()
+    .references(() => users.id),
+  title: varchar("title", { length: 25 }),
+  message: text("message"),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  readAt: timestamp("read_at").defaultNow().notNull(),
+});
+
+export const userNotificationsRelations = relations(userNotifications, ({ one }) => ({
+  user: one(users, {
+    fields: [userNotifications.userId],
+    references: [users.id],
+  }),
+}));
+
+export const userExclusions = pgTable("user_exclusions", {
+  id: serial("id").primaryKey(),
+  userId: integer("user_id")
+    .notNull()
+    .references(() => users.id),
+  providerId: integer("provider_id")
+    .notNull()
+    .references(() => providers.id),
+});
+
+export const userExclusionsRelations = relations(userExclusions, ({ one }) => ({
+  user: one(users, {
+    fields: [userExclusions.userId],
     references: [users.id],
   }),
 }));
@@ -88,7 +125,7 @@ export const providers = pgTable(
   }
 );
 
-export const providerRelations = relations(providers, ({ one }) => ({
+export const providerRelations = relations(providers, ({ one, many }) => ({
   profile: one(providerProfiles, {
     fields: [providers.id],
     references: [providerProfiles.providerId],
@@ -97,6 +134,9 @@ export const providerRelations = relations(providers, ({ one }) => ({
     fields: [providers.id],
     references: [providerAddresses.providerId],
   }),
+  requests: many(serviceRequests),
+  availabilities: many(providerAvailabilities),
+  servicesProvided: many(providerServicesProvided),
 }));
 
 export const providerProfiles = pgTable("provider_profiles", {
@@ -118,16 +158,65 @@ export const providerAddresses = pgTable("provider_addresses", {
     .notNull()
     .references(() => providers.id),
   street: text("street"),
-  apartment: text("apartment"),
-  city: text("city"),
-  state: text("state"),
-  country: text("country"),
-  latitude: numeric("latitude"),
-  longitude: numeric("longitude"),
-  // missing connection with services_required
+  apartment: varchar("apartment", { length: 25 }),
+  city: varchar("city", { length: 25 }),
+  state: varchar("state", { length: 25 }),
+  country: varchar("country", { length: 25 }),
+  latitude: numeric("latitude").notNull(),
+  longitude: numeric("longitude").notNull(),
 });
 
+export const providerNotifications = pgTable("provider_notifications", {
+  id: serial("id").primaryKey(),
+  providerId: integer("provider_id")
+    .notNull()
+    .references(() => providers.id),
+  title: varchar("title", { length: 25 }),
+  message: text("message"),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  readAt: timestamp("read_at").defaultNow().notNull(),
+});
 
+export const providerNotificationsRelations = relations(providerNotifications, ({ one }) => ({
+  provider: one(providers, {
+    fields: [providerNotifications.providerId],
+    references: [providers.id],
+  }),
+}));
+
+export const providerAvailabilities = pgTable("provider_availabilities", {
+  id: serial("id").primaryKey(),
+  providerId: integer("provider_id")
+    .notNull()
+    .references(() => providers.id),
+  day: integer("day"),
+  timeSLot: integer("time_slot"),
+});
+
+export const providerAvailabilitiesRelations = relations(providerAvailabilities, ({ one }) => ({
+  provider: one(providers, {
+    fields: [providerAvailabilities.providerId],
+    references: [providers.id],
+  }),
+}));
+
+export const providerServicesProvided = pgTable("services_provided", {
+  id: serial("id").primaryKey(),
+  providerId: integer("provider_id")
+    .notNull()
+    .references(() => providers.id),
+  serviceId: integer("service")
+    .notNull()
+    .references(() => services.id),
+ 
+});
+
+export const providerServicesProvidedRelations = relations(providerServicesProvided, ({ one }) => ({
+  provider: one(providers, {
+    fields: [providerServicesProvided.providerId],
+    references: [providers.id],
+  }),
+}));
 
 export const services = pgTable("services", {
   id: serial("id").primaryKey(),
@@ -146,6 +235,7 @@ export const serviceRelations = relations(services, ({ one }) => ({
     references: [serviceProfiles.serviceId],
   }),
 }));
+
 export const serviceProfiles = pgTable("serviceProfiles", {
   id: serial("id").primaryKey(),
   serviceId: integer("service_id")
@@ -155,3 +245,37 @@ export const serviceProfiles = pgTable("serviceProfiles", {
   sale: numeric("sale"),
   saleExpiresBy: date("sale_expires_by"),
 });
+
+export const serviceRequests = pgTable("service_requests", {
+  id: serial("id").primaryKey(),
+  userId: integer("user_id")
+    .notNull()
+    .references(() => users.id),
+  userAddressId: integer("user_address_id")
+    .notNull()
+    .references(() => userAddresses.id),
+  providerId: integer("provider_id").references(() => users.id),
+  serviceId: integer("service_id")
+    .notNull()
+    .references(() => services.id),
+  time: time("time"),
+  date: date("date"),
+  recurrence: integer("recurrence"),
+  verbalPassword: varchar("verbal_password", { length: 25 }),
+  qrPassword: text("qr_password"),
+});
+
+export const serviceRequestRelations = relations(serviceRequests, ({ one }) => ({
+  user: one(users, {
+    fields: [serviceRequests.id],
+    references: [users.id],
+  }),
+  provider: one(providers, {
+    fields: [serviceRequests.id],
+    references: [providers.id],
+  }),
+  address: one(userAddresses, {
+    fields: [serviceRequests.id],
+    references: [userAddresses.id],
+  }),
+}));
