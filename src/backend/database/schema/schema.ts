@@ -236,7 +236,7 @@ export const serviceRelations = relations(services, ({ one }) => ({
   }),
 }));
 
-export const serviceProfiles = pgTable("serviceProfiles", {
+export const serviceProfiles = pgTable("service_profiles", {
   id: serial("id").primaryKey(),
   serviceId: integer("service_id")
     .notNull()

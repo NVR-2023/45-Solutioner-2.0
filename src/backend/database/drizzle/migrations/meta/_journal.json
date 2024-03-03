@@ -15,6 +15,20 @@
       "when": 1709131366876,
       "tag": "0001_fresh_crystal",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1709496946092,
+      "tag": "0002_petite_starfox",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "5",
+      "when": 1709497802617,
+      "tag": "0003_gray_smiling_tiger",
+      "breakpoints": true
     }
   ]
 }
