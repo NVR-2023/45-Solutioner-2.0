@@ -29,11 +29,12 @@ export const users = pgTable(
   }
 );
 
-export const userRelations = relations(users, ({ one }) => ({
+export const userRelations = relations(users, ({ one, many }) => ({
   profile: one(userProfiles, {
     fields: [users.id],
     references: [userProfiles.userId],
   }),
+  addresses: many(userAddresses),
 }));
 
 export const userProfiles = pgTable("user_profiles", {
@@ -46,6 +47,29 @@ export const userProfiles = pgTable("user_profiles", {
   requiredExperience: numeric("required_experience"),
   requiredRating: numeric("required_rating"),
 });
+
+export const userAddresses = pgTable("user_addresses", {
+  id: serial("id").primaryKey(),
+  userId: integer("user_id")
+    .notNull()
+    .references(() => users.id),
+  isPrimary: boolean("is_primary"),
+  street: text("street"),
+  apartment: text("apartment"),
+  city: text("city"),
+  state: text("state"),
+  country: text("country"),
+  latitude: numeric("latitude"),
+  longitude: numeric("longitude"),
+  // missing connection with services_required
+});
+
+export const userAddressesRelations = relations(userAddresses, ({ one }) => ({
+  user: one(users, {
+    fields: [userAddresses.userId],
+    references: [users.id],
+  }),
+}));
 
 export const providers = pgTable(
   "providers",
@@ -69,12 +93,11 @@ export const providerRelations = relations(providers, ({ one }) => ({
     fields: [providers.id],
     references: [providerProfiles.providerId],
   }),
-  address: one(addresses, {
+  address: one(providerAddresses, {
     fields: [providers.id],
-    references: [addresses.providerId],
+    references: [providerAddresses.providerId],
   }),
 }));
-
 
 export const providerProfiles = pgTable("provider_profiles", {
   id: serial("id").primaryKey(),
@@ -89,12 +112,8 @@ export const providerProfiles = pgTable("provider_profiles", {
   ratingsCounter: integer("ratings_counter"),
 });
 
-export const addresses = pgTable("addresses", {
+export const providerAddresses = pgTable("provider_addresses", {
   id: serial("id").primaryKey(),
-  userId: integer("user_id")
-    .notNull()
-    .references(() => users.id),
-  isMain: boolean("id:mai"),
   providerId: integer("provider_id")
     .notNull()
     .references(() => providers.id),
@@ -107,6 +126,7 @@ export const addresses = pgTable("addresses", {
   longitude: numeric("longitude"),
   // missing connection with services_required
 });
+
 
 
 export const services = pgTable("services", {
