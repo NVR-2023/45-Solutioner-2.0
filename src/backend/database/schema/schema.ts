@@ -25,7 +25,7 @@ export const users = pgTable(
   },
   (users) => {
     return {
-      uniqueIdx: uniqueIndex("unique_idx").on(users.email),
+      uniqueIdx: uniqueIndex("users_unique_idx").on(users.email),
     };
   }
 );
@@ -120,7 +120,7 @@ export const providers = pgTable(
   },
   (providers) => {
     return {
-      uniqueIdx: uniqueIndex("unique_idx").on(providers.email),
+      uniqueIdx: uniqueIndex("providers_unique_idx").on(providers.email),
     };
   }
 );
