@@ -6,6 +6,9 @@ import * as schema from "../schema/schema";
 
 export const db = drizzle(sql, { schema });
 
+// Users
+export type NewUser = typeof users.$inferInsert;
+
 export const getUsers = async () => {
   const selectResult = await db.select().from(users);
   console.log("Results", selectResult);
@@ -17,18 +20,24 @@ export const getUsers2 = async () => {
   return result;
 };
 
-// user
-export type NewUser = typeof users.$inferInsert;
-
 export const insertUserInDBTable = async (user: NewUser) => {
   return db.insert(users).values(user).returning();
 };
 
-// services
+// Providers
+
+//Addresses
+
+// Services
 export type NewService = typeof services.$inferInsert;
 
 export const insertServiceInDBTable = async (service: NewService) => {
   return db.insert(services).values(service).returning();
+};
+
+export const fetchAllServices = async () => {
+    const result = await db.query.services.findMany();
+    return result;
 };
 
 export const seedServicesDBTable = async () => {
