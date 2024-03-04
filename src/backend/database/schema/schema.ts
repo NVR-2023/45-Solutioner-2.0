@@ -208,7 +208,6 @@ export const providerServicesProvided = pgTable("services_provided", {
   serviceId: integer("service")
     .notNull()
     .references(() => services.id),
- 
 });
 
 export const providerServicesProvidedRelations = relations(providerServicesProvided, ({ one }) => ({
@@ -218,12 +217,22 @@ export const providerServicesProvidedRelations = relations(providerServicesProvi
   }),
 }));
 
+export const totalNUmberOfServices = pgTable("total_number_of_services", {
+  id: serial("id").primaryKey(),
+  totalNUmberOfServicesRequested: integer("total_number_of_services_requested").default(0),
+  totalNUmberOfRecurrentServicesRequested: integer(
+    "total_number_of_recurrent_services_requested"
+  ).default(0),
+  totalNUmberOfServicesCancelled: integer("total_number:of_services_cancelled").default(0),
+  totalNUmberOfServicesExecuted: integer("total_number:of_services_executed").default(0),
+});
+
 export const services = pgTable("services", {
   id: serial("id").primaryKey(),
-  category: varchar("category", { length: 25 }).notNull(),
-  service: varchar("service", { length: 25 }).notNull(),
-  description: varchar("description", { length: 120 }).notNull(),
-  unit: varchar("unit", { length: 120 }).notNull(),
+  category: varchar("category", { length: 30 }).notNull(),
+  service: varchar("service", { length: 30 }).notNull(),
+  description: varchar("description", { length: 300 }).notNull(),
+  unit: varchar("unit", { length: 300 }).notNull(),
   duration: numeric("duration", { precision: 3, scale: 2 }).notNull(),
   personnel: integer("personnel").notNull(),
   included: varchar("included", { length: 120 }).notNull(),
@@ -244,6 +253,8 @@ export const serviceProfiles = pgTable("service_profiles", {
   price: numeric("price"),
   sale: numeric("sale"),
   saleExpiresBy: date("sale_expires_by"),
+  numberOfRequests: integer("number_of_requests").default(0),
+  popularity: numeric("popularity"),
 });
 
 export const serviceRequests = pgTable("service_requests", {
