@@ -8,7 +8,7 @@ const Services:FC = async () => {
    const data3 = await fetchAllServices();
 
   return (
-    <div>
+    <div className="space-y-3">
       <div>sql-like: {JSON.stringify(data)}</div>
       <div>relational: {JSON.stringify(data2)}</div>
       <div>relational: {JSON.stringify(data3)}</div>
