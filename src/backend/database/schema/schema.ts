@@ -26,8 +26,8 @@ export const users = pgTable(
     name: text("name").notNull(),
     email: text("email").notNull(),
     password: text("password").notNull(),
-    createdAt: timestamp("createdAt").defaultNow().notNull(),
-    modifiedAt: timestamp("modifiedAt").defaultNow().notNull(),
+    createdAt: timestamp("created_at").defaultNow(),
+    modifiedAt: timestamp("modified_at"),
   },
   (users) => {
     return {
@@ -293,6 +293,13 @@ export const serviceRequestStatusEnum = pgEnum("service_request_status", [
   "cancelled",
 ]);
 
+export const serviceRecurrenceEnum = pgEnum("service_recurrence", [
+  "once",
+  "daily",
+  "weekly",
+  "monthly",
+]);
+
 export const serviceRequests = pgTable("service_requests", {
   id: serial("id").primaryKey(),
   userId: text("user_id")
@@ -307,7 +314,7 @@ export const serviceRequests = pgTable("service_requests", {
     .references(() => services.id),
   timeOfService: time("time_of_service"),
   dateOfService: date("date_of_service"),
-  recurrence: integer("recurrence"),
+  recurrence: serviceRecurrenceEnum("service_recurrence"),
   verbalPassword: varchar("verbal_password", { length: 25 }),
   qrPassword: text("qr_password"),
   status: serviceRequestStatusEnum("status").default("requested").notNull(),
