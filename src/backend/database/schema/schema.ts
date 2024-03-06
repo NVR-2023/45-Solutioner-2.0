@@ -42,8 +42,8 @@ export const userRelations = relations(users, ({ one, many }) => ({
     references: [userProfiles.userId],
   }),
   addresses: many(userAddresses),
-    requests: many(serviceRequests),
-   exclusions: many(userExclusions),
+  requests: many(serviceRequests),
+  exclusions: many(userExclusions),
 }));
 
 export const userProfiles = pgTable("user_profiles", {
@@ -145,8 +145,8 @@ export const providerRelations = relations(providers, ({ one, many }) => ({
     references: [providerAddresses.providerId],
   }),
   requests: many(serviceRequests),
-  /*   availabilities: many(providerAvailabilities),
-   */ servicesProvided: many(providerServicesProvided),
+  availabilities: many(providerAvailabilities),
+  servicesProvided: many(providerServicesProvided),
 }));
 
 export const providerProfiles = pgTable("provider_profiles", {
@@ -205,7 +205,7 @@ export const daysOfWeekEnum = pgEnum("days_of_week", [
 ]);
 export const timeSlotsEnum = pgEnum("time_slots", ["morning", "afternoon", "evening"]);
 
-/* export const providerAvailabilities = pgTable("provider_availabilities", {
+export const providerAvailabilities = pgTable("provider_availabilities", {
   id: serial("id").primaryKey(),
   providerId: text("provider_id")
     .notNull()
@@ -219,7 +219,7 @@ export const providerAvailabilitiesRelations = relations(providerAvailabilities,
     fields: [providerAvailabilities.providerId],
     references: [providers.id],
   }),
-})); */
+}));
 
 export const providerServicesProvided = pgTable("services_provided", {
   id: serial("id").primaryKey(),

@@ -1,5 +1,5 @@
 {
-  "id": "91e17451-e181-4bb6-bbc5-ffb077c19019",
+  "id": "5c30fbb4-9c0a-4447-ac58-6cd9726d1780",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "5",
   "dialect": "pg",
@@ -68,6 +68,54 @@
         "provider_addresses_provider_id_providers_id_fk": {
           "name": "provider_addresses_provider_id_providers_id_fk",
           "tableFrom": "provider_addresses",
+          "tableTo": "providers",
+          "columnsFrom": [
+            "provider_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "provider_availabilities": {
+      "name": "provider_availabilities",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "provider_id": {
+          "name": "provider_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "day_of_week": {
+          "name": "day_of_week",
+          "type": "days_of_week",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "time_slot": {
+          "name": "time_slot",
+          "type": "time_slots",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "provider_availabilities_provider_id_providers_id_fk": {
+          "name": "provider_availabilities_provider_id_providers_id_fk",
+          "tableFrom": "provider_availabilities",
           "tableTo": "providers",
           "columnsFrom": [
             "provider_id"
@@ -575,6 +623,50 @@
           "type": "varchar(120)",
           "primaryKey": false,
           "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "total_number_of_services": {
+      "name": "total_number_of_services",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "total_number_of_services_requested": {
+          "name": "total_number_of_services_requested",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "default": 0
+        },
+        "total_number_of_recurrent_services_requested": {
+          "name": "total_number_of_recurrent_services_requested",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "default": 0
+        },
+        "total_number_of_services_cancelled": {
+          "name": "total_number_of_services_cancelled",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "default": 0
+        },
+        "total_number_of_services_executed": {
+          "name": "total_number_of_services_executed",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "default": 0
         }
       },
       "indexes": {},

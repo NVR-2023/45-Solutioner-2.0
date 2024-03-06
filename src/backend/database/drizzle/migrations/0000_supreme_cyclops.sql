@@ -28,6 +28,13 @@ CREATE TABLE IF NOT EXISTS "provider_addresses" (
 	"longitude" numeric NOT NULL
 );
 --> statement-breakpoint
+CREATE TABLE IF NOT EXISTS "provider_availabilities" (
+	"id" serial PRIMARY KEY NOT NULL,
+	"provider_id" text NOT NULL,
+	"day_of_week" "days_of_week" NOT NULL,
+	"time_slot" "time_slots" NOT NULL
+);
+--> statement-breakpoint
 CREATE TABLE IF NOT EXISTS "provider_notifications" (
 	"id" serial PRIMARY KEY NOT NULL,
 	"provider_id" text NOT NULL,
@@ -98,6 +105,14 @@ CREATE TABLE IF NOT EXISTS "services" (
 	"included" varchar(120) NOT NULL
 );
 --> statement-breakpoint
+CREATE TABLE IF NOT EXISTS "total_number_of_services" (
+	"id" serial PRIMARY KEY NOT NULL,
+	"total_number_of_services_requested" integer DEFAULT 0,
+	"total_number_of_recurrent_services_requested" integer DEFAULT 0,
+	"total_number_of_services_cancelled" integer DEFAULT 0,
+	"total_number_of_services_executed" integer DEFAULT 0
+);
+--> statement-breakpoint
 CREATE TABLE IF NOT EXISTS "user_addresses" (
 	"id" serial PRIMARY KEY NOT NULL,
 	"user_id" text NOT NULL,
@@ -148,6 +163,12 @@ CREATE UNIQUE INDEX IF NOT EXISTS "providers_unique_idx" ON "providers" ("email"
 CREATE UNIQUE INDEX IF NOT EXISTS "users_unique_idx" ON "users" ("email");--> statement-breakpoint
 DO $$ BEGIN
  ALTER TABLE "provider_addresses" ADD CONSTRAINT "provider_addresses_provider_id_providers_id_fk" FOREIGN KEY ("provider_id") REFERENCES "providers"("id") ON DELETE no action ON UPDATE no action;
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+--> statement-breakpoint
+DO $$ BEGIN
+ ALTER TABLE "provider_availabilities" ADD CONSTRAINT "provider_availabilities_provider_id_providers_id_fk" FOREIGN KEY ("provider_id") REFERENCES "providers"("id") ON DELETE no action ON UPDATE no action;
 EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;
