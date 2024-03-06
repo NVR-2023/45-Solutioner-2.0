@@ -1,5 +1,6 @@
 import {
   pgTable,
+  pgEnum,
   varchar,
   numeric,
   integer,
@@ -12,6 +13,8 @@ import {
   boolean,
 } from "drizzle-orm/pg-core";
 import { relations } from "drizzle-orm";
+
+// Users
 
 export const users = pgTable(
   "users",
@@ -78,10 +81,10 @@ export const userNotifications = pgTable("notifications", {
   userId: integer("user_id")
     .notNull()
     .references(() => users.id),
-  title: varchar("title", { length: 25 }),
+  title: varchar("title", { length: 50 }),
   message: text("message"),
   createdAt: timestamp("created_at").defaultNow().notNull(),
-  readAt: timestamp("read_at").defaultNow().notNull(),
+  readAt: timestamp("read_at").defaultNow(),
 });
 
 export const userNotificationsRelations = relations(userNotifications, ({ one }) => ({
@@ -107,6 +110,8 @@ export const userExclusionsRelations = relations(userExclusions, ({ one }) => ({
     references: [users.id],
   }),
 }));
+
+// Providers
 
 export const providers = pgTable(
   "providers",
@@ -171,11 +176,12 @@ export const providerNotifications = pgTable("provider_notifications", {
   providerId: integer("provider_id")
     .notNull()
     .references(() => providers.id),
-  title: varchar("title", { length: 25 }),
+  title: varchar("title", { length: 50 }),
   message: text("message"),
   createdAt: timestamp("created_at").defaultNow().notNull(),
-  readAt: timestamp("read_at").defaultNow().notNull(),
+  readAt: timestamp("read_at").defaultNow(),
 });
+
 
 export const providerNotificationsRelations = relations(providerNotifications, ({ one }) => ({
   provider: one(providers, {
@@ -184,13 +190,24 @@ export const providerNotificationsRelations = relations(providerNotifications, (
   }),
 }));
 
+export const daysOfWeekEnum = pgEnum("days_of_week", [
+  "sunday",
+  "monday",
+  "tuesday",
+  "wednesday",
+  "thursday",
+  "friday",
+  "saturday",
+]);
+export const timeSlotsEnum = pgEnum("time_slots", ["morning", "afternoon", "evening"]);
+
 export const providerAvailabilities = pgTable("provider_availabilities", {
   id: serial("id").primaryKey(),
   providerId: integer("provider_id")
     .notNull()
     .references(() => providers.id),
-  day: integer("day"),
-  timeSLot: integer("time_slot"),
+  day: daysOfWeekEnum("day").notNull(),
+  timeSLot: timeSlotsEnum("time_slot").notNull(),
 });
 
 export const providerAvailabilitiesRelations = relations(providerAvailabilities, ({ one }) => ({
@@ -217,14 +234,16 @@ export const providerServicesProvidedRelations = relations(providerServicesProvi
   }),
 }));
 
+// Services
+
 export const totalNUmberOfServices = pgTable("total_number_of_services", {
   id: serial("id").primaryKey(),
   totalNUmberOfServicesRequested: integer("total_number_of_services_requested").default(0),
   totalNUmberOfRecurrentServicesRequested: integer(
     "total_number_of_recurrent_services_requested"
   ).default(0),
-  totalNUmberOfServicesCancelled: integer("total_number:of_services_cancelled").default(0),
-  totalNUmberOfServicesExecuted: integer("total_number:of_services_executed").default(0),
+  totalNUmberOfServicesCancelled: integer("total_number_of_services_cancelled").default(0),
+  totalNUmberOfServicesExecuted: integer("total_number_of_services_executed").default(0),
 });
 
 export const services = pgTable("services", {
@@ -257,6 +276,19 @@ export const serviceProfiles = pgTable("service_profiles", {
   popularity: numeric("popularity"),
 });
 
+export const serviceRequestStatusEnum = pgEnum("service_request_status", [
+  "expired",
+  "requested",
+  "accepted",
+  "safeguarded",
+  "provided",
+  "renewed",
+  "reviewed",
+  "completed",
+  "sanctioned",
+  "cancelled",
+]);
+
 export const serviceRequests = pgTable("service_requests", {
   id: serial("id").primaryKey(),
   userId: integer("user_id")
@@ -274,6 +306,7 @@ export const serviceRequests = pgTable("service_requests", {
   recurrence: integer("recurrence"),
   verbalPassword: varchar("verbal_password", { length: 25 }),
   qrPassword: text("qr_password"),
+  status: serviceRequestStatusEnum("status").default("requested").notNull(),
 });
 
 export const serviceRequestRelations = relations(serviceRequests, ({ one }) => ({
