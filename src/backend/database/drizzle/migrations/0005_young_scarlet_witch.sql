@@ -1,1 +1,0 @@
-ALTER TABLE "services" ALTER COLUMN "unit" SET DATA TYPE varchar(300);

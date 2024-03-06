@@ -5,64 +5,8 @@
     {
       "idx": 0,
       "version": "5",
-      "when": 1709062072976,
-      "tag": "0000_green_jack_power",
-      "breakpoints": true
-    },
-    {
-      "idx": 1,
-      "version": "5",
-      "when": 1709131366876,
-      "tag": "0001_fresh_crystal",
-      "breakpoints": true
-    },
-    {
-      "idx": 2,
-      "version": "5",
-      "when": 1709496946092,
-      "tag": "0002_petite_starfox",
-      "breakpoints": true
-    },
-    {
-      "idx": 3,
-      "version": "5",
-      "when": 1709497802617,
-      "tag": "0003_gray_smiling_tiger",
-      "breakpoints": true
-    },
-    {
-      "idx": 4,
-      "version": "5",
-      "when": 1709559675462,
-      "tag": "0004_glamorous_whizzer",
-      "breakpoints": true
-    },
-    {
-      "idx": 5,
-      "version": "5",
-      "when": 1709559773490,
-      "tag": "0005_young_scarlet_witch",
-      "breakpoints": true
-    },
-    {
-      "idx": 6,
-      "version": "5",
-      "when": 1709677285405,
-      "tag": "0006_small_vapor",
-      "breakpoints": true
-    },
-    {
-      "idx": 7,
-      "version": "5",
-      "when": 1709678803239,
-      "tag": "0007_abnormal_mimic",
-      "breakpoints": true
-    },
-    {
-      "idx": 8,
-      "version": "5",
-      "when": 1709679726570,
-      "tag": "0008_polite_alex_wilder",
+      "when": 1709735308139,
+      "tag": "0000_lucky_moira_mactaggert",
       "breakpoints": true
     }
   ]

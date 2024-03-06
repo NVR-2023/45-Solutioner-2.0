@@ -1,3 +1,4 @@
+import { createId } from "@paralleldrive/cuid2";
 import {
   pgTable,
   pgEnum,
@@ -19,7 +20,9 @@ import { relations } from "drizzle-orm";
 export const users = pgTable(
   "users",
   {
-    id: serial("id").primaryKey(),
+    id: text("id")
+      .$defaultFn(() => createId())
+      .primaryKey(),
     name: text("name").notNull(),
     email: text("email").notNull(),
     password: text("password").notNull(),
@@ -39,13 +42,13 @@ export const userRelations = relations(users, ({ one, many }) => ({
     references: [userProfiles.userId],
   }),
   addresses: many(userAddresses),
-  requests: many(serviceRequests),
-  exclusions: many(userExclusions),
+    requests: many(serviceRequests),
+   exclusions: many(userExclusions),
 }));
 
 export const userProfiles = pgTable("user_profiles", {
   id: serial("id").primaryKey(),
-  userId: integer("user_id")
+  userId: text("user_id")
     .notNull()
     .references(() => users.id),
   avatar: text("avatar"),
@@ -56,7 +59,7 @@ export const userProfiles = pgTable("user_profiles", {
 
 export const userAddresses = pgTable("user_addresses", {
   id: serial("id").primaryKey(),
-  userId: integer("user_id")
+  userId: text("user_id")
     .notNull()
     .references(() => users.id),
   isPrimary: boolean("is_primary"),
@@ -78,7 +81,7 @@ export const userAddressesRelations = relations(userAddresses, ({ one }) => ({
 
 export const userNotifications = pgTable("notifications", {
   id: serial("id").primaryKey(),
-  userId: integer("user_id")
+  userId: text("user_id")
     .notNull()
     .references(() => users.id),
   title: varchar("title", { length: 50 }),
@@ -96,10 +99,10 @@ export const userNotificationsRelations = relations(userNotifications, ({ one })
 
 export const userExclusions = pgTable("user_exclusions", {
   id: serial("id").primaryKey(),
-  userId: integer("user_id")
+  userId: text("user_id")
     .notNull()
     .references(() => users.id),
-  providerId: integer("provider_id")
+  providerId: text("provider_id")
     .notNull()
     .references(() => providers.id),
 });
@@ -116,7 +119,9 @@ export const userExclusionsRelations = relations(userExclusions, ({ one }) => ({
 export const providers = pgTable(
   "providers",
   {
-    id: serial("id").primaryKey(),
+    id: text("id")
+      .$defaultFn(() => createId())
+      .primaryKey(),
     name: text("name").notNull(),
     email: text("email").notNull(),
     password: text("password").notNull(),
@@ -140,13 +145,13 @@ export const providerRelations = relations(providers, ({ one, many }) => ({
     references: [providerAddresses.providerId],
   }),
   requests: many(serviceRequests),
-  availabilities: many(providerAvailabilities),
-  servicesProvided: many(providerServicesProvided),
+  /*   availabilities: many(providerAvailabilities),
+   */ servicesProvided: many(providerServicesProvided),
 }));
 
 export const providerProfiles = pgTable("provider_profiles", {
   id: serial("id").primaryKey(),
-  providerId: integer("provider_id")
+  providerId: text("provider_id")
     .notNull()
     .references(() => providers.id),
   avatar: text("avatar"),
@@ -159,7 +164,7 @@ export const providerProfiles = pgTable("provider_profiles", {
 
 export const providerAddresses = pgTable("provider_addresses", {
   id: serial("id").primaryKey(),
-  providerId: integer("provider_id")
+  providerId: text("provider_id")
     .notNull()
     .references(() => providers.id),
   street: text("street"),
@@ -173,7 +178,7 @@ export const providerAddresses = pgTable("provider_addresses", {
 
 export const providerNotifications = pgTable("provider_notifications", {
   id: serial("id").primaryKey(),
-  providerId: integer("provider_id")
+  providerId: text("provider_id")
     .notNull()
     .references(() => providers.id),
   title: varchar("title", { length: 50 }),
@@ -181,7 +186,6 @@ export const providerNotifications = pgTable("provider_notifications", {
   createdAt: timestamp("created_at").defaultNow().notNull(),
   readAt: timestamp("read_at").defaultNow(),
 });
-
 
 export const providerNotificationsRelations = relations(providerNotifications, ({ one }) => ({
   provider: one(providers, {
@@ -201,12 +205,12 @@ export const daysOfWeekEnum = pgEnum("days_of_week", [
 ]);
 export const timeSlotsEnum = pgEnum("time_slots", ["morning", "afternoon", "evening"]);
 
-export const providerAvailabilities = pgTable("provider_availabilities", {
+/* export const providerAvailabilities = pgTable("provider_availabilities", {
   id: serial("id").primaryKey(),
-  providerId: integer("provider_id")
+  providerId: text("provider_id")
     .notNull()
     .references(() => providers.id),
-  day: daysOfWeekEnum("day").notNull(),
+  dayOfWeek: daysOfWeekEnum("day_of_week").notNull(),
   timeSLot: timeSlotsEnum("time_slot").notNull(),
 });
 
@@ -215,11 +219,11 @@ export const providerAvailabilitiesRelations = relations(providerAvailabilities,
     fields: [providerAvailabilities.providerId],
     references: [providers.id],
   }),
-}));
+})); */
 
 export const providerServicesProvided = pgTable("services_provided", {
   id: serial("id").primaryKey(),
-  providerId: integer("provider_id")
+  providerId: text("provider_id")
     .notNull()
     .references(() => providers.id),
   serviceId: integer("service")
@@ -291,18 +295,18 @@ export const serviceRequestStatusEnum = pgEnum("service_request_status", [
 
 export const serviceRequests = pgTable("service_requests", {
   id: serial("id").primaryKey(),
-  userId: integer("user_id")
+  userId: text("user_id")
     .notNull()
     .references(() => users.id),
   userAddressId: integer("user_address_id")
     .notNull()
     .references(() => userAddresses.id),
-  providerId: integer("provider_id").references(() => users.id),
+  providerId: text("provider_id").references(() => users.id),
   serviceId: integer("service_id")
     .notNull()
     .references(() => services.id),
-  time: time("time"),
-  date: date("date"),
+  timeOfService: time("time_of_service"),
+  dateOfService: date("date_of_service"),
   recurrence: integer("recurrence"),
   verbalPassword: varchar("verbal_password", { length: 25 }),
   qrPassword: text("qr_password"),

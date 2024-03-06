@@ -1,6 +1,24 @@
+DO $$ BEGIN
+ CREATE TYPE "days_of_week" AS ENUM('sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday');
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+--> statement-breakpoint
+DO $$ BEGIN
+ CREATE TYPE "service_request_status" AS ENUM('expired', 'requested', 'accepted', 'safeguarded', 'provided', 'renewed', 'reviewed', 'completed', 'sanctioned', 'cancelled');
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+--> statement-breakpoint
+DO $$ BEGIN
+ CREATE TYPE "time_slots" AS ENUM('morning', 'afternoon', 'evening');
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+--> statement-breakpoint
 CREATE TABLE IF NOT EXISTS "provider_addresses" (
 	"id" serial PRIMARY KEY NOT NULL,
-	"provider_id" integer NOT NULL,
+	"provider_id" text NOT NULL,
 	"street" text,
 	"apartment" varchar(25),
 	"city" varchar(25),
@@ -10,25 +28,18 @@ CREATE TABLE IF NOT EXISTS "provider_addresses" (
 	"longitude" numeric NOT NULL
 );
 --> statement-breakpoint
-CREATE TABLE IF NOT EXISTS "provider_availabilities" (
-	"id" serial PRIMARY KEY NOT NULL,
-	"provider_id" integer NOT NULL,
-	"day" integer,
-	"time_slot" integer
-);
---> statement-breakpoint
 CREATE TABLE IF NOT EXISTS "provider_notifications" (
 	"id" serial PRIMARY KEY NOT NULL,
-	"provider_id" integer NOT NULL,
-	"title" varchar(25),
+	"provider_id" text NOT NULL,
+	"title" varchar(50),
 	"message" text,
 	"created_at" timestamp DEFAULT now() NOT NULL,
-	"read_at" timestamp DEFAULT now() NOT NULL
+	"read_at" timestamp DEFAULT now()
 );
 --> statement-breakpoint
 CREATE TABLE IF NOT EXISTS "provider_profiles" (
 	"id" serial PRIMARY KEY NOT NULL,
-	"provider_id" integer NOT NULL,
+	"provider_id" text NOT NULL,
 	"avatar" text,
 	"has_certificate" boolean,
 	"experience" numeric,
@@ -39,12 +50,12 @@ CREATE TABLE IF NOT EXISTS "provider_profiles" (
 --> statement-breakpoint
 CREATE TABLE IF NOT EXISTS "services_provided" (
 	"id" serial PRIMARY KEY NOT NULL,
-	"provider_id" integer NOT NULL,
+	"provider_id" text NOT NULL,
 	"service" integer NOT NULL
 );
 --> statement-breakpoint
 CREATE TABLE IF NOT EXISTS "providers" (
-	"id" serial PRIMARY KEY NOT NULL,
+	"id" text PRIMARY KEY NOT NULL,
 	"name" text NOT NULL,
 	"email" text NOT NULL,
 	"password" text NOT NULL,
@@ -52,33 +63,36 @@ CREATE TABLE IF NOT EXISTS "providers" (
 	"modifiedAt" timestamp DEFAULT now() NOT NULL
 );
 --> statement-breakpoint
-CREATE TABLE IF NOT EXISTS "serviceProfiles" (
+CREATE TABLE IF NOT EXISTS "service_profiles" (
 	"id" serial PRIMARY KEY NOT NULL,
 	"service_id" integer NOT NULL,
 	"price" numeric,
 	"sale" numeric,
-	"sale_expires_by" date
+	"sale_expires_by" date,
+	"number_of_requests" integer DEFAULT 0,
+	"popularity" numeric
 );
 --> statement-breakpoint
 CREATE TABLE IF NOT EXISTS "service_requests" (
 	"id" serial PRIMARY KEY NOT NULL,
-	"user_id" integer NOT NULL,
+	"user_id" text NOT NULL,
 	"user_address_id" integer NOT NULL,
-	"provider_id" integer,
+	"provider_id" text,
 	"service_id" integer NOT NULL,
-	"time" time,
-	"date" date,
+	"time_of_service" time,
+	"date_of_service" date,
 	"recurrence" integer,
 	"verbal_password" varchar(25),
-	"qr_password" text
+	"qr_password" text,
+	"status" "service_request_status" DEFAULT 'requested' NOT NULL
 );
 --> statement-breakpoint
 CREATE TABLE IF NOT EXISTS "services" (
 	"id" serial PRIMARY KEY NOT NULL,
-	"category" varchar(25) NOT NULL,
-	"service" varchar(25) NOT NULL,
-	"description" varchar(120) NOT NULL,
-	"unit" varchar(120) NOT NULL,
+	"category" varchar(30) NOT NULL,
+	"service" varchar(30) NOT NULL,
+	"description" varchar(300) NOT NULL,
+	"unit" varchar(300) NOT NULL,
 	"duration" numeric(3, 2) NOT NULL,
 	"personnel" integer NOT NULL,
 	"included" varchar(120) NOT NULL
@@ -86,7 +100,7 @@ CREATE TABLE IF NOT EXISTS "services" (
 --> statement-breakpoint
 CREATE TABLE IF NOT EXISTS "user_addresses" (
 	"id" serial PRIMARY KEY NOT NULL,
-	"user_id" integer NOT NULL,
+	"user_id" text NOT NULL,
 	"is_primary" boolean,
 	"street" text,
 	"apartment" varchar,
@@ -99,40 +113,41 @@ CREATE TABLE IF NOT EXISTS "user_addresses" (
 --> statement-breakpoint
 CREATE TABLE IF NOT EXISTS "user_exclusions" (
 	"id" serial PRIMARY KEY NOT NULL,
-	"user_id" integer NOT NULL,
-	"provider_id" integer NOT NULL
+	"user_id" text NOT NULL,
+	"provider_id" text NOT NULL
 );
 --> statement-breakpoint
 CREATE TABLE IF NOT EXISTS "notifications" (
 	"id" serial PRIMARY KEY NOT NULL,
-	"user_id" integer NOT NULL,
-	"title" varchar(25),
+	"user_id" text NOT NULL,
+	"title" varchar(50),
 	"message" text,
 	"created_at" timestamp DEFAULT now() NOT NULL,
-	"read_at" timestamp DEFAULT now() NOT NULL
+	"read_at" timestamp DEFAULT now()
 );
 --> statement-breakpoint
 CREATE TABLE IF NOT EXISTS "user_profiles" (
 	"id" serial PRIMARY KEY NOT NULL,
-	"user_id" integer NOT NULL,
+	"user_id" text NOT NULL,
 	"avatar" text,
 	"must_have_certificate" boolean,
 	"required_experience" numeric,
 	"required_rating" numeric
 );
 --> statement-breakpoint
-DROP TABLE "service_descriptions";--> statement-breakpoint
-DROP INDEX IF EXISTS "unique_idx";--> statement-breakpoint
+CREATE TABLE IF NOT EXISTS "users" (
+	"id" text PRIMARY KEY NOT NULL,
+	"name" text NOT NULL,
+	"email" text NOT NULL,
+	"password" text NOT NULL,
+	"createdAt" timestamp DEFAULT now() NOT NULL,
+	"modifiedAt" timestamp DEFAULT now() NOT NULL
+);
+--> statement-breakpoint
 CREATE UNIQUE INDEX IF NOT EXISTS "providers_unique_idx" ON "providers" ("email");--> statement-breakpoint
 CREATE UNIQUE INDEX IF NOT EXISTS "users_unique_idx" ON "users" ("email");--> statement-breakpoint
 DO $$ BEGIN
  ALTER TABLE "provider_addresses" ADD CONSTRAINT "provider_addresses_provider_id_providers_id_fk" FOREIGN KEY ("provider_id") REFERENCES "providers"("id") ON DELETE no action ON UPDATE no action;
-EXCEPTION
- WHEN duplicate_object THEN null;
-END $$;
---> statement-breakpoint
-DO $$ BEGIN
- ALTER TABLE "provider_availabilities" ADD CONSTRAINT "provider_availabilities_provider_id_providers_id_fk" FOREIGN KEY ("provider_id") REFERENCES "providers"("id") ON DELETE no action ON UPDATE no action;
 EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;
@@ -162,7 +177,7 @@ EXCEPTION
 END $$;
 --> statement-breakpoint
 DO $$ BEGIN
- ALTER TABLE "serviceProfiles" ADD CONSTRAINT "serviceProfiles_service_id_services_id_fk" FOREIGN KEY ("service_id") REFERENCES "services"("id") ON DELETE no action ON UPDATE no action;
+ ALTER TABLE "service_profiles" ADD CONSTRAINT "service_profiles_service_id_services_id_fk" FOREIGN KEY ("service_id") REFERENCES "services"("id") ON DELETE no action ON UPDATE no action;
 EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;

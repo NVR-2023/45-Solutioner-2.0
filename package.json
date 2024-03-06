@@ -15,6 +15,7 @@
     "db:studio": "npx drizzle-kit studio --config=./src/backend/database/drizzle/drizzle.config.ts"
   },
   "dependencies": {
+    "@paralleldrive/cuid2": "^2.2.2",
     "@vercel/postgres": "^0.7.2",
     "drizzle-orm": "^0.29.4",
     "next": "14.1.0",
