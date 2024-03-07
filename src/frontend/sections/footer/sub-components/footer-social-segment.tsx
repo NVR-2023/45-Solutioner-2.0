@@ -13,7 +13,7 @@ const FooterSocialSegment = () => {
         <SocialMediaIcons />
       </div>
       <div className="pt-2 flex md:text-[0.6rem] text-xs tracking-wide">
-        <span className="font-bold">©&nbsp;</span>
+        <span className="font-extrabold">©&nbsp;</span>
         <span className="font-semibold">{`${getCurrentYearSpan()} Nuno Rodrigues. All rights reserved.`}</span>
       </div>
     </nav>

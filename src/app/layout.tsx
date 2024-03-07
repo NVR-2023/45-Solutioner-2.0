@@ -15,7 +15,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="!scroll-smooth  ">
+    <html lang="en" className="!scroll-smooth">
       <body className={`${aperçuFont.variable} antialiased overflow-x-hidden `}>
         {children}
         <Footer />
