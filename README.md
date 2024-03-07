@@ -18,7 +18,7 @@ Designed and Coded by Nuno Violante Rodrigues
 
 ## Version History
 
-2.0 Fill rewrite of teh app, Development begun in January, 2024  
+2.0 Full rewrite of teh app, Development begun in January, 2024  
 1.0 Initial release August, 2023
 
 
