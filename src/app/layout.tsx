@@ -16,7 +16,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="!scroll-smooth  ">
-      <body className={`${aperçuFont.variable} antialiased `}>
+      <body className={`${aperçuFont.variable} antialiased overflow-x-hidden `}>
         {children}
         <Footer />
       </body>
