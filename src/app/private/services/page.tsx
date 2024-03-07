@@ -9,8 +9,8 @@ const Services:FC = async () => {
 
   return (
     <div className="space-y-3">
-    {/*   <div>sql-like: {JSON.stringify(data)}</div>
-      <div>relational: {JSON.stringify(data2)}</div> */}
+  
+      <div>Connected to database:</div>
       <div>relational: {JSON.stringify(data3)}</div>
     </div>
   );
