@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { aperçuFont } from "@/utils/functions/localfontloader";
+import Footer from "@/frontend/sections/footer/footer";
 
 import "./globals.css";
 
@@ -15,7 +16,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="!scroll-smooth  ">
-      <body className={`${aperçuFont.variable} antialiased `}>{children}</body>
+      <body className={`${aperçuFont.variable} antialiased `}>
+        {children}
+        <Footer />
+      </body>
     </html>
   );
 }
