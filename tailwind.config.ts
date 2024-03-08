@@ -18,6 +18,8 @@ const config: Config = {
       interTight: ["var(--font-InterTight)"],
       aperçu: ["var(--font-Aperçu)"],
       basis: ["var(--font-Basis)"],
+      rozhaOne: ["var(--font-RozhaOne)"],
+      libreBodoni: ["var(--font-LibreBodoni)"],
     },
   },
   plugins: [require("tailwindcss-opentype")],

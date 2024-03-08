@@ -7,8 +7,9 @@ import { ThemeModeType } from "@/types/component-props-types";
 import useThemeModeSSetup from "@/frontend/hooks/theme-hooks/use-theme-mode-setup";
 import useSyncThemeModeWithLocalStorage from "@/frontend/hooks/theme-hooks/use-symc-theme-mode-with-localstorage";
 import useApplyThemeMode from "@/frontend/hooks/theme-hooks/use-apply-theme-mode";
+import { BasicComponentProps } from "@/types/component-props-types";
 
-const ThemeSwitch = () => {
+const ThemeSwitch = ({ scale = 1, color = "currentColor" }: BasicComponentProps) => {
   const { currentThemeMode, setCurrentThemeMode } = useThemeModeSSetup();
   useSyncThemeModeWithLocalStorage(setCurrentThemeMode);
   useApplyThemeMode(currentThemeMode);
@@ -31,7 +32,7 @@ const ThemeSwitch = () => {
         onClick={handleSwitchThemeMode}
         role="button"
         aria-label="Switch to Dark theme">
-        <LightThemeIcon />
+        <LightThemeIcon scale={scale} color={color} />
       </div>
       <div
         className={`absolute flex items-center justify-center transform rotate-${
@@ -40,7 +41,7 @@ const ThemeSwitch = () => {
         onClick={handleSwitchThemeMode}
         role="button"
         aria-label="Switch to System theme">
-        <DarkThemeIcon />
+        <DarkThemeIcon scale={scale} color={color} />
       </div>
       <div
         className={`absolute flex items-center justify-center transform rotate-${
@@ -49,7 +50,7 @@ const ThemeSwitch = () => {
         onClick={handleSwitchThemeMode}
         role="button"
         aria-label="Switch to Light theme">
-        <SystemThemeIcon />
+        <SystemThemeIcon scale={scale} color={color} />
       </div>
     </div>
   );

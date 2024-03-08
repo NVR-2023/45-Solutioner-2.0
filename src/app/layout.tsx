@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { aperçuFont } from "@/utils/functions/localfontloader";
+import { aperçuFont, rozhaOneFont, libreBodoniFont } from "@/utils/functions/localfontloader";
+
 import Footer from "@/frontend/sections/footer/footer";
 
 import "./globals.css";
@@ -16,7 +17,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="!scroll-smooth">
-      <body className={`${aperçuFont.variable} antialiased overflow-x-hidden `}>
+      <body
+        className={`${aperçuFont.variable} ${rozhaOneFont.variable} ${libreBodoniFont.variable}  antialiased overflow-x-hidden `}>
         {children}
         <Footer />
       </body>
