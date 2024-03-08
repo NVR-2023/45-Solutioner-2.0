@@ -5,6 +5,8 @@ export type BasicComponentProps = {
   color?: string;
 };
 
+
+
 export type OnClickComponentProps = {
   scale?: number;
   color?: string;
@@ -22,3 +24,4 @@ export type BasicChildrenProps = {
 };
 
 export type ThemeModeType = "light" | "dark" | "system";
+
