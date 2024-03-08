@@ -12,7 +12,7 @@ const useSyncThemeModeWithLocalStorage = (
     } else {
       setCurrentThemeMode(themeMode);
     }
-  }, []);
+  }, [setCurrentThemeMode]);
 };
 
 export default useSyncThemeModeWithLocalStorage;
