@@ -40,5 +40,5 @@
 
 
 .smooth-theme-transition {
-  @apply transition-colors duration-500;
+  @apply transition-colors duration-300;
 }
