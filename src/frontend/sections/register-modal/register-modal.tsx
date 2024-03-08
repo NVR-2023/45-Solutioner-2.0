@@ -2,8 +2,8 @@ import ModalShell from "@/frontend/components/ui/modal-shell/modal-shell";
 
 const RegisterModal = () => {
   return (
-    <ModalShell width={"18rem"} height={"18rem"}>
-        <div>dfsdfdsfsdf</div>
+    <ModalShell>
+      <div className="h-full ">dfsdfdsfsdf</div>
     </ModalShell>
   );
 };
