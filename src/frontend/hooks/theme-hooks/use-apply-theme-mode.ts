@@ -1,9 +1,9 @@
-import { useLayoutEffect } from "react";
+import { useEffect } from "react";
 import getSystemThemePreference from "@/utils/functions/getSystemThemePreference";
 import { ThemeModeType } from "@/types/component-props-types";
 
 const useApplyThemeMode = (currentThemeMode: ThemeModeType) => {
-  useLayoutEffect(() => {
+  useEffect(() => {
     const addClassDarkToHtml = (): void => {
       const htmlElement = document.documentElement;
       if (!htmlElement.classList.contains("dark")) {
