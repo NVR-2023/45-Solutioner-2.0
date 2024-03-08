@@ -5,12 +5,12 @@ import setThemeModeToLocalStorage from "@/utils/functions/setThemeToLocalStorage
 import { ThemeModeType } from "@/types/component-props-types";
 
 import useThemeModeSSetup from "@/frontend/hooks/theme-hooks/use-theme-mode-setup";
-import useThemeModeLocalStorageSync from "@/frontend/hooks/theme-hooks/use-theme-mode-localstorage-sync";
+import useSyncThemeModeWithLocalStorage from "@/frontend/hooks/theme-hooks/use-symc-theme-mode-with-localstorage";
 import useApplyThemeMode from "@/frontend/hooks/theme-hooks/use-apply-theme-mode";
 
 const ThemeSwitch = () => {
   const { currentThemeMode, setCurrentThemeMode } = useThemeModeSSetup();
-  useThemeModeLocalStorageSync(setCurrentThemeMode);
+  useSyncThemeModeWithLocalStorage(setCurrentThemeMode);
   useApplyThemeMode(currentThemeMode);
 
   const handleSwitchThemeMode = () => {
