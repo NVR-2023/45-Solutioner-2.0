@@ -1,16 +1,21 @@
-"use client";
+"use client"
 
-import useThemeModeSSetup from "@/frontend/hooks/theme-hooks/use-theme-mode-setup";
-import useSyncThemeModeWithLocalStorage from "@/frontend/hooks/theme-hooks/use-symc-theme-mode-with-localstorage";
-import useApplyThemeMode from "@/frontend/hooks/theme-hooks/use-apply-theme-mode";
-
+import React, { useEffect } from "react";
 import RegisterModal from "@/frontend/sections/register-modal/register-modal";
 
 const Register = () => {
 
-
+  useEffect(()=>{
+   window.scrollTo({
+     top: 0,
+     behavior: "instant",
+   });
+  }, [])
+  
   return (
-    <div className="smooth-theme-transition w-screen h-screen border-b-2 border-neutral-200 bg-[#E5E5E5] dark:bg-neutral-500 flex items-center justify-center">
+    <div
+      id="top"
+      className=" scroll-[auto] w-screen h-screen border-b-2 border-neutral-200 bg-[#E5E5E5] dark:bg-neutral-500 flex items-center justify-center">
       <RegisterModal />
     </div>
   );

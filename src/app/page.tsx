@@ -9,7 +9,7 @@ import PricingSectionHome from "@/frontend/sections/pricing-section-home/pricing
 
 export default function Home() {
   return (
-    <main id="homePage" className="w-full">
+    <main id="homePage" className="">
       <div className="flex w-full justify-center">
         <NavbarHomepage />
       </div>

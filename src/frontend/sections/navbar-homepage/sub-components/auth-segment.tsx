@@ -2,6 +2,8 @@ import ThemeSwitch from "@/frontend/components/ui/theme-switch/theme-switch";
 import Link from "next/link";
 
 import SigninIcon from "../../../components/icons/signin-icon";
+import SigninButton from "./signin-button";
+import RegisterButton from "./register-button";
 import MenuToggle from "@/frontend/sections/navbar-homepage/sub-components/menu-toggle";
 
 const AuthSegment = () => {
@@ -12,10 +14,10 @@ const AuthSegment = () => {
           <ThemeSwitch scale={0.9} />
         </div>
         <div className="">
-          <Link href="">Sign in</Link>
+          <SigninButton />
         </div>
         <div className="">
-          <Link href="/register">Register</Link>
+          <RegisterButton />
         </div>
       </div>
       <div className="md:hidden flex items-center space-x-4">

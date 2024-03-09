@@ -15,12 +15,11 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-
-  const tailwindThemeEnabler ="dark"
+  const tailwindDarkThemeEnabler = "dark";
   return (
     <html lang="en" className="!scroll-smooth">
       <body
-        className={`${aperçuFont.variable} ${rozhaOneFont.variable} ${libreBodoniFont.variable}  antialiased overflow-x-hidden `}>
+        className={`${aperçuFont.variable} ${rozhaOneFont.variable} ${libreBodoniFont.variable} overflow-x-hidden antialiased`}>
         {children}
         <Footer />
       </body>
