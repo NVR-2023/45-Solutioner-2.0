@@ -1,17 +1,12 @@
-"use client"
+"use client";
 
-import React, { useEffect } from "react";
+
 import RegisterModal from "@/frontend/sections/register-modal/register-modal";
+import useInstantScrollToTop from "@/frontend/hooks/use-instant-scroll-to-top";
 
 const Register = () => {
+  useInstantScrollToTop();
 
-  useEffect(()=>{
-   window.scrollTo({
-     top: 0,
-     behavior: "instant",
-   });
-  }, [])
-  
   return (
     <div
       id="top"
