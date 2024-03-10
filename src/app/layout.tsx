@@ -15,7 +15,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const tailwindDarkThemeEnabler: "dark" = "dark";
+  const TAILWIND_DAR_THEME_ENABLER: "dark" = "dark";
   return (
     <html lang="en" className="!scroll-smooth">
       <body
