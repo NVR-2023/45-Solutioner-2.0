@@ -1,5 +1,5 @@
-import FormModalShell from "@/frontend/components/ui/forms/form-modal-shell";
-import FormModalHeader from "@/frontend/components/ui/forms/form-modal-header";
+import FormModalShell from "@/frontend/sections/forms/form-modal-shell";
+import FormModalHeader from "@/frontend/sections/forms/form-modal-header";
 import RegisterFormMain from "./sub-components/register-form-main";
 
 const RegisterModal = () => {
