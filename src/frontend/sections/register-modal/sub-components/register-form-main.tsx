@@ -1,9 +1,6 @@
 import { useState } from "react";
-
+import PasswordVisibilityToggle from "@/frontend/components/ui/password-visibility-toggle/password-visibility-toggle";
 import GenericTextInputComponent from "../../forms/generic-text-input-component";
-import EmailInput from "@/frontend/sections/forms/email-input";
-import PasswordInput from "@/frontend/sections/forms/password-input";
-import UserNameInput from "@/frontend/sections/forms/username-input";
 import TermsOfServiceInput from "@/frontend/sections/forms/terms-of-service-input";
 import RegisterWIthSegment from "@/frontend/sections/forms/register-with-segment";
 import SubmitSegment from "@/frontend/sections/forms/submit-segment";
@@ -27,7 +24,7 @@ const RegisterFormMain = () => {
       <div className="zbg-red-300 col-span-2"></div>
       <div className="col-span-6">
         <form className="pt-8">
-          <div className="space-y-4">
+          <div className="space-y-5">
             <div>
               <GenericTextInputComponent name={"name"} />
             </div>

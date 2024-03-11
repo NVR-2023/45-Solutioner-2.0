@@ -1,3 +1,5 @@
+import PasswordVisibilityToggle from "@/frontend/components/ui/password-visibility-toggle/password-visibility-toggle";
+
 type GenericTextInputComponentProps = {
   name: string;
   state?: string;
@@ -13,13 +15,13 @@ const GenericTextInputComponent = ({
 }: GenericTextInputComponentProps) => {
   return (
     <div className="flex flex-col space-y-1">
-      <div className="bg-blue-400 flex justify-between">
+      <div className="zbg-blue-400 flex justify-between">
         <label
           htmlFor="name"
           className="xbg-green-300 mb-1 font-aperçu text-xs small-caps text-[#D9D9D9] leading-[.5rem] tracking-wide">
           {name}
         </label>
-        {name === "password" ? <span className="leading-[.5rem]">p</span> : null}
+        {name === "password" ? <span className="leading-[.5rem]"><PasswordVisibilityToggle scale={.7} /></span> : null}
       </div>
       <input
         type="text"
