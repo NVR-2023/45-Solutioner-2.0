@@ -1,4 +1,5 @@
 import { useState, ChangeEvent, Dispatch, SetStateAction } from "react";
+import { INPUT_VALIDATION_MAP } from "./input-validation/input-validation-data";
 
 type TextInputFieldProps<T extends Record<string, any>> = {
   name: string;
@@ -28,8 +29,9 @@ const TextInputField = <T extends Record<string, any>>({
   };
 
 const handleOnBlur = () => {
-  const preValidatedField = formFields?.[name]?.value; 
-  const errorMessage = "123";
+  const validationFunction = INPUT_VALIDATION_MAP.get(name);
+  const preValidatedField = formFields?.[name]?.value;
+  const errorMessage = validationFunction ? validationFunction(preValidatedField) : undefined;
 
   setFormFields?.(
     (previousFields) =>
@@ -42,6 +44,7 @@ const handleOnBlur = () => {
       } as T)
   );
 };
+
 
 
   return (
