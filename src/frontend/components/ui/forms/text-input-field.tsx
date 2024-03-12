@@ -14,11 +14,11 @@ const TextInputField = <T extends Record<string, any>>({
 }: TextInputFieldProps<T>) => {
   const [isInputFieldFocused, setIsInputFieldFocused] = useState(false);
 
-  useEffect(() => {
-    if (!formFields?.[name].value) {
+   useEffect(() => {
+    if (!formFields?.[name].value && !isInputFieldFocused) {
       setIsInputFieldFocused(false);
     }
-  }, [name, formFields]);
+  }, [name, formFields, isInputFieldFocused]);
 
   const handleOnChange = (event: ChangeEvent<HTMLInputElement>) => {
     setFormFields?.(
@@ -39,8 +39,9 @@ const TextInputField = <T extends Record<string, any>>({
   };
 
   const handleOnBlur = () => {
+    setIsInputFieldFocused(false);
     const validationFunction = INPUT_VALIDATION_MAP.get(name);
-    const preValidatedField = formFields?.[name]?.value;
+    const preValidatedField = formFields?.[name]?.value.trim();
     const errorMessage = validationFunction ? validationFunction(preValidatedField) : undefined;
 
     setFormFields?.(
@@ -60,10 +61,11 @@ const TextInputField = <T extends Record<string, any>>({
       <label
         htmlFor={`${name}ID`}
         className={`font-aperçu text-xs small-caps text-[#8e8e8e] leading-[.5rem] tracking-wide absolute transition-transform duration-300 ${
-          isInputFieldFocused || formFields?.[name]?.value ? "-translate-y-3" : "translate-y-1"
+          !isInputFieldFocused && !formFields?.[name]?.value ? "translate-y-1" : "-translate-y-3"
         }`}>
         {name}
       </label>
+
       <input
         type="text"
         id={`${name}ID`}

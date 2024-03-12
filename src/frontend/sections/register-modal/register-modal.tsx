@@ -1,6 +1,6 @@
 import FormModalShell from "@/frontend/components/ui/forms/form-modal-shell";
 import FormModalHeader from "@/frontend/components/ui/forms/form-modal-header";
-import RegisterFormMain from "./sub-components/register-form-main";
+import RegisterFormBody from "./sub-components/register-form-main";
 
 const RegisterModal = () => {
   return (
@@ -10,7 +10,7 @@ const RegisterModal = () => {
           <FormModalHeader title={"register"} />
         </div>
         <div className="px-4">
-          <RegisterFormMain />
+          <RegisterFormBody />
         </div>
       </div>
     </FormModalShell>
