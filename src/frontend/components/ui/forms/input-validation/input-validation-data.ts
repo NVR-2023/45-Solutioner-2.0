@@ -19,11 +19,7 @@ const NAME_VALIDATION_TABLE: InputValidationTests = [
 
 const EMAIL_VALIDATION_TABLE: InputValidationTests = [
   { regEx: /^.+$/, errorMessage: "Required" },
-  {
-    regEx: /^.{6,}$/,
-    errorMessage: "At least 6 characters long",
-  },
-  { regEx: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/, errorMessage: "Invalid format" },
+  { regEx: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/, errorMessage: "Invalid email" },
 ];
 
 const PASSWORD_VALIDATION_TABLE: InputValidationTests = [
@@ -34,7 +30,6 @@ const PASSWORD_VALIDATION_TABLE: InputValidationTests = [
   { regEx: /^(?=.*\d).{8,}$/, errorMessage: "At least one digit" },
 ];
 
-
 const validateField = (inputField: string, table: InputValidationTests) => {
   for (const validation of table) {
     if (!validation.regEx.test(inputField)) {
@@ -44,10 +39,8 @@ const validateField = (inputField: string, table: InputValidationTests) => {
   return "";
 };
 
-
 export const INPUT_VALIDATION_MAP = new Map<string, (inputValue: string) => string>([
   ["name", (inputValue) => validateField(inputValue, NAME_VALIDATION_TABLE)],
   ["email", (inputValue) => validateField(inputValue, EMAIL_VALIDATION_TABLE)],
   ["password", (inputValue) => validateField(inputValue, PASSWORD_VALIDATION_TABLE)],
 ]);
-
