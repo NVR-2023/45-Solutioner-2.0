@@ -5,18 +5,18 @@ import RegisterWithSegment from "@/frontend/components/ui/forms/register-with-se
 import SubmitSegment from "@/frontend/components/ui/forms/submit-segment";
 
 type CredentialProps = {
-  name: { value: string; error: string };
-  email: { value: string; error: string };
-  password: { value: string; error: string };
-  hasAcceptedTermsOfUse: { value: boolean; error: string };
+  name: { value: string; errorMessage: string };
+  email: { value: string; errorMessage: string };
+  password: { value: string; errorMessage: string };
+  hasAcceptedTermsOfUse: { value: boolean; errorMessage: string };
 };
 
 const RegisterFormMain = () => {
   const [credentials, setCredentials] = useState<CredentialProps | undefined>({
-    name: { value: "", error: "" },
-    email: { value: "", error: "" },
-    password: { value: "", error: "" },
-    hasAcceptedTermsOfUse: { value: false, error: "" },
+    name: { value: "", errorMessage: "" },
+    email: { value: "", errorMessage: "" },
+    password: { value: "", errorMessage: "" },
+    hasAcceptedTermsOfUse: { value: false, errorMessage: "" },
   });
 
   

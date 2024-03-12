@@ -1,4 +1,4 @@
-import { useState, ChangeEvent, Dispatch, SetStateAction } from "react";
+import { useEffect, useState, ChangeEvent, Dispatch, SetStateAction } from "react";
 import { INPUT_VALIDATION_MAP } from "./input-validation/input-validation-data";
 
 type TextInputFieldProps<T extends Record<string, any>> = {
@@ -12,6 +12,14 @@ const TextInputField = <T extends Record<string, any>>({
   formFields,
   setFormFields,
 }: TextInputFieldProps<T>) => {
+  const [isInputFieldFocused, setIsInputFieldFocused] = useState(false);
+
+  useEffect(() => {
+    if (!formFields?.[name].value) {
+      setIsInputFieldFocused(false);
+    }
+  }, [name, formFields]);
+
   const handleOnChange = (event: ChangeEvent<HTMLInputElement>) => {
     setFormFields?.(
       (previousFields) =>
@@ -20,10 +28,14 @@ const TextInputField = <T extends Record<string, any>>({
           [name]: {
             ...previousFields?.[name],
             value: event.target.value,
-            error: "",
+            errorMessage: "",
           },
         } as T)
     );
+  };
+
+  const handleOnFocus = () => {
+    setIsInputFieldFocused(true);
   };
 
   const handleOnBlur = () => {
@@ -37,27 +49,28 @@ const TextInputField = <T extends Record<string, any>>({
           ...previousFields,
           [name]: {
             ...previousFields?.[name],
-            error: errorMessage,
+            errorMessage: errorMessage,
           },
         } as T)
     );
   };
 
   return (
-    <div className="flex flex-col space-y-1.5">
-      <div className="flex justify-between">
-        <label
-          htmlFor={`${name}ID`}
-          className="font-aperçu text-xs small-caps text-[#8e8e8e] leading-[.5rem] tracking-wide">
-          {name}
-        </label>
-      </div>
+    <div className="flex flex-col space-y-1.5 relative">
+      <label
+        htmlFor={`${name}ID`}
+        className={`font-aperçu text-xs small-caps text-[#8e8e8e] leading-[.5rem] tracking-wide absolute transition-transform duration-300 ${
+          isInputFieldFocused || formFields?.[name]?.value ? "-translate-y-3" : "translate-y-1"
+        }`}>
+        {name}
+      </label>
       <input
         type="text"
         id={`${name}ID`}
         name={name}
         autoComplete="true"
         onChange={handleOnChange}
+        onFocus={handleOnFocus}
         onBlur={handleOnBlur}
         value={formFields?.[name]?.value}
         aria-invalid={formFields?.[name]?.error ? "true" : "false"}
@@ -68,10 +81,10 @@ const TextInputField = <T extends Record<string, any>>({
       <div
         id={`${name}Error`}
         role="alert"
-        className={`text-red-500 text-[0.625rem] italic leading-[.5rem] transition-opacity duration-400 ${
-          formFields?.[name]?.error ? "opacity-100" : "opacity-0"
+        className={`text-red-500 text-[0.625rem] italic leading-[.5rem] transition-opacity duration-500 ${
+          formFields?.[name]?.errorMessage ? "opacity-100" : "opacity-0"
         }`}>
-        {formFields?.[name]?.error || "\u00A0"}
+        {formFields?.[name]?.errorMessage || "\u00A0"}
       </div>
     </div>
   );
