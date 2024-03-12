@@ -1,4 +1,4 @@
-import { ChangeEvent, Dispatch, SetStateAction } from "react";
+import { useState, ChangeEvent, Dispatch, SetStateAction } from "react";
 
 type TextInputFieldProps<T extends Record<string, any>> = {
   name: string;
@@ -11,18 +11,38 @@ const TextInputField = <T extends Record<string, any>>({
   formFields,
   setFormFields,
 }: TextInputFieldProps<T>) => {
+
   const handleOnChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setFormFields?.(
-      (prevFields) =>
+    
+     setFormFields?.(
+      (previousFields) =>
         ({
-          ...prevFields,
+          ...previousFields,
           [name]: {
-            ...prevFields?.[name],
+            ...previousFields?.[name],
             value: event.target.value,
+            error: ""
           },
         } as T)
     );
   };
+
+const handleOnBlur = () => {
+
+  setFormFields?.(
+    (previousFields) =>
+      ({
+        ...previousFields,
+        [name]: {
+          ...previousFields?.[name],
+          error: previousFields?.[name]?.value,
+        },
+      } as T)
+  );
+};
+
+
+
 
   return (
     <div className="flex flex-col space-y-1">
@@ -39,10 +59,15 @@ const TextInputField = <T extends Record<string, any>>({
         name={name}
         autoComplete="true"
         onChange={handleOnChange}
+        onBlur={handleOnBlur}
         value={formFields?.[name]?.value}
         className="h-4 font-aperçu text-sm bg-[#222222] border-[#D9D9D9] border-b-[0.5px] focus:border-[#94C2A4] font-light focus:outline-none appearance-none pb-[.15rem] focus:shadow-red-400"
       />
-      <div className="text-red-700 text-[0.625rem] italic leading-[.5rem]">
+
+      <div
+        className={`text-red-700 text-[0.625rem] italic leading-[.5rem] transition-opacity duration-300 ${
+          formFields?.[name]?.error ? "opacity-100" : "opacity-0"
+        }`}>
         {formFields?.[name]?.error || "\u00A0"}
       </div>
     </div>
