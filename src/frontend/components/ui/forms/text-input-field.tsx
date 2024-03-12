@@ -28,6 +28,8 @@ const TextInputField = <T extends Record<string, any>>({
   };
 
 const handleOnBlur = () => {
+  const preValidatedField = formFields?.[name]?.value; 
+  const errorMessage = "123";
 
   setFormFields?.(
     (previousFields) =>
@@ -35,13 +37,11 @@ const handleOnBlur = () => {
         ...previousFields,
         [name]: {
           ...previousFields?.[name],
-          error: previousFields?.[name]?.value,
+          error: errorMessage,
         },
       } as T)
   );
 };
-
-
 
 
   return (
@@ -61,11 +61,11 @@ const handleOnBlur = () => {
         onChange={handleOnChange}
         onBlur={handleOnBlur}
         value={formFields?.[name]?.value}
-        className="h-4 font-aperçu text-sm bg-[#222222] border-[#D9D9D9] border-b-[0.5px] focus:border-[#94C2A4] font-light focus:outline-none appearance-none pb-[.15rem] focus:shadow-red-400"
+        className="h-4 font-aperçu text-sm bg-[#222222] border-[#D9D9D9] border-b-[0.5px] focus:border-[#94C2A4] focus:shadow-outline-green font-light focus:outline-none appearance-none pb-[.15rem] "
       />
 
       <div
-        className={`text-red-700 text-[0.625rem] italic leading-[.5rem] transition-opacity duration-300 ${
+        className={`text-red-700 text-[0.625rem] italic leading-[.5rem] transition-opacity duration-400 ${
           formFields?.[name]?.error ? "opacity-100" : "opacity-0"
         }`}>
         {formFields?.[name]?.error || "\u00A0"}

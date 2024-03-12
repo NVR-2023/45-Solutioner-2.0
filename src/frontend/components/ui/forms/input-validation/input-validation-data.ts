@@ -1,34 +1,53 @@
 type InputValidationTest = {
   regEx: RegExp;
-  message: string;
+  errorMessage: string;
 };
 
 type InputValidationTests = InputValidationTest[];
 
-export const USERNAME_VALIDATION: InputValidationTests = [
-  { regEx: /^.+$/, message: "Required" },
+const NAME_VALIDATION_TABLE: InputValidationTests = [
+  { regEx: /^.+$/, errorMessage: "Required" },
   {
     regEx: /^.{3,}$/,
-    message: "At least 3 characters long",
+    errorMessage: "At least 3 characters long",
   },
   {
     regEx: /^[a-zA-Z0-9]+$/,
-    message: "Only letters and digits",
+    errorMessage: "Only letters and digits",
   },
-];
-export const EMAIL_VALIDATION: InputValidationTests = [
-  { regEx: /^.+$/, message: "Required" },
-  {
-    regEx: /^.{6,}$/,
-    message: "At least 6 characters long",
-  },
-  { regEx: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/, message: "Invalid format" },
 ];
 
-export const PASSWORD_VALIDATION: InputValidationTests = [
-  { regEx: /^.+$/, message: "Required" },
-  { regEx: /^.{8,}$/, message: "At least 8 characters long" },
-  { regEx: /^(?=.*[A-Z]).{8,}$/, message: "At least one uppercase letter" },
-  { regEx: /^(?=.*[a-z]).{8,}$/, message: "At least one lowercase letter" },
-  { regEx: /^(?=.*\d).{8,}$/, message: "At least one digit" },
+const EMAIL_VALIDATION_TABLE: InputValidationTests = [
+  { regEx: /^.+$/, errorMessage: "Required" },
+  {
+    regEx: /^.{6,}$/,
+    errorMessage: "At least 6 characters long",
+  },
+  { regEx: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/, errorMessage: "Invalid format" },
 ];
+
+const PASSWORD_VALIDATION_TABLE: InputValidationTests = [
+  { regEx: /^.+$/, errorMessage: "Required" },
+  { regEx: /^.{8,}$/, errorMessage: "At least 8 characters long" },
+  { regEx: /^(?=.*[A-Z]).{8,}$/, errorMessage: "At least one uppercase letter" },
+  { regEx: /^(?=.*[a-z]).{8,}$/, errorMessage: "At least one lowercase letter" },
+  { regEx: /^(?=.*\d).{8,}$/, errorMessage: "At least one digit" },
+];
+
+
+const validateField = (inputField: string, table: InputValidationTests) => {
+  for (const validation of table) {
+    if (!validation.regEx.test(inputField)) {
+      return validation.errorMessage;
+    }
+  }
+  return "";
+};
+
+
+export const INPUT_VALIDATION_MAP = new Map<string, (inputValue: string) => string>([
+  ["name", (inputValue) => validateField(inputValue, NAME_VALIDATION_TABLE)],
+  ["email", (inputValue) => validateField(inputValue, EMAIL_VALIDATION_TABLE)],
+  ["password", (inputValue) => validateField(inputValue, PASSWORD_VALIDATION_TABLE)],
+]);
+
