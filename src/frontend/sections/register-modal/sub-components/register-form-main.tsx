@@ -25,7 +25,7 @@ const RegisterFormMain = () => {
       <div className="zbg-red-300 col-span-2"></div>
       <div className="col-span-6">
         <form className="pt-8">
-          <div className="space-y-5">
+          <div className="space-y-8">
             <div>
               <TextInputField name="name" formFields={credentials} setFormFields={setCredentials} />
             </div>
