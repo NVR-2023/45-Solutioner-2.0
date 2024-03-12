@@ -3,6 +3,8 @@ import PasswordVisibleIcon from "../../icons/password-visible-icon";
 import PasswordInvisibleIcon from "../../icons/password-invisible-icon";
 import { BasicComponentProps } from "@/types/component-props-types";
 
+
+
 const PasswordVisibilityToggle = ({ scale=1 , color = "currentColor" } : BasicComponentProps) => {
   const { state, handlers } = useToggle();
 

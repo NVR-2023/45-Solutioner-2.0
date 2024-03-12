@@ -1,4 +1,4 @@
-import CloseICon from "../../components/icons/close-icon";
+import CloseICon from "../../icons/close-icon";
 import Link from "next/link";
 const DismissMOdalButton = () => {
   return (
