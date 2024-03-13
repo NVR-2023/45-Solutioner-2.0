@@ -30,7 +30,7 @@ const PASSWORD_VALIDATION_TABLE: InputValidationTests = [
   { regEx: /^(?=.*\d).{8,}$/, errorMessage: "At least one digit" },
 ];
 
-const validateField = (inputField: string, table: InputValidationTests) => {
+const validateInputField = (inputField: string, table: InputValidationTests) => {
   for (const validation of table) {
     if (!validation.regEx.test(inputField)) {
       return validation.errorMessage;
@@ -39,8 +39,14 @@ const validateField = (inputField: string, table: InputValidationTests) => {
   return "";
 };
 
+const DEFAULT_VALIDATION_TABLE: InputValidationTests = [
+  { regEx: /^.+$/, errorMessage: "Required" },
+];
+
 export const INPUT_VALIDATION_MAP = new Map<string, (inputValue: string) => string>([
-  ["name", (inputValue) => validateField(inputValue, NAME_VALIDATION_TABLE)],
-  ["email", (inputValue) => validateField(inputValue, EMAIL_VALIDATION_TABLE)],
-  ["password", (inputValue) => validateField(inputValue, PASSWORD_VALIDATION_TABLE)],
+  ["name", (inputValue) => validateInputField(inputValue, NAME_VALIDATION_TABLE)],
+  ["email", (inputValue) => validateInputField(inputValue, EMAIL_VALIDATION_TABLE)],
+  ["password", (inputValue) => validateInputField(inputValue, PASSWORD_VALIDATION_TABLE)],
+  ["default", (inputValue) => validateInputField(inputValue, DEFAULT_VALIDATION_TABLE)],
+
 ]);

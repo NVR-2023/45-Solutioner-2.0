@@ -1,112 +1,92 @@
 import { useEffect, useState, ChangeEvent, Dispatch, SetStateAction } from "react";
 import { INPUT_VALIDATION_MAP } from "./input-validation/input-validation-data";
+import PasswordVisibilityToggle from "./password-visibility-toggle";
 
-type TextInputFieldProps<T extends Record<string, any>> = {
+type FieldValueType = string | number | boolean;
+
+type FormFieldsType = Record<string, { value: FieldValueType; errorMessage?: string }>;
+
+type TextInputFieldProps = {
   name: string;
-  formFields?: T;
-  setFormFields?: Dispatch<SetStateAction<T | undefined>>;
+  formFields: FormFieldsType;
+  setFormFields: Dispatch<SetStateAction<FormFieldsType>>;
 };
 
-const TextInputField = <T extends Record<string, any>>({
-  name,
-  formFields,
-  setFormFields,
-}: TextInputFieldProps<T>) => {
+const TextInputField = ({ name, formFields, setFormFields } : TextInputFieldProps) => {
   const [isInputFieldFocused, setIsInputFieldFocused] = useState(false);
-  const [passwordVisibility, setPasswordVisibility] = useState(false);
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
   useEffect(() => {
-    if (!formFields?.[name].value && !isInputFieldFocused) {
+    if (!formFields[name]?.value && !isInputFieldFocused) {
       setIsInputFieldFocused(false);
     }
   }, [name, formFields, isInputFieldFocused]);
 
   const handleOnChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setFormFields?.(
-      (previousFields) =>
-        ({
-          ...previousFields,
-          [name]: {
-            ...previousFields?.[name],
-            value: event.target.value,
-          },
-        } as T)
-    );
+    setFormFields((previousFields) => ({
+      ...previousFields,
+      [name]: {
+        ...previousFields[name],
+        value: event.target.value,
+      },
+    }));
   };
 
-  const handleOnFocus = () => {
-    setIsInputFieldFocused(true);
-    setFormFields?.(
-      (previousFields) =>
-        ({
-          ...previousFields,
-          [name]: {
-            ...previousFields?.[name],
-            errorMessage: "",
-          },
-        } as T)
-    );
+  const handleOnFocusOrBlur = (focus: boolean) => {
+    setIsInputFieldFocused(focus);
+
+    setFormFields((previousFields) => ({
+      ...previousFields,
+      [name]: {
+        ...previousFields[name],
+        errorMessage: focus ? "" : getInputFieldErrorMessage(previousFields[name]?.value),
+      },
+    }));
   };
 
-  const handleOnBlur = () => {
-    setIsInputFieldFocused(false);
-    const validationFunction = INPUT_VALIDATION_MAP.get(name);
-    const preValidatedField = formFields?.[name]?.value.trim();
-    const errorMessage = validationFunction ? validationFunction(preValidatedField) : undefined;
+const getInputFieldErrorMessage = (fieldValue: FieldValueType) => {
+  const validationFunction = INPUT_VALIDATION_MAP.get(name) || INPUT_VALIDATION_MAP.get("default")!;
+  return validationFunction(String(fieldValue).trim());
+};
 
-    setFormFields?.(
-      (previousFields) =>
-        ({
-          ...previousFields,
-          [name]: {
-            ...previousFields?.[name],
-            errorMessage: errorMessage,
-          },
-        } as T)
-    );
-  };
+
 
   return (
-    <div className="flex flex-col space-y-1.5 relative">
+    <div className="flex flex-col space-y-1.5">
       <label
         htmlFor={`${name}ID`}
-        className={`font-aperçu text-xs small-caps text-[#8e8e8e] leading-[.5rem] tracking-wide absolute transition-transform duration-300 ${
-          !isInputFieldFocused && !formFields?.[name]?.value ? "translate-y-1" : "-translate-y-3"
+        className={`ng-green-400 flex justify-between font-aperçu text-xs small-caps text-[#8e8e8e] leading-[.5rem] tracking-wide transition-transform duration-300 ${
+          !isInputFieldFocused && !formFields[name]?.value && "translate-y-1"
         }`}>
         {name}
+        {name === "password" && (
+          <PasswordVisibilityToggle
+            scale={0.5}
+            isPasswordVisible={isPasswordVisible}
+            setIsPasswordVisible={() => setIsPasswordVisible(!isPasswordVisible)}
+          />
+        )}
       </label>
-
-      <div className="relative">
-        <input
-          type="text"
-          id={`${name}ID`}
-          name={name}
-          autoComplete="true"
-          onChange={handleOnChange}
-          onFocus={handleOnFocus}
-          onBlur={handleOnBlur}
-          value={formFields?.[name]?.value}
-          aria-invalid={formFields?.[name]?.error ? "true" : "false"}
-          aria-describedby={`${name}Error`}
-          className="h-4 font-aperçu text-sm bg-[#222222] border-[#D9D9D9] border-b-[0.5px] focus:border-[#94C2A4] focus:shadow-outline-green font-light focus:outline-none appearance-none pb-[.15rem] pr-[2.5rem]"
-        />
-        {name === "password" ? (
-          <button
-            type="button"
-            className="absolute top-1/2 -right-3 transform -translate-y-1/2"
-            onClick={() => {}}>
-            P
-          </button>
-        ) : null}
-      </div>
-
+      <input
+        type={name === "password" ? (isPasswordVisible ? "text" : "password") : "text"}
+        id={`${name}ID`}
+        name={name}
+        autoComplete="false"
+        onChange={handleOnChange}
+        onFocus={() => handleOnFocusOrBlur(true)}
+        onBlur={() => handleOnFocusOrBlur(false)}
+        value={formFields[name]?.value === true ? "" : (formFields[name]?.value as string) || ""}
+        aria-invalid={formFields[name]?.errorMessage ? "true" : "false"}
+        aria-describedby={`${name}Error`}
+        className="h-4 font-aperçu text-sm bg-[#222222] border-[#D9D9D9] border-b-[0.5px] focus:border-[#94C2A4] focus:shadow-outline-green font-light focus:outline-none appearance-none pb-[.15rem] pr-[2.5rem]"
+      />
       <div
         id={`${name}Error`}
         role="alert"
         className={`text-red-500 text-[0.625rem] italic leading-[.5rem] transition-opacity duration-500 ${
-          formFields?.[name]?.errorMessage ? "opacity-100" : "opacity-0"
+          formFields[name]?.errorMessage ? "opacity-100" : "opacity-0"
         }`}>
-        {formFields?.[name]?.errorMessage || "\u00A0"}
+        {formFields[name]?.errorMessage || "\u00A0"}
       </div>
     </div>
   );
