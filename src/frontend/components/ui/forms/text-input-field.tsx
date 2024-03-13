@@ -12,7 +12,7 @@ type TextInputFieldProps = {
   setFormFields: Dispatch<SetStateAction<FormFieldsType>>;
 };
 
-const TextInputField = ({ name, formFields, setFormFields } : TextInputFieldProps) => {
+const TextInputField = ({ name, formFields, setFormFields }: TextInputFieldProps) => {
   const [isInputFieldFocused, setIsInputFieldFocused] = useState(false);
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
@@ -44,12 +44,11 @@ const TextInputField = ({ name, formFields, setFormFields } : TextInputFieldProp
     }));
   };
 
-const getInputFieldErrorMessage = (fieldValue: FieldValueType) => {
-  const validationFunction = INPUT_VALIDATION_MAP.get(name) || INPUT_VALIDATION_MAP.get("default")!;
-  return validationFunction(String(fieldValue).trim());
-};
-
-
+  const getInputFieldErrorMessage = (fieldValue: FieldValueType) => {
+    const validationFunction =
+      INPUT_VALIDATION_MAP.get(name) || INPUT_VALIDATION_MAP.get("default")!;
+    return validationFunction(String(fieldValue).trim());
+  };
 
   return (
     <div className="flex flex-col space-y-1.5">

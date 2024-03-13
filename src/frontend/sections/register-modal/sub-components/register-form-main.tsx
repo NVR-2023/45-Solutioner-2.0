@@ -1,18 +1,13 @@
-import React, { useState } from "react";
-import TextInputField from "../../../components/ui/forms/text-input-field";
+import { useState } from "react";
+import TextInputField from "@/frontend/components/ui/forms/text-input-field";
 import TermsOfServiceInput from "@/frontend/components/ui/forms/terms-of-service-input";
-import RegisterWithSegment from "@/frontend/components/ui/forms/register-with-segment";
+import RegisterWIthSegment from "@/frontend/components/ui/forms/register-with-segment";
 import SubmitSegment from "@/frontend/components/ui/forms/submit-segment";
 
-type CredentialProps = {
-  name: { value: string; errorMessage: string };
-  email: { value: string; errorMessage: string };
-  password: { value: string; errorMessage: string };
-  hasAcceptedTermsOfUse: { value: boolean; errorMessage: string };
-};
+type FormFieldsType = Record<string, { value: string | number | boolean; errorMessage?: string }>;
 
 const RegisterFormBody = () => {
-  const [credentials, setCredentials] = useState<CredentialProps | undefined>({
+  const [credentials, setCredentials] = useState<FormFieldsType>({
     name: { value: "", errorMessage: "" },
     email: { value: "", errorMessage: "" },
     password: { value: "", errorMessage: "" },
@@ -47,7 +42,7 @@ const RegisterFormBody = () => {
             <TermsOfServiceInput />
           </div>
           <div>
-            <RegisterWithSegment />
+            <RegisterWIthSegment />
           </div>
           <div>
             <SubmitSegment />
