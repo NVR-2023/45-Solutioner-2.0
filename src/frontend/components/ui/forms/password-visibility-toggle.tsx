@@ -6,21 +6,17 @@ type PasswordVisibilityToggleProps = {
   scale?: number;
   color?: string;
   isPasswordVisible: boolean;
-  setIsPasswordVisible: Dispatch<SetStateAction<boolean>>;
+  togglePasswordVisibility: () => void;
 };
 
 const PasswordVisibilityToggle = ({
   scale = 1,
   color = "currentColor",
   isPasswordVisible = false,
-  setIsPasswordVisible,
+  togglePasswordVisibility,
 }: PasswordVisibilityToggleProps) => {
-  const handleOnToggle = () => {
-    setIsPasswordVisible(!isPasswordVisible);
-  };
-
   return (
-    <div onClick={handleOnToggle}>
+    <div onClick={togglePasswordVisibility}>
       {isPasswordVisible ? (
         <div
           className={`transition-opacity transition-700 ${

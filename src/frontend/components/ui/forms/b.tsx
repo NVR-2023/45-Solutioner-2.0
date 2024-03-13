@@ -12,10 +12,15 @@ type TextInputFieldProps = {
   setFormFields: Dispatch<SetStateAction<FormFieldsType>>;
 };
 
-const TextInputField = ({ name, formFields, setFormFields }: TextInputFieldProps) => {
+const BTextInputField = ({ name, formFields, setFormFields }: TextInputFieldProps) => {
   const [isInputFieldFocused, setIsInputFieldFocused] = useState(false);
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
+  useEffect(() => {
+    if (!formFields[name]?.value && !isInputFieldFocused) {
+      setIsInputFieldFocused(false);
+    }
+  }, [name, formFields, isInputFieldFocused]);
 
   const handleOnChange = (event: ChangeEvent<HTMLInputElement>) => {
     setFormFields((previousFields) => ({
@@ -39,10 +44,6 @@ const TextInputField = ({ name, formFields, setFormFields }: TextInputFieldProps
     }));
   };
 
-  const handleTogglePasswordVisibility = () => {
-    setIsPasswordVisible((previousValue) => !previousValue);
-  } 
-
   const getInputFieldErrorMessage = (fieldValue: FieldValueType) => {
     const validationFunction =
       INPUT_VALIDATION_MAP.get(name) || INPUT_VALIDATION_MAP.get("default")!;
@@ -51,7 +52,10 @@ const TextInputField = ({ name, formFields, setFormFields }: TextInputFieldProps
 
   return (
     <div className="relative w-full flex flex-col space-y-1.5">
-      <div>
+      <div
+        className=""
+        onFocus={() => handleOnFocusOrBlur(true)}
+        onBlur={() => handleOnFocusOrBlur(false)}>
         <input
           type={name === "password" ? (isPasswordVisible ? "text" : "password") : "text"}
           id={`${name}ID`}
@@ -59,8 +63,6 @@ const TextInputField = ({ name, formFields, setFormFields }: TextInputFieldProps
           autoComplete="false"
           onChange={handleOnChange}
           value={formFields[name]?.value === true ? "" : (formFields[name]?.value as string) || ""}
-          onFocus={() => handleOnFocusOrBlur(true)}
-          onBlur={() => handleOnFocusOrBlur(false)}
           aria-invalid={formFields[name]?.errorMessage ? "true" : "false"}
           aria-describedby={`${name}Error`}
           className="h-4 w-full font-aperçu text-sm bg-[#222222] border-[#D9D9D9] border-b-[0.5px] focus:border-[#D9D9D9] font-light focus:outline-none appearance-none pb-[.15rem]"
@@ -79,7 +81,7 @@ const TextInputField = ({ name, formFields, setFormFields }: TextInputFieldProps
               <PasswordVisibilityToggle
                 scale={0.5}
                 isPasswordVisible={isPasswordVisible}
-                togglePasswordVisibility={handleTogglePasswordVisibility}
+                togglePasswordVisibility={() => setIsPasswordVisible(!isPasswordVisible)}
               />
             </span>
           )}
@@ -98,4 +100,4 @@ const TextInputField = ({ name, formFields, setFormFields }: TextInputFieldProps
   );
 };
 
-export default TextInputField;
+export default BTextInputField;
