@@ -13,15 +13,14 @@ const TextInputField = <T extends Record<string, any>>({
   setFormFields,
 }: TextInputFieldProps<T>) => {
   const [isInputFieldFocused, setIsInputFieldFocused] = useState(false);
-  const [ passwordVisibility , setPasswordVisibility] = useState(false);
-  
+  const [passwordVisibility, setPasswordVisibility] = useState(false);
+
   useEffect(() => {
     if (!formFields?.[name].value && !isInputFieldFocused) {
       setIsInputFieldFocused(false);
     }
   }, [name, formFields, isInputFieldFocused]);
 
-  
   const handleOnChange = (event: ChangeEvent<HTMLInputElement>) => {
     setFormFields?.(
       (previousFields) =>
@@ -30,7 +29,6 @@ const TextInputField = <T extends Record<string, any>>({
           [name]: {
             ...previousFields?.[name],
             value: event.target.value,
-            errorMessage: "",
           },
         } as T)
     );
@@ -38,6 +36,16 @@ const TextInputField = <T extends Record<string, any>>({
 
   const handleOnFocus = () => {
     setIsInputFieldFocused(true);
+    setFormFields?.(
+      (previousFields) =>
+        ({
+          ...previousFields,
+          [name]: {
+            ...previousFields?.[name],
+            errorMessage: "",
+          },
+        } as T)
+    );
   };
 
   const handleOnBlur = () => {
@@ -82,12 +90,14 @@ const TextInputField = <T extends Record<string, any>>({
           aria-describedby={`${name}Error`}
           className="h-4 font-aperçu text-sm bg-[#222222] border-[#D9D9D9] border-b-[0.5px] focus:border-[#94C2A4] focus:shadow-outline-green font-light focus:outline-none appearance-none pb-[.15rem] pr-[2.5rem]"
         />
-     {  name==="password" ? <button
-          type="button"
-          className="absolute top-1/2 -right-3 transform -translate-y-1/2"
-          onClick={() => {}}>
-          P
-        </button> : null}
+        {name === "password" ? (
+          <button
+            type="button"
+            className="absolute top-1/2 -right-3 transform -translate-y-1/2"
+            onClick={() => {}}>
+            P
+          </button>
+        ) : null}
       </div>
 
       <div
