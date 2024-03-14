@@ -1,15 +1,10 @@
-import LogoIcon from "../../../components/icons/logo-icon";
 import Link from "next/link";
 
 const LogoSegment = () => {
   return (
-    <div className="flex h-full items-left">
-      <Link href={"/#services"} className="flex items-center">
-        <div>
-          <LogoIcon />
-        </div>
-        <div className="hidden md:flex font-bold ">Solutioner</div>
-      </Link>
+    <div
+      className="h-full flex items-center font-rozhaOne text-[1.25rem] tracking-wider">
+      <Link href="/#services">Solutioner</Link>
     </div>
   );
 };

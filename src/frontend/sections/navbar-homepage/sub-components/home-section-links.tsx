@@ -12,15 +12,17 @@ const HomeSectionLinks = () => {
 
   return (
     <nav className="flex items-center" role="navigation" aria-label="Homepage Sections Navigation">
-      <ul className="flex items-center space-x-6 list-none">
+      <menu className="flex items-center space-x-4 list-none">
         {homepageSections.map((link, index) => (
           <li key={index} className="relative">
             <Link
               href={getSectionFomString(link)}
+              role="link"
+              aria-label="section link"
               onClick={() => {
                 handleChangeSection(link);
               }}>
-              <span className="font-semibold text-sm">
+              <span className="font-semibold text-xs">
                 {link}
               </span>
             </Link>
@@ -29,7 +31,7 @@ const HomeSectionLinks = () => {
             ) : null}
           </li>
         ))}
-      </ul>
+      </menu>
     </nav>
   );
 };

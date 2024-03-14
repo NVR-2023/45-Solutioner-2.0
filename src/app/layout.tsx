@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { aperçuFont } from "@/utils/functions/localfontloader";
+import { aperçuFont, rozhaOneFont, libreBodoniFont } from "@/utils/functions/localfontloader";
+
 import Footer from "@/frontend/sections/footer/footer";
 
 import "./globals.css";
@@ -14,9 +15,11 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const TAILWIND_DAR_THEME_ENABLER: "dark" = "dark";
   return (
-    <html lang="en" className="!scroll-smooth  ">
-      <body className={`${aperçuFont.variable} antialiased `}>
+    <html lang="en" className="!scroll-smooth">
+      <body
+        className={`${aperçuFont.variable} ${rozhaOneFont.variable} ${libreBodoniFont.variable} overflow-x-hidden antialiased`}>
         {children}
         <Footer />
       </body>
