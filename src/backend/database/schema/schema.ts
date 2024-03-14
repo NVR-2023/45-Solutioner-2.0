@@ -25,9 +25,9 @@ export const users = pgTable(
       .primaryKey(),
     name: text("name").notNull(),
     email: text("email").notNull(),
-    password: text("password").notNull(),
+    hashedPassword: text("hashed_password").notNull(),
     createdAt: timestamp("created_at").defaultNow(),
-    modifiedAt: timestamp("modified_at"),
+    modifiedAt: timestamp("modified_at").defaultNow(),
   },
   (users) => {
     return {

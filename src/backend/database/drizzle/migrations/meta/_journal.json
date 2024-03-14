@@ -57,6 +57,48 @@
       "when": 1709740213416,
       "tag": "0007_black_aqueduct",
       "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "5",
+      "when": 1710438490578,
+      "tag": "0008_mighty_wolverine",
+      "breakpoints": true
+    },
+    {
+      "idx": 9,
+      "version": "5",
+      "when": 1710438606304,
+      "tag": "0009_steep_maginty",
+      "breakpoints": true
+    },
+    {
+      "idx": 10,
+      "version": "5",
+      "when": 1710438829498,
+      "tag": "0010_bumpy_morbius",
+      "breakpoints": true
+    },
+    {
+      "idx": 11,
+      "version": "5",
+      "when": 1710438922322,
+      "tag": "0011_early_christian_walker",
+      "breakpoints": true
+    },
+    {
+      "idx": 12,
+      "version": "5",
+      "when": 1710439285304,
+      "tag": "0012_purple_iron_patriot",
+      "breakpoints": true
+    },
+    {
+      "idx": 13,
+      "version": "5",
+      "when": 1710439722184,
+      "tag": "0013_abandoned_viper",
+      "breakpoints": true
     }
   ]
 }

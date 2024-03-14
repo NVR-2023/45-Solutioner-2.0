@@ -4,7 +4,7 @@ async function main() {
   const newUser: NewUser = {
     name: "John Doe",
     email: "johndoe@email.com",
-    password: "password",
+    hashedPassword: "hashedPassword",
   };
   const res = await insertUserInDBTable(newUser);
   console.log("insert user success", res);
