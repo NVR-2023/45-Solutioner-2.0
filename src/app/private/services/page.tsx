@@ -10,6 +10,8 @@ const Services:FC = async () => {
   return (
     <div className="space-y-3">
       <div>Database connected</div>
+      <div>1: {JSON.stringify(data)}</div>
+      <div>2: {JSON.stringify(data2)}</div>
       <div>relational: {JSON.stringify(data3)}</div>
     </div>
   );

@@ -11,7 +11,6 @@ export type NewUser = typeof users.$inferInsert;
 
 export const getUsers = async () => {
   const selectResult = await db.select().from(users);
-  console.log("Results", selectResult);
   return selectResult;
 };
 
