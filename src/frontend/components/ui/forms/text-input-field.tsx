@@ -16,7 +16,6 @@ const TextInputField = ({ name, formFields, setFormFields }: TextInputFieldProps
   const [isInputFieldFocused, setIsInputFieldFocused] = useState(false);
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
-
   const handleOnChange = (event: ChangeEvent<HTMLInputElement>) => {
     setFormFields((previousFields) => ({
       ...previousFields,
@@ -41,7 +40,7 @@ const TextInputField = ({ name, formFields, setFormFields }: TextInputFieldProps
 
   const handleTogglePasswordVisibility = () => {
     setIsPasswordVisible((previousValue) => !previousValue);
-  } 
+  };
 
   const getInputFieldErrorMessage = (fieldValue: FieldValueType) => {
     const validationFunction =
