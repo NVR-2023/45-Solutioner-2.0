@@ -1,6 +1,5 @@
 import { useState } from "react";
 import TextInputField from "@/frontend/components/ui/forms/text-input-field";
-import BTextInputField from "@/frontend/components/ui/forms/b";
 
 import TermsOfServiceInput from "@/frontend/components/ui/forms/terms-of-service-input";
 import RegisterWIthSegment from "@/frontend/components/ui/forms/register-with-segment";
@@ -33,7 +32,7 @@ const RegisterFormBody = () => {
               />
             </div>
             <div>
-              <BTextInputField
+              <TextInputField
                 name="password"
                 formFields={credentials}
                 setFormFields={setCredentials}

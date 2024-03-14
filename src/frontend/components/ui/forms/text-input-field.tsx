@@ -1,4 +1,4 @@
-import { useEffect, useState, ChangeEvent, Dispatch, SetStateAction } from "react";
+import { useState, ChangeEvent, Dispatch, SetStateAction } from "react";
 import { INPUT_VALIDATION_MAP } from "./input-validation/input-validation-data";
 import PasswordVisibilityToggle from "./password-visibility-toggle";
 
@@ -26,14 +26,26 @@ const TextInputField = ({ name, formFields, setFormFields }: TextInputFieldProps
     }));
   };
 
-  const handleOnFocusOrBlur = (focus: boolean) => {
-    setIsInputFieldFocused(focus);
+  const handleOnFocus = () => {
+    setIsInputFieldFocused(true);
 
     setFormFields((previousFields) => ({
       ...previousFields,
       [name]: {
         ...previousFields[name],
-        errorMessage: focus ? "" : getInputFieldErrorMessage(previousFields[name]?.value),
+        errorMessage: "",
+      },
+    }));
+  };
+
+  const handleOnBlur = () => {
+    setIsInputFieldFocused(false);
+
+    setFormFields((previousFields) => ({
+      ...previousFields,
+      [name]: {
+        ...previousFields[name],
+        errorMessage: getInputFieldErrorMessage(previousFields[name]?.value),
       },
     }));
   };
@@ -49,7 +61,10 @@ const TextInputField = ({ name, formFields, setFormFields }: TextInputFieldProps
   };
 
   return (
-    <div className="relative w-full flex flex-col space-y-1.5">
+    <div
+      className="relative w-full flex flex-col space-y-1.5"
+      onFocus={() => handleOnFocus()}
+      onBlur={() => handleOnBlur()}>
       <div>
         <input
           type={name === "password" ? (isPasswordVisible ? "text" : "password") : "text"}
@@ -58,8 +73,6 @@ const TextInputField = ({ name, formFields, setFormFields }: TextInputFieldProps
           autoComplete="false"
           onChange={handleOnChange}
           value={formFields[name]?.value === true ? "" : (formFields[name]?.value as string) || ""}
-          onFocus={() => handleOnFocusOrBlur(true)}
-          onBlur={() => handleOnFocusOrBlur(false)}
           aria-invalid={formFields[name]?.errorMessage ? "true" : "false"}
           aria-describedby={`${name}Error`}
           className="h-4 w-full font-aperçu text-sm bg-[#222222] border-[#D9D9D9] border-b-[0.5px] focus:border-[#D9D9D9] font-light focus:outline-none appearance-none pb-[.15rem]"
