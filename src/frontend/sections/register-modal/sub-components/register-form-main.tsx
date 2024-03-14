@@ -5,7 +5,10 @@ import TermsOfServiceInput from "@/frontend/components/ui/forms/terms-of-service
 import RegisterWIthSegment from "@/frontend/components/ui/forms/register-with-segment";
 import SubmitSegment from "@/frontend/components/ui/forms/submit-segment";
 
-type FormFieldsType = Record<string, { value: string | number | boolean; errorMessage?: string }>;
+type FormFieldsType = Record<
+  string,
+  { value: string | number | boolean; errorMessage?: string }
+>;
 
 const RegisterFormBody = () => {
   const [credentials, setCredentials] = useState<FormFieldsType>({
@@ -16,13 +19,17 @@ const RegisterFormBody = () => {
   });
 
   return (
-    <main className="w-full h-full grid grid-cols-10">
+    <main className="grid h-full w-full grid-cols-10">
       <div className="col-span-2"></div>
       <div className="col-span-6">
         <form className="pt-8">
           <div className="space-y-8">
             <div>
-              <TextInputField name="name" formFields={credentials} setFormFields={setCredentials} />
+              <TextInputField
+                name="name"
+                formFields={credentials}
+                setFormFields={setCredentials}
+              />
             </div>
             <div>
               <TextInputField
