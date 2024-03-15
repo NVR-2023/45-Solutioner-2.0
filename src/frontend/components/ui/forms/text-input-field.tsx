@@ -4,7 +4,10 @@ import PasswordVisibilityToggle from "./password-visibility-toggle";
 
 type FieldValueType = string | number | boolean;
 
-type FormFieldsType = Record<string, { value: FieldValueType; errorMessage?: string }>;
+type FormFieldsType = Record<
+  string,
+  { value: FieldValueType; errorMessage?: string }
+>;
 
 type TextInputFieldProps = {
   name: string;
@@ -12,7 +15,11 @@ type TextInputFieldProps = {
   setFormFields: Dispatch<SetStateAction<FormFieldsType>>;
 };
 
-const TextInputField = ({ name, formFields, setFormFields }: TextInputFieldProps) => {
+const TextInputField = ({
+  name,
+  formFields,
+  setFormFields,
+}: TextInputFieldProps) => {
   const [isInputFieldFocused, setIsInputFieldFocused] = useState(false);
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
@@ -62,28 +69,40 @@ const TextInputField = ({ name, formFields, setFormFields }: TextInputFieldProps
 
   return (
     <div
-      className="relative w-full flex flex-col space-y-1.5"
+      className="relative flex w-full flex-col space-y-1.5"
       onFocus={() => handleOnFocus()}
-      onBlur={() => handleOnBlur()}>
+      onBlur={() => handleOnBlur()}
+    >
       <div>
         <input
-          type={name === "password" ? (isPasswordVisible ? "text" : "password") : "text"}
+          type={
+            name === "password"
+              ? isPasswordVisible
+                ? "text"
+                : "password"
+              : "text"
+          }
           id={`${name}ID`}
           name={name}
           autoComplete="false"
           onChange={handleOnChange}
-          value={formFields[name]?.value === true ? "" : (formFields[name]?.value as string) || ""}
+          value={
+            formFields[name]?.value === true
+              ? ""
+              : (formFields[name]?.value as string) || ""
+          }
           aria-invalid={formFields[name]?.errorMessage ? "true" : "false"}
           aria-describedby={`${name}Error`}
-          className="h-4 w-full font-aperçu text-sm bg-[#222222] border-[#D9D9D9] border-b-[0.5px] focus:border-[#D9D9D9] font-light focus:outline-none appearance-none pb-[.15rem]"
+          className="h-4 w-full appearance-none border-b border-black bg-neutral-300 pb-[.15rem] font-aperçu  text-sm focus:border-b focus:outline-none dark:border-[#D9D9D9] dark:bg-[#222222]"
         />
       </div>
-      <div className="w-full absolute -top-4 left-0">
+      <div className="absolute -top-4 left-0 w-full">
         <label
           htmlFor={`${name}ID`}
-          className={`flex justify-between font-aperçu text-xs small-caps text-[#8e8e8e] leading-[.5rem] tracking-wide transition-transform duration-300 ${
+          className={`flex justify-between font-aperçu text-xs font-[700] leading-[.5rem] tracking-wide text-black transition-transform duration-300 small-caps dark:text-[#8e8e8e] ${
             !isInputFieldFocused && !formFields[name]?.value && "translate-y-5"
-          }`}>
+          }`}
+        >
           {name}
 
           {name === "password" && (
@@ -101,9 +120,10 @@ const TextInputField = ({ name, formFields, setFormFields }: TextInputFieldProps
       <div
         id={`${name}Error`}
         role="alert"
-        className={`text-red-500 text-[0.625rem] italic leading-[.5rem] transition-opacity duration-500 ${
+        className={`text-[0.625rem] italic leading-[.5rem] text-red-500 transition-opacity duration-500 ${
           formFields[name]?.errorMessage ? "opacity-100" : "opacity-0"
-        }`}>
+        }`}
+      >
         {formFields[name]?.errorMessage || "\u00A0"}
       </div>
     </div>

@@ -6,9 +6,9 @@ const RegisterModal = () => {
   return (
     <FormModalShell>
       <div className="relative flex h-full flex-col text-[#D9D9D9]">
-        <div className="h-[4.5rem] border-b-[1px] border-[D9D9D9] px-4">
+       {/*  <div className="h-[4.5rem] border-b-[1px] border-[D9D9D9] px-4">
           <FormModalHeader title={"register"} />
-        </div>
+        </div> */}
         <div className="px-4">
           <RegisterFormBody />
         </div>

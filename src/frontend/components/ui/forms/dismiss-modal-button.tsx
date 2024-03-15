@@ -1,6 +1,6 @@
 import CloseICon from "../../icons/close-icon";
 import Link from "next/link";
-const DismissMOdalButton = () => {
+const DismissModalButton = () => {
   return (
     <Link href="/">
       <span aria-label="Close Modal" role="button" tabIndex={0} className="">
@@ -10,4 +10,4 @@ const DismissMOdalButton = () => {
   );
 };
 
-export default DismissMOdalButton;
+export default DismissModalButton;
