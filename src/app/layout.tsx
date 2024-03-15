@@ -15,7 +15,6 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const TAILWIND_DAR_THEME_ENABLER: "dark" = "dark";
   return (
     <html lang="en" className="!scroll-smooth" suppressHydrationWarning>
       <body
