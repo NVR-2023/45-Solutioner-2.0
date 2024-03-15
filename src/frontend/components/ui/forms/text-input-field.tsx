@@ -1,3 +1,5 @@
+import { LABELS , ERROR_MESSAGES,TEXT_COLOR } from "@/app/global-styles.";
+
 import { useState, ChangeEvent, Dispatch, SetStateAction } from "react";
 import { INPUT_VALIDATION_MAP } from "./input-validation/input-validation-data";
 import PasswordVisibilityToggle from "./password-visibility-toggle";
@@ -97,30 +99,33 @@ const TextInputField = ({
         />
       </div>
       <div className="absolute -top-4 left-0 w-full">
-        <label
-          htmlFor={`${name}ID`}
-          className={`flex justify-between font-aperçu font-bold text-xs leading-[.5rem] tracking-wide text-black transition-transform duration-300 small-caps dark:text-[#8e8e8e] ${
-            !isInputFieldFocused && !formFields[name]?.value && "translate-y-5"
-          }`}
-        >
-          {name}
-
-          {name === "password" && (
-            <span>
-              <PasswordVisibilityToggle
-                scale={0.5}
-                isPasswordVisible={isPasswordVisible}
-                togglePasswordVisibility={handleTogglePasswordVisibility}
-              />
-            </span>
-          )}
-        </label>
+        <div className={`${LABELS} ${TEXT_COLOR}`}>
+          <label
+            htmlFor={`${name}ID`}
+            className={`flex justify-between transition-transform duration-300 ${
+              !isInputFieldFocused &&
+              !formFields[name]?.value &&
+              "translate-y-5"
+            }`}
+          >
+            {name}
+            {name === "password" && (
+              <span>
+                <PasswordVisibilityToggle
+                  scale={0.5}
+                  isPasswordVisible={isPasswordVisible}
+                  togglePasswordVisibility={handleTogglePasswordVisibility}
+                />
+              </span>
+            )}
+          </label>
+        </div>
       </div>
 
       <div
         id={`${name}Error`}
         role="alert"
-        className={`text-[0.625rem] italic leading-[.5rem] text-red-500 transition-opacity duration-500 ${
+        className={` ${ERROR_MESSAGES} transition-opacity duration-500 ${
           formFields[name]?.errorMessage ? "opacity-100" : "opacity-0"
         }`}
       >

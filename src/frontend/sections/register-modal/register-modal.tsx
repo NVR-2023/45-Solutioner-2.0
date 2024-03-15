@@ -1,6 +1,6 @@
 import FormModalShell from "@/frontend/components/ui/forms/form-modal-shell";
 import FormModalHeader from "@/frontend/components/ui/forms/form-modal-header";
-import RegisterFormBody from "./sub-components/register-form-main";
+import RegisterFormBody from "./sub-components/register-form-body";
 
 const RegisterModal = () => {
   return (
