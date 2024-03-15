@@ -5,7 +5,7 @@ import RegisterFormBody from "./sub-components/register-form-main";
 const RegisterModal = () => {
   return (
     <FormModalShell>
-      <div className="relative flex h-full flex-col text-[#D9D9D9]">
+      <div className="relative flex h-full flex-col]">
        {/*  <div className="h-[4.5rem] border-b-[1px] border-[D9D9D9] px-4">
           <FormModalHeader title={"register"} />
         </div> */}

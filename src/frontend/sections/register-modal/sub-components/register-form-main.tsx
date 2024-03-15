@@ -21,9 +21,9 @@ const RegisterFormBody = () => {
   return (
     <main className="grid h-full w-full grid-cols-10">
       <div className="col-span-2"></div>
-      <div className="col-span-6">
-        <form className="pt-8">
-          <div className="space-y-8">
+      <div className="col-span-6 flex justify-center">
+        <form className="w-full pt-8">
+          <div className="space-y-7">
             <div>
               <TextInputField
                 name="name"
@@ -45,15 +45,15 @@ const RegisterFormBody = () => {
                 setFormFields={setCredentials}
               />
             </div>
-          </div>
-          <div>
-            <TermsOfServiceInput />
-          </div>
-          <div>
-            <RegisterWIthSegment />
-          </div>
-          <div>
-            <SubmitSegment />
+            <div>
+              <TermsOfServiceInput />
+            </div>
+            <div>
+              <RegisterWIthSegment />
+            </div>
+            <div>
+              <SubmitSegment />
+            </div>
           </div>
         </form>
       </div>
