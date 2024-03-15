@@ -17,9 +17,10 @@ export default function RootLayout({
 }>) {
   const TAILWIND_DAR_THEME_ENABLER: "dark" = "dark";
   return (
-    <html lang="en" className="!scroll-smooth">
+    <html lang="en" className="!scroll-smooth" suppressHydrationWarning>
       <body
-        className={`${aperçuFont.variable} ${rozhaOneFont.variable} ${libreBodoniFont.variable} overflow-x-hidden antialiased`}>
+        className={`${aperçuFont.variable} ${rozhaOneFont.variable} ${libreBodoniFont.variable} overflow-x-hidden antialiased`}
+      >
         {children}
         <Footer />
       </body>
