@@ -93,13 +93,13 @@ const TextInputField = ({
           }
           aria-invalid={formFields[name]?.errorMessage ? "true" : "false"}
           aria-describedby={`${name}Error`}
-          className="h-4 w-full appearance-none border-b border-black bg-neutral-300 pb-[.15rem] font-aperçu  text-sm focus:border-b focus:outline-none dark:border-[#D9D9D9] dark:bg-[#222222]"
+          className="h-4 w-full appearance-none border-b border-black bg-neutral-300 pb-[.15rem] font-aperçu  text-black text-sm focus:border-b focus:outline-none dark:border-[#D9D9D9] dark:bg-[#222222]"
         />
       </div>
       <div className="absolute -top-4 left-0 w-full">
         <label
           htmlFor={`${name}ID`}
-          className={`flex justify-between font-aperçu text-xs font-[700] leading-[.5rem] tracking-wide text-black transition-transform duration-300 small-caps dark:text-[#8e8e8e] ${
+          className={`flex justify-between font-aperçu font-[900] text-xs leading-[.5rem] tracking-wide text-black transition-transform duration-300 small-caps dark:text-[#8e8e8e] ${
             !isInputFieldFocused && !formFields[name]?.value && "translate-y-5"
           }`}
         >
