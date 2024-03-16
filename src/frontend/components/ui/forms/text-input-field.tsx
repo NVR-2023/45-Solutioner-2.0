@@ -1,18 +1,11 @@
-import {
-  INPUT_FIELD_LABELS,
-  ERROR_MESSAGES,
-  TEXT_COLOR,
-} from "@/app/global-styles.";
-
 import { useState, ChangeEvent, Dispatch, SetStateAction } from "react";
 import { INPUT_VALIDATION_MAP } from "./input-validation/input-validation-data";
 import PasswordVisibilityToggle from "./password-visibility-toggle";
-
-type FieldValueType = string | number | boolean;
+import { PgDateString } from "drizzle-orm/pg-core";
 
 type FormFieldsType = Record<
   string,
-  { value: FieldValueType; errorMessage?: string }
+  { value: string | number | boolean; errorMessage?: string }
 >;
 
 type TextInputFieldProps = {
@@ -58,7 +51,9 @@ const TextInputField = ({
       ...previousFields,
       [name]: {
         ...previousFields[name],
-        errorMessage: getInputFieldErrorMessage(previousFields[name]?.value),
+        errorMessage: getInputFieldErrorMessage(
+          previousFields[name]?.value as string,
+        ),
       },
     }));
   };
@@ -67,7 +62,7 @@ const TextInputField = ({
     setIsPasswordVisible((previousValue) => !previousValue);
   };
 
-  const getInputFieldErrorMessage = (fieldValue: FieldValueType) => {
+  const getInputFieldErrorMessage = (fieldValue: string) => {
     const validationFunction =
       INPUT_VALIDATION_MAP.get(name) || INPUT_VALIDATION_MAP.get("default")!;
     return validationFunction(String(fieldValue).trim());
@@ -90,20 +85,16 @@ const TextInputField = ({
           onFocus={() => handleOnFocus()}
           onChange={handleOnChange}
           onBlur={() => handleOnBlur()}
-          value={
-            formFields[name]?.value === true
-              ? ""
-              : (formFields[name]?.value as string) || ""
-          }
+          value={formFields[name]?.value as string}
           aria-invalid={formFields[name]?.errorMessage ? "true" : "false"}
           aria-describedby={`${name}Error`}
-          className="h-4 w-full appearance-none border-b border-black bg-neutral-300 pb-[.15rem] font-aperçu  md:text-xs text-black focus:border-b focus:outline-none dark:border-[#D9D9D9] dark:bg-[#222222]"
+          className="h-4 w-full appearance-none border-b border-black bg-neutral-300 pb-[.15rem] font-aperçu  text-black focus:border-b focus:outline-none dark:border-[#D9D9D9] dark:bg-[#222222] md:text-xs"
         />
       </div>
       <div className="absolute -top-5 left-0 w-full">
         <label
           htmlFor={`${name}ID`}
-          className={` flex items-center justify-between ${INPUT_FIELD_LABELS} ${TEXT_COLOR} transition-transform duration-300 ${
+          className={` flex items-center justify-between  font-aperçu text-sm font-extrabold leading-[.5rem] tracking-wide text-black transition-transform duration-300 small-caps dark:text-neutral-300 md:text-xs ${
             !isInputFieldFocused && !formFields[name]?.value && "translate-y-5"
           }`}
         >
@@ -123,7 +114,7 @@ const TextInputField = ({
       <div
         id={`${name}Error`}
         role="alert"
-        className={` ${ERROR_MESSAGES} transition-opacity duration-500 ${
+        className={` text-xs italic leading-[.5rem] text-red-500 transition-opacity duration-500 sm:text-[0.625rem] ${
           formFields[name]?.errorMessage ? "opacity-100" : "opacity-0"
         }`}
       >

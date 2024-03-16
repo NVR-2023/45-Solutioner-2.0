@@ -1,7 +1,5 @@
 "use client";
 
-import React from "react";
-
 import NavbarHomepage from "@/frontend/sections/navbar-homepage/navbar-homepage";
 import ServicesHomeSection from "@/frontend/sections/services-section-home/services-section-home";
 import SecuritySectionHome from "@/frontend/sections/security-section-home/security-section-home";

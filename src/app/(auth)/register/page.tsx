@@ -16,10 +16,8 @@ const Register = () => {
   useApplyThemeMode(currentThemeMode);
 
   return (
-    <div id="top" className={`${PAGE_BACKGROUND}`}>
-      <div className="flex h-screen w-screen items-center justify-center border-b-2 border-neutral-200">
-        <RegisterModal />
-      </div>
+    <div className="flex h-screen w-screen items-center justify-center border-b-2 border-neutral-200 bg-neutral-200 dark:bg-neutral-500">
+      <RegisterModal />
     </div>
   );
 };

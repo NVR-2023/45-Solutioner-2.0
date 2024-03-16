@@ -1,4 +1,3 @@
-import { FILLED_BUTTON_LABELS, OUTLINED_BUTTON_LABELS, TEXT_COLOR, REVERSE_TEXT_COLOR } from "@/app/global-styles.";
 import { BasicButtonProps } from "@/types/component-props-types";
 
 const BasicButton = ({
@@ -7,14 +6,17 @@ const BasicButton = ({
   onClick,
   children,
 }: BasicButtonProps) => {
-  const baseStyle: string = `flex justify-center items-center rounded `;
+  const baseStyle: string = "flex justify-center items-center rounded ";
 
   const typeMap = new Map([
     [
       "outlined",
-      `border-black border-[1.5px] ${OUTLINED_BUTTON_LABELS} ${TEXT_COLOR}`,
+      "border-black border-[1.5px] font-aperçu font-extrabold text-sm md:text-xs leading-[.5rem] tracking-wide small-caps text-black dark:text-neutral-300 ",
     ],
-    ["filled", `bg-neutral-900 ${FILLED_BUTTON_LABELS} ${REVERSE_TEXT_COLOR}`],
+    [
+      "filled",
+      "bg-neutral-900 font-aperçu font-bold text-sm md:text-xs leading-[.5rem] tracking-wide small-caps text-neutral-300 font-bold dark:font-semibold dark:text-neutral-300",
+    ],
   ]);
 
   const sizeMap = new Map([
@@ -24,7 +26,10 @@ const BasicButton = ({
   ]);
 
   return (
-    <button onClick={onClick} className={`${baseStyle} ${typeMap.get(type)} ${sizeMap.get(size)}`}>
+    <button
+      onClick={onClick}
+      className={`${baseStyle} ${typeMap.get(type)} ${sizeMap.get(size)}`}
+    >
       {children}
     </button>
   );
