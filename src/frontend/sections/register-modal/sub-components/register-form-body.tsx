@@ -22,7 +22,7 @@ const RegisterFormBody = () => {
     <main className="grid h-full w-full grid-cols-12">
       <div className="col-span-2"></div>
       <div className="col-span-8 flex justify-center">
-        <form className="w-full space-y-4 pt-8">
+        <form method="post" className="w-full space-y-4 pt-8">
           <div className="space-y-7">
             <div>
               <TextInputField
