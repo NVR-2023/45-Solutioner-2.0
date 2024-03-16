@@ -12,7 +12,8 @@ export type BasicComponentProps = {
 export type BasicButtonProps = {
   type?: "outlined" | "filled";
   size?: "sm" | "md" | "lg";
-  children?: ReactNode;
+  onClick?: () => void,
+  children?: ReactNode,
 };
 
 export type OnClickComponentProps = {

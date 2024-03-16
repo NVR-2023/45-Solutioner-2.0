@@ -1,4 +1,8 @@
-import { LABELS, ERROR_MESSAGES, TEXT_COLOR } from "@/app/global-styles.";
+import {
+  INPUT_FIELD_LABELS,
+  ERROR_MESSAGES,
+  TEXT_COLOR,
+} from "@/app/global-styles.";
 
 import { useState, ChangeEvent, Dispatch, SetStateAction } from "react";
 import { INPUT_VALIDATION_MAP } from "./input-validation/input-validation-data";
@@ -70,11 +74,7 @@ const TextInputField = ({
   };
 
   return (
-    <div
-      className="relative flex w-full flex-col space-y-1.5"
-      onFocus={() => handleOnFocus()}
-      onBlur={() => handleOnBlur()}
-    >
+    <div className="relative flex w-full flex-col space-y-1.5">
       <div>
         <input
           type={
@@ -87,7 +87,9 @@ const TextInputField = ({
           id={`${name}ID`}
           name={name}
           autoComplete="false"
+          onFocus={() => handleOnFocus()}
           onChange={handleOnChange}
+          onBlur={() => handleOnBlur()}
           value={
             formFields[name]?.value === true
               ? ""
@@ -95,13 +97,13 @@ const TextInputField = ({
           }
           aria-invalid={formFields[name]?.errorMessage ? "true" : "false"}
           aria-describedby={`${name}Error`}
-          className="h-4 w-full appearance-none border-b border-black bg-neutral-300 pb-[.15rem] font-aperçu  text-sm text-black focus:border-b focus:outline-none dark:border-[#D9D9D9] dark:bg-[#222222]"
+          className="h-4 w-full appearance-none border-b border-black bg-neutral-300 pb-[.15rem] font-aperçu  md:text-xs text-black focus:border-b focus:outline-none dark:border-[#D9D9D9] dark:bg-[#222222]"
         />
       </div>
       <div className="absolute -top-5 left-0 w-full">
         <label
           htmlFor={`${name}ID`}
-          className={` flex justify-between items-center ${LABELS} ${TEXT_COLOR} transition-transform duration-300 ${
+          className={` flex items-center justify-between ${INPUT_FIELD_LABELS} ${TEXT_COLOR} transition-transform duration-300 ${
             !isInputFieldFocused && !formFields[name]?.value && "translate-y-5"
           }`}
         >

@@ -46,12 +46,14 @@ const RegisterFormBody = () => {
               />
             </div>
           </div>
-          <div className="space-y-0.5">
-            <TermsOfServiceInput />
-            <RegisterWIthSegment />
-          </div>
-          <div className="">
-            <SubmitSegment />
+          <div className="space-y-7">
+            <div className="space-y-1">
+              <TermsOfServiceInput />
+              <RegisterWIthSegment />
+            </div>
+            <div className="">
+              <SubmitSegment />
+            </div>
           </div>
         </form>
       </div>

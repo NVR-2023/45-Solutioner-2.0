@@ -6,7 +6,7 @@ const RegisterModal = () => {
   return (
     <FormModalShell>
       <div className="flex h-full w-full justify-center">
-        <div className="flex w-full max-w-screen-lg">
+        <div className="flex w-full ">
           <div className="flex-none"></div>
           <div className="flex-grow px-4">
             <RegisterFormBody />

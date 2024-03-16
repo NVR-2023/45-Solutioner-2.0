@@ -21,15 +21,20 @@ export const UI_BACKGROUND =
   LIGHT_THEME_UI_BACKGROUND + DARK_THEME_UI_BACKGROUND;
 
 export const TEXT_COLOR = LIGHT_THEME_TEXT_COLOR + DARK_THEME_TEXT_COLOR;
-export const REVERSE_TEXT_COLOR = " text-neutral-300 font-bold dark:font-semibold dark:text-neutral-300"
+export const REVERSE_TEXT_COLOR =
+  " text-neutral-300 font-bold dark:font-semibold dark:text-neutral-300";
 
-export const LABELS =
+export const INPUT_FIELD_LABELS =
+  " font-aperçu font-extrabold text-sm md:text-xs leading-[.5rem] tracking-wide small-caps";
+
+export const FILLED_BUTTON_LABELS =
   " font-aperçu font-bold text-sm md:text-xs leading-[.5rem] tracking-wide small-caps";
 
-export const BUTTON_LABELS =
-  " font-aperçu font-extrabold text-sm md:text-xs leading-[.5rem] tracking-wide small-caps";
+export const OUTLINED_BUTTON_LABELS =
+  " font-aperçu font-bold text-sm md:text-xs leading-[.5rem] tracking-wide small-caps";
 
 export const ERROR_MESSAGES =
   " text-xs sm:text-[0.625rem] italic leading-[.5rem] text-red-500";
 
-export const SMALL_PROMPTS = " text-sm md:text-[.625rem] font-semibold tracking-normal";
+export const SMALL_PROMPTS =
+  " text-sm md:text-[.625rem] font-semibold tracking-normal";
