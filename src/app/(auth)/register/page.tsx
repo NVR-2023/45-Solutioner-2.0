@@ -4,7 +4,6 @@ import useThemeModeSSetup from "@/frontend/hooks/theme-hooks/use-theme-mode-setu
 import useSyncThemeModeWithLocalStorage from "@/frontend/hooks/theme-hooks/use-symc-theme-mode-with-localstorage";
 import useApplyThemeMode from "@/frontend/hooks/theme-hooks/use-apply-theme-mode";
 
-import { PAGE_BACKGROUND } from "@/app/global-styles.";
 import RegisterModal from "@/frontend/sections/register-modal/register-modal";
 import useInstantScrollToTop from "@/frontend/hooks/use-instant-scroll-to-top";
 

@@ -1,7 +1,6 @@
 import { useState, ChangeEvent, Dispatch, SetStateAction } from "react";
 import { INPUT_VALIDATION_MAP } from "./input-validation/input-validation-data";
 import PasswordVisibilityToggle from "./password-visibility-toggle";
-import { PgDateString } from "drizzle-orm/pg-core";
 
 type FormFieldsType = Record<
   string,
