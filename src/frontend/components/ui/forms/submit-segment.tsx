@@ -3,7 +3,7 @@ import BasicButton
 const SubmitSegment = () => {
   return <div className="flex justify-between">
     <BasicButton size={"sm"} type={"outlined"}>cancel</BasicButton>
-    <BasicButton >register</BasicButton>
+    <BasicButton size={"md"} type={"filled"}>register</BasicButton>
   </div>;
 };
 

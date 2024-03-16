@@ -1,8 +1,8 @@
-import DismissModalButton from "./dismiss-modal-button";
+import DismissModalButton from "../../../components/ui/forms/dismiss-modal-button";
 type FormHeaderProps = {
   title: string;
 };
-const FormModalHeader = ({ title }: FormHeaderProps) => {
+const RegisterFormHeader = ({ title }: FormHeaderProps) => {
   return (
     <header className="grid h-full w-full grid-cols-10">
       <div className="col-span-2 justify-start gap-x-4 font-rozhaOne text-[.625rem] tracking-[3%] text-[#94C2A4]">
@@ -20,4 +20,4 @@ const FormModalHeader = ({ title }: FormHeaderProps) => {
   );
 };
 
-export default FormModalHeader;
+export default RegisterFormHeader;
