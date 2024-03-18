@@ -25,9 +25,10 @@ export const users = pgTable(
       .primaryKey(),
     name: text("name").notNull(),
     email: text("email").notNull(),
+    emailVerifiedAt: timestamp("email_verified_at"),
     hashedPassword: text("hashed_password"),
-    googleId: varchar("google_id", { length: 255}),
-    facebookId: varchar("facebook_id", { length: 255}),
+    googleId: varchar("google_id", { length: 255 }),
+    facebookId: varchar("facebook_id", { length: 255 }),
     createdAt: timestamp("created_at").defaultNow(),
     modifiedAt: timestamp("modified_at").defaultNow(),
   },
@@ -35,7 +36,7 @@ export const users = pgTable(
     return {
       uniqueIdx: uniqueIndex("users_unique_idx").on(users.email),
     };
-  }
+  },
 );
 
 export const usersRelations = relations(users, ({ one, many }) => ({
@@ -147,6 +148,7 @@ export const providers = pgTable(
       .primaryKey(),
     name: text("name").notNull(),
     email: text("email").notNull(),
+    emailVerifiedAt: timestamp("email_verified_at"),
     hashedPassword: text("hashed_password"),
     googleId: varchar("google_id", { length: 255 }),
     facebookId: varchar("facebook_id", { length: 255 }),
