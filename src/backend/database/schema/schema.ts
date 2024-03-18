@@ -25,7 +25,9 @@ export const users = pgTable(
       .primaryKey(),
     name: text("name").notNull(),
     email: text("email").notNull(),
-    hashedPassword: text("hashed_password").notNull(),
+    hashedPassword: text("hashed_password"),
+    googleId: varchar("google_id", { length: 255}),
+    facebookId: varchar("facebook_id", { length: 255}),
     createdAt: timestamp("created_at").defaultNow(),
     modifiedAt: timestamp("modified_at").defaultNow(),
   },
@@ -41,10 +43,31 @@ export const userRelations = relations(users, ({ one, many }) => ({
     fields: [users.id],
     references: [userProfiles.userId],
   }),
+  sessions: many(sessions),
   addresses: many(userAddresses),
   requests: many(serviceRequests),
   exclusions: many(userExclusions),
 }));
+
+export const sessions = pgTable("sessions", {
+  id: text("id").primaryKey(),
+  userId: text("user_id")
+    .notNull()
+    .references(() => users.id),
+  expiresAt: timestamp("expires_at", {
+    withTimezone: true,
+    mode: "date",
+  }).notNull(),
+});
+
+
+export const sessionRelations = relations(sessions, ({ one }) => ({
+  user: one(users, {
+    fields: [sessions.userId],
+    references: [users.id],
+  }),
+}));
+
 
 export const userProfiles = pgTable("user_profiles", {
   id: serial("id").primaryKey(),
