@@ -38,18 +38,18 @@ export const users = pgTable(
   }
 );
 
-export const userRelations = relations(users, ({ one, many }) => ({
+export const usersRelations = relations(users, ({ one, many }) => ({
   profile: one(userProfiles, {
     fields: [users.id],
     references: [userProfiles.userId],
   }),
-  sessions: many(sessions),
+  sessions: many(userSessions),
   addresses: many(userAddresses),
   requests: many(serviceRequests),
   exclusions: many(userExclusions),
 }));
 
-export const sessions = pgTable("sessions", {
+export const userSessions = pgTable("user_sessions", {
   id: text("id").primaryKey(),
   userId: text("user_id")
     .notNull()
@@ -61,9 +61,9 @@ export const sessions = pgTable("sessions", {
 });
 
 
-export const sessionRelations = relations(sessions, ({ one }) => ({
+export const userSessionsRelations = relations(userSessions, ({ one }) => ({
   user: one(users, {
-    fields: [sessions.userId],
+    fields: [userSessions.userId],
     references: [users.id],
   }),
 }));
@@ -147,16 +147,19 @@ export const providers = pgTable(
       .primaryKey(),
     name: text("name").notNull(),
     email: text("email").notNull(),
-    password: text("password").notNull(),
-    createdAt: timestamp("createdAt").defaultNow().notNull(),
-    modifiedAt: timestamp("modifiedAt").defaultNow().notNull(),
+    hashedPassword: text("hashed_password"),
+    googleId: varchar("google_id", { length: 255 }),
+    facebookId: varchar("facebook_id", { length: 255 }),
+    createdAt: timestamp("created_at").defaultNow().notNull(),
+    modifiedAt: timestamp("modified_at").defaultNow().notNull(),
   },
   (providers) => {
     return {
       uniqueIdx: uniqueIndex("providers_unique_idx").on(providers.email),
     };
-  }
+  },
 );
+
 
 export const providerRelations = relations(providers, ({ one, many }) => ({
   profile: one(providerProfiles, {
@@ -167,9 +170,28 @@ export const providerRelations = relations(providers, ({ one, many }) => ({
     fields: [providers.id],
     references: [providerAddresses.providerId],
   }),
+  sessions: many(providerSessions),
   requests: many(serviceRequests),
   availabilities: many(providerAvailabilities),
   servicesProvided: many(providerServicesProvided),
+}));
+
+export const providerSessions = pgTable("provider_sessions", {
+  id: text("id").primaryKey(),
+  providerId: text("provider_id")
+    .notNull()
+    .references(() => providers.id),
+  expiresAt: timestamp("expires_at", {
+    withTimezone: true,
+    mode: "date",
+  }).notNull(),
+});
+
+export const providerSessionsRelations = relations(providerSessions, ({ one }) => ({
+  provider: one(providers, {
+    fields: [providerSessions.providerId],
+    references: [providers.id],
+  }),
 }));
 
 export const providerProfiles = pgTable("provider_profiles", {
