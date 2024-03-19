@@ -1,14 +1,14 @@
 import { NextResponse } from "next/server";
-import generateResponseObject from "@/app/api/error-codes/generate-response-object";
-import { ResponseStatusCodeProp } from "@/app/api/error-codes/generate-response-object";
+import generateResponseObject from "@/app/api/generate-response-object/generate-response-object";
+import { ResponseStatusCodeProp } from "@/app/api/generate-response-object/generate-response-object";
 
 type RequestType = Record<string, string>;
 
-export async function GET() {
+/* export async function GET() {
   return NextResponse.json({
     message: "API route Register User working",
   });
-}
+} */
 
 export async function POST(request: Request) {
   const data: RequestType = await request.json();
@@ -25,6 +25,7 @@ export async function POST(request: Request) {
   // validate name
   // validate email
   // validate password
+
   // check if email is unique
   // create new user
   // send response
