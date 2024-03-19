@@ -1,25 +1,19 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import generateResponseObject from "@/app/api/generate-response-object/generate-response-object";
-import { ResponseStatusCodeProp } from "@/app/api/generate-response-object/generate-response-object";
 
-type RequestType = Record<string, string>;
+export async function POST(request: NextRequest) {
+  const body = await request.json();
+  const { name, email, password } = body;
 
-/* export async function GET() {
-  return NextResponse.json({
-    message: "API route Register User working",
-  });
-} */
-
-export async function POST(request: Request) {
-  const data: RequestType = await request.json();
-  const { name, email, password } = data;
-  let responseCode: ResponseStatusCodeProp;
   let responseObject: ReturnType<typeof generateResponseObject>;
 
   // general validation
   if (!name || !email || !password) {
-    responseCode = 400 as ResponseStatusCodeProp;
-    responseObject = generateResponseObject({ status: responseCode });
+    responseObject = generateResponseObject({
+      status: 400,
+      data: { name: "Jupiter" },
+      validationErrors: { name: "assas", email: "dfgfgf", password: "asasas" },
+    });
   }
 
   // validate name
@@ -29,12 +23,11 @@ export async function POST(request: Request) {
   // check if email is unique
   // create new user
   // send response
-  
- else {
-  responseCode = 200 as ResponseStatusCodeProp;
-  responseObject = generateResponseObject({ status: responseCode });
-  
- }
-      return NextResponse.json(responseObject);
-
+  else {
+    responseObject = generateResponseObject({
+      status: 200,
+      data: { name: "Celeste" },
+    });
+  }
+  return NextResponse.json(responseObject);
 }

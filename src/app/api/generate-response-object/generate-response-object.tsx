@@ -15,33 +15,41 @@ const responseCodeMap = new Map<number, string>([
   [504, "Gateway Timeout"],
 ]);
 
-export type ResponseStatusCodeProp = number & keyof typeof responseCodeMap;
-
 type responseObjectType = {
   ok: boolean;
   status: number;
-  body?: object;
-  error?: string;
+  data?: object;
+  errors?: {
+    message: string;
+    validationErrors?: object;
+  };
 };
 
 type generateResponseObjectProps = {
-  status: ResponseStatusCodeProp;
-  body?: object;
-  error?: object;
+  status: number;
+  data?: object;
+  validationErrors?: object;
 };
 
 const generateResponseObject = ({
   status,
-  body,
-}: generateResponseObjectProps) => {
-
+  data,
+  validationErrors,
+}: generateResponseObjectProps): responseObjectType => {
   const responseObject: responseObjectType = {
     ok: status < 300,
     status: status,
-    body: body,
+    data: data,
+    errors: undefined,
   };
 
-  if (status > 300) { responseObject.error = responseCodeMap.get(status);  }
+  if (status > 300) {
+    responseObject.errors = {
+      message: responseCodeMap.get(status) || "Unknown Error",
+      validationErrors: validationErrors,
+    };
+  }
+
   return responseObject;
 };
 
