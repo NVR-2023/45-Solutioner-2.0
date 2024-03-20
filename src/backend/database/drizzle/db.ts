@@ -1,5 +1,7 @@
 import "./config";
 import { drizzle } from "drizzle-orm/vercel-postgres";
+import { eq } from "drizzle-orm";
+
 import { sql } from "@vercel/postgres";
 import { users, services } from "../schema/schema";
 import * as schema from "../schema/schema";
@@ -19,8 +21,21 @@ export const getUsers2 = async () => {
   return result;
 };
 
-export const insertUserInDBTable = async (user: NewUser) => {
+export const insertNewUserInDB = async (user: NewUser) => {
   return db.insert(users).values(user).returning();
+};
+
+export const checkNewUserEmailUniqueness = async (newUserEmail: string) => {
+  try {
+    const result = await db.query.users.findFirst({
+      where: eq(users.email, newUserEmail),
+    });
+
+    return !result;
+  } catch (error) {
+    console.error("Error occurred while checking email uniqueness:", error);
+    return false;
+  }
 };
 
 // Providers
@@ -35,8 +50,8 @@ export const insertServiceInDBTable = async (service: NewService) => {
 };
 
 export const fetchAllServices = async () => {
-    const result = await db.query.services.findMany();
-    return result;
+  const result = await db.query.services.findMany();
+  return result;
 };
 
 export const seedServicesDBTable = async () => {
@@ -46,7 +61,8 @@ export const seedServicesDBTable = async () => {
     console.log("Services Table already filled");
     return false;
   } else {
-    const pathToJson: string = "./src/backend/database/service-descriptions/services.json";
+    const pathToJson: string =
+      "./src/backend/database/service-descriptions/services.json";
     try {
       const fileContent = require("fs").readFileSync(pathToJson, "utf-8");
       const arrayWIthJsonData: NewService[] = JSON.parse(fileContent);
