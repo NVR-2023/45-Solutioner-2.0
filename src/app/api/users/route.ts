@@ -60,6 +60,7 @@ export async function POST(request: NextRequest) {
     };
 
     try {
+      // insert new user
       await insertNewUserInDB(newUserObject);
       responseObject = generateResponseObject({
         status: 201,
