@@ -11,11 +11,7 @@ export async function POST(request: NextRequest) {
   const { name, email, password } = body;
 
   let responseObject: ReturnType<typeof generateResponseObject>;
-  let validationErrorsObject: Record<string, string> = {
-    name: "",
-    email: "",
-    password: "",
-  };
+  let validationErrorsObject: Record<string, string> = {};
 
   // validate name
   let validationFunction = INPUT_VALIDATION_MAP.get("name")!;
