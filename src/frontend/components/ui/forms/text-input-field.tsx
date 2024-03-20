@@ -1,5 +1,5 @@
 import { useState, ChangeEvent, Dispatch, SetStateAction } from "react";
-import { INPUT_VALIDATION_MAP } from "./input-validation/input-validation-data";
+import { INPUT_VALIDATION_MAP } from "../../../../utils/functions/input-validation/input-validation-map";
 import PasswordVisibilityToggle from "./password-visibility-toggle";
 
 type FormFieldsType = Record<
