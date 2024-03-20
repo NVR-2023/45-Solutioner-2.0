@@ -1,5 +1,5 @@
 import { useState, ChangeEvent, Dispatch, SetStateAction } from "react";
-import { INPUT_VALIDATION_MAP } from "../../../../utils/functions/input-validation/input-validation-map";
+import { INPUT_VALIDATION_FUNCTION_MAP } from "../../../../utils/functions/input-validation/input-validation-function-map";
 import PasswordVisibilityToggle from "./password-visibility-toggle";
 
 type FormFieldsType = Record<
@@ -63,7 +63,8 @@ const TextInputField = ({
 
   const getInputFieldErrorMessage = (fieldValue: string) => {
     const validationFunction =
-      INPUT_VALIDATION_MAP.get(name) || INPUT_VALIDATION_MAP.get("default")!;
+      INPUT_VALIDATION_FUNCTION_MAP.get(name) ||
+      INPUT_VALIDATION_FUNCTION_MAP.get("default")!;
     return validationFunction(String(fieldValue).trim());
   };
 

@@ -55,7 +55,7 @@ const validateInputField = (
   return "";
 };
 
-export const INPUT_VALIDATION_MAP = new Map<
+export const INPUT_VALIDATION_FUNCTION_MAP = new Map<
   string,
   (inputValue: string) => string
 >([
