@@ -2,11 +2,10 @@ import { NextRequest, NextResponse } from "next/server";
 import generateResponseObject from "@/app/api/generate-response-object/generate-response-object";
 import { INPUT_VALIDATION_FUNCTION_MAP } from "@/utils/functions/input-validation/input-validation-function-map";
 
-import { checkNewUserEmailUniqueness } from "@/backend/database/drizzle/db";
-
-export async function GET() {
-  return NextResponse.json({ reply: "GET route active" });
-}
+import {
+  checkNewUserEmailUniqueness,
+  insertNewUserInDB,
+} from "@/backend/database/drizzle/db";
 
 export async function POST(request: NextRequest) {
   const body = await request.json();
@@ -28,7 +27,6 @@ export async function POST(request: NextRequest) {
   if (validationError) {
     validationErrorsObject.email = validationError;
   } else {
-
     const isNewUserEmailUnique = await checkNewUserEmailUniqueness(email);
     if (!isNewUserEmailUnique) {
       validationErrorsObject.email = "Email already exists";
@@ -52,6 +50,12 @@ export async function POST(request: NextRequest) {
     });
     return NextResponse.json(responseObject);
   } else {
+    const newUserObject = {
+      name: name,
+      email: email,
+      password: password,
+    };
+    insertNewUserInDB(newUserObject);
     responseObject = generateResponseObject({
       status: 201,
     });
