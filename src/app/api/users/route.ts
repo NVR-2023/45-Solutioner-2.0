@@ -55,10 +55,20 @@ export async function POST(request: NextRequest) {
       email: email,
       password: password,
     };
-    insertNewUserInDB(newUserObject);
-    responseObject = generateResponseObject({
-      status: 201,
-    });
-    return NextResponse.json(responseObject);
+
+    try {
+      await insertNewUserInDB(newUserObject);
+      responseObject = generateResponseObject({
+        status: 201,
+      });
+      return NextResponse.json(responseObject);
+    } catch (error) {
+      console.error("Error inserting new user into database:", error);
+      responseObject = generateResponseObject({
+        status: 500,
+      });
+      return NextResponse.json(responseObject);
+    }
   }
 }
+
