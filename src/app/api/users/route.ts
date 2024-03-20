@@ -9,8 +9,11 @@ import {
 
 export async function POST(request: NextRequest) {
   const body = await request.json();
-  const { name, email, password } = body;
+  let { name, email, password } = body;
 
+  name=name?.trim();
+  email=email?.trim();
+  password=password?.trim();
   let responseObject: ReturnType<typeof generateResponseObject>;
   let validationErrorsObject: Record<string, string> = {};
 
@@ -41,7 +44,7 @@ export async function POST(request: NextRequest) {
   }
 
   const hasValidationErrors = Object.values(validationErrorsObject).some(
-    (error) => !!error,
+    (error) =>Boolean(error),
   );
   if (hasValidationErrors) {
     responseObject = generateResponseObject({
