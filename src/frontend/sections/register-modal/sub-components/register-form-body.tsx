@@ -1,4 +1,4 @@
-import { FormEvent, useState } from "react";
+import { SyntheticEvent, FormEvent, MouseEvent, useState } from "react";
 import TextInputField from "@/frontend/components/ui/forms/text-input-field";
 import Link from "next/link";
 import { INPUT_VALIDATION_FUNCTION_MAP } from "@/utils/functions/input-validation/input-validation-function-map";
@@ -7,8 +7,6 @@ import TermsOfServiceInput from "@/frontend/components/ui/forms/terms-of-service
 import RegisterWIthSegment from "@/frontend/components/ui/forms/register-with-segment";
 import BasicButton from "@/frontend/components/ui/basic-button/basic-button";
 import { ValidatedFormFieldsType } from "@/types/component-props-types";
-
-
 
 const validateName = INPUT_VALIDATION_FUNCTION_MAP.get("name")!;
 const validateEmail = INPUT_VALIDATION_FUNCTION_MAP.get("email")!;
@@ -26,34 +24,33 @@ const RegisterFormBody = () => {
     hasAcceptedTermsOfUse: { value: false, errorMessage: "" },
   });
 
-const handleOnsubmit = (event: FormEvent<HTMLFormElement>) => {
-  event.preventDefault();
+  const handleOnsubmit = (event: SyntheticEvent) => {
+    event.preventDefault();
 
-  // Validate input fields
-  const nameValidationError = validateName(credentials.name.value as string);
-  const emailValidationError = validateEmail(credentials.email.value as string);
-  const passwordValidationError = validatePassword(
-    credentials.password.value as string,
-  );
+    const nameValidationError = validateName(credentials.name.value as string);
+    const emailValidationError = validateEmail(
+      credentials.email.value as string,
+    );
+    const passwordValidationError = validatePassword(
+      credentials.password.value as string,
+    );
 
-  // Update credentials state based on validation results
-  setCredentials((previousCredentials) => ({
-    ...previousCredentials,
-    name: {
-      ...previousCredentials.name,
-      errorMessage: nameValidationError,
-    },
-    email: {
-      ...previousCredentials.email,
-      errorMessage: emailValidationError,
-    },
-    password: {
-      ...previousCredentials.password,
-      errorMessage: passwordValidationError,
-    },
-  }));
-};
-
+    setCredentials((previousCredentials) => ({
+      ...previousCredentials,
+      name: {
+        ...previousCredentials.name,
+        errorMessage: nameValidationError,
+      },
+      email: {
+        ...previousCredentials.email,
+        errorMessage: emailValidationError,
+      },
+      password: {
+        ...previousCredentials.password,
+        errorMessage: passwordValidationError,
+      },
+    }));
+  };
 
   return (
     <main className="grid h-full w-full grid-cols-12">
@@ -94,7 +91,9 @@ const handleOnsubmit = (event: FormEvent<HTMLFormElement>) => {
                   <Link href="/">cancel</Link>
                 </BasicButton>
                 <BasicButton
-                  onClick={handleOnsubmit}
+                  onClick={(event: SyntheticEvent) => {
+                    handleOnsubmit(event);
+                  }}
                   size={"md"}
                   type={"filled"}
                 >

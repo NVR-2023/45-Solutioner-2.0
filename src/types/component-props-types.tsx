@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { SyntheticEvent, ReactNode } from "react";
 
 export type BasicChildrenProps = {
   children: ReactNode;
@@ -12,8 +12,8 @@ export type BasicComponentProps = {
 export type BasicButtonProps = {
   type?: "outlined" | "filled";
   size?: "sm" | "md" | "lg";
-  onClick?: () => void,
-  children?: ReactNode,
+  onClick?: (event: SyntheticEvent) => void;
+  children?: ReactNode;
 };
 
 export type OnClickComponentProps = {
