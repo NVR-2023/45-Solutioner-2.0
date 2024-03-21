@@ -27,3 +27,11 @@ export type GenericObjectType = Record < string , string | number | boolean>
 
 export type ThemeModeType = "light" | "dark" | "system";
 
+export type ValidatedFormFieldsType = Record<
+  string,
+  {
+    value: string | number | boolean;
+    validationFunction?: Function;
+    errorMessage?: string;
+  }
+>;

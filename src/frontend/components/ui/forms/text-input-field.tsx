@@ -1,16 +1,12 @@
 import { useState, ChangeEvent, Dispatch, SetStateAction } from "react";
 import { INPUT_VALIDATION_FUNCTION_MAP } from "../../../../utils/functions/input-validation/input-validation-function-map";
 import PasswordVisibilityToggle from "./password-visibility-toggle";
-
-type FormFieldsType = Record<
-  string,
-  { value: string | number | boolean; errorMessage?: string }
->;
+import { ValidatedFormFieldsType } from "@/types/component-props-types";
 
 type TextInputFieldProps = {
   name: string;
-  formFields: FormFieldsType;
-  setFormFields: Dispatch<SetStateAction<FormFieldsType>>;
+  formFields: ValidatedFormFieldsType;
+  setFormFields: Dispatch<SetStateAction<ValidatedFormFieldsType>>;
 };
 
 const TextInputField = ({
@@ -62,9 +58,7 @@ const TextInputField = ({
   };
 
   const getInputFieldErrorMessage = (fieldValue: string) => {
-    const validationFunction =
-      INPUT_VALIDATION_FUNCTION_MAP.get(name) ||
-      INPUT_VALIDATION_FUNCTION_MAP.get("default")!;
+    const validationFunction = formFields[name]?.validationFunction!;
     return validationFunction(String(fieldValue).trim());
   };
 
