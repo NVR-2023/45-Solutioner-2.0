@@ -14,17 +14,17 @@ const TermsOfUseInput = ({ state, setState }: TermsOfUseType) => {
   
   
   return (
-    <div className="flex items-center space-x-1">
+    <div className="flex items-center space-x-4">
       <div>
         <ToggleSwitch
-          scale={0.75}
+          scale={0.5}
           firstIcon={UncheckedBox}
           secondIcon={CheckedBox}
           state={state}
           setState={setState}
         />
       </div>
-      <div className="font-aperçu text-sm font-semibold tracking-normal md:text-[.625rem]">
+      <div className="h-full font-aperçu text-sm font-semibold tracking-normal md:text-[.625rem]">
         I agree to the{" "}
         <span className="border-b border-transparent hover:border-b-black">
           <Link href="/termsofuse">Terms of Use</Link>
