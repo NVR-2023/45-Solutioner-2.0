@@ -3,7 +3,7 @@ import { BasicComponentProps } from "@/types/component-props-types";
 import LightThemeIcon from "../../icons/light-theme-icon";
 import DarkThemeIcon from "../../icons/dark-theme-icon";
 
-const SidemenuSwitch = ({ scale = 1, color = "currentColor" }: BasicComponentProps) => {
+const MobileSidemenuSwitch = ({ scale = 1, color = "currentColor" }: BasicComponentProps) => {
   const [isFirstDivVisible, setIsFirstDivVisible] = useState(true);
 
   const handleClick = () => {
@@ -34,4 +34,4 @@ const SidemenuSwitch = ({ scale = 1, color = "currentColor" }: BasicComponentPro
   );
 };
 
-export default SidemenuSwitch;
+export default MobileSidemenuSwitch;

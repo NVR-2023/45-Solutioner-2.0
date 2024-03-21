@@ -1,19 +1,18 @@
 import { useState, ChangeEvent, Dispatch, SetStateAction } from "react";
-import { INPUT_VALIDATION_FUNCTION_MAP } from "../../../../utils/functions/input-validation/input-validation-function-map";
 import PasswordVisibilityToggle from "./password-visibility-toggle";
 import { ValidatedFormFieldsType } from "@/types/component-props-types";
 
-type TextInputFieldProps = {
+type ValidatedTextInputFieldProps = {
   name: string;
   formFields: ValidatedFormFieldsType;
   setFormFields: Dispatch<SetStateAction<ValidatedFormFieldsType>>;
 };
 
-const TextInputField = ({
+const ValidatedTextInputField = ({
   name,
   formFields,
   setFormFields,
-}: TextInputFieldProps) => {
+}: ValidatedTextInputFieldProps) => {
   const [isInputFieldFocused, setIsInputFieldFocused] = useState(false);
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
@@ -118,4 +117,4 @@ const TextInputField = ({
   );
 };
 
-export default TextInputField;
+export default ValidatedTextInputField;
