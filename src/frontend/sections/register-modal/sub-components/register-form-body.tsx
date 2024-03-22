@@ -31,38 +31,6 @@ const RegisterFormBody = () => {
     },
   });
 
-  /*   const handleOnsubmit = (event: SyntheticEvent) => {
-    event.preventDefault();
-
-    const nameValidationError = validateName(credentials.name.value as string);
-    const emailValidationError = validateEmail(
-      credentials.email.value as string,
-    );
-    const passwordValidationError = validatePassword(
-      credentials.password.value as string,
-    );
-    const hasAcceptedTermsOfUseError = validateHasAcceptedTermsOfUse(credentials.hasAcceptedTermsOfUse.value as boolean);
-
-    setCredentials((previousCredentials) => ({
-      ...previousCredentials,
-      name: {
-        ...previousCredentials.name,
-        errorMessage: nameValidationError,
-      },
-      email: {
-        ...previousCredentials.email,
-        errorMessage: emailValidationError,
-      },
-      password: {
-        ...previousCredentials.password,
-        errorMessage: passwordValidationError,
-      },
-      hasAcceptedTermsOfUse: {
-        ...previousCredentials.hasAcceptedTermsOfUse,
-        errorMessage: hasAcceptedTermsOfUseError,
-      },
-    }));
-  }; */
 
   const handleOnsubmit = (event: SyntheticEvent) => {
     event.preventDefault();
