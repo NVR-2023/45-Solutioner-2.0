@@ -4,7 +4,7 @@ import FacebookIcon from "../../icons/facebook-icon";
 const RegisterWIthSegment = () => {
   return (
     <div className="flex items-baseline space-x-1">
-      <span className="font-aperçu text-sm font-semibold tracking-normal md:text-[.625rem]">
+      <span className="font-aperçu text-xs font-semibold tracking-normal">
         Register with
       </span>
       <div className="flex space-x-1.5">

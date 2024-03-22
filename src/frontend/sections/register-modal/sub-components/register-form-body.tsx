@@ -3,16 +3,20 @@ import ValidatedTextInputField from "@/frontend/components/ui/forms/validated-te
 import Link from "next/link";
 import { INPUT_VALIDATION_FUNCTION_MAP } from "@/utils/functions/input-validation/input-validation-function-map";
 
-import TermsOfUseInput from "@/frontend/components/ui/forms/terms-of-use-input";
+import ValidatedCheckbox from "@/frontend/components/ui/forms/validated-checkbox";
 import RegisterWIthSegment from "@/frontend/components/ui/forms/register-with-segment";
 import BasicButton from "@/frontend/components/ui/basic-button/basic-button";
 import { ValidatedFormFieldsType } from "@/types/component-props-types";
-import { hasExternalOtelApiPackage } from "next/dist/build/webpack-config";
 
 const RegisterFormBody = () => {
   const validateName = INPUT_VALIDATION_FUNCTION_MAP.get("name")!;
   const validateEmail = INPUT_VALIDATION_FUNCTION_MAP.get("email")!;
   const validatePassword = INPUT_VALIDATION_FUNCTION_MAP.get("password")!;
+  const validateCheckbox = () => {
+    return !credentials.hasAcceptedTermsOfUse.value
+      ? "You must accept teh Terms"
+      : "";
+  };
 
   const [credentials, setCredentials] = useState<ValidatedFormFieldsType>({
     name: { value: "", validationFunction: validateName, errorMessage: "" },
@@ -22,23 +26,12 @@ const RegisterFormBody = () => {
       validationFunction: validatePassword,
       errorMessage: "",
     },
-    hasAcceptedTermsOfUse: { value: false, errorMessage: "" },
+    hasAcceptedTermsOfUse: {
+      value: false,
+      validationFunction: validateCheckbox,
+      errorMessage: "",
+    },
   });
-
-  const hasAcceptedTermsOfUseToggle = credentials.hasAcceptedTermsOfUse
-    .value as boolean;
-  const setHasAcceptedTermsOfUseToggle: Dispatch<
-    SetStateAction<boolean>
-  > = () => {
-    setCredentials((previousCredentials) => ({
-      ...previousCredentials,
-      hasAcceptedTermsOfUse: {
-        ...previousCredentials.hasAcceptedTermsOfUse,
-        value: !previousCredentials.hasAcceptedTermsOfUse.value,
-      },
-    }));
-  };
-
 
   const handleOnsubmit = (event: SyntheticEvent) => {
     event.preventDefault();
@@ -50,6 +43,7 @@ const RegisterFormBody = () => {
     const passwordValidationError = validatePassword(
       credentials.password.value as string,
     );
+    const checkboxValidationError = validateCheckbox();
 
     setCredentials((previousCredentials) => ({
       ...previousCredentials,
@@ -64,6 +58,10 @@ const RegisterFormBody = () => {
       password: {
         ...previousCredentials.password,
         errorMessage: passwordValidationError,
+      },
+      hasAcceptedTermsOfUse: {
+        ...previousCredentials.hasAcceptedTermsOfUse,
+        errorMessage: checkboxValidationError,
       },
     }));
   };
@@ -98,11 +96,23 @@ const RegisterFormBody = () => {
           </div>
           <div className="space-y-7">
             <div className="space-y-1">
-              <TermsOfUseInput
-                state={hasAcceptedTermsOfUseToggle}
-                setState={setHasAcceptedTermsOfUseToggle}
-              />
-              <RegisterWIthSegment />
+              <div className="">
+                <ValidatedCheckbox
+                  name="hasAcceptedTermsOfUse"
+                  formFields={credentials}
+                  setFormFields={setCredentials}
+                >
+                  <div className="h-full font-aperçu text-xs font-semibold tracking-normal">
+                    I agree to the{" "}
+                    <span className="border-b border-transparent hover:border-b-black">
+                      <Link href="/termsofuse">Terms of Use</Link>
+                    </span>
+                  </div>
+                </ValidatedCheckbox>
+              </div>
+              <div>
+                <RegisterWIthSegment />
+              </div>
             </div>
             <div className="">
               <div className="flex justify-between">
