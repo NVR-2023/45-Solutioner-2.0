@@ -12,10 +12,8 @@ const RegisterFormBody = () => {
   const validateName = INPUT_VALIDATION_FUNCTION_MAP.get("name")!;
   const validateEmail = INPUT_VALIDATION_FUNCTION_MAP.get("email")!;
   const validatePassword = INPUT_VALIDATION_FUNCTION_MAP.get("password")!;
-  const validateCheckbox = () => {
-    return !credentials.hasAcceptedTermsOfUse.value
-      ? "You must accept the Terms of Use"
-      : "";
+  const validateHasAcceptedTermsOfUse = (hasAcceptedTermsOfUse: boolean) => {
+    return !hasAcceptedTermsOfUse ? "You must accept Terms of Use" : "";
   };
 
   const [credentials, setCredentials] = useState<ValidatedFormFieldsType>({
@@ -28,12 +26,12 @@ const RegisterFormBody = () => {
     },
     hasAcceptedTermsOfUse: {
       value: false,
-      validationFunction: validateCheckbox,
+      validationFunction: validateHasAcceptedTermsOfUse,
       errorMessage: "",
     },
   });
 
-  const handleOnsubmit = (event: SyntheticEvent) => {
+  /*   const handleOnsubmit = (event: SyntheticEvent) => {
     event.preventDefault();
 
     const nameValidationError = validateName(credentials.name.value as string);
@@ -43,7 +41,7 @@ const RegisterFormBody = () => {
     const passwordValidationError = validatePassword(
       credentials.password.value as string,
     );
-    const hasAcceptedTermsOfUseError = validateCheckbox();
+    const hasAcceptedTermsOfUseError = validateHasAcceptedTermsOfUse(credentials.hasAcceptedTermsOfUse.value as boolean);
 
     setCredentials((previousCredentials) => ({
       ...previousCredentials,
@@ -64,6 +62,29 @@ const RegisterFormBody = () => {
         errorMessage: hasAcceptedTermsOfUseError,
       },
     }));
+  }; */
+
+  const handleOnsubmit = (event: SyntheticEvent) => {
+    event.preventDefault();
+
+    setCredentials((previousCredentials) => {
+      let updatedCredentials = { ...previousCredentials };
+
+      for (const key in updatedCredentials) {
+        const fieldValue = updatedCredentials[key].value;
+        const validationFunction = updatedCredentials[key].validationFunction!;
+        const validationError = validationFunction(fieldValue);
+
+        updatedCredentials = {
+          ...updatedCredentials,
+          [key]: {
+            ...updatedCredentials[key],
+            errorMessage: validationError,
+          },
+        };
+      }
+      return updatedCredentials;
+    });
   };
 
   return (
