@@ -14,7 +14,7 @@ const RegisterFormBody = () => {
   const validatePassword = INPUT_VALIDATION_FUNCTION_MAP.get("password")!;
   const validateCheckbox = () => {
     return !credentials.hasAcceptedTermsOfUse.value
-      ? "You must accept teh Terms"
+      ? "You must accept the Terms of Use"
       : "";
   };
 
@@ -43,7 +43,7 @@ const RegisterFormBody = () => {
     const passwordValidationError = validatePassword(
       credentials.password.value as string,
     );
-    const checkboxValidationError = validateCheckbox();
+    const hasAcceptedTermsOfUseError = validateCheckbox();
 
     setCredentials((previousCredentials) => ({
       ...previousCredentials,
@@ -61,7 +61,7 @@ const RegisterFormBody = () => {
       },
       hasAcceptedTermsOfUse: {
         ...previousCredentials.hasAcceptedTermsOfUse,
-        errorMessage: checkboxValidationError,
+        errorMessage: hasAcceptedTermsOfUseError,
       },
     }));
   };
