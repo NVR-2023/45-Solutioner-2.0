@@ -12,9 +12,9 @@ const RegisterFormBody = () => {
   const validateName = INPUT_VALIDATION_FUNCTION_MAP.get("name")!;
   const validateEmail = INPUT_VALIDATION_FUNCTION_MAP.get("email")!;
   const validatePassword = INPUT_VALIDATION_FUNCTION_MAP.get("password")!;
-  const validateHasAcceptedTermsOfUse = (hasAcceptedTermsOfUse: boolean) => {
-    return !hasAcceptedTermsOfUse ? "You must accept Terms of Use" : "";
-  };
+  const validateHasAcceptedTermsOfUse = INPUT_VALIDATION_FUNCTION_MAP.get(
+    "hasAcceptedTermsOfUse",
+  )!;
 
   const [credentials, setCredentials] = useState<ValidatedFormFieldsType>({
     name: { value: "", validationFunction: validateName, errorMessage: "" },
@@ -25,12 +25,11 @@ const RegisterFormBody = () => {
       errorMessage: "",
     },
     hasAcceptedTermsOfUse: {
-      value: false,
+      value: "false",
       validationFunction: validateHasAcceptedTermsOfUse,
       errorMessage: "",
     },
   });
-
 
   const handleOnsubmit = (event: SyntheticEvent) => {
     event.preventDefault();

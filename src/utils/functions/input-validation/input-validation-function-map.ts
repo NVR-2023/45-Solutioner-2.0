@@ -38,6 +38,9 @@ const PASSWORD_VALIDATION_TABLE: InputValidationTests = [
   },
   { regEx: /^(?=.*\d).{8,}$/, errorMessage: "At least one digit" },
 ];
+const HASACCEPTEDTERMSOFUSE_VALIDATION_TABLE: InputValidationTests = [
+  { regEx: /^true$/, errorMessage: "You must accept the Terms of Use" },
+];
 
 const DEFAULT_VALIDATION_TABLE: InputValidationTests = [
   { regEx: /.*/, errorMessage: "" },
@@ -70,6 +73,10 @@ export const INPUT_VALIDATION_FUNCTION_MAP = new Map<
   [
     "password",
     (inputValue) => validateInputField(inputValue, PASSWORD_VALIDATION_TABLE),
+  ],
+  [
+    "hasAcceptedTermsOfUse",
+    (inputValue) => validateInputField(inputValue, HASACCEPTEDTERMSOFUSE_VALIDATION_TABLE),
   ],
   [
     "default",
