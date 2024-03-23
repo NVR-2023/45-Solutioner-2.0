@@ -1,9 +1,9 @@
 import { SyntheticEvent, useState } from "react";
 import { useRouter } from "next/navigation";
-import Link from "next/link";
 
 import ValidatedTextInputField from "@/frontend/components/ui/forms/validated-text-input-field";
 import ValidatedCheckbox from "@/frontend/components/ui/forms/validated-checkbox";
+import hasAcceptedTermsOfUseNotice from "@/frontend/components/ui/forms/has-accepted-terms-of-use";
 import RegisterWIthSegment from "@/frontend/components/ui/forms/register-with-segment";
 import SubmitSegment from "@/frontend/components/ui/forms/submit-segment";
 import { INPUT_VALIDATION_FUNCTION_MAP } from "@/utils/functions/input-validation/input-validation-function-map";
@@ -62,14 +62,7 @@ const RegisterFormBody = () => {
     });
   };
 
-  const hasAcceptedTermsOfUseNotice = (
-    <div className="h-full font-aperçu text-xs font-semibold tracking-normal">
-      <span>I agree to the</span>
-      <span className="border-b border-transparent hover:border-b-black">
-        <Link href="/termsofuse">Terms of Use</Link>
-      </span>
-    </div>
-  );
+
 
   return (
     <main className="grid h-full w-full grid-cols-12">

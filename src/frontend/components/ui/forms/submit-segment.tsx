@@ -1,22 +1,29 @@
-import Link from "next/link";
+import { MouseEventHandler } from "react";
 import BasicButton from "../basic-button/basic-button";
 
 type SubmitSegmentType = {
-  onCancel?: Function;
-  onSubmit?: Function;
-}
+  onCancel: MouseEventHandler<HTMLButtonElement>;
+  onSubmit: MouseEventHandler<HTMLButtonElement>;
+};
 
- const SubmitSegment = ({ onCancel, onSubmit }: SubmitSegmentType) => {
-   return (
-     <div className="flex justify-between">
-       <BasicButton size={"sm"} type={"outlined"} onClick={onCancel}>
-         cancel
-       </BasicButton>
-       <BasicButton size={"md"} type={"filled"} onClick={onSubmit}>
-         register
-       </BasicButton>
-     </div>
-   );
- };
+const SubmitSegment = ({ onCancel, onSubmit }: SubmitSegmentType) => {
+  return (
+    <div className="flex justify-between">
+      <BasicButton
+        size={"sm"}
+        type={"outlined"}
+        onClick={onCancel}
+        label="cancel"
+      />
+
+      <BasicButton
+        size={"md"}
+        type={"filled"}
+        onClick={onSubmit}
+        label="register"
+      />
+    </div>
+  );
+};
 
 export default SubmitSegment;

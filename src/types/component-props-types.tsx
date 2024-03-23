@@ -1,4 +1,4 @@
-import { SyntheticEvent, ReactNode } from "react";
+import { MouseEventHandler, ReactNode } from "react";
 
 export type BasicChildrenProps = {
   children: ReactNode;
@@ -12,8 +12,8 @@ export type BasicComponentProps = {
 export type BasicButtonProps = {
   type?: "outlined" | "filled";
   size?: "sm" | "md" | "lg";
-  onClick?: Function;
-  children?: ReactNode;
+  label?: string,
+  onClick: MouseEventHandler<HTMLButtonElement>;
 };
 
 export type OnClickComponentProps = {
@@ -22,8 +22,7 @@ export type OnClickComponentProps = {
   onClick: () => void;
 };
 
-
-export type GenericObjectType = Record < string , string | number | boolean>
+export type GenericObjectType = Record<string, string | number | boolean>;
 
 export type ThemeModeType = "light" | "dark" | "system";
 

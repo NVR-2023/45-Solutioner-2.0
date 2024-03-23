@@ -3,12 +3,12 @@ import { BasicButtonProps } from "@/types/component-props-types";
 const BasicButton = ({
   type = "filled",
   size = "md",
+  label, 
   onClick,
-  children,
 }: BasicButtonProps) => {
   const baseStyle: string = "flex justify-center items-center rounded ";
 
-  const typeMap = new Map([
+  const ButtonTypeMap = new Map([
     [
       "outlined",
       "border-black border-[1.5px] font-aperçu font-extrabold text-sm md:text-xs leading-[.5rem] tracking-wide small-caps text-black dark:text-neutral-300 ",
@@ -28,9 +28,8 @@ const BasicButton = ({
   return (
     <button
       onClick={onClick}
-      className={`${baseStyle} ${typeMap.get(type)} ${sizeMap.get(size)}`}
-    >
-      {children}
+      className={`${baseStyle} ${ButtonTypeMap.get(type)} ${sizeMap.get(size)}`}
+    >{label}
     </button>
   );
 };
