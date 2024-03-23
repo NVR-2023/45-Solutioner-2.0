@@ -1,4 +1,4 @@
-import { Dispatch, ReactNode, SetStateAction, useEffect } from "react";
+import { Dispatch, ReactNode, SetStateAction } from "react";
 import UncheckedBox from "../../icons/unchecked-box";
 import CheckedBox from "../../icons/checked-box";
 import ToggleSwitch from "../toggle-switch/toggle-switch";
@@ -8,6 +8,7 @@ type ValidatedCheckboxType = {
   name: string;
   formFields: ValidatedFormFieldsType;
   setFormFields: Dispatch<SetStateAction<ValidatedFormFieldsType>>;
+  notice?: ReactNode;
   children?: ReactNode;
 };
 
@@ -15,11 +16,10 @@ const ValidatedCheckbox = ({
   name,
   formFields,
   setFormFields,
-  children,
+  notice,
 }: ValidatedCheckboxType) => {
-  
   const State = formFields?.[name].value as string;
-  
+
   const setState: Dispatch<SetStateAction<string>> = () => {
     setFormFields((previousFields) => ({
       ...previousFields,
@@ -42,7 +42,9 @@ const ValidatedCheckbox = ({
             setState={setState}
           />
         </div>
-        {children}
+        <div>
+          <span>{notice}</span>
+        </div>
       </div>
       <div
         id={`${name}Error`}

@@ -1,11 +1,12 @@
-import { SyntheticEvent, Dispatch, SetStateAction, useState } from "react";
-import ValidatedTextInputField from "@/frontend/components/ui/forms/validated-text-input-field";
+import { SyntheticEvent, useState } from "react";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { INPUT_VALIDATION_FUNCTION_MAP } from "@/utils/functions/input-validation/input-validation-function-map";
 
+import ValidatedTextInputField from "@/frontend/components/ui/forms/validated-text-input-field";
 import ValidatedCheckbox from "@/frontend/components/ui/forms/validated-checkbox";
 import RegisterWIthSegment from "@/frontend/components/ui/forms/register-with-segment";
-import BasicButton from "@/frontend/components/ui/basic-button/basic-button";
+import SubmitSegment from "@/frontend/components/ui/forms/submit-segment";
+import { INPUT_VALIDATION_FUNCTION_MAP } from "@/utils/functions/input-validation/input-validation-function-map";
 import { ValidatedFormFieldsType } from "@/types/component-props-types";
 
 const RegisterFormBody = () => {
@@ -31,6 +32,13 @@ const RegisterFormBody = () => {
     },
   });
 
+  const router = useRouter();
+
+  const handleOnCancel = (event: SyntheticEvent) => {
+    event.preventDefault();
+    router.push("/");
+  };
+
   const handleOnsubmit = (event: SyntheticEvent) => {
     event.preventDefault();
 
@@ -53,6 +61,15 @@ const RegisterFormBody = () => {
       return updatedCredentials;
     });
   };
+
+  const hasAcceptedTermsOfUseNotice = (
+    <div className="h-full font-aperçu text-xs font-semibold tracking-normal">
+      <span>I agree to the</span>
+      <span className="border-b border-transparent hover:border-b-black">
+        <Link href="/termsofuse">Terms of Use</Link>
+      </span>
+    </div>
+  );
 
   return (
     <main className="grid h-full w-full grid-cols-12">
@@ -89,34 +106,18 @@ const RegisterFormBody = () => {
                   name="hasAcceptedTermsOfUse"
                   formFields={credentials}
                   setFormFields={setCredentials}
-                >
-                  <div className="h-full font-aperçu text-xs font-semibold tracking-normal">
-                    I agree to the{" "}
-                    <span className="border-b border-transparent hover:border-b-black">
-                      <Link href="/termsofuse">Terms of Use</Link>
-                    </span>
-                  </div>
-                </ValidatedCheckbox>
+                  notice={hasAcceptedTermsOfUseNotice}
+                />
               </div>
               <div>
                 <RegisterWIthSegment />
               </div>
             </div>
             <div className="">
-              <div className="flex justify-between">
-                <BasicButton size={"sm"} type={"outlined"}>
-                  <Link href="/">cancel</Link>
-                </BasicButton>
-                <BasicButton
-                  onClick={(event: SyntheticEvent) => {
-                    handleOnsubmit(event);
-                  }}
-                  size={"md"}
-                  type={"filled"}
-                >
-                  register
-                </BasicButton>
-              </div>
+              <SubmitSegment
+                onCancel={handleOnCancel}
+                onSubmit={handleOnsubmit}
+              />
             </div>
           </div>
         </form>
