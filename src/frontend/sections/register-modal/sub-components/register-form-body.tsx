@@ -10,6 +10,7 @@ import { INPUT_VALIDATION_FUNCTION_MAP } from "@/utils/functions/input-validatio
 import { ValidatedFormFieldsType } from "@/types/component-props-types";
 
 const RegisterFormBody = () => {
+
   const validateName = INPUT_VALIDATION_FUNCTION_MAP.get("name")!;
   const validateEmail = INPUT_VALIDATION_FUNCTION_MAP.get("email")!;
   const validatePassword = INPUT_VALIDATION_FUNCTION_MAP.get("password")!;
@@ -33,7 +34,6 @@ const RegisterFormBody = () => {
   });
 
   const router = useRouter();
-
   const handleOnCancel = (event: SyntheticEvent) => {
     event.preventDefault();
     router.push("/");
@@ -93,7 +93,7 @@ const RegisterFormBody = () => {
             </div>
           </div>
           <div className="space-y-7">
-            <div className="space-y-1">
+            <div className="space-y-4">
               <div className="">
                 <ValidatedCheckbox
                   name="hasAcceptedTermsOfUse"
