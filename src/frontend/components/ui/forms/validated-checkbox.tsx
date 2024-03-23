@@ -17,7 +17,9 @@ const ValidatedCheckbox = ({
   setFormFields,
   children,
 }: ValidatedCheckboxType) => {
+  
   const State = formFields?.[name].value as string;
+  
   const setState: Dispatch<SetStateAction<string>> = () => {
     setFormFields((previousFields) => ({
       ...previousFields,
