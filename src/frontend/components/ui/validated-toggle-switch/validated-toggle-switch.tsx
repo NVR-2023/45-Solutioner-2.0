@@ -11,7 +11,7 @@ type ToggleProps = {
   color?: string;
 };
 
-const ToggleSwitch = ({
+const ValidatedToggleSwitch = ({
   firstIcon: FirstIcon,
   secondIcon: SecondIcon,
   state,
@@ -51,4 +51,4 @@ const ToggleSwitch = ({
   );
 };
 
-export default ToggleSwitch;
+export default ValidatedToggleSwitch;

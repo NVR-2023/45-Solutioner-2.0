@@ -1,7 +1,7 @@
-import { Dispatch, ReactNode, SetStateAction } from "react";
+import { Dispatch, ReactNode, SetStateAction, useEffect } from "react";
 import UncheckedBox from "../../icons/unchecked-box";
 import CheckedBox from "../../icons/checked-box";
-import ToggleSwitch from "../toggle-switch/toggle-switch";
+import ValidatedToggleSwitch from "../validated-toggle-switch/validated-toggle-switch";
 import { ValidatedFormFieldsType } from "@/types/component-props-types";
 
 type ValidatedCheckboxType = {
@@ -34,7 +34,7 @@ const ValidatedCheckbox = ({
     <div className="space-y-1.5">
       <div className="flex items-center space-x-4">
         <div>
-          <ToggleSwitch
+          <ValidatedToggleSwitch
             scale={0.5}
             firstIcon={UncheckedBox}
             secondIcon={CheckedBox}
