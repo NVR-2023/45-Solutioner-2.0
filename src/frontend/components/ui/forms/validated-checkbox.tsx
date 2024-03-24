@@ -9,26 +9,14 @@ type ValidatedCheckboxType = {
   formFields: ValidatedFormFieldsType;
   setFormFields: Dispatch<SetStateAction<ValidatedFormFieldsType>>;
   notice?: ReactNode;
-  children?: ReactNode;
 };
 
 const ValidatedCheckbox = ({
   name,
   formFields,
   setFormFields,
-  notice,
+  notice
 }: ValidatedCheckboxType) => {
-  const State = formFields?.[name].value as string;
-
-  const setState: Dispatch<SetStateAction<string>> = () => {
-    setFormFields((previousFields) => ({
-      ...previousFields,
-      [name]: {
-        ...previousFields[name],
-        value: previousFields[name].value === "false" ? "true" : "false",
-      },
-    }));
-  };
 
   return (
     <div className="space-y-1.5">
@@ -38,8 +26,9 @@ const ValidatedCheckbox = ({
             scale={0.5}
             firstIcon={UncheckedBox}
             secondIcon={CheckedBox}
-            state={State}
-            setState={setState}
+            name={name}
+            formFields={formFields}
+            setFormFields={setFormFields}
           />
         </div>
         <div>
