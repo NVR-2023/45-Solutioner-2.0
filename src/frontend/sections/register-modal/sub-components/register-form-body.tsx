@@ -1,4 +1,4 @@
-import { SyntheticEvent, useState } from "react";
+import { SyntheticEvent, useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 
 import ValidatedTextInputField from "@/frontend/components/ui/forms/validated-text-input-field";
@@ -9,8 +9,9 @@ import SubmitSegment from "@/frontend/components/ui/forms/submit-segment";
 import { INPUT_VALIDATION_FUNCTION_MAP } from "@/utils/functions/input-validation/input-validation-function-map";
 import { ValidatedFormFieldsType } from "@/types/component-props-types";
 
-const RegisterFormBody = () => {
+import getErrorsInForm from "@/utils/functions/form-validation/get-errors-in-form";
 
+const RegisterFormBody = () => {
   const validateName = INPUT_VALIDATION_FUNCTION_MAP.get("name")!;
   const validateEmail = INPUT_VALIDATION_FUNCTION_MAP.get("email")!;
   const validatePassword = INPUT_VALIDATION_FUNCTION_MAP.get("password")!;
@@ -20,7 +21,11 @@ const RegisterFormBody = () => {
 
   const [credentials, setCredentials] = useState<ValidatedFormFieldsType>({
     name: { value: "", validationFunction: validateName, errorMessage: "" },
-    email: { value: "", validationFunction: validateEmail, errorMessage: "" },
+    email: {
+      value: "",
+      validationFunction: validateEmail,
+      errorMessage: "",
+    },
     password: {
       value: "",
       validationFunction: validatePassword,
@@ -33,6 +38,29 @@ const RegisterFormBody = () => {
     },
   });
 
+  const [isFormValid, setIsFormValid] = useState(false);
+  useEffect(() => {
+    const hasErrors =
+      !credentials.name.value ||
+      !credentials.email.value ||
+      !credentials.password.value ||
+      !credentials.hasAcceptedTermsOfUse.value ||
+      credentials.name.errorMessage ||
+      credentials.email.errorMessage ||
+      credentials.password.errorMessage ||
+      credentials.hasAcceptedTermsOfUse.errorMessage;
+    setIsFormValid(!hasErrors);
+  }, [
+    credentials.name.value,
+    credentials.email.value,
+    credentials.password.value,
+    credentials.hasAcceptedTermsOfUse.value,
+    credentials.name.errorMessage,
+    credentials.email.errorMessage,
+    credentials.password.errorMessage,
+    credentials.hasAcceptedTermsOfUse.errorMessage,
+  ]);
+
   const router = useRouter();
   const handleOnCancel = (event: SyntheticEvent) => {
     event.preventDefault();
@@ -41,35 +69,23 @@ const RegisterFormBody = () => {
 
   const handleOnsubmit = (event: SyntheticEvent) => {
     event.preventDefault();
+    getErrorsInForm({
+      setFormFields: setCredentials,
+    })!;
 
-    setCredentials((previousCredentials) => {
-      let updatedCredentials = { ...previousCredentials };
-
-      for (const key in updatedCredentials) {
-        const fieldValue = updatedCredentials[key].value;
-        const validationFunction = updatedCredentials[key].validationFunction!;
-        const validationError = validationFunction(fieldValue);
-
-        updatedCredentials = {
-          ...updatedCredentials,
-          [key]: {
-            ...updatedCredentials[key],
-            errorMessage: validationError,
-          },
-        };
-      }
-      return updatedCredentials;
-    });
+    if (isFormValid) {
+      console.log("Form is valid");
+    } else {
+      console.log("Form has errors");
+    }
   };
-
-
 
   return (
     <main className="grid h-full w-full grid-cols-12">
       <div className="col-span-2"></div>
       <div className="col-span-8 flex justify-center">
         <form method="post" className="w-full space-y-4 pt-8">
-          <div className="space-y-7">
+          <div className="space-y-8">
             <div>
               <ValidatedTextInputField
                 name="name"

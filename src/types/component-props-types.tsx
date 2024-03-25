@@ -12,7 +12,7 @@ export type BasicComponentProps = {
 export type BasicButtonProps = {
   type?: "outlined" | "filled";
   size?: "sm" | "md" | "lg";
-  label?: string,
+  label?: string;
   onClick: MouseEventHandler<HTMLButtonElement>;
 };
 
