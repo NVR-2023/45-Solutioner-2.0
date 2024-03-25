@@ -1,28 +1,38 @@
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, MutableRefObject } from "react";
 import { ValidatedFormFieldsType } from "@/types/component-props-types";
 
 type ValidateFormProps = {
+  isFormValid: MutableRefObject<boolean>;
+  formFields: ValidatedFormFieldsType;
   setFormFields: Dispatch<SetStateAction<ValidatedFormFieldsType>>;
 };
 
-const getErrorsInForm = ({ setFormFields }: ValidateFormProps) => {
-  setFormFields((previousCredentials) => {
-    let updatedCredentials = { ...previousCredentials };
+const getErrorsInForm = ({
+  isFormValid,
+  formFields,
+  setFormFields,
+}: ValidateFormProps) => {
+  let updatedFormFields = { ...formFields };
 
-    for (const key in updatedCredentials) {
-      const fieldValue = updatedCredentials[key].value;
-      const validationFunction = updatedCredentials[key].validationFunction!;
-      const validationError = validationFunction(fieldValue);
-      updatedCredentials = {
-        ...updatedCredentials,
-        [key]: {
-          ...updatedCredentials[key],
+  isFormValid.current = true;
+  for (const formField in updatedFormFields) {
+    const fieldValue = updatedFormFields[formField].value;
+    const validationFunction = updatedFormFields[formField].validationFunction!;
+    const validationError = validationFunction(fieldValue);
+
+    if (validationError) {
+      isFormValid.current = false;
+      updatedFormFields = {
+        ...updatedFormFields,
+        [formField]: {
+          ...updatedFormFields[formField],
           errorMessage: validationError,
         },
       };
     }
-    return updatedCredentials;
-  });
+  }
+
+  setFormFields(updatedFormFields);
 };
 
 export default getErrorsInForm;

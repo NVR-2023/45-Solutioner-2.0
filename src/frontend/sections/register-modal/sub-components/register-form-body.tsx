@@ -1,4 +1,4 @@
-import { SyntheticEvent, useState, useEffect, useRef } from "react";
+import { SyntheticEvent, useState, useRef, MutableRefObject } from "react";
 import { useRouter } from "next/navigation";
 
 import ValidatedTextInputField from "@/frontend/components/ui/forms/validated-text-input-field";
@@ -38,39 +38,28 @@ const RegisterFormBody = () => {
     },
   });
 
-  const isFormValidRef = useRef(false);
-  useEffect(() => {
-    const { name, email, password, hasAcceptedTermsOfUse } = credentials;
-    const hasErrors =
-      !name.value ||
-      !email.value ||
-      !password.value ||
-      !hasAcceptedTermsOfUse.value ||
-      name.errorMessage ||
-      email.errorMessage ||
-      password.errorMessage ||
-      hasAcceptedTermsOfUse.errorMessage;
-    isFormValidRef.current = !hasErrors;
-  }, [credentials]);
-
   const router = useRouter();
   const handleOnCancel = (event: SyntheticEvent) => {
     event.preventDefault();
     router.push("/");
   };
 
-  const handleOnsubmit = (event: SyntheticEvent) => {
+  let isFormValid: MutableRefObject<boolean> = useRef(false);
+
+  const handleOnsubmit: any = (event: SyntheticEvent) => {
     event.preventDefault();
     getErrorsInForm({
+      isFormValid: isFormValid,
+      formFields: credentials,
       setFormFields: setCredentials,
     })!;
-
-    if (isFormValidRef.current) {
-      console.log("Form is valid");
-    } else {
-      console.log("Form has errors");
-    }
   };
+
+  if (isFormValid.current) {
+    console.log("Form is valid ");
+  } else {
+    console.log("Form is invalid");
+  }
 
   return (
     <main className="grid h-full w-full grid-cols-12">
