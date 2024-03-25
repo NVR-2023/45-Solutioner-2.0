@@ -1,4 +1,4 @@
-import { SyntheticEvent, useState, useEffect } from "react";
+import { SyntheticEvent, useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 
 import ValidatedTextInputField from "@/frontend/components/ui/forms/validated-text-input-field";
@@ -38,28 +38,20 @@ const RegisterFormBody = () => {
     },
   });
 
-  const [isFormValid, setIsFormValid] = useState(false);
+  const isFormValidRef = useRef(false);
   useEffect(() => {
+    const { name, email, password, hasAcceptedTermsOfUse } = credentials;
     const hasErrors =
-      !credentials.name.value ||
-      !credentials.email.value ||
-      !credentials.password.value ||
-      !credentials.hasAcceptedTermsOfUse.value ||
-      credentials.name.errorMessage ||
-      credentials.email.errorMessage ||
-      credentials.password.errorMessage ||
-      credentials.hasAcceptedTermsOfUse.errorMessage;
-    setIsFormValid(!hasErrors);
-  }, [
-    credentials.name.value,
-    credentials.email.value,
-    credentials.password.value,
-    credentials.hasAcceptedTermsOfUse.value,
-    credentials.name.errorMessage,
-    credentials.email.errorMessage,
-    credentials.password.errorMessage,
-    credentials.hasAcceptedTermsOfUse.errorMessage,
-  ]);
+      !name.value ||
+      !email.value ||
+      !password.value ||
+      !hasAcceptedTermsOfUse.value ||
+      name.errorMessage ||
+      email.errorMessage ||
+      password.errorMessage ||
+      hasAcceptedTermsOfUse.errorMessage;
+    isFormValidRef.current = !hasErrors;
+  }, [credentials]);
 
   const router = useRouter();
   const handleOnCancel = (event: SyntheticEvent) => {
@@ -73,7 +65,7 @@ const RegisterFormBody = () => {
       setFormFields: setCredentials,
     })!;
 
-    if (isFormValid) {
+    if (isFormValidRef.current) {
       console.log("Form is valid");
     } else {
       console.log("Form has errors");
