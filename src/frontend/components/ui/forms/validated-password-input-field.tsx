@@ -1,24 +1,24 @@
 import { useState, ChangeEvent, Dispatch, SetStateAction } from "react";
+import PasswordVisibilityToggle from "./password-visibility-toggle";
 import { ValidatedFormFieldsType } from "@/types/component-props-types";
 
-type ValidatedTextInputFieldProps = {
-  name: string;
+type ValidatedPasswordInputFieldProps = {
   formFields: ValidatedFormFieldsType;
   setFormFields: Dispatch<SetStateAction<ValidatedFormFieldsType>>;
 };
 
-const ValidatedTextInputField = ({
-  name,
+const ValidatedPasswordInputField = ({
   formFields,
   setFormFields,
-}: ValidatedTextInputFieldProps) => {
+}: ValidatedPasswordInputFieldProps) => {
   const [isInputFieldFocused, setIsInputFieldFocused] = useState(false);
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
   const handleOnChange = (event: ChangeEvent<HTMLInputElement>) => {
     setFormFields((previousFields) => ({
       ...previousFields,
-      [name]: {
-        ...previousFields[name],
+      password: {
+        ...previousFields.password,
         value: event.target.value,
       },
     }));
@@ -29,8 +29,8 @@ const ValidatedTextInputField = ({
 
     setFormFields((previousFields) => ({
       ...previousFields,
-      [name]: {
-        ...previousFields[name],
+      password: {
+        ...previousFields.password,
         errorMessage: "",
       },
     }));
@@ -41,17 +41,21 @@ const ValidatedTextInputField = ({
 
     setFormFields((previousFields) => ({
       ...previousFields,
-      [name]: {
-        ...previousFields[name],
+      password: {
+        ...previousFields.password,
         errorMessage: getInputFieldErrorMessage(
-          previousFields[name]?.value as string,
+          previousFields.password?.value as string,
         ),
       },
     }));
   };
 
+  const handleTogglePasswordVisibility = () => {
+    setIsPasswordVisible((previousValue) => !previousValue);
+  };
+
   const getInputFieldErrorMessage = (fieldValue: string) => {
-    const validationFunction = formFields[name]?.validationFunction!;
+    const validationFunction = formFields.password?.validationFunction!;
     return validationFunction(String(fieldValue).trim());
   };
 
@@ -59,41 +63,50 @@ const ValidatedTextInputField = ({
     <div className="relative flex w-full flex-col space-y-1.5">
       <div>
         <input
-          type="text"
-          id={`${name}ID`}
-          name={name}
+          type={isPasswordVisible ? "text" : "password"}
+          id="passwordID"
+          name="password"
           autoComplete="false"
           onFocus={() => handleOnFocus()}
           onChange={handleOnChange}
           onBlur={() => handleOnBlur()}
-          value={formFields[name]?.value as string}
-          aria-invalid={formFields[name]?.errorMessage ? "true" : "false"}
-          aria-describedby={`${name}Error`}
+          value={formFields.password?.value as string}
+          aria-invalid={formFields.password?.errorMessage ? "true" : "false"}
+          aria-describedby="passwordError"
           className="h-4 w-full appearance-none border-b border-black bg-neutral-300 pb-[.15rem] font-aperçu  text-black focus:border-b focus:outline-none dark:border-[#D9D9D9] dark:bg-[#222222] md:text-xs"
         />
       </div>
       <div className="absolute -top-5 left-0 w-full">
         <label
-          htmlFor={`${name}ID`}
+          htmlFor="passwordID"
           className={` flex items-center justify-between  font-aperçu text-sm font-extrabold leading-[.5rem] tracking-wide text-black transition-transform duration-300 small-caps dark:text-neutral-300 md:text-xs ${
-            !isInputFieldFocused && !formFields[name]?.value && "translate-y-5"
+            !isInputFieldFocused &&
+            !formFields.password?.value &&
+            "translate-y-5"
           }`}
         >
-          {name}
+          password
+          <span>
+            <PasswordVisibilityToggle
+              scale={0.5}
+              isPasswordVisible={isPasswordVisible}
+              togglePasswordVisibility={handleTogglePasswordVisibility}
+            />
+          </span>
         </label>
       </div>
 
       <div
-        id={`${name}Error`}
+        id="passwordError"
         role="alert"
         className={` text-xs italic leading-[.5rem] text-red-500 transition-opacity duration-500 sm:text-[0.625rem] ${
-          formFields[name]?.errorMessage ? "opacity-100" : "opacity-0"
+          formFields.password.errorMessage ? "opacity-100" : "opacity-0"
         }`}
       >
-        {formFields[name]?.errorMessage || "\u00A0"}
+        {formFields.password?.errorMessage || "\u00A0"}
       </div>
     </div>
   );
 };
 
-export default ValidatedTextInputField;
+export default ValidatedPasswordInputField;
