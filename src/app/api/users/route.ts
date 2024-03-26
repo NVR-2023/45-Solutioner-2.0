@@ -31,9 +31,9 @@ export async function POST(request: NextRequest) {
   }
 
   if (!requestErrorsObject.email) {
-    const isNewUserEmailUnique = await checkNewUserEmailUniqueness(email);
+    const isNewUserEmailUnique: boolean = await checkNewUserEmailUniqueness(email);
     if (!isNewUserEmailUnique) {
-      requestErrorsObject.email = "Email already un use";
+      requestErrorsObject.email = "Email already in use";
     }
   }
 
