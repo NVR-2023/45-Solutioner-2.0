@@ -11,55 +11,40 @@ export async function POST(request: NextRequest) {
   const body = await request.json();
   let { name, email, password, hasAcceptedTermsOfUse } = body;
 
-  name = name?.trim();
-  email = email?.trim();
-  password = password?.trim();
-  hasAcceptedTermsOfUse = hasAcceptedTermsOfUse?.trim();
+  const requestObject: Record<string, string> = {
+    name: name?.trim(),
+    email: email?.trim(),
+    password: password?.trim(),
+    hasAcceptedTermsOfUse: hasAcceptedTermsOfUse?.trim(),
+  };
 
+  let requestErrorsObject: Record<string, string> = {};
   let responseObject: ReturnType<typeof generateResponseObject>;
-  let validationErrorsObject: Record<string, string> = {};
 
-  // validate name
-  let validationFunction = INPUT_VALIDATION_FUNCTION_MAP.get("name")!;
-  let validationError = validationFunction(name ?? "");
-  if (validationError) {
-    validationErrorsObject.name = validationError;
-  }
-
-  // validate email
-  validationFunction = INPUT_VALIDATION_FUNCTION_MAP.get("email")!;
-  validationError = validationFunction(email ?? "");
-  if (validationError) {
-    validationErrorsObject.email = validationError;
-  } else {
-    const isNewUserEmailUnique = await checkNewUserEmailUniqueness(email);
-    if (!isNewUserEmailUnique) {
-      validationErrorsObject.email = "Email already exists";
+  for (let field in requestObject) {
+    const fieldValue = requestObject[field] ?? "";
+    const validationFunction = INPUT_VALIDATION_FUNCTION_MAP.get(field)!;
+    const validationError = validationFunction(fieldValue);
+    if (validationError) {
+      requestErrorsObject[field] = validationError;
     }
   }
 
-  // validate password
-  validationFunction = INPUT_VALIDATION_FUNCTION_MAP.get("password")!;
-  validationError = validationFunction(password ?? "");
-  if (validationError) {
-    validationErrorsObject.password = validationError;
+  if (!requestErrorsObject.email) {
+    const isNewUserEmailUnique = await checkNewUserEmailUniqueness(email);
+    if (!isNewUserEmailUnique) {
+      requestErrorsObject.email = "Email already un use";
+    }
   }
 
-  // validate hasAcceptedTermsOfUse
-  validationFunction = INPUT_VALIDATION_FUNCTION_MAP.get("hasAcceptedTermsOfUse")!;
-  console.log("hasAcceptedTermsOfUse value: ",hasAcceptedTermsOfUse )
-  validationError = validationFunction(hasAcceptedTermsOfUse ?? "");
-  if (validationError) {
-    validationErrorsObject.hasAcceptedTermsOfUse = validationError;
-  }
-
-  const hasValidationErrors = Object.values(validationErrorsObject).some(
-    (error) => Boolean(error),
+  const hasValidationErrors = Object.values(requestErrorsObject).some((error) =>
+    Boolean(error),
   );
+
   if (hasValidationErrors) {
     responseObject = generateResponseObject({
       status: 400,
-      validationErrors: validationErrorsObject,
+      validationErrors: requestErrorsObject,
     });
     return NextResponse.json(responseObject);
   } else {
