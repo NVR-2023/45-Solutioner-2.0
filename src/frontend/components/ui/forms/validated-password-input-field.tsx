@@ -1,5 +1,9 @@
 import { useState, ChangeEvent, Dispatch, SetStateAction } from "react";
-import PasswordVisibilityToggle from "./password-visibility-toggle";
+
+import PasswordInvisibleIcon from "../../icons/password-invisible-icon";
+import PasswordVisibleIcon from "../../icons/password-visible-icon";
+import ToggleSwitch from "../toggle-switch/toggle-switch";
+
 import { ValidatedFormFieldsType } from "@/types/component-props-types";
 
 type ValidatedPasswordInputFieldProps = {
@@ -86,11 +90,13 @@ const ValidatedPasswordInputField = ({
           }`}
         >
           password
-          <span>
-            <PasswordVisibilityToggle
-              scale={0.5}
-              isPasswordVisible={isPasswordVisible}
-              togglePasswordVisibility={handleTogglePasswordVisibility}
+          <span className="bg-green-400">
+            <ToggleSwitch
+              toggle={isPasswordVisible}
+              setToggle={setIsPasswordVisible}
+              firstIcon={PasswordInvisibleIcon}
+              secondIcon={PasswordVisibleIcon}
+              scale={0.45}
             />
           </span>
         </label>

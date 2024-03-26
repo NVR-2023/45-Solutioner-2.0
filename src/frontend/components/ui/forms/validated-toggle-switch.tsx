@@ -2,7 +2,7 @@ import { ComponentType, Dispatch, SetStateAction, useCallback } from "react";
 import { ValidatedFormFieldsType } from "@/types/component-props-types";
 
 type IconType = ComponentType<{ scale: number; color: string }>;
-type ToggleProps = {
+type ValidatedToggleProps = {
   firstIcon: IconType;
   secondIcon: IconType;
   name: string;
@@ -20,7 +20,7 @@ const ValidatedToggleSwitch = ({
   setFormFields,
   scale = 1,
   color = "currentColor",
-}: ToggleProps) => {
+}: ValidatedToggleProps) => {
   
   const handleOnToggle = useCallback(() => {
     setFormFields((previousFields) => {

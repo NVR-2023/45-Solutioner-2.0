@@ -1,7 +1,7 @@
 import { Dispatch, ReactNode, SetStateAction, useEffect } from "react";
 import UncheckedBox from "../../icons/unchecked-box";
 import CheckedBox from "../../icons/checked-box";
-import ValidatedToggleSwitch from "../validated-toggle-switch/validated-toggle-switch";
+import ValidatedToggleSwitch from "./validated-toggle-switch";
 import { ValidatedFormFieldsType } from "@/types/component-props-types";
 
 type ValidatedCheckboxType = {
