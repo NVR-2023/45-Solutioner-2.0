@@ -1,4 +1,10 @@
-import { SyntheticEvent, useState, useRef, MutableRefObject } from "react";
+import {
+  SyntheticEvent,
+  useState,
+  useEffect,
+  useRef,
+  MutableRefObject,
+} from "react";
 import { useRouter } from "next/navigation";
 
 import ValidatedTextInputField from "@/frontend/components/ui/forms/validated-text-input-field";
@@ -12,6 +18,10 @@ import { INPUT_VALIDATION_FUNCTION_MAP } from "@/utils/functions/input-validatio
 import { ValidatedFormFieldsType } from "@/types/component-props-types";
 
 import getErrorsInForm from "@/utils/functions/form-validation/get-errors-in-form";
+import {
+  NewUserObjectType,
+  createNewUser,
+} from "@/utils/functions/fetch-data/endpoint-fetch-functions";
 
 const RegisterFormBody = () => {
   const validateName = INPUT_VALIDATION_FUNCTION_MAP.get("name")!;
@@ -40,13 +50,31 @@ const RegisterFormBody = () => {
     },
   });
 
+  let isFormValid: MutableRefObject<boolean> = useRef(false);
+
+  useEffect(() => {
+    const createNewUserFromForm = async () => {
+      const newUserObject: NewUserObjectType = {
+        name: credentials.name.value as string,
+        email: credentials.email.value as string,
+        password: credentials.password.value as string,
+        hasAcceptedTermsOfUse: credentials.hasAcceptedTermsOfUse
+          .value as string,
+      };
+      const response = await createNewUser(newUserObject);
+      console.log(response.data);
+    };
+
+    if (isFormValid.current) {
+      createNewUserFromForm();
+    }
+  }, [credentials, isFormValid]);
+
   const router = useRouter();
   const handleOnCancel = (event: SyntheticEvent) => {
     event.preventDefault();
     router.push("/");
   };
-
-  let isFormValid: MutableRefObject<boolean> = useRef(false);
 
   const handleOnsubmit: any = (event: SyntheticEvent) => {
     event.preventDefault();
@@ -56,12 +84,6 @@ const RegisterFormBody = () => {
       setFormFields: setCredentials,
     })!;
   };
-
-  if (isFormValid.current) {
-    console.log("Form is valid ");
-  } else {
-    console.log("Form is invalid");
-  }
 
   return (
     <main className="grid h-full w-full grid-cols-12">
