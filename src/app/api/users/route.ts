@@ -9,11 +9,13 @@ import {
 
 export async function POST(request: NextRequest) {
   const body = await request.json();
-  let { name, email, password } = body;
+  let { name, email, password, hasAcceptedTermsOfUse } = body;
 
   name = name?.trim();
   email = email?.trim();
   password = password?.trim();
+  hasAcceptedTermsOfUse = hasAcceptedTermsOfUse?.trim();
+
   let responseObject: ReturnType<typeof generateResponseObject>;
   let validationErrorsObject: Record<string, string> = {};
 
@@ -41,6 +43,14 @@ export async function POST(request: NextRequest) {
   validationError = validationFunction(password ?? "");
   if (validationError) {
     validationErrorsObject.password = validationError;
+  }
+
+  // validate hasAcceptedTermsOfUse
+  validationFunction = INPUT_VALIDATION_FUNCTION_MAP.get("hasAcceptedTermsOfUse")!;
+  console.log("hasAcceptedTermsOfUse value: ",hasAcceptedTermsOfUse )
+  validationError = validationFunction(hasAcceptedTermsOfUse ?? "");
+  if (validationError) {
+    validationErrorsObject.hasAcceptedTermsOfUse = validationError;
   }
 
   const hasValidationErrors = Object.values(validationErrorsObject).some(
