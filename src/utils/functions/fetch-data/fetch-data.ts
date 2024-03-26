@@ -23,7 +23,7 @@ export const genericFetch = async <T>({
   body,
   url,
   setStatus,
-}: GenericFetchDataProps<T>): Promise<FetchResultType<T>> => {
+}: GenericFetchDataProps<T>) => {
   const assignStatus = (newStatus: StatusType) => {
     if (setStatus) {
       setStatus(newStatus);
