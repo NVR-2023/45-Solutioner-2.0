@@ -24,6 +24,7 @@ import {
 } from "@/utils/functions/fetch-data/endpoint-fetch-functions";
 
 const RegisterFormBody = () => {
+
   const validateName = INPUT_VALIDATION_FUNCTION_MAP.get("name")!;
   const validateEmail = INPUT_VALIDATION_FUNCTION_MAP.get("email")!;
   const validatePassword = INPUT_VALIDATION_FUNCTION_MAP.get("password")!;
@@ -50,6 +51,7 @@ const RegisterFormBody = () => {
     },
   });
 
+  const router = useRouter();
   let isFormValid: MutableRefObject<boolean> = useRef(false);
 
   useEffect(() => {
@@ -70,7 +72,7 @@ const RegisterFormBody = () => {
     }
   }, [credentials, isFormValid]);
 
-  const router = useRouter();
+  
   const handleOnCancel = (event: SyntheticEvent) => {
     event.preventDefault();
     router.push("/");

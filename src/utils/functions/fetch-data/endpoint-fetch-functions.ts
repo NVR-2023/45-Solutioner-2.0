@@ -7,6 +7,5 @@ export type NewUserObjectType = {
 }
 
 export const createNewUser =  async ( newUser: NewUserObjectType ) => {
-    const response = genericFetch( { method: "POST" , url: "/api/users" , body: newUser})
-    return response;
+    return genericFetch( { method: "POST" , url: "/api/users" , body: newUser})
 }
