@@ -49,9 +49,9 @@ export async function POST(request: NextRequest) {
     return NextResponse.json(responseObject);
   } else {
     const newUserObject = {
-      name: name,
-      email: email,
-      hashedPassword: password,
+      name: requestObject.name,
+      email: requestObject.email,
+      hashedPassword: requestObject.password,
     };
 
     try {
