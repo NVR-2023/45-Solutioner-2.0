@@ -1,4 +1,4 @@
-import { MouseEventHandler, ReactNode } from "react";
+import { MouseEventHandler, ReactNode, Dispatch , SetStateAction } from "react";
 
 export type BasicChildrenProps = {
   children: ReactNode;
@@ -33,4 +33,10 @@ export type ValidatedFormFieldsType = Record<
     validationFunction?: Function;
     errorMessage?: string;
   }
+>;
+
+
+
+export type setFetchSubmissionStatusType = Dispatch<
+  SetStateAction<string>
 >;

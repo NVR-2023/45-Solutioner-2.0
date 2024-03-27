@@ -1,38 +1,36 @@
-import { Dispatch, SetStateAction } from "react";
-
-type MethodType = "GET" | "POST" | "PUT" | "DELETE";
-
-type StatusType = "idle" | "started" | "succeeded" | "failed" | "finished";
-type SetStatusType = Dispatch<SetStateAction<StatusType>>;
-
-type GenericFetchDataProps<T> = {
-  method?: MethodType;
-  body: Record<string, any>;
-  url: string;
-  setStatus?: SetStatusType;
-};
+import { setFetchSubmissionStatusType } from "@/types/component-props-types";
+type FetchMethodType = "GET" | "POST" | "PUT" | "DELETE";
 
 type FetchResultType<T> = {
-  status: StatusType;
-  data?: T;
-  error?: string;
+  fetchSubmissionStatus: string;
+  fetchSubmissionResponseData?: T;
+  fetchSubmissionError?: string;
+};
+
+type GenericFetchProps<T> = {
+  method?: FetchMethodType;
+  body: object;
+  url: string;
+  setFetchSubmissionStatus?: setFetchSubmissionStatusType;
 };
 
 export const genericFetch = async <T>({
   method = "GET",
   body,
   url,
-  setStatus,
-}: GenericFetchDataProps<T>): Promise<FetchResultType<T>> => {
-  const assignStatus = (newStatus: StatusType) => {
-    if (setStatus) {
-      setStatus(newStatus);
+  setFetchSubmissionStatus,
+}: GenericFetchProps<T>): Promise<FetchResultType<T>> => {
+  const assignFetchSubmissionStatus = (newStatus: string) => {
+    if (setFetchSubmissionStatus) {
+      setFetchSubmissionStatus(newStatus);
     }
   };
 
-  const fetchResult: FetchResultType<T> = { status: "idle" };
+  let fetchSubmissionResult: FetchResultType<T> = {
+    fetchSubmissionStatus: "idle",
+  };
 
-  const options: RequestInit = {
+  const fetchSubmissionOptions: RequestInit = {
     method: method,
     headers: {
       "Content-Type": "application/json",
@@ -41,23 +39,29 @@ export const genericFetch = async <T>({
   };
 
   try {
-    assignStatus("started");
-    const response = await fetch(url, options);
+    assignFetchSubmissionStatus("started");
+    const response = await fetch(url, fetchSubmissionOptions);
     if (!response.ok) {
-      assignStatus("failed");
-      throw new Error(`Failed to fetch data: ${response.statusText}`);
+      assignFetchSubmissionStatus("failed");
+      throw new Error(`Failed to ${method} data: ${response.statusText}`);
     } else {
-      assignStatus("succeeded");
+      assignFetchSubmissionStatus("succeeded");
       const data = (await response.json()) as T;
-      fetchResult.data = data;
-      fetchResult.status = "succeeded";
+      fetchSubmissionResult = {
+        ...fetchSubmissionResult,
+        fetchSubmissionResponseData: data,
+        fetchSubmissionStatus: "succeeded",
+      };
     }
   } catch (error) {
-    assignStatus("failed");
-    fetchResult.status = "failed";
-    fetchResult.error = "An error occurred";
+    assignFetchSubmissionStatus("failed");
+    fetchSubmissionResult = {
+      ...fetchSubmissionResult,
+      fetchSubmissionStatus: "failed",
+      fetchSubmissionError: "An error occurred",
+    };
   } finally {
-    assignStatus("finished");
+    assignFetchSubmissionStatus("finished");
   }
-  return fetchResult;
+  return fetchSubmissionResult;
 };
