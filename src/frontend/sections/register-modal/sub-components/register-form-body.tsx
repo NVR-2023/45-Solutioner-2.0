@@ -1,15 +1,4 @@
-import {
-  SyntheticEvent,
-  useState,
-  useEffect,
-  useRef,
-  MutableRefObject,
-  Dispatch,
-  SetStateAction,
-} from "react";
-import { useRouter } from "next/navigation";
-
-import { setFetchSubmissionStatusType } from "@/types/component-props-types";
+import { SyntheticEvent, useState, useEffect } from "react";
 
 import ValidatedTextInputField from "@/frontend/components/ui/forms/validated-text-input-field";
 import ValidatedPasswordInputField from "@/frontend/components/ui/forms/validated-password-input-field";
@@ -17,12 +6,10 @@ import ValidatedCheckbox from "@/frontend/components/ui/forms/validated-checkbox
 import hasAcceptedTermsOfUseNotice from "@/frontend/components/ui/forms/has-accepted-terms-of-use";
 import RegisterWIthSegment from "@/frontend/components/ui/forms/register-with-segment";
 import SubmitSegment from "@/frontend/components/ui/forms/submit-segment";
-
-import { INPUT_VALIDATION_FUNCTION_MAP } from "@/utils/functions/input-validation/input-validation-function-map";
-import { ValidatedFormFieldsType } from "@/types/component-props-types";
+import { useRegisterFormDataSetup } from "../../../hooks/register-form-hooks/use-register-form-setup-data";
 
 import getErrorsInForm from "@/utils/functions/form-validation/get-errors-in-form";
-import { genericFetch } from "@/utils/functions/fetch-data/generic-fetch";
+import { fetchSubmission } from "@/utils/functions/fetch-data/fetch-submission";
 
 type NewUserObjectType = {
   name: string;
@@ -31,45 +18,44 @@ type NewUserObjectType = {
   hasAcceptedTermsOfUse: string;
 };
 
-type FormSubmissionStatusStateType = string;
-type FormSubmissionStatusSetterType = Dispatch<SetStateAction<string>>;
-
 const RegisterFormBody = () => {
-  const validateName = INPUT_VALIDATION_FUNCTION_MAP.get("name")!;
-  const validateEmail = INPUT_VALIDATION_FUNCTION_MAP.get("email")!;
-  const validatePassword = INPUT_VALIDATION_FUNCTION_MAP.get("password")!;
-  const validateHasAcceptedTermsOfUse = INPUT_VALIDATION_FUNCTION_MAP.get(
-    "hasAcceptedTermsOfUse",
-  )!;
 
-  const [credentials, setCredentials] = useState<ValidatedFormFieldsType>({
-    name: { value: "", validationFunction: validateName, errorMessage: "" },
-    email: {
-      value: "",
-      validationFunction: validateEmail,
-      errorMessage: "",
-    },
-    password: {
-      value: "",
-      validationFunction: validatePassword,
-      errorMessage: "",
-    },
-    hasAcceptedTermsOfUse: {
-      value: "false",
-      validationFunction: validateHasAcceptedTermsOfUse,
-      errorMessage: "",
-    },
-  });
-
-  const router = useRouter();
-  let isFormValid: MutableRefObject<boolean> = useRef(false);
-
-  const [formSubmissionStatus, setFormSubmissionStatus]: [
-    FormSubmissionStatusStateType,
-    FormSubmissionStatusSetterType,
-  ] = useState("");
+  const {
+    defaultCredentials,
+    router,
+    isFormValid,
+    credentials,
+    setCredentials,
+    formSubmissionStatus,
+    setFormSubmissionStatus,
+  } = useRegisterFormDataSetup();
 
   useEffect(() => {
+    if (
+      formSubmissionStatus === "executed" ||
+      formSubmissionStatus === "aborted" ||
+      formSubmissionStatus === "finished"
+    ) {
+      isFormValid.current = false;
+      setCredentials(defaultCredentials);
+      setFormSubmissionStatus("");
+    }
+  }, [formSubmissionStatus]);
+
+  const handleOnCancel = (event: SyntheticEvent) => {
+    event.preventDefault();
+    router.push("/");
+  };
+
+  const handleOnsubmit = async (event: SyntheticEvent) => {
+    event.preventDefault();
+
+    getErrorsInForm({
+      isFormValid: isFormValid,
+      formFields: credentials,
+      setFormFields: setCredentials,
+    })!;
+
     const createNewUser = async () => {
       const newUserObject: NewUserObjectType = {
         name: credentials.name.value as string,
@@ -78,7 +64,7 @@ const RegisterFormBody = () => {
         hasAcceptedTermsOfUse: credentials.hasAcceptedTermsOfUse
           .value as string,
       };
-      const response = await genericFetch({
+      const response = await fetchSubmission({
         method: "POST",
         url: "/api/users",
         body: newUserObject,
@@ -90,20 +76,6 @@ const RegisterFormBody = () => {
     if (isFormValid.current) {
       createNewUser();
     }
-  }, [credentials, isFormValid]);
-
-  const handleOnCancel = (event: SyntheticEvent) => {
-    event.preventDefault();
-    router.push("/");
-  };
-
-  const handleOnsubmit = (event: SyntheticEvent) => {
-    event.preventDefault();
-    getErrorsInForm({
-      isFormValid: isFormValid,
-      formFields: credentials,
-      setFormFields: setCredentials,
-    })!;
   };
 
   return (
@@ -151,7 +123,7 @@ const RegisterFormBody = () => {
               <SubmitSegment
                 onCancel={handleOnCancel}
                 onSubmit={handleOnsubmit}
-                formSubmitStatus={formSubmissionStatus}
+                formSubmissionStatus={formSubmissionStatus}
               />
             </div>
           </div>

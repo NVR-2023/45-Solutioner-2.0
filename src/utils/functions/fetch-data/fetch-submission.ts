@@ -1,33 +1,33 @@
 import { setFetchSubmissionStatusType } from "@/types/component-props-types";
 type FetchMethodType = "GET" | "POST" | "PUT" | "DELETE";
 
-type FetchResultType<T> = {
-  fetchSubmissionStatus: string;
+type FetchSubmissionResponseType<T> = {
+  fetchSubmissionResponseStatus: string;
   fetchSubmissionResponseData?: T;
-  fetchSubmissionError?: string;
+  fetchSubmissionResponseError?: string;
 };
 
-type GenericFetchProps<T> = {
+type FetchSubmissionProps = {
   method?: FetchMethodType;
   body: object;
   url: string;
   setFetchSubmissionStatus?: setFetchSubmissionStatusType;
 };
 
-export const genericFetch = async <T>({
+export const fetchSubmission = async <T>({
   method = "GET",
   body,
   url,
   setFetchSubmissionStatus,
-}: GenericFetchProps<T>): Promise<FetchResultType<T>> => {
+}: FetchSubmissionProps): Promise<FetchSubmissionResponseType<T>> => {
   const assignFetchSubmissionStatus = (newStatus: string) => {
     if (setFetchSubmissionStatus) {
       setFetchSubmissionStatus(newStatus);
     }
   };
 
-  let fetchSubmissionResult: FetchResultType<T> = {
-    fetchSubmissionStatus: "idle",
+  let fetchSubmissionResponse: FetchSubmissionResponseType<T> = {
+    fetchSubmissionResponseStatus: "idle",
   };
 
   const fetchSubmissionOptions: RequestInit = {
@@ -47,21 +47,34 @@ export const genericFetch = async <T>({
     } else {
       assignFetchSubmissionStatus("succeeded");
       const data = (await response.json()) as T;
-      fetchSubmissionResult = {
-        ...fetchSubmissionResult,
+      fetchSubmissionResponse = {
+        ...fetchSubmissionResponse,
         fetchSubmissionResponseData: data,
-        fetchSubmissionStatus: "succeeded",
+        fetchSubmissionResponseStatus: "succeeded",
       };
     }
   } catch (error) {
     assignFetchSubmissionStatus("failed");
-    fetchSubmissionResult = {
-      ...fetchSubmissionResult,
-      fetchSubmissionStatus: "failed",
-      fetchSubmissionError: "An error occurred",
+    fetchSubmissionResponse = {
+      ...fetchSubmissionResponse,
+      fetchSubmissionResponseStatus: "failed",
+      fetchSubmissionResponseError: "An error occurred",
     };
   } finally {
-    assignFetchSubmissionStatus("finished");
+    if (fetchSubmissionResponse.fetchSubmissionResponseStatus === "succeeded") {
+      if (fetchSubmissionResponse.fetchSubmissionResponseData) {
+        const data = fetchSubmissionResponse.fetchSubmissionResponseData as any;
+        if ("ok" in data) {
+          if (data.ok) {
+            assignFetchSubmissionStatus("executed");
+          } else {
+            assignFetchSubmissionStatus("aborted");
+          }
+        }
+      } else {
+        assignFetchSubmissionStatus("finished");
+      }
+    }
   }
-  return fetchSubmissionResult;
+  return fetchSubmissionResponse;
 };

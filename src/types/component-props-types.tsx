@@ -12,7 +12,8 @@ export type BasicComponentProps = {
 export type BasicButtonProps = {
   type?: "outlined" | "filled";
   size?: "sm" | "md" | "lg";
-  label?: string;
+  label?: ReactNode;
+  disabled?: boolean;
   onClick: MouseEventHandler<HTMLButtonElement>;
 };
 
