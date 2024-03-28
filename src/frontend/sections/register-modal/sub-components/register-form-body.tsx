@@ -1,4 +1,12 @@
-import { SyntheticEvent, useState, useEffect } from "react";
+import {
+  SyntheticEvent,
+  useState,
+  useEffect,
+  useRef,
+  Dispatch,
+  SetStateAction,
+  MutableRefObject,
+} from "react";
 
 import ValidatedTextInputField from "@/frontend/components/ui/forms/validated-text-input-field";
 import ValidatedPasswordInputField from "@/frontend/components/ui/forms/validated-password-input-field";
@@ -6,10 +14,12 @@ import ValidatedCheckbox from "@/frontend/components/ui/forms/validated-checkbox
 import hasAcceptedTermsOfUseNotice from "@/frontend/components/ui/forms/has-accepted-terms-of-use";
 import RegisterWIthSegment from "@/frontend/components/ui/forms/register-with-segment";
 import SubmitSegment from "@/frontend/components/ui/forms/submit-segment";
-import { useRegisterFormDataSetup } from "../../../hooks/register-form-hooks/use-register-form-setup-data";
 
 import getErrorsInForm from "@/utils/functions/form-validation/get-errors-in-form";
 import { fetchSubmission } from "@/utils/functions/fetch-data/fetch-submission";
+import { useRouter } from "next/navigation";
+import { INPUT_VALIDATION_FUNCTION_MAP } from "@/utils/functions/input-validation/input-validation-function-map";
+import { ValidatedFormFieldsType } from "@/types/component-props-types";
 
 type NewUserObjectType = {
   name: string;
@@ -18,28 +28,55 @@ type NewUserObjectType = {
   hasAcceptedTermsOfUse: string;
 };
 
-const RegisterFormBody = () => {
+type FormSubmissionStatusStateType = string;
+type FormSubmissionStatusSetterType = Dispatch<SetStateAction<string>>;
 
-  const {
-    defaultCredentials,
-    router,
-    isFormValid,
-    credentials,
-    setCredentials,
-    formSubmissionStatus,
-    setFormSubmissionStatus,
-  } = useRegisterFormDataSetup();
+const RegisterFormBody = () => {
+  const validateName = INPUT_VALIDATION_FUNCTION_MAP.get("name")!;
+  const validateEmail = INPUT_VALIDATION_FUNCTION_MAP.get("email")!;
+  const validatePassword = INPUT_VALIDATION_FUNCTION_MAP.get("password")!;
+  const validateHasAcceptedTermsOfUse = INPUT_VALIDATION_FUNCTION_MAP.get(
+    "hasAcceptedTermsOfUse",
+  )!;
+
+  const router = useRouter();
+  let isFormValid: MutableRefObject<boolean> = useRef(false);
+
+  const [credentials, setCredentials] = useState<ValidatedFormFieldsType>({
+    name: { value: "", validationFunction: validateName, errorMessage: "" },
+    email: {
+      value: "",
+      validationFunction: validateEmail,
+      errorMessage: "",
+    },
+    password: {
+      value: "",
+      validationFunction: validatePassword,
+      errorMessage: "",
+    },
+    hasAcceptedTermsOfUse: {
+      value: "false",
+      validationFunction: validateHasAcceptedTermsOfUse,
+      errorMessage: "",
+    },
+  });
+
+  const [formSubmissionStatus, setFormSubmissionStatus]: [
+    FormSubmissionStatusStateType,
+    FormSubmissionStatusSetterType,
+  ] = useState("idle");
 
   useEffect(() => {
-    if (
+    const isFormSubmissionFinished =
       formSubmissionStatus === "executed" ||
       formSubmissionStatus === "aborted" ||
-      formSubmissionStatus === "finished"
-    ) {
+      formSubmissionStatus === "finished";
+
+    if (isFormSubmissionFinished) {
       isFormValid.current = false;
-      setCredentials(defaultCredentials);
-      setFormSubmissionStatus("");
-    }
+/*       setFormSubmissionStatus("");
+ *//*       setCredentials({});
+ */    }
   }, [formSubmissionStatus]);
 
   const handleOnCancel = (event: SyntheticEvent) => {

@@ -1,9 +1,9 @@
 import { setFetchSubmissionStatusType } from "@/types/component-props-types";
 type FetchMethodType = "GET" | "POST" | "PUT" | "DELETE";
 
-type FetchSubmissionResponseType<T> = {
+type FetchSubmissionResponseType <T> = {
   fetchSubmissionResponseStatus: string;
-  fetchSubmissionResponseData?: T;
+  fetchSubmissionResponseData?: any;
   fetchSubmissionResponseError?: string;
 };
 
@@ -46,12 +46,21 @@ export const fetchSubmission = async <T>({
       throw new Error(`Failed to ${method} data: ${response.statusText}`);
     } else {
       assignFetchSubmissionStatus("succeeded");
-      const data = (await response.json()) as T;
+      const data: T = await response.json();
       fetchSubmissionResponse = {
         ...fetchSubmissionResponse,
         fetchSubmissionResponseData: data,
         fetchSubmissionResponseStatus: "succeeded",
       };
+
+    const status =
+      typeof data === "object" && data && "ok" in data
+        ? data.ok
+          ? "executed"
+          : "aborted"
+        : "finished";
+    assignFetchSubmissionStatus(status);
+
     }
   } catch (error) {
     assignFetchSubmissionStatus("failed");
@@ -60,21 +69,6 @@ export const fetchSubmission = async <T>({
       fetchSubmissionResponseStatus: "failed",
       fetchSubmissionResponseError: "An error occurred",
     };
-  } finally {
-    if (fetchSubmissionResponse.fetchSubmissionResponseStatus === "succeeded") {
-      if (fetchSubmissionResponse.fetchSubmissionResponseData) {
-        const data = fetchSubmissionResponse.fetchSubmissionResponseData as any;
-        if ("ok" in data) {
-          if (data.ok) {
-            assignFetchSubmissionStatus("executed");
-          } else {
-            assignFetchSubmissionStatus("aborted");
-          }
-        }
-      } else {
-        assignFetchSubmissionStatus("finished");
-      }
-    }
   }
   return fetchSubmissionResponse;
 };
