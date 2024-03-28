@@ -66,33 +66,13 @@ const RegisterFormBody = () => {
     FormSubmissionStatusSetterType,
   ] = useState("idle");
 
-  useEffect(() => {
-    const isFormSubmissionFinished =
-      formSubmissionStatus === "executed" ||
-      formSubmissionStatus === "aborted" ||
-      formSubmissionStatus === "finished";
-
-    if (isFormSubmissionFinished) {
-      isFormValid.current = false;
-/*       setFormSubmissionStatus("");
- *//*       setCredentials({});
- */    }
-  }, [formSubmissionStatus]);
-
   const handleOnCancel = (event: SyntheticEvent) => {
     event.preventDefault();
     router.push("/");
   };
 
   const handleOnsubmit = async (event: SyntheticEvent) => {
-    event.preventDefault();
-
-    getErrorsInForm({
-      isFormValid: isFormValid,
-      formFields: credentials,
-      setFormFields: setCredentials,
-    })!;
-
+    let createNewUserResponse = null;
     const createNewUser = async () => {
       const newUserObject: NewUserObjectType = {
         name: credentials.name.value as string,
@@ -101,14 +81,21 @@ const RegisterFormBody = () => {
         hasAcceptedTermsOfUse: credentials.hasAcceptedTermsOfUse
           .value as string,
       };
-      const response = await fetchSubmission({
+        createNewUserResponse = await fetchSubmission({
         method: "POST",
         url: "/api/users",
         body: newUserObject,
         setFetchSubmissionStatus: setFormSubmissionStatus,
       });
-      console.log(response.fetchSubmissionResponseData);
+      console.log(createNewUserResponse.fetchSubmissionResponseData);
     };
+
+    event.preventDefault();
+    getErrorsInForm({
+      isFormValid: isFormValid,
+      formFields: credentials,
+      setFormFields: setCredentials,
+    })!;
 
     if (isFormValid.current) {
       createNewUser();
