@@ -103,7 +103,7 @@ const RegisterFormBody = () => {
     }
 
     await wait(3000);
-    setFormSubmissionStatus("idle");
+    setFormSubmissionStatus("re-idle");
   };
 
   return (

@@ -17,33 +17,54 @@ const SubmitSegment = ({
   onSubmit,
   formSubmissionStatus,
 }: SubmitSegmentType) => {
-  const isFormSubmittable = formSubmissionStatus === "idle";
+  const isFormSubmittable =
+    formSubmissionStatus === "idle" || formSubmissionStatus === "re-idle";
 
-  const forSubmissionStatusLabel: ReactNode =
-    formSubmissionStatus === "idle" ? (
-      <FadeInWrapper key={"register"}>register</FadeInWrapper>
-    ) : formSubmissionStatus === "started" ||
-      formSubmissionStatus === "succeeded" ? (
+let forSubmissionStatusLabel: ReactNode;
+
+switch (formSubmissionStatus) {
+  case "idle":
+    forSubmissionStatusLabel = "register";
+    break;
+  case "started":
+  case "succeeded":
+    forSubmissionStatusLabel = (
       <div className="flex items-center justify-between" key={"submitting"}>
         <AnimatedProgressCircle scale={0.5} />
         {`\u00A0submitting`}
       </div>
-    ) : formSubmissionStatus === "failed" ||
-      formSubmissionStatus === "aborted" ? (
+    );
+    break;
+  case "failed":
+  case "aborted":
+    forSubmissionStatusLabel = (
       <FadeInWrapper>
         <div className="flex items-center justify-between" key={"failed"}>
           <CrossedCircle scale={0.5} />
           {`\u00A0failed`}
         </div>
       </FadeInWrapper>
-    ) : (
+    );
+    break;
+  case "executed":
+  case "finished":
+    forSubmissionStatusLabel = (
       <FadeInWrapper>
-        <div className="flex items-center justify-between" key={"succeeded"}>
+        <div className="flex items-center justify-between" key={"executed"}>
           <CheckedCircle scale={0.5} />
-          {`\u00A0succeeded`}
+          {`\u00A0succeeded`}{" "}
         </div>
       </FadeInWrapper>
     );
+    break;
+  case "re-idle":
+    forSubmissionStatusLabel = (
+      <FadeInWrapper key={"re-idle"}>register</FadeInWrapper>
+    );
+    break;
+}
+
+
 
   return (
     <div className="relative flex justify-between">
