@@ -4,6 +4,7 @@ import BasicButton from "../basic-button/basic-button";
 import CheckedCircle from "../../icons/checked-circle";
 import CrossedCircle from "../../icons/crossed-circle";
 import AnimatedProgressCircle from "../../icons/animated-progress-circle";
+import FadeInWrapper from "../fadein-wrapper/fade-in-wrapper";
 
 type SubmitSegmentType = {
   onCancel: MouseEventHandler<HTMLButtonElement>;
@@ -16,31 +17,32 @@ const SubmitSegment = ({
   onSubmit,
   formSubmissionStatus,
 }: SubmitSegmentType) => {
-
-
-  const isFormBeingSubmitted =
-    formSubmissionStatus === "started" || formSubmissionStatus === "succeeded";
+  const isFormSubmittable = formSubmissionStatus === "idle";
 
   const forSubmissionStatusLabel: ReactNode =
     formSubmissionStatus === "idle" ? (
-      "register"
+      <FadeInWrapper key={"register"}>register</FadeInWrapper>
     ) : formSubmissionStatus === "started" ||
       formSubmissionStatus === "succeeded" ? (
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between" key={"submitting"}>
         <AnimatedProgressCircle scale={0.5} />
         {`\u00A0submitting`}
       </div>
     ) : formSubmissionStatus === "failed" ||
       formSubmissionStatus === "aborted" ? (
-      <div className="flex items-center justify-between">
-        <CrossedCircle scale={0.5} />
-        {`\u00A0failed`}
-      </div>
+      <FadeInWrapper>
+        <div className="flex items-center justify-between" key={"failed"}>
+          <CrossedCircle scale={0.5} />
+          {`\u00A0failed`}
+        </div>
+      </FadeInWrapper>
     ) : (
-      <div className="flex items-center justify-between">
-        <CheckedCircle scale={0.5} />
-        {`\u00A0succeeded`}
-      </div>
+      <FadeInWrapper>
+        <div className="flex items-center justify-between" key={"succeeded"}>
+          <CheckedCircle scale={0.5} />
+          {`\u00A0succeeded`}
+        </div>
+      </FadeInWrapper>
     );
 
   return (
@@ -56,7 +58,7 @@ const SubmitSegment = ({
         type={"filled"}
         onClick={onSubmit}
         label={forSubmissionStatusLabel}
-        disabled={isFormBeingSubmitted}
+        disabled={!isFormSubmittable}
       />
     </div>
   );

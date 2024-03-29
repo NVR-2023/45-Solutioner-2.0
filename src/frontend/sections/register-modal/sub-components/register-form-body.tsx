@@ -17,7 +17,7 @@ import {
   setFetchSubmissionStatusType,
 } from "@/types/component-props-types";
 
-import { sleep } from "@/utils/functions/sleep";
+import { wait } from "@/utils/functions/wait";
 
 type NewUserObjectType = {
   name: string;
@@ -67,9 +67,8 @@ const RegisterFormBody = () => {
   };
 
   const handleOnsubmit = async (event: SyntheticEvent) => {
-    
     let createNewUserFetchSubmissionResponse: any;
-    
+
     const createNewUser = async () => {
       const newUserObject: NewUserObjectType = {
         name: credentials.name.value as string,
@@ -100,11 +99,11 @@ const RegisterFormBody = () => {
       createNewUser();
     }
 
-    await sleep(3000);
-    setFormSubmissionStatus("idle");
-
     if (createNewUserFetchSubmissionResponse?.fetchSubmissionResponseData) {
     }
+
+    await wait(3000);
+    setFormSubmissionStatus("idle");
   };
 
   return (
