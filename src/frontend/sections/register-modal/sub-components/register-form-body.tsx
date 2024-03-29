@@ -67,7 +67,7 @@ const RegisterFormBody = () => {
   };
 
   const handleOnsubmit = async (event: SyntheticEvent) => {
-    let createNewUserFetchSubmissionResponse: any;
+    let createNewUserResponse: any;
 
     const createNewUser = async () => {
       const newUserObject: NewUserObjectType = {
@@ -77,15 +77,13 @@ const RegisterFormBody = () => {
         hasAcceptedTermsOfUse: credentials.hasAcceptedTermsOfUse
           .value as string,
       };
-      createNewUserFetchSubmissionResponse = await fetchSubmission({
+      createNewUserResponse = await fetchSubmission({
         method: "POST",
         url: "/api/users",
         body: newUserObject,
         setFetchSubmissionStatus: setFormSubmissionStatus,
       });
-      console.log(
-        createNewUserFetchSubmissionResponse.fetchSubmissionResponseData,
-      );
+      console.log(createNewUserResponse.data);
     };
 
     event.preventDefault();
@@ -96,13 +94,19 @@ const RegisterFormBody = () => {
     })!;
 
     if (isFormValid.current) {
-      createNewUser();
+    await createNewUser();
     }
-
-    await wait(3000);
-    if (
-      !createNewUserFetchSubmissionResponse?.fetchSubmissionResponseData?.ok
-    ) {
+    await wait(2000);
+    if (!createNewUserResponse?.data?.ok) {
+     
+      let updatedCredentials = {...credentials}
+      const submissionErrorList = createNewUserResponse?.data?.errors?.validationErrors ?? null;
+      if (submissionErrorList) {
+        for (let invalidInput in submissionErrorList) {
+          updatedCredentials[invalidInput].errorMessage= submissionErrorList[invalidInput];
+        }
+      } 
+      setCredentials(updatedCredentials)
       setFormSubmissionStatus("re-idle");
     } else {
       router.push("/");

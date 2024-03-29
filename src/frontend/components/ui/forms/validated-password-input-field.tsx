@@ -70,7 +70,7 @@ const ValidatedPasswordInputField = ({
           type={isPasswordVisible ? "text" : "password"}
           id="passwordID"
           name="password"
-          autoComplete="false"
+          autoComplete="new-password"
           onFocus={() => handleOnFocus()}
           onChange={handleOnChange}
           onBlur={() => handleOnBlur()}

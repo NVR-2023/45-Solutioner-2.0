@@ -62,7 +62,7 @@ const ValidatedTextInputField = ({
           type="text"
           id={`${name}ID`}
           name={name}
-          autoComplete="false"
+          autoComplete="off"
           onFocus={() => handleOnFocus()}
           onChange={handleOnChange}
           onBlur={() => handleOnBlur()}

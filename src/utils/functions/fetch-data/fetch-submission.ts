@@ -1,13 +1,13 @@
 import {
-  FetchSubmissionSTatusType,
+  FetchSubmissionSTatusType as FetchSubmissionStatusType,
   setFetchSubmissionStatusType,
 } from "@/types/component-props-types";
 type FetchMethodType = "GET" | "POST" | "PUT" | "DELETE";
 
 type FetchSubmissionResponseType<T> = {
-  fetchSubmissionResponseStatus: FetchSubmissionSTatusType;
-  fetchSubmissionResponseData?: any;
-  fetchSubmissionResponseError?: string;
+  status: FetchSubmissionStatusType;
+  data?: any;
+  error?: string;
 };
 
 type FetchSubmissionProps = {
@@ -24,7 +24,7 @@ export const fetchSubmission = async <T>({
   setFetchSubmissionStatus,
 }: FetchSubmissionProps): Promise<FetchSubmissionResponseType<T>> => {
   const assignFetchSubmissionStatus = (
-    newStatus: FetchSubmissionSTatusType,
+    newStatus: FetchSubmissionStatusType,
   ) => {
     if (setFetchSubmissionStatus) {
       setFetchSubmissionStatus(newStatus);
@@ -32,7 +32,7 @@ export const fetchSubmission = async <T>({
   };
 
   let fetchSubmissionResponse: FetchSubmissionResponseType<T> = {
-    fetchSubmissionResponseStatus: "idle",
+    status: "idle",
   };
 
   const fetchSubmissionOptions: RequestInit = {
@@ -54,8 +54,8 @@ export const fetchSubmission = async <T>({
       const data: T = await response.json();
       fetchSubmissionResponse = {
         ...fetchSubmissionResponse,
-        fetchSubmissionResponseData: data,
-        fetchSubmissionResponseStatus: "succeeded",
+        data: data,
+        status: "succeeded",
       };
 
       const status =
@@ -70,8 +70,8 @@ export const fetchSubmission = async <T>({
     assignFetchSubmissionStatus("failed");
     fetchSubmissionResponse = {
       ...fetchSubmissionResponse,
-      fetchSubmissionResponseStatus: "failed",
-      fetchSubmissionResponseError: "An error occurred",
+      status: "failed",
+      error: "An error occurred",
     };
   }
   return fetchSubmissionResponse;
