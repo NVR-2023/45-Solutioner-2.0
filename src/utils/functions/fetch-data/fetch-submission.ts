@@ -1,8 +1,11 @@
-import { setFetchSubmissionStatusType } from "@/types/component-props-types";
+import {
+  FetchSubmissionSTatusType,
+  setFetchSubmissionStatusType,
+} from "@/types/component-props-types";
 type FetchMethodType = "GET" | "POST" | "PUT" | "DELETE";
 
-type FetchSubmissionResponseType <T> = {
-  fetchSubmissionResponseStatus: string;
+type FetchSubmissionResponseType<T> = {
+  fetchSubmissionResponseStatus: FetchSubmissionSTatusType;
   fetchSubmissionResponseData?: any;
   fetchSubmissionResponseError?: string;
 };
@@ -20,7 +23,9 @@ export const fetchSubmission = async <T>({
   url,
   setFetchSubmissionStatus,
 }: FetchSubmissionProps): Promise<FetchSubmissionResponseType<T>> => {
-  const assignFetchSubmissionStatus = (newStatus: string) => {
+  const assignFetchSubmissionStatus = (
+    newStatus: FetchSubmissionSTatusType,
+  ) => {
     if (setFetchSubmissionStatus) {
       setFetchSubmissionStatus(newStatus);
     }
@@ -53,14 +58,13 @@ export const fetchSubmission = async <T>({
         fetchSubmissionResponseStatus: "succeeded",
       };
 
-    const status =
-      typeof data === "object" && data && "ok" in data
-        ? data.ok
-          ? "executed"
-          : "aborted"
-        : "finished";
-    assignFetchSubmissionStatus(status);
-
+      const status =
+        typeof data === "object" && data && "ok" in data
+          ? data.ok
+            ? "executed"
+            : "aborted"
+          : "finished";
+      assignFetchSubmissionStatus(status);
     }
   } catch (error) {
     assignFetchSubmissionStatus("failed");

@@ -72,7 +72,7 @@ const RegisterFormBody = () => {
   };
 
   const handleOnsubmit = async (event: SyntheticEvent) => {
-    let createNewUserResponse = null;
+    let createNewUserFetchSubmissionResponse: any;
     const createNewUser = async () => {
       const newUserObject: NewUserObjectType = {
         name: credentials.name.value as string,
@@ -81,13 +81,15 @@ const RegisterFormBody = () => {
         hasAcceptedTermsOfUse: credentials.hasAcceptedTermsOfUse
           .value as string,
       };
-        createNewUserResponse = await fetchSubmission({
+      createNewUserFetchSubmissionResponse = await fetchSubmission({
         method: "POST",
         url: "/api/users",
         body: newUserObject,
         setFetchSubmissionStatus: setFormSubmissionStatus,
       });
-      console.log(createNewUserResponse.fetchSubmissionResponseData);
+      console.log(
+        createNewUserFetchSubmissionResponse.fetchSubmissionResponseData,
+      );
     };
 
     event.preventDefault();
@@ -99,6 +101,8 @@ const RegisterFormBody = () => {
 
     if (isFormValid.current) {
       createNewUser();
+    }
+    if (createNewUserFetchSubmissionResponse?.fetchSubmissionResponseData) {
     }
   };
 

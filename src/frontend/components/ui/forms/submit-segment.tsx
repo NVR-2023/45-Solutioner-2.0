@@ -1,10 +1,14 @@
 import { MouseEventHandler, ReactNode } from "react";
+import { FetchSubmissionSTatusType } from "@/types/component-props-types";
 import BasicButton from "../basic-button/basic-button";
+import CheckedCircle from "../../icons/checked-circle";
+import CrossedCircle from "../../icons/crossed-circle";
+import AnimatedProgressCircle from "../../icons/animated-progress-circle";
 
 type SubmitSegmentType = {
   onCancel: MouseEventHandler<HTMLButtonElement>;
   onSubmit: MouseEventHandler<HTMLButtonElement>;
-  formSubmissionStatus?: string;
+  formSubmissionStatus?: FetchSubmissionSTatusType;
 };
 
 const SubmitSegment = ({
@@ -12,18 +16,27 @@ const SubmitSegment = ({
   onSubmit,
   formSubmissionStatus,
 }: SubmitSegmentType) => {
-  const isFormSubmissionInProgress =
-    formSubmissionStatus === "started" ||
-    formSubmissionStatus === "failed" ||
-    formSubmissionStatus === "succeeded";
-
-  const formSubmissionStatusLabelMAp = new Map<string, ReactNode>([
-    ["started", <span key="1">started</span>],
-    ["failed", <span key="2">failed</span>],
-    ["executed", <span key="2">executed</span>],
-    ["aborted", <span key="2">aborted</span>],
-    ["finished", <span key="3">finished</span>],
-  ]);
+  const forSubmissionStatusLabel: ReactNode =
+    formSubmissionStatus === "idle" ? (
+      "register"
+    ) : formSubmissionStatus === "started" ||
+      formSubmissionStatus === "succeeded" ? (
+      <div className="flex items-center justify-between">
+        <AnimatedProgressCircle scale={0.5} />
+        {`\u00A0submitting`}
+      </div>
+    ) : formSubmissionStatus === "failed" ||
+      formSubmissionStatus === "aborted" ? (
+      <div className="flex items-center justify-between">
+        <CrossedCircle scale={0.5} />
+        {`\u00A0failed`}
+      </div>
+    ) : (
+      <div className="flex items-center justify-between">
+        <CheckedCircle scale={0.5} />
+        {`\u00A0succeeded`}
+      </div>
+    );
 
   return (
     <div className="relative flex justify-between">
@@ -37,12 +50,7 @@ const SubmitSegment = ({
         size={"md"}
         type={"filled"}
         onClick={onSubmit}
-        label={
-          isFormSubmissionInProgress
-            ? formSubmissionStatusLabelMAp.get(formSubmissionStatus)
-            : "register"
-        }
-        disabled={isFormSubmissionInProgress}
+        label={forSubmissionStatusLabel}
       />
     </div>
   );
