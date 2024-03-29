@@ -1,12 +1,4 @@
-import {
-  SyntheticEvent,
-  useState,
-  useEffect,
-  useRef,
-  Dispatch,
-  SetStateAction,
-  MutableRefObject,
-} from "react";
+import { SyntheticEvent, useState, useRef, MutableRefObject } from "react";
 
 import ValidatedTextInputField from "@/frontend/components/ui/forms/validated-text-input-field";
 import ValidatedPasswordInputField from "@/frontend/components/ui/forms/validated-password-input-field";
@@ -19,7 +11,11 @@ import getErrorsInForm from "@/utils/functions/form-validation/get-errors-in-for
 import { fetchSubmission } from "@/utils/functions/fetch-data/fetch-submission";
 import { useRouter } from "next/navigation";
 import { INPUT_VALIDATION_FUNCTION_MAP } from "@/utils/functions/input-validation/input-validation-function-map";
-import { ValidatedFormFieldsType } from "@/types/component-props-types";
+import {
+  ValidatedFormFieldsType,
+  FetchSubmissionSTatusType,
+  setFetchSubmissionStatusType,
+} from "@/types/component-props-types";
 
 type NewUserObjectType = {
   name: string;
@@ -27,9 +23,6 @@ type NewUserObjectType = {
   password: string;
   hasAcceptedTermsOfUse: string;
 };
-
-type FormSubmissionStatusStateType = string;
-type FormSubmissionStatusSetterType = Dispatch<SetStateAction<string>>;
 
 const RegisterFormBody = () => {
   const validateName = INPUT_VALIDATION_FUNCTION_MAP.get("name")!;
@@ -62,8 +55,8 @@ const RegisterFormBody = () => {
   });
 
   const [formSubmissionStatus, setFormSubmissionStatus]: [
-    FormSubmissionStatusStateType,
-    FormSubmissionStatusSetterType,
+    FetchSubmissionSTatusType,
+    setFetchSubmissionStatusType,
   ] = useState("idle");
 
   const handleOnCancel = (event: SyntheticEvent) => {

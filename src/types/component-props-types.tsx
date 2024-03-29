@@ -36,7 +36,7 @@ export type ValidatedFormFieldsType = Record<
   }
 >;
 
-export type FetchSubmissionSTatusType = "idle" | "started" | "failed" | "succeeded" | "aborted" | "executed" | "finished"
+export type FetchSubmissionSTatusType = string
 
 export type setFetchSubmissionStatusType = Dispatch<
   SetStateAction<FetchSubmissionSTatusType>

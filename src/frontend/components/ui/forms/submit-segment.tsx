@@ -16,6 +16,11 @@ const SubmitSegment = ({
   onSubmit,
   formSubmissionStatus,
 }: SubmitSegmentType) => {
+
+
+  const isFormBeingSubmitted =
+    formSubmissionStatus === "started" || formSubmissionStatus === "succeeded";
+
   const forSubmissionStatusLabel: ReactNode =
     formSubmissionStatus === "idle" ? (
       "register"
@@ -51,6 +56,7 @@ const SubmitSegment = ({
         type={"filled"}
         onClick={onSubmit}
         label={forSubmissionStatusLabel}
+        disabled={isFormBeingSubmitted}
       />
     </div>
   );
