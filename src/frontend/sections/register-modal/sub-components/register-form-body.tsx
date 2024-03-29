@@ -1,4 +1,5 @@
 import { SyntheticEvent, useState, useRef, MutableRefObject } from "react";
+import { useRouter } from "next/navigation";
 
 import ValidatedTextInputField from "@/frontend/components/ui/forms/validated-text-input-field";
 import ValidatedPasswordInputField from "@/frontend/components/ui/forms/validated-password-input-field";
@@ -9,7 +10,6 @@ import SubmitSegment from "@/frontend/components/ui/forms/submit-segment";
 
 import getErrorsInForm from "@/utils/functions/form-validation/get-errors-in-form";
 import { fetchSubmission } from "@/utils/functions/fetch-data/fetch-submission";
-import { useRouter } from "next/navigation";
 import { INPUT_VALIDATION_FUNCTION_MAP } from "@/utils/functions/input-validation/input-validation-function-map";
 import {
   ValidatedFormFieldsType,
@@ -99,11 +99,14 @@ const RegisterFormBody = () => {
       createNewUser();
     }
 
-    if (createNewUserFetchSubmissionResponse?.fetchSubmissionResponseData) {
-    }
-
     await wait(3000);
-    setFormSubmissionStatus("re-idle");
+    if (
+      !createNewUserFetchSubmissionResponse?.fetchSubmissionResponseData?.ok
+    ) {
+      setFormSubmissionStatus("re-idle");
+    } else {
+      router.push("/");
+    }
   };
 
   return (
