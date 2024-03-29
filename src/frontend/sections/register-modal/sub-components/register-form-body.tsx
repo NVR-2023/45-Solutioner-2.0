@@ -96,7 +96,7 @@ const RegisterFormBody = () => {
     if (isFormValid.current) {
     await createNewUser();
     }
-    await wait(2000);
+    await wait(1000);
     if (!createNewUserResponse?.data?.ok) {
      
       let updatedCredentials = {...credentials}
