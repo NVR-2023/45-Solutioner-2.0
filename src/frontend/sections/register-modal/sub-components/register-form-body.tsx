@@ -64,6 +64,8 @@ const RegisterFormBody = () => {
     const isNameFilled = credentials.name.value.trim() !== "";
     const isEmailFilled = credentials.email.value.trim() !== "";
     const isPasswordFilled = credentials.password.value.trim() !== "";
+    const isTermsOfUseFilled =
+      credentials.hasAcceptedTermsOfUse.value === "true";
 
     setIsFormValid(
       isNameValid &&
@@ -72,7 +74,8 @@ const RegisterFormBody = () => {
         isTermsOfUseValid &&
         isNameFilled &&
         isEmailFilled &&
-        isPasswordFilled,
+        isPasswordFilled &&
+        isTermsOfUseFilled,
     );
   }, [
     credentials.name.errorMessage,
@@ -82,6 +85,7 @@ const RegisterFormBody = () => {
     credentials.name.value,
     credentials.email.value,
     credentials.password.value,
+    credentials.hasAcceptedTermsOfUse.value,
   ]);
 
   const handleOnCancel = (event: SyntheticEvent) => {
