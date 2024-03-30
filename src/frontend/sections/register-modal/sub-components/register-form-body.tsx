@@ -11,7 +11,7 @@ import SubmitSegment from "@/frontend/components/ui/forms/submit-segment";
 import getErrorsInForm from "@/utils/functions/form-validation/get-errors-in-form";
 import { INPUT_VALIDATION_FUNCTION_MAP } from "@/utils/functions/input-validation/input-validation-function-map";
 import {
-  ValidatedFormFieldsType,
+  ValidatedTextFormFieldsType,
   FetchSubmissionSTatusType,
   setFetchSubmissionStatusType,
   NewUserObjectType,
@@ -30,7 +30,7 @@ const RegisterFormBody = () => {
     "hasAcceptedTermsOfUse",
   )!;
 
-  const [credentials, setCredentials] = useState<ValidatedFormFieldsType>({
+  const [credentials, setCredentials] = useState<ValidatedTextFormFieldsType>({
     name: { value: "", validationFunction: validateName, errorMessage: "" },
     email: {
       value: "",
@@ -61,9 +61,9 @@ const RegisterFormBody = () => {
     const isPasswordValid = !credentials.password.errorMessage;
     const isTermsOfUseValid = !credentials.hasAcceptedTermsOfUse.errorMessage;
 
-    const isNameFilled = String(credentials.name.value).trim() !== "";
-    const isEmailFilled = String(credentials.email.value).trim() !== "";
-    const isPasswordFilled = String(credentials.password.value).trim() !== "";
+    const isNameFilled = credentials.name.value.trim() !== "";
+    const isEmailFilled = credentials.email.value.trim() !== "";
+    const isPasswordFilled = credentials.password.value.trim() !== "";
 
     setIsFormValid(
       isNameValid &&

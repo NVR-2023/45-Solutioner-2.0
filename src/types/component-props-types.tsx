@@ -1,4 +1,4 @@
-import { MouseEventHandler, ReactNode, Dispatch , SetStateAction } from "react";
+import { MouseEventHandler, ReactNode, Dispatch, SetStateAction } from "react";
 
 export type BasicChildrenProps = {
   children: ReactNode;
@@ -27,16 +27,16 @@ export type GenericObjectType = Record<string, string | number | boolean>;
 
 export type ThemeModeType = "light" | "dark" | "system";
 
-export type ValidatedFormFieldsType = Record<
+export type ValidatedTextFormFieldsType = Record<
   string,
   {
-    value: string | number | boolean;
+    value: string;
     validationFunction?: Function;
     errorMessage?: string;
   }
 >;
 
-export type FetchSubmissionSTatusType = string
+export type FetchSubmissionSTatusType = string;
 
 export type setFetchSubmissionStatusType = Dispatch<
   SetStateAction<FetchSubmissionSTatusType>

@@ -4,11 +4,11 @@ import PasswordInvisibleIcon from "../../icons/password-invisible-icon";
 import PasswordVisibleIcon from "../../icons/password-visible-icon";
 import ToggleSwitch from "../toggle-switch/toggle-switch";
 
-import { ValidatedFormFieldsType } from "@/types/component-props-types";
+import { ValidatedTextFormFieldsType } from "@/types/component-props-types";
 
 type ValidatedPasswordInputFieldProps = {
-  formFields: ValidatedFormFieldsType;
-  setFormFields: Dispatch<SetStateAction<ValidatedFormFieldsType>>;
+  formFields: ValidatedTextFormFieldsType;
+  setFormFields: Dispatch<SetStateAction<ValidatedTextFormFieldsType>>;
 };
 
 const ValidatedPasswordInputField = ({

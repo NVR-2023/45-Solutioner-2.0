@@ -1,10 +1,10 @@
 import { useState, ChangeEvent, Dispatch, SetStateAction } from "react";
-import { ValidatedFormFieldsType } from "@/types/component-props-types";
+import { ValidatedTextFormFieldsType } from "@/types/component-props-types";
 
 type ValidatedTextInputFieldProps = {
   name: string;
-  formFields: ValidatedFormFieldsType;
-  setFormFields: Dispatch<SetStateAction<ValidatedFormFieldsType>>;
+  formFields: ValidatedTextFormFieldsType;
+  setFormFields: Dispatch<SetStateAction<ValidatedTextFormFieldsType>>;
 };
 
 const ValidatedTextInputField = ({
