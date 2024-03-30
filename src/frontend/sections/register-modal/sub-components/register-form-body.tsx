@@ -21,7 +21,6 @@ import { createNewUser } from "@/utils/functions/fetch-data/endpoint-submissions
 import { wait } from "@/utils/functions/wait";
 
 const RegisterFormBody = () => {
-
   const validateName = INPUT_VALIDATION_FUNCTION_MAP.get("name")!;
   const validateEmail = INPUT_VALIDATION_FUNCTION_MAP.get("email")!;
   const validatePassword = INPUT_VALIDATION_FUNCTION_MAP.get("password")!;
@@ -92,10 +91,10 @@ const RegisterFormBody = () => {
             submissionErrorList[invalidInput];
         }
         setCredentials(updatedCredentials);
+        setFormSubmissionStatus("re-idle");
       } else {
         router.push("/");
       }
-      setFormSubmissionStatus("re-idle");
     }
   };
 
