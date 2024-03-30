@@ -9,22 +9,16 @@ import RegisterWIthSegment from "@/frontend/components/ui/forms/register-with-se
 import SubmitSegment from "@/frontend/components/ui/forms/submit-segment";
 
 import getErrorsInForm from "@/utils/functions/form-validation/get-errors-in-form";
-import { fetchSubmission } from "@/utils/functions/fetch-data/fetch-submission";
 import { INPUT_VALIDATION_FUNCTION_MAP } from "@/utils/functions/input-validation/input-validation-function-map";
 import {
   ValidatedFormFieldsType,
   FetchSubmissionSTatusType,
   setFetchSubmissionStatusType,
+  NewUserObjectType,
 } from "@/types/component-props-types";
 
+import { createNewUser } from "@/utils/functions/fetch-data/endpoint-submissions";
 import { wait } from "@/utils/functions/wait";
-
-type NewUserObjectType = {
-  name: string;
-  email: string;
-  password: string;
-  hasAcceptedTermsOfUse: string;
-};
 
 const RegisterFormBody = () => {
   const validateName = INPUT_VALIDATION_FUNCTION_MAP.get("name")!;
@@ -67,49 +61,42 @@ const RegisterFormBody = () => {
   };
 
   const handleOnsubmit = async (event: SyntheticEvent) => {
-    let createNewUserResponse: any;
+    event.preventDefault();
 
-    const createNewUser = async () => {
-      const newUserObject: NewUserObjectType = {
-        name: credentials.name.value as string,
-        email: credentials.email.value as string,
-        password: credentials.password.value as string,
-        hasAcceptedTermsOfUse: credentials.hasAcceptedTermsOfUse
-          .value as string,
-      };
-      createNewUserResponse = await fetchSubmission({
-        method: "POST",
-        url: "/api/users",
-        body: newUserObject,
-        setFetchSubmissionStatus: setFormSubmissionStatus,
-      });
-      console.log(createNewUserResponse.data);
+    const newUserObject: NewUserObjectType = {
+      name: credentials.name.value as string,
+      email: credentials.email.value as string,
+      password: credentials.password.value as string,
+      hasAcceptedTermsOfUse: credentials.hasAcceptedTermsOfUse.value as string,
     };
 
-    event.preventDefault();
     getErrorsInForm({
       isFormValid: isFormValid,
       formFields: credentials,
       setFormFields: setCredentials,
-    })!;
+    });
 
     if (isFormValid.current) {
-    await createNewUser();
-    }
-    await wait(1000);
-    if (!createNewUserResponse?.data?.ok) {
-     
-      let updatedCredentials = {...credentials}
-      const submissionErrorList = createNewUserResponse?.data?.errors?.validationErrors ?? null;
-      if (submissionErrorList) {
+      const createNewUserResponse = await createNewUser(
+        newUserObject,
+        setFormSubmissionStatus,
+      );
+
+      await wait(1000);
+
+      if (!createNewUserResponse?.data?.ok) {
+        let updatedCredentials = { ...credentials };
+        const submissionErrorList =
+          createNewUserResponse?.data?.errors?.validationErrors ?? null;
         for (let invalidInput in submissionErrorList) {
-          updatedCredentials[invalidInput].errorMessage= submissionErrorList[invalidInput];
+          updatedCredentials[invalidInput].errorMessage =
+            submissionErrorList[invalidInput];
         }
-      } 
-      setCredentials(updatedCredentials)
+        setCredentials(updatedCredentials);
+      } else {
+        router.push("/");
+      }
       setFormSubmissionStatus("re-idle");
-    } else {
-      router.push("/");
     }
   };
 

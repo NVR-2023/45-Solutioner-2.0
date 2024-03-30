@@ -41,3 +41,10 @@ export type FetchSubmissionSTatusType = string
 export type setFetchSubmissionStatusType = Dispatch<
   SetStateAction<FetchSubmissionSTatusType>
 >;
+
+export type NewUserObjectType = {
+  name: string;
+  email: string;
+  password: string;
+  hasAcceptedTermsOfUse: string;
+};
