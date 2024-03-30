@@ -40,7 +40,7 @@ switch (formSubmissionStatus) {
     forSubmissionStatusLabel = (
       <FadeInWrapper>
         <div className="flex items-center justify-between" key={"failed"}>
-          <CrossedCircle scale={0.5} />
+          <CrossedCircle scale={0.5} color={"#f87171"} />
           {`\u00A0failed`}
         </div>
       </FadeInWrapper>
@@ -51,7 +51,7 @@ switch (formSubmissionStatus) {
     forSubmissionStatusLabel = (
       <FadeInWrapper>
         <div className="flex items-center justify-between" key={"executed"}>
-          <CheckedCircle scale={0.5} />
+          <CheckedCircle scale={0.5} color={"#4ade80"} />
           {`\u00A0succeeded`}{" "}
         </div>
       </FadeInWrapper>
