@@ -2,12 +2,12 @@ import { Dispatch, ReactNode, SetStateAction, useEffect } from "react";
 import UncheckedBox from "../../icons/unchecked-box";
 import CheckedBox from "../../icons/checked-box";
 import ValidatedToggleSwitch from "./validated-toggle-switch";
-import { ValidatedFormFieldsType } from "@/types/component-props-types";
+import { ValidatedTextFormFieldsType } from "@/types/component-props-types";
 
 type ValidatedCheckboxType = {
   name: string;
-  formFields: ValidatedFormFieldsType;
-  setFormFields: Dispatch<SetStateAction<ValidatedFormFieldsType>>;
+  formFields: ValidatedTextFormFieldsType;
+  setFormFields: Dispatch<SetStateAction<ValidatedTextFormFieldsType>>;
   notice?: ReactNode;
 };
 
@@ -15,9 +15,8 @@ const ValidatedCheckbox = ({
   name,
   formFields,
   setFormFields,
-  notice
+  notice,
 }: ValidatedCheckboxType) => {
-
   return (
     <div className="space-y-1.5">
       <div className="flex items-center space-x-4">

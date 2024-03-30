@@ -1,13 +1,13 @@
 import { ComponentType, Dispatch, SetStateAction, useCallback } from "react";
-import { ValidatedFormFieldsType } from "@/types/component-props-types";
+import { ValidatedTextFormFieldsType } from "@/types/component-props-types";
 
 type IconType = ComponentType<{ scale: number; color: string }>;
 type ValidatedToggleProps = {
   firstIcon: IconType;
   secondIcon: IconType;
   name: string;
-  formFields: ValidatedFormFieldsType;
-  setFormFields: Dispatch<SetStateAction<ValidatedFormFieldsType>>;
+  formFields: ValidatedTextFormFieldsType;
+  setFormFields: Dispatch<SetStateAction<ValidatedTextFormFieldsType>>;
   scale?: number;
   color?: string;
 };
@@ -21,17 +21,10 @@ const ValidatedToggleSwitch = ({
   scale = 1,
   color = "currentColor",
 }: ValidatedToggleProps) => {
-  
   const handleOnToggle = useCallback(() => {
     setFormFields((previousFields) => {
       const previousFieldValue = previousFields[name].value;
-      const newFieldValue =
-        typeof previousFieldValue === "boolean"
-          ? !previousFieldValue
-          : previousFieldValue === "true"
-            ? "false"
-            : "true";
-
+      const newFieldValue = previousFieldValue === "true" ? "false" : "true";
       const validationFunction = formFields[name].validationFunction!;
       const errorMessage = validationFunction(newFieldValue);
 
@@ -45,7 +38,6 @@ const ValidatedToggleSwitch = ({
       };
     });
   }, [name, formFields, setFormFields]);
-
 
   return (
     <button

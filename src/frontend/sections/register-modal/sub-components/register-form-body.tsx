@@ -1,4 +1,4 @@
-import { SyntheticEvent, useState, useRef, MutableRefObject } from "react";
+import { SyntheticEvent, useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 
 import ValidatedTextInputField from "@/frontend/components/ui/forms/validated-text-input-field";
@@ -11,7 +11,7 @@ import SubmitSegment from "@/frontend/components/ui/forms/submit-segment";
 import getErrorsInForm from "@/utils/functions/form-validation/get-errors-in-form";
 import { INPUT_VALIDATION_FUNCTION_MAP } from "@/utils/functions/input-validation/input-validation-function-map";
 import {
-  ValidatedFormFieldsType,
+  ValidatedTextFormFieldsType,
   FetchSubmissionSTatusType,
   setFetchSubmissionStatusType,
   NewUserObjectType,
@@ -21,6 +21,8 @@ import { createNewUser } from "@/utils/functions/fetch-data/endpoint-submissions
 import { wait } from "@/utils/functions/wait";
 
 const RegisterFormBody = () => {
+  const router = useRouter();
+
   const validateName = INPUT_VALIDATION_FUNCTION_MAP.get("name")!;
   const validateEmail = INPUT_VALIDATION_FUNCTION_MAP.get("email")!;
   const validatePassword = INPUT_VALIDATION_FUNCTION_MAP.get("password")!;
@@ -28,10 +30,7 @@ const RegisterFormBody = () => {
     "hasAcceptedTermsOfUse",
   )!;
 
-  const router = useRouter();
-  let isFormValid: MutableRefObject<boolean> = useRef(false);
-
-  const [credentials, setCredentials] = useState<ValidatedFormFieldsType>({
+  const [credentials, setCredentials] = useState<ValidatedTextFormFieldsType>({
     name: { value: "", validationFunction: validateName, errorMessage: "" },
     email: {
       value: "",
@@ -50,10 +49,40 @@ const RegisterFormBody = () => {
     },
   });
 
+  const [isFormValid, setIsFormValid] = useState(false);
   const [formSubmissionStatus, setFormSubmissionStatus]: [
     FetchSubmissionSTatusType,
     setFetchSubmissionStatusType,
   ] = useState("idle");
+
+  useEffect(() => {
+    const isNameValid = !credentials.name.errorMessage;
+    const isEmailValid = !credentials.email.errorMessage;
+    const isPasswordValid = !credentials.password.errorMessage;
+    const isTermsOfUseValid = !credentials.hasAcceptedTermsOfUse.errorMessage;
+
+    const isNameFilled = credentials.name.value.trim() !== "";
+    const isEmailFilled = credentials.email.value.trim() !== "";
+    const isPasswordFilled = credentials.password.value.trim() !== "";
+
+    setIsFormValid(
+      isNameValid &&
+        isEmailValid &&
+        isPasswordValid &&
+        isTermsOfUseValid &&
+        isNameFilled &&
+        isEmailFilled &&
+        isPasswordFilled,
+    );
+  }, [
+    credentials.name.errorMessage,
+    credentials.email.errorMessage,
+    credentials.password.errorMessage,
+    credentials.hasAcceptedTermsOfUse.errorMessage,
+    credentials.name.value,
+    credentials.email.value,
+    credentials.password.value,
+  ]);
 
   const handleOnCancel = (event: SyntheticEvent) => {
     event.preventDefault();
@@ -71,12 +100,13 @@ const RegisterFormBody = () => {
     };
 
     getErrorsInForm({
-      isFormValid: isFormValid,
-      formFields: credentials,
       setFormFields: setCredentials,
+      formFields: credentials,
     });
 
-    if (isFormValid.current) {
+    if (!isFormValid) {
+      return;
+    } else {
       const createNewUserResponse = await createNewUser(
         newUserObject,
         setFormSubmissionStatus,
@@ -93,7 +123,7 @@ const RegisterFormBody = () => {
         setCredentials(updatedCredentials);
         setFormSubmissionStatus("re-idle");
       } else {
-        router.push("/");
+        setFormSubmissionStatus("re-idle");
       }
     }
   };
