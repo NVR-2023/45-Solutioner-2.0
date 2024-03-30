@@ -24,13 +24,7 @@ const ValidatedToggleSwitch = ({
   const handleOnToggle = useCallback(() => {
     setFormFields((previousFields) => {
       const previousFieldValue = previousFields[name].value;
-      const newFieldValue =
-        typeof previousFieldValue === "boolean"
-          ? !previousFieldValue
-          : previousFieldValue === "true"
-            ? "false"
-            : "true";
-
+      const newFieldValue = previousFieldValue === "true" ? "false" : "true";
       const validationFunction = formFields[name].validationFunction!;
       const errorMessage = validationFunction(newFieldValue);
 
