@@ -1,3 +1,4 @@
+import { createId } from "@paralleldrive/cuid2";
 import { Argon2id } from "oslo/password";
 
 import { NextRequest, NextResponse } from "next/server";
@@ -53,6 +54,7 @@ export async function POST(request: NextRequest) {
   } else {
     const password = requestObject.password;
     const newUserObject = {
+      id: createId(),
       name: requestObject.name,
       email: requestObject.email,
       hashedPassword: await new Argon2id().hash(password),

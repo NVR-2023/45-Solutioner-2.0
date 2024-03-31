@@ -1,4 +1,3 @@
-import { createId } from "@paralleldrive/cuid2";
 import {
   pgTable,
   pgEnum,
@@ -20,9 +19,7 @@ import { relations } from "drizzle-orm";
 export const users = pgTable(
   "users",
   {
-    id: text("id")
-      .$defaultFn(() => createId())
-      .primaryKey(),
+    id: text("id").primaryKey(),
     name: text("name").notNull(),
     email: text("email").notNull(),
     emailVerifiedAt: timestamp("email_verified_at"),
@@ -143,9 +140,7 @@ export const userExclusionsRelations = relations(userExclusions, ({ one }) => ({
 export const providers = pgTable(
   "providers",
   {
-    id: text("id")
-      .$defaultFn(() => createId())
-      .primaryKey(),
+    id: text("id").primaryKey(),
     name: text("name").notNull(),
     email: text("email").notNull(),
     emailVerifiedAt: timestamp("email_verified_at"),
