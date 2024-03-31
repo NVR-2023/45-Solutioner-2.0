@@ -1,5 +1,7 @@
+import { lucia } from "@/backend/database/auth/auth";
 import { createId } from "@paralleldrive/cuid2";
 import { Argon2id } from "oslo/password";
+import { cookies } from "next/headers";
 
 import { NextRequest, NextResponse } from "next/server";
 import generateResponseObject from "@/utils/functions/fetch-data/generate-response-object";
@@ -53,8 +55,9 @@ export async function POST(request: NextRequest) {
     return NextResponse.json(responseObject);
   } else {
     const password = requestObject.password;
+    const newUserId = createId();
     const newUserObject = {
-      id: createId(),
+      id: newUserId,
       name: requestObject.name,
       email: requestObject.email,
       hashedPassword: await new Argon2id().hash(password),
@@ -62,6 +65,14 @@ export async function POST(request: NextRequest) {
 
     try {
       await insertNewUserInDb(newUserObject);
+
+      const session = await lucia.createSession(newUserId, {});
+      const sessionCookie = lucia.createSessionCookie(session.id);
+      cookies().set(
+        sessionCookie.name,
+        sessionCookie.value,
+        sessionCookie.attributes,
+      );
 
       responseObject = generateResponseObject({
         status: 201,
