@@ -23,7 +23,7 @@ export const getUsers2 = async () => {
 
 //
 
-export const checkNewUserEmailUniqueness = async (newUserEmail: string) => {
+export const isUserEmailUnique = async (newUserEmail: string) => {
   try {
     const result = await db.query.users.findFirst({
       where: eq(users.email, newUserEmail),
@@ -40,9 +40,20 @@ export const insertNewUserInDb = async (user: NewUser) => {
   return db.insert(users).values(user).returning();
 };
 
-export const createUserSessionInDb = async(userId : string) => {
-  
+export const AreUserCredentialsValid = async (
+  userEmail: string,
+  userPassword: string,
+) => {
+  try {
+    const result = await db.query.users.findFirst({
+      where: eq(users.email, userEmail),
+    });
 
+    // return
+  } catch (error) {
+    console.error("An error occurred", error);
+    return false;
+  }
 };
 
 // Providers

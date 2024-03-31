@@ -8,7 +8,7 @@ import generateResponseObject from "@/utils/functions/fetch-data/generate-respon
 import { INPUT_VALIDATION_FUNCTION_MAP } from "@/utils/functions/input-validation/input-validation-function-map";
 
 import {
-  checkNewUserEmailUniqueness,
+  isUserEmailUnique,
   insertNewUserInDb,
 } from "@/backend/database/drizzle/db";
 
@@ -36,8 +36,7 @@ export async function POST(request: NextRequest) {
   }
 
   if (!requestErrorsObject.email) {
-    const isNewUserEmailUnique: boolean =
-      await checkNewUserEmailUniqueness(email);
+    const isNewUserEmailUnique: boolean = await isUserEmailUnique(email);
     if (!isNewUserEmailUnique) {
       requestErrorsObject.email = "Email already in use";
     }
@@ -66,13 +65,13 @@ export async function POST(request: NextRequest) {
     try {
       await insertNewUserInDb(newUserObject);
 
-      const session = await lucia.createSession(newUserId, {});
+      /* const session = await lucia.createSession(newUserId, {});
       const sessionCookie = lucia.createSessionCookie(session.id);
       cookies().set(
         sessionCookie.name,
         sessionCookie.value,
         sessionCookie.attributes,
-      );
+      ); */
 
       responseObject = generateResponseObject({
         status: 201,
