@@ -1,5 +1,7 @@
+import { Argon2id } from "oslo/password";
+
 import { NextRequest, NextResponse } from "next/server";
-import generateResponseObject from "@/app/api/generate-response-object/generate-response-object";
+import generateResponseObject from "@/utils/functions/fetch-data/generate-response-object";
 import { INPUT_VALIDATION_FUNCTION_MAP } from "@/utils/functions/input-validation/input-validation-function-map";
 
 import {
@@ -31,7 +33,8 @@ export async function POST(request: NextRequest) {
   }
 
   if (!requestErrorsObject.email) {
-    const isNewUserEmailUnique: boolean = await checkNewUserEmailUniqueness(email);
+    const isNewUserEmailUnique: boolean =
+      await checkNewUserEmailUniqueness(email);
     if (!isNewUserEmailUnique) {
       requestErrorsObject.email = "Email already in use";
     }
@@ -48,10 +51,11 @@ export async function POST(request: NextRequest) {
     });
     return NextResponse.json(responseObject);
   } else {
+    const password = requestObject.password;
     const newUserObject = {
       name: requestObject.name,
       email: requestObject.email,
-      hashedPassword: requestObject.password,
+      hashedPassword: await new Argon2id().hash(password),
     };
 
     try {

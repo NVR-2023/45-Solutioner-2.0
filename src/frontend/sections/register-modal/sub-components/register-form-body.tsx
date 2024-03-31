@@ -17,7 +17,7 @@ import {
   NewUserObjectType,
 } from "@/types/component-props-types";
 
-import { createNewUser } from "@/utils/functions/fetch-data/endpoint-submissions";
+import { registerNNewUser } from "@/utils/functions/fetch-data/endpoint-submissions";
 import { wait } from "@/utils/functions/wait";
 
 const RegisterFormBody = () => {
@@ -111,15 +111,15 @@ const RegisterFormBody = () => {
     if (!isFormValid) {
       return;
     } else {
-      const createNewUserResponse = await createNewUser(
+      const registerNewUserResponse = await registerNNewUser(
         newUserObject,
         setFormSubmissionStatus,
       );
       await wait(1000);
-      if (!createNewUserResponse?.data?.ok) {
+      if (!registerNewUserResponse?.data?.ok) {
         let updatedCredentials = { ...credentials };
         const submissionErrorList =
-          createNewUserResponse?.data?.errors?.validationErrors ?? null;
+          registerNewUserResponse?.data?.errors?.validationErrors ?? null;
         for (let invalidInput in submissionErrorList) {
           updatedCredentials[invalidInput].errorMessage =
             submissionErrorList[invalidInput];
