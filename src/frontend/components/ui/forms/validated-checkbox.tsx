@@ -37,7 +37,7 @@ const ValidatedCheckbox = ({
       <div
         id={`${name}Error`}
         role="alert"
-        className={` text-xs italic leading-[.5rem] text-red-500 transition-opacity duration-500 sm:text-[0.625rem] ${
+        className={` text-xs italic leading-[.5rem] text-red-700 transition-opacity duration-500 sm:text-[0.625rem] ${
           formFields[name]?.errorMessage ? "opacity-100" : "opacity-0"
         }`}
       >
