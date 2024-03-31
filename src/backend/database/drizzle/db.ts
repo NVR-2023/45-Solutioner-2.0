@@ -21,9 +21,7 @@ export const getUsers2 = async () => {
   return result;
 };
 
-export const insertNewUserInDB = async (user: NewUser) => {
-  return db.insert(users).values(user).returning();
-};
+//
 
 export const checkNewUserEmailUniqueness = async (newUserEmail: string) => {
   try {
@@ -36,6 +34,15 @@ export const checkNewUserEmailUniqueness = async (newUserEmail: string) => {
     console.error("Error occurred while checking email uniqueness:", error);
     return false;
   }
+};
+
+export const insertNewUserInDb = async (user: NewUser) => {
+  return db.insert(users).values(user).returning();
+};
+
+export const createUserSessionInDb = async(userId : string) => {
+  
+
 };
 
 // Providers

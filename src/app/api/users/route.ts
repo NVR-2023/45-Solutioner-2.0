@@ -7,7 +7,7 @@ import { INPUT_VALIDATION_FUNCTION_MAP } from "@/utils/functions/input-validatio
 
 import {
   checkNewUserEmailUniqueness,
-  insertNewUserInDB,
+  insertNewUserInDb,
 } from "@/backend/database/drizzle/db";
 
 export async function POST(request: NextRequest) {
@@ -61,13 +61,14 @@ export async function POST(request: NextRequest) {
     };
 
     try {
-      await insertNewUserInDB(newUserObject);
+      await insertNewUserInDb(newUserObject);
+
       responseObject = generateResponseObject({
         status: 201,
       });
       return NextResponse.json(responseObject);
     } catch (error) {
-      console.error("Error inserting new user into database:", error);
+      console.error("Error registering new user:", error);
       responseObject = generateResponseObject({
         status: 500,
       });
