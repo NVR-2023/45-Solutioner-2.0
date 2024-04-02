@@ -1,4 +1,6 @@
-import { getUsers, getUsers2, fetchAllServices } from "@/backend/database/drizzle/db";
+
+import { getUsers , getUsers2 ,  } from "@/backend/database/drizzle/functions-and-queries/users/user-db-functions-and-queires";
+import { fetchAllServices } from "@/backend/database/drizzle/functions-and-queries/services/service-db-functions-and-queries";
 
 import React , {FC} from "react"
 

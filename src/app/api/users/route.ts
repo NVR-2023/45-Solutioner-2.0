@@ -1,16 +1,11 @@
-import { lucia } from "@/backend/database/auth/auth";
-import { createId } from "@paralleldrive/cuid2";
-import { Argon2id } from "oslo/password";
-import { cookies } from "next/headers";
-
 import { NextRequest, NextResponse } from "next/server";
 import generateResponseObject from "@/utils/functions/fetch-data/generate-response-object";
 import { INPUT_VALIDATION_FUNCTION_MAP } from "@/utils/functions/input-validation/input-validation-function-map";
 
 import {
-  isUserEmailUnique,
+  isEmailUnique,
   insertNewUserInDb,
-} from "@/backend/database/drizzle/db";
+} from "@/backend/database/drizzle/functions-and-queries/users/user-db-functions-and-queires";
 
 export async function POST(request: NextRequest) {
   const body = await request.json();
@@ -36,7 +31,7 @@ export async function POST(request: NextRequest) {
   }
 
   if (!requestErrorsObject.email) {
-    const isNewUserEmailUnique: boolean = await isUserEmailUnique(email);
+    const isNewUserEmailUnique: boolean = await isEmailUnique(email);
     if (!isNewUserEmailUnique) {
       requestErrorsObject.email = "Email already in use";
     }
@@ -53,17 +48,14 @@ export async function POST(request: NextRequest) {
     });
     return NextResponse.json(responseObject);
   } else {
-    const password = requestObject.password;
-    const newUserId = createId();
-    const newUserObject = {
-      id: newUserId,
+    const newUser = {
       name: requestObject.name,
       email: requestObject.email,
-      hashedPassword: await new Argon2id().hash(password),
+      password: requestObject.password,
     };
 
     try {
-      await insertNewUserInDb(newUserObject);
+      await insertNewUserInDb(newUser);
 
       /* const session = await lucia.createSession(newUserId, {});
       const sessionCookie = lucia.createSessionCookie(session.id);
