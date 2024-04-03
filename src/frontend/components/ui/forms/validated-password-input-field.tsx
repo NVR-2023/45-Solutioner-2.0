@@ -90,7 +90,7 @@ const ValidatedPasswordInputField = ({
           }`}
         >
           password
-          <span className="bg-green-400">
+          <span className="">
             <ToggleSwitch
               toggle={isPasswordVisible}
               setToggle={setIsPasswordVisible}
@@ -105,7 +105,7 @@ const ValidatedPasswordInputField = ({
       <div
         id="passwordError"
         role="alert"
-        className={` text-xs italic leading-[.5rem] text-red-500 transition-opacity duration-500 sm:text-[0.625rem] ${
+        className={` text-xs italic leading-[.5rem] text-red-700 transition-opacity duration-500 sm:text-[0.625rem] ${
           formFields.password?.errorMessage ? "opacity-100" : "opacity-0"
         }`}
       >
