@@ -18,9 +18,14 @@ export async function POST(request: NextRequest) {
       },
     });
   } else {
-
     const session = await lucia.createSession(newUserId, {});
+    console.log(session);
     const sessionCookie = lucia.createSessionCookie(session.id);
+    console.log(sessionCookie);
+    //
+    cookies().set("test cookie#1", "123456789");
+    //
+
     cookies().set(
       sessionCookie.name,
       sessionCookie.value,

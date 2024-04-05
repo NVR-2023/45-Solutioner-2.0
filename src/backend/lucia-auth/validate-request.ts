@@ -2,7 +2,7 @@ import { lucia } from "./auth";
 import { cookies } from "next/headers";
 import { cache } from "react";
 
-const validateRequest = cache(async () => {
+export const validateRequest = cache(async () => {
   const sessionId = cookies().get(lucia.sessionCookieName)?.value ?? null;
 
   if (!sessionId) return { user: null, session: null };

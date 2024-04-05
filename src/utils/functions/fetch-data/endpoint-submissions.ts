@@ -17,3 +17,19 @@ export const registerNNewUser = async (
 
   return registerNewUserResponse;
 };
+
+
+type SigninCredentialsProps = {
+  email: string,
+  password: string,
+}
+
+export const signInUser = async (signInObject: SigninCredentialsProps) => {
+  const registerNewUserResponse = await fetchSubmission({
+    method: "POST",
+    url: "/api/users/signin",
+    body: signInObject,
+  });
+
+  return registerNewUserResponse;
+};

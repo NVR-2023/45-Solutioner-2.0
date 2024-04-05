@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import generateResponseObject from "@/utils/functions/fetch-data/generate-response-object";
 import { INPUT_VALIDATION_FUNCTION_MAP } from "@/utils/functions/input-validation/input-validation-function-map";
+import { cookies } from "next/headers";
 
 import {
   isEmailUnique,
@@ -56,7 +57,7 @@ export async function POST(request: NextRequest) {
 
     try {
       await insertNewUserInDb(newUser);
-
+      cookies().set("testCookie", "testing if cookies can be set");
       /* const session = await lucia.createSession(newUserId, {});
       const sessionCookie = lucia.createSessionCookie(session.id);
       cookies().set(
