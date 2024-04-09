@@ -25,11 +25,21 @@ type SigninCredentialsProps = {
 }
 
 export const signInUser = async (signInObject: SigninCredentialsProps) => {
-  const registerNewUserResponse = await fetchSubmission({
+  const signInUserResponse = await fetchSubmission({
     method: "POST",
     url: "/api/users/signin",
     body: signInObject,
   });
 
-  return registerNewUserResponse;
+  return signInUserResponse;
 };
+
+export const signOutUser = async () => {
+  const signOutUserResponse = await fetchSubmission({
+    method: "POST",
+    url: "/api/users/signout",
+  });
+
+  return signOutUserResponse;
+};
+

@@ -58,14 +58,6 @@ export async function POST(request: NextRequest) {
     try {
       await insertNewUserInDb(newUser);
       cookies().set("testCookie", "testing if cookies can be set");
-      /* const session = await lucia.createSession(newUserId, {});
-      const sessionCookie = lucia.createSessionCookie(session.id);
-      cookies().set(
-        sessionCookie.name,
-        sessionCookie.value,
-        sessionCookie.attributes,
-      ); */
-
       responseObject = generateResponseObject({
         status: 201,
       });
