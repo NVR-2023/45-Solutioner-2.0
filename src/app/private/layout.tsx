@@ -1,18 +1,14 @@
-import { SessionProvider } from "@/frontend/contextes/use-lucia-session";
 import { validateRequest } from "@/backend/lucia-auth/validate-request";
+import { redirect } from "next/navigation";
 
 export default async function privateLAyout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  
-    const sessionData = await validateRequest();
+  const sessionData = await validateRequest();
+  const { user, session } = sessionData;
+  if (!user && !session) redirect("/");
 
-    return (
-      <SessionProvider value={sessionData}>
-        <p>Layout connected</p>
-        {children}
-      </SessionProvider>
-    );
+  return <> {children}</>;
 }

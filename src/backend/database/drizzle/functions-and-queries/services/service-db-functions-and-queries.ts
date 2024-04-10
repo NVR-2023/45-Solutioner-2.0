@@ -27,10 +27,8 @@ export const seedServicesDBTable = async () => {
       for (const service of arrayWIthJsonData as NewService[]) {
         await insertServiceInDBTable(service);
       }
-      console.log("Services table successfully seeded");
       return true;
     } catch (error: any) {
-      console.error("Error loading data:", error.message);
       return false;
     } finally {
       console.log("Seeding process concluded");
