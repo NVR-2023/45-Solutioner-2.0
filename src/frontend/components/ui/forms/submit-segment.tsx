@@ -43,7 +43,7 @@ const SubmitSegment = ({
         <FadeInWrapper>
           <div className="flex w-16 items-center " key={"failed"}>
             <span className="justify-center flex w-6">
-              <CrossedCircle scale={0.5} color={"#f87171"} />
+              <CrossedCircle scale={0.5} color={"#ff7714"} />
             </span>
             <span className="flex w-full justify-start">{`\u00A0failed`}</span>
           </div>

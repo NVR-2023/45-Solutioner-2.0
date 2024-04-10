@@ -15,7 +15,7 @@ const Register = () => {
   useApplyThemeMode(currentThemeMode);
 
   return (
-    <div className="flex h-screen w-screen items-center justify-center border-b-2 border-neutral-200 bg-neutral-200 dark:bg-neutral-500">
+    <div className="flex h-screen w-screen min-w-[20rem] items-center justify-center border-b-2 border-neutral-200 bg-neutral-200 dark:bg-neutral-500">
       <RegisterModal />
     </div>
   );

@@ -75,7 +75,7 @@ const ValidatedTextInputField = ({
       <div className="absolute -top-5 left-0 w-full">
         <label
           htmlFor={`${name}ID`}
-          className={` flex items-center justify-between  font-aperçu text-sm font-extrabold leading-[.5rem] tracking-wide text-black transition-transform duration-300 small-caps dark:text-neutral-300 md:text-xs ${
+          className={` flex items-center justify-between font-aperçu text-sm font-extrabold leading-[.5rem] tracking-wide text-black transition-transform duration-300 small-caps dark:text-neutral-300 md:text-xs ${
             !isInputFieldFocused && !formFields[name]?.value && "translate-y-5"
           }`}
         >
@@ -86,7 +86,7 @@ const ValidatedTextInputField = ({
       <div
         id={`${name}Error`}
         role="alert"
-        className={` text-xs italic leading-[.5rem] text-red-700 transition-opacity duration-500 sm:text-[0.625rem] ${
+        className={` text-xs italic leading-[.5rem] text-[#ff7714] transition-opacity duration-500 sm:text-[0.625rem] ${
           formFields[name]?.errorMessage ? "opacity-100" : "opacity-0"
         }`}
       >

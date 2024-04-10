@@ -1,18 +1,12 @@
 import FormModalShell from "@/frontend/components/ui/forms/form-modal-shell";
-import RegisterFormHeader from "@/frontend/sections/register-modal/sub-components/register-form-header";
 import RegisterFormBody from "./sub-components/register-form-body";
-
+import RegisterFormHeader from "./sub-components/register-form-header";
 const RegisterModal = () => {
   return (
     <FormModalShell>
-      <div className="flex h-full w-full justify-center">
-        <div className="flex w-full ">
-          <div className="flex-none"></div>
-          <div className="flex-grow px-4">
-            <RegisterFormBody />
-          </div>
-          <div className="flex-none"></div>
-        </div>
+      <div className="flex h-full w-full flex-col items-center space-y-8 px-14 py-6">
+        <RegisterFormHeader title={"Register"} />
+        <RegisterFormBody />
       </div>
     </FormModalShell>
   );
