@@ -11,7 +11,7 @@ const RegisterFormHeader = ({ title }: FormHeaderProps) => {
         <span className="flex justify-center ">
           <LogoIcon scale={1} />
         </span>
-        <span className="text-[1rem] text-sm font-normal ">{title}</span>
+        <span className="text-[1rem] text-base font-normal ">{title}</span>
       </div>
     </header>
   );
