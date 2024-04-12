@@ -4,8 +4,8 @@ import RegisterFormHeader from "./sub-components/register-form-header";
 const RegisterModal = () => {
   return (
     <FormModalShell>
-      <div className="flex h-full w-full flex-col items-center space-y-2 px-14 py-6">
-        <RegisterFormHeader title={"Register"} />
+      <div className="flex h-full w-full flex-col items-center space-y-3 px-14 py-6">
+        <RegisterFormHeader/>
         <RegisterFormBody />
       </div>
     </FormModalShell>

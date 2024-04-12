@@ -134,7 +134,7 @@ const RegisterFormBody = () => {
 
   return (
     <form className="flex h-full w-full flex-col justify-center space-y-4">
-      <div className="space-y-8">
+      <div className="space-y-6">
         <div>
           <ValidatedTextInputField
             name="name"
@@ -156,7 +156,7 @@ const RegisterFormBody = () => {
           />
         </div>
       </div>
-      <div className="space-y-6">
+      <div className="space-y-4">
         <div className="space-y-4">
           <div className="">
             <ValidatedCheckbox
