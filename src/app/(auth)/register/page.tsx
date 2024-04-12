@@ -7,7 +7,7 @@ import useApplyThemeMode from "@/frontend/hooks/theme-hooks/use-apply-theme-mode
 import RegisterModal from "@/frontend/sections/register-modal/register-modal";
 import useInstantScrollToTop from "@/frontend/hooks/use-instant-scroll-to-top";
 
-const Register = () => {
+const RegisterUser = () => {
   useInstantScrollToTop();
 
   const { currentThemeMode, setCurrentThemeMode } = useThemeModeSSetup();
@@ -21,4 +21,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default RegisterUser;

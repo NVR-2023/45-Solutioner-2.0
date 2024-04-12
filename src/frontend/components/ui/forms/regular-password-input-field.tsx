@@ -6,7 +6,7 @@ import ToggleSwitch from "../toggle-switch/toggle-switch";
 
 import InputFieldLabel from "./input-field-label";
 
-type ValidatedPasswordInputFieldProps = {
+type RegularPasswordInputFieldProps = {
   formFields: Record<string, string>;
   setFormFields: Dispatch<SetStateAction<Record<string, string>>>;
 };
@@ -14,7 +14,7 @@ type ValidatedPasswordInputFieldProps = {
 const RegularPasswordInputField = ({
   formFields,
   setFormFields,
-}: ValidatedPasswordInputFieldProps) => {
+}: RegularPasswordInputFieldProps) => {
   const [isInputFieldFocused, setIsInputFieldFocused] = useState(false);
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 

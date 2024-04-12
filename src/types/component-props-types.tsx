@@ -49,3 +49,8 @@ export type NewUserObjectType = {
   password: string;
   hasAcceptedTermsOfUse: string;
 };
+
+export type SigninCredentialsType = {
+  email: string;
+  password: string;
+}

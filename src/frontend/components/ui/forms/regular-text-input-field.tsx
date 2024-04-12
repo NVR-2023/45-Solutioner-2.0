@@ -25,6 +25,10 @@ const RegularTextInputField = ({
     setIsInputFieldFocused(true);
   };
 
+  const handleOnBlur = () => {
+    setIsInputFieldFocused(false);
+  };
+
   return (
     <div className="relative flex w-full flex-col space-y-1.5">
       <div>
@@ -34,9 +38,9 @@ const RegularTextInputField = ({
           name={name}
           autoComplete="off"
           onFocus={() => handleOnFocus()}
+          onBlur={() => handleOnBlur()}
           onChange={handleOnChange}
           value={formFields[name] as string}
-          aria-describedby={`${name}Error`}
           className="h-4 w-full appearance-none border-b border-black bg-neutral-300 pb-[.15rem] font-aperçu  text-black focus:border-b focus:outline-none dark:border-[#D9D9D9] dark:bg-[#222222] md:text-xs"
         />
       </div>
