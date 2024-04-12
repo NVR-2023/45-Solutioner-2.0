@@ -3,6 +3,7 @@ import UncheckedBox from "../../icons/unchecked-box";
 import CheckedBox from "../../icons/checked-box";
 import ValidatedToggleSwitch from "./validated-toggle-switch";
 import { ValidatedTextFormFieldsType } from "@/types/component-props-types";
+import ErrorMessage from "./error-message";
 
 type ValidatedCheckboxType = {
   name: string;
@@ -37,11 +38,13 @@ const ValidatedCheckbox = ({
       <div
         id={`${name}Error`}
         role="alert"
-        className={` text-xs italic leading-[.5rem] text-red-700 transition-opacity duration-500 sm:text-[0.625rem] ${
+        className={` transition-opacity duration-500 ${
           formFields[name]?.errorMessage ? "opacity-100" : "opacity-0"
         }`}
       >
-        {formFields[name]?.errorMessage || "\u00A0"}
+        <ErrorMessage
+          errorMessage={formFields[name]?.errorMessage || "\u00A0"}
+        />
       </div>
     </div>
   );

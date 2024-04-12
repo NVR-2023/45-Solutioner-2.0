@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-const hasAcceptedTermsOfUseNotice = (
+const hasAcceptedTermsOfUseSegment = (
   <div className="h-full font-aperçu text-xs font-semibold tracking-normal">
     <span>{`I accept the `}</span>
     <span className="border-b border-transparent hover:border-b-black">
@@ -9,4 +9,4 @@ const hasAcceptedTermsOfUseNotice = (
   </div>
 );
 
-export default hasAcceptedTermsOfUseNotice;
+export default hasAcceptedTermsOfUseSegment;

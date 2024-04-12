@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import ValidatedTextInputField from "@/frontend/components/ui/forms/validated-text-input-field";
 import ValidatedPasswordInputField from "@/frontend/components/ui/forms/validated-password-input-field";
 import ValidatedCheckbox from "@/frontend/components/ui/forms/validated-checkbox";
-import hasAcceptedTermsOfUseNotice from "@/frontend/components/ui/forms/has-accepted-terms-of-use";
+import hasAcceptedTermsOfUseSegment from "@/frontend/components/ui/forms/has-accepted-terms-of-use-segment";
 import RegisterWIthSegment from "@/frontend/components/ui/forms/register-with-segment";
 import SubmitSegment from "@/frontend/components/ui/forms/submit-segment";
 
@@ -163,7 +163,7 @@ const RegisterFormBody = () => {
               name="hasAcceptedTermsOfUse"
               formFields={credentials}
               setFormFields={setCredentials}
-              notice={hasAcceptedTermsOfUseNotice}
+              notice={hasAcceptedTermsOfUseSegment}
             />
           </div>
           <div>
