@@ -7,7 +7,7 @@ type FormTitleProps = {
 const FormTitle = ({ title }: FormTitleProps) => {
   return (
     <>
-      <div className="flex h-full w-full items-center space-x-[.15rem] transform -translate-x-2">
+      <div className="flex h-full w-full items-center space-x-[.1rem] transform -translate-x-1.5">
         <span className="flex justify-start transform translate-y-[0.1rem]">
           <LogoIcon scale={.75} />
         </span>

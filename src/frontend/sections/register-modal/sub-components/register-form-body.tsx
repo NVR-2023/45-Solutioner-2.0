@@ -156,8 +156,8 @@ const RegisterFormBody = () => {
           />
         </div>
       </div>
-      <div className="space-y-4">
-        <div className="space-y-4">
+      <div className="space-y-5">
+        <div className="space-y-3">
           <div className="">
             <ValidatedCheckbox
               name="hasAcceptedTermsOfUse"

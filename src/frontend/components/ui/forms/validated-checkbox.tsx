@@ -20,7 +20,7 @@ const ValidatedCheckbox = ({
   notice,
 }: ValidatedCheckboxType) => {
   return (
-    <div className="space-y-1.5">
+    <div className="space-y-1">
       <div className="flex items-center space-x-4">
         <div className="transform translate-y-0.5">
           <ValidatedToggleSwitch
