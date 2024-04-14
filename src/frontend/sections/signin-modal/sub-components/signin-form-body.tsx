@@ -13,7 +13,7 @@ import {
   ValidatedTextFormFieldsType,
   FetchSubmissionSTatusType,
   setFetchSubmissionStatusType,
-  SigninUserObjectType ,
+  SigninUserObjectType,
 } from "@/types/component-props-types";
 
 import { signInUser } from "@/utils/functions/fetch-data/user-endpoint-submissions";
@@ -24,7 +24,6 @@ const SigninFormBody = () => {
 
   const validateEmail = INPUT_VALIDATION_FUNCTION_MAP.get("email")!;
   const validatePassword = INPUT_VALIDATION_FUNCTION_MAP.get("password")!;
- 
 
   const [credentials, setCredentials] = useState<ValidatedTextFormFieldsType>({
     email: {
@@ -37,7 +36,6 @@ const SigninFormBody = () => {
       validationFunction: validatePassword,
       errorMessage: "",
     },
-    
   });
 
   const [isFormValid, setIsFormValid] = useState(false);
@@ -52,17 +50,14 @@ const SigninFormBody = () => {
 
     const isEmailFilled = credentials.email.value.trim() !== "";
     const isPasswordFilled = credentials.password.value.trim() !== "";
-    
+
     setIsFormValid(
-        isEmailValid &&
-        isPasswordValid &&
-        isEmailFilled &&
-        isPasswordFilled
+      isEmailValid && isPasswordValid && isEmailFilled && isPasswordFilled,
     );
   }, [
     credentials.email.errorMessage,
     credentials.password.errorMessage,
-      credentials.email.value,
+    credentials.email.value,
     credentials.password.value,
   ]);
 
@@ -88,9 +83,11 @@ const SigninFormBody = () => {
       return;
     } else {
       const signinUserResponse = await signInUser(
-        SigninUserrObject, setFormSubmissionStatus
+        SigninUserrObject,
+        setFormSubmissionStatus,
       );
-      await wait(1000);
+      // wait 1 second not to give hints to malicious actors
+      //await wait(1000);
       if (!signinUserResponse?.data?.ok) {
         let updatedCredentials = { ...credentials };
         const submissionErrorList =
@@ -102,8 +99,7 @@ const SigninFormBody = () => {
         setCredentials(updatedCredentials);
         setFormSubmissionStatus("re-idle");
       } else {
-        setFormSubmissionStatus("re-idle");
-        
+        router.push("/private/myrequests");
       }
     }
   };
@@ -148,5 +144,3 @@ const SigninFormBody = () => {
 };
 
 export default SigninFormBody;
-
-
