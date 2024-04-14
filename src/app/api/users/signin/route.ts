@@ -43,7 +43,8 @@ export async function POST(request: NextRequest) {
       responseObject = generateResponseObject({
         status: 400,
         validationErrors: {
-          error: "Invalid email or password",
+          email: "Invalid email or password",
+          password: "Invalid email or password",
         },
       });
     } else {

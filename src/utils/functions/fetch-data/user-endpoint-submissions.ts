@@ -21,22 +21,17 @@ export const registerNNewUser = async (
 
 export const signInUser = async (
   signinUserObject: SigninUserObjectType,
+  setFormSubmissionStatus: setFetchSubmissionStatusType,
 ) => {
   const signInUserResponse = await fetchSubmission({
     method: "POST",
     url: "/api/users/signin",
     body: signinUserObject,
+    setFetchSubmissionStatus: setFormSubmissionStatus,
   });
 
   return signInUserResponse;
 };
 
-export const signOutUser = async () => {
-  const signOutUserResponse = await fetchSubmission({
-    method: "POST",
-    url: "/api/users/signout",
-  });
 
-  return signOutUserResponse;
-};
 
