@@ -138,7 +138,7 @@ const SigninFormBody = () => {
           <SubmitSegment
             onCancel={handleOnCancel}
             onSubmit={handleOnsubmit}
-            submitAction="Sign in"
+            submitAction="sign in"
             formSubmissionStatus={formSubmissionStatus}
           />
         </div>

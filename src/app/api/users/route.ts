@@ -57,7 +57,6 @@ export async function POST(request: NextRequest) {
 
     try {
       await insertNewUserInDb(newUser);
-      cookies().set("testCookie", "testing if cookies can be set");
       responseObject = generateResponseObject({
         status: 201,
       });
