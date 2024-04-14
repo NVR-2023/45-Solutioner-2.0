@@ -36,7 +36,6 @@ export type ValidatedTextFormFieldsType = Record<
   }
 >;
 
-
 export type FetchSubmissionSTatusType = string;
 
 export type setFetchSubmissionStatusType = Dispatch<
@@ -50,7 +49,7 @@ export type NewUserObjectType = {
   hasAcceptedTermsOfUse: string;
 };
 
-export type SigninCredentialsType = {
+export type SigninUserObjectType = {
   email: string;
   password: string;
-}
+};

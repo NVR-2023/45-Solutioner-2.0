@@ -1,30 +1,43 @@
-import { SyntheticEvent, useState } from "react";
+import { SyntheticEvent, useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 
-import RegularTextInputField from "@/frontend/components/ui/forms/regular-text-input-field";
-import RegularPasswordInputField from "@/frontend/components/ui/forms/regular-password-input-field";
-import RegisterWIthSegment from "@/frontend/components/ui/forms/register-with-segment";
+import ValidatedTextInputField from "@/frontend/components/ui/forms/validated-text-input-field";
+import ValidatedPasswordInputField from "@/frontend/components/ui/forms/validated-password-input-field";
+import ForgotPasswordSegment from "@/frontend/components/ui/forms/forgot-password-segment";
+import SigninWIthSegment from "@/frontend/components/ui/forms/signin-with-segement";
 import SubmitSegment from "@/frontend/components/ui/forms/submit-segment";
 
+import getErrorsInForm from "@/utils/functions/form-validation/get-errors-in-form";
 import { INPUT_VALIDATION_FUNCTION_MAP } from "@/utils/functions/input-validation/input-validation-function-map";
 import {
+  ValidatedTextFormFieldsType,
   FetchSubmissionSTatusType,
   setFetchSubmissionStatusType,
-  SigninCredentialsType,
+  SigninUserObjectType ,
 } from "@/types/component-props-types";
 
-import { registerNNewUser } from "@/utils/functions/fetch-data/endpoint-submissions";
+import { signInUser } from "@/utils/functions/fetch-data/user-endpoint-submissions";
 import { wait } from "@/utils/functions/wait";
 
-const SigninrFormBody = () => {
+const SigninFormBody = () => {
   const router = useRouter();
 
   const validateEmail = INPUT_VALIDATION_FUNCTION_MAP.get("email")!;
   const validatePassword = INPUT_VALIDATION_FUNCTION_MAP.get("password")!;
+ 
 
-  const [credentials, setCredentials] = useState<Record<string, string>>({
-    email: "",
-    password: "",
+  const [credentials, setCredentials] = useState<ValidatedTextFormFieldsType>({
+    email: {
+      value: "",
+      validationFunction: validateEmail,
+      errorMessage: "",
+    },
+    password: {
+      value: "",
+      validationFunction: validatePassword,
+      errorMessage: "",
+    },
+    
   });
 
   const [isFormValid, setIsFormValid] = useState(false);
@@ -33,6 +46,25 @@ const SigninrFormBody = () => {
     setFetchSubmissionStatusType,
   ] = useState("idle");
 
+  useEffect(() => {
+    const isEmailValid = !credentials.email.errorMessage;
+    const isPasswordValid = !credentials.password.errorMessage;
+
+    const isEmailFilled = credentials.email.value.trim() !== "";
+    const isPasswordFilled = credentials.password.value.trim() !== "";
+    
+    setIsFormValid(
+        isEmailValid &&
+        isPasswordValid &&
+        isEmailFilled &&
+        isPasswordFilled
+    );
+  }, [
+    credentials.email.errorMessage,
+    credentials.password.errorMessage,
+      credentials.email.value,
+    credentials.password.value,
+  ]);
 
   const handleOnCancel = (event: SyntheticEvent) => {
     event.preventDefault();
@@ -42,28 +74,27 @@ const SigninrFormBody = () => {
   const handleOnsubmit = async (event: SyntheticEvent) => {
     event.preventDefault();
 
-    const SigninCredentials: SigninCredentialsType = {
-      email: credentials.email as string,
-      password: credentials.password as string,
+    const SigninUserrObject: SigninUserObjectType = {
+      email: credentials.email.value as string,
+      password: credentials.password.value as string,
     };
 
-   /*  getErrorsInForm({
+    getErrorsInForm({
       setFormFields: setCredentials,
       formFields: credentials,
-    }); */
+    });
 
-/*     if (!isFormValid) {
+    if (!isFormValid) {
       return;
     } else {
-      const registerNewUserResponse = await registerNNewUser(
-        SigninCredentials,
-        setFormSubmissionStatus,
+      const signinUserResponse = await signInUser(
+        SigninUserrObject,
       );
       await wait(1000);
-      if (!registerNewUserResponse?.data?.ok) {
+      if (!signinUserResponse?.data?.ok) {
         let updatedCredentials = { ...credentials };
         const submissionErrorList =
-          registerNewUserResponse?.data?.errors?.validationErrors ?? null;
+          signinUserResponse?.data?.errors?.validationErrors ?? null;
         for (let invalidInput in submissionErrorList) {
           updatedCredentials[invalidInput].errorMessage =
             submissionErrorList[invalidInput];
@@ -72,22 +103,23 @@ const SigninrFormBody = () => {
         setFormSubmissionStatus("re-idle");
       } else {
         setFormSubmissionStatus("re-idle");
+        
       }
-    } */
+    }
   };
 
   return (
     <form className="flex h-full w-full flex-col justify-center space-y-4">
       <div className="space-y-6">
         <div>
-          <RegularTextInputField
+          <ValidatedTextInputField
             name="email"
             formFields={credentials}
             setFormFields={setCredentials}
           />
         </div>
         <div>
-          <RegularPasswordInputField
+          <ValidatedPasswordInputField
             formFields={credentials}
             setFormFields={setCredentials}
           />
@@ -96,13 +128,17 @@ const SigninrFormBody = () => {
       <div className="space-y-8">
         <div className="space-y-3">
           <div>
-            <RegisterWIthSegment />
+            <ForgotPasswordSegment />
+          </div>
+          <div>
+            <SigninWIthSegment />
           </div>
         </div>
         <div className="">
           <SubmitSegment
             onCancel={handleOnCancel}
             onSubmit={handleOnsubmit}
+            submitAction="Sign in"
             formSubmissionStatus={formSubmissionStatus}
           />
         </div>
@@ -111,4 +147,6 @@ const SigninrFormBody = () => {
   );
 };
 
-export default SigninrFormBody;
+export default SigninFormBody;
+
+

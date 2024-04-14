@@ -1,9 +1,10 @@
+import FormNotice from "./form-notice";
 const ForgotPasswordSegment = () => {
   return (
-    <div >
-      Forgot password?
+    <div>
+      <FormNotice notice={"Forgot your password?"} />
     </div>
-  )
+  );
 };
 
 export default ForgotPasswordSegment;

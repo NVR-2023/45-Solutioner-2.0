@@ -1,5 +1,5 @@
 "use client";
-import { signOutUser } from "@/utils/functions/fetch-data/endpoint-submissions";
+import { signOutUser } from "@/utils/functions/fetch-data/user-endpoint-submissions";
 import { useRouter } from "next/navigation";
 
 const MyRequests = () => {
@@ -7,9 +7,8 @@ const MyRequests = () => {
 
   const handleOnclick = async () => {
     await signOutUser();
-    router.push("/")
+    router.push("/");
   };
-
 
   return (
     <div className="h-screen w-screen">

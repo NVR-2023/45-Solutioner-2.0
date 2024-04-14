@@ -17,7 +17,7 @@ import {
   NewUserObjectType,
 } from "@/types/component-props-types";
 
-import { registerNNewUser } from "@/utils/functions/fetch-data/endpoint-submissions";
+import { registerNNewUser } from "@/utils/functions/fetch-data/user-endpoint-submissions";
 import { wait } from "@/utils/functions/wait";
 
 const RegisterFormBody = () => {
@@ -174,6 +174,7 @@ const RegisterFormBody = () => {
           <SubmitSegment
             onCancel={handleOnCancel}
             onSubmit={handleOnsubmit}
+            submitAction="register"
             formSubmissionStatus={formSubmissionStatus}
           />
         </div>

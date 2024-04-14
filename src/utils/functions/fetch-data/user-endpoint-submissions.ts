@@ -1,6 +1,7 @@
 import { fetchSubmission } from "./fetch-submission";
 import {
   NewUserObjectType,
+  SigninUserObjectType,
   setFetchSubmissionStatusType,
 } from "@/types/component-props-types";
 
@@ -18,17 +19,13 @@ export const registerNNewUser = async (
   return registerNewUserResponse;
 };
 
-
-type SigninCredentialsProps = {
-  email: string,
-  password: string,
-}
-
-export const signInUser = async (signInObject: SigninCredentialsProps) => {
+export const signInUser = async (
+  signinUserObject: SigninUserObjectType,
+) => {
   const signInUserResponse = await fetchSubmission({
     method: "POST",
     url: "/api/users/signin",
-    body: signInObject,
+    body: signinUserObject,
   });
 
   return signInUserResponse;

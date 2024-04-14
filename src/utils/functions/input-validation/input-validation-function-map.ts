@@ -5,6 +5,15 @@ type InputValidationTest = {
 
 type InputValidationTests = InputValidationTest[];
 
+const mergeAllRegExintoOne = (validationTable: InputValidationTests) => {
+  let mergedRegEx = "";
+  for (const { regEx } of validationTable) {
+    mergedRegEx += (mergedRegEx === "" ? "" : "|") + regEx.source;
+  }
+  return new RegExp(mergedRegEx);
+};
+
+
 const NAME_VALIDATION_TABLE: InputValidationTests = [
   { regEx: /^.+$/, errorMessage: "Required" },
   {
@@ -38,9 +47,24 @@ const PASSWORD_VALIDATION_TABLE: InputValidationTests = [
   },
   { regEx: /^(?=.*\d).{8,}$/, errorMessage: "At least one digit" },
 ];
+
 const HASACCEPTEDTERMSOFUSE_VALIDATION_TABLE: InputValidationTests = [
   { regEx: /^.+$/, errorMessage: "Required" },
   { regEx: /^true$/, errorMessage: "You must accept the Terms of Use" },
+];
+
+const MERGED_EMAIL_VALIDATION_TABLE: InputValidationTests = [
+  {
+    regEx: mergeAllRegExintoOne(EMAIL_VALIDATION_TABLE),
+    errorMessage: "Invalid email or password",
+  },
+];
+
+const MERGED_PASSWORD_VALIDATION_TABLE: InputValidationTests = [
+  {
+    regEx: mergeAllRegExintoOne(PASSWORD_VALIDATION_TABLE),
+    errorMessage: "Invalid email or password",
+  },
 ];
 
 const DEFAULT_VALIDATION_TABLE: InputValidationTests = [
@@ -79,6 +103,17 @@ export const INPUT_VALIDATION_FUNCTION_MAP = new Map<
     "hasAcceptedTermsOfUse",
     (inputValue) =>
       validateInputField(inputValue, HASACCEPTEDTERMSOFUSE_VALIDATION_TABLE),
+  ],
+
+  [
+    "mergedEmail",
+    (inputValue) =>
+      validateInputField(inputValue, MERGED_EMAIL_VALIDATION_TABLE),
+  ],
+  [
+    "mergedPassword",
+    (inputValue) =>
+      validateInputField(inputValue, MERGED_PASSWORD_VALIDATION_TABLE),
   ],
   [
     "default",

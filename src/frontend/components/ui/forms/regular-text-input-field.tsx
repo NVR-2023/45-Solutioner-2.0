@@ -1,5 +1,4 @@
 import { useState, ChangeEvent, Dispatch, SetStateAction } from "react";
-import InputFieldLabel from "./input-field-label";
 
 type RegularTextInputFieldProps = {
   name: string;
@@ -44,14 +43,16 @@ const RegularTextInputField = ({
           className="h-4 w-full appearance-none border-b border-black bg-neutral-300 pb-[.15rem] font-aperçu  text-black focus:border-b focus:outline-none dark:border-[#D9D9D9] dark:bg-[#222222] md:text-xs"
         />
       </div>
-      <div className="absolute -top-5 left-0 w-full">
+      <div className="absolute -top-4 left-0 w-full">
         <label
           htmlFor={`${name}ID`}
-          className={` flex items-center justify-between transition-transform duration-300 ${
-            !isInputFieldFocused && !formFields[name] && "translate-y-5"
+          className={`flex items-center justify-between font-aperçu text-xs font-extrabold leading-[.5rem] tracking-wide text-black transition-transform duration-300 small-caps dark:text-neutral-300 ${
+            isInputFieldFocused || formFields[name]
+              ? ""
+              : "translate-y-5"
           }`}
         >
-          <InputFieldLabel label={name} />
+          {name}
         </label>
       </div>
     </div>

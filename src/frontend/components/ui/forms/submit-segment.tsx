@@ -9,12 +9,14 @@ import FadeInWrapper from "../fadein-wrapper/fade-in-wrapper";
 type SubmitSegmentType = {
   onCancel: MouseEventHandler<HTMLButtonElement>;
   onSubmit: MouseEventHandler<HTMLButtonElement>;
+  submitAction?: string;
   formSubmissionStatus?: FetchSubmissionSTatusType;
 };
 
 const SubmitSegment = ({
   onCancel,
   onSubmit,
+  submitAction,
   formSubmissionStatus,
 }: SubmitSegmentType) => {
   const isFormSubmittable =
@@ -24,7 +26,7 @@ const SubmitSegment = ({
 
   switch (formSubmissionStatus) {
     case "idle":
-      formSubmissionStatusLabel = "register";
+      formSubmissionStatusLabel = submitAction;
       break;
     case "started":
     case "succeeded":
@@ -42,8 +44,8 @@ const SubmitSegment = ({
       formSubmissionStatusLabel = (
         <FadeInWrapper>
           <div className="flex w-16 items-center " key={"failed"}>
-            <span className="justify-center flex w-6">
-              <CrossedCircle scale={0.5} color={"#ff7714"} />
+            <span className="flex w-6 justify-center">
+              <CrossedCircle scale={0.5} color={"#b91c1c"} />
             </span>
             <span className="flex w-full justify-start">{`\u00A0failed`}</span>
           </div>
