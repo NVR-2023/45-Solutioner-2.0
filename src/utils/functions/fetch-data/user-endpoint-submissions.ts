@@ -33,5 +33,14 @@ export const signInUser = async (
   return signInUserResponse;
 };
 
+export const signOutUser = async () => {
+  const signOutUserResponse = await fetchSubmission({
+    method: "POST",
+    url: "/api/users/signout",
+  });
+
+  return signOutUserResponse;
+};
+
 
 
