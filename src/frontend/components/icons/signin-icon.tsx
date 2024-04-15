@@ -3,7 +3,7 @@ import { BasicComponentProps } from "@/types/component-props-types";
 
 const SigninIcon = ({ scale = 1, color = "currentColor" }: BasicComponentProps) => {
   return (
-    <Link href="/sugnin">
+    <Link href="/signin">
       <svg
         className="flex m-0 p-0 items-center justify-center"
         xmlns="http://www.w3.org/2000/svg"
