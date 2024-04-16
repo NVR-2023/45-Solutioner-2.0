@@ -9,9 +9,10 @@
     "lint": "next lint",
     "db:generate": "npx drizzle-kit generate:pg --config=./src/backend/database/drizzle/drizzle.config.ts",
     "db:migrate": "npx tsx src/backend/database/drizzle/scripts/migrate.ts",
-    "db:services": "npx tsx src/backend/database/drizzle/scripts/seed-services-table.ts",
     "db:push": "npx drizzle-kit generate:pg --config=./src/backend/database/drizzle/drizzle.config.ts && npx tsx src/backend/database/drizzle/scripts/migrate.ts",
-    "db:studio": "npx drizzle-kit studio --config=./src/backend/database/drizzle/drizzle.config.ts"
+    "db:studio": "npx drizzle-kit studio --config=./src/backend/database/drizzle/drizzle.config.ts",
+    "db:services": "npx tsx src/backend/database/drizzle/scripts/seed-services-table.ts",
+    "db:serviceprofiles": "npx tsx src/backend/database/drizzle/scripts/seed-service-profiles-table.ts"
   },
   "dependencies": {
     "@lucia-auth/adapter-drizzle": "^1.0.7",
