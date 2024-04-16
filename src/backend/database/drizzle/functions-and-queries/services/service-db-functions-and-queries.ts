@@ -1,5 +1,6 @@
 import { db } from "../../db";
-import { services , serviceProfiles } from "@/backend/database/schema/schema";
+import { services, serviceProfiles } from "@/backend/database/schema/schema";
+import { eq } from "drizzle-orm";
 
 export type NewServiceType = typeof services.$inferInsert;
 export type NewServiceProfileType = typeof serviceProfiles.$inferInsert;
@@ -41,7 +42,8 @@ export const seedServiceProfilesDBTable = async () => {
       "./src/backend/database/service-descriptions-data/service-profiles.json";
     try {
       const fileContent = require("fs").readFileSync(pathToJson, "utf-8");
-      const arrayWIthJsonData: NewServiceProfileType[] = JSON.parse(fileContent);
+      const arrayWIthJsonData: NewServiceProfileType[] =
+        JSON.parse(fileContent);
       for (const serviceProfile of arrayWIthJsonData as NewServiceProfileType[]) {
         await insertServiceProfileInDBTable(serviceProfile);
       }
@@ -54,19 +56,27 @@ export const seedServiceProfilesDBTable = async () => {
   }
 };
 
-// Regular Services App functions 
+// Regular Services functions
 
 export const insertServiceInDBTable = async (service: NewServiceType) => {
   return db.insert(services).values(service).returning();
 };
 
-export const fetchAllServices = async () => {
+export const getAllServices = async () => {
   const result = await db.query.services.findMany();
   return result;
 };
 
-export const insertServiceProfileInDBTable = async (serviceProfile: NewServiceProfileType) => {
-  return db.insert(serviceProfiles).values(serviceProfile).returning();
+export const getAllServicesWithProfiles = async () => {
+  const result = await db
+    .select()
+    .from(services)
+    .innerJoin(serviceProfiles, eq(services.id, serviceProfiles.serviceId));
+  return result;
 };
 
-
+export const insertServiceProfileInDBTable = async (
+  serviceProfile: NewServiceProfileType,
+) => {
+  return db.insert(serviceProfiles).values(serviceProfile).returning();
+};
