@@ -5,6 +5,8 @@ import PasswordVisibleIcon from "../../icons/password-visible-icon";
 import ToggleSwitch from "../toggle-switch/toggle-switch";
 
 import { ValidatedTextFormFieldsType } from "@/types/component-props-types";
+import InputFieldLabel from "./input-field-label";
+import ErrorMessage from "./error-message";
 
 type ValidatedPasswordInputFieldProps = {
   formFields: ValidatedTextFormFieldsType;
@@ -83,14 +85,14 @@ const ValidatedPasswordInputField = ({
       <div className="absolute -top-5 left-0 w-full">
         <label
           htmlFor="passwordID"
-          className={` flex items-center justify-between  font-aperçu text-sm font-extrabold leading-[.5rem] tracking-wide text-black transition-transform duration-300 small-caps dark:text-neutral-300 md:text-xs ${
+          className={` flex items-center justify-between  font-aperçu transition-transform duration-300 ${
             !isInputFieldFocused &&
             !formFields.password?.value &&
             "translate-y-5"
           }`}
         >
-          password
-          <span className="bg-green-400">
+          <InputFieldLabel label="password" />
+          <span className="">
             <ToggleSwitch
               toggle={isPasswordVisible}
               setToggle={setIsPasswordVisible}
@@ -105,11 +107,11 @@ const ValidatedPasswordInputField = ({
       <div
         id="passwordError"
         role="alert"
-        className={` text-xs italic leading-[.5rem] text-red-500 transition-opacity duration-500 sm:text-[0.625rem] ${
+        className={` transition-opacity duration-500 ${
           formFields.password?.errorMessage ? "opacity-100" : "opacity-0"
         }`}
       >
-        {formFields.password?.errorMessage || "\u00A0"}
+        <ErrorMessage errorMessage={formFields.password?.errorMessage || "\u00A0"} />
       </div>
     </div>
   );

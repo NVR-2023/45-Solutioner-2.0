@@ -1,5 +1,7 @@
 import { useState, ChangeEvent, Dispatch, SetStateAction } from "react";
 import { ValidatedTextFormFieldsType } from "@/types/component-props-types";
+import InputFieldLabel from "./input-field-label";
+import ErrorMessage from "./error-message";
 
 type ValidatedTextInputFieldProps = {
   name: string;
@@ -75,22 +77,22 @@ const ValidatedTextInputField = ({
       <div className="absolute -top-5 left-0 w-full">
         <label
           htmlFor={`${name}ID`}
-          className={` flex items-center justify-between  font-aperçu text-sm font-extrabold leading-[.5rem] tracking-wide text-black transition-transform duration-300 small-caps dark:text-neutral-300 md:text-xs ${
+          className={` flex items-center justify-between transition-transform duration-300 ${
             !isInputFieldFocused && !formFields[name]?.value && "translate-y-5"
           }`}
         >
-          {name}
+          <InputFieldLabel label={name} />
         </label>
       </div>
 
       <div
         id={`${name}Error`}
         role="alert"
-        className={` text-xs italic leading-[.5rem] text-red-700 transition-opacity duration-500 sm:text-[0.625rem] ${
+        className={` transition-opacity duration-500 ${
           formFields[name]?.errorMessage ? "opacity-100" : "opacity-0"
         }`}
       >
-        {formFields[name]?.errorMessage || "\u00A0"}
+        <ErrorMessage errorMessage={formFields[name]?.errorMessage || "\u00A0"} />
       </div>
     </div>
   );

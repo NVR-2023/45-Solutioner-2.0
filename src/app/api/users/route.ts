@@ -1,11 +1,12 @@
 import { NextRequest, NextResponse } from "next/server";
-import generateResponseObject from "@/app/api/generate-response-object/generate-response-object";
+import generateResponseObject from "@/utils/functions/fetch-data/generate-response-object";
 import { INPUT_VALIDATION_FUNCTION_MAP } from "@/utils/functions/input-validation/input-validation-function-map";
+import { cookies } from "next/headers";
 
 import {
-  checkNewUserEmailUniqueness,
-  insertNewUserInDB,
-} from "@/backend/database/drizzle/db";
+  isEmailUnique,
+  insertNewUserInDb,
+} from "@/backend/database/drizzle/functions-and-queries/users/user-db-functions-and-queires";
 
 export async function POST(request: NextRequest) {
   const body = await request.json();
@@ -31,7 +32,7 @@ export async function POST(request: NextRequest) {
   }
 
   if (!requestErrorsObject.email) {
-    const isNewUserEmailUnique: boolean = await checkNewUserEmailUniqueness(email);
+    const isNewUserEmailUnique: boolean = await isEmailUnique(email);
     if (!isNewUserEmailUnique) {
       requestErrorsObject.email = "Email already in use";
     }
@@ -48,20 +49,20 @@ export async function POST(request: NextRequest) {
     });
     return NextResponse.json(responseObject);
   } else {
-    const newUserObject = {
+    const newUser = {
       name: requestObject.name,
       email: requestObject.email,
-      hashedPassword: requestObject.password,
+      password: requestObject.password,
     };
 
     try {
-      await insertNewUserInDB(newUserObject);
+      await insertNewUserInDb(newUser);
       responseObject = generateResponseObject({
         status: 201,
       });
       return NextResponse.json(responseObject);
     } catch (error) {
-      console.error("Error inserting new user into database:", error);
+      console.error("Error registering new user:", error);
       responseObject = generateResponseObject({
         status: 500,
       });

@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import ValidatedTextInputField from "@/frontend/components/ui/forms/validated-text-input-field";
 import ValidatedPasswordInputField from "@/frontend/components/ui/forms/validated-password-input-field";
 import ValidatedCheckbox from "@/frontend/components/ui/forms/validated-checkbox";
-import hasAcceptedTermsOfUseNotice from "@/frontend/components/ui/forms/has-accepted-terms-of-use";
+import hasAcceptedTermsOfUseSegment from "@/frontend/components/ui/forms/has-accepted-terms-of-use-segment";
 import RegisterWIthSegment from "@/frontend/components/ui/forms/register-with-segment";
 import SubmitSegment from "@/frontend/components/ui/forms/submit-segment";
 
@@ -17,7 +17,7 @@ import {
   NewUserObjectType,
 } from "@/types/component-props-types";
 
-import { createNewUser } from "@/utils/functions/fetch-data/endpoint-submissions";
+import { registerNNewUser } from "@/utils/functions/fetch-data/user-endpoint-submissions";
 import { wait } from "@/utils/functions/wait";
 
 const RegisterFormBody = () => {
@@ -111,15 +111,15 @@ const RegisterFormBody = () => {
     if (!isFormValid) {
       return;
     } else {
-      const createNewUserResponse = await createNewUser(
+      const registerNewUserResponse = await registerNNewUser(
         newUserObject,
         setFormSubmissionStatus,
       );
       await wait(1000);
-      if (!createNewUserResponse?.data?.ok) {
+      if (!registerNewUserResponse?.data?.ok) {
         let updatedCredentials = { ...credentials };
         const submissionErrorList =
-          createNewUserResponse?.data?.errors?.validationErrors ?? null;
+          registerNewUserResponse?.data?.errors?.validationErrors ?? null;
         for (let invalidInput in submissionErrorList) {
           updatedCredentials[invalidInput].errorMessage =
             submissionErrorList[invalidInput];
@@ -133,58 +133,53 @@ const RegisterFormBody = () => {
   };
 
   return (
-    <main className="grid h-full w-full grid-cols-12">
-      <div className="col-span-2"></div>
-      <div className="col-span-8 flex justify-center">
-        <form method="post" className="w-full space-y-4 pt-8">
-          <div className="space-y-8">
-            <div>
-              <ValidatedTextInputField
-                name="name"
-                formFields={credentials}
-                setFormFields={setCredentials}
-              />
-            </div>
-            <div>
-              <ValidatedTextInputField
-                name="email"
-                formFields={credentials}
-                setFormFields={setCredentials}
-              />
-            </div>
-            <div>
-              <ValidatedPasswordInputField
-                formFields={credentials}
-                setFormFields={setCredentials}
-              />
-            </div>
-          </div>
-          <div className="space-y-7">
-            <div className="space-y-4">
-              <div className="">
-                <ValidatedCheckbox
-                  name="hasAcceptedTermsOfUse"
-                  formFields={credentials}
-                  setFormFields={setCredentials}
-                  notice={hasAcceptedTermsOfUseNotice}
-                />
-              </div>
-              <div>
-                <RegisterWIthSegment />
-              </div>
-            </div>
-            <div className="">
-              <SubmitSegment
-                onCancel={handleOnCancel}
-                onSubmit={handleOnsubmit}
-                formSubmissionStatus={formSubmissionStatus}
-              />
-            </div>
-          </div>
-        </form>
+    <form className="flex h-full w-full flex-col justify-center space-y-4">
+      <div className="space-y-6">
+        <div>
+          <ValidatedTextInputField
+            name="name"
+            formFields={credentials}
+            setFormFields={setCredentials}
+          />
+        </div>
+        <div>
+          <ValidatedTextInputField
+            name="email"
+            formFields={credentials}
+            setFormFields={setCredentials}
+          />
+        </div>
+        <div>
+          <ValidatedPasswordInputField
+            formFields={credentials}
+            setFormFields={setCredentials}
+          />
+        </div>
       </div>
-      <div className="col-span-2"></div>
-    </main>
+      <div className="space-y-8">
+        <div className="space-y-3">
+          <div className="">
+            <ValidatedCheckbox
+              name="hasAcceptedTermsOfUse"
+              formFields={credentials}
+              setFormFields={setCredentials}
+              notice={hasAcceptedTermsOfUseSegment}
+            />
+          </div>
+          <div>
+            <RegisterWIthSegment />
+          </div>
+        </div>
+        <div className="">
+          <SubmitSegment
+            onCancel={handleOnCancel}
+            onSubmit={handleOnsubmit}
+            submitAction="register"
+            formSubmissionStatus={formSubmissionStatus}
+          />
+        </div>
+      </div>
+    </form>
   );
 };
 

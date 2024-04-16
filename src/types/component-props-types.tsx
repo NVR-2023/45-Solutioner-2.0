@@ -48,3 +48,8 @@ export type NewUserObjectType = {
   password: string;
   hasAcceptedTermsOfUse: string;
 };
+
+export type SigninUserObjectType = {
+  email: string;
+  password: string;
+};

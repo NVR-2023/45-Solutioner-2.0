@@ -9,16 +9,19 @@
     "lint": "next lint",
     "db:generate": "npx drizzle-kit generate:pg --config=./src/backend/database/drizzle/drizzle.config.ts",
     "db:migrate": "npx tsx src/backend/database/drizzle/scripts/migrate.ts",
-    "db:seed": "npx tsx src/backend/database/drizzle/scripts/seed.ts",
-    "db:services": "npx tsx src/backend/database/drizzle/scripts/seed-services-table.ts",
     "db:push": "npx drizzle-kit generate:pg --config=./src/backend/database/drizzle/drizzle.config.ts && npx tsx src/backend/database/drizzle/scripts/migrate.ts",
-    "db:studio": "npx drizzle-kit studio --config=./src/backend/database/drizzle/drizzle.config.ts"
+    "db:studio": "npx drizzle-kit studio --config=./src/backend/database/drizzle/drizzle.config.ts",
+    "db:services": "npx tsx src/backend/database/drizzle/scripts/seed-services-table.ts",
+    "db:serviceprofiles": "npx tsx src/backend/database/drizzle/scripts/seed-service-profiles-table.ts"
   },
   "dependencies": {
+    "@lucia-auth/adapter-drizzle": "^1.0.7",
     "@paralleldrive/cuid2": "^2.2.2",
     "@vercel/postgres": "^0.7.2",
     "drizzle-orm": "^0.29.4",
+    "lucia": "^3.1.1",
     "next": "14.1.0",
+    "oslo": "^1.2.0",
     "pg": "^8.11.3",
     "react": "^18",
     "react-dom": "^18",

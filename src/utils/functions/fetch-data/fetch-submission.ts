@@ -12,7 +12,7 @@ type FetchSubmissionResponseType<T> = {
 
 type FetchSubmissionProps = {
   method?: FetchMethodType;
-  body: object;
+  body?: object;
   url: string;
   setFetchSubmissionStatus?: setFetchSubmissionStatusType;
 };
