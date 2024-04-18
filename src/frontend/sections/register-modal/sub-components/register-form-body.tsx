@@ -128,6 +128,7 @@ const RegisterFormBody = () => {
         setFormSubmissionStatus("re-idle");
       } else {
         setFormSubmissionStatus("re-idle");
+        router.push("/signin")
       }
     }
   };
