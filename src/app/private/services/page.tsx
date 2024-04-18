@@ -9,23 +9,18 @@ import {
 
 import PrivateNavbar from "@/frontend/sections/navbar-private/navbar-private";
 import ServicesContentNavbar from "./sub-components/services-content-navbar";
-const Services = async () => {
-  const data = await getUsers();
-  const data2 = await getUsers2();
-  const data3 = await getAllServices();
-  const data4 = await getAllServicesWithProfiles();
 
-  const data9 = process.env.DEPLOYED_BASE_URL;
-  const data10 = process.env.LOCAL_BASE_URL;
+const Services = async () => {
+
 
   return (
-    <div className="m-0 h-screen w-screen bg-neutral-200 py-2 pe-8 ps-6">
+    <div className="m-0 h-screen w-screen bg-neutral-100 py-2 pe-8 ps-6 dark:bg-green-400">
       <div className="grid h-full w-full grid-cols-12 grid-rows-12 space-y-2">
         <header className="col-span-12 row-span-2 flex flex-col space-y-2 bg-neutral-200">
           <div className="flex-grow"><PrivateNavbar /></div>
           <div className="flex-grow"><ServicesContentNavbar /></div>
         </header>
-        <main className="col-span-12 row-span-10 overflow-y-auto bg-neutral-200">
+        <main className="col-span-12 row-span-10 overflow-y-auto bg-neutral-100">
           <p>123</p>
           <p>123</p>
           <p>123</p>
@@ -70,3 +65,12 @@ const Services = async () => {
 };
 
 export default Services;
+
+
+/*   const data = await getUsers();
+  const data2 = await getUsers2();
+  const data3 = await getAllServices();
+  const data4 = await getAllServicesWithProfiles();
+
+  const data9 = process.env.DEPLOYED_BASE_URL;
+  const data10 = process.env.LOCAL_BASE_URL; */
