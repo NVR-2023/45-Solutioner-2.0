@@ -1,4 +1,4 @@
-import { SyntheticEvent, useState, useEffect } from "react";
+import { KeyboardEvent, SyntheticEvent, useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 
 import ValidatedTextInputField from "@/frontend/components/ui/forms/validated-text-input-field";
@@ -133,8 +133,15 @@ const RegisterFormBody = () => {
     }
   };
 
+  const handleOnKeyDown = (event: KeyboardEvent<HTMLFormElement>) => {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      handleOnsubmit(event);
+    }
+  };
+
   return (
-    <form className="flex h-full w-full flex-col justify-center space-y-4">
+    <form onKeyDown={handleOnKeyDown} className="flex h-full w-full flex-col justify-center space-y-4">
       <div className="space-y-6">
         <div>
           <ValidatedTextInputField
