@@ -14,7 +14,7 @@ const Services = async () => {
 
 
   return (
-    <div className="m-0 h-screen w-screen bg-neutral-200 py-2 pe-8 ps-6 dark:bg-gree">
+    <div className="m-0 h-screen w-screen dark:bg-blue-400 bg-neutral-200 py-2 pe-8 ps-6 dark:bg-gree">
       <div className="h-full w-full flex flex-col space-y-2">
         <header className="flex flex-col space-y-2 bg-neutral-200">
           <div className="h-10"><PrivateNavbar /></div>
