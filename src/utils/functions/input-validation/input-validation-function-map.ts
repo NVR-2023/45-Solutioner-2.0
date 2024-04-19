@@ -13,7 +13,6 @@ const mergeAllRegExintoOne = (validationTable: InputValidationTests) => {
   return new RegExp(mergedRegEx);
 };
 
-
 const NAME_VALIDATION_TABLE: InputValidationTests = [
   { regEx: /^.+$/, errorMessage: "Required" },
   {
@@ -21,7 +20,7 @@ const NAME_VALIDATION_TABLE: InputValidationTests = [
     errorMessage: "At least 3 characters long",
   },
   {
-    regEx: /^[a-zA-Z0-9\s]+$/,
+    regEx: /^[\p{L}0-9\s]+$/u,
     errorMessage: "Only letters, digits, and spaces",
   },
 ];
@@ -51,20 +50,6 @@ const PASSWORD_VALIDATION_TABLE: InputValidationTests = [
 const HASACCEPTEDTERMSOFUSE_VALIDATION_TABLE: InputValidationTests = [
   { regEx: /^.+$/, errorMessage: "Required" },
   { regEx: /^true$/, errorMessage: "You must accept the Terms of Use" },
-];
-
-const MERGED_EMAIL_VALIDATION_TABLE: InputValidationTests = [
-  {
-    regEx: mergeAllRegExintoOne(EMAIL_VALIDATION_TABLE),
-    errorMessage: "Invalid email or password",
-  },
-];
-
-const MERGED_PASSWORD_VALIDATION_TABLE: InputValidationTests = [
-  {
-    regEx: mergeAllRegExintoOne(PASSWORD_VALIDATION_TABLE),
-    errorMessage: "Invalid email or password",
-  },
 ];
 
 const DEFAULT_VALIDATION_TABLE: InputValidationTests = [
@@ -105,16 +90,6 @@ export const INPUT_VALIDATION_FUNCTION_MAP = new Map<
       validateInputField(inputValue, HASACCEPTEDTERMSOFUSE_VALIDATION_TABLE),
   ],
 
-  [
-    "mergedEmail",
-    (inputValue) =>
-      validateInputField(inputValue, MERGED_EMAIL_VALIDATION_TABLE),
-  ],
-  [
-    "mergedPassword",
-    (inputValue) =>
-      validateInputField(inputValue, MERGED_PASSWORD_VALIDATION_TABLE),
-  ],
   [
     "default",
     (inputValue) => validateInputField(inputValue, DEFAULT_VALIDATION_TABLE),
