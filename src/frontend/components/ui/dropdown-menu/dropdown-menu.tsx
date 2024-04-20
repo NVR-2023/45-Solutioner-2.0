@@ -55,7 +55,7 @@ const DropdownMenu = ({
   };
 
   return (
-    <div className="relative px-2">
+    <div className="relative">
       <button
         onMouseEnter={handleOnMouseEnter}
         onMouseLeave={handleOnMouseLeave}
@@ -65,8 +65,8 @@ const DropdownMenu = ({
           <span className="flex font-aperçu text-sm font-extrabold leading-[.5rem] tracking-wide text-black small-caps dark:text-neutral-300 md:text-xs">
             {dropdownMenuLabel + ":"}
           </span>
-          <div className="relative flex pe-2">
-            <span className="flex w-24 justify-start ps-2 font-aperçu text-sm font-semibold  leading-[.5rem] text-black dark:text-neutral-300 md:text-xs">
+          <div className="relative flex px-2">
+            <span className="flex w-20 justify-start font-aperçu text-sm font-semibold  leading-[.5rem] text-black dark:text-neutral-300 md:text-xs">
               {`${changeFirstLetterToUppercase(dropdownSearchParams as string)}`}
             </span>
             <span
@@ -75,19 +75,19 @@ const DropdownMenu = ({
               <MenuDownArrow scale={0.6125} />
             </span>
             {isMenuOpen && (
-              <menu
+              <ul
                 onMouseEnter={handleOnMenuMouseEnter}
                 onMouseLeave={handleOnMenuMouseLeave}
-                className="absolute left-0 top-9 block w-full space-y-2 rounded-[2px] bg-green-300 p-2"
+                className="absolute left-0 top-9 block w-full space-y-2 rounded-[2px] bg-neutral-300 px-2 py-4"
               >
                 {dropdownMenuEntries.map((entry, index) => {
                   return (
                     <li
-                      className="hover:w-50 m-0 flex rounded-[2px] p-0 hover:bg-purple-400 hover:outline hover:outline-4 hover:outline-purple-400  active:bg-yellow-500"
+                      className=" m-0 flex p-0 hover:outline hover:outline-[1px] hover:outline-black"
                       key={index}
                       onClick={() => handleOnClick(entry)}
                     >
-                      <span className="flex w-24 justify-start font-aperçu  text-sm font-semibold italic leading-[.5rem]  text-black dark:text-neutral-300 md:text-xs">
+                      <span className="flex w-20 justify-start font-aperçu  text-sm font-semibold italic leading-[.5rem]  text-black dark:text-neutral-300 md:text-xs">
                         {changeFirstLetterToUppercase(entry)}
                       </span>
                       <span className="items-centre flex justify-center">
@@ -98,7 +98,7 @@ const DropdownMenu = ({
                     </li>
                   );
                 })}
-              </menu>
+              </ul>
             )}
           </div>
         </div>
