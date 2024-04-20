@@ -92,7 +92,7 @@ const DropdownMenu = ({
                       </span>
                       <span className="items-center flex justify-center">
                         {entry === dropdownSearchParams ? (
-                          <CheckIcon scale={0.5} />
+                          <CheckIcon scale={0.6125} />
                         ) : null}
                       </span>
                     </li>
