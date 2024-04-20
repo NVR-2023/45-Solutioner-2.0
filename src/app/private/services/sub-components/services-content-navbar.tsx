@@ -14,7 +14,7 @@ const ServicesContentNavbar = () => {
       sortBy: "alphabetically",
     };
     const queryString = new URLSearchParams(defaultSearchParams).toString();
-    router.replace(window.location.href + "?" + queryString);
+    router.replace(window.location.pathname + "?" + queryString);
   }, []);
 
   return (
