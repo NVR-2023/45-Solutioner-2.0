@@ -28,7 +28,6 @@ const DropdownMenu = ({
     dropdownSearchParams = dropdownMenuEntries[0];
   }
 
-
   const handleOnMouseEnter = () => {
     setIsMenuOpen(true);
   };
@@ -83,11 +82,12 @@ const DropdownMenu = ({
                 {dropdownMenuEntries.map((entry, index) => {
                   return (
                     <li
-                      className=" m-0 flex p-0 hover:outline hover:outline-[1px] hover:outline-black"
+                      className=" m-0 flex border-b-[1px] border-transparent px-0 py-[1px] hover:border-black"
                       key={index}
                       onClick={() => handleOnClick(entry)}
+                      tabIndex={index}
                     >
-                      <span className="flex w-20 justify-start font-aperçu  text-sm font-semibold italic leading-[.5rem]  text-black dark:text-neutral-300 md:text-xs">
+                      <span className="flex w-20 justify-start font-aperçu text-xs font-semibold italic leading-[.5rem]  text-black dark:text-neutral-300 md:text-xs">
                         {changeFirstLetterToUppercase(entry)}
                       </span>
                       <span className="items-centre flex justify-center">
