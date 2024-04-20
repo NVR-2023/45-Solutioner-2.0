@@ -87,12 +87,12 @@ const DropdownMenu = ({
                       onClick={() => handleOnClick(entry)}
                       tabIndex={index}
                     >
-                      <span className="flex w-20 justify-start font-aperçu text-xs font-semibold italic leading-[.5rem]  text-black dark:text-neutral-300 md:text-xs">
+                      <span className="flex w-20 justify-start font-aperçu text-base font-semibold italic leading-[.5rem]  text-black dark:text-neutral-300 md:text-xs">
                         {changeFirstLetterToUppercase(entry)}
                       </span>
-                      <span className="items-centre flex justify-center">
+                      <span className="items-center flex justify-center">
                         {entry === dropdownSearchParams ? (
-                          <CheckIcon scale={0.6125} />
+                          <CheckIcon scale={0.5} />
                         ) : null}
                       </span>
                     </li>
