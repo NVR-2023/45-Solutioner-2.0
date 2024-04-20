@@ -62,7 +62,7 @@ const DropdownMenu = ({
         onClick={handleOnToggle}
         onMouseEnter={handleOnMouseEnter}
         onMouseLeave={handleOnMouseLeave}
-        className="flex w-full items-center"
+        className="h-14 flex w-full items-center"
       >
         <div className="flex items-baseline">
           <span className="flex font-aperçu text-sm font-extrabold leading-[.5rem] tracking-wide text-black small-caps dark:text-neutral-300 md:text-xs">
@@ -73,7 +73,7 @@ const DropdownMenu = ({
               {`${changeFirstLetterToUppercase(dropdownSearchParams as string)}`}
             </span>
             <span
-              className={`flex origin-center items-center bg-purple-400 transition-all duration-300 ${isMenuOpen ? "rotate-180" : ""} `}
+              className={`flex origin-center items-center transition-all duration-300 ${isMenuOpen ? "rotate-180" : ""} `}
             >
               <MenuDownArrow scale={0.6125} />
             </span>
