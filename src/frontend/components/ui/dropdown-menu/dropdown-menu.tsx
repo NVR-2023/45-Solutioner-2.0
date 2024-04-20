@@ -65,7 +65,7 @@ const DropdownMenu = ({
             {dropdownMenuLabel + ":"}
           </span>
           <div className="relative flex px-2">
-            <span className="flex w-20 justify-start font-aperçu text-sm font-semibold  leading-[.5rem] text-black dark:text-neutral-300 md:text-xs">
+            <span className="flex w-20  italic justify-start font-aperçu text-sm font-semibold  leading-[.5rem] text-black dark:text-neutral-300 md:text-xs">
               {`${changeFirstLetterToUppercase(dropdownSearchParams as string)}`}
             </span>
             <span
@@ -87,7 +87,7 @@ const DropdownMenu = ({
                       onClick={() => handleOnClick(entry)}
                       tabIndex={index}
                     >
-                      <span className="flex w-20 justify-start font-aperçu text-base font-semibold italic leading-[.5rem]  text-black dark:text-neutral-300 md:text-xs">
+                      <span className="flex w-20 justify-start font-aperçu text-base font-semibold text-black dark:text-neutral-300 md:text-xs">
                         {changeFirstLetterToUppercase(entry)}
                       </span>
                       <span className="items-center flex justify-center">
