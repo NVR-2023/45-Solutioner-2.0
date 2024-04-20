@@ -77,7 +77,7 @@ const DropdownMenu = ({
               <ul
                 onMouseEnter={handleOnMenuMouseEnter}
                 onMouseLeave={handleOnMenuMouseLeave}
-                className="absolute left-0 top-9 block w-full space-y-2 rounded-[2px] bg-neutral-300 px-2 py-4"
+                className="absolute left-0 top-9 block w-full space-y-2 rounded-[2px] bg-neutral-300 p-2"
               >
                 {dropdownMenuEntries.map((entry, index) => {
                   return (
