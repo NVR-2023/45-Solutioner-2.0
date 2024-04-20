@@ -27,9 +27,7 @@ const DropdownMenu = ({
   ) {
     dropdownSearchParams = dropdownMenuEntries[0];
   }
-  const handleOnToggle = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
+
 
   const handleOnMouseEnter = () => {
     setIsMenuOpen(true);
@@ -59,10 +57,9 @@ const DropdownMenu = ({
   return (
     <div className="relative px-2">
       <button
-        onClick={handleOnToggle}
         onMouseEnter={handleOnMouseEnter}
         onMouseLeave={handleOnMouseLeave}
-        className="h-14 flex w-full items-center"
+        className="flex h-14 w-full items-center"
       >
         <div className="flex items-baseline">
           <span className="flex font-aperçu text-sm font-extrabold leading-[.5rem] tracking-wide text-black small-caps dark:text-neutral-300 md:text-xs">
@@ -86,14 +83,18 @@ const DropdownMenu = ({
                 {dropdownMenuEntries.map((entry, index) => {
                   return (
                     <li
-                      className="hover:w-50 m-0 flex rounded-[2px] p-0 hover:bg-purple-400 active:bg-yellow-500"
+                      className="hover:w-50 m-0 flex rounded-[2px] p-0 hover:bg-purple-400 hover:outline hover:outline-4 hover:outline-purple-400  active:bg-yellow-500"
                       key={index}
                       onClick={() => handleOnClick(entry)}
                     >
                       <span className="flex w-24 justify-start font-aperçu  text-sm font-semibold italic leading-[.5rem]  text-black dark:text-neutral-300 md:text-xs">
                         {changeFirstLetterToUppercase(entry)}
                       </span>
-                      <span className="flex items-centre justify-center">{entry === dropdownSearchParams ? <CheckIcon scale={.6125}/> : null }</span>
+                      <span className="items-centre flex justify-center">
+                        {entry === dropdownSearchParams ? (
+                          <CheckIcon scale={0.6125} />
+                        ) : null}
+                      </span>
                     </li>
                   );
                 })}
