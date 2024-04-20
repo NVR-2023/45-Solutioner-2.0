@@ -1,3 +1,4 @@
+
 import {
   getUsers,
   getUsers2,
@@ -11,7 +12,7 @@ import PrivateNavbar from "@/frontend/sections/navbar-private/navbar-private";
 import ServicesContentNavbar from "./sub-components/services-content-navbar";
 
 const Services = async () => {
-
+  
 
   return (
     <div className="m-0 h-screen w-screen dark:bg-blue-400 bg-neutral-200 py-2 pe-8 ps-6 dark:bg-gree">
