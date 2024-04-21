@@ -22,49 +22,20 @@ const DropdownMenu = ({
   const existingDropdownSearchParams =
     existingSearchParams.get(dropdownMenuLabel);
 
-useEffect(() => {
-  const existingDropdownSearchParams =
-    existingSearchParams.get(dropdownMenuLabel);
+  useEffect(() => {
+    const existingDropdownSearchParams =
+      existingSearchParams.get(dropdownMenuLabel);
 
- if (!existingDropdownSearchParams) {
-    const updatedSearchParams = new URLSearchParams(existingSearchParams);
-    updatedSearchParams.set(dropdownMenuLabel, dropdownMenuEntries[0]);
-    const queryString = updatedSearchParams.toString();
-    router.replace(window.location.pathname + "?" + queryString);
-  } else if (!dropdownMenuEntries.includes(existingDropdownSearchParams)) {
-    const updatedSearchParams = new URLSearchParams(existingSearchParams);
-    updatedSearchParams.set(dropdownMenuLabel, dropdownMenuEntries[0]);
-    const queryString = updatedSearchParams.toString();
-    router.replace(window.location.pathname + "?" + queryString);
-  }
-}, [dropdownMenuLabel, dropdownMenuEntries, existingSearchParams]);
-
-
-
-  /*   const defaultSearchParams = {
-    [dropdownMenuLabel]: dropdownMenuEntries[0],
-  };
-
-  if (!searchParams || !searchParams.has(dropdownMenuLabel)) {
-    const queryString = new URLSearchParams(defaultSearchParams).toString();
-    router.replace(window.location.pathname + "?" + queryString);
-  } else if (!dropdownMenuEntries.includes(dropdownSearchParams!)) {
-    const rectifiedSearchParams: Record<string, string> = {};
-    searchParams.forEach((value, key) => {
-      rectifiedSearchParams[key] = value;
-    });
-    rectifiedSearchParams[dropdownMenuLabel] = dropdownMenuEntries[0];
-    const queryString = new URLSearchParams(rectifiedSearchParams).toString();
-    router.replace(window.location.pathname + "?" + queryString)
-
- */
-
-  /*     if (
-    !dropdownSearchParams ||
-    !dropdownMenuEntries.includes(dropdownSearchParams)
-  ) {
-    dropdownSearchParams = dropdownMenuEntries[0];
-  } */
+    if (
+      !existingDropdownSearchParams ||
+      !dropdownMenuEntries.includes(existingDropdownSearchParams)
+    ) {
+      const updatedSearchParams = new URLSearchParams(existingSearchParams);
+      updatedSearchParams.set(dropdownMenuLabel, dropdownMenuEntries[0]);
+      const queryString = updatedSearchParams.toString();
+      router.replace(window.location.pathname + "?" + queryString);
+    }
+  }, [dropdownMenuLabel, dropdownMenuEntries, existingSearchParams]);
 
   const handleOnMouseEnter = () => {
     setIsMenuOpen(true);
@@ -91,19 +62,20 @@ useEffect(() => {
       opacity: 1,
       height: "auto",
       transition: {
-        duration: 0.12,
+        duration: 0.18,
         type: "tween",
-        ease: [0.25, 1, 0.5, 1],
+        ease: "linear",
       },
     },
     closed: {
       height: 0,
       opacity: 0,
       transition: {
-        duration: 0.09,
         type: "tween",
-        ease: [0.76, 0, 0.24, 1],
-        when: "after-children",
+        ease: "linear",
+        delay: 0.1,
+        opacity: { duration: 0.09 },
+        height: { duration: 0.18 },
       },
     },
   };
@@ -111,9 +83,18 @@ useEffect(() => {
   const childVariants: Variants = {
     open: {
       opacity: 1,
+      height: "auto",
+      transition: {
+        delay: 0.1,
+        duration: 0.18,
+      },
     },
     closed: {
       opacity: 0,
+      height: 0,
+      transition: {
+        duration: 0.18,
+      },
     },
   };
 
@@ -159,7 +140,7 @@ useEffect(() => {
                         tabIndex={index}
                         variants={childVariants}
                       >
-                        <span className="flex w-20 justify-start font-aperçu text-base font-semibold text-black dark:text-neutral-300 md:text-xs">
+                        <span className="flex w-20 justify-start font-aperçu font-medium text-base italic text-black dark:text-neutral-300 md:text-xs">
                           {changeFirstLetterToUppercase(entry)}
                         </span>
                         <span className="flex items-center justify-center">
