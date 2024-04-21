@@ -62,7 +62,7 @@ const DropdownMenu = ({
       opacity: 1,
       height: "auto",
       transition: {
-        duration: 0.18,
+        duration: 0.15,
         type: "tween",
         ease: "linear",
       },
@@ -73,9 +73,8 @@ const DropdownMenu = ({
       transition: {
         type: "tween",
         ease: "linear",
-        delay: 0.1,
-        opacity: { duration: 0.09 },
-        height: { duration: 0.18 },
+        opacity: { duration: 0.15 },
+        height: { duration: 0.15 },
       },
     },
   };
@@ -86,14 +85,15 @@ const DropdownMenu = ({
       height: "auto",
       transition: {
         delay: 0.1,
-        duration: 0.18,
+        duration: 0.15,
       },
     },
     closed: {
       opacity: 0,
       height: 0,
       transition: {
-        duration: 0.18,
+        opacity: { duration: 0.07 },
+        height: { duration: 0.15 },
       },
     },
   };
@@ -134,7 +134,7 @@ const DropdownMenu = ({
                   {dropdownMenuEntries.map((entry, index) => {
                     return (
                       <motion.li
-                        className="m-0 flex border-b-[1px] border-transparent px-0  hover:border-black"
+                        className="m-0 flex"
                         key={index}
                         onClick={() => handleOnClick(entry)}
                         tabIndex={index}
@@ -162,4 +162,3 @@ const DropdownMenu = ({
 };
 
 export default DropdownMenu;
-
