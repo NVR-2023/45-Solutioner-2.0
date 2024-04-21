@@ -129,7 +129,7 @@ const DropdownMenu = ({
                   variants={variants}
                   onMouseEnter={handleOnMouseEnter}
                   onMouseLeave={handleOnMouseLeave}
-                  className="absolute left-0 top-9 block w-full space-y-2 rounded-[2px] bg-neutral-300 px-2 py-4"
+                  className="absolute left-0 top-9 block w-full rounded-[2px] bg-neutral-300 px-2 py-4"
                 >
                   {dropdownMenuEntries.map((entry, index) => {
                     return (
@@ -140,12 +140,12 @@ const DropdownMenu = ({
                         tabIndex={index}
                         variants={childVariants}
                       >
-                        <span className="flex w-20 justify-start font-aperçu font-medium text-base  text-black dark:text-neutral-300 md:text-xs">
+                        <span className="flex w-20 justify-start font-aperçu text-base font-medium  text-black dark:text-neutral-300 md:text-[.625rem]">
                           {changeFirstLetterToUppercase(entry)}
                         </span>
                         <span className="flex items-center justify-center">
                           {entry === existingDropdownSearchParams ? (
-                            <CheckIcon scale={0.6125} />
+                            <CheckIcon scale={0.5} />
                           ) : null}
                         </span>
                       </motion.li>
@@ -163,23 +163,3 @@ const DropdownMenu = ({
 
 export default DropdownMenu;
 
-/* useEffect(() => {
-  // Read initial value from URL search parameters
-  const urlParams = new URLSearchParams(window.location.search);
-  const initialValue = urlParams.get("dropdownValue");
-
-  // Set the initial value (if available) or a default value
-  const defaultValue = initialValue || "defaultOption";
-  setSelectedValue(defaultValue);
-
-  // Update the URL search parameters
-  if (!initialValue) {
-    // First component: Add ? and set the parameter
-    urlParams.set("dropdownValue", defaultValue);
-    window.history.pushState({}, "", `?${urlParams.toString()}`);
-  } else if (!urlParams.has("dropdownValue")) {
-    // Not the first component, but unrelated parameters: Set the parameter
-    urlParams.set("dropdownValue", defaultValue);
-    window.history.pushState({}, "", `?${urlParams.toString()}`);
-  }
-}, []); */

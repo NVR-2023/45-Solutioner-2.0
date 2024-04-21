@@ -19,10 +19,9 @@ const RequestServicesContentNavbar = () => {
         dropdownMenuLabel="price"
         dropdownMenuEntries={[
           "any price",
-          "from a to b",
-          "from b to c",
-          "from c to d",
-          "from d to e",
+          "€0 to €30",
+          "€30 to €60",
+          "€60 to €120",
         ]}
       />
       <DropdownMenu
@@ -36,8 +35,6 @@ const RequestServicesContentNavbar = () => {
           "cheaper",
         ]}
       />
-
-   
     </div>
   );
 };
