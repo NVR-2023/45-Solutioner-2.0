@@ -51,16 +51,18 @@ const DropdownMenu = ({
       height: "auto",
       transition: {
         duration: 0.12,
-        ease: "linear",
+        type: "tween",
+        ease: [0.25, 1, 0.5, 1],
       },
     },
     closed: {
       height: 0,
       opacity: 0,
       transition: {
-        duration: 0.12,
-        ease: "linear",
-        when: "afterChildren"
+        duration: 0.09,
+        type: "tween",
+        ease: [0.76, 0, 0.24, 1],
+        when: "after-children",
       },
     },
   };
@@ -68,15 +70,9 @@ const DropdownMenu = ({
   const childVariants: Variants = {
     open: {
       opacity: 1,
-      transition: {
-        delay: 0.01,
-      },
     },
     closed: {
       opacity: 0,
-      transition: {
-        delay: 0.01,
-      },
     },
   };
 
@@ -105,10 +101,12 @@ const DropdownMenu = ({
             <AnimatePresence>
               {isMenuOpen && (
                 <motion.ul
+
                   initial="closed"
                   animate="open"
                   exit="closed"
                   variants={variants}
+                
                   onMouseEnter={handleOnMouseEnter}
                   onMouseLeave={handleOnMouseLeave}
                   className="absolute left-0 top-9 block w-full space-y-2 rounded-[2px] bg-neutral-300 p-2"
