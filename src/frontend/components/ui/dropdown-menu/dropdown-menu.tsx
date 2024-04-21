@@ -50,29 +50,33 @@ const DropdownMenu = ({
       opacity: 1,
       height: "auto",
       transition: {
-        duration: 0.3,
-        ease: "backInOut",
+        duration: 0.12,
+        ease: "linear",
       },
     },
     closed: {
       height: 0,
       opacity: 0,
       transition: {
-        duration: 0.3,
-        ease: "backInOut",
+        duration: 0.12,
+        ease: "linear",
+        when: "afterChildren"
       },
     },
   };
 
   const childVariants: Variants = {
     open: {
-      height: "auto",
       opacity: 1,
+      transition: {
+        delay: 0.01,
+      },
     },
     closed: {
-      height: 0,
       opacity: 0,
-     
+      transition: {
+        delay: 0.01,
+      },
     },
   };
 
@@ -88,7 +92,7 @@ const DropdownMenu = ({
             {dropdownMenuLabel + ":"}
           </span>
           <div className="relative flex px-2">
-            <span className="flex w-20  justify-start font-aperçu text-sm font-semibold italic  leading-[.5rem] text-black dark:text-neutral-300 md:text-xs">
+            <span className="flex w-20  justify-start font-aperçu text-sm font-semibold   leading-[.5rem] text-black dark:text-neutral-300 md:text-xs">
               {`${changeFirstLetterToUppercase(dropdownSearchParams as string)}`}
             </span>
             <span
@@ -101,7 +105,6 @@ const DropdownMenu = ({
             <AnimatePresence>
               {isMenuOpen && (
                 <motion.ul
-                  key={`dropDOwnMenu`}
                   initial="closed"
                   animate="open"
                   exit="closed"
@@ -113,7 +116,7 @@ const DropdownMenu = ({
                   {dropdownMenuEntries.map((entry, index) => {
                     return (
                       <motion.li
-                        className=" m-0 flex border-b-[1px] border-transparent px-0 py-[1px] hover:border-black"
+                        className="m-0 flex border-b-[1px] border-transparent px-0 py-[1px] italic hover:border-black"
                         key={index}
                         onClick={() => handleOnClick(entry)}
                         tabIndex={index}
