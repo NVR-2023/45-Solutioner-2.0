@@ -18,15 +18,53 @@ const DropdownMenu = ({
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const router = useRouter();
-  const searchParams = useSearchParams();
-  let dropdownSearchParams = searchParams.get(dropdownMenuLabel);
-  if (
+  const existingSearchParams = useSearchParams();
+  const existingDropdownSearchParams =
+    existingSearchParams.get(dropdownMenuLabel);
+
+useEffect(() => {
+  const existingDropdownSearchParams =
+    existingSearchParams.get(dropdownMenuLabel);
+
+ if (!existingDropdownSearchParams) {
+    const updatedSearchParams = new URLSearchParams(existingSearchParams);
+    updatedSearchParams.set(dropdownMenuLabel, dropdownMenuEntries[0]);
+    const queryString = updatedSearchParams.toString();
+    router.replace(window.location.pathname + "?" + queryString);
+  } else if (!dropdownMenuEntries.includes(existingDropdownSearchParams)) {
+    const updatedSearchParams = new URLSearchParams(existingSearchParams);
+    updatedSearchParams.set(dropdownMenuLabel, dropdownMenuEntries[0]);
+    const queryString = updatedSearchParams.toString();
+    router.replace(window.location.pathname + "?" + queryString);
+  }
+}, [dropdownMenuLabel, dropdownMenuEntries, existingSearchParams]);
+
+
+
+  /*   const defaultSearchParams = {
+    [dropdownMenuLabel]: dropdownMenuEntries[0],
+  };
+
+  if (!searchParams || !searchParams.has(dropdownMenuLabel)) {
+    const queryString = new URLSearchParams(defaultSearchParams).toString();
+    router.replace(window.location.pathname + "?" + queryString);
+  } else if (!dropdownMenuEntries.includes(dropdownSearchParams!)) {
+    const rectifiedSearchParams: Record<string, string> = {};
+    searchParams.forEach((value, key) => {
+      rectifiedSearchParams[key] = value;
+    });
+    rectifiedSearchParams[dropdownMenuLabel] = dropdownMenuEntries[0];
+    const queryString = new URLSearchParams(rectifiedSearchParams).toString();
+    router.replace(window.location.pathname + "?" + queryString)
+
+ */
+
+  /*     if (
     !dropdownSearchParams ||
     !dropdownMenuEntries.includes(dropdownSearchParams)
   ) {
     dropdownSearchParams = dropdownMenuEntries[0];
-  }
-
+  } */
 
   const handleOnMouseEnter = () => {
     setIsMenuOpen(true);
@@ -37,7 +75,9 @@ const DropdownMenu = ({
   };
 
   const handleOnClick = (entry: string) => {
-    const newSearchParams = new URLSearchParams(searchParams.toString());
+    const newSearchParams = new URLSearchParams(
+      existingSearchParams.toString(),
+    );
     newSearchParams.set(dropdownMenuLabel, entry);
     const newQueryString = newSearchParams.toString();
     const newURL = `${window.location.pathname}?${newQueryString}`;
@@ -90,7 +130,7 @@ const DropdownMenu = ({
           </span>
           <div className="relative flex px-2">
             <span className="flex w-20  justify-start font-aperçu text-sm font-semibold   leading-[.5rem] text-black dark:text-neutral-300 md:text-xs">
-              {`${changeFirstLetterToUppercase(dropdownSearchParams as string)}`}
+              {`${changeFirstLetterToUppercase(existingDropdownSearchParams as string)}`}
             </span>
             <span
               className={`flex origin-center items-center transition-all duration-300 ${
@@ -123,7 +163,7 @@ const DropdownMenu = ({
                           {changeFirstLetterToUppercase(entry)}
                         </span>
                         <span className="flex items-center justify-center">
-                          {entry === dropdownSearchParams ? (
+                          {entry === existingDropdownSearchParams ? (
                             <CheckIcon scale={0.6125} />
                           ) : null}
                         </span>
@@ -141,8 +181,6 @@ const DropdownMenu = ({
 };
 
 export default DropdownMenu;
-
-
 
 /* useEffect(() => {
   // Read initial value from URL search parameters
