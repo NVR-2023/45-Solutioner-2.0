@@ -1,4 +1,3 @@
-
 import {
   getUsers,
   getUsers2,
@@ -9,17 +8,19 @@ import {
 } from "@/backend/database/drizzle/functions-and-queries/services/service-db-functions-and-queries";
 
 import PrivateNavbar from "@/frontend/sections/navbar-private/navbar-private";
-import ServicesContentNavbar from "./sub-components/services-content-navbar";
+import RequestServicesContentNavbar from "../../../frontend/sections/request-services-content-navbar/request-services-content-navbar";
 
 const Services = async () => {
-  
-
   return (
-    <div className="m-0 h-screen w-screen dark:bg-blue-400 bg-neutral-200 py-2 pe-8 ps-6 dark:bg-gree">
-      <div className="h-full w-full flex flex-col space-y-2">
+    <div className="dark:bg-gree m-0 h-screen w-screen bg-neutral-200 py-2 pe-8 ps-6 dark:bg-blue-400">
+      <div className="flex h-full w-full flex-col space-y-2">
         <header className="flex flex-col space-y-2 bg-neutral-200">
-          <div className="h-10"><PrivateNavbar /></div>
-          <div className="h-10"><ServicesContentNavbar /></div>
+          <div className="h-10">
+            <PrivateNavbar />
+          </div>
+          <div className="h-10">
+            <RequestServicesContentNavbar />
+          </div>
         </header>
         <main className=" flex-grow overflow-y-auto bg-neutral-100">
           <p>123</p>
@@ -66,7 +67,6 @@ const Services = async () => {
 };
 
 export default Services;
-
 
 /*   const data = await getUsers();
   const data2 = await getUsers2();

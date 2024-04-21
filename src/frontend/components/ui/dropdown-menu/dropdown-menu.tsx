@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { motion, AnimatePresence, Variants } from "framer-motion";
 import { changeFirstLetterToUppercase } from "@/utils/functions/change-first-letter-to-uppercase";
@@ -26,6 +26,7 @@ const DropdownMenu = ({
   ) {
     dropdownSearchParams = dropdownMenuEntries[0];
   }
+
 
   const handleOnMouseEnter = () => {
     setIsMenuOpen(true);
@@ -101,12 +102,10 @@ const DropdownMenu = ({
             <AnimatePresence>
               {isMenuOpen && (
                 <motion.ul
-
                   initial="closed"
                   animate="open"
                   exit="closed"
                   variants={variants}
-                
                   onMouseEnter={handleOnMouseEnter}
                   onMouseLeave={handleOnMouseLeave}
                   className="absolute left-0 top-9 block w-full space-y-1.5 rounded-[2px] bg-neutral-300 p-2"
@@ -142,3 +141,26 @@ const DropdownMenu = ({
 };
 
 export default DropdownMenu;
+
+
+
+/* useEffect(() => {
+  // Read initial value from URL search parameters
+  const urlParams = new URLSearchParams(window.location.search);
+  const initialValue = urlParams.get("dropdownValue");
+
+  // Set the initial value (if available) or a default value
+  const defaultValue = initialValue || "defaultOption";
+  setSelectedValue(defaultValue);
+
+  // Update the URL search parameters
+  if (!initialValue) {
+    // First component: Add ? and set the parameter
+    urlParams.set("dropdownValue", defaultValue);
+    window.history.pushState({}, "", `?${urlParams.toString()}`);
+  } else if (!urlParams.has("dropdownValue")) {
+    // Not the first component, but unrelated parameters: Set the parameter
+    urlParams.set("dropdownValue", defaultValue);
+    window.history.pushState({}, "", `?${urlParams.toString()}`);
+  }
+}, []); */
