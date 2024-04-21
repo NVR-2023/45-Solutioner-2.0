@@ -109,12 +109,12 @@ const DropdownMenu = ({
                 
                   onMouseEnter={handleOnMouseEnter}
                   onMouseLeave={handleOnMouseLeave}
-                  className="absolute left-0 top-9 block w-full space-y-2 rounded-[2px] bg-neutral-300 p-2"
+                  className="absolute left-0 top-9 block w-full space-y-1.5 rounded-[2px] bg-neutral-300 p-2"
                 >
                   {dropdownMenuEntries.map((entry, index) => {
                     return (
                       <motion.li
-                        className="m-0 flex border-b-[1px] border-transparent px-0 py-[1px] italic hover:border-black"
+                        className="m-0 flex border-b-[1px] border-transparent px-0  hover:border-black"
                         key={index}
                         onClick={() => handleOnClick(entry)}
                         tabIndex={index}
