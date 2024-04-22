@@ -1,4 +1,11 @@
-import { Dispatch, SetStateAction, KeyboardEvent, SyntheticEvent, useState, useEffect } from "react";
+import {
+  Dispatch,
+  SetStateAction,
+  KeyboardEvent,
+  SyntheticEvent,
+  useState,
+  useEffect,
+} from "react";
 import { useRouter } from "next/navigation";
 
 import ValidatedTextInputField from "@/frontend/components/ui/forms/validated-text-input-field";
@@ -95,7 +102,7 @@ const RegisterFormBody = ({ setIsModalOpen }: registerFormBodyProps) => {
   const handleOnCancel = async (event: SyntheticEvent) => {
     event.preventDefault();
     setIsModalOpen(false);
-    await wait(400);
+    await wait(300);
     router.push("/");
   };
 
@@ -121,7 +128,9 @@ const RegisterFormBody = ({ setIsModalOpen }: registerFormBodyProps) => {
         newUserObject,
         setFormSubmissionStatus,
       );
-      await wait(1000);
+
+      // wait, for security reasons, so not to give info away
+      //await wait(1000);
       if (!registerNewUserResponse?.data?.ok) {
         let updatedCredentials = { ...credentials };
         const submissionErrorList =
@@ -135,7 +144,7 @@ const RegisterFormBody = ({ setIsModalOpen }: registerFormBodyProps) => {
       } else {
         setFormSubmissionStatus("re-idle");
         setIsModalOpen(false);
-        await wait(400);
+        await wait(300);
         router.push("/signin");
       }
     }

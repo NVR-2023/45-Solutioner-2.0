@@ -9,16 +9,16 @@ type FormModalShellProps = {
 const FormModalShell = ({ isModalOpen, children }: FormModalShellProps) => {
     
   const variants = {
-      initial: { scale: 0 },
-      animate: {
-        scale: 1,
-        transition: { delay: .18,  ease: "easeInOut", duration: 0.3 },
-      },
-      exit: {
-        scale: 0,
-        transition: { ease: "easeOut", duration: 0.3 },
-      },
-    };
+    initial: { scale: 0 },
+    animate: {
+      scale: 1,
+      transition: { delay: 0.18, ease: [0, 0.55, 0.45, 1], duration: 0.3 },
+    },
+    exit: {
+      scale: 0,
+      transition: { ease: "easeOut", duration: 0.3 },
+    },
+  };
   
     return (
       <>
