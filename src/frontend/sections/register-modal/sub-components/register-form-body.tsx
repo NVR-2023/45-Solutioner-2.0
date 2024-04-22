@@ -1,4 +1,4 @@
-import { KeyboardEvent, SyntheticEvent, useState, useEffect } from "react";
+import { Dispatch, SetStateAction, KeyboardEvent, SyntheticEvent, useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 
 import ValidatedTextInputField from "@/frontend/components/ui/forms/validated-text-input-field";
@@ -20,7 +20,11 @@ import {
 import { registerNNewUser } from "@/utils/functions/fetch-data/user-endpoint-submissions";
 import { wait } from "@/utils/functions/wait";
 
-const RegisterFormBody = () => {
+type registerFormBodyProps = {
+  setIsModalOpen: Dispatch<SetStateAction<boolean>>;
+};
+
+const RegisterFormBody = ({ setIsModalOpen }: registerFormBodyProps) => {
   const router = useRouter();
 
   const validateName = INPUT_VALIDATION_FUNCTION_MAP.get("name")!;
@@ -88,8 +92,10 @@ const RegisterFormBody = () => {
     credentials.hasAcceptedTermsOfUse.value,
   ]);
 
-  const handleOnCancel = (event: SyntheticEvent) => {
+  const handleOnCancel = async (event: SyntheticEvent) => {
     event.preventDefault();
+    setIsModalOpen(false);
+    await wait(400);
     router.push("/");
   };
 
@@ -128,7 +134,9 @@ const RegisterFormBody = () => {
         setFormSubmissionStatus("re-idle");
       } else {
         setFormSubmissionStatus("re-idle");
-        router.push("/signin")
+        setIsModalOpen(false);
+        await wait(400);
+        router.push("/signin");
       }
     }
   };
@@ -141,7 +149,10 @@ const RegisterFormBody = () => {
   };
 
   return (
-    <form onKeyDown={handleOnKeyDown} className="flex h-full w-full flex-col justify-center space-y-4">
+    <form
+      onKeyDown={handleOnKeyDown}
+      className="flex h-full w-full flex-col justify-center space-y-4"
+    >
       <div className="space-y-6">
         <div>
           <ValidatedTextInputField

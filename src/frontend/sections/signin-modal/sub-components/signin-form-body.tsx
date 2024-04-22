@@ -105,6 +105,8 @@ const SigninFormBody = ({ setIsModalOpen }: SigninFormBodyProps) => {
         setCredentials(updatedCredentials);
         setFormSubmissionStatus("re-idle");
       } else {
+        setIsModalOpen(false);
+        await wait(400);
         router.push("/private/requestservices");
       }
     }
