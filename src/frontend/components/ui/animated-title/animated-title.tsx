@@ -5,16 +5,16 @@ type AnimatedTitleProps = {
 };
 
 const AnimatedTitle = ({ title }: AnimatedTitleProps) => {
-  const characterArray = title.split("");
-
+  const characterArray = title.split(/(?!$)/u);
   const variants = {
     initial: {
       opacity: 0,
-      rotateY: -180, // Rotate each character initially
+      rotateY: -180, 
     },
     animate: {
       opacity: 1,
-      rotateY: 0, // Rotate each character back to its original position
+      rotateY: 0,
+     
     },
   };
 
@@ -27,10 +27,14 @@ const AnimatedTitle = ({ title }: AnimatedTitleProps) => {
             initial="initial"
             animate="animate"
             variants={variants}
-            transition={{ duration: 0.7, delay: index * 0.1 }} // Stagger the animations
+            transition={{
+              duration: 0.7,
+              delay: index * 0.1,
+              ease: "easeInOut",
+            }}
             className="inline-block text-[1rem] font-semibold text-[#ff7714]"
           >
-            {character}
+            {character === " " ? "\u00A0" : character}{" "}
           </motion.span>
         );
       })}

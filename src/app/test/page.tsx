@@ -4,7 +4,7 @@ import AnimatedTitle from "@/frontend/components/ui/animated-title/animated-titl
 const Test = () => {
   return (
     <div className="w-screen h-screen flex justify-center items-center">
-      <AnimatedTitle title="Just googling"/>
+      <AnimatedTitle title="Sign in"/>
     </div>
   )
 };

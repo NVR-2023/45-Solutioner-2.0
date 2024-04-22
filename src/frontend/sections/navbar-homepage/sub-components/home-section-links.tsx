@@ -1,8 +1,8 @@
 import { useState } from "react";
+import { motion } from "framer-motion";
 import Link from "next/link";
 import { getSectionFomString } from "@/utils/functions/getsectionfromurl";
 import homepageSections from "@/frontend/sections/navbar-homepage/sub-components/homepage-sections";
-
 
 const HomeSectionLinks = () => {
   const [currentSection, setCurrentSection] = useState(homepageSections[0]);
@@ -11,8 +11,12 @@ const HomeSectionLinks = () => {
   };
 
   return (
-    <nav className="flex items-center" role="navigation" aria-label="Homepage Sections Navigation">
-      <menu className="flex items-center space-x-4 list-none">
+    <nav
+      className="flex items-center"
+      role="navigation"
+      aria-label="Homepage Sections Navigation"
+    >
+      <menu className="flex list-none items-center space-x-4">
         {homepageSections.map((link, index) => (
           <li key={index} className="relative">
             <Link
@@ -21,13 +25,16 @@ const HomeSectionLinks = () => {
               aria-label="section link"
               onClick={() => {
                 handleChangeSection(link);
-              }}>
-              <span className="font-semibold text-xs">
-                {link}
-              </span>
+              }}
+            >
+              <span className="text-xs font-semibold">{link}</span>
             </Link>
             {link === currentSection ? (
-              <div className="absolute top-full left-0 w-full mt-0.5 border-t-[1px] border-current"></div>
+              <motion.div
+                layoutId="activeSectionUnderline"
+                transition={{ duration: 0.3 }}
+                className="absolute left-0 top-full mt-0.5 w-full border-t-[1px] border-current"
+              ></motion.div>
             ) : null}
           </li>
         ))}
