@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { motion, Variants } from "framer-motion";
+import { motion } from "framer-motion";
 import { changeFirstLetterToUppercase } from "@/utils/functions/change-first-letter-to-uppercase";
 
 import MenuDownArrow from "../../icons/menu-down-arrow";
 import CheckIcon from "../../icons/check-icon";
+import { wait } from "@/utils/functions/wait";
 
 type DropDownMenuProps = {
   dropdownMenuLabel: string;
@@ -45,7 +46,7 @@ const DropdownMenu = ({
     setIsMenuOpen(false);
   };
 
-  const handleOnClick = (entry: string) => {
+  const handleOnClick = async (entry: string) => {
     const newSearchParams = new URLSearchParams(
       existingSearchParams.toString(),
     );
@@ -53,11 +54,11 @@ const DropdownMenu = ({
     const newQueryString = newSearchParams.toString();
     const newURL = `${window.location.pathname}?${newQueryString}`;
     router.replace(newURL);
-
+    await wait(750);
     setIsMenuOpen(false);
   };
 
-  const variants: Variants = {
+  const variants = {
     open: {
       height: "auto",
       opacity: 1,
@@ -75,7 +76,7 @@ const DropdownMenu = ({
         type: "tween",
         ease: "easeInOut",
         opacity: { duration: 0.12 },
-        height: { duration: 0.18 },
+        height: { duration: 0.27 },
       },
     },
   };
@@ -124,7 +125,12 @@ const DropdownMenu = ({
                       </span>
                       <span className="flex items-center justify-center">
                         {entry === existingDropdownSearchParams ? (
+                         <motion.div 
+                         layoutId={`${dropdownMenuLabel}-checkmark`}
+                         transition={ {duration: .2}}
+                         >
                           <CheckIcon scale={0.5} />
+                          </motion.div>
                         ) : null}
                       </span>
                     </motion.li>
