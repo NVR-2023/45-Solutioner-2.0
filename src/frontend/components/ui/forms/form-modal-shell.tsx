@@ -12,7 +12,7 @@ const FormModalShell = ({ isModalOpen, children }: FormModalShellProps) => {
     initial: { scale: 0 },
     animate: {
       scale: 1,
-      transition: { delay: 0.18, ease: [0, 0.55, 0.45, 1], duration: 0.3 },
+      transition: { delay: 0.1, ease: [0, 0.55, 0.45, 1], duration: 0.3 },
     },
     exit: {
       scale: 0,
