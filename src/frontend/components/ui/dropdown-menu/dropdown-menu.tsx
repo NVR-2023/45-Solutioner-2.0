@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { changeFirstLetterToUppercase } from "@/utils/functions/change-first-letter-to-uppercase";
 
 import MenuDownArrow from "../../icons/menu-down-arrow";
@@ -54,29 +54,31 @@ const DropdownMenu = ({
     const newQueryString = newSearchParams.toString();
     const newURL = `${window.location.pathname}?${newQueryString}`;
     router.replace(newURL);
-    await wait(750);
+    await wait(500);
     setIsMenuOpen(false);
   };
 
   const variants = {
     open: {
-      height: "auto",
+      scaleY: 1,
       opacity: 1,
+      transformOrigin: "top",
       transition: {
-        opacity: { duration: 0.18 },
-        height: { duration: 0.12 },
+        scaleY: { duration: 0.12 },
+        opacity: { duration: 0.12, delay: 0.06 },
         type: "tween",
-        ease: "easeOnOut",
+        ease: "easeIn",
       },
     },
     closed: {
-      height: 0,
+      scaleY: 0,
       opacity: 0,
+      transformOrigin: "top",
       transition: {
+        scaleY: { delay: 0.2, duration: 0.27 },
+        opacity: { duration: 0.27 },
         type: "tween",
-        ease: "easeInOut",
-        opacity: { duration: 0.12 },
-        height: { duration: 0.27 },
+        ease: "easeOut",
       },
     },
   };
@@ -89,11 +91,17 @@ const DropdownMenu = ({
         className="flex h-14 w-full items-center"
       >
         <div className="flex items-baseline">
-          <span className="flex font-aperçu text-sm font-extrabold leading-[.5rem] tracking-wide text-black small-caps dark:text-neutral-300 md:text-xs">
+          <label
+            htmlFor={`${dropdownMenuLabel}-label`}
+            className="flex font-aperçu text-sm font-extrabold leading-[.5rem] tracking-wide text-black small-caps dark:text-neutral-300 md:text-xs"
+          >
             {dropdownMenuLabel + ":"}
-          </span>
+          </label>
           <div className="relative flex px-2">
-            <span className="flex w-20  justify-start font-aperçu text-sm font-semibold   leading-[.5rem] text-black dark:text-neutral-300 md:text-xs">
+            <span
+              id={`${dropdownMenuLabel}-label`}
+              className="flex w-20  justify-start font-aperçu text-sm font-medium   leading-[.5rem] text-black dark:text-neutral-300 md:text-xs"
+            >
               {`${changeFirstLetterToUppercase(existingDropdownSearchParams as string)}`}
             </span>
             <span
@@ -103,41 +111,45 @@ const DropdownMenu = ({
             >
               <MenuDownArrow scale={0.6125} />
             </span>
-            {isMenuOpen && (
-              <motion.ul
-                initial="closed"
-                animate={isMenuOpen ? "open" : "closed"}
-                variants={variants}
-                onMouseEnter={handleOnMouseEnter}
-                onMouseLeave={handleOnMouseLeave}
-                className="absolute left-0 top-9 block w-full rounded-[2px] bg-neutral-300 px-2 py-4"
-              >
-                {dropdownMenuEntries.map((entry, index) => {
-                  return (
-                    <motion.li
-                      className="m-0 flex"
-                      key={`${dropdownMenuLabel}${index}`}
-                      onClick={() => handleOnClick(entry)}
-                      tabIndex={index}
-                    >
-                      <span className="flex w-20 justify-start font-aperçu text-base font-medium  text-black dark:text-neutral-300 md:text-[.625rem]">
-                        {changeFirstLetterToUppercase(entry)}
-                      </span>
-                      <span className="flex items-center justify-center">
-                        {entry === existingDropdownSearchParams ? (
-                         <motion.div 
-                         layoutId={`${dropdownMenuLabel}-checkmark`}
-                         transition={ {duration: .2}}
-                         >
-                          <CheckIcon scale={0.5} />
-                          </motion.div>
-                        ) : null}
-                      </span>
-                    </motion.li>
-                  );
-                })}
-              </motion.ul>
-            )}
+            <AnimatePresence>
+              {isMenuOpen && (
+                <motion.ul
+                  variants={variants}
+                  initial="closed"
+                  animate="open"
+                  exit="closed"
+                  onMouseEnter={handleOnMouseEnter}
+                  onMouseLeave={handleOnMouseLeave}
+                  className="absolute left-0 top-9 block w-full rounded-[2px] bg-neutral-300 px-2 py-4"
+                >
+                  {dropdownMenuEntries.map((entry, index) => {
+                    return (
+                      <motion.li
+                        key={`${dropdownMenuLabel}${index}`}
+                        whileHover={{ transition: { duration: 0.1 } }}
+                        onClick={() => handleOnClick(entry)}
+                        tabIndex={index}
+                        className="m-0 flex"
+                      >
+                        <span className="flex w-20 justify-start font-aperçu text-base font-medium text-black dark:text-neutral-300 md:text-[.625rem]">
+                          {changeFirstLetterToUppercase(entry)}
+                        </span>
+                        <span className="flex items-center justify-center">
+                          {entry === existingDropdownSearchParams ? (
+                            <motion.div
+                              layoutId={`${dropdownMenuLabel}-checkmark`}
+                              transition={{ duration: 0.2 }}
+                            >
+                              <CheckIcon scale={0.5} />
+                            </motion.div>
+                          ) : null}
+                        </span>
+                      </motion.li>
+                    );
+                  })}
+                </motion.ul>
+              )}
+            </AnimatePresence>
           </div>
         </div>
       </button>
