@@ -1,3 +1,4 @@
+import { Dispatch, SetStateAction } from "react";
 import { KeyboardEvent, SyntheticEvent, useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 
@@ -19,7 +20,10 @@ import {
 import { signInUser } from "@/utils/functions/fetch-data/user-endpoint-submissions";
 import { wait } from "@/utils/functions/wait";
 
-const SigninFormBody = () => {
+type SigninFormBodyProps = {
+  setIsModalOpen: Dispatch<SetStateAction<boolean>>;
+};
+const SigninFormBody = ({ setIsModalOpen }: SigninFormBodyProps) => {
   const router = useRouter();
 
   const validateEmail = INPUT_VALIDATION_FUNCTION_MAP.get("email")!;
@@ -61,8 +65,10 @@ const SigninFormBody = () => {
     credentials.password.value,
   ]);
 
-  const handleOnCancel = (event: SyntheticEvent) => {
+  const handleOnCancel = async (event: SyntheticEvent) => {
     event.preventDefault();
+    setIsModalOpen(false);
+    await wait(400);
     router.push("/");
   };
 

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { motion, AnimatePresence, Variants } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 import { changeFirstLetterToUppercase } from "@/utils/functions/change-first-letter-to-uppercase";
 
 import MenuDownArrow from "../../icons/menu-down-arrow";
@@ -59,12 +59,13 @@ const DropdownMenu = ({
 
   const variants: Variants = {
     open: {
-      opacity: 1,
       height: "auto",
+      opacity: 1,
       transition: {
-        duration: 0.15,
+        opacity: { duration: 0.18 },
+        height: { duration: 0.12 },
         type: "tween",
-        ease: "linear",
+        ease: "easeOnOut",
       },
     },
     closed: {
@@ -72,34 +73,15 @@ const DropdownMenu = ({
       opacity: 0,
       transition: {
         type: "tween",
-        ease: "linear",
-        opacity: { duration: 0.15 },
-        height: { duration: 0.15 },
-      },
-    },
-  };
-
-  const childVariants: Variants = {
-    open: {
-      opacity: 1,
-      height: "auto",
-      transition: {
-        delay: 0.1,
-        duration: 0.15,
-      },
-    },
-    closed: {
-      opacity: 0,
-      height: 0,
-      transition: {
-        opacity: { duration: 0.07 },
-        height: { duration: 0.15 },
+        ease: "easeInOut",
+        opacity: { duration: 0.12 },
+        height: { duration: 0.18 },
       },
     },
   };
 
   return (
-    <div className="relative">
+    <div key={dropdownMenuLabel} className="relative">
       <button
         onMouseEnter={handleOnMouseEnter}
         onMouseLeave={handleOnMouseLeave}
@@ -120,40 +102,36 @@ const DropdownMenu = ({
             >
               <MenuDownArrow scale={0.6125} />
             </span>
-            <AnimatePresence>
-              {isMenuOpen && (
-                <motion.ul
-                  initial="closed"
-                  animate="open"
-                  exit="closed"
-                  variants={variants}
-                  onMouseEnter={handleOnMouseEnter}
-                  onMouseLeave={handleOnMouseLeave}
-                  className="absolute left-0 top-9 block w-full rounded-[2px] bg-neutral-300 px-2 py-4"
-                >
-                  {dropdownMenuEntries.map((entry, index) => {
-                    return (
-                      <motion.li
-                        className="m-0 flex"
-                        key={index}
-                        onClick={() => handleOnClick(entry)}
-                        tabIndex={index}
-                        variants={childVariants}
-                      >
-                        <span className="flex w-20 justify-start font-aperçu text-base font-medium  text-black dark:text-neutral-300 md:text-[.625rem]">
-                          {changeFirstLetterToUppercase(entry)}
-                        </span>
-                        <span className="flex items-center justify-center">
-                          {entry === existingDropdownSearchParams ? (
-                            <CheckIcon scale={0.5} />
-                          ) : null}
-                        </span>
-                      </motion.li>
-                    );
-                  })}
-                </motion.ul>
-              )}
-            </AnimatePresence>
+            {isMenuOpen && (
+              <motion.ul
+                initial="closed"
+                animate={isMenuOpen ? "open" : "closed"}
+                variants={variants}
+                onMouseEnter={handleOnMouseEnter}
+                onMouseLeave={handleOnMouseLeave}
+                className="absolute left-0 top-9 block w-full rounded-[2px] bg-neutral-300 px-2 py-4"
+              >
+                {dropdownMenuEntries.map((entry, index) => {
+                  return (
+                    <motion.li
+                      className="m-0 flex"
+                      key={`${dropdownMenuLabel}${index}`}
+                      onClick={() => handleOnClick(entry)}
+                      tabIndex={index}
+                    >
+                      <span className="flex w-20 justify-start font-aperçu text-base font-medium  text-black dark:text-neutral-300 md:text-[.625rem]">
+                        {changeFirstLetterToUppercase(entry)}
+                      </span>
+                      <span className="flex items-center justify-center">
+                        {entry === existingDropdownSearchParams ? (
+                          <CheckIcon scale={0.5} />
+                        ) : null}
+                      </span>
+                    </motion.li>
+                  );
+                })}
+              </motion.ul>
+            )}
           </div>
         </div>
       </button>

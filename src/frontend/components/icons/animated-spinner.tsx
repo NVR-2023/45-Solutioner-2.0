@@ -1,12 +1,12 @@
 import { BasicComponentProps } from "@/types/component-props-types";
 
-const AnimatedProgressCircle = ({
+const AnimatedSpinner = ({
   scale = 1,
   color = "currentColor",
 }: BasicComponentProps) => {
   return (
     <svg
-      className="animate-spin m-0 flex items-center justify-center p-0"
+      className="m-0 flex animate-spin items-center justify-center p-0"
       xmlns="http://www.w3.org/2000/svg"
       height={24 * scale}
       viewBox="0 -960 960 960"
@@ -18,4 +18,4 @@ const AnimatedProgressCircle = ({
   );
 };
 
-export default AnimatedProgressCircle;
+export default AnimatedSpinner;

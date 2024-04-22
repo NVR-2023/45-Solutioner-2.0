@@ -3,7 +3,7 @@ import { FetchSubmissionSTatusType } from "@/types/component-props-types";
 import BasicButton from "../basic-button/basic-button";
 import CheckedCircle from "../../icons/checked-circle";
 import CrossedCircle from "../../icons/crossed-circle";
-import AnimatedProgressCircle from "../../icons/animated-progress-circle";
+import AnimatedSpinner from "../../icons/animated-spinner";
 import FadeInWrapper from "../fadein-wrapper/fade-in-wrapper";
 
 type SubmitSegmentType = {
@@ -33,7 +33,7 @@ const SubmitSegment = ({
       formSubmissionStatusLabel = (
         <div className="flex w-16 items-center" key={"submitting"}>
           <span className="flex w-6 justify-center">
-            <AnimatedProgressCircle scale={0.5} />
+            <AnimatedSpinner scale={0.5} />
           </span>
           <span className="flex w-full justify-start">{`\u00A0submitting`}</span>
         </div>
