@@ -2,33 +2,33 @@
 import { Session, User } from "lucia";
 import React, { createContext, useContext, ReactNode } from "react";
 
-type SessionProviderProps = {
+type LuciaSessionProviderProps = {
   user: User | null;
   session: Session | null;
 };
 
-const SessionContext = createContext<SessionProviderProps>(
-  {} as SessionProviderProps,
+const LuciaSessionContext = createContext<LuciaSessionProviderProps>(
+  {} as LuciaSessionProviderProps,
 );
 
-export const SessionProvider = ({
+export const LuciaSessionProvider = ({
   children,
   value,
 }: {
   children: ReactNode;
-  value: SessionProviderProps;
+  value: LuciaSessionProviderProps;
 }) => {
   return (
-    <SessionContext.Provider value={value}>{children}</SessionContext.Provider>
+    <LuciaSessionContext.Provider value={value}>{children}</LuciaSessionContext.Provider>
   );
 };
 
 export const useLuciaSession = () => {
-  const sessionContext = useContext(SessionContext);
+  const luciaSessionContext = useContext(LuciaSessionContext);
 
-  if (!sessionContext) {
+  if (!luciaSessionContext) {
     throw new Error("useSession must be used within a SessionProvider");
   }
 
-  return sessionContext;
+  return luciaSessionContext;
 };

@@ -51,23 +51,3 @@ export const aperçuFont = localFont({
   variable: "--font-Aperçu",
 });
 
-export const rozhaOneFont = localFont({
-  src: [
-    {
-      path: "../../../public/fonts/RozhaOne-Regular.ttf",
-      weight: "400",
-      style: "normal",
-    },
-  ],
-  variable: "--font-RozhaOne",
-});
-
-export const libreBodoniFont = localFont({
-  src: [
-    {
-      path: "../../../public/fonts/LibreBodoni-VariableFont_wght.ttf",
-      style: "normal",
-    },
-  ],
-  variable: "--font-LibreBodoni",
-});

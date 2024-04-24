@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { aperçuFont, rozhaOneFont, libreBodoniFont } from "@/utils/functions/localfontloader";
+import { aperçuFont} from "@/utils/functions/localfontloader";
 
 import Footer from "@/frontend/sections/footer/footer";
 
@@ -10,18 +10,18 @@ export const metadata: Metadata = {
   description: "A Next.js 14 home services app by Nuno Rodrigues",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
+
   return (
     <html lang="en" className="!scroll-smooth" suppressHydrationWarning>
-      <body
-        className={`${aperçuFont.variable} ${rozhaOneFont.variable} ${libreBodoniFont.variable} overflow-x-hidden antialiased`}
-      >
-        {children}
-        <Footer />
+      <body className={`${aperçuFont.variable} overflow-x-hidden antialiased`}>
+          {children}
+          <Footer />
       </body>
     </html>
   );

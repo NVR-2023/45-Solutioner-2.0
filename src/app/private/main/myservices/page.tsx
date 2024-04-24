@@ -2,7 +2,7 @@
 import { signOutUser } from "@/utils/functions/fetch-data/user-endpoint-submissions";
 import { useRouter } from "next/navigation";
 
-const MyRequests = () => {
+const MyServices = () => {
   const router = useRouter();
 
   const handleOnclick = async () => {
@@ -20,4 +20,4 @@ const MyRequests = () => {
   );
 };
 
-export default MyRequests;
+export default MyServices;
