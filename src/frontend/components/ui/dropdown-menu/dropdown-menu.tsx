@@ -58,47 +58,28 @@ const DropdownMenu = ({
     setIsMenuOpen(false);
   };
 
-  const variants = {
-    open: {
-      scaleY: 1,
-      transformOrigin: "top",
-      transition: {
-        duration: 0.12,
-        type: "tween",
-        ease: [0.12, 0, 0.38, 0],
-        delayChildren: .05,
-        staggerChildren: .05,
-      },
+const variants = {
+  open: {
+    clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)", // Full rectangle to reveal all content
+    transition: {
+      type: "tween",
+      duration: 0.18,
+      ease: [0.12, 0, 0.38, 0],
+      staggerChildren: 0.05,
     },
-    closed: {
-      scaleY: 0,
-      transformOrigin: "top",
-      transition: {
-        duration: 0.12,
-        type: "tween",
-        ease: [0.22, 1, 0.36, 1],
-        staggerChildren: 0.05,
-        staggerDirection: -1,
-      },
+  },
+  closed: {
+    clipPath: "polygon(0 0, 100% 0, 100% 0, 0 0)",
+    transition: {
+      type:"tween",
+      duration: 0.18,
+      ease: [0.22, 1, 0.36, 1],
+      when: "afterChildren",
     },
-  };
+  },
+};
 
-  const childrenVariants = {
-    open: {  
-      opacity: 1, 
-      transition: {
-        duration: .05,
-        delay: 0.2
-      }
-    },
-    closed: { 
-      opacity: 0, 
-      transition: {
-        duration: .05
-      }
-      
-    }
-  }
+
   return (
     <div key={dropdownMenuLabel} className="relative">
       <button
@@ -142,7 +123,6 @@ const DropdownMenu = ({
                     return (
                       <motion.li
                         key={`${dropdownMenuLabel}${index}`}
-                        variants={childrenVariants}
                         initial="closed"
                         animate="open"
                         whileHover={{ transition: { duration: 0.1 } }}
