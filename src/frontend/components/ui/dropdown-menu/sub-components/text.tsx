@@ -1,10 +1,12 @@
 import { motion } from "framer-motion";
 
-type TextProps = {
+type AnimatedDropdownMenuContentProps = {
   text: string;
 };
 
-const Text = ({ text }: TextProps) => {
+const AnimatedDropdownMenuContent = ({
+  text,
+}: AnimatedDropdownMenuContentProps) => {
   const variants = {
     initial: {
       y: "100%",
@@ -18,13 +20,13 @@ const Text = ({ text }: TextProps) => {
   };
 
   return (
-    <div className="h-full w-full overflow-hidden">
+    <div className="h-full w-full overflow-y-hidden">
       <motion.div
         key={text}
         variants={variants}
         initial="initial"
         animate="animate"
-        className="overflow-hidden"
+        className="overflow-y-hidden"
       >
         {text}
       </motion.div>
@@ -32,4 +34,4 @@ const Text = ({ text }: TextProps) => {
   );
 };
 
-export default Text;
+export default AnimatedDropdownMenuContent;

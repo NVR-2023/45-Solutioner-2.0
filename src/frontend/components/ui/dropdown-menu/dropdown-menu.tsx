@@ -6,7 +6,7 @@ import { wait } from "@/utils/functions/wait";
 import MenuDownArrow from "../../icons/menu-down-arrow";
 import CheckIcon from "../../icons/check-icon";
 
-import Text from "./sub-components/text";
+import AnimatedDropdownMenuContent from "./sub-components/text";
 
 type DropDownMenuProps = {
   dropdownMenuLabel: string;
@@ -95,9 +95,9 @@ const DropdownMenu = ({
           <div className="relative flex px-2">
             <span
               id={`${dropdownMenuLabel}-label`}
-              className="flex w-20  justify-start font-aperçu text-sm font-medium   leading-[.5rem] text-black dark:text-neutral-300 md:text-xs"
+              className="flex w-20  justify-start font-aperçu text-sm font-medium leading-[.5rem] text-black dark:text-neutral-300 md:text-xs"
             >
-              <Text
+              <AnimatedDropdownMenuContent
                 text={`${changeFirstLetterToUppercase(existingDropdownSearchParams as string)}`}
               />
             </span>
