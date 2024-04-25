@@ -2,10 +2,11 @@ import { useState, useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 import { changeFirstLetterToUppercase } from "@/utils/functions/change-first-letter-to-uppercase";
-
+import { wait } from "@/utils/functions/wait";
 import MenuDownArrow from "../../icons/menu-down-arrow";
 import CheckIcon from "../../icons/check-icon";
-import { wait } from "@/utils/functions/wait";
+
+import Text from "./sub-components/text";
 
 type DropDownMenuProps = {
   dropdownMenuLabel: string;
@@ -54,31 +55,28 @@ const DropdownMenu = ({
     const newQueryString = newSearchParams.toString();
     const newURL = `${window.location.pathname}?${newQueryString}`;
     router.replace(newURL);
-    await wait(500);
+    await wait(450);
     setIsMenuOpen(false);
   };
 
-const variants = {
-  open: {
-    clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)", // Full rectangle to reveal all content
-    transition: {
-      type: "tween",
-      duration: 0.18,
-      ease: [0.12, 0, 0.38, 0],
-      staggerChildren: 0.05,
+  const variants = {
+    animate: {
+      clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)", // Full rectangle to reveal all content
+      transition: {
+        type: "tween",
+        duration: 0.21,
+        ease: [0.12, 0, 0.38, 0],
+      },
     },
-  },
-  closed: {
-    clipPath: "polygon(0 0, 100% 0, 100% 0, 0 0)",
-    transition: {
-      type:"tween",
-      duration: 0.18,
-      ease: [0.22, 1, 0.36, 1],
-      when: "afterChildren",
+    exit: {
+      clipPath: "polygon(0 0, 100% 0, 100% 0, 0 0)",
+      transition: {
+        type: "tween",
+        duration: 0.21,
+        ease: [0.22, 1, 0.36, 1],
+      },
     },
-  },
-};
-
+  };
 
   return (
     <div key={dropdownMenuLabel} className="relative">
@@ -99,7 +97,9 @@ const variants = {
               id={`${dropdownMenuLabel}-label`}
               className="flex w-20  justify-start font-aperçu text-sm font-medium   leading-[.5rem] text-black dark:text-neutral-300 md:text-xs"
             >
-              {`${changeFirstLetterToUppercase(existingDropdownSearchParams as string)}`}
+              <Text
+                text={`${changeFirstLetterToUppercase(existingDropdownSearchParams as string)}`}
+              />
             </span>
             <span
               className={`flex origin-center items-center transition-all duration-300 ${
@@ -123,8 +123,6 @@ const variants = {
                     return (
                       <motion.li
                         key={`${dropdownMenuLabel}${index}`}
-                        initial="closed"
-                        animate="open"
                         whileHover={{ transition: { duration: 0.1 } }}
                         onClick={() => handleOnClick(entry)}
                         tabIndex={index}
