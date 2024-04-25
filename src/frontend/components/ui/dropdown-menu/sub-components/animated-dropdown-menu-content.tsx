@@ -9,24 +9,25 @@ const AnimatedDropdownMenuContent = ({
 }: AnimatedDropdownMenuContentProps) => {
   const variants = {
     initial: {
-      y: "100%",
+      x: "-100%",
     },
     animate: {
-      y: 0,
+      x: 0,
       transition: {
+        delay:.18,
         duration: 0.27,
       },
     },
   };
 
   return (
-    <div className="h-full w-full overflow-y-hidden">
+    <div className="h-full w-full overflow-hidden">
       <motion.div
         key={text}
         variants={variants}
         initial="initial"
         animate="animate"
-        className="overflow-y-hidden"
+        className="overflow-hidden"
       >
         {text}
       </motion.div>

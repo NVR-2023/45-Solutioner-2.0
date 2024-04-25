@@ -6,7 +6,7 @@ import { wait } from "@/utils/functions/wait";
 import MenuDownArrow from "../../icons/menu-down-arrow";
 import CheckIcon from "../../icons/check-icon";
 
-import AnimatedDropdownMenuContent from "./sub-components/text";
+import AnimatedDropdownMenuContent from "./sub-components/animated-dropdown-menu-content";
 
 type DropDownMenuProps = {
   dropdownMenuLabel: string;
