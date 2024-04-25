@@ -1,4 +1,5 @@
 import { BasicButtonProps } from "@/types/component-props-types";
+import { motion } from "framer-motion";
 
 const BasicButton = ({
   type = "filled",
@@ -26,14 +27,31 @@ const BasicButton = ({
     ["lg", "w-36 h-6"],
   ]);
 
+  const variants = {
+    initial: {
+      scale: 1,
+    },
+    whileTap: { 
+      scale: .7, 
+      transition: {
+        ease: "easeInOut"
+      }
+    
+    },
+
+  };
+
   return (
-    <button
+    <motion.button
+      variants={variants}
+      initial="initial"
+      whileTap={"whileTap"}
       onClick={onClick}
       className={`${baseStyle} ${ButtonTypeMap.get(type)} ${sizeMap.get(size)}`}
       disabled={disabled}
     >
       {label}
-    </button>
+    </motion.button>
   );
 };
 

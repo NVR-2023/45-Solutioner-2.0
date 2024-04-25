@@ -61,28 +61,44 @@ const DropdownMenu = ({
   const variants = {
     open: {
       scaleY: 1,
-      opacity: 1,
       transformOrigin: "top",
       transition: {
-        scaleY: { duration: 0.12 },
-        opacity: { duration: 0.12, delay: 0.06 },
+        duration: 0.12,
         type: "tween",
-        ease: "easeIn",
+        ease: [0.12, 0, 0.38, 0],
+        delayChildren: .05,
+        staggerChildren: .05,
       },
     },
     closed: {
       scaleY: 0,
-      opacity: 0,
       transformOrigin: "top",
       transition: {
-        scaleY: { delay: 0.2, duration: 0.27 },
-        opacity: { duration: 0.27 },
+        duration: 0.12,
         type: "tween",
-        ease: "easeOut",
+        ease: [0.22, 1, 0.36, 1],
+        staggerChildren: 0.05,
+        staggerDirection: -1,
       },
     },
   };
 
+  const childrenVariants = {
+    open: {  
+      opacity: 1, 
+      transition: {
+        duration: .05,
+        delay: 0.2
+      }
+    },
+    closed: { 
+      opacity: 0, 
+      transition: {
+        duration: .05
+      }
+      
+    }
+  }
   return (
     <div key={dropdownMenuLabel} className="relative">
       <button
@@ -120,12 +136,15 @@ const DropdownMenu = ({
                   exit="closed"
                   onMouseEnter={handleOnMouseEnter}
                   onMouseLeave={handleOnMouseLeave}
-                  className="absolute left-0 top-9 block w-full rounded-[2px] bg-neutral-300 px-2 py-4"
+                  className="absolute left-0 top-8 block w-full rounded-[2px] bg-neutral-300 px-2 py-4"
                 >
                   {dropdownMenuEntries.map((entry, index) => {
                     return (
                       <motion.li
                         key={`${dropdownMenuLabel}${index}`}
+                        variants={childrenVariants}
+                        initial="closed"
+                        animate="open"
                         whileHover={{ transition: { duration: 0.1 } }}
                         onClick={() => handleOnClick(entry)}
                         tabIndex={index}

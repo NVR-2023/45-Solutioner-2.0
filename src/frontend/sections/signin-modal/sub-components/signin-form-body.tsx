@@ -106,7 +106,6 @@ const SigninFormBody = ({ setIsModalOpen }: SigninFormBodyProps) => {
         setFormSubmissionStatus("re-idle");
       } else {
         setIsModalOpen(false);
-        await wait(300);
         router.push("/private/main/bookservices");
       }
     }

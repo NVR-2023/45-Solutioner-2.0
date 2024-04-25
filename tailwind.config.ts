@@ -11,15 +11,12 @@ const config: Config = {
     extend: {
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic": "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+        "gradient-conic":
+          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
     },
     fontFamily: {
-      interTight: ["var(--font-InterTight)"],
       aperçu: ["var(--font-Aperçu)"],
-      basis: ["var(--font-Basis)"],
-      rozhaOne: ["var(--font-RozhaOne)"],
-      libreBodoni: ["var(--font-LibreBodoni)"],
     },
   },
   plugins: [require("tailwindcss-opentype")],
