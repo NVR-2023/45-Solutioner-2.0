@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 import { changeFirstLetterToUppercase } from "@/utils/functions/change-first-letter-to-uppercase";
@@ -24,20 +24,15 @@ const DropdownMenu = ({
   const existingDropdownSearchParams =
     existingSearchParams.get(dropdownMenuLabel);
 
-  useEffect(() => {
-    const existingDropdownSearchParams =
-      existingSearchParams.get(dropdownMenuLabel);
-
-    if (
-      !existingDropdownSearchParams ||
-      !dropdownMenuEntries.includes(existingDropdownSearchParams)
-    ) {
-      const updatedSearchParams = new URLSearchParams(existingSearchParams);
-      updatedSearchParams.set(dropdownMenuLabel, dropdownMenuEntries[0]);
-      const queryString = updatedSearchParams.toString();
-      router.replace(window.location.pathname + "?" + queryString);
-    }
-  }, [dropdownMenuLabel, dropdownMenuEntries, existingSearchParams]);
+  if (
+    !existingDropdownSearchParams ||
+    !dropdownMenuEntries.includes(existingDropdownSearchParams)
+  ) {
+    const updatedSearchParams = new URLSearchParams(existingSearchParams);
+    updatedSearchParams.set(dropdownMenuLabel, dropdownMenuEntries[0]);
+    const queryString = updatedSearchParams.toString();
+    router.replace(window.location.pathname + "?" + queryString);
+  }
 
   const handleOnMouseEnter = () => {
     setIsMenuOpen(true);
@@ -60,19 +55,19 @@ const DropdownMenu = ({
   };
 
   const variants = {
-    animate: {
-      clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)", // Full rectangle to reveal all content
+    open: {
+      clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)",
       transition: {
         type: "tween",
-        duration: 0.21,
+        duration: 0.18,
         ease: [0.12, 0, 0.38, 0],
       },
     },
-    exit: {
+    closed: {
       clipPath: "polygon(0 0, 100% 0, 100% 0, 0 0)",
       transition: {
         type: "tween",
-        duration: 0.21,
+        duration: 0.18,
         ease: [0.22, 1, 0.36, 1],
       },
     },
