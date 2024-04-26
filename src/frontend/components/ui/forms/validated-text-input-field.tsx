@@ -71,7 +71,7 @@ const ValidatedTextInputField = ({
           value={formFields[name]?.value as string}
           aria-invalid={formFields[name]?.errorMessage ? "true" : "false"}
           aria-describedby={`${name}Error`}
-          className="h-4 w-full appearance-none border-b border-black bg-neutral-300 pb-[.15rem] font-aperçu  text-black focus:border-b focus:outline-none dark:border-[#D9D9D9] dark:bg-[#222222] md:text-xs"
+          className="h-4 w-full appearance-none border-b border-black bg-neutral-300 pb-[.1rem] font-aperçu  text-black focus:border-b focus:outline-none dark:border-[#D9D9D9] dark:bg-[#222222] md:text-xs"
         />
       </div>
       <div className="absolute -top-5 left-0 w-full">

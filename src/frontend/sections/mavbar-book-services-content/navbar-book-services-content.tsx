@@ -1,6 +1,6 @@
 "use client";
 import DropdownMenu from "@/frontend/components/ui/dropdown-menu/dropdown-menu";
-
+import SearchBar from "@/frontend/components/ui/search-bar/search-bar";
 const NavbarBookServicesContent = () => {
   return (
     <div className="flex h-9 w-full items-center space-x-6 rounded bg-neutral-300 px-10">
@@ -35,6 +35,7 @@ const NavbarBookServicesContent = () => {
           "cheaper",
         ]}
       />
+      <SearchBar />
     </div>
   );
 };
