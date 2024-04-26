@@ -1,45 +1,29 @@
+"use client"
 import NavbarBookServicesContent from "@/frontend/sections/mavbar-book-services-content/navbar-book-services-content";
-import { authenticateAndRedirect } from "@/utils/functions/server-functions/authenticate-and-redirect";
-
+import { useSearchParams } from "next/navigation";
 const BookServices = () => {
    
-  return (
-    <div className="flex h-screen flex-col">
-      <div className=" mt-2">
-        <NavbarBookServicesContent />
-      </div>
-      <main className="flex-grow overflow-y-auto bg-neutral-100">
-        <p>123</p>
-        <p>123</p>
-        <p>123</p>
-        <p>123</p>
-        <p>123</p>
-        <p>123</p>
-        <p>123</p>
-        <p>123</p>
-        <p>123</p>
-        <p>123</p>
-        <p>123</p>
-        <p>123</p>
-        <p>123</p>
-        <p>123</p>
-        <p>123</p>
-        <p>123</p>
-        <p>123</p>
-        <p>123</p>
-        <p>123</p>
-        <p>123</p>
-        <p>123</p>
-        <p>123</p>
-        <p>123</p>
-        <p>123</p>
-        <p>123</p>
-        <p>123</p>
-        <p>123</p>
-      </main>
-    </div>
-  );
+  const existingSearchParams = useSearchParams();
+  const existingSearchParamsArray = Array.from(existingSearchParams.entries());
+
+ return (
+   <div className="flex h-screen flex-col">
+     <div className="mt-2">
+       <NavbarBookServicesContent />
+     </div>
+     <main className="flex-grow overflow-y-auto bg-neutral-100">
+       {existingSearchParamsArray.map(([key, value]) => (
+         <div key={key} className="flex">
+           <div>{key}:</div>
+           <div>{value}</div>
+         </div>
+       ))}
+     </main>
+   </div>
+ );
 };
+
+
 
 export default BookServices;
 

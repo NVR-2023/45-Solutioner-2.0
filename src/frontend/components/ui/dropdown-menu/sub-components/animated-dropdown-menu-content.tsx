@@ -27,7 +27,7 @@ const AnimatedDropdownMenuContent = ({
         variants={variants}
         initial="initial"
         animate="animate"
-        className="overflow-hidden"
+        className="flex justify-start overflow-hidden"
       >
         {text}
       </motion.div>

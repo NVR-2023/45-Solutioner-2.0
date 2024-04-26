@@ -1,16 +1,20 @@
 import { ChangeEvent } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 
-const SearchBar = () => {
+type SearchBarProps = {
+  label: string;
+};
+
+const SearchBar = ({ label }: SearchBarProps) => {
   const router = useRouter();
   const existingSearchParams = useSearchParams();
-  const existingSearchBarSearchParams = existingSearchParams.get("search");
+  const existingSearchBarSearchParams = existingSearchParams.get(label);
 
   const handleOnChange = (event: ChangeEvent<HTMLInputElement>) => {
     const newSearchParams = new URLSearchParams(
       existingSearchParams.toString(),
     );
-    newSearchParams.set("search", event.target.value);
+    newSearchParams.set(label, event.target.value);
     const newQueryString = newSearchParams.toString();
     const newURL = `${window.location.pathname}?${newQueryString}`;
     router.replace(newURL);
@@ -23,7 +27,7 @@ const SearchBar = () => {
           htmlFor="searchBar"
           className="flex font-aperçu text-sm font-extrabold leading-[.5rem] tracking-wide text-black small-caps dark:text-neutral-300 md:text-xs"
         >
-          search:
+       {`${label}:`}
         </label>
         <div className="flex items-baseline ps-2">
           <input

@@ -29,13 +29,15 @@ const NavbarBookServicesContent = () => {
         dropdownMenuEntries={[
           "A to Z",
           "Z to A",
-          "more popular",
-          "less popular",
-          "pricier",
-          "cheaper",
+          "More popular",
+          "Less popular",
+          "Cheaper",
+          "Pricier",
+          "On sale first",
+          "On sale last",
         ]}
       />
-      <SearchBar />
+      <SearchBar label={"search"} />
     </div>
   );
 };
