@@ -12,7 +12,7 @@ const SearchBar = ({ label }: SearchBarProps) => {
 
   const handleOnChange = (event: ChangeEvent<HTMLInputElement>) => {
     const newSearchParams = new URLSearchParams(
-      existingSearchParams.toString(),
+      existingSearchParams
     );
     newSearchParams.set(label, event.target.value);
     const newQueryString = newSearchParams.toString();

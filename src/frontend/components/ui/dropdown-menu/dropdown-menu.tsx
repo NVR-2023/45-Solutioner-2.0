@@ -43,9 +43,7 @@ const DropdownMenu = ({
   };
 
   const handleOnClick = async (entry: string) => {
-    const newSearchParams = new URLSearchParams(
-      existingSearchParams.toString(),
-    );
+    const newSearchParams = new URLSearchParams(existingSearchParams);
     newSearchParams.set(dropdownMenuLabel, entry);
     const newQueryString = newSearchParams.toString();
     const newURL = `${window.location.pathname}?${newQueryString}`;
