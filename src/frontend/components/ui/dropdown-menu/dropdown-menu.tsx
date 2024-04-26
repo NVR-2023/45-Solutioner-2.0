@@ -57,16 +57,16 @@ const DropdownMenu = ({
       clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)",
       transition: {
         type: "tween",
-        duration: 0.18,
-        ease: [0.12, 0, 0.38, 0],
+        duration: 0.12,
+        ease: [0.16, 1, 0.3, 1],
       },
     },
     closed: {
       clipPath: "polygon(0 0, 100% 0, 100% 0, 0 0)",
       transition: {
         type: "tween",
-        duration: 0.18,
-        ease: [0.22, 1, 0.36, 1],
+        duration: 0.12,
+        ease: [0.64, 0, 0.78, 0],
       },
     },
   };
