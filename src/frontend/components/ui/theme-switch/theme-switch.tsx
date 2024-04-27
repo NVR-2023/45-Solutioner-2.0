@@ -24,7 +24,7 @@ const ThemeSwitch = ({ scale = 1, color = "currentColor" }: BasicComponentProps)
   };
 
   return (
-    <div className="relative h-6 w-6">
+    <div className="relative flex items-center justify-center h-6 w-6">
       <div
         className={`absolute flex items-center justify-center transform rotate-${
           currentThemeMode === "light" ? "0" : "180"

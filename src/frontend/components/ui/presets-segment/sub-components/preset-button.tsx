@@ -14,10 +14,10 @@ const PresetButton = ({ scale, color, preset }: PresetButtonProps) => {
   const handleOnClick = () => {
     const newSearchParams = new URLSearchParams(existingSearchParams);
 
-    for (const key in preset) {
-      const normalizedKey = key.replace("_", " ");
-      if (newSearchParams.has(normalizedKey)) {
-        newSearchParams.set(normalizedKey, preset[key]);
+    for (const param in preset) {
+      const normalizedParam = param.replace("_", " ");
+      if (newSearchParams.has(normalizedParam)) {
+        newSearchParams.set(normalizedParam, preset[param]);
       }
     }
 

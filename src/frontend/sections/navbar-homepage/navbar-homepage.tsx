@@ -5,8 +5,8 @@ import AuthSegment from "./sub-components/auth-segment";
 const NavbarHomepage = () => {
   return (
     <header className="relative z-50 flex justify-center">
-      <nav className="fixed w-11/12 top-3 rounded bg-neutral-200  dark:bg-neutral-700 bg-opacity-70 dark:text-white smooth-theme-transition">
-        <div className="flex items-center justify-between py-2 px-8">
+      <nav className="dark:bg-opacity-70 dark:text-neutral-100 smooth-theme-transition fixed top-3 w-11/12  rounded bg-neutral-200 bg-opacity-70 dark:bg-neutral-700 ">
+        <div className="flex items-center justify-between px-8 py-2">
           <div className="flex space-x-6">
             <LogoSegment />
             <div className="hidden md:flex">
