@@ -14,7 +14,7 @@ const NavbarCollapseToggle = ({
   };
 
   return (
-    <div className="flex items-center justify-center bg-green-400">
+    <div className="flex items-center justify-center">
       <button onClick={handleOnClick}>
         <span
           className={`flex origin-center items-center transition-transform duration-300 ${

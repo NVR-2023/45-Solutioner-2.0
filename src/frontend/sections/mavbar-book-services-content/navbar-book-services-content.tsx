@@ -26,16 +26,18 @@ const NavbarBookServicesContent = () => {
   const variants = {
     collapsed: {
       width: "3rem",
+      paddingInline: "0.25rem",
       transition: {
-        duration: 0.35,
-        ease: "easeOut",
+        duration: 0.3,
+        ease: [0.64, 0, 0.78, 0],
       },
     },
     expanded: {
       width: "auto",
+      paddingInline: "2.5rem",
       transition: {
-        duration: 0.35,
-        ease: "easeIn",
+        duration: 0.3,
+        ease: [0.16, 1, 0.3, 1],
       },
     },
   };
@@ -45,9 +47,8 @@ const NavbarBookServicesContent = () => {
       variants={variants}
       initial="expanded"
       animate={navbarControls}
-      className={`flex h-9 w-full rounded bg-purple-300 ${
-        isNavbarExpanded ? "px-10" : "px-1"
-      } transition-padding duration-300 dark:bg-[#4b4b4b] dark:text-[#8b8b8b]`}
+      className="relative flex h-9 w-full px-10 rounded bg-neutral-300      
+ dark:bg-[#4b4b4b] dark:text-[#8b8b8b]"
     >
       {isNavbarExpanded && (
         <div className="flex items-center space-x-6">
@@ -90,8 +91,14 @@ const NavbarBookServicesContent = () => {
           </div>
         </div>
       )}
+      <div className="absolute top-1/2 -translate-y-1/2 right-6 transform">
 
-<NavbarCollapseToggle isNavbarExpanded={isNavbarExpanded} setIsNavbarExpanded={setIsNavbarExpanded}/>
+            <NavbarCollapseToggle
+              isNavbarExpanded={isNavbarExpanded}
+              setIsNavbarExpanded={setIsNavbarExpanded}
+            />
+        
+      </div>
     </motion.div>
   );
 };
