@@ -1,4 +1,5 @@
 import { Dispatch , SetStateAction } from "react";
+import { motion } from "framer-motion";
 import CloseOpenNavbarIcon from "@/frontend/components/icons/close-open-navbar-icon";
 
 type NavbarCollapseToggleProps = {
@@ -14,17 +15,26 @@ const NavbarCollapseToggle = ({
   };
 
   return (
-    <div className="flex items-center justify-center">
+    <motion.div
+      whileHover={{ scale: 1.2 }}
+      whileTap={{
+        scale: [1, 1.2, 0.8, 1],
+        transition: {
+          duration: 0.3,
+        },
+      }}
+      className="flex items-center justify-center  text-neutral-400 hover:text-neutral-900"
+    >
       <button onClick={handleOnClick}>
         <span
-          className={`text-neutral-400 flex origin-center items-center transition-transform duration-300 ${
+          className={`flex origin-center items-center transition-transform duration-300 ${
             isNavbarExpanded ? "" : "rotate-180"
           } `}
         >
           <CloseOpenNavbarIcon scale={0.7} />
         </span>
       </button>
-    </div>
+    </motion.div>
   );
 };
 

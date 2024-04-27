@@ -68,7 +68,7 @@ const SigninFormBody = ({ setIsModalOpen }: SigninFormBodyProps) => {
   const handleOnCancel = async (event: SyntheticEvent) => {
     event.preventDefault();
     setIsModalOpen(false);
-    await wait(300);
+    await wait(450);
     router.push("/");
   };
 
@@ -105,6 +105,7 @@ const SigninFormBody = ({ setIsModalOpen }: SigninFormBodyProps) => {
         setCredentials(updatedCredentials);
         setFormSubmissionStatus("re-idle");
       } else {
+        await wait(450);
         setIsModalOpen(false);
         router.push("/private/main/bookservices");
       }

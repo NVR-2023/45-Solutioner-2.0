@@ -31,21 +31,20 @@ const BasicButton = ({
     initial: {
       scale: 1,
     },
-    whileTap: { 
-      scale: .7, 
+    whileTap: {
+      scale: [1, 1.2, 0.8, 1],
       transition: {
-        ease: "easeInOut"
-      }
-    
+        duration: 0.27,
+      },
     },
-
   };
 
   return (
     <motion.button
       variants={variants}
       initial="initial"
-      whileTap={"whileTap"}
+      whileHover="whileHover"
+      whileTap="whileTap"
       onClick={onClick}
       className={`${baseStyle} ${ButtonTypeMap.get(type)} ${sizeMap.get(size)}`}
       disabled={disabled}

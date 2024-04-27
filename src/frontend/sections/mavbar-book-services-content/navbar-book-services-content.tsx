@@ -44,7 +44,7 @@ const NavbarBookServicesContent = () => {
         variants={variants}
         initial="expanded"
         animate={navbarControls}
-        className="relative flex h-9 w-full justify-between rounded bg-neutral-300 px-10      
+        className="relative flex h-10 w-full justify-between rounded bg-neutral-300      
  dark:bg-[#4b4b4b] dark:text-[#8b8b8b]"
       >
         {isNavbarExpanded && (
@@ -53,7 +53,7 @@ const NavbarBookServicesContent = () => {
               dropdownMenuLabel="category"
               dropdownMenuEntries={[
                 "any",
-                "cleaning",
+                "disinfestation",
                 "eventing",
                 "painting",
                 "gardening",
@@ -69,11 +69,9 @@ const NavbarBookServicesContent = () => {
               dropdownMenuEntries={[
                 "cheaper",
                 "pricier",
-                "on sale first",
-                "on sale last",
-                "more popular",
-                "less popular",
-                "a to <",
+                "on sale",
+                "popularity",
+                "a to z",
                 "z to a",
               ]}
             />

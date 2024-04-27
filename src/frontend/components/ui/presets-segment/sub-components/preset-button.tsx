@@ -1,5 +1,5 @@
 import { useRouter, useSearchParams } from "next/navigation";
-
+import { motion } from "framer-motion";
 import { BasicComponentProps } from "@/types/component-props-types";
 import PresetIcon from "@/frontend/components/icons/preset-icon";
 
@@ -27,9 +27,18 @@ const PresetButton = ({ scale, color, preset }: PresetButtonProps) => {
   };
 
   return (
-    <button onClick={handleOnClick}>
+    <motion.button
+      onClick={handleOnClick}
+      whileHover={{ scale: 1.2 }}
+      whileTap={{
+        scale: [1, 1.2, 0.8, 1],
+        transition: {
+          duration: 0.3,
+        },
+      }}
+    >
       <PresetIcon scale={scale} color={color} />
-    </button>
+    </motion.button>
   );
 };
 

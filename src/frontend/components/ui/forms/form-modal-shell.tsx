@@ -29,10 +29,9 @@ const FormModalShell = ({ isModalOpen, children }: FormModalShellProps) => {
 
   return (
     <>
-      <AnimatePresence mode="wait">
+      <AnimatePresence >
         {isModalOpen && (
           <motion.div
-            key={`modal-${Math.random().toString(36).substring(2, 7)}`}
             initial="initial"
             animate="animate"
             exit="exit"

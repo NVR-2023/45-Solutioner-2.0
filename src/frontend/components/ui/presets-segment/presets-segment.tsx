@@ -9,7 +9,7 @@ const PresetsSegment = () => {
       >
         presets:
       </label>
-      <div className="flex space-x-0.5">
+      <div className="flex space-x-0.5 pt-[3px]">
         <span className="flex items-center justify-center text-blue-700">
           <PresetButton
             preset={{

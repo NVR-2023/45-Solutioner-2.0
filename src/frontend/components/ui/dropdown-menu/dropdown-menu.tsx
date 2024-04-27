@@ -48,7 +48,7 @@ const DropdownMenu = ({
     const newQueryString = newSearchParams.toString();
     const newURL = `${window.location.pathname}?${newQueryString}`;
     router.replace(newURL);
-    await wait(450);
+    await wait(500);
     setIsMenuOpen(false);
   };
 
@@ -71,6 +71,17 @@ const DropdownMenu = ({
     },
   };
 
+  const elementVariants = {
+    whileHover: {
+      fontWeight: 600,
+      transition: {
+        duration: 0.18,
+      },
+    },
+
+    whileTap: {},
+  };
+
   return (
     <div key={dropdownMenuLabel} className="relative">
       <button
@@ -88,14 +99,14 @@ const DropdownMenu = ({
           <div className="relative flex px-2">
             <span
               id={`${dropdownMenuLabel}-label`}
-              className="flex w-16  justify-start font-aperçu text-sm font-medium leading-[.5rem] text-black dark:text-neutral-300 md:text-xs"
+              className="flex w-20  justify-start font-aperçu text-sm font-medium leading-[.5rem] text-black dark:text-neutral-300 md:text-xs"
             >
               <AnimatedDropdownMenuContent
                 text={`${changeFirstLetterToUppercase(existingDropdownSearchParams as string) ?? ""}`}
               />
             </span>
             <span
-              className={`flex origin-center items-center justify-center transition-all duration-300 ${
+              className={`flex origin-center items-center justify-center pt-[2px] transition-all duration-300 ${
                 isMenuOpen ? "rotate-180" : ""
               } `}
             >
@@ -116,12 +127,14 @@ const DropdownMenu = ({
                     return (
                       <motion.li
                         key={`${dropdownMenuLabel}${index}`}
-                        whileHover={{ transition: { duration: 0.1 } }}
+                        variants={elementVariants}
+                        whileHover="whileHover"
+                        whileTap="whileTap"
                         onClick={() => handleOnClick(entry)}
                         tabIndex={index}
                         className="m-0 flex"
                       >
-                        <span className="flex w-16 justify-start font-aperçu text-base font-medium text-black dark:text-neutral-300 md:text-[.625rem]">
+                        <span className="flex w-20 justify-start font-aperçu text-base font-medium text-black dark:text-neutral-300 md:text-[.625rem]">
                           {changeFirstLetterToUppercase(entry)}
                         </span>
                         <span className="flex items-center justify-center">
@@ -129,6 +142,7 @@ const DropdownMenu = ({
                             <motion.div
                               layoutId={`${dropdownMenuLabel}-checkmark`}
                               transition={{ duration: 0.2 }}
+                              className="ps-[2px]"
                             >
                               <CheckIcon scale={0.5} />
                             </motion.div>

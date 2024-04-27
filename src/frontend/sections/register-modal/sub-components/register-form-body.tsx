@@ -102,7 +102,7 @@ const RegisterFormBody = ({ setIsModalOpen }: registerFormBodyProps) => {
   const handleOnCancel = async (event: SyntheticEvent) => {
     event.preventDefault();
     setIsModalOpen(false);
-    await wait(300);
+    await wait(450);
     router.push("/");
   };
 
@@ -143,8 +143,8 @@ const RegisterFormBody = ({ setIsModalOpen }: registerFormBodyProps) => {
         setFormSubmissionStatus("re-idle");
       } else {
         setFormSubmissionStatus("re-idle");
+        await wait(450);
         setIsModalOpen(false);
-        await wait(300);
         router.push("/signin");
       }
     }
