@@ -3,7 +3,7 @@ import { FetchSubmissionSTatusType } from "@/types/component-props-types";
 import BasicButton from "../basic-button/basic-button";
 import CheckedCircle from "../../icons/checked-circle";
 import CrossedCircle from "../../icons/crossed-circle";
-import AnimatedSpinner from "../../icons/animated-spinner";
+import AnimatedSpinner from "../../icons/animated/animated-spinner";
 import FadeInWrapper from "../fadein-wrapper/fade-in-wrapper";
 
 type SubmitSegmentType = {

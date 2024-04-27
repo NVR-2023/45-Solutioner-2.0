@@ -88,10 +88,10 @@ const DropdownMenu = ({
           <div className="relative flex px-2">
             <span
               id={`${dropdownMenuLabel}-label`}
-              className="flex w-20  justify-start font-aperçu text-sm font-medium leading-[.5rem] text-black dark:text-neutral-300 md:text-xs"
+              className="flex w-16  justify-start font-aperçu text-sm font-medium leading-[.5rem] text-black dark:text-neutral-300 md:text-xs"
             >
               <AnimatedDropdownMenuContent
-                text={`${changeFirstLetterToUppercase(existingDropdownSearchParams as string)}`}
+                text={`${changeFirstLetterToUppercase(existingDropdownSearchParams as string) ?? ""}`}
               />
             </span>
             <span
@@ -121,7 +121,7 @@ const DropdownMenu = ({
                         tabIndex={index}
                         className="m-0 flex"
                       >
-                        <span className="flex w-20 justify-start font-aperçu text-base font-medium text-black dark:text-neutral-300 md:text-[.625rem]">
+                        <span className="flex w-16 justify-start font-aperçu text-base font-medium text-black dark:text-neutral-300 md:text-[.625rem]">
                           {changeFirstLetterToUppercase(entry)}
                         </span>
                         <span className="flex items-center justify-center">

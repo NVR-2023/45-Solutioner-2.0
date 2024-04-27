@@ -1,6 +1,6 @@
-import BookmarkButton from "./bookmark-button";
+import PresetButton from "./sub-components/preset-button";
 
-const BookmarksSegment = () => {
+const PresetsSegment = () => {
   return (
     <div className="flex items-center justify-center space-x-2">
       <label
@@ -11,17 +11,36 @@ const BookmarksSegment = () => {
       </label>
       <div className="flex">
         <span className="flex items-center justify-center text-blue-700">
-          <BookmarkButton scale={0.7} />
+          <PresetButton
+            preset={{
+              category: "",
+              price: " ",
+            }}
+            scale={0.7}
+          />
         </span>
         <span className="flex items-center justify-center text-amber-500">
-          <BookmarkButton scale={0.7} />
+          <PresetButton
+            preset={{
+              category: "",
+              price: " ",
+            }}
+            scale={0.7}
+          />
         </span>
         <span className="flex items-center justify-center text-neutral-500">
-          <BookmarkButton scale={0.7} />
+          <PresetButton
+            preset={{
+              category: "any",
+              price: "any",
+              
+            }}
+            scale={0.7}
+          />
         </span>
       </div>
     </div>
   );
 };
 
-export default BookmarksSegment;
+export default PresetsSegment;
