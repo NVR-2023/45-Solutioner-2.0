@@ -5,7 +5,7 @@ import { motion, useAnimationControls } from "framer-motion";
 import DropdownMenu from "@/frontend/components/ui/dropdown-menu/dropdown-menu";
 import SearchBar from "@/frontend/components/ui/search-bar/search-bar";
 import PresetsSegment from "../../components/ui/presets-segment/presets-segment";
-import NavbarCollapseToggle from "../../components/ui/navbar-collapsable-toggle/navbar-collapse-toggle";
+import NavbarCollapseToggle from "../../components/ui/navbar-collapse-toggle/navbar-collapse-toggle";
 
 const NavbarBookServicesContent = () => {
   const [isNavbarExpanded, setIsNavbarExpanded] = useState(true);
@@ -67,14 +67,14 @@ const NavbarBookServicesContent = () => {
             <DropdownMenu
               dropdownMenuLabel="sort by"
               dropdownMenuEntries={[
-                "Cheaper",
-                "Pricier",
-                "On sale first",
-                "On sale last",
-                "More popular",
-                "Less popular",
-                "A to Z",
-                "Z to A",
+                "cheaper",
+                "pricier",
+                "on sale first",
+                "on sale last",
+                "more popular",
+                "less popular",
+                "a to <",
+                "z to a",
               ]}
             />
             <motion.div>
