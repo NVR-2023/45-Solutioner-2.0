@@ -95,7 +95,7 @@ const DropdownMenu = ({
               />
             </span>
             <span
-              className={`flex origin-center items-center transition-all duration-300 ${
+              className={`flex origin-center items-center justify-center transition-all duration-300 ${
                 isMenuOpen ? "rotate-180" : ""
               } `}
             >

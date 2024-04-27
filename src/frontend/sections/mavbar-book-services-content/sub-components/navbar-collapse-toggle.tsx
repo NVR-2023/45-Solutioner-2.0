@@ -17,7 +17,7 @@ const NavbarCollapseToggle = ({
     <div className="flex items-center justify-center">
       <button onClick={handleOnClick}>
         <span
-          className={`flex origin-center items-center transition-transform duration-300 ${
+          className={`text-neutral-400 flex origin-center items-center transition-transform duration-300 ${
             isNavbarExpanded ? "" : "rotate-180"
           } `}
         >

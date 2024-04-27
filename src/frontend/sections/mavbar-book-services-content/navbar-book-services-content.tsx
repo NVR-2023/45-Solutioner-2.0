@@ -2,9 +2,9 @@
 import { useState, useEffect } from "react";
 import { motion, useAnimationControls } from "framer-motion";
 
-import CloseOpenNavbarIcon from "@/frontend/components/icons/close-open-navbar-icon";
 import DropdownMenu from "@/frontend/components/ui/dropdown-menu/dropdown-menu";
 import SearchBar from "@/frontend/components/ui/search-bar/search-bar";
+import BookmarksSegment from "./sub-components/bookmarks-segment";
 import NavbarCollapseToggle from "./sub-components/navbar-collapse-toggle";
 
 const NavbarBookServicesContent = () => {
@@ -47,11 +47,11 @@ const NavbarBookServicesContent = () => {
       variants={variants}
       initial="expanded"
       animate={navbarControls}
-      className="relative flex h-9 w-full px-10 rounded bg-neutral-300      
+      className="relative flex h-9 w-full justify-between rounded bg-neutral-300 px-10      
  dark:bg-[#4b4b4b] dark:text-[#8b8b8b]"
     >
       {isNavbarExpanded && (
-        <div className="flex items-center space-x-6">
+        <motion.div className="flex items-center space-x-6">
           <DropdownMenu
             dropdownMenuLabel="category"
             dropdownMenuEntries={[
@@ -85,20 +85,24 @@ const NavbarBookServicesContent = () => {
               "On sale last",
             ]}
           />
-          <div>Quick selects</div>
-          <div className="flex justify-between">
-            <SearchBar label={"search"} />
-          </div>
-        </div>
+          <motion.div>
+            <BookmarksSegment />
+          </motion.div>
+        </motion.div>
       )}
-      <div className="absolute top-1/2 -translate-y-1/2 right-6 transform">
 
-            <NavbarCollapseToggle
-              isNavbarExpanded={isNavbarExpanded}
-              setIsNavbarExpanded={setIsNavbarExpanded}
-            />
-        
-      </div>
+      <motion.div className="flex justify-between space-x-2">
+        {isNavbarExpanded ? (
+          <motion.div className="flex justify-between">
+            <SearchBar label={"search"} />
+          </motion.div>
+        ) : null}
+
+        <NavbarCollapseToggle
+          isNavbarExpanded={isNavbarExpanded}
+          setIsNavbarExpanded={setIsNavbarExpanded}
+        />
+      </motion.div>
     </motion.div>
   );
 };
