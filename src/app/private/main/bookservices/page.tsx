@@ -18,9 +18,9 @@ const BookServices = () => {
             <div>{value}</div>
           </div>
         ))}
-        <div>
-          <Link href="/">Home</Link>
-          <Link href="/private/main/myservices">myservcies</Link>
+        <div className="space-x-5">
+          <Link href="/">link to Home</Link>
+          <Link href="/private/main/myservices">link to myservcies</Link>
         </div>
       </main>
     </div>

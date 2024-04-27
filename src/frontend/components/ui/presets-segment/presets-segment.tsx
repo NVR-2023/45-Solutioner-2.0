@@ -14,7 +14,7 @@ const PresetsSegment = () => {
           <PresetButton
             preset={{
               category: "any",
-              price: " ",
+              price: "€0-30",
               sort_by: "cheaper",
             }}
             scale={0.7}
@@ -23,9 +23,9 @@ const PresetsSegment = () => {
         <span className="flex items-center justify-center text-amber-500">
           <PresetButton
             preset={{
-              category: "",
-              price: " ",
-              sort_by: ""
+              category: "any",
+              price: "€60-120",
+              sort_by: "pricier",
             }}
             scale={0.7}
           />
