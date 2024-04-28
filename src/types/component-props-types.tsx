@@ -9,13 +9,7 @@ export type BasicComponentProps = {
   color?: string;
 };
 
-export type BasicButtonProps = {
-  type?: "outlined" | "filled";
-  size?: "sm" | "md" | "lg";
-  label?: ReactNode;
-  disabled?: boolean;
-  onClick: MouseEventHandler<HTMLButtonElement>;
-};
+
 
 export type OnClickComponentProps = {
   scale?: number;

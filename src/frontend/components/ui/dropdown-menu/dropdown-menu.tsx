@@ -57,7 +57,7 @@ const DropdownMenu = ({
       clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)",
       transition: {
         type: "tween",
-        duration: 0.12,
+        duration: 0.15,
         ease: [0.16, 1, 0.3, 1],
       },
     },
@@ -65,21 +65,20 @@ const DropdownMenu = ({
       clipPath: "polygon(0 0, 100% 0, 100% 0, 0 0)",
       transition: {
         type: "tween",
-        duration: 0.12,
+        duration: 0.15,
         ease: [0.64, 0, 0.78, 0],
       },
     },
   };
 
-  const elementVariants = {
-    whileHover: {
-      fontWeight: 600,
+  const childVariants = {
+    whileTap: {
+      scale: [1, 1.2, 0.8, 1],
       transition: {
-        duration: 0.18,
+        originX: 1,
+        duration: 0.12,
       },
     },
-
-    whileTap: {},
   };
 
   return (
@@ -106,7 +105,7 @@ const DropdownMenu = ({
               />
             </span>
             <span
-              className={`flex origin-center items-center justify-center pt-[2px] transition-all duration-300 ${
+              className={`flex origin-center items-end justify-center pt-0.5 transition-all duration-300 ${
                 isMenuOpen ? "rotate-180" : ""
               } `}
             >
@@ -127,22 +126,23 @@ const DropdownMenu = ({
                     return (
                       <motion.li
                         key={`${dropdownMenuLabel}${index}`}
-                        variants={elementVariants}
-                        whileHover="whileHover"
-                        whileTap="whileTap"
                         onClick={() => handleOnClick(entry)}
                         tabIndex={index}
                         className="m-0 flex"
                       >
-                        <span className="flex w-20 justify-start font-aperçu text-base font-medium text-black dark:text-neutral-300 md:text-[.625rem]">
+                        <motion.span
+                          variants={childVariants}
+                          whileTap="whileTap"
+                          className="hover:font-bold flex w-20 font-aperçu text-base font-medium text-black dark:text-neutral-300 md:text-[.625rem]"
+                        >
                           {changeFirstLetterToUppercase(entry)}
-                        </span>
+                        </motion.span>
                         <span className="flex items-center justify-center">
                           {entry === existingDropdownSearchParams ? (
                             <motion.div
                               layoutId={`${dropdownMenuLabel}-checkmark`}
                               transition={{ duration: 0.2 }}
-                              className="ps-[2px]"
+                              className="ps-0.5"
                             >
                               <CheckIcon scale={0.5} />
                             </motion.div>

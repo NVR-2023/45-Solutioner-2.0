@@ -70,9 +70,9 @@ const NavbarBookServicesContent = () => {
                 "cheaper",
                 "pricier",
                 "on sale",
-                "popularity",
-                "a to z",
-                "z to a",
+                "popular",
+                "a-z",
+                "z-a",
               ]}
             />
             <motion.div>

@@ -1,5 +1,37 @@
-import { BasicButtonProps } from "@/types/component-props-types";
+import { MouseEventHandler, ReactNode } from "react";
 import { motion } from "framer-motion";
+
+export type BasicButtonProps = {
+  type?: "outlined" | "filled";
+  size?: "sm" | "md" | "lg";
+  label?: ReactNode;
+  disabled?: boolean;
+  onClick: MouseEventHandler<HTMLButtonElement>;
+};
+
+const outlinedVariants = {
+  initial: {
+    scale: 1,
+  },
+  whileTap: {
+    scale: [1, 1.02, 0.9, 1],
+    transition: {
+      duration: 0.15,
+    },
+  },
+};
+
+const filledVariants = {
+  initial: {
+    scale: 1,
+  },
+  whileTap: {
+    scale: [1, 1.02, 0.9, 1],
+    transition: {
+      duration: 0.15,
+    },
+  },
+};
 
 const BasicButton = ({
   type = "filled",
@@ -27,21 +59,9 @@ const BasicButton = ({
     ["lg", "w-36 h-6"],
   ]);
 
-  const variants = {
-    initial: {
-      scale: 1,
-    },
-    whileTap: {
-      scale: [1, 1.2, 0.8, 1],
-      transition: {
-        duration: 0.27,
-      },
-    },
-  };
-
   return (
     <motion.button
-      variants={variants}
+      variants={type === "outlined" ? outlinedVariants : filledVariants}
       initial="initial"
       whileHover="whileHover"
       whileTap="whileTap"
