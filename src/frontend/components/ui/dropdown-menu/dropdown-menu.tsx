@@ -88,7 +88,6 @@ const DropdownMenu = ({
       >
         <div className="flex items-baseline">
           <label
-            htmlFor={`${dropdownMenuLabel}-label`}
             className="flex font-aperçu text-sm font-extrabold leading-[.5rem] tracking-wide text-black small-caps dark:text-neutral-300 md:text-xs"
           >
             {dropdownMenuLabel + ":"}

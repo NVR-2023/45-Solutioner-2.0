@@ -1,24 +1,19 @@
-import { getAllServicesWithProfiles } from "@/backend/database/drizzle/functions-and-queries/services/service-db-functions-and-queries";
+"use client"
+import { useState } from "react";
 import NavbarBookServicesContent from "@/frontend/sections/mavbar-book-services-content/navbar-book-services-content";
-import Link from "next/link";
 
-
-
-const BookServices = async ({
-  searchParams,
-}: {
-  searchParams: { [key: string]: string | string[] | undefined };
-}) => {
- 
-
+const BookServices = () => {
+  const [ isNavbarExpanded , setIsNavbarExpanded ] =  useState(true);
+  
   return (
     <div className="flex h-screen flex-col space-y-2">
       <div className="mt-2">
-        <NavbarBookServicesContent />
+        <NavbarBookServicesContent 
+        isNavbarExpanded={isNavbarExpanded}
+        setIsNavbarExpanded={setIsNavbarExpanded}
+        />
       </div>
-      <main className="flex-grow justify-center mx-10 overflow-y-auto bg-green-300">
- 
-      </main>
+      <main className="mx-10 flex-grow justify-center overflow-y-auto bg-green-300"></main>
     </div>
   );
 };
