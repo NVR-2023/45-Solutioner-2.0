@@ -14,9 +14,10 @@ const outlinedVariants = {
     scale: 1,
   },
   whileTap: {
-    scale: [1, 1.02, 0.9, 1],
+    scale: [1, 1.05, 0.9, 1],
     transition: {
-      duration: 0.15,
+      duration: 0.12,
+      ease: "easeInOut"
     },
   },
 };
@@ -26,9 +27,9 @@ const filledVariants = {
     scale: 1,
   },
   whileTap: {
-    scale: [1, 1.02, 0.9, 1],
+    scale: [1, 1.2, 0.9, 1],
     transition: {
-      duration: 0.15,
+      duration: 0.12,
     },
   },
 };

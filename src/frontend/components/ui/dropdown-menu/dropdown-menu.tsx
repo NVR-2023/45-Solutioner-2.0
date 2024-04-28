@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState , useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 import { changeFirstLetterToUppercase } from "@/utils/functions/change-first-letter-to-uppercase";
@@ -6,7 +6,7 @@ import { wait } from "@/utils/functions/wait";
 import MenuDownArrow from "../../icons/menu-down-arrow";
 import CheckIcon from "../../icons/check-icon";
 
-import AnimatedDropdownMenuContent from "./sub-components/animated-dropdown-menu-content";
+import AnimatedSlidingLabel from "../animated-components/animated-sliding-label.";
 
 type DropDownMenuProps = {
   dropdownMenuLabel: string;
@@ -24,15 +24,17 @@ const DropdownMenu = ({
   const existingDropdownSearchParams =
     existingSearchParams.get(dropdownMenuLabel);
 
-  if (
-    !existingDropdownSearchParams ||
-    !dropdownMenuEntries.includes(existingDropdownSearchParams)
-  ) {
-    const updatedSearchParams = new URLSearchParams(existingSearchParams);
-    updatedSearchParams.set(dropdownMenuLabel, dropdownMenuEntries[0]);
-    const queryString = updatedSearchParams.toString();
-    router.replace(window.location.pathname + "?" + queryString);
-  }
+   useEffect(() => {
+     if (
+       !existingDropdownSearchParams ||
+       !dropdownMenuEntries.includes(existingDropdownSearchParams)
+     ) {
+       const updatedSearchParams = new URLSearchParams(existingSearchParams);
+       updatedSearchParams.set(dropdownMenuLabel, dropdownMenuEntries[0]);
+       const queryString = updatedSearchParams.toString();
+       router.push(window.location.pathname + "?" + queryString);
+     }
+   }, [dropdownMenuEntries, dropdownMenuLabel, existingDropdownSearchParams, existingSearchParams ]);
 
   const handleOnMouseEnter = () => {
     setIsMenuOpen(true);
@@ -71,17 +73,6 @@ const DropdownMenu = ({
     },
   };
 
-  const childVariants = {
-    whileTap: {
-      scale: [1, 1.2, 0.8, 1],
-      transition: {
-        duration: .12,
-        originX: 0,
-        originY: 0.5,
-      },
-    },
-  };
-
   return (
     <div key={dropdownMenuLabel} className="relative">
       <button
@@ -101,9 +92,13 @@ const DropdownMenu = ({
               id={`${dropdownMenuLabel}-label`}
               className="flex w-20  justify-start font-aperçu text-sm font-medium leading-[.5rem] text-black dark:text-neutral-300 md:text-xs"
             >
-              <AnimatedDropdownMenuContent
-                text={`${changeFirstLetterToUppercase(existingDropdownSearchParams as string) ?? ""}`}
-              />
+              {existingDropdownSearchParams ? (
+                <AnimatedSlidingLabel
+                  text={`${changeFirstLetterToUppercase(existingDropdownSearchParams as string)}`}
+                />
+              ) : (
+                <span>&nbsp;</span>
+              )}
             </span>
             <span
               className={`flex origin-center items-end justify-center pt-0.5 transition-all duration-300 ${
@@ -131,11 +126,7 @@ const DropdownMenu = ({
                         tabIndex={index}
                         className="m-0 flex"
                       >
-                        <motion.span
-                          variants={childVariants}
-                          whileTap="whileTap"
-                          className="w-20 flex justify-start font-aperçu text-base font-medium text-black hover:font-bold dark:text-neutral-300 md:text-[.625rem]"
-                        >
+                        <motion.span className="flex w-20 justify-start font-aperçu text-base font-medium text-black hover:font-bold dark:text-neutral-300 md:text-[.625rem]">
                           {changeFirstLetterToUppercase(entry)}
                         </motion.span>
                         <span className="flex items-center justify-center">

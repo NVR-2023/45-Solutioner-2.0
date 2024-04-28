@@ -1,12 +1,10 @@
 import { motion } from "framer-motion";
 
-type AnimatedDropdownMenuContentProps = {
+type AnimatedSlidingLabelProps = {
   text: string;
 };
 
-const AnimatedDropdownMenuContent = ({
-  text,
-}: AnimatedDropdownMenuContentProps) => {
+const AnimatedSlidingLabel = ({ text }: AnimatedSlidingLabelProps) => {
   const variants = {
     initial: {
       x: "-100%",
@@ -14,8 +12,7 @@ const AnimatedDropdownMenuContent = ({
     animate: {
       x: 0,
       transition: {
-        delay:.18,
-        duration: 0.27,
+        duration: 0.18,
       },
     },
   };
@@ -35,4 +32,4 @@ const AnimatedDropdownMenuContent = ({
   );
 };
 
-export default AnimatedDropdownMenuContent;
+export default AnimatedSlidingLabel;
