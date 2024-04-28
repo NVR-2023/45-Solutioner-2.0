@@ -64,7 +64,7 @@ const DropdownMenu = ({
       clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)",
       transition: {
         type: "tween",
-        delay: .1,
+        delay: 0.1,
         duration: 0.15,
         ease: [0.16, 1, 0.3, 1],
       },
@@ -94,25 +94,28 @@ const DropdownMenu = ({
             {dropdownMenuLabel + ":"}
           </label>
           <div className="relative flex px-2">
-            <span
+            <div
               id={`${dropdownMenuLabel}-label`}
-              className="flex w-20 font-aperçu text-sm font-medium leading-[.5rem] text-black dark:text-neutral-300 md:text-xs"
+              className="flex space-x-2 w-20 font-aperçu text-sm font-medium leading-[.5rem] text-black dark:text-neutral-300 md:text-xs"
             >
               {existingDropdownSearchParams ? (
+                <span>
                 <AnimatedSlidingLabel
                   text={`${changeFirstLetterToUppercase(existingDropdownSearchParams as string)}`}
                 />
+                </span>
               ) : (
                 <span>&nbsp;</span>
               )}
-            </span>
-            <span
-              className={`flex origin-center items-end justify-center pt-0.5 transition-all duration-300 ${
-                isMenuOpen ? "rotate-180" : ""
-              } `}
-            >
-              <MenuDownArrow scale={0.6125} />
-            </span>
+              <span
+                className={`flex origin-center items-end justify-center pt-0.5 transition-all duration-300 ${
+                  isMenuOpen ? "rotate-180" : ""
+                } `}
+              >
+                <MenuDownArrow scale={0.6125} />
+              </span>
+            </div>
+
             <AnimatePresence>
               {isMenuOpen && (
                 <motion.ul

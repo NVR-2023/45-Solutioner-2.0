@@ -12,11 +12,11 @@ const BookServices = async ({
  
 
   return (
-    <div className="flex h-screen flex-col">
+    <div className="flex h-screen flex-col space-y-2">
       <div className="mt-2">
         <NavbarBookServicesContent />
       </div>
-      <main className="flex-grow overflow-y-auto bg-neutral-100">
+      <main className="flex-grow justify-center mx-10 overflow-y-auto bg-green-300">
  
       </main>
     </div>
