@@ -1,4 +1,4 @@
-import { useState , useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 import { changeFirstLetterToUppercase } from "@/utils/functions/change-first-letter-to-uppercase";
@@ -24,17 +24,22 @@ const DropdownMenu = ({
   const existingDropdownSearchParams =
     existingSearchParams.get(dropdownMenuLabel);
 
-   useEffect(() => {
-     if (
-       !existingDropdownSearchParams ||
-       !dropdownMenuEntries.includes(existingDropdownSearchParams)
-     ) {
-       const updatedSearchParams = new URLSearchParams(existingSearchParams);
-       updatedSearchParams.set(dropdownMenuLabel, dropdownMenuEntries[0]);
-       const queryString = updatedSearchParams.toString();
-       router.push(window.location.pathname + "?" + queryString);
-     }
-   }, [dropdownMenuEntries, dropdownMenuLabel, existingDropdownSearchParams, existingSearchParams ]);
+  useEffect(() => {
+    if (
+      !existingDropdownSearchParams ||
+      !dropdownMenuEntries.includes(existingDropdownSearchParams)
+    ) {
+      const updatedSearchParams = new URLSearchParams(existingSearchParams);
+      updatedSearchParams.set(dropdownMenuLabel, dropdownMenuEntries[0]);
+      const queryString = updatedSearchParams.toString();
+      router.push(window.location.pathname + "?" + queryString);
+    }
+  }, [
+    dropdownMenuEntries,
+    dropdownMenuLabel,
+    existingDropdownSearchParams,
+    existingSearchParams,
+  ]);
 
   const handleOnMouseEnter = () => {
     setIsMenuOpen(true);
@@ -59,6 +64,7 @@ const DropdownMenu = ({
       clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)",
       transition: {
         type: "tween",
+        delay: .1,
         duration: 0.15,
         ease: [0.16, 1, 0.3, 1],
       },
@@ -90,7 +96,7 @@ const DropdownMenu = ({
           <div className="relative flex px-2">
             <span
               id={`${dropdownMenuLabel}-label`}
-              className="flex w-20  justify-start font-aperçu text-sm font-medium leading-[.5rem] text-black dark:text-neutral-300 md:text-xs"
+              className="flex w-20 font-aperçu text-sm font-medium leading-[.5rem] text-black dark:text-neutral-300 md:text-xs"
             >
               {existingDropdownSearchParams ? (
                 <AnimatedSlidingLabel
@@ -124,7 +130,7 @@ const DropdownMenu = ({
                         key={`${dropdownMenuLabel}${index}`}
                         onClick={() => handleOnClick(entry)}
                         tabIndex={index}
-                        className="m-0 flex"
+                        className="flex"
                       >
                         <motion.span className="flex w-20 justify-start font-aperçu text-base font-medium text-black hover:font-bold dark:text-neutral-300 md:text-[.625rem]">
                           {changeFirstLetterToUppercase(entry)}

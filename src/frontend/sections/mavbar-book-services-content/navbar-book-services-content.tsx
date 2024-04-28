@@ -21,8 +21,9 @@ const NavbarBookServicesContent = () => {
 
   const variants = {
     collapsed: {
-      width: "3rem",
-      paddingInline: "0.25rem",
+      width: "2rem",
+      paddingLeft: "0.25rem",
+      paddingRight: "0.25rem",
       transition: {
         duration: 0.3,
         ease: [0.64, 0, 0.78, 0],
@@ -30,7 +31,8 @@ const NavbarBookServicesContent = () => {
     },
     expanded: {
       width: "auto",
-      paddingInline: "2.5rem",
+      paddingLeft: "2.5rem",
+      paddingRight: "2.5rem",
       transition: {
         duration: 0.3,
         ease: [0.16, 1, 0.3, 1],
@@ -44,8 +46,9 @@ const NavbarBookServicesContent = () => {
         variants={variants}
         initial="expanded"
         animate={navbarControls}
-        className="relative flex h-10 w-full justify-between rounded bg-neutral-300      
- dark:bg-[#4b4b4b] dark:text-[#8b8b8b]"
+        className={`flex h-10 ${
+          isNavbarExpanded ? "justify-between" : "justify-center"
+        } rounded bg-neutral-300 dark:bg-[#4b4b4b] dark:text-[#8b8b8b]`}
       >
         {isNavbarExpanded && (
           <motion.div className="flex items-center space-x-5">
@@ -81,16 +84,21 @@ const NavbarBookServicesContent = () => {
           </motion.div>
         )}
 
-        <motion.div className="flex justify-between space-x-2">
+        <motion.div className="flex space-x-4">
           {isNavbarExpanded ? (
             <motion.div className="w-32">
               <SearchBar label={"search"} />
             </motion.div>
           ) : null}
-          <NavbarCollapseToggle
-            isNavbarExpanded={isNavbarExpanded}
-            setIsNavbarExpanded={setIsNavbarExpanded}
-          />
+          <motion.div className="flex items-center justify-center">
+            <motion.span className="flex justify-center ">
+              <NavbarCollapseToggle
+                isNavbarExpanded={isNavbarExpanded}
+                setIsNavbarExpanded={setIsNavbarExpanded}
+                scale={0.7}
+              />
+            </motion.span>
+          </motion.div>
         </motion.div>
       </motion.div>
     </motion.div>

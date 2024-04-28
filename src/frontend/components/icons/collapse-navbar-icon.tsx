@@ -1,6 +1,6 @@
 import { BasicComponentProps } from "@/types/component-props-types";
 
-const CloseOpenNavbarIcon = ({
+const CollapseNavbarIcon = ({
   scale = 1,
   color = "currentColor",
 }: BasicComponentProps) => {
@@ -18,4 +18,4 @@ const CloseOpenNavbarIcon = ({
   );
 };
 
-export default CloseOpenNavbarIcon;
+export default CollapseNavbarIcon;

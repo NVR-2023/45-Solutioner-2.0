@@ -1,14 +1,18 @@
-import { Dispatch , SetStateAction } from "react";
+import { Dispatch, SetStateAction } from "react";
+import HamburgerIcon from "../../icons/hamburger-icon";
 import { motion } from "framer-motion";
-import CloseOpenNavbarIcon from "@/frontend/components/icons/close-open-navbar-icon";
+import CollapseNavbarIcon from "@/frontend/components/icons/collapse-navbar-icon";
 
 type NavbarCollapseToggleProps = {
   isNavbarExpanded: boolean;
   setIsNavbarExpanded: Dispatch<SetStateAction<boolean>>;
+  scale?: number;
 };
+
 const NavbarCollapseToggle = ({
   isNavbarExpanded,
   setIsNavbarExpanded,
+  scale
 }: NavbarCollapseToggleProps) => {
   const handleOnClick = () => {
     setIsNavbarExpanded(!isNavbarExpanded);
@@ -20,18 +24,18 @@ const NavbarCollapseToggle = ({
       whileTap={{
         scale: [1, 1.2, 0.8, 1],
         transition: {
-          duration: 0.3,
+          duration: 0.5,
         },
       }}
-      className="flex items-center justify-center  text-neutral-400 hover:text-neutral-900"
+      className="flex items-center justify-center"
     >
       <button onClick={handleOnClick}>
-        <span
-          className={`flex origin-center items-center transition-transform duration-300 ${
-            isNavbarExpanded ? "" : "rotate-180"
-          } `}
-        >
-          <CloseOpenNavbarIcon scale={0.7} />
+        <span className="flex items-center justify-center">
+          {isNavbarExpanded ? (
+            <CollapseNavbarIcon scale={scale} />
+          ) : (
+            <HamburgerIcon scale={scale? scale*.9 : 1} />
+          )}
         </span>
       </button>
     </motion.div>
