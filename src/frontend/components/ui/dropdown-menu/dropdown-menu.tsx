@@ -75,8 +75,9 @@ const DropdownMenu = ({
     whileTap: {
       scale: [1, 1.2, 0.8, 1],
       transition: {
-        originX: 1,
-        duration: 0.12,
+        duration: .12,
+        originX: 0,
+        originY: 0.5,
       },
     },
   };
@@ -133,7 +134,7 @@ const DropdownMenu = ({
                         <motion.span
                           variants={childVariants}
                           whileTap="whileTap"
-                          className="hover:font-bold flex w-20 font-aperçu text-base font-medium text-black dark:text-neutral-300 md:text-[.625rem]"
+                          className="w-20 flex justify-start font-aperçu text-base font-medium text-black hover:font-bold dark:text-neutral-300 md:text-[.625rem]"
                         >
                           {changeFirstLetterToUppercase(entry)}
                         </motion.span>
