@@ -19,7 +19,7 @@ const BookServices = () => {
       <motion.div
         layout
         className={`${
-          areNavbarsExpanded ? "ms-10 me-6'" : "ms-2 me-20"
+          areNavbarsExpanded ? "me-6' ms-10" : "me-20 ms-2"
         } flex-grow justify-center overflow-y-auto rounded bg-green-300`}
       ></motion.div>
     </div>
