@@ -5,8 +5,7 @@ import { motion } from "framer-motion";
 import DropdownMenu from "@/frontend/components/ui/dropdown-menu/dropdown-menu";
 import SearchBar from "@/frontend/components/ui/search-bar/search-bar";
 import PresetsSegment from "../../components/ui/presets-segment/presets-segment";
-import CollapseNavbarIcon from "@/frontend/components/icons/collapse-navbar-icon";
-
+import CollapseToggle from "@/frontend/components/ui/collapse-toggle/collapse-toggle";
 type NavbarBookServicesContentProps = {
   areNavbarsExpanded: boolean;
   setAreNavbarsExpanded: Dispatch<SetStateAction<boolean>>;
@@ -24,13 +23,13 @@ const NavbarBookServicesContent = ({
     <motion.div key="bookServicesContentNavbar" className="relative">
       <button
         onClick={handleOnClick}
-        className="absolute left-2 top-1/2 z-50 flex -translate-y-1/2 items-center justify-center"
+        className="absolute left-2 top-1/2 z-50 flex -translate-y-1/2"
       >
-        <span
-          className={` origin-center text-neutral-500 transition-transform duration-300  ${areNavbarsExpanded ? "rotate-0" : "rotate-180"}`}
-        >
-          <CollapseNavbarIcon scale={0.625} />
-        </span>
+        <CollapseToggle
+          areNavbarsExpanded={areNavbarsExpanded}
+          setAreNavbarsExpanded={setAreNavbarsExpanded}
+          scale={0.625}
+        />
       </button>
       <motion.div
         layout
@@ -58,7 +57,7 @@ const NavbarBookServicesContent = ({
         }  bg-neutral-300 dark:bg-[#4b4b4b] dark:text-[#8b8b8b]`}
       >
         {areNavbarsExpanded && (
-          <motion.div className="w-full flex items-center justify-between">
+          <motion.div className="flex w-full items-center justify-between">
             <motion.div className="flex items-center justify-between">
               <motion.div layout="position">
                 <DropdownMenu
