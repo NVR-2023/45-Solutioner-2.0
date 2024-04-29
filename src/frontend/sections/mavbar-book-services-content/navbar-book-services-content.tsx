@@ -1,11 +1,11 @@
 "use client";
-import { useState, useEffect, Dispatch, SetStateAction } from "react";
-import { motion, useAnimationControls } from "framer-motion";
+import { Dispatch, SetStateAction } from "react";
+import { motion } from "framer-motion";
 
 import DropdownMenu from "@/frontend/components/ui/dropdown-menu/dropdown-menu";
 import SearchBar from "@/frontend/components/ui/search-bar/search-bar";
 import PresetsSegment from "../../components/ui/presets-segment/presets-segment";
-import NavbarCollapseToggle from "../../components/ui/navbar-collapse-toggle/navbar-collapse-toggle";
+import CollapseNavbarIcon from "@/frontend/components/icons/collapse-navbar-icon";
 
 type NavbarBookServicesContentProps = {
   areNavbarsExpanded: boolean;
@@ -16,8 +16,20 @@ const NavbarBookServicesContent = ({
   areNavbarsExpanded,
   setAreNavbarsExpanded,
 }: NavbarBookServicesContentProps) => {
+  const handleOnClick = () => {
+    setAreNavbarsExpanded(!areNavbarsExpanded);
+  };
+
   return (
-    <motion.div>
+    <motion.div className="relative">
+      <button
+        onClick={handleOnClick}
+        className="absolute left-2 top-1/2 z-50 flex -translate-y-1/2 items-center justify-center"
+      >
+        <span className={` text-neutral-500 origin-center transition-transform duration-300  ${ areNavbarsExpanded ? "rotate-0" : "rotate-180"}`}>
+          <CollapseNavbarIcon scale={0.625} />
+        </span>
+      </button>
       <motion.div
         layout
         key="bookServicesContentNavbar"
@@ -90,15 +102,6 @@ const NavbarBookServicesContent = ({
               <SearchBar label={"search"} />
             </motion.div>
           ) : null}
-          <motion.div className="flex items-center justify-center">
-            <motion.div layout="position" className="flex justify-center ">
-              <NavbarCollapseToggle
-                areNavbarsExpanded={areNavbarsExpanded}
-                setAreNavbarsExpanded={setAreNavbarsExpanded}
-                scale={0.7}
-              />
-            </motion.div>
-          </motion.div>
         </motion.div>
       </motion.div>
     </motion.div>
