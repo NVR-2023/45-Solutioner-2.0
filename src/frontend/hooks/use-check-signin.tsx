@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { useLuciaSession } from "../contextes/use-lucia-session";
+import { useNavbarContext } from "../contextes/use-navbar-context";
 
 export const useCheckSignin = async () => {
   const router = useRouter();
-  const { user, session } =  useLuciaSession();
+  const { user, session } = useNavbarContext();
 };

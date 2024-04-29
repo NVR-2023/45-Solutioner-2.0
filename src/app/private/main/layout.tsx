@@ -1,5 +1,5 @@
 import NavbarPrivate from "@/frontend/sections/navbar-private/navbar-private";
-export default async function PrivateMainLayout({
+export default function PrivateMainLayout({
   children,
 }: {
   children: React.ReactNode;

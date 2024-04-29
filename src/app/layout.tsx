@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   description: "A Next.js 14 home services app by Nuno Rodrigues",
 };
 
-export default async function RootLayout({
+export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;

@@ -4,23 +4,23 @@ import { useState } from "react";
 import NavbarBookServicesContent from "@/frontend/sections/mavbar-book-services-content/navbar-book-services-content";
 
 const BookServices = () => {
-  const [isNavbarExpanded, setIsNavbarExpanded] = useState(true);
+  const [areNavbarsExpanded, setAreNavbarsExpanded] = useState(true);
 
   return (
     <div
-      className={`flex h-screen ${isNavbarExpanded ? "flex-col" : "flex-row"} space-y-2 `}
+      className={`flex h-screen ${areNavbarsExpanded ? "flex-col" : "flex-row"} space-y-2 `}
     >
       <div className="mt-2">
         <NavbarBookServicesContent
-          isNavbarExpanded={isNavbarExpanded}
-          setIsNavbarExpanded={setIsNavbarExpanded}
+          areNavbarsExpanded={areNavbarsExpanded}
+          setAreNavbarsExpanded={setAreNavbarsExpanded}
         />
       </div>
       <motion.div
         layout
         className={`${
-          isNavbarExpanded ? "mx-10" : "mx-2"
-        } flex-grow rounded justify-center overflow-y-auto bg-green-300`}
+          areNavbarsExpanded ? "mx-10" : "mx-2"
+        } flex-grow justify-center overflow-y-auto rounded bg-green-300`}
       ></motion.div>
     </div>
   );

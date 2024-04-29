@@ -8,13 +8,13 @@ import PresetsSegment from "../../components/ui/presets-segment/presets-segment"
 import NavbarCollapseToggle from "../../components/ui/navbar-collapse-toggle/navbar-collapse-toggle";
 
 type NavbarBookServicesContentProps = {
-  isNavbarExpanded: boolean;
-  setIsNavbarExpanded: Dispatch<SetStateAction<boolean>>;
+  areNavbarsExpanded: boolean;
+  setAreNavbarsExpanded: Dispatch<SetStateAction<boolean>>;
 };
 
 const NavbarBookServicesContent = ({
-  isNavbarExpanded,
-  setIsNavbarExpanded,
+  areNavbarsExpanded,
+  setAreNavbarsExpanded,
 }: NavbarBookServicesContentProps) => {
   return (
     <motion.div>
@@ -22,7 +22,7 @@ const NavbarBookServicesContent = ({
         layout
         key="bookServicesContentNavbar"
         style={
-          isNavbarExpanded
+          areNavbarsExpanded
             ? {
                 width: "auto",
                 paddingLeft: "2.5rem",
@@ -41,10 +41,10 @@ const NavbarBookServicesContent = ({
           ease: [0.16, 1, 0.3, 1],
         }}
         className={`flex h-10 ${
-          isNavbarExpanded ? "justify-between" : "justify-center"
+          areNavbarsExpanded ? "justify-between" : "justify-center"
         }  bg-neutral-300 dark:bg-[#4b4b4b] dark:text-[#8b8b8b]`}
       >
-        {isNavbarExpanded && (
+        {areNavbarsExpanded && (
           <motion.div className="flex items-center space-x-5">
             <motion.div layout="position">
               <DropdownMenu
@@ -85,7 +85,7 @@ const NavbarBookServicesContent = ({
         )}
 
         <motion.div className="flex space-x-4">
-          {isNavbarExpanded ? (
+          {areNavbarsExpanded ? (
             <motion.div layout="position" className="w-36">
               <SearchBar label={"search"} />
             </motion.div>
@@ -93,8 +93,8 @@ const NavbarBookServicesContent = ({
           <motion.div className="flex items-center justify-center">
             <motion.div layout="position" className="flex justify-center ">
               <NavbarCollapseToggle
-                isNavbarExpanded={isNavbarExpanded}
-                setIsNavbarExpanded={setIsNavbarExpanded}
+                areNavbarsExpanded={areNavbarsExpanded}
+                setAreNavbarsExpanded={setAreNavbarsExpanded}
                 scale={0.7}
               />
             </motion.div>
