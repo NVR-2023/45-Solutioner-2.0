@@ -21,18 +21,19 @@ const NavbarBookServicesContent = ({
   };
 
   return (
-    <motion.div className="relative">
+    <motion.div key="bookServicesContentNavbar" className="relative">
       <button
         onClick={handleOnClick}
         className="absolute left-2 top-1/2 z-50 flex -translate-y-1/2 items-center justify-center"
       >
-        <span className={` text-neutral-500 origin-center transition-transform duration-300  ${ areNavbarsExpanded ? "rotate-0" : "rotate-180"}`}>
+        <span
+          className={` origin-center text-neutral-500 transition-transform duration-300  ${areNavbarsExpanded ? "rotate-0" : "rotate-180"}`}
+        >
           <CollapseNavbarIcon scale={0.625} />
         </span>
       </button>
       <motion.div
         layout
-        key="bookServicesContentNavbar"
         style={
           areNavbarsExpanded
             ? {
@@ -57,52 +58,50 @@ const NavbarBookServicesContent = ({
         }  bg-neutral-300 dark:bg-[#4b4b4b] dark:text-[#8b8b8b]`}
       >
         {areNavbarsExpanded && (
-          <motion.div className="flex items-center space-x-5">
-            <motion.div layout="position">
-              <DropdownMenu
-                dropdownMenuLabel="category"
-                dropdownMenuEntries={[
-                  "any",
-                  "disinfestation",
-                  "eventing",
-                  "painting",
-                  "gardening",
-                ]}
-              />
+          <motion.div className="w-full flex items-center justify-between">
+            <motion.div className="flex items-center justify-between">
+              <motion.div layout="position">
+                <DropdownMenu
+                  dropdownMenuLabel="category"
+                  dropdownMenuEntries={[
+                    "any",
+                    "disinfestation",
+                    "eventing",
+                    "painting",
+                    "gardening",
+                  ]}
+                />
+              </motion.div>
+              <motion.div layout="position">
+                <DropdownMenu
+                  dropdownMenuLabel="price"
+                  dropdownMenuEntries={["any", "€0-30", "€30-60", "€60-120"]}
+                />
+              </motion.div>
+              <motion.div layout="position">
+                <DropdownMenu
+                  dropdownMenuLabel="sort by"
+                  dropdownMenuEntries={[
+                    "cheaper",
+                    "pricier",
+                    "on sale",
+                    "popular",
+                    "a-z",
+                    "z-a",
+                  ]}
+                />
+              </motion.div>
+              <motion.div layout="position">
+                <PresetsSegment />
+              </motion.div>
             </motion.div>
-
-            <motion.div layout="position">
-              <DropdownMenu
-                dropdownMenuLabel="price"
-                dropdownMenuEntries={["any", "€0-30", "€30-60", "€60-120"]}
-              />
-            </motion.div>
-            <motion.div layout="position">
-              <DropdownMenu
-                dropdownMenuLabel="sort by"
-                dropdownMenuEntries={[
-                  "cheaper",
-                  "pricier",
-                  "on sale",
-                  "popular",
-                  "a-z",
-                  "z-a",
-                ]}
-              />
-            </motion.div>
-            <motion.div layout="position">
-              <PresetsSegment />
+            <motion.div>
+              <motion.div layout="position" className="w-36">
+                <SearchBar label={"search"} />
+              </motion.div>
             </motion.div>
           </motion.div>
         )}
-
-        <motion.div className="flex space-x-4">
-          {areNavbarsExpanded ? (
-            <motion.div layout="position" className="w-36">
-              <SearchBar label={"search"} />
-            </motion.div>
-          ) : null}
-        </motion.div>
       </motion.div>
     </motion.div>
   );
