@@ -95,7 +95,7 @@ const DropdownMenu = ({
           <div className="relative flex px-2">
             <div
               id={`${dropdownMenuLabel}-label`}
-              className="flex space-x-2 w-20 font-aperçu text-sm font-medium leading-[.5rem] text-black dark:text-neutral-300 md:text-xs"
+              className="justify-between flex space-x-2 w-20 font-aperçu text-sm font-medium leading-[.5rem] text-black dark:text-neutral-300 md:text-xs"
             >
               {existingDropdownSearchParams ? (
                 <span>
@@ -107,7 +107,7 @@ const DropdownMenu = ({
                 <span>&nbsp;</span>
               )}
               <span
-                className={`flex origin-center items-end justify-center pt-0.5 transition-all duration-300 ${
+                className={`flex origin-center justify-center pt-0.5 transition-all duration-300 ${
                   isMenuOpen ? "rotate-180" : ""
                 } `}
               >
