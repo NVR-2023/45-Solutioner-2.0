@@ -142,7 +142,6 @@ const DropdownMenu = ({
                             <motion.div
                               layoutId={`${dropdownMenuLabel}-checkmark`}
                               transition={{ duration: 0.2 }}
-                              className="ps-0.5"
                             >
                               <CheckIcon scale={0.5} />
                             </motion.div>

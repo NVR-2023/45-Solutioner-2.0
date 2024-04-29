@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction } from "react";
 import HamburgerIcon from "../../icons/hamburger-icon";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import CollapseNavbarIcon from "@/frontend/components/icons/collapse-navbar-icon";
 
 type NavbarCollapseToggleProps = {
@@ -12,7 +12,7 @@ type NavbarCollapseToggleProps = {
 const NavbarCollapseToggle = ({
   isNavbarExpanded,
   setIsNavbarExpanded,
-  scale
+  scale,
 }: NavbarCollapseToggleProps) => {
   const handleOnClick = () => {
     setIsNavbarExpanded(!isNavbarExpanded);
@@ -30,12 +30,19 @@ const NavbarCollapseToggle = ({
       className="flex items-center justify-center"
     >
       <button onClick={handleOnClick}>
-        <span className="flex items-center justify-center">
-          {isNavbarExpanded ? (
-            <CollapseNavbarIcon scale={scale} />
-          ) : (
-            <HamburgerIcon scale={scale? scale*.9 : 1} />
-          )}
+        <span
+          
+          className="flex items-center justify-center"
+        >
+            {isNavbarExpanded ? (
+              <span key="expanded">
+                <CollapseNavbarIcon scale={scale} />
+              </span>
+            ) : (
+              <span key="collapsed">
+                <HamburgerIcon scale={scale} />
+              </span>
+            )}
         </span>
       </button>
     </motion.div>
