@@ -58,7 +58,7 @@ const NavbarBookServicesContent = ({
       >
         {areNavbarsExpanded && (
           <motion.div className="flex w-full items-center justify-between">
-            <motion.div className="flex items-center space-x-4">
+            <motion.div className="flex items-center space-x-4   ">
               <motion.div layout="position">
                 <DropdownMenu
                   dropdownMenuLabel="category"

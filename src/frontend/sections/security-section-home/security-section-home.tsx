@@ -5,7 +5,7 @@ const SecuritySectionHome = () => {
     <section id="security">
       <div>
         <Image
-          src="/images/homepage/gardening.webp"
+          src="https://res.cloudinary.com/dzow47vf1/image/upload/v1714472611/A%20-%20Solutioner%202.0/gardening_hiuqqn.webp"
           alt="gardening"
           width={1920}
           height={1080}
