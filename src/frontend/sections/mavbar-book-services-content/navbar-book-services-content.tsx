@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 import DropdownMenu from "@/frontend/components/ui/dropdown-menu/dropdown-menu";
 import SearchBar from "@/frontend/components/ui/search-bar/search-bar";
-import PresetsSegment from "../../components/ui/presets-segment/presets-segment";
+import PresetsSegment from "./sub-components/presets-segment";
 import CollapseToggle from "@/frontend/components/ui/collapse-toggle/collapse-toggle";
 type NavbarBookServicesContentProps = {
   areNavbarsExpanded: boolean;

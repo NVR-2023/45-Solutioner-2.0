@@ -1,4 +1,4 @@
-import PresetButton from "./sub-components/preset-button";
+import PresetButton from "./preset-button";
 
 const PresetsSegment = () => {
   return (

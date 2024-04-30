@@ -14,7 +14,7 @@ export default function Home() {
       <div className="flex w-full justify-center">
         <NavbarHomepage />
       </div>
-      <div className="border-b-2 border-neutral-300">
+      <div className="relative border-b-2 border-neutral-300">
         <ServicesHomeSection />
       </div>
       <div className="border-b-2 border-neutral-300">
