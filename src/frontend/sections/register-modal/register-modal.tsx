@@ -1,11 +1,10 @@
 import { useState } from "react";
-import FormModalShell from "@/frontend/components/ui/forms/form-modal-shell";
+import FormModalShell from "@/frontend/components/ui/form-components/form-modal-shell";
 import RegisterFormBody from "./sub-components/register-form-body";
 import RegisterFormHeader from "./sub-components/register-form-header";
 
-
 const RegisterModal = () => {
-const [isModalOpen, setIsModalOpen] = useState(true);
+  const [isModalOpen, setIsModalOpen] = useState(true);
 
   return (
     <FormModalShell isModalOpen={isModalOpen}>

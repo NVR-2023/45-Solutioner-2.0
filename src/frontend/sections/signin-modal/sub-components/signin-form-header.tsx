@@ -1,4 +1,4 @@
-import FormTitle from "@/frontend/components/ui/forms/fotm-title";
+import FormTitle from "@/frontend/components/ui/form-components/fotm-title";
 
 const SigninFormHeader = () => {
   return (

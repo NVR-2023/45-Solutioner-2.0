@@ -2,11 +2,11 @@ import { Dispatch, SetStateAction } from "react";
 import { KeyboardEvent, SyntheticEvent, useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 
-import ValidatedTextInputField from "@/frontend/components/ui/forms/validated-text-input-field";
-import ValidatedPasswordInputField from "@/frontend/components/ui/forms/validated-password-input-field";
-import ForgotPasswordSegment from "@/frontend/components/ui/forms/forgot-password-segment";
-import SigninWIthSegment from "@/frontend/components/ui/forms/signin-with-segement";
-import SubmitSegment from "@/frontend/components/ui/forms/submit-segment";
+import ValidatedTextInputField from "@/frontend/components/ui/form-components/validated-text-input-field";
+import ValidatedPasswordInputField from "@/frontend/components/ui/form-components/validated-password-input-field";
+import ForgotPasswordSegment from "@/frontend/components/ui/form-components/forgot-password-segment";
+import SigninWIthSegment from "@/frontend/components/ui/form-components/signin-with-segement";
+import SubmitSegment from "@/frontend/components/ui/form-components/submit-segment";
 
 import getErrorsInForm from "@/utils/functions/form-validation/get-errors-in-form";
 import { INPUT_VALIDATION_FUNCTION_MAP } from "@/utils/functions/input-validation/input-validation-function-map";
