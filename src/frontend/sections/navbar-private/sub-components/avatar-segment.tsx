@@ -16,7 +16,7 @@ export const AvatarSegment = ({ name }: AvatarSegmentProps) => {
         backgroundColor: avatarBackgroundColor,
       }}
     >
-      <span className="flex items-center h-5 w-5 justify-center text-[.625rem] font-semibold text-neutral-100 dark:text-neutral-700 small-caps">
+      <span className="flex items-center h-5 w-5 justify-center text-[.625rem] font-semibold text-white dark:text-neutral-700 small-caps">
         {avatarInitials}
       </span>
     </div>

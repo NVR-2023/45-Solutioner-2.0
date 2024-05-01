@@ -57,7 +57,7 @@ const NavbarBookServicesContent = ({
         }  bg-neutral-300 dark:bg-[#4b4b4b] dark:text-[#8b8b8b]`}
       >
         {areNavbarsExpanded && (
-          <motion.div className="flex w-full items-center justify-between">
+          <motion.div className="flex w-full h-full items-center justify-between">
             <motion.div className="flex items-center space-x-4   ">
               <motion.div layout="position">
                 <DropdownMenu
@@ -94,10 +94,8 @@ const NavbarBookServicesContent = ({
                 <PresetsSegment />
               </motion.div>
             </motion.div>
-            <motion.div>
-              <motion.div layout="position" className="w-36">
-                <SearchBar label={"search"} />
-              </motion.div>
+            <motion.div layout="position" className="w-36">
+              <SearchBar label={"search"} />
             </motion.div>
           </motion.div>
         )}

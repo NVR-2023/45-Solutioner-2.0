@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import LogoSegment from "../navbar-homepage/sub-components/logo-segment";
+import LogoSegment from "../../components/ui/navbar-components/logo-segment";
 import PrivateNavbarTabsSegment from "./sub-components/private-navabr-tabs-segment";
 import ThemeSwitch from "@/frontend/components/ui/theme-switch/theme-switch";
 import { AvatarSegment } from "./sub-components/avatar-segment";
@@ -26,7 +26,7 @@ const NavbarPrivate = ({ areNavbarsExpanded }: NavbarPrivateProps) => {
           initial="initial"
           animate="animate"
           exit="exit"
-          className="m-0 flex h-10 w-full items-center justify-between rounded bg-neutral-300 px-8"
+          className="flex h-10 w-full items-center justify-between rounded bg-neutral-300 px-10"
         >
           {areNavbarsExpanded && (
             <motion.div className="flex w-full justify-between">
@@ -34,7 +34,7 @@ const NavbarPrivate = ({ areNavbarsExpanded }: NavbarPrivateProps) => {
                 <LogoSegment />
                 <PrivateNavbarTabsSegment />
               </motion.span>
-              <motion.span className="flex space-x-4">
+              <motion.span className="flex h-full items-center  space-x-4">
                 <ThemeSwitch scale={0.9} />
                 <AvatarSegment name={"Nuno Rodrigues"} />
               </motion.span>
