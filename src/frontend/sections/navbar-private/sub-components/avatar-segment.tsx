@@ -7,7 +7,7 @@ type AvatarSegmentProps = {
 
 export const AvatarSegment = ({ name }: AvatarSegmentProps) => {
   const avatarInitials = getInitials("Nuno Rodrigues");
-  const avatarBackgroundColor = getHexColorFromInitials(avatarInitials, 0.5); 
+  const avatarBackgroundColor = "#1d4ed8";// getHexColorFromInitials(avatarInitials, 0.4); 
 
   return (
     <div

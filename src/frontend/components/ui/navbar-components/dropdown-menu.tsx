@@ -95,7 +95,7 @@ const DropdownMenu = ({
           <div className="relative flex px-2">
             <div
               id={`${dropdownMenuLabel}-label`}
-              className="justify-between flex space-x-2 w-20 font-aperçu text-sm font-medium leading-[.5rem] text-black dark:text-neutral-300 md:text-xs"
+              className="justify-between flex space-x-2 w-24 font-aperçu text-sm font-medium leading-[.5rem] text-black dark:text-neutral-300 md:text-xs"
             >
               {existingDropdownSearchParams ? (
                 <span>
@@ -134,7 +134,7 @@ const DropdownMenu = ({
                         tabIndex={index}
                         className="flex"
                       >
-                        <motion.span className="flex w-20 justify-start font-aperçu text-base font-medium text-black hover:font-bold dark:text-neutral-300 md:text-[.625rem]">
+                        <motion.span className="flex w-24 justify-start font-aperçu text-base font-medium text-black hover:font-bold dark:text-neutral-300 md:text-[.625rem]">
                           {changeFirstLetterToUppercase(entry)}
                         </motion.span>
                         <span className="flex items-center justify-center">

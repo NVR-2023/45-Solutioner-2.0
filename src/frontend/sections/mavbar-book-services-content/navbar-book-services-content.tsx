@@ -81,10 +81,10 @@ const NavbarBookServicesContent = ({
                 <DropdownMenu
                   dropdownMenuLabel="sort by"
                   dropdownMenuEntries={[
-                    "cheaper",
-                    "pricier",
+                    "lowest price",
+                    "highest price",
                     "on sale",
-                    "popular",
+                    "most popular",
                     "a-z",
                     "z-a",
                   ]}
@@ -94,7 +94,7 @@ const NavbarBookServicesContent = ({
                 <PresetsSegment />
               </motion.div>
             </motion.div>
-            <motion.div layout="position" className="w-36">
+            <motion.div layout="position" className="w-40">
               <SearchBar label={"search"} />
             </motion.div>
           </motion.div>
