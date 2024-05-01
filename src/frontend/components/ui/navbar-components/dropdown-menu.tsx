@@ -86,16 +86,16 @@ const DropdownMenu = ({
         onMouseLeave={handleOnMouseLeave}
         className="flex h-14 w-full items-center"
       >
-        <div className="flex items-baseline">
+        <div className="flex items-baseline ">
           <label
-            className="flex font-aperçu text-sm font-extrabold leading-[.5rem] tracking-wide text-black small-caps dark:text-neutral-300 md:text-xs"
+            className="flex font-aperçu text-sm font-[700] leading-[.5rem] tracking-wide text-black small-caps dark:text-neutral-300 md:text-xs"
           >
             {dropdownMenuLabel + ":"}
           </label>
           <div className="relative flex px-2">
             <div
               id={`${dropdownMenuLabel}-label`}
-              className="justify-between flex space-x-2 w-24 font-aperçu text-sm font-medium leading-[.5rem] text-black dark:text-neutral-300 md:text-xs"
+              className="flex space-x-2 w-24 font-aperçu text-sm font-bold leading-[.5rem] text-black dark:text-neutral-300 md:text-xs"
             >
               {existingDropdownSearchParams ? (
                 <span>
@@ -114,6 +114,7 @@ const DropdownMenu = ({
                 <MenuDownArrow scale={0.6125} />
               </span>
             </div>
+            
 
             <AnimatePresence>
               {isMenuOpen && (

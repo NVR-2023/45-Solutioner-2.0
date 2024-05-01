@@ -25,7 +25,7 @@ const SearchBar = ({ label }: SearchBarProps) => {
       <div className="flex items-center space-x-2">
         <label
           htmlFor="searchBar"
-          className="flex font-aperçu text-sm font-extrabold leading-[.5rem] tracking-wide text-black small-caps dark:text-neutral-300 md:text-xs"
+          className="flex font-aperçu text-sm font-[700] leading-[.5rem] tracking-wide text-black small-caps dark:text-neutral-300 md:text-xs"
         >
        {`${label}:`}
         </label>
