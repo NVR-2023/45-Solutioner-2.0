@@ -1,8 +1,7 @@
 import { FC } from "react";
-import homepageSections from "@/frontend/sections/navbar-homepage/sub-components/homepage-sections";
+import HOMEPAGE_SECTIONS from "@/frontend/sections/navbar-homepage/sub-components/homepage-sections";
 import Link from "next/link";
 import { getSectionFomString } from "@/utils/functions/getsectionfromurl";
-
 
 type MobileSidemenuPropsType = {
   action: () => void;
@@ -10,15 +9,16 @@ type MobileSidemenuPropsType = {
 
 const MobileSidemenuHomepage = ({ action }: MobileSidemenuPropsType) => {
   return (
-    <nav className="z-[999] mt-3.5 -me-3 text-base font-semibold bg-neutral-300 dark:bg-neutral-700 bg-opacity-70 dark:bg-opacity-70">
+    <nav className="z-[999] -me-3 mt-3.5 bg-neutral-300 bg-opacity-70 text-base font-semibold dark:bg-neutral-700 dark:bg-opacity-70">
       <div className="flex justify-start">
-        <menu className="list-none flex flex-col space-y-1 mt-3 mx-3">
-          {homepageSections &&
-            homepageSections.map((section, index) => (
+        <menu className="mx-3 mt-3 flex list-none flex-col space-y-1">
+          {HOMEPAGE_SECTIONS &&
+            HOMEPAGE_SECTIONS.map((section, index) => (
               <li key={index} onClick={action}>
                 <Link
-                  className="pb-[2px] border-b-[1px] border-solid border-transparent transition-all duration-300 hover:border-current"
-                  href={getSectionFomString(section)}>
+                  className="border-b-[1px] border-solid border-transparent pb-[2px] transition-all duration-300 hover:border-current"
+                  href={getSectionFomString(section)}
+                >
                   {section}
                 </Link>
               </li>

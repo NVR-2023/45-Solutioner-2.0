@@ -32,8 +32,8 @@ const NavbarPrivate = ({ areNavbarsExpanded }: NavbarPrivateProps) => {
             <motion.div className="flex w-full justify-between">
               <motion.span className="flex space-x-6">
                 <LogoSegment />
-                <PrivateNavbarTabsSegment />
-              </motion.span>
+{/*                 <PrivateNavbarTabsSegment />
+ */}              </motion.span>
               <motion.span className="flex h-full items-center  space-x-4">
                 <ThemeSwitch scale={0.9} />
                 <AvatarSegment name={"Nuno Rodrigues"} />

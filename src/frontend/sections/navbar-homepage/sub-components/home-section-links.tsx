@@ -2,10 +2,10 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { getSectionFomString } from "@/utils/functions/getsectionfromurl";
-import homepageSections from "@/frontend/sections/navbar-homepage/sub-components/homepage-sections";
+import HOMEPAGE_SECTIONS from "@/frontend/sections/navbar-homepage/sub-components/homepage-sections";
 
 const HomeSectionLinks = () => {
-  const [currentSection, setCurrentSection] = useState(homepageSections[0]);
+  const [currentSection, setCurrentSection] = useState(HOMEPAGE_SECTIONS[0]);
   const handleChangeSection = (section: string) => {
     setCurrentSection(section);
   };
@@ -17,7 +17,7 @@ const HomeSectionLinks = () => {
       aria-label="Homepage Sections Navigation"
     >
       <menu className="flex list-none items-center space-x-4">
-        {homepageSections.map((link, index) => (
+        {HOMEPAGE_SECTIONS.map((link, index) => (
           <li key={index} className="relative">
             <Link
               href={getSectionFomString(link)}

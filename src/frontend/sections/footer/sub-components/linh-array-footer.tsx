@@ -5,10 +5,13 @@ type FooterLinkSegmentType = {
 
 type FooterLinkListType = FooterLinkSegmentType[];
 
-export const linkArrayFooter: FooterLinkListType = [
+export const LINK_ARRAY_FOOTER: FooterLinkListType = [
   {
     label: "company",
     links: ["About us", "Contact us", "Jobs", "Press kit"],
   },
-  { label: "legal", links: ["Terms of use", "Privacy policy", "Cookie policy"] },
+  {
+    label: "legal",
+    links: ["Terms of use", "Privacy policy", "Cookie policy"],
+  },
 ];
