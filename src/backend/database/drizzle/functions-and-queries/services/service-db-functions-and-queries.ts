@@ -67,7 +67,7 @@ export const getAllServices = async () => {
   return result;
 };
 
-export const getAllServicesWithProfiles = async () => {
+export const fetchAllServicesWithProfiles = async () => {
   const result = await db
     .select()
     .from(services)

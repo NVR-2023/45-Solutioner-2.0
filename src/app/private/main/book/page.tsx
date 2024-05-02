@@ -4,7 +4,9 @@ import { useState } from "react";
 import NavbarPrivate from "@/frontend/sections/navbar-private/navbar-private";
 import NavbarBookServicesContent from "@/frontend/sections/mavbar-book-services-content/navbar-book-services-content";
 
-const BookServices = () => {
+import ContentAreaBook from "./sub-components/content-area-bool";
+
+const Book = () => {
   const [areNavbarsExpanded, setAreNavbarsExpanded] = useState(true);
 
   return (
@@ -28,9 +30,11 @@ const BookServices = () => {
             <motion.div
               layout
               className={`${
-                areNavbarsExpanded ? "ms-10 me-10" : " ms-2 me-10"
+                areNavbarsExpanded ? "me-10 ms-10" : " me-10 ms-2"
               } flex-grow justify-center overflow-y-auto rounded bg-green-300`}
-            ></motion.div>
+            >
+              <ContentAreaBook />
+            </motion.div>
           </div>
         </div>
       </main>
@@ -38,4 +42,4 @@ const BookServices = () => {
   );
 };
 
-export default BookServices;
+export default Book;
