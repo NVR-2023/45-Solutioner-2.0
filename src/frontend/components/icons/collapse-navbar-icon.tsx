@@ -11,9 +11,8 @@ const CollapseNavbarIcon = ({
       viewBox="0 -960 960 960"
       width={24 * scale}
       fill={color}
-      className="rotate-90"
     >
-      <path d="M160-120v-80h640v80H160Zm320-160L280-480l56-56 104 104v-408h80v408l104-104 56 56-200 200Z" />
+      <path d="M560-240 320-480l240-240 56 56-184 184 184 184-56 56Z" />
     </svg>
   );
 };

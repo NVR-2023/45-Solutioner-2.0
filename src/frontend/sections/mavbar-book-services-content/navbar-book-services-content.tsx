@@ -15,22 +15,16 @@ const NavbarBookServicesContent = ({
   areNavbarsExpanded,
   setAreNavbarsExpanded,
 }: NavbarBookServicesContentProps) => {
-  const handleOnClick = () => {
-    setAreNavbarsExpanded(!areNavbarsExpanded);
-  };
-
+  
   return (
     <motion.div key="bookServicesContentNavbar" className="relative">
-      <button
-        onClick={handleOnClick}
-        className="absolute left-2 top-1/2 z-50 flex -translate-y-1/2"
-      >
+      <div className="absolute left-2 top-1/2 z-50 flex -translate-y-1/2">
         <CollapseToggle
           areNavbarsExpanded={areNavbarsExpanded}
           setAreNavbarsExpanded={setAreNavbarsExpanded}
           scale={0.625}
         />
-      </button>
+      </div>
       <motion.div
         layout
         style={
@@ -57,8 +51,8 @@ const NavbarBookServicesContent = ({
         }  bg-neutral-300 dark:bg-[#4b4b4b] dark:text-[#8b8b8b]`}
       >
         {areNavbarsExpanded && (
-          <motion.div className="flex w-full h-full items-center justify-between">
-            <motion.div className="flex items-center space-x-4   ">
+          <motion.div className="flex h-full w-full items-center justify-between">
+            <motion.div className="flex items-center space-x-0.5   ">
               <motion.div layout="position">
                 <DropdownMenu
                   dropdownMenuLabel="category"

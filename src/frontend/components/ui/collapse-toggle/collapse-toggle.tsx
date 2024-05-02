@@ -1,5 +1,6 @@
 import { Dispatch, SetStateAction } from "react";
 import CollapseNavbarIcon from "@/frontend/components/icons/collapse-navbar-icon";
+import HamburgerIcon from "../../icons/hamburger-icon";
 
 type CollapseToggleProps = {
   areNavbarsExpanded: boolean;
@@ -17,11 +18,12 @@ const CollapseToggle = ({
   };
 
   return (
-    <div
-      className={`z-50 origin-center text-neutral-400 transition-transform ${areNavbarsExpanded ? "rotate-0" : "rotate-180"}`}
+    <button
+      onClick={handleOnClick}
+      className="z-50"
     >
-      <CollapseNavbarIcon scale={scale} />
-    </div>
+  {  areNavbarsExpanded ? <CollapseNavbarIcon scale={scale} /> : <HamburgerIcon scale={scale} />}
+    </button>
   );
 };
 

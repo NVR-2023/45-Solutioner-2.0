@@ -87,21 +87,19 @@ const DropdownMenu = ({
         className="flex h-14 w-full items-center"
       >
         <div className="flex items-baseline ">
-          <label
-            className="flex font-aperçu text-sm font-[700] leading-[.5rem] tracking-wide text-black small-caps dark:text-neutral-300 md:text-xs"
-          >
-            {dropdownMenuLabel + ":"}
+          <label className="flex border-s-[0.7px] ps-1.5 border-black font-aperçu text-sm font-[700] leading-[.5rem] tracking-wide text-black small-caps dark:text-neutral-300 md:text-xs">
+            {`${dropdownMenuLabel}:`}
           </label>
-          <div className="relative flex px-2">
+          <div className="relative flex ps-1 pe-2">
             <div
               id={`${dropdownMenuLabel}-label`}
-              className="flex space-x-2 w-24 font-aperçu text-sm font-bold leading-[.5rem] text-black dark:text-neutral-300 md:text-xs"
+              className="flex w-24 justify-between space-x-2 font-aperçu text-sm font-bold leading-[.5rem] text-black dark:text-neutral-300 md:text-xs"
             >
               {existingDropdownSearchParams ? (
                 <span>
-                <AnimatedSlidingLabel
-                  text={`${changeFirstLetterToUppercase(existingDropdownSearchParams as string)}`}
-                />
+                  <AnimatedSlidingLabel
+                    text={`${changeFirstLetterToUppercase(existingDropdownSearchParams as string)}`}
+                  />
                 </span>
               ) : (
                 <span>&nbsp;</span>
@@ -114,7 +112,6 @@ const DropdownMenu = ({
                 <MenuDownArrow scale={0.6125} />
               </span>
             </div>
-            
 
             <AnimatePresence>
               {isMenuOpen && (
