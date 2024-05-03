@@ -73,7 +73,7 @@ const Book = () => {
                 layout
                 className={`${
                   areNavbarsExpanded ? "me-10 ms-10" : " me-10 ms-2"
-                } flex-grow justify-center overflow-y-auto rounded bg-neutral-200`}
+                } ${areNavbarsExpanded ? "max-h-[74vh]" : "max-h-[93vh]" } flex-grow justify-center overflow-y-auto rounded bg-neutral-200`}
               >
                 <ContentAreaBook />
               </motion.div>
