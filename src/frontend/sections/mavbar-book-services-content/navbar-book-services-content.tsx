@@ -15,6 +15,7 @@ const NavbarBookServicesContent = ({
   areNavbarsExpanded,
   setAreNavbarsExpanded,
 }: NavbarBookServicesContentProps) => {
+
   
   return (
     <motion.div key="bookServicesContentNavbar" className="relative">
