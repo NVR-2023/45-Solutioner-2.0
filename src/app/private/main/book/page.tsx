@@ -5,13 +5,45 @@ import NavbarPrivate from "@/frontend/sections/navbar-private/navbar-private";
 import NavbarBookServicesContent from "@/frontend/sections/mavbar-book-services-content/navbar-book-services-content";
 
 import ContentAreaBook from "./sub-components/content-area-bool";
+import GreetingModal from "@/frontend/sections/greeting-modal/greeting-modal";
 
 const Book = () => {
   const [areNavbarsExpanded, setAreNavbarsExpanded] = useState(true);
+  const [notificationsObject, setNotificationsObject] = useState({
+    greeting: {
+      isShown: false,
+    },
+    info: {
+      isShown: false,
+      message: "",
+    },
+
+    bookModal: {
+      isShow: false,
+      serviceId: null,
+      serviceNAme: "",
+    },
+  });
+
+  const closeModal: () => void = () => {
+    setNotificationsObject((previousNotificationsObject) => ({
+      ...previousNotificationsObject,
+      greeting: {
+        ...previousNotificationsObject.greeting,
+        isShown: false,
+      },
+    }));
+  };
 
   return (
     <LayoutGroup>
-      <main className="m-0 flex h-screen w-screen items-center justify-center bg-neutral-100 p-0">
+      {notificationsObject.greeting.isShown && (
+        <GreetingModal
+          isModalShown={notificationsObject.greeting.isShown}
+          closeModal={closeModal}
+        />
+      )}
+      <main className="relative m-0 flex h-screen w-screen items-center justify-center bg-neutral-100 p-0">
         <div className="mt-6 flex h-full w-11/12 flex-col">
           {areNavbarsExpanded && (
             <div>
@@ -33,6 +65,21 @@ const Book = () => {
                 areNavbarsExpanded ? "me-10 ms-10" : " me-10 ms-2"
               } flex-grow justify-center overflow-y-auto rounded bg-green-300`}
             >
+              <div>
+                <button
+                  onClick={() => {
+                    setNotificationsObject((previousNotificationsObject) => ({
+                      ...previousNotificationsObject,
+                      greeting: {
+                        ...previousNotificationsObject.greeting,
+                        isShown: true,
+                      },
+                    }));
+                  }}
+                >
+                  show mdoal
+                </button>
+              </div>
               <ContentAreaBook />
             </motion.div>
           </div>
