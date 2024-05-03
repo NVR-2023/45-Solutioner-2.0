@@ -4,8 +4,7 @@ import { eq } from "drizzle-orm";
 
 import { Argon2id } from "oslo/password";
 import { createId } from "@paralleldrive/cuid2";
-
-import { wait } from "@/utils/functions/wait";
+import { validateRequest } from "@/backend/lucia-auth/validate-request";
 
 export type NewUserType = {
   name: string;
@@ -79,4 +78,23 @@ export const areUserCredentialsValid = async (
     console.error("An error occurred", error);
     return "";
   }
+};
+
+//
+
+export const fetchUsername = async () => {
+  let result;
+  const { user } = await validateRequest();
+  if (!user) return null;
+
+  try {
+    result = await db
+      .select({ username: users.name })
+      .from(users)
+      .where(eq(users.id, user.id));
+  } catch (error) {
+    console.log("error fetching username: ", error);
+  }
+
+  return result;
 };
