@@ -15,8 +15,6 @@ const NavbarBookServicesContent = ({
   areNavbarsExpanded,
   setAreNavbarsExpanded,
 }: NavbarBookServicesContentProps) => {
-
-  
   return (
     <motion.div key="bookServicesContentNavbar" className="relative">
       <div className="absolute left-2 top-1/2 z-50 flex -translate-y-1/2">
@@ -76,6 +74,7 @@ const NavbarBookServicesContent = ({
                 <DropdownMenu
                   dropdownMenuLabel="sort by"
                   dropdownMenuEntries={[
+                    "category",
                     "lowest price",
                     "highest price",
                     "on sale",

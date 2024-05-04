@@ -4,7 +4,7 @@ import {
 } from "@/types/component-props-types";
 type FetchMethodType = "GET" | "POST" | "PUT" | "DELETE";
 
-type FetchSubmissionResponseType<T> = {
+export type FetchSubmissionResponseType<T> = {
   status: FetchSubmissionStatusType;
   data?: any;
   error?: string;

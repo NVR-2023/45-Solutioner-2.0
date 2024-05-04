@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import NavbarPrivate from "@/frontend/sections/navbar-private/navbar-private";
 import NavbarBookServicesContent from "@/frontend/sections/mavbar-book-services-content/navbar-book-services-content";
 
-import ContentAreaBook from "./sub-components/content-area-bool";
+import ContentAreaBookPage from "./sub-components/content-area-bool-page";
 import GreetingModal from "@/frontend/sections/greeting-modal/greeting-modal";
 
 const Book = () => {
@@ -13,24 +13,24 @@ const Book = () => {
   useEffect(() => {
     setModalsObject((previousModalObject) => ({
       ...previousModalObject,
-      greetingModal: {
-        ...previousModalObject.greetingModal,
-        isModalShown: true,
+      greetUserModal: {
+        ...previousModalObject.greetUserModal,
+        isGreetUserModalShown: true,
       },
     }));
   }, []);
 
-  const [modalObject, setModalsObject] = useState({
-    greetingModal: {
-      isModalShown: false,
+  const [modalsObject, setModalsObject] = useState({
+    greetUserModal: {
+      isGreetUserModalShown: false,
     },
     notificationModal: {
-      isModalShown: false,
+      isNotificationModalShown: false,
       message: "",
     },
 
     bookModal: {
-      isModalShown: false,
+      isBookModalShown: false,
       serviceId: null,
       serviceName: "",
     },
@@ -39,9 +39,9 @@ const Book = () => {
   const closeGreetingsModal: () => void = () => {
     setModalsObject((previousModalObject) => ({
       ...previousModalObject,
-      greetingModal: {
-        ...previousModalObject.greetingModal,
-        isModalShown: false,
+      greetUserModal: {
+        ...previousModalObject.greetUserModal,
+        isGreetUserModalShown: false,
       },
     }));
   };
@@ -51,7 +51,7 @@ const Book = () => {
       <div className="relative h-full w-full">
         <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transform">
           <GreetingModal
-            isModalShown={modalObject.greetingModal.isModalShown}
+            isModalShown={modalsObject.greetUserModal.isGreetUserModalShown}
             closeGreetingsModal={closeGreetingsModal}
           />
         </div>
@@ -73,9 +73,9 @@ const Book = () => {
                 layout
                 className={`${
                   areNavbarsExpanded ? "me-10 ms-10" : " me-10 ms-2"
-                } ${areNavbarsExpanded ? "max-h-[74vh]" : "max-h-[93vh]" } flex-grow justify-center overflow-y-auto rounded bg-neutral-200`}
+                } ${areNavbarsExpanded ? "max-h-[74vh]" : "max-h-[93vh]"} flex-grow justify-center overflow-y-auto rounded bg-neutral-200`}
               >
-                <ContentAreaBook />
+                <ContentAreaBookPage />
               </motion.div>
             </div>
           </div>
