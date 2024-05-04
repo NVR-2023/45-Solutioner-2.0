@@ -1,35 +1,24 @@
 import { motion } from "framer-motion";
-import { useState, useEffect } from "react";
-import { fetchAllServiceStaticData } from "@/utils/functions/fetch-data/services-endpoint-submissions";
-
-import { ServiceStaticDataType } from "@/utils/functions/fetch-data/services-endpoint-submissions";
+import { AllServiceStaticDataType } from "@/utils/functions/fetch-data/services-endpoint-submissions";
 
 import ServiceCard from "./service-card";
 
-const ContentAreaBookPage = () => {
-  const [unfilteredUnsortedServiceData, setUnfilteredUnsortedServiceData] =
-    useState<ServiceStaticDataType[]>();
+type ContentAreaBookPageProps = {
+  allServicesStaticData: AllServiceStaticDataType | null;
+};
 
-  useEffect(() => {
-    const initializeServicesStaticData = async () => {
-      const data: ServiceStaticDataType[] = await fetchAllServiceStaticData();
-      if (data) {
-        setUnfilteredUnsortedServiceData(data);
-      }
-    };
-
-    initializeServicesStaticData();
-  }, []);
-
+const ContentAreaBookPage = ({
+  allServicesStaticData,
+}: ContentAreaBookPageProps) => {
   return (
     <div className="space-y-2">
-      {unfilteredUnsortedServiceData?.map((service: Record<string, any>) => {
+      {allServicesStaticData?.map((service) => {
         return (
           <div key={service.id} className="">
             <ServiceCard service={service.service} id={service.id} />
           </div>
         );
-      })}{" "}
+      })}
     </div>
   );
 };

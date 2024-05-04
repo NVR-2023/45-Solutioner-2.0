@@ -1,6 +1,11 @@
 "use client";
 import { LayoutGroup, motion } from "framer-motion";
 import { useState, useEffect } from "react";
+import {
+  fetchAllServiceStaticData,
+  AllServiceStaticDataType,
+} from "@/utils/functions/fetch-data/services-endpoint-submissions";
+
 import NavbarPrivate from "@/frontend/sections/navbar-private/navbar-private";
 import NavbarBookServicesContent from "@/frontend/sections/mavbar-book-services-content/navbar-book-services-content";
 
@@ -9,16 +14,8 @@ import GreetingModal from "@/frontend/sections/greeting-modal/greeting-modal";
 
 const Book = () => {
   const [areNavbarsExpanded, setAreNavbarsExpanded] = useState(true);
-
-  useEffect(() => {
-    setModalsObject((previousModalObject) => ({
-      ...previousModalObject,
-      greetUserModal: {
-        ...previousModalObject.greetUserModal,
-        isGreetUserModalShown: true,
-      },
-    }));
-  }, []);
+  const [allServicesStaticData, setAllServicesStaticData] =
+    useState<AllServiceStaticDataType | null>(null);
 
   const [modalsObject, setModalsObject] = useState({
     greetUserModal: {
@@ -35,6 +32,25 @@ const Book = () => {
       serviceName: "",
     },
   });
+
+  useEffect(() => {
+    const initializeServicesStaticData = async () => {
+      const data: AllServiceStaticDataType | null =
+        await fetchAllServiceStaticData();
+      if (data) {
+        setAllServicesStaticData(data);
+      }
+    };
+
+    initializeServicesStaticData();
+    setModalsObject((previousModalObject) => ({
+      ...previousModalObject,
+      greetUserModal: {
+        ...previousModalObject.greetUserModal,
+        isGreetUserModalShown: true,
+      },
+    }));
+  }, []);
 
   const closeGreetingsModal: () => void = () => {
     setModalsObject((previousModalObject) => ({
@@ -75,7 +91,9 @@ const Book = () => {
                   areNavbarsExpanded ? "me-10 ms-10" : " me-10 ms-2"
                 } ${areNavbarsExpanded ? "max-h-[74vh]" : "max-h-[93vh]"} flex-grow justify-center overflow-y-auto rounded bg-neutral-200`}
               >
-                <ContentAreaBookPage />
+                <ContentAreaBookPage
+                  allServicesStaticData={allServicesStaticData}
+                />
               </motion.div>
             </div>
           </div>
