@@ -83,6 +83,7 @@ const Book = () => {
                 <NavbarBookServicesContent
                   areNavbarsExpanded={areNavbarsExpanded}
                   setAreNavbarsExpanded={setAreNavbarsExpanded}
+                  allServicesStaticData={allServicesStaticData}
                 />
               </div>
               <motion.div

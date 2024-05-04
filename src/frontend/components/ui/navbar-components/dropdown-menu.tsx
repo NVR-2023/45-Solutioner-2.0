@@ -90,13 +90,13 @@ const DropdownMenu = ({
           <label className="flex border-s-[0.7px] ps-1.5 border-black font-aperçu text-sm font-[700] leading-[.5rem] tracking-wide text-black small-caps dark:text-neutral-300 md:text-xs">
             {`${dropdownMenuLabel}:`}
           </label>
-          <div className="relative flex ps-1 pe-2">
+          <div className="relative flex ps-2 pe-2">
             <div
               id={`${dropdownMenuLabel}-label`}
               className="flex w-24 justify-between space-x-2 font-aperçu text-sm font-bold leading-[.5rem] text-black dark:text-neutral-300 md:text-xs"
             >
               {existingDropdownSearchParams ? (
-                <span>
+                <span className="">
                   <AnimatedSlidingLabel
                     text={`${changeFirstLetterToUppercase(existingDropdownSearchParams as string)}`}
                   />
@@ -122,7 +122,7 @@ const DropdownMenu = ({
                   exit="closed"
                   onMouseEnter={handleOnMouseEnter}
                   onMouseLeave={handleOnMouseLeave}
-                  className="absolute left-0 top-9 block w-full rounded-[2px] bg-neutral-300 px-2 py-4"
+                  className="absolute left-0 top-9 block w-full rounded-[2px] bg-neutral-300 px-2 py-2"
                 >
                   {dropdownMenuEntries.map((entry, index) => {
                     return (
@@ -132,7 +132,7 @@ const DropdownMenu = ({
                         tabIndex={index}
                         className="flex"
                       >
-                        <motion.span className="flex w-24 justify-start font-aperçu text-base font-medium text-black hover:font-bold dark:text-neutral-300 md:text-[.625rem]">
+                        <motion.span className="leading-[1.7] flex w-24 justify-start font-aperçu text-base text-black font-medium hover:font-bold dark:text-neutral-300 md:text-[.625rem]">
                           {changeFirstLetterToUppercase(entry)}
                         </motion.span>
                         <span className="flex items-center justify-center">

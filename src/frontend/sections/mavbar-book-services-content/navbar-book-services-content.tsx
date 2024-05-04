@@ -1,20 +1,40 @@
 "use client";
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import { AllServiceStaticDataType } from "@/utils/functions/fetch-data/services-endpoint-submissions";
 
 import DropdownMenu from "@/frontend/components/ui/navbar-components/dropdown-menu";
 import SearchBar from "@/frontend/components/ui/navbar-components/search-bar";
 import PresetsSegment from "../../components/ui/navbar-components/presets-segment";
 import CollapseToggle from "@/frontend/components/ui/collapse-toggle/collapse-toggle";
+
 type NavbarBookServicesContentProps = {
   areNavbarsExpanded: boolean;
   setAreNavbarsExpanded: Dispatch<SetStateAction<boolean>>;
+  allServicesStaticData: AllServiceStaticDataType | null;
 };
 
 const NavbarBookServicesContent = ({
   areNavbarsExpanded,
   setAreNavbarsExpanded,
+  allServicesStaticData,
 }: NavbarBookServicesContentProps) => {
+  const [categoryList, setCategoryList] = useState<string[]>([""]);
+  const [priceIntervalList, setPriceIntervalList] = useState<string[]>([""]);
+
+useEffect(() => {
+  if (allServicesStaticData) {
+    const uniqueCategoriesSet = new Set(
+      allServicesStaticData.map((service) => service.category),
+    );
+    const categoryList = ["any", ...Array.from(uniqueCategoriesSet)].sort();
+    setCategoryList(categoryList);
+  } else {
+    setCategoryList(["\u00A0"]);
+  }
+}, [allServicesStaticData]);
+
+
   return (
     <motion.div key="bookServicesContentNavbar" className="relative">
       <div className="absolute left-2 top-1/2 z-50 flex -translate-y-1/2">
@@ -55,13 +75,7 @@ const NavbarBookServicesContent = ({
               <motion.div layout="position">
                 <DropdownMenu
                   dropdownMenuLabel="category"
-                  dropdownMenuEntries={[
-                    "any",
-                    "disinfestation",
-                    "eventing",
-                    "painting",
-                    "gardening",
-                  ]}
+                  dropdownMenuEntries={categoryList}
                 />
               </motion.div>
               <motion.div layout="position">
