@@ -1,4 +1,4 @@
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter, usePathname, useSearchParams } from "next/navigation";
 import { motion } from "framer-motion";
 import { BasicComponentProps } from "@/types/component-props-types";
 import PresetIcon from "@/frontend/components/icons/preset-icon";
@@ -9,6 +9,7 @@ type PresetButtonProps = BasicComponentProps & {
 
 const PresetButton = ({ scale, color, preset }: PresetButtonProps) => {
   const router = useRouter();
+  const pathName = usePathname();
   const existingSearchParams = useSearchParams();
 
   const handleOnClick = () => {
@@ -22,7 +23,7 @@ const PresetButton = ({ scale, color, preset }: PresetButtonProps) => {
     }
 
     const newQueryString = newSearchParams.toString();
-    const newURL = `${window.location.pathname}?${newQueryString}`;
+    const newURL = `${pathName}?${newQueryString}`;
     router.replace(newURL);
   };
 
@@ -44,17 +45,4 @@ const PresetButton = ({ scale, color, preset }: PresetButtonProps) => {
 
 export default PresetButton;
 
-/*   const handleOnClick = () => {
-    const newSearchParams = new URLSearchParams(existingSearchParams);
-    for (const key in preset) {
-      const normalizedKey = key.replace("_", " ");
-      if (normalizedKey in newSearchParams) {
-        newSearchParams.set(normalizedKey, preset[key]);
-      }
-    }
-    const newQueryString = newSearchParams.toString();
-    const newURL = `${window.location.pathname}?${newQueryString}`;
-    console.log(newURL);
-    router.push(newURL);
-  };
- */
+

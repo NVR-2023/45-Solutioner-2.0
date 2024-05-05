@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter, usePathname , useSearchParams } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 import { changeFirstLetterToUppercase } from "@/utils/functions/change-first-letter-to-uppercase";
 import { wait } from "@/utils/functions/wait";
@@ -20,6 +20,7 @@ const DropdownMenu = ({
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const router = useRouter();
+  const pathName= usePathname();
   const existingSearchParams = useSearchParams();
   const existingDropdownSearchParams =
     existingSearchParams.get(dropdownMenuLabel);
@@ -32,7 +33,7 @@ const DropdownMenu = ({
       const updatedSearchParams = new URLSearchParams(existingSearchParams);
       updatedSearchParams.set(dropdownMenuLabel, dropdownMenuEntries[0]);
       const queryString = updatedSearchParams.toString();
-      router.push(window.location.pathname + "?" + queryString);
+      router.push(pathName + "?" + queryString);
     }
   }, [
     dropdownMenuEntries,
