@@ -22,40 +22,35 @@ const useFilterAndSortServices = (
   const searchSearchParam = searchParams.get("search");
   const sortBySearchParam = searchParams.get("sort by");
 
-  // filter services
+  const filteredAndSortedServiceStaticData = allServicesStaticData
+    ?.filter((service) => {
+      if (
+        categorySearchParam !== "any" &&
+        service.category !== categorySearchParam
+      ) {
+        return false;
+      }
 
-  const filteredAndSortedServiceStaticData = allServicesStaticData?.filter((service) => {
-    if (
-      categorySearchParam !== "any" &&
-      service.category !== categorySearchParam
-    ) {
-      return false;
-    }
+      if (
+        priceSearchParam !== "any" &&
+        (parseInt(service.price) < lowerPriceLimit! ||
+          parseInt(service.price) > upperPriceLimit!)
+      ) {
+        return false;
+      }
 
-    if (
-      priceSearchParam !== "any" &&
-      (parseInt(service.price) < lowerPriceLimit! ||
-        parseInt(service.price) > upperPriceLimit!)
-    ) {
-      return false;
-    }
+      if (
+        searchSearchParam?.trim() !== "" &&
+        !service.category.toLowerCase().includes(searchSearchParam) &&
+        !service.service.toLowerCase().includes(searchSearchParam) &&
+        !service.description.toLowerCase().includes(searchSearchParam)
+      ) {
+        return false;
+      }
 
-    if (
-      searchSearchParam?.trim() !== "" &&
-      !service.category.toLowerCase().includes(searchSearchParam) &&
-      !service.service.toLowerCase().includes(searchSearchParam) &&
-      !service.description.toLowerCase().includes(searchSearchParam)
-    ) {
-      return false;
-    }
-
-    return true;
-  });
-
-  // sort filtered services
-  
-  if (filteredAndSortedServiceStaticData) {
-    filteredAndSortedServiceStaticData.sort((firstService, secondService) => {
+      return true;
+    })
+    .sort((firstService, secondService) => {
       switch (sortBySearchParam) {
         case "category":
           return firstService.category.localeCompare(secondService.category);
@@ -82,7 +77,6 @@ const useFilterAndSortServices = (
           return secondService.service.localeCompare(firstService.service);
       }
     });
-  }
 
   return filteredAndSortedServiceStaticData;
 };
