@@ -1,11 +1,11 @@
 import { useSearchParams } from "next/navigation";
 import { AllServiceStaticDataType } from "@/utils/functions/fetch-data/services-endpoint-submissions";
 
-type useFilterAndSortServicesProps =  AllServiceStaticDataType | null;
-
+type useFilterAndSortServicesProps = AllServiceStaticDataType | null;
 
 const useFilterAndSortServices = (
-  allServicesStaticData: useFilterAndSortServicesProps) => {
+  allServicesStaticData: useFilterAndSortServicesProps,
+) => {
   const searchParams = useSearchParams();
 
   const categorySearchParam = searchParams.get("category");
@@ -22,7 +22,9 @@ const useFilterAndSortServices = (
   const searchSearchParam = searchParams.get("search");
   const sortBySearchParam = searchParams.get("sort by");
 
-  const filteredServiceStaticData = allServicesStaticData?.filter((service) => {
+  // filter services
+
+  const filteredAndSortedServiceStaticData = allServicesStaticData?.filter((service) => {
     if (
       categorySearchParam !== "any" &&
       service.category !== categorySearchParam
@@ -50,8 +52,39 @@ const useFilterAndSortServices = (
     return true;
   });
 
+  // sort filtered services
+  
+  if (filteredAndSortedServiceStaticData) {
+    filteredAndSortedServiceStaticData.sort((firstService, secondService) => {
+      switch (sortBySearchParam) {
+        case "category":
+          return firstService.category.localeCompare(secondService.category);
 
-  return filteredServiceStaticData;
+        case "lowest price":
+          return parseInt(firstService.price) - parseInt(secondService.price);
+
+        case "highest price":
+          return parseInt(secondService.price) - parseInt(firstService.price);
+
+        case "on sale":
+          if (firstService.sale && !secondService.sale) {
+            return -1;
+          }
+          if (!firstService.sale && secondService.sale) {
+            return 1;
+          }
+          return 0;
+        case "most popular":
+          return secondService.popularity - firstService.popularity;
+        case "a-z":
+          return firstService.service.localeCompare(secondService.service);
+        case "z-a":
+          return secondService.service.localeCompare(firstService.service);
+      }
+    });
+  }
+
+  return filteredAndSortedServiceStaticData;
 };
 
 export default useFilterAndSortServices;
