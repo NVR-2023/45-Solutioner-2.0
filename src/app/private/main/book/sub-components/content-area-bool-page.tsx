@@ -3,6 +3,7 @@ import { AllServiceStaticDataType } from "@/utils/functions/fetch-data/services-
 
 import ServiceCard from "./service-card";
 import { useSearchParams } from "next/navigation";
+import useFilterAndSortServices from "@/frontend/hooks/use-filter-and-sort-services";
 
 type ContentAreaBookPageProps = {
   allServicesStaticData: AllServiceStaticDataType | null;
@@ -11,7 +12,9 @@ type ContentAreaBookPageProps = {
 const ContentAreaBookPage = ({
   allServicesStaticData,
 }: ContentAreaBookPageProps) => {
-  const searchParams = useSearchParams();
+
+
+  /* const searchParams = useSearchParams();
   const categorySearchParam = searchParams.get("category");
   const priceSearchParam = searchParams.get("price");
   const lowerPriceLimit =
@@ -50,6 +53,9 @@ const ContentAreaBookPage = ({
     
       return true;
   });
+ */
+
+  const filteredServiceStaticData = useFilterAndSortServices(allServicesStaticData);
 
   return (
     <motion.div className="flex justify-center py-2">
@@ -58,12 +64,7 @@ const ContentAreaBookPage = ({
           key="filtered and sorted list of services"
           className="space-y-2"
         >
-          <div>category:...{categorySearchParam}</div>
-          <div>
-            price:...{lowerPriceLimit}-{upperPriceLimit}
-          </div>
-          <div>sort by:...{sortBySearchParam}</div>
-          <div>search:...{searchSearchParam}</div>
+      
 
           {filteredServiceStaticData!.map((service, index) => (
             <motion.li
