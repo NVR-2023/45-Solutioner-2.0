@@ -11,11 +11,10 @@ type ContentAreaBookPageProps = {
 const ContentAreaBookPage = ({
   allServicesStaticData,
 }: ContentAreaBookPageProps) => {
-
+  
   const filteredServiceStaticData = useFilterAndSortServices(
     allServicesStaticData,
   );
-  console.log(filteredServiceStaticData);
 
   return (
     <motion.div className="flex justify-center py-2">
@@ -24,7 +23,7 @@ const ContentAreaBookPage = ({
           key="filtered and sorted list of services"
           className="space-y-2"
         >
-          {filteredServiceStaticData!.map((service, index) => (
+          {filteredServiceStaticData?.map((service, index) => (
             <motion.li
               initial={{ opacity: 0 }}
               animate={{

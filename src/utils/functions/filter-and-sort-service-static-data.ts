@@ -1,33 +1,34 @@
-import { useSearchParams } from "next/navigation";
 import { AllServiceStaticDataType } from "@/utils/functions/fetch-data/services-endpoint-submissions";
 
-type useFilterAndSortServicesProps = AllServiceStaticDataType | null;
+type filterAndSortServicesStaticDataProps = {
+  allServicesStaticData: AllServiceStaticDataType | null;
+  filterAndSortCriteriaObject: Record<string, string>;
+};
 
-const useFilterAndSortServices = (
-  allServicesStaticData: useFilterAndSortServicesProps,
-) => {
-  const searchParams = useSearchParams();
-  const categorySearchParam = searchParams.get("category");
-  const priceSearchParam = searchParams.get("price");
+const filterAndSortServicesStaticData = ({
+  allServicesStaticData,
+  filterAndSortCriteriaObject,
+}: filterAndSortServicesStaticDataProps) => {
+  const categorySearchParam = filterAndSortCriteriaObject.category;
+  const priceSearchParam = filterAndSortCriteriaObject.price;
 
   let lowerPriceLimit = null;
   let upperPriceLimit = null;
 
-if (priceSearchParam) 
-  {
-   lowerPriceLimit =
-    priceSearchParam !== "any"
-      ? parseInt(priceSearchParam.split("-")[0].slice(1))
-      : null;
-  
-       upperPriceLimit =
-    priceSearchParam !== "any"
-      ? parseInt(priceSearchParam.split("-")[1])
-      : null;
-  } 
+  if (priceSearchParam) {
+    lowerPriceLimit =
+      priceSearchParam !== "any"
+        ? parseInt(priceSearchParam!.split("-")[0].slice(1))
+        : null;
 
-  const searchSearchParam = searchParams.get("search");
-  const sortBySearchParam = searchParams.get("sort by");
+    upperPriceLimit =
+      priceSearchParam !== "any"
+        ? parseInt(priceSearchParam!.split("-")[1])
+        : null;
+  }
+
+  const searchSearchParam = filterAndSortCriteriaObject.search;
+  const sortBySearchParam = filterAndSortCriteriaObject.sort;
 
   const filteredAndSortedServiceStaticData = allServicesStaticData
     ?.filter((service) => {
@@ -88,4 +89,4 @@ if (priceSearchParam)
   return filteredAndSortedServiceStaticData;
 };
 
-export default useFilterAndSortServices;
+export default filterAndSortServicesStaticData;
