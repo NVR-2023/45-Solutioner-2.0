@@ -1,5 +1,5 @@
 import { ChangeEvent } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter, usePathname, useSearchParams } from "next/navigation";
 
 type SearchBarProps = {
   label: string;
@@ -7,6 +7,7 @@ type SearchBarProps = {
 
 const SearchBar = ({ label }: SearchBarProps) => {
   const router = useRouter();
+  const pathName = usePathname()
   const existingSearchParams = useSearchParams();
   const existingSearchBarSearchParams = existingSearchParams.get(label);
 
@@ -14,7 +15,7 @@ const SearchBar = ({ label }: SearchBarProps) => {
     const newSearchParams = new URLSearchParams(existingSearchParams);
     newSearchParams.set(label, event.target.value);
     const newQueryString = newSearchParams.toString();
-    const newURL = `${window.location.pathname}?${newQueryString}`;
+    const newURL = `${pathName}?${newQueryString}`;
     router.replace(newURL);
   };
 
