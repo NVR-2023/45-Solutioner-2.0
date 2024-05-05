@@ -21,19 +21,58 @@ const NavbarBookServicesContent = ({
 }: NavbarBookServicesContentProps) => {
   const [categoryList, setCategoryList] = useState<string[]>([""]);
   const [priceIntervalList, setPriceIntervalList] = useState<string[]>([""]);
+  const [presetList, setPresetList] = useState<Record<string, string>[] | null>(
+    [{}],
+  );
 
-useEffect(() => {
-  if (allServicesStaticData) {
-    const uniqueCategoriesSet = new Set(
-      allServicesStaticData.map((service) => service.category),
-    );
-    const categoryList = ["any", ...Array.from(uniqueCategoriesSet)].sort();
-    setCategoryList(categoryList);
-  } else {
-    setCategoryList(["\u00A0"]);
-  }
-}, [allServicesStaticData]);
+  useEffect(() => {
+    if (!allServicesStaticData) {
+      setCategoryList(["\u00A0"]);
+    } else {
+      const uniqueCategoriesSet = new Set(
+        allServicesStaticData.map((service) => service.category),
+      );
+      const categoryList = ["any", ...Array.from(uniqueCategoriesSet)].sort();
+      setCategoryList(categoryList);
 
+      const allPricesArray = allServicesStaticData.map(
+        (service) => service.price,
+      );
+      const lowestPrice = Math.min(...allPricesArray);
+      const highestPrice = Math.max(...allPricesArray);
+      const priceInterval = (highestPrice - lowestPrice) / 3;
+
+      const priceIntervalsStringArray = [
+        "any",
+        `€${lowestPrice}-${Math.ceil(lowestPrice + priceInterval)}`,
+        `€${Math.ceil(lowestPrice + priceInterval)}-${Math.ceil(lowestPrice + 2 * priceInterval)}`,
+        `€${Math.ceil(lowestPrice + 2 * priceInterval)}-${highestPrice}`,
+      ];
+      setPriceIntervalList(priceIntervalsStringArray);
+
+      const presetArray: Array<{
+        category?: string;
+        price?: string;
+        sort_by?: string;
+      }> = [
+        {
+          price: `€${lowestPrice}-${Math.ceil(lowestPrice + priceInterval)}`,
+          sort_by: "lowest price",
+        },
+        {
+          price: `€${Math.ceil(lowestPrice + 2 * priceInterval)}-${highestPrice}`,
+          sort_by: "highest price",
+        },
+        {
+          category: "any",
+          price: "any",
+          sort_by: "category",
+        },
+      ];
+
+      setPresetList(presetArray);
+    }
+  }, [allServicesStaticData]);
 
   return (
     <motion.div key="bookServicesContentNavbar" className="relative">
@@ -81,7 +120,7 @@ useEffect(() => {
               <motion.div layout="position">
                 <DropdownMenu
                   dropdownMenuLabel="price"
-                  dropdownMenuEntries={["any", "€0-30", "€30-60", "€60-120"]}
+                  dropdownMenuEntries={priceIntervalList}
                 />
               </motion.div>
               <motion.div layout="position">
@@ -99,7 +138,7 @@ useEffect(() => {
                 />
               </motion.div>
               <motion.div layout="position">
-                <PresetsSegment />
+                <PresetsSegment presetList={presetList} />
               </motion.div>
             </motion.div>
             <motion.div layout="position" className="w-40">
