@@ -7,17 +7,24 @@ const useFilterAndSortServices = (
   allServicesStaticData: useFilterAndSortServicesProps,
 ) => {
   const searchParams = useSearchParams();
-
   const categorySearchParam = searchParams.get("category");
   const priceSearchParam = searchParams.get("price");
-  const lowerPriceLimit =
+
+  let lowerPriceLimit = null;
+  let upperPriceLimit = null;
+
+if (priceSearchParam) 
+  {
+   lowerPriceLimit =
     priceSearchParam !== "any"
       ? parseInt(priceSearchParam!.split("-")[0].slice(1))
       : null;
-  const upperPriceLimit =
+  
+       upperPriceLimit =
     priceSearchParam !== "any"
       ? parseInt(priceSearchParam!.split("-")[1])
       : null;
+  } 
 
   const searchSearchParam = searchParams.get("search");
   const sortBySearchParam = searchParams.get("sort by");
