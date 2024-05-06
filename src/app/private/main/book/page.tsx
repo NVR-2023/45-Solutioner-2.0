@@ -63,6 +63,9 @@ const Book = () => {
   }, []);
 
   useEffect(() => {
+    console.log("Unsorted Start:", allServicesStaticData);
+    console.log("SearchParams Start:", searchParams);
+
     if (!allServicesStaticData) return;
 
     const categorySearchParam = searchParams.get("category");
@@ -140,7 +143,7 @@ const Book = () => {
             return secondService.service.localeCompare(firstService.service);
         }
       });
-    console.log("Unsorted:", allServicesStaticData);
+    console.log("Unsorted end:", allServicesStaticData);
     console.log("Filtered&Sorted:", filteredAndSortedData);
     setFilteredAndSortedServicesStaticData(filteredAndSortedData);
   }, [allServicesStaticData, searchParams]);
