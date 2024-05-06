@@ -64,7 +64,7 @@ const Book = () => {
 
   useEffect(() => {
     console.log("Unsorted Start:", allServicesStaticData);
-    console.log("SearchParams Start:", searchParams);
+ 
 
     if (!allServicesStaticData) return;
 
@@ -85,6 +85,17 @@ const Book = () => {
     }
     const searchSearchParam = searchParams.get("search");
     const sortBySearchParam = searchParams.get("sort by");
+
+console.log(
+  "SearchParams Mid:",
+  categorySearchParam,
+  priceSearchParam,
+  searchSearchParam,
+  sortBySearchParam,
+);
+
+
+
     const filteredAndSortedData = allServicesStaticData
       .filter((service) => {
         if (
