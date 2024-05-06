@@ -140,7 +140,7 @@ const Book = () => {
             return secondService.service.localeCompare(firstService.service);
         }
       });
-
+    console.log("Filtered&Sorted:", filteredAndSortedData);
     setFilteredAndSortedServicesStaticData(filteredAndSortedData);
   }, [allServicesStaticData, searchParams]);
 
