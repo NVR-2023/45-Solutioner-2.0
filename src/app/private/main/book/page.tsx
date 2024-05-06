@@ -64,41 +64,33 @@ const Book = () => {
 
   useEffect(() => {
     console.log("Unsorted Start:", allServicesStaticData);
- 
 
     if (!allServicesStaticData) return;
 
     const categorySearchParam = searchParams.get("category");
     const priceSearchParam = searchParams.get("price");
-    let lowerPriceLimit = null;
-    let upperPriceLimit = null;
-    if (priceSearchParam) {
-      lowerPriceLimit =
-        priceSearchParam !== "any"
-          ? parseInt(priceSearchParam.split("-")[0].slice(1))
-          : null;
-
-      upperPriceLimit =
-        priceSearchParam !== "any"
-          ? parseInt(priceSearchParam.split("-")[1])
-          : null;
+    let lowerPriceLimit: number | null = null;
+    let upperPriceLimit: number | null = null;
+    if (priceSearchParam && priceSearchParam !== "any") {
+      const priceRange = priceSearchParam.split("-");
+      lowerPriceLimit = parseInt(priceRange[0].slice(1));
+      upperPriceLimit = parseInt(priceRange[1]);
     }
     const searchSearchParam = searchParams.get("search");
     const sortBySearchParam = searchParams.get("sort by");
 
-console.log(
-  "SearchParams Mid:",
-  categorySearchParam,
-  priceSearchParam,
-  searchSearchParam,
-  sortBySearchParam,
-);
-
-
+    console.log(
+      "SearchParams Mid:",
+      categorySearchParam,
+      priceSearchParam,
+      searchSearchParam,
+      sortBySearchParam,
+    );
 
     const filteredAndSortedData = allServicesStaticData
       .filter((service) => {
         if (
+          categorySearchParam &&
           categorySearchParam !== "any" &&
           service.category !== categorySearchParam
         ) {
@@ -106,6 +98,7 @@ console.log(
         }
 
         if (
+          priceSearchParam &&
           priceSearchParam !== "any" &&
           (parseInt(service.price) < lowerPriceLimit! ||
             parseInt(service.price) > upperPriceLimit!)
@@ -114,7 +107,8 @@ console.log(
         }
 
         if (
-          searchSearchParam?.trim() !== "" &&
+          searchSearchParam &&
+          searchSearchParam.trim() !== "" &&
           !service.category.toLowerCase().includes(searchSearchParam) &&
           !service.service.toLowerCase().includes(searchSearchParam) &&
           !service.description.toLowerCase().includes(searchSearchParam)
@@ -128,13 +122,10 @@ console.log(
         switch (sortBySearchParam) {
           case "category":
             return firstService.category.localeCompare(secondService.category);
-
           case "lowest price":
             return parseInt(firstService.price) - parseInt(secondService.price);
-
           case "highest price":
             return parseInt(secondService.price) - parseInt(firstService.price);
-
           case "on sale":
             if (firstService.sale && !secondService.sale) {
               return -1;
@@ -143,15 +134,14 @@ console.log(
               return 1;
             }
             return 0;
-
           case "most popular":
             return secondService.popularity - firstService.popularity;
-
           case "a-z":
             return firstService.service.localeCompare(secondService.service);
-
           case "z-a":
             return secondService.service.localeCompare(firstService.service);
+          default:
+            return 0;
         }
       });
     console.log("Unsorted end:", allServicesStaticData);
