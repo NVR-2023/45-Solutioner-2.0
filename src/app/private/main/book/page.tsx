@@ -62,92 +62,83 @@ const Book = () => {
     }));
   }, []);
 
-  useEffect(() => {
-    console.log("Unsorted Start:", allServicesStaticData);
+useEffect(() => {
 
-    if (!allServicesStaticData) return;
+  if (!allServicesStaticData) return;
 
-    const categorySearchParam = searchParams.get("category");
-    const priceSearchParam = searchParams.get("price");
-    let lowerPriceLimit: number | null = null;
-    let upperPriceLimit: number | null = null;
-    if (priceSearchParam && priceSearchParam !== "any") {
-      const priceRange = priceSearchParam.split("-");
-      lowerPriceLimit = parseInt(priceRange[0].slice(1));
-      upperPriceLimit = parseInt(priceRange[1]);
-    }
-    const searchSearchParam = searchParams.get("search");
-    const sortBySearchParam = searchParams.get("sort by");
+  const categorySearchParam = searchParams.get("category");
+  const priceSearchParam = searchParams.get("price");
+  let lowerPriceLimit = null;
+  let upperPriceLimit = null;
+  if (priceSearchParam && priceSearchParam !== "any") {
+    const priceRange = priceSearchParam.split("-");
+    lowerPriceLimit = parseInt(priceRange[0].slice(1));
+    upperPriceLimit = parseInt(priceRange[1]);
+  }
+  const searchSearchParam = searchParams.get("search");
+  const sortBySearchParam = searchParams.get("sort by");
 
-    console.log(
-      "SearchParams Mid:",
-      categorySearchParam,
-      priceSearchParam,
-      searchSearchParam,
-      sortBySearchParam,
-    );
+  const filteredAndSortedData = allServicesStaticData
+    .filter((service) => {
+      if (
+        categorySearchParam &&
+        categorySearchParam !== "any" &&
+        service.category !== categorySearchParam
+      ) {
+        return false;
+      }
 
-    const filteredAndSortedData = allServicesStaticData
-      .filter((service) => {
-        if (
-          categorySearchParam &&
-          categorySearchParam !== "any" &&
-          service.category !== categorySearchParam
-        ) {
-          return false;
-        }
+      if (
+        priceSearchParam &&
+        priceSearchParam !== "any" &&
+        (parseInt(service.price) < lowerPriceLimit! ||
+          parseInt(service.price) > upperPriceLimit!)
+      ) {
+        return false;
+      }
 
-        if (
-          priceSearchParam &&
-          priceSearchParam !== "any" &&
-          (parseInt(service.price) < lowerPriceLimit! ||
-            parseInt(service.price) > upperPriceLimit!)
-        ) {
-          return false;
-        }
+      if (
+        searchSearchParam &&
+        searchSearchParam.trim() !== "" &&
+        !service.category.toLowerCase().includes(searchSearchParam) &&
+        !service.service.toLowerCase().includes(searchSearchParam) &&
+        !service.description.toLowerCase().includes(searchSearchParam)
+      ) {
+        return false;
+      }
 
-        if (
-          searchSearchParam &&
-          searchSearchParam.trim() !== "" &&
-          !service.category.toLowerCase().includes(searchSearchParam) &&
-          !service.service.toLowerCase().includes(searchSearchParam) &&
-          !service.description.toLowerCase().includes(searchSearchParam)
-        ) {
-          return false;
-        }
+      return true;
+    })
+    .sort((firstService, secondService) => {
+      switch (sortBySearchParam) {
+        case "category":
+          return firstService.category.localeCompare(secondService.category);
+        case "lowest price":
+          return parseInt(firstService.price) - parseInt(secondService.price);
+        case "highest price":
+          return parseInt(secondService.price) - parseInt(firstService.price);
+        case "on sale":
+          if (firstService.sale && !secondService.sale) {
+            return -1;
+          }
+          if (!firstService.sale && secondService.sale) {
+            return 1;
+          }
+          return 0;
+        case "most popular":
+          return secondService.popularity - firstService.popularity;
+        case "a-z":
+          return firstService.service.localeCompare(secondService.service);
+        case "z-a":
+          return secondService.service.localeCompare(firstService.service);
+        default:
+          return 0;
+      }
+    });
+ 
+  setFilteredAndSortedServicesStaticData(filteredAndSortedData);
+}, [allServicesStaticData, searchParams]);
 
-        return true;
-      })
-      .sort((firstService, secondService) => {
-        switch (sortBySearchParam) {
-          case "category":
-            return firstService.category.localeCompare(secondService.category);
-          case "lowest price":
-            return parseInt(firstService.price) - parseInt(secondService.price);
-          case "highest price":
-            return parseInt(secondService.price) - parseInt(firstService.price);
-          case "on sale":
-            if (firstService.sale && !secondService.sale) {
-              return -1;
-            }
-            if (!firstService.sale && secondService.sale) {
-              return 1;
-            }
-            return 0;
-          case "most popular":
-            return secondService.popularity - firstService.popularity;
-          case "a-z":
-            return firstService.service.localeCompare(secondService.service);
-          case "z-a":
-            return secondService.service.localeCompare(firstService.service);
-          default:
-            return 0;
-        }
-      });
-    console.log("Unsorted end:", allServicesStaticData);
-    console.log("Filtered&Sorted:", filteredAndSortedData);
-    setFilteredAndSortedServicesStaticData(filteredAndSortedData);
-  }, [allServicesStaticData, searchParams]);
 
   const closeGreetingsModal: () => void = () => {
     setModalsObject((previousModalObject) => ({
