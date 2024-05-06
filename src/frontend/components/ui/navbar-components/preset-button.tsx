@@ -44,5 +44,3 @@ const PresetButton = ({ scale, color, preset }: PresetButtonProps) => {
 };
 
 export default PresetButton;
-
-

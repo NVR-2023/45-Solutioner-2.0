@@ -8,6 +8,7 @@ import {
 
 import NavbarPrivate from "@/frontend/sections/navbar-private/navbar-private";
 import NavbarBookServicesContent from "@/frontend/sections/mavbar-book-services-content/navbar-book-services-content";
+import { useSearchParams } from "next/navigation";
 
 import ContentAreaBookPage from "./sub-components/content-area-bool-page";
 import GreetingModal from "@/frontend/sections/greeting-modal/greeting-modal";
@@ -15,7 +16,13 @@ import GreetingModal from "@/frontend/sections/greeting-modal/greeting-modal";
 const Book = () => {
   const [areNavbarsExpanded, setAreNavbarsExpanded] = useState(true);
   const [allServicesStaticData, setAllServicesStaticData] =
-    useState<AllServiceStaticDataType | null>(null);
+    useState<AllServiceStaticDataType>(null);
+  const [
+    filteredAndSortedServicesStaticData,
+    setFilteredAndSortedServicesStaticData,
+  ] = useState<AllServiceStaticDataType>(null);
+
+  const searchParams = useSearchParams();
 
   const [modalsObject, setModalsObject] = useState({
     greetUserModal: {
@@ -43,6 +50,9 @@ const Book = () => {
     };
 
     initializeServicesStaticData();
+  }, []);
+
+  useEffect(() => {
     setModalsObject((previousModalObject) => ({
       ...previousModalObject,
       greetUserModal: {
@@ -51,6 +61,88 @@ const Book = () => {
       },
     }));
   }, []);
+
+  useEffect(() => {
+    if (!allServicesStaticData) return;
+
+    const categorySearchParam = searchParams.get("category");
+    const priceSearchParam = searchParams.get("price");
+    let lowerPriceLimit = null;
+    let upperPriceLimit = null;
+    if (priceSearchParam) {
+      lowerPriceLimit =
+        priceSearchParam !== "any"
+          ? parseInt(priceSearchParam.split("-")[0].slice(1))
+          : null;
+
+      upperPriceLimit =
+        priceSearchParam !== "any"
+          ? parseInt(priceSearchParam.split("-")[1])
+          : null;
+    }
+    const searchSearchParam = searchParams.get("search");
+    const sortBySearchParam = searchParams.get("sort by");
+    const filteredAndSortedData = allServicesStaticData
+      .filter((service) => {
+        if (
+          categorySearchParam !== "any" &&
+          service.category !== categorySearchParam
+        ) {
+          return false;
+        }
+
+        if (
+          priceSearchParam !== "any" &&
+          (parseInt(service.price) < lowerPriceLimit! ||
+            parseInt(service.price) > upperPriceLimit!)
+        ) {
+          return false;
+        }
+
+        if (
+          searchSearchParam?.trim() !== "" &&
+          !service.category.toLowerCase().includes(searchSearchParam) &&
+          !service.service.toLowerCase().includes(searchSearchParam) &&
+          !service.description.toLowerCase().includes(searchSearchParam)
+        ) {
+          return false;
+        }
+
+        return true;
+      })
+      .sort((firstService, secondService) => {
+        switch (sortBySearchParam) {
+          case "category":
+            return firstService.category.localeCompare(secondService.category);
+
+          case "lowest price":
+            return parseInt(firstService.price) - parseInt(secondService.price);
+
+          case "highest price":
+            return parseInt(secondService.price) - parseInt(firstService.price);
+
+          case "on sale":
+            if (firstService.sale && !secondService.sale) {
+              return -1;
+            }
+            if (!firstService.sale && secondService.sale) {
+              return 1;
+            }
+            return 0;
+
+          case "most popular":
+            return secondService.popularity - firstService.popularity;
+
+          case "a-z":
+            return firstService.service.localeCompare(secondService.service);
+
+          case "z-a":
+            return secondService.service.localeCompare(firstService.service);
+        }
+      });
+
+    setFilteredAndSortedServicesStaticData(filteredAndSortedData);
+  }, [allServicesStaticData, searchParams]);
 
   const closeGreetingsModal: () => void = () => {
     setModalsObject((previousModalObject) => ({
@@ -93,7 +185,9 @@ const Book = () => {
                 } ${areNavbarsExpanded ? "max-h-[74vh]" : "max-h-[93vh]"} flex-grow justify-center overflow-y-auto rounded bg-neutral-200`}
               >
                 <ContentAreaBookPage
-                  allServicesStaticData={allServicesStaticData}
+                  filteredAndSortedServiceStaticData={
+                    filteredAndSortedServicesStaticData
+                  }
                 />
               </motion.div>
             </div>

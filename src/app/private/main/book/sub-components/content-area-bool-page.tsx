@@ -5,25 +5,20 @@ import ServiceCard from "./service-card";
 import useFilterAndSortServices from "@/frontend/hooks/use-filter-and-sort-services";
 
 type ContentAreaBookPageProps = {
-  allServicesStaticData: AllServiceStaticDataType | null;
+  filteredAndSortedServiceStaticData: AllServiceStaticDataType | null;
 };
 
 const ContentAreaBookPage = ({
-  allServicesStaticData,
+  filteredAndSortedServiceStaticData,
 }: ContentAreaBookPageProps) => {
-  
-  const filteredServiceStaticData = useFilterAndSortServices(
-    allServicesStaticData,
-  );
-
   return (
     <motion.div className="flex justify-center py-2">
-      {allServicesStaticData && (
+      {filteredAndSortedServiceStaticData && (
         <motion.ul
           key="filtered and sorted list of services"
           className="space-y-2"
         >
-          {filteredServiceStaticData?.map((service, index) => (
+          {filteredAndSortedServiceStaticData?.map((service, index) => (
             <motion.li
               initial={{ opacity: 0 }}
               animate={{
