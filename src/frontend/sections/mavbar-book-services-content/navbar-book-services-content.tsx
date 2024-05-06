@@ -54,6 +54,7 @@ const NavbarBookServicesContent = ({
         category?: string;
         price?: string;
         sort_by?: string;
+        search?: string;
       }> = [
         {
           price: `€${lowestPrice}-${Math.ceil(lowestPrice + priceInterval)}`,
@@ -67,6 +68,7 @@ const NavbarBookServicesContent = ({
           category: "any",
           price: "any",
           sort_by: "category",
+          search: "",
         },
       ];
 

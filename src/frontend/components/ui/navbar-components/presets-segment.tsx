@@ -20,26 +20,12 @@ const PresetsSegment = ({ presetList }: PresetSegmentProps) => {
       </label>
       <div className="flex space-x-3 pt-[3px]">
         {presetList?.map((preset, index) => {
-          let newPreset: Record<string, string> = {};
-          if (preset.category) {
-            newPreset.category = preset.category;
-          }
-          if (preset.price) {
-            newPreset.price = preset.price;
-          }
-          if (preset.sort_by) {
-            newPreset.sort_by = preset.sort_by;
-          }
-
           return (
             <span
               key={`preset-${index}`}
               className={`flex items-center justify-center ${tailwindColorClasses[index]}`}
             >
-              <PresetButton
-                preset={newPreset}
-                scale={0.7}
-              />
+              <PresetButton preset={preset} scale={0.7} />
             </span>
           );
         })}
