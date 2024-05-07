@@ -2,6 +2,9 @@ import { motion } from "framer-motion";
 import { AllServiceStaticDataType } from "@/utils/functions/fetch-data/services-endpoint-submissions";
 
 import ServiceCard from "./service-card";
+import { ServiceRollUp } from "./old-card";
+
+import ServiceRollup from "./service-rollup";
 import useFilterAndSortServices from "@/frontend/hooks/use-filter-and-sort-services";
 
 type ContentAreaBookPageProps = {
@@ -27,13 +30,18 @@ const ContentAreaBookPage = ({
               }}
               key={service.id}
             >
-              <ServiceCard
+       {/*        <ServiceRollUp
+                category={service.category}
                 service={service.service}
+                description={service.description}
                 price={service.price}
                 included={service.included}
-                description={service.description}
+                unit={service.unit}
+                personnel={service.personnel}
+                duration={service.duration}
                 id={service.id}
-              />
+              /> */}
+              <ServiceRollup />
             </motion.li>
           ))}
         </motion.ul>
