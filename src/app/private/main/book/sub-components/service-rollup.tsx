@@ -16,7 +16,7 @@ const ServiceRollup = () => {
       <div
         onMouseEnter={handleOnEnter}
         onMouseLeave={handleOnLeave}
-        className={` h-7 w-[700px] bg-red-400 ${isServiceRollupHovered ? "rounded-t-lg" : "rounded-lg"}`}
+        className={`h-7 w-[700px] bg-red-400 transition-all duration-500 ${isServiceRollupHovered ? "rounded-t-lg" : "rounded-lg"}`}
       >
         <div className="h-full w-full">123</div>
       </div>
@@ -29,7 +29,13 @@ const ServiceRollup = () => {
         }}
       >
         <div className="overflow-hidden rounded-b bg-green-400 ">
-          <div className="overflow-hidden">skfljlsdhflshfljksdfhsdljf</div>
+          <div className="overflow-hidden">
+            <p>123</p>
+            <p>123</p>
+            <p>123</p>
+            <p>123</p>
+            <p>123</p>
+          </div>
         </div>
       </div>
       <div></div>
