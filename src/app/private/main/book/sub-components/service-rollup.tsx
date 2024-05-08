@@ -26,17 +26,24 @@ const ServiceRollup = ({ category, service, price, duration }: ServiceRollupProp
       <div
         onMouseEnter={handleOnEnter}
         onMouseLeave={handleOnLeave}
-        className={`h- w-[45rem] bg-neutral-300 px-6 transition-all duration-700 ${isServiceRollupHovered ? "rounded-t-[4px]" : "rounded"}`}
+        className={`h-7 w-[45rem] bg-neutral-300 px-6 transition-all duration-700 ${isServiceRollupHovered ? "rounded-t-[4px]" : "rounded"}`}
       >
         <div className="grid h-full w-full grid-cols-6 items-center space-x-4">
           <div className="col-span-1">
             <ServiceCategoryRollupLabel service={service} category={category} />
           </div>
-          <div className="col-span-2 flex font-aperçu text-sm font-medium text-black dark:text-neutral-300 md:text-xs">
+          <div className="col-span-2 flex font-aperçu text-sm font-bold text-black dark:text-neutral-300 md:text-xs">
             {changeFirstLetterToUppercase(service)}
           </div>
-          <div className="col-span-1">{processedDuration} </div>
-          <div className="col-span-1">123 </div>
+          <div className="col-span-1 flex place-content-center justify-end font-aperçu text-sm font-semibold tabular-nums text-black dark:text-neutral-300 md:text-[0.625rem]">
+            {processedDuration}
+          </div>
+          <div className="col-span-1 space-x-1 flex justify-end text-xs font-bold  tabular-nums  ">
+          <div>  
+            <span className="text-[.625rem] font-bold text-neutral-500">€</span>
+            <span>{price}</span>
+          </div>
+          </div>
           <div className="col-span-1 flex justify-end">123 </div>
         </div>
       </div>
