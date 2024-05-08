@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState  } from "react";
 
 const ServiceRollup = () => {
   const [isServiceRollupHovered, setIsServiceRollupHovered] = useState(false);
@@ -16,7 +16,7 @@ const ServiceRollup = () => {
       <div
         onMouseEnter={handleOnEnter}
         onMouseLeave={handleOnLeave}
-        className={`h-7 w-[700px] bg-red-400 transition-all duration-500 ${isServiceRollupHovered ? "rounded-t-lg" : "rounded-lg"}`}
+        className={`h-7 w-[700px] bg-red-400 transition-all duration-700 ${isServiceRollupHovered ? "rounded-t-lg" : "rounded-lg"}`}
       >
         <div className="h-full w-full">123</div>
       </div>
