@@ -1,6 +1,13 @@
-import { useState  } from "react";
+import { useState } from "react";
+import ServiceCategoryRollupLabel from "./service-category-label";
+import { changeFirstLetterToUppercase } from "@/utils/functions/change-first-letter-to-uppercase";
 
-const ServiceRollup = () => {
+type ServiceRollupProps = {
+  category: string;
+  service: string;
+  price: string;
+};
+const ServiceRollup = ({ category, service, price }: ServiceRollupProps) => {
   const [isServiceRollupHovered, setIsServiceRollupHovered] = useState(false);
 
   const handleOnEnter = () => {
@@ -16,19 +23,33 @@ const ServiceRollup = () => {
       <div
         onMouseEnter={handleOnEnter}
         onMouseLeave={handleOnLeave}
-        className={`h-7 w-[700px] bg-red-400 transition-all duration-700 ${isServiceRollupHovered ? "rounded-t-lg" : "rounded-lg"}`}
+        className={`h- w-[45rem] bg-neutral-300 px-6 transition-all duration-700 ${isServiceRollupHovered ? "rounded-t-[4px]" : "rounded"}`}
       >
-        <div className="h-full w-full">123</div>
+        <div className="grid h-full w-full grid-cols-7 space-x-4 items-center">
+          <div className="col-span-1">
+            <ServiceCategoryRollupLabel service={service} category={category} />
+          </div>
+          <div className="col-span-3 flex font-aperçu text-sm font-semibold text-black dark:text-neutral-300 md:text-xs">
+            {changeFirstLetterToUppercase(service)}
+          </div>
+          <div className="col-span-1">123 </div>
+          <div className="col-span-1">123 </div>
+          <div className="col-span-1 flex justify-end">123 </div>
+        </div>
       </div>
 
       <div
-        className="grid"
+        className="grid duration-500"
         style={{
           gridTemplateRows: isServiceRollupHovered ? "1fr" : "0fr",
           transition: "grid-template-rows 500ms",
         }}
       >
-        <div className="overflow-hidden rounded-b bg-green-400 ">
+        <div
+          onMouseEnter={handleOnEnter}
+          onMouseLeave={handleOnLeave}
+          className="overflow-hidden rounded-b bg-neutral-300 "
+        >
           <div className="overflow-hidden">
             <p>123</p>
             <p>123</p>

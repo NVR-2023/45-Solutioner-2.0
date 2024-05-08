@@ -19,10 +19,11 @@ const ContentAreaBookPage = ({
         >
           {filteredAndSortedServiceStaticData?.map((service, index) => (
             <motion.li
-              initial={{ opacity: 0 }}
+              initial={{ 
+                opacity: 0 }}
               animate={{
                 opacity: 1,
-                transition: { duration: 0.1, delay: 0.05 * index },
+                transition: { duration: 0.3, delay: 0.05 * index },
               }}
               key={service.id}
             >
@@ -37,7 +38,11 @@ const ContentAreaBookPage = ({
                 duration={service.duration}
                 id={service.id}
               /> */}
-              <ServiceRollup />
+              <ServiceRollup
+                category={service.category}
+                service={service.service}
+                price={service.price}
+              />
             </motion.li>
           ))}
         </motion.ul>
