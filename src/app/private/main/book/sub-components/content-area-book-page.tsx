@@ -41,6 +41,7 @@ const ContentAreaBookPage = ({
               <ServiceRollup
                 category={service.category}
                 service={service.service}
+                duration={service.duration}
                 price={service.price}
               />
             </motion.li>

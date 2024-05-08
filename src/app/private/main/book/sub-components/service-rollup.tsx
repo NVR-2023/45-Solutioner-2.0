@@ -6,8 +6,9 @@ type ServiceRollupProps = {
   category: string;
   service: string;
   price: string;
+  duration: string;
 };
-const ServiceRollup = ({ category, service, price }: ServiceRollupProps) => {
+const ServiceRollup = ({ category, service, price, duration }: ServiceRollupProps) => {
   const [isServiceRollupHovered, setIsServiceRollupHovered] = useState(false);
 
   const handleOnEnter = () => {
@@ -18,6 +19,8 @@ const ServiceRollup = ({ category, service, price }: ServiceRollupProps) => {
     setIsServiceRollupHovered(false);
   };
 
+  const processedDuration =
+    parseInt(duration) > 1 ? `${parseInt(duration)} hours` : parseInt(duration) === 1 ? "1 hour" : `${(Math.ceil(parseFloat(duration)*60)).toString()} minutes` ;
   return (
     <div className="">
       <div
@@ -25,14 +28,14 @@ const ServiceRollup = ({ category, service, price }: ServiceRollupProps) => {
         onMouseLeave={handleOnLeave}
         className={`h- w-[45rem] bg-neutral-300 px-6 transition-all duration-700 ${isServiceRollupHovered ? "rounded-t-[4px]" : "rounded"}`}
       >
-        <div className="grid h-full w-full grid-cols-7 space-x-4 items-center">
+        <div className="grid h-full w-full grid-cols-6 items-center space-x-4">
           <div className="col-span-1">
             <ServiceCategoryRollupLabel service={service} category={category} />
           </div>
-          <div className="col-span-3 flex font-aperçu text-sm font-semibold text-black dark:text-neutral-300 md:text-xs">
+          <div className="col-span-2 flex font-aperçu text-sm font-medium text-black dark:text-neutral-300 md:text-xs">
             {changeFirstLetterToUppercase(service)}
           </div>
-          <div className="col-span-1">123 </div>
+          <div className="col-span-1">{processedDuration} </div>
           <div className="col-span-1">123 </div>
           <div className="col-span-1 flex justify-end">123 </div>
         </div>
