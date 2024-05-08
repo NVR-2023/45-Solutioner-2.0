@@ -40,7 +40,7 @@ const ServiceRollup = ({ category, service, price, duration }: ServiceRollupProp
           </div>
           <div className="col-span-1 space-x-1 flex justify-end text-xs font-bold  tabular-nums  ">
           <div>  
-            <span className="text-[.625rem] font-bold text-neutral-500">€</span>
+            <span className="text-[.625rem] font-bold0">€</span>
             <span>{price}</span>
           </div>
           </div>

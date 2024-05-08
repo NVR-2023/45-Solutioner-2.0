@@ -94,7 +94,7 @@ const DropdownMenu = ({
           <div className="relative flex pe-2 ps-2">
             <div
               id={`${dropdownMenuLabel}-label`}
-              className="flex w-28 justify-between space-x-2 font-aperçu text-sm font-semibold leading-[.5rem] text-black dark:text-neutral-300 md:text-xs"
+              className="flex w-28 space-x-2 font-aperçu text-sm font-semibold leading-[.5rem] text-black dark:text-neutral-300 md:text-xs"
             >
               {existingDropdownSearchParams ? (
                 <span className="tabular-nums">
