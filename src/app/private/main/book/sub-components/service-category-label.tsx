@@ -1,9 +1,7 @@
 type ServiceCategoryRollupLabelProps = {
-  service: string;
   category: string;
 };
 const ServiceCategoryRollupLabel = ({
-  service,
   category,
 }: ServiceCategoryRollupLabelProps) => {
   const serviceColorMap = new Map([

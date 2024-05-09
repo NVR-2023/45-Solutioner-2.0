@@ -1,14 +1,28 @@
 import { useState } from "react";
 import ServiceCategoryRollupLabel from "./service-category-label";
-import { changeFirstLetterToUppercase } from "@/utils/functions/change-first-letter-to-uppercase";
-
+import { capitalizeFirstLetter } from "@/utils/functions/capitalize-first-letter";
+import BookServiceButton from "./book-service-button";
 type ServiceRollupProps = {
   category: string;
   service: string;
   price: string;
   duration: string;
+
+  description: string;
+  unit: string;
+  included: string;
+  personnel: number;
 };
-const ServiceRollup = ({ category, service, price, duration }: ServiceRollupProps) => {
+const ServiceRollup = ({
+  category,
+  service,
+  price,
+  duration,
+  description,
+  unit,
+  included,
+  personnel,
+}: ServiceRollupProps) => {
   const [isServiceRollupHovered, setIsServiceRollupHovered] = useState(false);
 
   const handleOnEnter = () => {
@@ -20,31 +34,40 @@ const ServiceRollup = ({ category, service, price, duration }: ServiceRollupProp
   };
 
   const processedDuration =
-    parseInt(duration) > 1 ? `${parseInt(duration)} hours` : parseInt(duration) === 1 ? "1 hour" : `${(Math.ceil(parseFloat(duration)*60)).toString()} minutes` ;
+    parseInt(duration) > 1
+      ? `${parseInt(duration)} hours`
+      : parseInt(duration) === 1
+        ? "1 hour"
+        : `${Math.ceil(parseFloat(duration) * 60).toString()} minutes`;
+
   return (
     <div className="">
       <div
         onMouseEnter={handleOnEnter}
         onMouseLeave={handleOnLeave}
-        className={`h-7 w-[45rem] bg-neutral-300 px-6 transition-all duration-700 ${isServiceRollupHovered ? "rounded-t-[4px]" : "rounded"}`}
+        className={`flex h-7 w-[45rem] items-center bg-neutral-300 px-6 transition-all duration-700 ${isServiceRollupHovered ? "rounded-t-[4px]" : "rounded"}`}
       >
-        <div className="grid h-full w-full grid-cols-6 items-center space-x-4">
-          <div className="col-span-1">
-            <ServiceCategoryRollupLabel service={service} category={category} />
+        <div className="grid w-full grid-cols-6 space-x-4">
+          <div className="col-span-1 flex items-center justify-start">
+            <ServiceCategoryRollupLabel category={category} />
           </div>
-          <div className="col-span-2 flex font-aperçu text-sm font-bold text-black dark:text-neutral-300 md:text-xs">
-            {changeFirstLetterToUppercase(service)}
+          <div className="col-span-2 flex h-full items-center  font-aperçu text-sm font-semibold text-black dark:text-neutral-300 md:text-xs">
+            <div>{capitalizeFirstLetter(service)}</div>
           </div>
-          <div className="col-span-1 flex place-content-center justify-end font-aperçu text-sm font-semibold tabular-nums text-black dark:text-neutral-300 md:text-[0.625rem]">
-            {processedDuration}
+          <div className="col-span-1 flex items-center font-aperçu text-sm font-semibold tabular-nums text-black dark:text-neutral-300 md:text-[0.625rem]">
+            <div classNAme="flex items-baseline">{processedDuration}</div>
           </div>
-          <div className="col-span-1 space-x-1 flex justify-end text-xs font-bold  tabular-nums  ">
-          <div>  
-            <span className="text-[.625rem] font-bold0">€</span>
-            <span>{price}</span>
+          <div className="col-span-1 flex items-center justify-end space-x-1 text-xs font-bold  tabular-nums  ">
+            <div className="flex items-center justify-end font-semibold">
+              <span className="text-[.625rem]">€</span>
+              <span className="flex justify-end">{price}</span>
+            </div>
           </div>
+          <div className="400 col-span-1 flex justify-end">
+            <div>
+              <BookServiceButton />
+            </div>
           </div>
-          <div className="col-span-1 flex justify-end">123 </div>
         </div>
       </div>
 
@@ -58,14 +81,16 @@ const ServiceRollup = ({ category, service, price, duration }: ServiceRollupProp
         <div
           onMouseEnter={handleOnEnter}
           onMouseLeave={handleOnLeave}
-          className="overflow-hidden rounded-b bg-neutral-300 "
+          className="overflow-hidden rounded-b  bg-neutral-300 "
         >
-          <div className="overflow-hidden">
-            <p>123</p>
-            <p>123</p>
-            <p>123</p>
-            <p>123</p>
-            <p>123</p>
+          <div className="grid grid-cols-6 items-center space-x-4 overflow-hidden border-t-[.625px] border-black px-6">
+            <div className="col-span-1">123</div>
+            <div className="col-span-2">
+              <div className="bg-red-400">123</div>
+            </div>
+            <div className="col-span-1">123</div>
+            <div className="col-span-1">123</div>
+            <div className="col-span-1">123</div>
           </div>
         </div>
       </div>

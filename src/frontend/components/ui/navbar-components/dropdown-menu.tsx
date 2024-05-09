@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import { useRouter, usePathname , useSearchParams } from "next/navigation";
+import { useRouter, usePathname, useSearchParams } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
-import { changeFirstLetterToUppercase } from "@/utils/functions/change-first-letter-to-uppercase";
+import { capitalizeFirstLetter } from "@/utils/functions/capitalize-first-letter";
 import { wait } from "@/utils/functions/wait";
 import MenuDownArrow from "../../icons/menu-down-arrow";
 import CheckIcon from "../../icons/check-icon";
@@ -20,7 +20,7 @@ const DropdownMenu = ({
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const router = useRouter();
-  const pathName= usePathname();
+  const pathName = usePathname();
   const existingSearchParams = useSearchParams();
   const existingDropdownSearchParams =
     existingSearchParams.get(dropdownMenuLabel);
@@ -81,7 +81,7 @@ const DropdownMenu = ({
   };
 
   return (
-    <div key={dropdownMenuLabel} className="relative">
+    <div key={dropdownMenuLabel} className="relative z-10">
       <button
         onMouseEnter={handleOnMouseEnter}
         onMouseLeave={handleOnMouseLeave}
@@ -94,12 +94,12 @@ const DropdownMenu = ({
           <div className="relative flex pe-2 ps-2">
             <div
               id={`${dropdownMenuLabel}-label`}
-              className="flex w-28 space-x-2 font-aperçu text-sm font-semibold leading-[.5rem] text-black dark:text-neutral-300 md:text-xs"
+              className="flex w-28 space-x-2 font-aperçu text-sm font-bold leading-[.5rem] text-black dark:text-neutral-300 md:text-xs"
             >
               {existingDropdownSearchParams ? (
                 <span className="tabular-nums">
                   <AnimatedSlidingLabel
-                    text={`${changeFirstLetterToUppercase(existingDropdownSearchParams as string)}`}
+                    text={`${capitalizeFirstLetter(existingDropdownSearchParams as string)}`}
                   />
                 </span>
               ) : (
@@ -123,7 +123,7 @@ const DropdownMenu = ({
                   exit="closed"
                   onMouseEnter={handleOnMouseEnter}
                   onMouseLeave={handleOnMouseLeave}
-                  className="absolute z-10 left-0 top-9 block w-full rounded-[2px] bg-neutral-300 px-2 py-2"
+                  className="absolute left-0 top-9 z-10 block w-full rounded-[2px] bg-neutral-300 px-2 py-2 shadow-[18px_18px_12px_0px_#00000040]"
                 >
                   {dropdownMenuEntries.map((entry, index) => {
                     return (
@@ -134,7 +134,7 @@ const DropdownMenu = ({
                         className="flex"
                       >
                         <motion.span className="flex w-28 justify-start font-aperçu text-base font-medium tabular-nums leading-[1.7] text-black hover:font-bold dark:text-neutral-300 md:text-[.625rem]">
-                          {changeFirstLetterToUppercase(entry)}
+                          {capitalizeFirstLetter(entry)}
                         </motion.span>
                         <span className="flex items-center justify-center">
                           {entry === existingDropdownSearchParams ? (

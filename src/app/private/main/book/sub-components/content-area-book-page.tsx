@@ -43,6 +43,10 @@ const ContentAreaBookPage = ({
                 service={service.service}
                 duration={service.duration}
                 price={service.price}
+                description={service.description}
+                unit={service.unit}
+                included={service.included}
+                personnel={service.personnel}
               />
             </motion.li>
           ))}
