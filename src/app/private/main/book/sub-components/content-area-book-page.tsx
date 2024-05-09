@@ -27,17 +27,7 @@ const ContentAreaBookPage = ({
               }}
               key={service.id}
             >
-              {/*        <ServiceRollUp
-                category={service.category}
-                service={service.service}
-                description={service.description}
-                price={service.price}
-                included={service.included}
-                unit={service.unit}
-                personnel={service.personnel}
-                duration={service.duration}
-                id={service.id}
-              /> */}
+            
               <ServiceRollup
                 category={service.category}
                 service={service.service}

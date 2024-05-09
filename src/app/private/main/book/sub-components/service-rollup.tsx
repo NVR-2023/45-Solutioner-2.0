@@ -57,14 +57,17 @@ const ServiceRollup = ({
           <div className="col-span-1 flex items-center font-aperçu text-sm font-semibold tabular-nums text-black dark:text-neutral-300 md:text-[0.625rem]">
             <div className="flex items-baseline">{processedDuration}</div>
           </div>
-          <div className="col-span-1 flex items-center justify-end space-x-1 text-xs font-bold  tabular-nums  ">
+          <div className="col-span-1 flex items-center justify-end space-x-2 text-xs font-bold  tabular-nums  ">
             <div className="flex items-center justify-end font-semibold">
               <span className="text-[.625rem]">€</span>
               <span className="flex justify-end">{price}</span>
             </div>
+            <div className="h-4 w-8 -skew-x-12  bg-yellow-400 text-[,5rem] font-[300] text-black small-caps">
+              <div className="-skew-x-12">sale</div>
+            </div>
           </div>
           <div className="400 col-span-1 flex justify-end">
-            <div>
+            <div className="flex items-center">
               <BookServiceButton />
             </div>
           </div>
@@ -81,16 +84,20 @@ const ServiceRollup = ({
         <div
           onMouseEnter={handleOnEnter}
           onMouseLeave={handleOnLeave}
-          className="overflow-hidden rounded-b  bg-neutral-300 "
+          className="w-[45rem] overflow-hidden rounded-b  bg-neutral-300 "
         >
-          <div className="grid grid-cols-6 items-center space-x-4 overflow-hidden border-t-[.625px] border-black px-6">
-            <div className="col-span-1">123</div>
+          <div className="*/ grid grid-cols-6 space-x-4 overflow-hidden border-t-[.625px] border-black px-6">
+            <div className="col-span-1"></div>
             <div className="col-span-2">
-              <div className="bg-red-400">123</div>
+              <div className=" py-2 text-[.625rem] font-[500] leading-[150%] ">
+                {capitalizeFirstLetter(description)}
+              </div>
             </div>
-            <div className="col-span-1">123</div>
-            <div className="col-span-1">123</div>
-            <div className="col-span-1">123</div>
+            <div className="col-span-1 py-2 text-[.625rem] font-[400] leading-[150%]">
+              123
+            </div>
+            <div className="col-span-1 bg-blue-400">123</div>
+            <div className="col-span-1 bg-green-900">123</div>
           </div>
         </div>
       </div>
