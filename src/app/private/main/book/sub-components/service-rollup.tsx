@@ -95,22 +95,16 @@ const ServiceRollup = ({
             </div>
             <div className="col-span-2  space-y-1 py-2 text-[.625rem] font-semibold leading-[150%]">
               <div className="space-x-1">
-                <span className="text-[.625rem] font-semibold tracking-wide small-caps">
-                  unit:
-                </span>
-                <span>{capitalizeFirstLetter(unit)}</span>
+              
+                <span>{capitalizeFirstLetter(unit)} serviced</span>
               </div>
               <div className="space-x-1">
-                <span className="text-[.625rem] font-semibold leading-[150%] tracking-wide small-caps">
-                  included:
-                </span>
-                <span>{capitalizeFirstLetter(included)}</span>
+                
+                <span>{capitalizeFirstLetter(included)} included</span>
               </div>
               <div className="space-x-1">
-                <span className="text-[.625rem] font-semibold leading-[150%] tracking-wide small-caps">
-                  personnel:
-                </span>
-                <span>{capitalizeFirstLetter(personnel.toString())}</span>
+               
+                <span>Serviced by {capitalizeFirstLetter(personnel.toString())} professional</span>
               </div>
             </div>
             <div className="col-span-1 bg-blue-400">123</div>
