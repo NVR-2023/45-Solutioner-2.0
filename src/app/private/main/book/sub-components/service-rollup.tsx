@@ -89,7 +89,7 @@ const ServiceRollup = ({
           <div className="*/ grid grid-cols-7 space-x-4 overflow-hidden border-t-[.625px] border-black px-6">
             <div className="col-span-1"></div>
             <div className="col-span-2">
-              <div className=" py-2 text-[.625rem] font-[500] leading-[150%] ">
+              <div className=" py-2 text-[0.625rem] font-medium leading-[150%] ">
                 {capitalizeFirstLetter(description)}
               </div>
             </div>
