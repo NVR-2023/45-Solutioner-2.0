@@ -47,14 +47,14 @@ const ServiceRollup = ({
         onMouseLeave={handleOnLeave}
         className={`flex h-7 w-[45rem] items-center bg-neutral-300 px-6 transition-all duration-700 ${isServiceRollupHovered ? "rounded-t-[4px]" : "rounded"}`}
       >
-        <div className="grid w-full grid-cols-6 space-x-4">
+        <div className="grid w-full grid-cols-7 space-x-4">
           <div className="col-span-1 flex items-center justify-start">
             <ServiceCategoryRollupLabel category={category} />
           </div>
           <div className="col-span-2 flex h-full items-center  font-aperçu text-sm font-semibold text-black dark:text-neutral-300 md:text-xs">
             <div>{capitalizeFirstLetter(service)}</div>
           </div>
-          <div className="col-span-1 flex items-center font-aperçu text-sm font-semibold tabular-nums text-black dark:text-neutral-300 md:text-[0.625rem]">
+          <div className="col-span-2 flex items-center font-aperçu text-sm font-semibold tabular-nums text-black dark:text-neutral-300 md:text-[0.625rem]">
             <div className="flex items-baseline">{processedDuration}</div>
           </div>
           <div className="col-span-1 flex items-center justify-end space-x-2 text-xs font-bold  tabular-nums  ">
@@ -86,15 +86,32 @@ const ServiceRollup = ({
           onMouseLeave={handleOnLeave}
           className="w-[45rem] overflow-hidden rounded-b  bg-neutral-300 "
         >
-          <div className="*/ grid grid-cols-6 space-x-4 overflow-hidden border-t-[.625px] border-black px-6">
+          <div className="*/ grid grid-cols-7 space-x-4 overflow-hidden border-t-[.625px] border-black px-6">
             <div className="col-span-1"></div>
             <div className="col-span-2">
               <div className=" py-2 text-[.625rem] font-[500] leading-[150%] ">
                 {capitalizeFirstLetter(description)}
               </div>
             </div>
-            <div className="col-span-1 py-2 text-[.625rem] font-[400] leading-[150%]">
-              123
+            <div className="col-span-2  space-y-1 py-2 text-[.625rem] font-semibold leading-[150%]">
+              <div className="space-x-1">
+                <span className="text-[.625rem] font-semibold tracking-wide small-caps">
+                  unit:
+                </span>
+                <span>{capitalizeFirstLetter(unit)}</span>
+              </div>
+              <div className="space-x-1">
+                <span className="text-[.625rem] font-semibold leading-[150%] tracking-wide small-caps">
+                  included:
+                </span>
+                <span>{capitalizeFirstLetter(included)}</span>
+              </div>
+              <div className="space-x-1">
+                <span className="text-[.625rem] font-semibold leading-[150%] tracking-wide small-caps">
+                  personnel:
+                </span>
+                <span>{capitalizeFirstLetter(personnel.toString())}</span>
+              </div>
             </div>
             <div className="col-span-1 bg-blue-400">123</div>
             <div className="col-span-1 bg-green-900">123</div>

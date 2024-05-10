@@ -30,7 +30,7 @@ const ServiceCategoryRollupLabel = ({
         className={`h-4.5 w-1.5 -skew-x-12 ${serviceColorMap.get(category)}`}
       ></div>
       <div className="flex h-4 -skew-x-12 items-center bg-[#acacac]">
-        <span className="flex font-[400] skew-x-12 items-center px-3 font-aperçu text-sm leading-[.5rem] tracking-wider text-white small-caps dark:text-neutral-900 md:text-[10px]">
+        <span className="flex font-[400] skew-x-12 items-center px-3 font-aperçu text-sm leading-[.5rem] tracking-wider text-white small-caps dark:text-neutral-900 md:text-[.625rem]">
           {category}
         </span>
       </div>
