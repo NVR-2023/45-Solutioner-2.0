@@ -58,7 +58,7 @@ const ServiceRollup = ({
         ? "1 hour"
         : `${Math.ceil(parseFloat(duration) * 60).toString()} minutes`;
   
-  const processedPersonnelString = personnel > 1 ? `Serviced by a team of ${personnel} professionals  ` : "Serviced by 1 professional "
+  const processedPersonnelString = personnel > 1 ? `Serviced by ${personnel} professionals  ` : "Serviced by 1 professional "
 
   return (
     <motion.div

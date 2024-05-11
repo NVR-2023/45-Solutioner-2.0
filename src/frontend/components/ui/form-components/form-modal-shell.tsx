@@ -8,28 +8,32 @@ type FormModalShellProps = {
 
 const FormModalShell = ({ isModalOpen, children }: FormModalShellProps) => {
   const variants = {
-    initial: { x: "-300%" },
+    initial: {
+      scale: 0,
+      transformOrigin: "center center",
+    },
     animate: {
-      x: 0,
+      scale: 1,
       transition: {
-        delay: 0.18,
+        delay: 0.1,
         ease: [0, 0.55, 0.45, 1],
-        duration: 0.36,
+        duration: 0.3,
       },
     },
     exit: {
-      x: "300%",
+      scale: 0,
+      transformOrigin: "center center",
       transition: {
         delay: 0.1,
         ease: "easeOut",
-        duration: 0.5,
+        duration: 0.18,
       },
     },
   };
 
   return (
     <>
-      <AnimatePresence >
+      <AnimatePresence>
         {isModalOpen && (
           <motion.div
             initial="initial"
