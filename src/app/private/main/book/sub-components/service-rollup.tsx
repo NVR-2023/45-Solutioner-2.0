@@ -1,7 +1,24 @@
+import { motion } from "framer-motion";
 import { useState } from "react";
 import ServiceCategoryRollupLabel from "./service-category-label";
 import { capitalizeFirstLetter } from "@/utils/functions/capitalize-first-letter";
 import BookServiceButton from "./book-service-button";
+
+const variants = {
+  initial: {
+    opacity: 0,
+  },
+  animate: {
+    opacity: 1,
+    transition: { duration: 0.3 },
+  },
+  exit: {
+    x: "300pt",
+    opacity: 0,
+    transition: { duration: 0.3 },
+  },
+};
+
 type ServiceRollupProps = {
   category: string;
   service: string;
@@ -13,6 +30,7 @@ type ServiceRollupProps = {
   included: string;
   personnel: number;
 };
+
 const ServiceRollup = ({
   category,
   service,
@@ -33,15 +51,22 @@ const ServiceRollup = ({
     setIsServiceRollupHovered(false);
   };
 
-  const processedDuration =
+  const processedDurationString =
     parseInt(duration) > 1
       ? `${parseInt(duration)} hours`
       : parseInt(duration) === 1
         ? "1 hour"
         : `${Math.ceil(parseFloat(duration) * 60).toString()} minutes`;
+  
+  const processedPersonnelString = personnel > 1 ? `Serviced by a team of ${personnel} professionals  ` : "Serviced by 1 professional "
 
   return (
-    <div className="">
+    <motion.div
+      variants={variants}
+      initial="initial"
+      animate="animate"
+      exit="exit"
+    >
       <div
         onMouseEnter={handleOnEnter}
         onMouseLeave={handleOnLeave}
@@ -55,7 +80,7 @@ const ServiceRollup = ({
             <div>{capitalizeFirstLetter(service)}</div>
           </div>
           <div className="col-span-2 flex items-center font-aperçu text-sm font-semibold tabular-nums text-black dark:text-neutral-300 md:text-[0.625rem]">
-            <div className="flex items-baseline">{processedDuration}</div>
+            <div className="flex items-baseline">{processedDurationString}</div>
           </div>
           <div className="col-span-1 flex items-center justify-end space-x-2 text-xs font-bold  tabular-nums  ">
             <div className="flex items-center justify-end font-semibold">
@@ -86,25 +111,24 @@ const ServiceRollup = ({
           onMouseLeave={handleOnLeave}
           className="w-[45rem] overflow-hidden rounded-b  bg-neutral-300 "
         >
-          <div className="*/ grid grid-cols-7 space-x-4 overflow-hidden border-t-[.625px] border-black px-6">
+          <div className="grid grid-cols-7 space-x-4 overflow-hidden border-t-[.625px] border-black px-6">
             <div className="col-span-1"></div>
             <div className="col-span-2">
               <div className=" py-2 text-[0.625rem] font-medium leading-[150%] ">
                 {capitalizeFirstLetter(description)}
               </div>
             </div>
-            <div className="col-span-2  space-y-1 py-2 text-[.625rem] font-semibold leading-[150%]">
+            <div className="col-span-2  space-y-1.5 py-2 text-[.625rem] font-semibold leading-[150%]">
               <div className="space-x-1">
-              
-                <span>{capitalizeFirstLetter(unit)} serviced</span>
+                <span>▪ {capitalizeFirstLetter(unit)}</span>
               </div>
               <div className="space-x-1">
-                
-                <span>{capitalizeFirstLetter(included)} included</span>
+                <span>▪ {capitalizeFirstLetter(included)}</span>
               </div>
               <div className="space-x-1">
-               
-                <span>Serviced by {capitalizeFirstLetter(personnel.toString())} professional</span>
+                <span>
+                  ▪ {capitalizeFirstLetter(processedPersonnelString)}
+                </span>
               </div>
             </div>
             <div className="col-span-1 bg-blue-400">123</div>
@@ -113,7 +137,7 @@ const ServiceRollup = ({
         </div>
       </div>
       <div></div>
-    </div>
+    </motion.div>
   );
 };
 
