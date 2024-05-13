@@ -31,7 +31,7 @@ const NavbarBookServicesContent = ({
 }: NavbarBookServicesContentProps) => {
   const [categoryList, setCategoryList] = useState<string[]>([""]);
   const [priceIntervalList, setPriceIntervalList] = useState<string[]>([""]);
-  const [presetList, setPresetList] = useState<PresetProps[] | null>(null);
+const [presetList, setPresetList] = useState<PresetProps[] | null>(null); 
 
   useEffect(() => {
     if (!allServicesStaticData) {

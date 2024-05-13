@@ -3,6 +3,7 @@ import { useState } from "react";
 import ServiceCategoryRollupLabel from "./service-category-label";
 import { capitalizeFirstLetter } from "@/utils/functions/capitalize-first-letter";
 import BookServiceButton from "./book-service-button";
+import SaleTag from "./sale-tag";
 
 const variants = {
   initial: {
@@ -57,8 +58,11 @@ const ServiceRollup = ({
       : parseInt(duration) === 1
         ? "1 hour"
         : `${Math.ceil(parseFloat(duration) * 60).toString()} minutes`;
-  
-  const processedPersonnelString = personnel > 1 ? `Serviced by ${personnel} professionals  ` : "Serviced by 1 professional "
+
+  const processedPersonnelString =
+    personnel > 1
+      ? `Serviced by ${personnel} professionals  `
+      : "Serviced by 1 professional ";
 
   return (
     <motion.div
@@ -72,7 +76,7 @@ const ServiceRollup = ({
         onMouseLeave={handleOnLeave}
         className={`flex h-7 w-[45rem] items-center bg-neutral-300 px-6 transition-all duration-700 ${isServiceRollupHovered ? "rounded-t-[4px]" : "rounded"}`}
       >
-        <div className="grid w-full grid-cols-7 space-x-4">
+        <div className="grid w-full grid-cols-7 space-x-6">
           <div className="col-span-1 flex items-center justify-start">
             <ServiceCategoryRollupLabel category={category} />
           </div>
@@ -82,16 +86,14 @@ const ServiceRollup = ({
           <div className="col-span-2 flex items-center font-aperçu text-sm font-semibold tabular-nums text-black dark:text-neutral-300 md:text-[0.625rem]">
             <div className="flex items-baseline">{processedDurationString}</div>
           </div>
-          <div className="col-span-1 flex items-center justify-end space-x-2 text-xs font-bold  tabular-nums  ">
-            <div className="flex items-center justify-end font-semibold">
+          <div className="col-span-1 space-x-2 flex items-center justify-end text-xs font-bold  tabular-nums  ">
+            <div className="flex items-center font-semibold">
               <span className="text-[.625rem]">€</span>
               <span className="flex justify-end">{price}</span>
             </div>
-            <div className="h-4 w-8 -skew-x-12  bg-yellow-400 text-[,5rem] font-[300] text-black small-caps">
-              <div className="-skew-x-12">sale</div>
-            </div>
+            <SaleTag />
           </div>
-          <div className="400 col-span-1 flex justify-end">
+          <div className="col-span-1 flex justify-end">
             <div className="flex items-center">
               <BookServiceButton />
             </div>
@@ -111,7 +113,7 @@ const ServiceRollup = ({
           onMouseLeave={handleOnLeave}
           className="w-[45rem] overflow-hidden rounded-b  bg-neutral-300 "
         >
-          <div className="grid grid-cols-7 space-x-4 overflow-hidden border-t-[.625px] border-black px-6">
+          <div className="grid grid-cols-7 space-x-6 overflow-hidden border-t-[.625px] border-black px-6">
             <div className="col-span-1"></div>
             <div className="col-span-2">
               <div className=" py-2 text-[0.625rem] font-medium leading-[150%] ">

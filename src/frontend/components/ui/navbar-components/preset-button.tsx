@@ -46,7 +46,7 @@ const PresetButton = ({
       onMouseEnter={handleOnMouseEnter}
       onMouseLeave={handleOnMouseLeave}
       onClick={handleOnClick}
-      className="flex w-4 hover:w-12 transition-[width] duration-300"
+      className="flex w-4 transition-[width] duration-300 hover:w-12"
     >
       {isPresetHovered ? (
         <div className="font-aperçu text-sm font-bold leading-[.5rem] text-black dark:text-neutral-300 md:text-xs">

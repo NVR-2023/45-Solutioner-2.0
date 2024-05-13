@@ -12,7 +12,7 @@ const PresetsSegment = ({ presetList }: PresetListType) => {
       >
         presets:
       </label>
-      <div className="flex space-x-4">
+      <div className="flex justify-between space-x-4">
         {presetList?.map((preset, index) => {
           return (
             <span
