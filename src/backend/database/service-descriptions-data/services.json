@@ -6,7 +6,7 @@
     "unit": "1 area of up to 100 m²",
     "duration": 3,
     "personnel": 1,
-    "included": "cleaning products"
+    "included": "cleaning products included"
   },
   {
     "category": "cleaning",
@@ -15,7 +15,7 @@
     "unit": "1 area of up to 100 m²",
     "duration": 7,
     "personnel": 2,
-    "included": "cleaning products"
+    "included": "cleaning products included"
   },
   {
     "category": "cleaning",
@@ -24,7 +24,7 @@
     "unit": "1 area of up to 100 m²",
     "duration": 7,
     "personnel": 1,
-    "included": "cleaning products"
+    "included": "cleaning products included"
   },
   {
     "category": "cleaning",
@@ -33,7 +33,7 @@
     "unit": "1 carpet of up to 12 m²",
     "duration": 2,
     "personnel": 1,
-    "included": "carpet cleaning equipment and consumables"
+    "included": "carpet cleaning equipment and consumables included"
   },
   {
     "category": "wardrobe",
@@ -42,7 +42,7 @@
     "unit": "Up to 20 items of clothing",
     "duration": 1,
     "personnel": 1,
-    "included": "professional vapor iron for the session"
+    "included": "professional vapor iron for the session included"
   },
   {
     "category": "wardrobe",
@@ -51,7 +51,7 @@
     "unit": "1 wardrobe of up to 7m³",
     "duration": 2,
     "personnel": 1,
-    "included": "cleaning products"
+    "included": "cleaning products included"
   },
   {
     "category": "wardrobe",
@@ -60,7 +60,7 @@
     "unit": "up to 5 pairs of shoes",
     "duration": 0.5,
     "personnel": 1,
-    "included": "tools and consumables"
+    "included": "tools and consumables included"
   },
   {
     "category": "plumbing",
@@ -69,7 +69,7 @@
     "unit": "1 leak",
     "duration": 1.5,
     "personnel": 1,
-    "included": "tools and consumables"
+    "included": "tools and consumables included"
   },
   {
     "category": "plumbing",
@@ -78,7 +78,7 @@
     "unit": "1 drain",
     "duration": 1.5,
     "personnel": 1,
-    "included": "tools and consumables"
+    "included": "tools and consumables included"
   },
   {
     "category": "plumbing",
@@ -87,7 +87,7 @@
     "unit": "1 exterior faucet in a block of up to 20 flats",
     "duration": 6,
     "personnel": 2,
-    "included": "tools and consumables"
+    "included": "tools and consumables included"
   },
   {
     "category": "electrical",
@@ -114,7 +114,7 @@
     "unit": "1 alarm system",
     "duration": 2,
     "personnel": 1,
-    "included": "tools and consumables"
+    "included": "tools and consumables included"
   },
   {
     "category": "security",
@@ -141,7 +141,7 @@
     "unit": "1 door",
     "duration": 1,
     "personnel": 1,
-    "included": "tools and consumables"
+    "included": "tools and consumables included"
   },
   {
     "category": "handyman",
@@ -150,7 +150,7 @@
     "unit": "1 window of up to 2 m²",
     "duration": 1,
     "personnel": 1,
-    "included": "tools, consumables and one simple 2 square meters glass pane"
+    "included": "tools, consumables and one simple 2 square meters glass pane included"
   },
 
   {
@@ -187,7 +187,7 @@
     "unit": "1 surface of up 20 m²",
     "duration": 3,
     "personnel": 1,
-    "included": "tools and consumables"
+    "included": "tools and consumables included"
   },
   {
     "category": "patching",
@@ -235,7 +235,7 @@
     "unit": "1 wall of up to 30 m²",
     "duration": 3,
     "personnel": 1,
-    "included": "tools and consumables"
+    "included": "tools and consumables included"
   },
   {
     "category": "patching",
@@ -253,7 +253,7 @@
     "unit": "1 lawn of up to 250 m²",
     "duration": 1,
     "personnel": 1,
-    "included": "lawnmower for the session"
+    "included": "lawnmower for the session included"
   },
   {
     "category": "gardening",
@@ -262,7 +262,7 @@
     "unit": "Up to 40 m",
     "duration": 2,
     "personnel": 1,
-    "included": "trimming tools"
+    "included": "trimming tools included"
   },
   {
     "category": "gardening",
@@ -271,7 +271,7 @@
     "unit": "up to 4 medium-sized trees",
     "duration": 2,
     "personnel": 1,
-    "included": "trimming tools"
+    "included": "trimming tools included"
   },
   {
     "category": "gardening",
@@ -289,7 +289,7 @@
     "unit": "1 garden of up to 150 m²",
     "duration": 2,
     "personnel": 1,
-    "included": "weeding tools"
+    "included": "weeding tools included"
   },
   {
     "category": "extermination",
@@ -298,7 +298,7 @@
     "unit": "1 area of up to 150 m²",
     "duration": 2,
     "personnel": 1,
-    "included": "tools and insecticides"
+    "included": "tools and insecticides included"
   },
   {
     "category": "extermination",
@@ -307,7 +307,7 @@
     "unit": "1 area of up to 150 m²",
     "duration": 2,
     "personnel": 1,
-    "included": "traps and baits"
+    "included": "traps and baits included"
   },
   {
     "category": "extermination",
@@ -316,7 +316,7 @@
     "unit": "1 area of up to 150 m²",
     "duration": 2,
     "personnel": 1,
-    "included": "tools and products"
+    "included": "tools and products included"
   },
   {
     "category": "extermination",
@@ -325,7 +325,7 @@
     "unit": "1 nest",
     "duration": 1.5,
     "personnel": 1,
-    "included": "utensils and consumables"
+    "included": "utensils and consumables included"
   },
   {
     "category": "petcare",
@@ -343,7 +343,7 @@
     "unit": "1 grooming session for 1 dog",
     "duration": 1,
     "personnel": 1,
-    "included": "grooming tools and products"
+    "included": "grooming tools and products included"
   },
   {
     "category": "petcare",
@@ -361,7 +361,7 @@
     "unit": "1 session comprising of wash, cut and basic styling",
     "duration": 1,
     "personnel": 1,
-    "included": "utensils and hair products"
+    "included": "utensils and hair products included"
   },
   {
     "category": "grooming",
@@ -370,7 +370,7 @@
     "unit": "1 manicure session for both hands",
     "duration": 1,
     "personnel": 1,
-    "included": "nail care utensils and products"
+    "included": "nail care utensils and products included"
   },
   {
     "category": "grooming",
@@ -379,7 +379,7 @@
     "unit": "1 pedicure session for both feet",
     "duration": 1.5,
     "personnel": 1,
-    "included": "nail care utensils and products"
+    "included": "nail care utensils and products included"
   },
   {
     "category": "grooming",
@@ -388,7 +388,7 @@
     "unit": "1 face makeup",
     "duration": 1.5,
     "personnel": 1,
-    "included": "makeup utensils and products"
+    "included": "makeup utensils and products included"
   },
 
   {
@@ -408,7 +408,7 @@
     "unit": "1 pressure and temperature measurement",
     "duration": 0.5,
     "personnel": 1,
-    "included": "gauge and thermometer provided for the session"
+    "included": "gauge and thermometer for the session included"
   },
 
   {
@@ -428,7 +428,7 @@
     "unit": "1 hour session for 1 client",
     "duration": 0.75,
     "personnel": 1,
-    "included": "weights for session"
+    "included": "weights for session included"
   },
 
   {
@@ -448,7 +448,7 @@
     "unit": "1 session for 1 client",
     "duration": 0.75,
     "personnel": 1,
-    "included": "cushions and meditation mats"
+    "included": "cushions and meditation mats included"
   },
 
   {
@@ -486,7 +486,7 @@
     "unit": "1 session of card or board games with 1 client",
     "duration": 1,
     "personnel": 1,
-    "included": "1 card game and 1 board game"
+    "included": "1 card game and 1 board game included"
   },
   {
     "category": "eventing",
