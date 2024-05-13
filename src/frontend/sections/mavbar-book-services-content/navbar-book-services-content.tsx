@@ -8,6 +8,16 @@ import SearchBar from "@/frontend/components/ui/navbar-components/search-bar";
 import PresetsSegment from "../../components/ui/navbar-components/presets-segment";
 import CollapseToggle from "@/frontend/components/ui/collapse-toggle/collapse-toggle";
 
+export type PresetProps = {
+  label: string;
+  tailwindIconColorClass: string;
+  preset: Record<string, string>;
+};
+
+export type PresetArrayType = {
+  presetArray: PresetProps[];
+};
+
 type NavbarBookServicesContentProps = {
   areNavbarsExpanded: boolean;
   setAreNavbarsExpanded: Dispatch<SetStateAction<boolean>>;
@@ -21,9 +31,7 @@ const NavbarBookServicesContent = ({
 }: NavbarBookServicesContentProps) => {
   const [categoryList, setCategoryList] = useState<string[]>([""]);
   const [priceIntervalList, setPriceIntervalList] = useState<string[]>([""]);
-  const [presetList, setPresetList] = useState<Record<string, string>[] | null>(
-    [{}],
-  );
+  const [presetList, setPresetList] = useState<PresetProps[] | null>(null);
 
   useEffect(() => {
     if (!allServicesStaticData) {
@@ -50,25 +58,32 @@ const NavbarBookServicesContent = ({
       ];
       setPriceIntervalList(priceIntervalsStringArray);
 
-      const presetArray: Array<{
-        category?: string;
-        price?: string;
-        sort_by?: string;
-        search?: string;
-      }> = [
+      const presetArray: PresetProps[] = [
         {
-          price: `€${lowestPrice}-${Math.ceil(lowestPrice + priceInterval)}`,
-          sort_by: "lowest price",
+          label: "Affordable",
+          tailwindIconColorClass: "text-yellow-500",
+          preset: {
+            price: `€${lowestPrice}-${Math.ceil(lowestPrice + priceInterval)}`,
+            sort_by: "lowest price",
+          },
         },
         {
-          price: `€${Math.ceil(lowestPrice + 2 * priceInterval)}-${highestPrice}`,
-          sort_by: "highest price",
+          label: "Popular",
+          tailwindIconColorClass: "text-blue-700",
+          preset: {
+            price: "any",
+            sort_by: "most popular",
+          },
         },
         {
-          category: "any",
-          price: "any",
-          sort_by: "category",
-          search: "",
+          label: "Reset",
+          tailwindIconColorClass: "text-neutral-500",
+          preset: {
+            category: "any",
+            price: "any",
+            sort_by: "category",
+            search: "",
+          },
         },
       ];
 

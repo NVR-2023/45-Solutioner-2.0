@@ -99,7 +99,7 @@ const DropdownMenu = ({
               {existingDropdownSearchParams ? (
                 <span className="tabular-nums">
                   <AnimatedSlidingLabel
-                    text={`${capitalizeFirstLetter(existingDropdownSearchParams as string)}`}
+                    label={`${capitalizeFirstLetter(existingDropdownSearchParams as string)}`}
                   />
                 </span>
               ) : (
@@ -133,7 +133,7 @@ const DropdownMenu = ({
                         tabIndex={index}
                         className="flex"
                       >
-                        <motion.span className="flex w-28 justify-start font-aperçu text-base font-medium tabular-nums leading-[1.7] text-black hover:font-bold dark:text-neutral-300 md:text-[.625rem]">
+                        <motion.span className="flex w-28 justify-start font-aperçu text-base font-semibold tabular-nums leading-[1.7] text-black hover:font-extrabold dark:text-neutral-300 md:text-[.625rem]">
                           {capitalizeFirstLetter(entry)}
                         </motion.span>
                         <span className="flex items-center justify-center">

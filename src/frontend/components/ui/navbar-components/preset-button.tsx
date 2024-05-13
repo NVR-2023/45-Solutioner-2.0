@@ -1,48 +1,64 @@
 import { useRouter, usePathname, useSearchParams } from "next/navigation";
-import { motion } from "framer-motion";
+import { useState } from "react";
+
 import { BasicComponentProps } from "@/types/component-props-types";
 import PresetIcon from "@/frontend/components/icons/preset-icon";
+import { PresetProps } from "@/frontend/sections/mavbar-book-services-content/navbar-book-services-content";
 
-type PresetButtonProps = BasicComponentProps & {
-  preset: Record<string, string>;
-};
+type PresetButtonProps = BasicComponentProps & PresetProps;
 
-const PresetButton = ({ scale, color, preset }: PresetButtonProps) => {
+const PresetButton = ({
+  scale,
+  tailwindIconColorClass,
+  label,
+  preset,
+}: PresetButtonProps) => {
+  const [isPresetHovered, setIsPresetHovered] = useState(false);
+
   const router = useRouter();
   const pathName = usePathname();
   const existingSearchParams = useSearchParams();
 
+  const handleOnMouseEnter = () => {
+    setIsPresetHovered(true);
+  };
+
+  const handleOnMouseLeave = () => {
+    setIsPresetHovered(false);
+  };
+
   const handleOnClick = () => {
     const newSearchParams = new URLSearchParams(existingSearchParams);
-
     for (const param in preset) {
       const normalizedParam = param.replace("_", " ");
       if (newSearchParams.has(normalizedParam)) {
         newSearchParams.set(normalizedParam, preset[param]);
       }
     }
-
     const newQueryString = newSearchParams.toString();
     const newURL = `${pathName}?${newQueryString}`;
     router.replace(newURL);
+    setIsPresetHovered(false);
   };
 
   return (
-    <motion.button
+    <button
+      onMouseEnter={handleOnMouseEnter}
+      onMouseLeave={handleOnMouseLeave}
       onClick={handleOnClick}
-      whileHover={{ scale: 1.2 }}
-      whileTap={{
-        scale: [1, 1.2, 0.8, 1],
-        transition: {
-          duration: 0.3,
-        },
-      }}
+      className="flex w-4 hover:w-12 transition-all duration-300"
     >
-      <PresetIcon scale={scale} color={color} />
-    </motion.button>
+      {isPresetHovered ? (
+        <div className="font-aperçu text-sm font-bold leading-[.5rem] text-black dark:text-neutral-300 md:text-xs">
+          {label}
+        </div>
+      ) : (
+        <div className={`pt-[3px] ${tailwindIconColorClass}`}>
+          <PresetIcon scale={scale} />
+        </div>
+      )}
+    </button>
   );
 };
 
 export default PresetButton;
-
-

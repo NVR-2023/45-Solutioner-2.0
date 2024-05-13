@@ -9,7 +9,7 @@ type FormModalShellProps = {
 const FormModalShell = ({ isModalOpen, children }: FormModalShellProps) => {
   const variants = {
     initial: {
-      scale: 0,
+      scale: 0.1,
       transformOrigin: "center center",
     },
     animate: {
@@ -17,14 +17,13 @@ const FormModalShell = ({ isModalOpen, children }: FormModalShellProps) => {
       transition: {
         delay: 0.1,
         ease: [0, 0.55, 0.45, 1],
-        duration: 0.3,
+        duration: 0.5,
       },
     },
     exit: {
       scale: 0,
       transformOrigin: "center center",
       transition: {
-        delay: 0.1,
         ease: "easeOut",
         duration: 0.18,
       },

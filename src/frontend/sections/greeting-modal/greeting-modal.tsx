@@ -8,21 +8,19 @@ type GreetingModalProps = {
 };
 
 const variants = {
-  initial: { x: "-500%" },
+  initial: { scale: 0 },
   animate: {
-    x: 0,
+    scale: 1,
     transition: {
-      delay: 0.27,
       ease: [0, 0.55, 0.45, 1],
-      duration: 0.36,
+      duration: 0.3,
     },
   },
   exit: {
-    x: "500%",
+    scale: 0,
     transition: {
-      delay: 0.1,
       ease: "easeOut",
-      duration: 0.36,
+      duration: 0.18,
     },
   },
 };
@@ -47,11 +45,10 @@ const GreetingModal = ({
           initial="initial"
           animate="animate"
           exit="exit"
-          className="z-100 box-border flex h-12 w-36 items-center justify-center rounded bg-yellow-300 px-4 py-2 shadow-[18px_18px_12px_0px_#00000040]"
+          className="z-100 box-border flex h-12 w-48 items-center justify-center rounded bg-yellow-300 px-4 py-2 shadow-[18px_18px_12px_0px_#00000040]"
         >
-          <motion.div className=" text-xs font-[700] ">
-            Welcome,
-            <motion.span className="small-caps">nr</motion.span>
+          <motion.div className=" text-xs font-medium ">
+       {`Welcome, ${"Nuno R."}`}
           </motion.div>
         </motion.div>
       )}
