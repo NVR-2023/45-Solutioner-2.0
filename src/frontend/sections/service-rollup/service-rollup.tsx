@@ -1,10 +1,9 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
-import ServiceCategoryRollupLabel from "./service-category-label";
+import ServiceCategoryRollupLabel from "./sub-components/service-category-label";
 import { capitalizeFirstLetter } from "@/utils/functions/capitalize-first-letter";
-import BookServiceButton from "./book-service-button";
-import SaleTag from "./sale-tag";
-
+import BookServiceButton from "./sub-components/book-service-button";
+import SaleTag from "./sub-components/sale-tag";
 const variants = {
   initial: {
     opacity: 0,
@@ -102,7 +101,7 @@ const ServiceRollup = ({
       </div>
 
       <div
-        className="grid duration-500"
+        className="grid"
         style={{
           gridTemplateRows: isServiceRollupHovered ? "1fr" : "0fr",
           transition: "grid-template-rows 500ms",
@@ -138,7 +137,6 @@ const ServiceRollup = ({
           </div>
         </div>
       </div>
-      <div></div>
     </motion.div>
   );
 };

@@ -7,12 +7,14 @@ const PresetsSegment = ({ presetList }: PresetListType) => {
   return (
     <div className="flex items-center space-x-2">
       <label
-        htmlFor="searchBar"
+        htmlFor="preset area"
         className="flex border-s-[0.7px] border-black ps-1.5 font-aperçu  text-sm font-[700] leading-[.5rem] tracking-wide text-black small-caps dark:text-neutral-300 md:text-xs"
       >
         presets:
       </label>
-      <div className="flex justify-between space-x-4">
+      <div className="flex justify-between space-x-4"
+      id="preset area"
+      >
         {presetList?.map((preset, index) => {
           return (
             <span
@@ -23,7 +25,7 @@ const PresetsSegment = ({ presetList }: PresetListType) => {
                 label={preset.label}
                 tailwindIconColorClass={preset.tailwindIconColorClass}
                 preset={preset.preset}
-                scale={0.7}
+                scale={0.75}
               />
             </span>
           );

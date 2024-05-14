@@ -1,7 +1,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { AllServiceStaticDataType } from "@/utils/functions/fetch-data/services-endpoint-submissions";
 
-import ServiceRollup from "./service-rollup";
+import ServiceRollup from "../service-rollup";
 
 type ContentAreaBookPageProps = {
   filteredAndSortedServiceStaticData: AllServiceStaticDataType | null;

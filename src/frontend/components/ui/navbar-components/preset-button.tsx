@@ -45,15 +45,17 @@ const PresetButton = ({
     <button
       onMouseEnter={handleOnMouseEnter}
       onMouseLeave={handleOnMouseLeave}
-      onClick={handleOnClick}
-      className="flex w-4 transition-[width] duration-300 hover:w-12"
+      className={` leading-[10rem] transition-[width] duration-300 ${isPresetHovered ? "w-12" : "w-4"}`}
     >
       {isPresetHovered ? (
-        <div className="font-aperçu text-sm font-bold leading-[.5rem] text-black dark:text-neutral-300 md:text-xs">
+        <div
+          onClick={handleOnClick}
+          className=" font-aperçu text-sm font-bold text-black dark:text-neutral-300 md:text-xs"
+        >
           {label}
         </div>
       ) : (
-        <div className={`pt-[3px] ${tailwindIconColorClass}`}>
+        <div className={` pt-[3px] ${tailwindIconColorClass}`}>
           <PresetIcon scale={scale} />
         </div>
       )}

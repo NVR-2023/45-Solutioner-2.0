@@ -10,7 +10,7 @@ import NavbarPrivate from "@/frontend/sections/navbar-private/navbar-private";
 import NavbarBookServicesContent from "@/frontend/sections/mavbar-book-services-content/navbar-book-services-content";
 import { useSearchParams } from "next/navigation";
 
-import ContentAreaBookPage from "./sub-components/content-area-book-page";
+import ContentAreaBookPage from "@/frontend/sections/service-rollup/sub-components/content-area-book-page";
 import GreetingModal from "@/frontend/sections/greeting-modal/greeting-modal";
 
 const Book = () => {
