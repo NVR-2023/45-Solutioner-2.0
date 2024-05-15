@@ -4,16 +4,15 @@ import { signOutUser } from "@/utils/functions/fetch-data/user-endpoint-submissi
 import { useRouter } from "next/navigation";
 
 const MyServices = () => {
+  const router = useRouter();
   const [isHovered, setIsHovered] = useState(false);
+
   const handleOnMouseEnter = () => {
     setIsHovered(true);
   };
-
   const handleOnMouseLeave = () => {
     setIsHovered(false);
   };
-
-  const router = useRouter();
 
   const handleOnclick = async () => {
     await signOutUser();
@@ -29,27 +28,32 @@ const MyServices = () => {
       <div className="flex space-x-2">
         {/* component */}
 
-        <div className="flex">
-          {!isHovered && (
-            <div
-              onMouseEnter={handleOnMouseEnter}
-              onMouseLeave={handleOnMouseLeave}
-              className=""
-            >
-              Hover Me
-            </div>
-          )}
+        <div
+          onMouseEnter={handleOnMouseEnter}
+          onMouseLeave={handleOnMouseLeave}
+          className="flex"
+        >
           <div
-            onMouseEnter={handleOnMouseEnter}
-            onMouseLeave={handleOnMouseLeave}
             className="grid"
             style={{
-              gridTemplateColumns: isHovered ? "1fr" : "0fr",
-              transition: "grid-template-columns 300ms",
+              gridTemplateColumns: isHovered ? "0fr" : "1fr",
+              transition: "grid-template-columns 180ms",
             }}
           >
             <div className="overflow-hidden">
-              <div className="overflow-hidden">Affordable</div>
+              <div className="overflow-hidden bg-green-500">H</div>
+            </div>
+          </div>
+
+          <div
+            className="grid"
+            style={{
+              gridTemplateColumns: isHovered ? "1fr" : "0fr",
+              transition: "grid-template-columns 180ms",
+            }}
+          >
+            <div className="overflow-hidden">
+              <div className="overflow-hidden bg-green-400">Affordable</div>
             </div>
           </div>
         </div>
