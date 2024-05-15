@@ -123,7 +123,7 @@ const DropdownMenu = ({
                   exit="closed"
                   onMouseEnter={handleOnMouseEnter}
                   onMouseLeave={handleOnMouseLeave}
-                  className="absolute left-0 top-9 z-10 block w-full rounded-[2px] bg-neutral-300 px-2 py-2 shadow-[18px_18px_12px_0px_#00000040]"
+                  className="absolute left-0 top-9 z-[9999] block w-full rounded-[2px] bg-neutral-300 px-2 py-2 shadow-lg shadow-red-700"
                 >
                   {dropdownMenuEntries.map((entry, index) => {
                     return (

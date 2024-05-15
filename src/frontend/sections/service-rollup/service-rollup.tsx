@@ -58,10 +58,13 @@ const ServiceRollup = ({
         ? "1 hour"
         : `${Math.ceil(parseFloat(duration) * 60).toString()} minutes`;
 
-  const processedPersonnelString =
+  const processedUnitString = capitalizeFirstLetter(unit).trim();
+  const processedIncludedString = capitalizeFirstLetter(unit).trim();
+  const processedPersonnelString = (
     personnel > 1
-      ? `Serviced by ${personnel} professionals  `
-      : "Serviced by 1 professional ";
+      ? `Serviced by ${personnel} professionals`
+      : "Serviced by 1 professional"
+  ).trim();
 
   return (
     <motion.div
@@ -121,20 +124,20 @@ const ServiceRollup = ({
               </div>
             </div>
             <div className="col-span-2  space-y-2 py-2 text-[.625rem] font-semibold leading-[150%]">
-              <div className="flex grid-cols-2 -space-x-1">
-                <div className="w-4">▪</div>
-                <div>{capitalizeFirstLetter(unit).trim()}</div>
+              <div className="flex grid-cols-2">
+                <div className="w-2">▪</div>
+                <div>{processedUnitString}</div>
               </div>
-              <div className="flex grid-cols-2 -space-x-1">
-                <div className="w-4">▪</div>
-                <div>{capitalizeFirstLetter(included).trim()}</div>
+              <div className="flex grid-cols-2">
+                <div className="w-2">▪</div>
+                <div>{processedIncludedString}</div>
               </div>
-              <div className="flex grid-cols-2 -space-x-1">
-                <div className="w-4">▪</div>
-                <div>{capitalizeFirstLetter(processedPersonnelString).trim()}</div>
+              <div className="flex">
+                <div className="w-2">▪</div>
+                <div>
+                  {processedPersonnelString}
+                </div>
               </div>
-          
-            
             </div>
             <div className="col-span-1"></div>
             <div className="col-span-1"></div>
