@@ -85,15 +85,16 @@ const ServiceRollup = ({
           <div className="col-span-2 flex items-center font-aperçu text-sm font-semibold tabular-nums text-black dark:text-neutral-300 md:text-[0.625rem]">
             <div className="flex items-baseline">{processedDurationString}</div>
           </div>
-          <div className="col-span-1 space-x-2 flex items-center justify-end text-xs font-bold  tabular-nums  ">
+          <div className="col-span-1 flex items-center justify-start space-x-2 text-xs font-bold  tabular-nums  ">
+            {/*             <SaleTag />
+             */}
             <div className="flex items-center font-semibold">
               <span className="text-[.625rem]">€</span>
               <span className="flex justify-end">{price}</span>
             </div>
-            <SaleTag />
           </div>
-          <div className="col-span-1 flex justify-end">
-            <div className="flex items-center">
+          <div className="col-span-1 flex h-full items-center justify-end">
+            <div className=" flex h-full items-center">
               <BookServiceButton />
             </div>
           </div>
@@ -119,21 +120,24 @@ const ServiceRollup = ({
                 {capitalizeFirstLetter(description)}
               </div>
             </div>
-            <div className="col-span-2  space-y-1.5 py-2 text-[.625rem] font-semibold leading-[150%]">
-              <div className="space-x-1">
-                <span>▪ {capitalizeFirstLetter(unit)}</span>
+            <div className="col-span-2  space-y-2 py-2 text-[.625rem] font-semibold leading-[150%]">
+              <div className="flex grid-cols-2 -space-x-1">
+                <div className="w-4">▪</div>
+                <div>{capitalizeFirstLetter(unit).trim()}</div>
               </div>
-              <div className="space-x-1">
-                <span>▪ {capitalizeFirstLetter(included)}</span>
+              <div className="flex grid-cols-2 -space-x-1">
+                <div className="w-4">▪</div>
+                <div>{capitalizeFirstLetter(included).trim()}</div>
               </div>
-              <div className="space-x-1">
-                <span>
-                  ▪ {capitalizeFirstLetter(processedPersonnelString)}
-                </span>
+              <div className="flex grid-cols-2 -space-x-1">
+                <div className="w-4">▪</div>
+                <div>{capitalizeFirstLetter(processedPersonnelString).trim()}</div>
               </div>
+          
+            
             </div>
-            <div className="col-span-1 bg-blue-400">123</div>
-            <div className="col-span-1 bg-green-900">123</div>
+            <div className="col-span-1"></div>
+            <div className="col-span-1"></div>
           </div>
         </div>
       </div>

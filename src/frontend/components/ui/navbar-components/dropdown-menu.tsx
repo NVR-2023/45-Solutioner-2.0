@@ -85,7 +85,7 @@ const DropdownMenu = ({
       <button
         onMouseEnter={handleOnMouseEnter}
         onMouseLeave={handleOnMouseLeave}
-        className="flex h-14 w-full items-center"
+        className=" flex h-14 w-full items-center"
       >
         <div className="flex items-baseline ">
           <label className="flex border-s-[0.7px] border-black ps-1.5 font-aperçu text-sm font-[700] leading-[.5rem] tracking-wide text-black small-caps dark:text-neutral-300 md:text-xs">

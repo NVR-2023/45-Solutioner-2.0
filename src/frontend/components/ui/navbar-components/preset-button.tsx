@@ -46,7 +46,7 @@ const PresetButton = ({
       onMouseEnter={handleOnMouseEnter}
       onMouseLeave={handleOnMouseLeave}
       onClick={handleOnClick}
-      className="flex leading-8"
+      className="flex"
     >
       <div
         className="grid"
@@ -71,8 +71,8 @@ const PresetButton = ({
           transition: "grid-template-columns 180ms",
         }}
       >
-        <div className="overflow-hidden">
-          <div className="overflow-hidden font-aperçu text-sm font-bold text-black dark:text-neutral-300 md:text-xs">
+        <div className="overflow-hidden flex items-center">
+          <div className="flex items-end overflow-hidden font-aperçu text-sm font-bold text-black dark:text-neutral-300 md:text-xs">
             {label}
           </div>
         </div>
