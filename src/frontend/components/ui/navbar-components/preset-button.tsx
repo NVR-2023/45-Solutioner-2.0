@@ -42,7 +42,51 @@ const PresetButton = ({
   };
 
   return (
-    <button
+    <div
+      onMouseEnter={handleOnMouseEnter}
+      onMouseLeave={handleOnMouseLeave}
+      onClick={handleOnClick}
+      className="flex leading-8"
+    >
+      <div
+        className="grid"
+        style={{
+          gridTemplateColumns: isPresetHovered ? "0fr" : "1fr",
+          transition: "grid-template-columns 180ms",
+        }}
+      >
+        <div className="overflow-hidden">
+          <div
+            className={` overflow-hidden pt-[3px] ${tailwindIconColorClass}`}
+          >
+            <PresetIcon scale={scale} />
+          </div>
+        </div>
+      </div>
+
+      <div
+        className="grid"
+        style={{
+          gridTemplateColumns: isPresetHovered ? "1fr" : "0fr",
+          transition: "grid-template-columns 180ms",
+        }}
+      >
+        <div className="overflow-hidden">
+          <div className="overflow-hidden font-aperçu text-sm font-bold text-black dark:text-neutral-300 md:text-xs">
+            {label}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default PresetButton;
+
+/* className =" font-aperçu text-sm font-bold text-black dark:text-neutral-300 md:text-xs";
+ */
+
+/*     <button
       onMouseEnter={handleOnMouseEnter}
       onMouseLeave={handleOnMouseLeave}
       className={` leading-[10rem] transition-[width] duration-300 ${isPresetHovered ? "w-12" : "w-4"}`}
@@ -59,8 +103,4 @@ const PresetButton = ({
           <PresetIcon scale={scale} />
         </div>
       )}
-    </button>
-  );
-};
-
-export default PresetButton;
+    </button>; */
