@@ -42,11 +42,11 @@ const PresetButton = ({
   };
 
   return (
-    <div
+    <button
       onMouseEnter={handleOnMouseEnter}
       onMouseLeave={handleOnMouseLeave}
       onClick={handleOnClick}
-      className="flex"
+      className="flex mt-[3px]"
     >
       <div
         className="grid"
@@ -56,9 +56,7 @@ const PresetButton = ({
         }}
       >
         <div className="overflow-hidden">
-          <div
-            className={` overflow-hidden pt-[3px] ${tailwindIconColorClass}`}
-          >
+          <div className={` overflow-hidden  ${tailwindIconColorClass}`}>
             <PresetIcon scale={scale} />
           </div>
         </div>
@@ -71,13 +69,13 @@ const PresetButton = ({
           transition: "grid-template-columns 180ms",
         }}
       >
-        <div className="overflow-hidden flex items-center">
-          <div className="flex items-end overflow-hidden font-aperçu text-sm font-bold text-black dark:text-neutral-300 md:text-xs">
+        <div className="flex overflow-hidden">
+          <div className="flex h-4 items-end overflow-hidden font-aperçu text-sm font-bold text-black dark:text-neutral-300 md:text-xs">
             {label}
           </div>
         </div>
       </div>
-    </div>
+    </button>
   );
 };
 
