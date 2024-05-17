@@ -1,4 +1,5 @@
 "use client";
+
 import { LayoutGroup, motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import {
@@ -11,17 +12,21 @@ import NavbarBookServicesContent from "@/frontend/sections/mavbar-book-services-
 import { useSearchParams } from "next/navigation";
 
 import ContentAreaBookPage from "@/frontend/sections/service-rollup/sub-components/content-area-book-page";
+
 import GreetingModal from "@/frontend/sections/greeting-modal/greeting-modal";
+import BookServiceCalendarModal from "@/frontend/sections/book-service-calendar-modal/book-service-calendar-modal";
 
 const Book = () => {
-  const [areNavbarsExpanded, setAreNavbarsExpanded] = useState(true);
-  const [allServicesStaticData, setAllServicesStaticData] =
+
+ const [areNavbarsExpanded, setAreNavbarsExpanded] = useState(true);
+ const [allServicesStaticData, setAllServicesStaticData] =
     useState<AllServiceStaticDataType>(null);
   const [
     filteredAndSortedServicesStaticData,
     setFilteredAndSortedServicesStaticData,
   ] = useState<AllServiceStaticDataType>(null);
 
+  const [ bookedServiceId , setBookedServiceId ] = useState<number>()
   const searchParams = useSearchParams();
 
   const [modalsObject, setModalsObject] = useState({
@@ -181,7 +186,7 @@ const Book = () => {
             </div>
           </div>
         </main>
-        
+
         <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transform">
           <GreetingModal
             isModalShown={modalsObject.greetUserModal.isGreetUserModalShown}
