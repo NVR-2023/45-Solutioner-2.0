@@ -2,10 +2,10 @@
 import { createContext, useContext, ReactNode, useState } from "react";
 
 type BookServiceModalContextProps = {
-  serviceId: number;
-  isBookServiceModalOpen: boolean;
-  setServiceId: (id: number) => void;
-  setIsBookServiceModalOpen: (isBookServiceModalOpen: boolean) => void;
+  bookServiceModalObject: Record<string, string | number | boolean>;
+  setBookServiceModalObject: (
+    BookServiceModalObject: Record<string, string | number | boolean>,
+  ) => void;
 };
 
 const BookServiceModalContext =
@@ -16,15 +16,13 @@ export const BookServiceModalContextProvider = ({
 }: {
   children: ReactNode;
 }) => {
-  const [serviceId, setServiceId] = useState<number>(0);
-  const [isBookServiceModalOpen, setIsBookServiceModalOpen] =
-    useState<boolean>(false);
+  const [bookServiceModalObject, setBookServiceModalObject] = useState<
+    Record<string, string | number | boolean>
+  >({});
 
-  const value = {
-    serviceId,
-    isBookServiceModalOpen,
-    setServiceId,
-    setIsBookServiceModalOpen,
+  const value: BookServiceModalContextProps = {
+    bookServiceModalObject,
+    setBookServiceModalObject,
   };
 
   return (

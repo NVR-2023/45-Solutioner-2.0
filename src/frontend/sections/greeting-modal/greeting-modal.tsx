@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { wait } from "@/utils/functions/wait";
 
 type GreetingModalProps = {
-  isModalShown: boolean;
+  isGreetingModalShown: boolean;
   closeGreetingsModal: () => void;
 };
 
@@ -26,7 +26,7 @@ const variants = {
 };
 
 const GreetingModal = ({
-  isModalShown,
+  isGreetingModalShown,
   closeGreetingsModal,
 }: GreetingModalProps) => {
   useEffect(() => {
@@ -39,7 +39,7 @@ const GreetingModal = ({
 
   return (
     <AnimatePresence key="greetingModal">
-      {isModalShown && (
+      {isGreetingModalShown && (
         <motion.div
           variants={variants}
           initial="initial"
@@ -48,7 +48,7 @@ const GreetingModal = ({
           className="z-100 box-border flex h-12 w-48 items-center justify-center rounded bg-yellow-300 px-4 py-2 shadow-[18px_18px_12px_0px_#00000040]"
         >
           <motion.div className=" text-xs font-medium ">
-       {`Welcome, ${"Nuno R."}`}
+            {`Welcome, ${"Nuno R."}`}
           </motion.div>
         </motion.div>
       )}

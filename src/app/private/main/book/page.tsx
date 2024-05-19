@@ -14,36 +14,24 @@ import { useSearchParams } from "next/navigation";
 import ContentAreaBookPage from "@/frontend/sections/service-rollup/sub-components/content-area-book-page";
 
 import GreetingModal from "@/frontend/sections/greeting-modal/greeting-modal";
+
 import BookServiceCalendarModal from "@/frontend/sections/book-service-calendar-modal/book-service-calendar-modal";
 
 const Book = () => {
+  const [areNavbarsExpanded, setAreNavbarsExpanded] = useState(true);
+  const [isGreetingModalShown, setIsGreetingModalShown] = useState(false);
+  const closeGreetingsModal: () => void = () => {
+    setIsGreetingModalShown(false);
+  };
 
- const [areNavbarsExpanded, setAreNavbarsExpanded] = useState(true);
- const [allServicesStaticData, setAllServicesStaticData] =
+  const [allServicesStaticData, setAllServicesStaticData] =
     useState<AllServiceStaticDataType>(null);
   const [
     filteredAndSortedServicesStaticData,
     setFilteredAndSortedServicesStaticData,
   ] = useState<AllServiceStaticDataType>(null);
 
-  const [ bookedServiceId , setBookedServiceId ] = useState<number>()
   const searchParams = useSearchParams();
-
-  const [modalsObject, setModalsObject] = useState({
-    greetUserModal: {
-      isGreetUserModalShown: false,
-    },
-    notificationModal: {
-      isNotificationModalShown: false,
-      message: "",
-    },
-
-    bookModal: {
-      isBookModalShown: false,
-      serviceId: null,
-      serviceName: "",
-    },
-  });
 
   useEffect(() => {
     const initializeServicesStaticData = async () => {
@@ -58,13 +46,7 @@ const Book = () => {
   }, []);
 
   useEffect(() => {
-    setModalsObject((previousModalObject) => ({
-      ...previousModalObject,
-      greetUserModal: {
-        ...previousModalObject.greetUserModal,
-        isGreetUserModalShown: true,
-      },
-    }));
+    setIsGreetingModalShown(true);
   }, []);
 
   useEffect(() => {
@@ -143,16 +125,6 @@ const Book = () => {
     setFilteredAndSortedServicesStaticData(filteredAndSortedData);
   }, [allServicesStaticData, searchParams]);
 
-  const closeGreetingsModal: () => void = () => {
-    setModalsObject((previousModalObject) => ({
-      ...previousModalObject,
-      greetUserModal: {
-        ...previousModalObject.greetUserModal,
-        isGreetUserModalShown: false,
-      },
-    }));
-  };
-
   return (
     <LayoutGroup>
       <div className="relative h-full w-full">
@@ -189,7 +161,7 @@ const Book = () => {
 
         <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transform">
           <GreetingModal
-            isModalShown={modalsObject.greetUserModal.isGreetUserModalShown}
+            isGreetingModalShown={isGreetingModalShown}
             closeGreetingsModal={closeGreetingsModal}
           />
         </div>
