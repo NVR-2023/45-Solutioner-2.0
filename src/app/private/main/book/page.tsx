@@ -16,6 +16,7 @@ import ContentAreaBookPage from "@/frontend/sections/service-rollup/sub-componen
 import GreetingModal from "@/frontend/sections/greeting-modal/greeting-modal";
 
 import BookServiceCalendarModal from "@/frontend/sections/book-service-calendar-modal/book-service-calendar-modal";
+import { useBookServiceModalContext } from "@/frontend/contextes/use-book-service-modal-context";
 
 const Book = () => {
   const [areNavbarsExpanded, setAreNavbarsExpanded] = useState(true);
@@ -23,6 +24,8 @@ const Book = () => {
   const closeGreetingsModal: () => void = () => {
     setIsGreetingModalShown(false);
   };
+
+  const { bookServiceModalObject , setBookServiceModalObject } = useBookServiceModalContext();
 
   const [allServicesStaticData, setAllServicesStaticData] =
     useState<AllServiceStaticDataType>(null);

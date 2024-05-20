@@ -1,3 +1,4 @@
+
 import { BookServiceModalContextProvider } from "@/frontend/contextes/use-book-service-modal-context";
 
 export default function PrivateMainLayout({
@@ -5,7 +6,7 @@ export default function PrivateMainLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const value = {};
+
 
   return (
     <BookServiceModalContextProvider>
