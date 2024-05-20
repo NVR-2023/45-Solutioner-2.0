@@ -1,11 +1,26 @@
 "use client";
-import { createContext, useContext, ReactNode, useState } from "react";
+import {
+  createContext,
+  useContext,
+  ReactNode,
+  useState,
+  Dispatch,
+  SetStateAction,
+} from "react";
 
-type BookServiceModalContextProps = {
-  bookServiceModalObject: Record<string, string | number | boolean | null>;
-  setBookServiceModalObject: (
-    BookServiceModalObject: Record<string, string | number | boolean | null>,
-  ) => void;
+export type BookServiceModalObjectType = {
+  serviceId: string | null;
+  service: string | null;
+  serviceDuration: number | null;
+  servicePrice: number | null;
+  isBookServiceModalShown: boolean;
+};
+
+export type BookServiceModalContextProps = {
+  bookServiceModalObject: BookServiceModalObjectType;
+  setBookServiceModalObject: Dispatch<
+    SetStateAction<BookServiceModalObjectType>
+  >;
 };
 
 const BookServiceModalContext =
@@ -16,15 +31,14 @@ export const BookServiceModalContextProvider = ({
 }: {
   children: ReactNode;
 }) => {
-  const [bookServiceModalObject, setBookServiceModalObject] = useState<
-    Record<string, string | number | boolean | null>
-  >({
-    serviceId: null,
-    service: "service name",
-    serviceDuration: null,
-    servicePrice: null,
-    isBookServiceModalShown: false,
-  });
+  const [bookServiceModalObject, setBookServiceModalObject] =
+    useState<BookServiceModalObjectType>({
+      serviceId: null,
+      service: "123X",
+      serviceDuration: null,
+      servicePrice: null,
+      isBookServiceModalShown: false,
+    });
 
   return (
     <BookServiceModalContext.Provider

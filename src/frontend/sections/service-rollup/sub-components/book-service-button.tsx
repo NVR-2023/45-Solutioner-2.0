@@ -1,11 +1,22 @@
 import { useBookServiceModalContext } from "@/frontend/contextes/use-book-service-modal-context";
+import { useEffect } from "react";
+
+
+import { BookServiceModalObjectType } from "@/frontend/contextes/use-book-service-modal-context";
 
 const BookServiceButton = () => {
   const { bookServiceModalObject, setBookServiceModalObject } =
     useBookServiceModalContext();
   
-  const xl = bookServiceModalObject.service;
-
+  const xl = bookServiceModalObject?.service;
+  
+   useEffect(() => {
+     setBookServiceModalObject((current: BookServiceModalObjectType) => ({
+       ...current,
+       service: "abracadabra",
+     }));
+   }, []);
+   
   const handleOnClick = () => {};
 
   return (
