@@ -1,4 +1,4 @@
-import { ChangeEvent , useCallback } from "react";
+import { ChangeEvent, useCallback } from "react";
 import { useRouter, usePathname, useSearchParams } from "next/navigation";
 
 type SearchBarProps = {
@@ -7,20 +7,17 @@ type SearchBarProps = {
 
 const SearchBar = ({ label }: SearchBarProps) => {
   const router = useRouter();
-  const pathName = usePathname()
+  const pathName = usePathname();
   const existingSearchParams = useSearchParams();
   const existingSearchBarSearchParams = existingSearchParams.get(label);
 
-  const handleOnChange = (event: ChangeEvent<HTMLInputElement>) => 
-    {
+  const handleOnChange = (event: ChangeEvent<HTMLInputElement>) => {
     const newSearchParams = new URLSearchParams(existingSearchParams);
     newSearchParams.set(label, event.target.value);
     const newQueryString = newSearchParams.toString();
     const newURL = `${pathName}?${newQueryString}`;
     router.replace(newURL);
   };
-
-
 
   return (
     <div className="flex h-full">
@@ -37,7 +34,7 @@ const SearchBar = ({ label }: SearchBarProps) => {
             id="searchBar"
             onChange={handleOnChange}
             value={existingSearchBarSearchParams as string}
-            className="h-4 w-full appearance-none border-b border-black bg-neutral-300 pb-[.1rem] font-aperçu focus:border-b focus:outline-none dark:border-[#D9D9D9] md:text-xs"
+            className="h-4 w-full appearance-none border-b border-black bg-neutral-300  pb-[.1rem] font-aperçu font-bold focus:border-b focus:outline-none dark:border-[#D9D9D9] md:text-xs"
           />
         </div>
       </div>
