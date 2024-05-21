@@ -17,7 +17,7 @@ const DropdownMenu = ({
   dropdownMenuLabel,
   dropdownMenuEntries,
 }: DropDownMenuProps) => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isDropdownMenuOpen, setIsDropdownMenuOpen] = useState(false);
 
   const router = useRouter();
   const pathName = usePathname();
@@ -43,11 +43,11 @@ const DropdownMenu = ({
   ]);
 
   const handleOnMouseEnter = () => {
-    setIsMenuOpen(true);
+    setIsDropdownMenuOpen(true);
   };
 
   const handleOnMouseLeave = () => {
-    setIsMenuOpen(false);
+    setIsDropdownMenuOpen(false);
   };
 
   const handleOnClick = async (entry: string) => {
@@ -57,7 +57,7 @@ const DropdownMenu = ({
     const newURL = `${window.location.pathname}?${newQueryString}`;
     router.replace(newURL);
     await wait(500);
-    setIsMenuOpen(false);
+    setIsDropdownMenuOpen(false);
   };
 
   return (
@@ -87,14 +87,14 @@ const DropdownMenu = ({
               )}
               <span
                 className={`flex origin-center justify-center pt-0.5 transition-all duration-300 ${
-                  isMenuOpen ? "rotate-180" : ""
+                  isDropdownMenuOpen ? "rotate-180" : ""
                 } `}
               >
                 <MenuDownArrow scale={0.6125} />
               </span>
             </div>
 
-              {isMenuOpen && (
+              {isDropdownMenuOpen && (
                 <motion.ul
                   onMouseEnter={handleOnMouseEnter}
                   onMouseLeave={handleOnMouseLeave}
