@@ -13,7 +13,7 @@ export type BookServiceModalObjectType = {
   service: string | null;
   serviceDuration: number | null;
   servicePrice: number | null;
-  isBookServiceModalShown: boolean;
+  isBookServiceModalOpen: boolean;
 };
 
 export type BookServiceModalContextProps = {
@@ -37,7 +37,7 @@ export const BookServiceModalContextProvider = ({
       service: "123X",
       serviceDuration: null,
       servicePrice: null,
-      isBookServiceModalShown: false,
+      isBookServiceModalOpen: false,
     });
 
   return (

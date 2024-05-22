@@ -105,7 +105,7 @@ const DropdownMenu = ({
         }}
       >
         <div className="overflow-hidden rounded-[2px] shadow-[18px_18px_12px_0px_#00000040]">
-          <motion.ul className="z-[9999] block w-full bg-neutral-300 px-2 py-2">
+          <motion.ul className="z-10 block w-full bg-neutral-300 px-2 py-2">
             {dropdownMenuEntries.map((entry, index) => {
               return (
                 <motion.li

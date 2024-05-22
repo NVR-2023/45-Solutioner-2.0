@@ -14,8 +14,8 @@ import { useSearchParams } from "next/navigation";
 import ContentAreaBookPage from "@/frontend/sections/content-area-book-page/content-area-book-page";
 
 import GreetingModal from "@/frontend/sections/greeting-modal/greeting-modal";
-
 import BookServiceCalendarModal from "@/frontend/sections/book-service-calendar-modal/book-service-calendar-modal";
+
 import { useBookServiceModalContext } from "@/frontend/contextes/use-book-service-modal-context";
 
 const Book = () => {
@@ -25,9 +25,6 @@ const Book = () => {
     setIsGreetingModalShown(false);
   };
 
-  const { bookServiceModalObject, setBookServiceModalObject } =
-    useBookServiceModalContext();
-
   const [allServicesStaticData, setAllServicesStaticData] =
     useState<AllServiceStaticDataType>(null);
   const [
@@ -36,6 +33,8 @@ const Book = () => {
   ] = useState<AllServiceStaticDataType>(null);
 
   const searchParams = useSearchParams();
+
+  const { bookServiceModalObject } = useBookServiceModalContext();
 
   useEffect(() => {
     const initializeServicesStaticData = async () => {
@@ -168,6 +167,9 @@ const Book = () => {
             isGreetingModalShown={isGreetingModalShown}
             closeGreetingsModal={closeGreetingsModal}
           />
+        </div>
+        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transform">
+          <BookServiceCalendarModal />
         </div>
       </div>
     </LayoutGroup>
