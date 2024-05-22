@@ -59,76 +59,80 @@ const DropdownMenu = ({
     await wait(500);
     setIsDropdownMenuOpen(false);
   };
-
   return (
-    <div key={dropdownMenuLabel} className="relative z-10">
-      <button
-        onMouseEnter={handleOnMouseEnter}
-        onMouseLeave={handleOnMouseLeave}
-        className=" flex h-14 w-full items-center"
-      >
-        <div className="flex items-baseline ">
-          <label className="flex border-s-[0.7px] border-black ps-1.5 font-aperçu text-sm font-[700] leading-[.5rem] tracking-wide text-black small-caps dark:text-neutral-300 md:text-xs">
-            {`${dropdownMenuLabel}:`}
-          </label>
-          <div className="relative flex pe-2 ps-2">
-            <div
-              id={`${dropdownMenuLabel}-label`}
-              className="flex w-28 space-x-2 font-aperçu text-sm font-bold leading-[.5rem] text-black dark:text-neutral-300 md:text-xs"
-            >
-              {existingDropdownSearchParams ? (
-                <span className="tabular-nums">
-                  <AnimatedSlidingLabel
-                    label={`${capitalizeFirstLetter(existingDropdownSearchParams as string)}`}
-                  />
-                </span>
-              ) : (
-                <span>&nbsp;</span>
-              )}
-              <span
-                className={`flex origin-center justify-center pt-0.5 transition-all duration-300 ${
-                  isDropdownMenuOpen ? "rotate-180" : ""
-                } `}
-              >
-                <MenuDownArrow scale={0.6125} />
+    <div
+      onMouseEnter={handleOnMouseEnter}
+      onMouseLeave={handleOnMouseLeave}
+      key={dropdownMenuLabel}
+      className="relative z-10 flex h-14 w-full items-center"
+    >
+      <div className="flex">
+        <label className="flex border-s-[0.7px] border-black ps-1.5 font-aperçu text-sm font-[700] leading-[.5rem] tracking-wide text-black small-caps dark:text-neutral-300 md:text-xs">
+          {`${dropdownMenuLabel}:`}
+        </label>
+        <div className="relative flex pe-2 ps-2">
+          <div
+            id={`${dropdownMenuLabel}-label`}
+            className="flex w-28 space-x-2 font-aperçu text-sm font-bold leading-[.5rem] text-black dark:text-neutral-300 md:text-xs"
+          >
+            {existingDropdownSearchParams ? (
+              <span className="tabular-nums">
+                <AnimatedSlidingLabel
+                  label={`${capitalizeFirstLetter(existingDropdownSearchParams as string)}`}
+                />
               </span>
-            </div>
-
-              {isDropdownMenuOpen && (
-                <motion.ul
-                  onMouseEnter={handleOnMouseEnter}
-                  onMouseLeave={handleOnMouseLeave}
-                  className="absolute left-0 top-9 z-[9999] block w-full rounded-[2px] bg-neutral-300 px-2 py-2 shadow-[18px_18px_12px_0px_#00000040]"
-                >
-                  {dropdownMenuEntries.map((entry, index) => {
-                    return (
-                      <motion.li
-                        key={`${dropdownMenuLabel}${index}`}
-                        onClick={() => handleOnClick(entry)}
-                        tabIndex={index}
-                        className="flex"
-                      >
-                        <motion.span className="flex w-28 justify-start font-aperçu text-base font-semibold tabular-nums leading-[1.7] text-black hover:font-extrabold dark:text-neutral-300 md:text-[.625rem]">
-                          {capitalizeFirstLetter(entry)}
-                        </motion.span>
-                        <span className="flex items-center justify-center">
-                          {entry === existingDropdownSearchParams ? (
-                            <motion.div
-                              layoutId={`${dropdownMenuLabel}-checkmark`}
-                              transition={{ duration: 0.2 }}
-                            >
-                              <CheckIcon scale={0.5} />
-                            </motion.div>
-                          ) : null}
-                        </span>
-                      </motion.li>
-                    );
-                  })}
-                </motion.ul>
-              )}
+            ) : (
+              <span>&nbsp;</span>
+            )}
+            <span
+              className={`flex origin-center justify-center pt-0.5 transition-all duration-300 ${
+                isDropdownMenuOpen ? "rotate-180" : ""
+              } `}
+            >
+              <MenuDownArrow scale={0.6125} />
+            </span>
           </div>
         </div>
-      </button>
+      </div>
+
+      <div
+        onMouseEnter={handleOnMouseEnter}
+        onMouseLeave={handleOnMouseLeave}
+        className="absolute left-12 top-14 grid rounded-[2px]"
+        style={{
+          gridTemplateRows: isDropdownMenuOpen ? "1fr" : "0fr",
+          transition: "grid-template-rows 100ms",
+        }}
+      >
+        <div className="overflow-hidden rounded-[2px] shadow-[18px_18px_12px_0px_#00000040]">
+          <motion.ul className="z-[9999] block w-full bg-neutral-300 px-2 py-2">
+            {dropdownMenuEntries.map((entry, index) => {
+              return (
+                <motion.li
+                  key={`${dropdownMenuLabel}${index}`}
+                  onClick={() => handleOnClick(entry)}
+                  tabIndex={index}
+                  className="flex"
+                >
+                  <motion.span className="flex w-28 justify-start font-aperçu text-base font-semibold tabular-nums leading-[1.7] text-black hover:font-extrabold dark:text-neutral-300 md:text-[.625rem]">
+                    {capitalizeFirstLetter(entry)}
+                  </motion.span>
+                  <span className="flex items-center justify-center">
+                    {entry === existingDropdownSearchParams ? (
+                      <motion.div
+                        layoutId={`${dropdownMenuLabel}-checkmark`}
+                        transition={{ duration: 0.2 }}
+                      >
+                        <CheckIcon scale={0.5} />
+                      </motion.div>
+                    ) : null}
+                  </span>
+                </motion.li>
+              );
+            })}
+          </motion.ul>
+        </div>
+      </div>
     </div>
   );
 };
