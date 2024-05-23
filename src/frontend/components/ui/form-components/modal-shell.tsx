@@ -15,7 +15,7 @@ const variants = {
     transition: {
       delay: 0.1,
       ease: [0, 0.55, 0.45, 1],
-      duration: 0.5,
+      duration: 0.3,
     },
   },
   exit: {
@@ -38,7 +38,7 @@ const ModalShell = ({ isModalOpen, children }: FormModalShellProps) => {
             animate="animate"
             exit="exit"
             variants={variants}
-            className="z-[9999] flex w-[18rem] justify-center rounded bg-neutral-300 px-14 py-7 text-black shadow-[18px_18px_12px_0px_#00000040] dark:text-neutral-300"
+            className="flex w-[18rem] justify-center rounded bg-neutral-300 px-14 py-7 text-black shadow-[18px_18px_12px_0px_#00000040] dark:text-neutral-300"
           >
             {children}
           </motion.div>

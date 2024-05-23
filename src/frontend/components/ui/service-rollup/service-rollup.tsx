@@ -72,6 +72,7 @@ const ServiceRollup = ({
       initial="initial"
       animate="animate"
       exit="exit"
+      className="z-0"
     >
       <div
         onMouseEnter={handleOnEnter}
@@ -134,9 +135,7 @@ const ServiceRollup = ({
               </div>
               <div className="flex">
                 <div className="w-2">▪</div>
-                <div>
-                  {processedPersonnelString}
-                </div>
+                <div>{processedPersonnelString}</div>
               </div>
             </div>
             <div className="col-span-1"></div>
