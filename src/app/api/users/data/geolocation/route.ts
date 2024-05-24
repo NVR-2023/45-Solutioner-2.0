@@ -1,11 +1,8 @@
 import generateResponseObject from "@/utils/functions/fetch-data/generate-response-object";
 import { NextResponse } from "next/server";
-import { useSearchParams } from "next/navigation";
 import { validateRequest } from "@/backend/lucia-auth/validate-request";
 
 export async function GET() {
-
-  const searchParams = useSearchParams();
   let responseObject = {};
 
   const { user, session } = await validateRequest();
@@ -16,7 +13,7 @@ export async function GET() {
     return NextResponse.json(responseObject);
   }
 
-  const address = searchParams.get("address");
+  const address = "Avenida almirante reis, nº100A , Lisboa";
   if (!address) {
     responseObject = generateResponseObject({
       status: 400,
