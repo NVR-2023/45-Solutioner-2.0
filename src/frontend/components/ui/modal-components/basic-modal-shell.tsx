@@ -37,16 +37,15 @@ const BasicModalShell = ({
   setIsModalOpen,
   children,
 }: BasicModalShellProps) => {
-  
   const router = useRouter();
 
   useEffect(() => {
     const handleEscapeKeyPress = async (event: KeyboardEvent) => {
       if (event.key === "Escape") {
         setIsModalOpen(false);
+        await wait(400);
+        router.push("/");
       }
-      await wait(400);
-      router.push("/");
     };
 
     document.addEventListener("keydown", handleEscapeKeyPress);
@@ -54,7 +53,7 @@ const BasicModalShell = ({
     return () => {
       document.removeEventListener("keydown", handleEscapeKeyPress);
     };
-  }, []);
+  }, [setIsModalOpen]);
 
   return (
     <>

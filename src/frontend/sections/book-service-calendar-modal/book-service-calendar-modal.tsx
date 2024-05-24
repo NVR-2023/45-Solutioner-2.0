@@ -1,4 +1,4 @@
-import { useEffect, useRef, RefObject } from "react";
+import { useRef, RefObject } from "react";
 import AdvancedModalShell from "@/frontend/components/ui/modal-components/advanced-modal-shell";
 import { useBookServiceModalContext } from "@/frontend/contextes/use-book-service-modal-context";
 
@@ -21,7 +21,7 @@ const BookServiceCalendarModal = () => {
       isModalOpen={isBookServiceModalOpen}
       setIsModalOpen={setIsBookServiceModalOpen}
     >
-      <div>
+      <div className="flex flex-col">
         <p>123</p>
         <p>123</p>
         <p>123</p>
