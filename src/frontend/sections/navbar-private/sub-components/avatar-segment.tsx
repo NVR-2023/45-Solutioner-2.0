@@ -1,4 +1,4 @@
-import { getInitials } from "@/utils/functions/get-Initials";
+import { getInitialsFromName } from "@/utils/functions/get-Initials-from-name";
 import { getHexColorFromInitials } from "@/utils/functions/get-hex-color-from-initials";
 
 type AvatarSegmentProps = {
@@ -6,8 +6,8 @@ type AvatarSegmentProps = {
 };
 
 export const AvatarSegment = ({ name }: AvatarSegmentProps) => {
-  const avatarInitials = getInitials("Nuno Rodrigues");
-  const avatarBackgroundColor = "#047857";// getHexColorFromInitials(avatarInitials, 0.4); 
+  const avatarInitials = getInitialsFromName("Nuno Rodrigues");
+  const avatarBackgroundColor = "#047857"; // getHexColorFromInitials(avatarInitials, 0.4);
 
   return (
     <div
@@ -16,7 +16,7 @@ export const AvatarSegment = ({ name }: AvatarSegmentProps) => {
         backgroundColor: avatarBackgroundColor,
       }}
     >
-      <span className="flex items-center h-5 w-5 justify-center text-[.625rem] font-semibold text-white dark:text-neutral-700 small-caps">
+      <span className="flex h-5 w-5 items-center justify-center text-[.625rem] font-semibold text-white small-caps dark:text-neutral-700">
         {avatarInitials}
       </span>
     </div>

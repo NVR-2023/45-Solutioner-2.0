@@ -83,18 +83,18 @@ export const areUserCredentialsValid = async (
 //
 
 export const fetchUsername = async () => {
-  let result;
-  const { user } = await validateRequest();
-  if (!user) return null;
-
   try {
-    result = await db
+    const { user } = await validateRequest();
+    if (!user) return null;
+
+    const result = await db
       .select({ username: users.name })
       .from(users)
-      .where(eq(users.id, user.id));
+      .where(eq(users.id, user.id))
+      .limit(1);
+
+    return result ? result[0].username : null;
   } catch (error) {
     console.log("error fetching username: ", error);
   }
-
-  return result;
 };

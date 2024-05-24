@@ -34,7 +34,7 @@ export const BookServiceModalContextProvider = ({
   const [bookServiceModalObject, setBookServiceModalObject] =
     useState<BookServiceModalObjectType>({
       serviceId: null,
-      service: "123X",
+      service: "",
       serviceDuration: null,
       servicePrice: null,
       isBookServiceModalOpen: false,
