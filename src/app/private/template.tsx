@@ -1,6 +1,5 @@
-import { authenticateAndRedirect } from "@/utils/functions/server-functions/authenticate-and-redirect";
+import { ReactNode } from "react";
 
-export default async function PrivateTemplate({ children }: { children: React.ReactNode }) {
-/*     await authenticateAndRedirect();
- */    return <>{children}</>;
+export default function PrivateTemplate({ children }: { children: ReactNode }) {
+  return <>{children}</>;
 }
