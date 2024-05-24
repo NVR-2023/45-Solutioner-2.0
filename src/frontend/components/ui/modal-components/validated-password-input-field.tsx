@@ -79,7 +79,7 @@ const ValidatedPasswordInputField = ({
           value={formFields.password?.value as string}
           aria-invalid={formFields.password?.errorMessage ? "true" : "false"}
           aria-describedby="passwordError"
-          className="h-4 w-full appearance-none border-b border-black bg-neutral-300 font-aperçu  text-black focus:border-b focus:outline-none dark:border-[#D9D9D9] dark:bg-[#222222] md:text-xs"
+          className="h-4 w-full appearance-none border-b border-black bg-transparent font-aperçu  text-black focus:border-b focus:outline-none dark:border-[#D9D9D9] md:text-xs"
         />
       </div>
       <div className="absolute -top-5 left-0 w-full">
@@ -111,7 +111,9 @@ const ValidatedPasswordInputField = ({
           formFields.password?.errorMessage ? "opacity-100" : "opacity-0"
         }`}
       >
-        <ErrorMessage errorMessage={formFields.password?.errorMessage || "\u00A0"} />
+        <ErrorMessage
+          errorMessage={formFields.password?.errorMessage || "\u00A0"}
+        />
       </div>
     </div>
   );
