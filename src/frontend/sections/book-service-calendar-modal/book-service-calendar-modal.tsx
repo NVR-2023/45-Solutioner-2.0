@@ -1,51 +1,27 @@
 import { useEffect, useRef, RefObject } from "react";
-import ModalShell from "@/frontend/components/ui/form-components/modal-shell";
+import AdvancedModalShell from "@/frontend/components/ui/modal-components/advanced-modal-shell";
 import { useBookServiceModalContext } from "@/frontend/contextes/use-book-service-modal-context";
 
 const BookServiceCalendarModal = () => {
   const { bookServiceModalObject, setBookServiceModalObject } =
     useBookServiceModalContext();
-  const modalRef: RefObject<HTMLDivElement> = useRef(null);
 
-  const handleOnCancel = () => {
+  const isBookServiceModalOpen = bookServiceModalObject.isBookServiceModalOpen;
+  const setIsBookServiceModalOpen = (isModalOpen: boolean) => {
     setBookServiceModalObject((previousObject) => ({
       ...previousObject,
-      isBookServiceModalOpen: false,
+      isBookServiceModalOpen: isModalOpen,
     }));
   };
 
-  useEffect(() => {
-    const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
-        handleOnCancel();
-      }
-    };
-
-    if (bookServiceModalObject.isBookServiceModalOpen) {
-      // Disable pointer events globally
-      document.body.style.pointerEvents = "none";
-
-      // Re-enable pointer events for the modal
-      if (modalRef.current) {
-        modalRef.current.style.pointerEvents = "auto";
-      }
-
-      document.addEventListener("keydown", handleKeyDown);
-    } else {
-      // Re-enable pointer events globally when the modal is closed
-      document.body.style.pointerEvents = "auto";
-    }
-
-    return () => {
-      // Ensure pointer events are re-enabled if the component unmounts
-      document.body.style.pointerEvents = "auto";
-      document.removeEventListener("keydown", handleKeyDown);
-    };
-  }, [bookServiceModalObject.isBookServiceModalOpen]);
+  const modalRef: RefObject<HTMLDivElement> = useRef(null);
 
   return (
-    <ModalShell isModalOpen={bookServiceModalObject.isBookServiceModalOpen}>
-      <div className=" z-50 flex flex-col" ref={modalRef}>
+    <AdvancedModalShell
+      isModalOpen={isBookServiceModalOpen}
+      setIsModalOpen={setIsBookServiceModalOpen}
+    >
+      <div>
         <p>123</p>
         <p>123</p>
         <p>123</p>
@@ -57,9 +33,9 @@ const BookServiceCalendarModal = () => {
         <p>123</p>
         <p>123</p>
         <p>123</p>
-        <button onClick={handleOnCancel}>cancel</button>
+        <p>123</p>
       </div>
-    </ModalShell>
+    </AdvancedModalShell>
   );
 };
 

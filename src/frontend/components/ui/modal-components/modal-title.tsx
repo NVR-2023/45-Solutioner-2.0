@@ -1,10 +1,10 @@
 import LogoIcon from "@/frontend/components/icons/logo-icon";
 
-type FormTitleProps = {
+type ModalTitleProps = {
   title: string;
 };
 
-const FormTitle = ({ title }: FormTitleProps) => {
+const ModalTitle = ({ title }: ModalTitleProps) => {
   return (
     <>
       <div className="flex h-full w-full items-center space-x-[.1rem] transform -translate-x-1.5">
@@ -17,4 +17,4 @@ const FormTitle = ({ title }: FormTitleProps) => {
   );
 };
 
-export default FormTitle;
+export default ModalTitle;

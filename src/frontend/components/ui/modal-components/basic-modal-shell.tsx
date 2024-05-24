@@ -1,10 +1,14 @@
-import { ReactNode } from "react";
+import { useEffect, ReactNode } from "react";
+import { useRouter } from "next/navigation";
+import { wait } from "@/utils/functions/wait";
 import { motion, AnimatePresence } from "framer-motion";
 
-type FormModalShellProps = {
+type BasicModalShellProps = {
   isModalOpen: boolean;
+  setIsModalOpen: (isModalOpen: boolean) => void;
   children: ReactNode;
 };
+
 const variants = {
   initial: {
     scale: 0,
@@ -28,7 +32,30 @@ const variants = {
   },
 };
 
-const ModalShell = ({ isModalOpen, children }: FormModalShellProps) => {
+const BasicModalShell = ({
+  isModalOpen,
+  setIsModalOpen,
+  children,
+}: BasicModalShellProps) => {
+  
+  const router = useRouter();
+
+  useEffect(() => {
+    const handleEscapeKeyPress = async (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setIsModalOpen(false);
+      }
+      await wait(400);
+      router.push("/");
+    };
+
+    document.addEventListener("keydown", handleEscapeKeyPress);
+
+    return () => {
+      document.removeEventListener("keydown", handleEscapeKeyPress);
+    };
+  }, []);
+
   return (
     <>
       <AnimatePresence>
@@ -48,4 +75,4 @@ const ModalShell = ({ isModalOpen, children }: FormModalShellProps) => {
   );
 };
 
-export default ModalShell;
+export default BasicModalShell;
