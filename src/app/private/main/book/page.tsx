@@ -16,7 +16,7 @@ import ContentAreaBookPage from "@/frontend/sections/content-area-book-page/cont
 import GreetingModal from "@/frontend/sections/greeting-modal/greeting-modal";
 import BookServiceCalendarModal from "@/frontend/sections/book-service-calendar-modal/book-service-calendar-modal";
 
-import { useBookServiceModalContext } from "@/frontend/contextes/use-book-service-modal-context";
+import { useBookServiceModalContext } from "@/frontend/contexts/use-book-service-modal-context";
 
 const Book = () => {
   const [areNavbarsExpanded, setAreNavbarsExpanded] = useState(true);
@@ -168,7 +168,7 @@ const Book = () => {
             closeGreetingsModal={closeGreetingsModal}
           />
         </div>
-        <div className="z-50 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transform">
+        <div className="absolute left-1/2 top-1/2 z-50 -translate-x-1/2 -translate-y-1/2 transform">
           <BookServiceCalendarModal />
         </div>
       </div>

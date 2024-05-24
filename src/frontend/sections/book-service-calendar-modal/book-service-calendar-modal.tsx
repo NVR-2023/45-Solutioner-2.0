@@ -1,11 +1,10 @@
 import { useRef, RefObject } from "react";
 import AdvancedModalShell from "@/frontend/components/ui/modal-components/advanced-modal-shell";
-import { useBookServiceModalContext } from "@/frontend/contextes/use-book-service-modal-context";
+import { useBookServiceModalContext } from "@/frontend/contexts/use-book-service-modal-context";
 
-import { useUserDetailsContext } from "@/frontend/contextes/use-user-details";
+import { useUserDetailsContext } from "@/frontend/contexts/use-user-details";
 
 const BookServiceCalendarModal = () => {
-  
   const userDetails = useUserDetailsContext();
 
   const { bookServiceModalObject, setBookServiceModalObject } =
