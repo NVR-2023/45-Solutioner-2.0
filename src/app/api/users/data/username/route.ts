@@ -19,7 +19,7 @@ export async function GET() {
     if (username) {
       responseObject = generateResponseObject({
         status: 201,
-        data: username,
+        data: {username},
       });
     } else {
       responseObject = generateResponseObject({
