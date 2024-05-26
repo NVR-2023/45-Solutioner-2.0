@@ -16,9 +16,8 @@ import ContentAreaBookPage from "@/frontend/sections/content-area-book-page/cont
 import GreetingModal from "@/frontend/sections/greeting-modal/greeting-modal";
 import BookServiceCalendarModal from "@/frontend/sections/book-service-calendar-modal/book-service-calendar-modal";
 
-import { useBookServiceModalContext } from "@/frontend/contexts/use-book-service-modal-context";
-
 const Book = () => {
+  
   const [areNavbarsExpanded, setAreNavbarsExpanded] = useState(true);
   const [isGreetingModalShown, setIsGreetingModalShown] = useState(false);
   const closeGreetingsModal: () => void = () => {
@@ -33,8 +32,6 @@ const Book = () => {
   ] = useState<AllServiceStaticDataType>(null);
 
   const searchParams = useSearchParams();
-
-  const { bookServiceModalObject } = useBookServiceModalContext();
 
   useEffect(() => {
     const initializeServicesStaticData = async () => {
