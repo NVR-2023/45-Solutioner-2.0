@@ -1,34 +1,14 @@
-import generateResponseObject from "@/utils/functions/fetch-data/generate-response-object";
-import { NextRequest, NextResponse } from "next/server";
-import { validateRequest } from "@/backend/lucia-auth/validate-request";
+"use server"
+import generateResponseObject from "@/utils/functions/fetch-data/generate-response-object"
 
-export async function GET(request: NextRequest) {
-  let responseObject = {};
-
-  /*   const { session } = await validateRequest();
-  if (!session) {
-    responseObject = generateResponseObject({
-      status: 401,
-    });
-    return NextResponse.json(responseObject);
-  } */
-
-  const url = new URL(request.url);
-  /*   const address = url.searchParams.get("address");
-   */
-
-  const address = "Avenida Almirante Reis n.100 Lisboa Portugal";
-  if (!address) {
-    responseObject = generateResponseObject({
-      status: 400,
-    });
-    return NextResponse.json(responseObject);
-  }
+export async function fetchGeocoordinatesByAddress (address: string) {
+let responseObject= {};
 
   try {
     const BASE_URL = "https://api.opencagedata.com/geocode/v1/json";
     const OPENCAGE_API_KEY = process.env.OPENCAGE_API_KEY;
     const encodedAddress = encodeURIComponent(address);
+    
     const compoundURL = `${BASE_URL}?key=${OPENCAGE_API_KEY}&q=${encodedAddress}&pretty=1&no_annotations=1`;
 
     const response = await fetch(compoundURL);
@@ -49,12 +29,12 @@ export async function GET(request: NextRequest) {
         status: data.status.code,
       });
     }
-    return NextResponse.json(responseObject);
+    return responseObject;
   } catch (error) {
     console.error("Error fetching geolocation:", error);
     responseObject = generateResponseObject({
       status: 500,
     });
-    return NextResponse.json(responseObject);
+    return responseObject;
   }
 }
