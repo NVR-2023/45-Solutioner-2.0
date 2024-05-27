@@ -2,6 +2,10 @@ import BasicButton from "@/frontend/components/ui/basic-button/basic-button";
 import { signOutUser } from "@/utils/functions/fetch-data/user-endpoint-submissions";
 import { useRouter } from "next/navigation";
 
+import SingleAccordion from "@/frontend/components/ui/single-accordeon/single-accordion";
+import Link from "next/link";
+
+import QuickSettingsContent from "./quick-settings-content";
 type SidebannerNavbarPrivateProps = {
   closeSidebanner: () => void;
 };
@@ -9,8 +13,7 @@ type SidebannerNavbarPrivateProps = {
 const SidebannerNavbarPrivate = ({
   closeSidebanner,
 }: SidebannerNavbarPrivateProps) => {
-
-const router = useRouter();
+  const router = useRouter();
 
   const handleOnCancel = async () => {
     closeSidebanner();
@@ -19,22 +22,15 @@ const router = useRouter();
   };
 
   return (
-    <div className="h-full w-full py-4 ps-4  ">
-      <div>123</div>
-      <div>123</div>
-      <div>123</div>
-      <div>123</div>
-      <div>123</div>
-      <div>123</div>
-      <div>123</div>
-      <div>123</div>
-      <div>123</div>
-      <BasicButton
-        type="outlined"
-        size="sm"
-        label="sign out"
-        onClick={handleOnCancel}
-      />
+    <div className="h-full w-full px-4 py-4  ">
+      <SingleAccordion label={"quick setting"}>
+          <QuickSettingsContent />
+      </SingleAccordion>
+      <Link href="/private/settings">
+        <span>account settings</span>
+        <span></span>
+      </Link>
+      <button onClick={handleOnCancel}>Sign out</button>
     </div>
   );
 };
