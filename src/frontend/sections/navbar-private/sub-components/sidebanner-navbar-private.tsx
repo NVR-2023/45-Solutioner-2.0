@@ -1,4 +1,3 @@
-import BasicButton from "@/frontend/components/ui/basic-button/basic-button";
 import { signOutUser } from "@/utils/functions/fetch-data/user-endpoint-submissions";
 import { useRouter } from "next/navigation";
 
@@ -22,16 +21,22 @@ const SidebannerNavbarPrivate = ({
   };
 
   return (
-    <div className="h-full w-full px-4 py-4  ">
-      <SingleAccordion label={"quick setting"}>
-          <QuickSettingsContent />
+    <div className="flex flex-col w-full px-4 py-4  ">
+      <div>
+
+      </div>
+      <SingleAccordion singleAccordionLabel={"quick settings"}>
+        <QuickSettingsContent />
       </SingleAccordion>
-      <Link href="/private/settings">
+
+    
+     {/*  <Link href="/private/settings">
         <span>account settings</span>
         <span></span>
-      </Link>
-      <button onClick={handleOnCancel}>Sign out</button>
-    </div>
+      </Link> */}
+      
+{/*       <button onClick={handleOnCancel}>Sign out</button>
+ */}    </div>
   );
 };
 

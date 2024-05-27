@@ -59,7 +59,7 @@ const ServiceRollup = ({
         : `${Math.ceil(parseFloat(duration) * 60).toString()} minutes`;
 
   const processedUnitString = capitalizeFirstLetter(unit).trim();
-  const processedIncludedString = capitalizeFirstLetter(unit).trim();
+  const processedIncludedString = capitalizeFirstLetter(included).trim();
   const processedPersonnelString = (
     personnel > 1
       ? `Serviced by ${personnel} professionals`
@@ -98,7 +98,9 @@ const ServiceRollup = ({
           </div>
           <div className="col-span-1 flex h-full items-center justify-end">
             <div className=" flex h-full items-center">
-              <BookServiceButton />
+              <BookServiceButton
+                isServiceRollupHovered={isServiceRollupHovered}
+              />
             </div>
           </div>
         </div>
@@ -134,9 +136,7 @@ const ServiceRollup = ({
               </div>
               <div className="flex">
                 <div className="w-2">▪</div>
-                <div>
-                  {processedPersonnelString}
-                </div>
+                <div>{processedPersonnelString}</div>
               </div>
             </div>
             <div className="col-span-1"></div>
