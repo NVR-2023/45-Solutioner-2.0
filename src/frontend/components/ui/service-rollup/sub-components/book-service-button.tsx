@@ -22,8 +22,9 @@ const BookServiceButton = ({
   return (
     <button
       onClick={handleOnClick}
-      className={`flex h-4 items-center justify-center rounded-[2px] transition-all duration-300 w-14 ${isServiceRollupHovered ? "bg-neutral-800 " : "bg-neutral-500 "} px-3 font-aperçu text-xs font-medium  leading-[.5rem] tracking-wide text-neutral-300 small-caps focus:outline-none focus:ring-0 dark:font-semibold dark:text-neutral-300 md:text-xs`}
-    >
+className={`md:text-[.625rem] h-4 flex w-14  items-center justify-center rounded-[2px] px-3 font-aperçu text-xs font-medium leading-[.5rem] tracking-wide text-neutral-300 transition-all duration-300 small-caps dark:text-neutral-900 ${isServiceRollupHovered ? "bg-neutral-900" : "bg-neutral-500"} focus:outline-none focus:ring-0 dark:font-semibold md:text-xs`}
+
+>
       book
     </button>
   );

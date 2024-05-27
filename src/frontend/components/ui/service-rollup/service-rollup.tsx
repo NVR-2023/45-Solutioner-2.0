@@ -88,12 +88,13 @@ const ServiceRollup = ({
           <div className="col-span-2 flex items-center font-aperçu text-sm font-semibold tabular-nums text-black dark:text-neutral-300 md:text-[0.625rem]">
             <div className="flex items-baseline">{processedDurationString}</div>
           </div>
-          <div className="col-span-1 flex items-center justify-start space-x-2 text-xs font-bold  tabular-nums  ">
-            {/*             <SaleTag />
-             */}
-            <div className="flex items-center font-semibold">
-              <span className="text-[.625rem]">€</span>
-              <span className="flex justify-end">{price}</span>
+          <div className="col-span-1 flex items-center justify-end text-xs font-bold  tabular-nums  ">
+            <div className="flex w-full space-x-2">
+              <div className="flex w-1/5 items-center justify-end font-semibold">
+                <span className="text-[.625rem]">€</span>
+                <span className="flex justify-end">{price}</span>
+              </div>
+              <div className="flex-grow"></div>
             </div>
           </div>
           <div className="col-span-1 flex h-full items-center justify-end">
