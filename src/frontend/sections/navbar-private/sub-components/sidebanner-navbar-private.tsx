@@ -21,7 +21,7 @@ const SidebannerNavbarPrivate = ({
   };
 
   return (
-    <div className="flex flex-col w-full px-4 py-4  ">
+    <div className="z-30 flex flex-col w-full px-4 py-4  ">
       <div>
 
       </div>
@@ -34,7 +34,7 @@ const SidebannerNavbarPrivate = ({
         <span>account settings</span>
         <span></span>
       </Link> */}
-      
+
 {/*       <button onClick={handleOnCancel}>Sign out</button>
  */}    </div>
   );
