@@ -15,10 +15,10 @@ const PrivateNavbarTabsSegment = () => {
         return (
           <li
             key={index}
-            className="relative flex items-center justify-center text-[#ff7714] dark:text-[#ff8d14]"
+            className="relative flex items-center justify-center"
           >
             <Link href={"/private/main/" + tab} className="">
-              <span className="relative text-xs  font-semibold">
+              <span className="relative text-xs font-medium ">
                 {capitalizeFirstLetter(tab)}
               </span>
               {tab === currentTab && (
