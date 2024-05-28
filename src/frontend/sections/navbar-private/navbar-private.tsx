@@ -2,6 +2,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import LogoSegment from "../../components/ui/navbar-components/logo-segment";
 import ThemeSwitch from "@/frontend/components/ui/theme-switch/theme-switch";
 import { AvatarSegment } from "./sub-components/avatar-segment";
+import PrivateNavbarTabsSegment from "./sub-components/private-navabr-tabs-segment";
 
 type NavbarPrivateProps = {
   areNavbarsExpanded: boolean;
@@ -27,9 +28,10 @@ const NavbarPrivate = ({ areNavbarsExpanded }: NavbarPrivateProps) => {
     >
       <AnimatePresence>
         {areNavbarsExpanded && (
-          <motion.div className="w-full h-full flex justify-between">
+          <motion.div className="flex h-full w-full justify-between">
             <motion.span className="flex space-x-6">
               <LogoSegment />
+              <PrivateNavbarTabsSegment />
             </motion.span>
             <motion.span className="flex h-full items-center space-x-4">
               <ThemeSwitch scale={0.9} />
