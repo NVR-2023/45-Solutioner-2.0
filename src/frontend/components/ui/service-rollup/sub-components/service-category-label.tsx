@@ -1,4 +1,3 @@
-import { useRouter, usePathname, useSearchParams } from "next/navigation";
 type ServiceCategoryRollupLabelProps = {
   category: string;
 };
@@ -25,28 +24,8 @@ const ServiceCategoryRollupLabel = ({
     ["wellness", "bg-[#FFC0CB]"],
   ]);
 
-  const pathName = usePathname();
-  const router = useRouter();
-  const existingSearchParams = useSearchParams();
-
-  const handleOnClick = () => {
-    const newSearchParams = new URLSearchParams(existingSearchParams);
-
-    const currentSearchCategory = existingSearchParams.get("category");
-
-    if (currentSearchCategory === "any") {
-      newSearchParams.set("category", category);
-    } else {
-      newSearchParams.set("category", "any");
-    }
-
-    const newQueryString = newSearchParams.toString();
-    const newURL = `${pathName}?${newQueryString}`;
-    router.replace(newURL);
-  };
-
   return (
-    <div role="button" onClick={handleOnClick} className="flex">
+    <div className="flex">
       <div
         className={`h-4.5 w-1.5 -skew-x-12 ${serviceColorMap.get(category)}`}
       ></div>
