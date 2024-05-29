@@ -4,7 +4,9 @@ import { eq } from "drizzle-orm";
 
 import { drizzle } from "drizzle-orm/vercel-postgres";
 import * as schema from "@/backend/database/schema/schema";
+
 import fs from "fs";
+import { generateRandomPopularityValues } from "@/utils/functions/generate-random-popularity-values/generate-random-popularity-values";
 
 export type NewServiceType = typeof services.$inferInsert;
 export type NewServiceProfileType = typeof serviceProfiles.$inferInsert;
@@ -60,7 +62,7 @@ export const seedServiceProfilesDBTable = async () => {
   }
 };
 
-export const updateServiceDBTable = async () => {
+export const updateServicesDBTable = async () => {
   const pathToJson: string =
     "./src/backend/database/service-descriptions-data/services.json";
 
@@ -88,6 +90,24 @@ export const updateServiceDBTable = async () => {
   } catch (error: any) {
     console.error("An error occurred during the update", error);
     return false;
+  }
+};
+
+export const seedPopularityValuesInServiceProfilesTable = async () => {
+  try {
+    const randomPopularityValuesArray = generateRandomPopularityValues();
+    const serviceProfilesInDB = await db.query.serviceProfiles.findMany();
+
+    for (let i = 0; i < serviceProfilesInDB.length; i++) {
+      const currentPopularityValue = randomPopularityValuesArray[i];
+      await db
+        .update(serviceProfiles)
+        .set({ popularity: currentPopularityValue.toString() })
+        .where(eq(serviceProfiles.id, i));
+    }
+    console.log("ServiceProfiles table popularity values successfully seeded")
+  } catch (error) {
+    console.error("Error seeding popularity values:", error);
   }
 };
 

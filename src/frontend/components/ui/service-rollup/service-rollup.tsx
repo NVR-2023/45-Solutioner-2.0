@@ -3,7 +3,8 @@ import { useState } from "react";
 import ServiceCategoryRollupLabel from "./sub-components/service-category-label";
 import { capitalizeFirstLetter } from "@/utils/functions/capitalize-first-letter";
 import BookServiceButton from "./sub-components/book-service-button";
-import SaleTag from "./sub-components/sale-tag";
+import OnSaleSegment from "./sub-components/onsale-segment";
+
 const variants = {
   initial: {
     opacity: 0,
@@ -23,8 +24,9 @@ type ServiceRollupProps = {
   category: string;
   service: string;
   price: string;
+  sale: string;
+  saleExpiresBy: string;
   duration: string;
-
   description: string;
   unit: string;
   included: string;
@@ -35,6 +37,8 @@ const ServiceRollup = ({
   category,
   service,
   price,
+  sale,
+  saleExpiresBy,
   duration,
   description,
   unit,
@@ -94,6 +98,7 @@ const ServiceRollup = ({
                 <span className="text-[.625rem]">€</span>
                 <span className="flex justify-end">{price}</span>
               </div>
+              { sale ? <OnSaleSegment /> : null}
               <div className="flex-grow"></div>
             </div>
           </div>

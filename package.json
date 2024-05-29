@@ -13,7 +13,8 @@
     "db:studio": "npx drizzle-kit studio --config=./src/backend/database/drizzle/drizzle.config.ts",
     "db:services": "npx tsx src/backend/database/drizzle/scripts/seed-services-table.ts",
     "db:updateservices": "npx tsx src/backend/database/drizzle/scripts/update-services-table.ts",
-    "db:serviceprofiles": "npx tsx src/backend/database/drizzle/scripts/seed-service-profiles-table.ts"
+    "db:serviceprofiles": "npx tsx src/backend/database/drizzle/scripts/seed-service-profiles-table.ts",
+    "db:seedpopularity": "npx tsx src/backend/database/drizzle/scripts/seed-random-popularity-values.ts"
   },
   "dependencies": {
     "@lucia-auth/adapter-drizzle": "^1.0.7",
