@@ -4,6 +4,7 @@ import { eq } from "drizzle-orm";
 
 import { drizzle } from "drizzle-orm/vercel-postgres";
 import * as schema from "@/backend/database/schema/schema";
+import fs from "fs";
 
 export type NewServiceType = typeof services.$inferInsert;
 export type NewServiceProfileType = typeof serviceProfiles.$inferInsert;
@@ -59,6 +60,37 @@ export const seedServiceProfilesDBTable = async () => {
   }
 };
 
+export const updateServiceDBTable = async () => {
+  const pathToJson: string =
+    "./src/backend/database/service-descriptions-data/services.json";
+
+  try {
+    const fileContent = fs.readFileSync(pathToJson, "utf-8");
+    const arrayWithJsonData: NewServiceType[] = JSON.parse(fileContent);
+
+    const serviceProfilesInDB = await db.query.services.findMany();
+
+    for (let i = 0; i < serviceProfilesInDB.length; i++) {
+      if (i < arrayWithJsonData.length) {
+        const newServiceProfileData: Partial<NewServiceType> =
+          arrayWithJsonData[i];
+        const id = serviceProfilesInDB[i].id;
+
+        await db
+          .update(services)
+          .set(newServiceProfileData)
+          .where(eq(services.id, id));
+      }
+    }
+
+    console.log("update concluded");
+    return true;
+  } catch (error: any) {
+    console.error("An error occurred during the update", error);
+    return false;
+  }
+};
+
 // Regular Services functions
 
 export const insertServiceInDBTable = async (service: NewServiceType) => {
@@ -69,7 +101,6 @@ export const getAllServices = async () => {
   const result = await db.query.services.findMany();
   return result;
 };
-
 
 export const fetchAllServicesWithProfiles = async () => {
   const result = await db
@@ -87,7 +118,6 @@ export const fetchAllServicesWithProfiles = async () => {
       sale: serviceProfiles.sale,
       saleExpiresBy: serviceProfiles.saleExpiresBy,
       popularity: serviceProfiles.popularity,
-
     })
     .from(services)
     .innerJoin(serviceProfiles, eq(services.id, serviceProfiles.serviceId));
