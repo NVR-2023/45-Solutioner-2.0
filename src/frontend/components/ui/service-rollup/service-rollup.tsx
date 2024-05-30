@@ -3,7 +3,7 @@ import { useState } from "react";
 import ServiceCategoryRollupLabel from "./sub-components/service-category-label";
 import { capitalizeFirstLetter } from "@/utils/functions/capitalize-first-letter";
 import BookServiceButton from "./sub-components/book-service-button";
-import OnSaleSegment from "./sub-components/onsale-segment";
+import OnSaleSeTag from "./sub-components/onsale-tag";
 
 const variants = {
   initial: {
@@ -22,6 +22,7 @@ const variants = {
 
 type ServiceRollupProps = {
   category: string;
+  id: number;
   service: string;
   price: string;
   sale: string;
@@ -36,6 +37,7 @@ type ServiceRollupProps = {
 const ServiceRollup = ({
   category,
   service,
+  id,
   price,
   sale,
   saleExpiresBy,
@@ -71,11 +73,6 @@ const ServiceRollup = ({
   ).trim();
 
   const saleValue = parseFloat(sale);
-  const processedSaleObject = {
-    before: `€${Math.floor(parseInt(price) / (1 - saleValue))}`,
-    sale: `${saleValue * 100}% off`,
-    expires: saleExpiresBy ? `Ends: ${saleExpiresBy}` : null,
-  };
 
   return (
     <motion.div
@@ -99,19 +96,23 @@ const ServiceRollup = ({
           <div className="col-span-2 flex items-center font-aperçu text-sm font-semibold tabular-nums text-black dark:text-neutral-300 md:text-[0.625rem]">
             <div className="flex items-baseline">{processedDurationString}</div>
           </div>
-          <div className="col-span-1 flex items-center justify-end text-xs font-bold  tabular-nums  ">
+          <div className="col-span-1 flex items-center text-xs font-bold  tabular-nums  ">
             <div className="flex w-full space-x-2">
               <div className="flex w-1/5 items-center justify-end font-semibold">
                 <span className="text-[.625rem]">€</span>
                 <span className="flex justify-end">{price}</span>
               </div>
-              {sale ? <OnSaleSegment /> : null}
+              {sale ? <OnSaleSeTag /> : null}
               <div className="flex-grow"></div>
             </div>
           </div>
           <div className="col-span-1 flex h-full items-center justify-end">
             <div className=" flex h-full items-center">
               <BookServiceButton
+                service={service}
+                id={id}
+                duration={duration}
+                price={price}
                 isServiceRollupHovered={isServiceRollupHovered}
               />
             </div>
@@ -152,31 +153,7 @@ const ServiceRollup = ({
                 <div>{processedPersonnelString}</div>
               </div>
             </div>
-            <div className="col-span-1">
-              <div className="flex w-full space-x-2">
-                <div className="flex w-1/5 items-center justify-end font-semibold"></div>
-                {sale && (
-                  <div className="flex-grow space-y-2 py-2 text-[.625rem] font-semibold leading-[150%]">
-                    <div className="flex grid-cols-2">
-                      <div className="w-2">▪</div>
-                      <div className="line-through">{processedSaleObject.before}</div>
-                    </div>
-                    <div className="flex grid-cols-2">
-                      <div className="w-2">▪</div>
-                      <div>{processedSaleObject.sale}</div>
-                    </div>
-                    <div className="flex">
-                      {saleExpiresBy && (
-                        <>
-                          <div className="w-2">▪</div>
-                          <div>{processedSaleObject.expires}</div>
-                        </>
-                      )}
-                    </div>
-                  </div>
-                )}
-              </div>
-            </div>
+            <div className="col-span-1"></div>
             <div className="col-span-1"></div>
           </div>
         </div>

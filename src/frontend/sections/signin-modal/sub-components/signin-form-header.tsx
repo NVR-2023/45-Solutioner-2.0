@@ -1,9 +1,8 @@
-import LargeModalTitle from "@/frontend/components/ui/modal-components/large-modal-title";
-
+import ModalTitleWithLogo from "@/frontend/components/ui/modal-components/modal-title-with-logo";
 const SigninFormHeader = () => {
   return (
     <header className="flex w-full justify-start">
-      <LargeModalTitle title={"Sign in"} />
+      <ModalTitleWithLogo title={"Sign in"} />
     </header>
   );
 };

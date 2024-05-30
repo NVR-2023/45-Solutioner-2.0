@@ -1,10 +1,19 @@
 import { useBookServiceModalContext } from "@/frontend/contexts/use-book-service-modal-context";
 import { BookServiceModalObjectType } from "@/frontend/contexts/use-book-service-modal-context";
 
-type BookServiceButtonProps = {
+export type BookServiceButtonProps = {
+  id: number | null;
+  service: string | null;
+  duration: string | null;
+  price: string | null;
   isServiceRollupHovered: boolean;
 };
+
 const BookServiceButton = ({
+  id,
+  service,
+  duration,
+  price,
   isServiceRollupHovered,
 }: BookServiceButtonProps) => {
   const { bookServiceModalObject, setBookServiceModalObject } =
@@ -14,6 +23,10 @@ const BookServiceButton = ({
     setBookServiceModalObject(
       (previousBookServiceModalObject: BookServiceModalObjectType) => ({
         ...previousBookServiceModalObject,
+        id: id,
+        service: service,
+        duration: duration,
+        price: price,
         isBookServiceModalOpen: true,
       }),
     );
@@ -22,9 +35,8 @@ const BookServiceButton = ({
   return (
     <button
       onClick={handleOnClick}
-className={`md:text-[.625rem] h-4 flex w-14  items-center justify-center rounded-[2px] px-3 font-aperçu text-xs font-medium leading-[.5rem] tracking-wide text-neutral-300 transition-all duration-300 small-caps dark:text-neutral-900 ${isServiceRollupHovered ? "bg-neutral-900" : "bg-neutral-500"} focus:outline-none focus:ring-0 dark:font-semibold md:text-xs`}
-
->
+      className={`flex h-4 w-14 items-center  justify-center rounded-[2px] px-3 font-aperçu text-xs font-medium leading-[.5rem] tracking-wide text-neutral-300 transition-all duration-300 small-caps dark:text-neutral-900 md:text-[.625rem] ${isServiceRollupHovered ? "bg-neutral-900" : "bg-neutral-500"} focus:outline-none focus:ring-0 dark:font-semibold md:text-xs`}
+    >
       book
     </button>
   );

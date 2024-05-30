@@ -6,13 +6,14 @@ import {
   useState,
   Dispatch,
   SetStateAction,
+  FC,
 } from "react";
 
 export type BookServiceModalObjectType = {
-  serviceId: string | null;
+  id: number | null;
   service: string | null;
-  serviceDuration: number | null;
-  servicePrice: number | null;
+  duration: string | null;
+  price: string | null;
   isBookServiceModalOpen: boolean;
 };
 
@@ -26,17 +27,17 @@ export type BookServiceModalContextProps = {
 const BookServiceModalContext =
   createContext<BookServiceModalContextProps | null>(null);
 
-export const BookServiceModalContextProvider = ({
+export const BookServiceModalContextProvider: FC<{ children: ReactNode }> = ({
   children,
 }: {
   children: ReactNode;
 }) => {
   const [bookServiceModalObject, setBookServiceModalObject] =
     useState<BookServiceModalObjectType>({
-      serviceId: null,
+      id: null,
       service: "",
-      serviceDuration: null,
-      servicePrice: null,
+      duration: null,
+      price: null,
       isBookServiceModalOpen: false,
     });
 

@@ -1,9 +1,9 @@
-import LargeModalTitle from "@/frontend/components/ui/modal-components/large-modal-title";
+import ModalTitleWithLogo from "@/frontend/components/ui/modal-components/modal-title-with-logo";
 
 const RegisterFormHeader = () => {
   return (
     <header className="flex w-full justify-start">
-      <LargeModalTitle title={"Register"} />
+      <ModalTitleWithLogo title={"Register"} />
     </header>
   );
 };

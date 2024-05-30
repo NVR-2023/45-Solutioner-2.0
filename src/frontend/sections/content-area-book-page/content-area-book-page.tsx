@@ -10,6 +10,8 @@ type ContentAreaBookPageProps = {
 const ContentAreaBookPage = ({
   filteredAndSortedServiceStaticData,
 }: ContentAreaBookPageProps) => {
+  
+  console.log(filteredAndSortedServiceStaticData?.length);
   return (
     <motion.div className="flex justify-center py-2">
       {filteredAndSortedServiceStaticData && (
@@ -23,6 +25,7 @@ const ContentAreaBookPage = ({
               <ServiceRollup
                 category={service.category}
                 service={service.service}
+                id={service.id}
                 duration={service.duration}
                 price={service.price}
                 sale={service.sale}

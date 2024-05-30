@@ -3,14 +3,21 @@ import AdvancedModalShell from "@/frontend/components/ui/modal-components/advanc
 import { useBookServiceModalContext } from "@/frontend/contexts/use-book-service-modal-context";
 
 import { useUserDetailsContext } from "@/frontend/contexts/use-user-details";
-
+import SmallModalTitleWithoutLogo from "@/frontend/components/ui/modal-components/small-modal-title-without-logo";
 const BookServiceCalendarModal = () => {
   const userDetails = useUserDetailsContext();
 
-  const { bookServiceModalObject, setBookServiceModalObject } =
-    useBookServiceModalContext();
+  const {
+    bookServiceModalObject: {
+      id,
+      service,
+      duration,
+      price,
+      isBookServiceModalOpen,
+    },
+    setBookServiceModalObject,
+  } = useBookServiceModalContext();
 
-  const isBookServiceModalOpen = bookServiceModalObject.isBookServiceModalOpen;
   const setIsBookServiceModalOpen = (isModalOpen: boolean) => {
     setBookServiceModalObject((previousObject) => ({
       ...previousObject,
@@ -26,18 +33,14 @@ const BookServiceCalendarModal = () => {
       setIsModalOpen={setIsBookServiceModalOpen}
     >
       <div className="flex flex-col">
+        <SmallModalTitleWithoutLogo title={`Book ${service} `} />
         <p>{userDetails.userId}</p>
         <p>{userDetails.userName}</p>
         <p>{userDetails.userInitials}</p>
-        <p>123</p>
-        <p>123</p>
-        <p>123</p>
-        <p>123</p>
-        <p>123</p>
-        <p>123</p>
-        <p>123</p>
-        <p>123</p>
-        <p>123</p>
+        <p>{service}</p>
+        <p>id:{id}</p>
+        <p>price:{price}</p>
+        <p>duration:{duration}</p>
       </div>
     </AdvancedModalShell>
   );
