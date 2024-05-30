@@ -70,6 +70,13 @@ const ServiceRollup = ({
       : "Serviced by 1 professional"
   ).trim();
 
+  const saleValue = parseFloat(sale);
+  const processedSaleObject = {
+    before: `€${Math.floor(parseInt(price) / (1 - saleValue))}`,
+    sale: `${saleValue * 100}% off`,
+    expires: saleExpiresBy ? `Ends: ${saleExpiresBy}` : null,
+  };
+
   return (
     <motion.div
       variants={variants}
@@ -98,7 +105,7 @@ const ServiceRollup = ({
                 <span className="text-[.625rem]">€</span>
                 <span className="flex justify-end">{price}</span>
               </div>
-              { sale ? <OnSaleSegment /> : null}
+              {sale ? <OnSaleSegment /> : null}
               <div className="flex-grow"></div>
             </div>
           </div>
@@ -145,7 +152,31 @@ const ServiceRollup = ({
                 <div>{processedPersonnelString}</div>
               </div>
             </div>
-            <div className="col-span-1"></div>
+            <div className="col-span-1">
+              <div className="flex w-full space-x-2">
+                <div className="flex w-1/5 items-center justify-end font-semibold"></div>
+                {sale && (
+                  <div className="flex-grow space-y-2 py-2 text-[.625rem] font-semibold leading-[150%]">
+                    <div className="flex grid-cols-2">
+                      <div className="w-2">▪</div>
+                      <div className="line-through">{processedSaleObject.before}</div>
+                    </div>
+                    <div className="flex grid-cols-2">
+                      <div className="w-2">▪</div>
+                      <div>{processedSaleObject.sale}</div>
+                    </div>
+                    <div className="flex">
+                      {saleExpiresBy && (
+                        <>
+                          <div className="w-2">▪</div>
+                          <div>{processedSaleObject.expires}</div>
+                        </>
+                      )}
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
             <div className="col-span-1"></div>
           </div>
         </div>
