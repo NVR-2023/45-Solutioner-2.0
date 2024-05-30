@@ -1,9 +1,13 @@
-import { useRef, RefObject } from "react";
 import AdvancedModalShell from "@/frontend/components/ui/modal-components/advanced-modal-shell";
 import { useBookServiceModalContext } from "@/frontend/contexts/use-book-service-modal-context";
 
 import { useUserDetailsContext } from "@/frontend/contexts/use-user-details";
-import SmallModalTitleWithoutLogo from "@/frontend/components/ui/modal-components/small-modal-title-without-logo";
+
+import ModalTitleWithoutLogo from "@/frontend/components/ui/modal-components/modal-title-without-logo";
+import Calendar from "./sub-components/calendar";
+import TimePicker from "./sub-components/time-picker";
+import BookControls from "./sub-components/book-controls";
+
 const BookServiceCalendarModal = () => {
   const userDetails = useUserDetailsContext();
 
@@ -25,15 +29,16 @@ const BookServiceCalendarModal = () => {
     }));
   };
 
-  const modalRef: RefObject<HTMLDivElement> = useRef(null);
-
   return (
     <AdvancedModalShell
       isModalOpen={isBookServiceModalOpen}
       setIsModalOpen={setIsBookServiceModalOpen}
     >
       <div className="flex flex-col">
-        <SmallModalTitleWithoutLogo title={`Book ${service} `} />
+        <ModalTitleWithoutLogo title={service as string} />
+        <Calendar />
+        <TimePicker />
+        <BookControls/>
         <p>{userDetails.userId}</p>
         <p>{userDetails.userName}</p>
         <p>{userDetails.userInitials}</p>
