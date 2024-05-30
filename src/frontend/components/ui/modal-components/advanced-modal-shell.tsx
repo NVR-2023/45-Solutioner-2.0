@@ -59,12 +59,10 @@ const AdvancedModalShell = ({
 
       document.addEventListener("keydown", handleKeyDown);
     } else {
-      // Re-enable pointer events globally when the modal is closed
       document.body.style.pointerEvents = "auto";
     }
 
     return () => {
-      // Ensure pointer events are re-enabled if the component unmounts
       document.body.style.pointerEvents = "auto";
       document.removeEventListener("keydown", handleKeyDown);
     };
@@ -79,7 +77,7 @@ const AdvancedModalShell = ({
             animate="animate"
             exit="exit"
             variants={variants}
-            className="flex w-[18rem] justify-center rounded bg-[#c9c9c9] px-14 py-7 text-black shadow-[18px_18px_12px_0px_#00000040] dark:text-neutral-300"
+            className="flex w-[18rem] justify-center rounded bg-[#c9c9c9] px-7 py-7 text-black shadow-[18px_18px_12px_0px_#00000040] dark:text-neutral-300"
           >
             {children}
           </motion.div>

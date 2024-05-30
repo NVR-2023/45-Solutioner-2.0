@@ -34,18 +34,18 @@ const BookServiceCalendarModal = () => {
       isModalOpen={isBookServiceModalOpen}
       setIsModalOpen={setIsBookServiceModalOpen}
     >
-      <div className="flex flex-col">
+      <div className="flex flex-col space-y-2">
         <ModalTitleWithoutLogo title={service as string} />
         <Calendar />
         <TimePicker />
         <BookControls/>
-        <p>{userDetails.userId}</p>
+  {/*       <p>{userDetails.userId}</p>
         <p>{userDetails.userName}</p>
         <p>{userDetails.userInitials}</p>
         <p>{service}</p>
         <p>id:{id}</p>
         <p>price:{price}</p>
-        <p>duration:{duration}</p>
+        <p>duration:{duration}</p> */}
       </div>
     </AdvancedModalShell>
   );
