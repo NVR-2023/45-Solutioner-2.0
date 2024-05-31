@@ -49,8 +49,10 @@ const AdvancedModalShell = ({
     };
 
     if (isModalOpen) {
+      // Disable pointer events globally
       document.body.style.pointerEvents = "none";
 
+      // Re-enable pointer events for the modal
       if (modalRef.current) {
         modalRef.current.style.pointerEvents = "auto";
       }

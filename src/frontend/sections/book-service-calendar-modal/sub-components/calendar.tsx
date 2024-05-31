@@ -1,3 +1,4 @@
+
 const Calendar = () => {
   const currentDate = new Date();
   const currentDayOfWeek = currentDate.getDay();
@@ -24,14 +25,14 @@ const Calendar = () => {
     "sat",
   ] as const;
 
+  const handleOnClick = () => {
+    alert("Clicked")
+  }
   return (
     <div className="flex w-full flex-col justify-center rounded bg-neutral-300 px-2 pb-2">
       <header className="mt-2 -space-y-0.5">
-        <div className="flex items-end ">
-          <span className="font-aperçu text-sm font-[700] leading-[.5rem] tracking-wide text-transparent small-caps md:text-xs"></span>
-          <span className="font-aperçu text-sm font-[700] leading-[.5rem] tracking-wide text-neutral-400 small-caps dark:text-neutral-300 md:text-xs">
-            {calendarMonthsString}
-          </span>
+        <div className="font-aperçu text-sm font-[700] leading-[.5rem] tracking-wide small-caps dark:text-neutral-300 md:text-xs">
+          {calendarMonthsString}
         </div>
         <div className="grid grid-cols-7 grid-rows-1">
           {DAYS_OF_THE_WEEK_ABBREVIATIONS.map((weekDayAbbreviation, index) => (
@@ -60,20 +61,25 @@ const Calendar = () => {
               lastValidDay.setDate(lastValidDay.getDate() + 28);
               const isDayInvalid =
                 movingDate < currentDate || movingDate > lastValidDay;
-
+              const isCurrentDay = movingDate.getTime() === currentDate.getTime();
               return (
                 <div
                   key={dayIndex}
-                  className="relative flex items-center leading-[.5rem]"
+                  className="relative flex items-center leading-[.5rem] hover:bg-red-400"
                 >
                   <span
-                    className={`flex h-5 w-full items-center justify-center font-aperçu ${isDayInvalid ? "text-[.5rem]" : "text-[.625rem]"} font-bold tabular-nums leading-[.5rem] small-caps dark:text-neutral-300`}
+                    className={`flex h-5 w-full items-center justify-center font-aperçu ${isDayInvalid ? "text-[.35rem] text-neutral-500" : "text-[.625rem]"} font-bold tabular-nums leading-[.5rem] small-caps `}
                   >
                     {dayOfTheMonth}
                   </span>
                   <div className="absolute left-1/2 top-1/2 translate-x-[-180%] translate-y-[-50%] text-[.5rem] text-transparent">
                     ■
                   </div>
+                  {isCurrentDay && (
+                    <div className="absolute left-1/2 top-1/2 translate-x-[-180%] translate-y-[-50%] text-[.5rem] text-red-400">
+                      ■
+                    </div>
+                  )}
                 </div>
               );
             })}
@@ -86,15 +92,14 @@ const Calendar = () => {
 
 export default Calendar;
 
-{
-  /*       <header className="w-full">
-        <div className="flex items-end ">
-          <span className="font-aperçu text-sm font-[700] leading-[.5rem] tracking-wide text-transparent small-caps md:text-xs">
-            ■
-          </span>
-          <span className="font-aperçu text-sm font-[700] leading-[.5rem] tracking-wide text-neutral-400 small-caps dark:text-neutral-300 md:text-xs">
-            {calendarMonthsString}
-          </span>
-        </div>
-      </header> */
-}
+
+/* Here are some example date entries:
+2023-05-12 (May 12, 2023)
+1998-09-30 (September 30, 1998)
+2022-01-01 (January 1, 2022)
+Time Entries:
+The time data type represents time of day (without a date) in the format HH:MM:SS.
+Examples of time entries:
+08:30:00 (8:30 AM)
+15:45:30 (3:45:30 PM)
+23:59:59 (11:59:59 PM) */

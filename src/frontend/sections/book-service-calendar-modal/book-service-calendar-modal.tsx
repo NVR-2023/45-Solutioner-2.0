@@ -46,6 +46,7 @@ const BookServiceCalendarModal = () => {
         <p>id:{id}</p>
         <p>price:{price}</p>
         <p>duration:{duration}</p> */}
+        <button>click</button>
       </div>
     </AdvancedModalShell>
   );
