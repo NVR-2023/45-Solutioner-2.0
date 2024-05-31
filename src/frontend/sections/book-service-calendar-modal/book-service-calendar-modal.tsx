@@ -1,7 +1,7 @@
 import AdvancedModalShell from "@/frontend/components/ui/modal-components/advanced-modal-shell";
 import { useBookServiceModalContext } from "@/frontend/contexts/use-book-service-modal-context";
-
 import { useUserDetailsContext } from "@/frontend/contexts/use-user-details";
+import { capitalizeFirstLetter } from "@/utils/functions/capitalize-first-letter";
 
 import ModalTitleWithoutLogo from "@/frontend/components/ui/modal-components/modal-title-without-logo";
 import Calendar from "./sub-components/calendar";
@@ -34,8 +34,8 @@ const BookServiceCalendarModal = () => {
       isModalOpen={isBookServiceModalOpen}
       setIsModalOpen={setIsBookServiceModalOpen}
     >
-      <div className="flex flex-col space-y-2">
-        <ModalTitleWithoutLogo title={service as string} />
+      <div className="w-full flex flex-col space-y-2">
+        <ModalTitleWithoutLogo title={capitalizeFirstLetter(service!)} />
         <Calendar />
         <TimePicker />
         <BookControls/>
