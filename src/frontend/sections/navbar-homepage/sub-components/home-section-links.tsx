@@ -2,7 +2,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { getSectionFomString } from "@/utils/functions/getsectionfromurl";
-import HOMEPAGE_SECTIONS from "@/frontend/sections/navbar-homepage/sub-components/homepage-sections";
+import HOMEPAGE_SECTIONS from "./homepage-sections";
 
 const HomeSectionLinks = () => {
   const [currentSection, setCurrentSection] = useState(HOMEPAGE_SECTIONS[0]);
@@ -29,13 +29,13 @@ const HomeSectionLinks = () => {
             >
               <span className="text-xs font-semibold">{link}</span>
             </Link>
-            {link === currentSection ? (
+            {link === currentSection && (
               <motion.div
                 layoutId="activeSectionUnderline"
                 transition={{ duration: 0.3 }}
                 className="absolute left-0 top-full mt-0.5 w-full border-t-[1px] border-current"
               ></motion.div>
-            ) : null}
+            )}
           </li>
         ))}
       </menu>

@@ -8,7 +8,6 @@ import ModalTitleWithoutLogo from "@/frontend/components/ui/modal-components/mod
 import BookServiceCalendar from "./sub-components/book-service-calendar";
 import BookServiceTimePicker from "./sub-components/book-service-time-picker";
 import BookServiceAdditionalControls from "./sub-components/book-service-additional-controls";
-import BookServiceSummary from "./sub-components/book-service-summary";
 import BookServiceSubmitSegment from "./sub-components/book-service-submit-segment";
 
 type bookServiceObject = {
@@ -67,7 +66,6 @@ const BookServiceModal = () => {
         />
         <BookServiceTimePicker />
         <BookServiceAdditionalControls />
-        <BookServiceSummary selectedBookDate={bookServiceObject.date!} />
         <BookServiceSubmitSegment />
       </div>
     </AdvancedModalShell>

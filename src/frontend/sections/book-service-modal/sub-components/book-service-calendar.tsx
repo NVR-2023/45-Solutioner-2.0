@@ -1,5 +1,6 @@
-import { useState, useEffect, Dispatch, SetStateAction } from "react";
-import AnimatedSlidingLabel from "@/frontend/components/ui/animated-components/animated-sliding-label.";
+import { useEffect } from "react";
+import LabelWIthAnimatedSlidingText from "@/frontend/components/ui/animated-components/label-with-animated-sliding-text";
+import { motion } from "framer-motion";
 
 type BookServiceCalendarProps = {
   bookServiceDate: Date;
@@ -80,20 +81,23 @@ const BookServiceCalendar = ({
               return (
                 <div
                   key={dayIndex}
-                  className={`relative flex items-center rounded-[2px] border-[1px] border-transparent leading-[.5rem] ${isDayUnbookable ? "" : "hover:border-black "}`}
+                  className={`relative flex items-center rounded-[2px] leading-[.5rem] ${isDayUnbookable ? "" : "hover:bg-neutral-400 "}`}
                 >
                   <button
                     disabled={isDayUnbookable}
                     onClick={() => {
                       handleOnClick(movingDate);
                     }}
-                    className={` flex h-6 w-full items-center justify-center font-aperçu ${isDayUnbookable ? "text-[.35rem] text-neutral-500" : "text-[.625rem]"} ${isSelectedBookDate ? "font-black" : "font-bold"}  tabular-nums leading-[.5rem] small-caps `}
+                    className={` flex h-6 w-full items-center justify-center font-aperçu ${isDayUnbookable ? "text-[.35rem] text-neutral-500" : "text-[.625rem]"} font-bold tabular-nums leading-[.5rem] small-caps `}
                   >
                     {dayOfTheMonth}
                   </button>
 
                   {isSelectedBookDate && (
-                    <div className="absolute left-0 top-0 h-full w-full rounded-[2px] bg-neutral-100 bg-opacity-50"></div>
+                    <motion.div
+                      layoutId="selectedBookDate"
+                      className="absolute left-0 top-0 h-full w-full rounded-[2px] bg-neutral-400 bg-opacity-50"
+                    ></motion.div>
                   )}
                 </div>
               );
@@ -101,10 +105,22 @@ const BookServiceCalendar = ({
           </div>
         ))}
       </main>
+      <footer className="flex w-full ps-2">
+        <LabelWIthAnimatedSlidingText
+          label={"date:"}
+          text={(bookServiceDate
+            ? new Date(bookServiceDate)
+            : new Date()
+          ).toLocaleDateString("en-US", {
+            weekday: "long",
+            year: "numeric",
+            month: "long",
+            day: "numeric",
+          })}
+        />
+      </footer>
     </div>
   );
 };
 
 export default BookServiceCalendar;
-
-

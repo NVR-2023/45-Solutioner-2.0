@@ -6,7 +6,8 @@ import { wait } from "@/utils/functions/wait";
 import MenuDownArrow from "../../icons/menu-down-arrow";
 import CheckIcon from "../../icons/check-icon";
 
-import AnimatedSlidingLabel from "../animated-components/animated-sliding-label.";
+import AnimatedSlidingText from "../animated-components/animated-sliding-text.";
+import LabelWIthAnimatedSlidingText from "../animated-components/label-with-animated-sliding-text";
 
 type DropDownMenuProps = {
   dropdownMenuLabel: string;
@@ -77,8 +78,8 @@ const DropdownMenu = ({
           >
             {existingDropdownSearchParams ? (
               <span className="tabular-nums">
-                <AnimatedSlidingLabel
-                  label={`${capitalizeFirstLetter(existingDropdownSearchParams as string)}`}
+                <AnimatedSlidingText
+                  text={`${capitalizeFirstLetter(existingDropdownSearchParams as string)}`}
                 />
               </span>
             ) : (
@@ -96,7 +97,7 @@ const DropdownMenu = ({
           <div
             onMouseEnter={handleOnMouseEnter}
             onMouseLeave={handleOnMouseLeave}
-            className="absolute w-32 -left-1 top-[2.3rem] grid rounded-[2px]"
+            className="absolute -left-1 top-[2.3rem] grid w-32 rounded-[2px]"
             style={{
               gridTemplateRows: isDropdownMenuOpen ? "1fr" : "0fr",
               transition: "grid-template-rows 100ms",

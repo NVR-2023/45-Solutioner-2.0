@@ -1,10 +1,10 @@
 import { motion } from "framer-motion";
 
-type AnimatedSlidingLabelProps = {
-  label: string;
+type AnimatedSlidingTextProps = {
+  text: string;
 };
 
-const AnimatedSlidingLabel = ({ label }: AnimatedSlidingLabelProps) => {
+const AnimatedSlidingText = ({ text }: AnimatedSlidingTextProps) => {
   const variants = {
     initial: {
       x: "-100%",
@@ -20,16 +20,16 @@ const AnimatedSlidingLabel = ({ label }: AnimatedSlidingLabelProps) => {
   return (
     <div className="h-full w-full overflow-hidden">
       <motion.div
-        key={label}
+        key={text}
         variants={variants}
         initial="initial"
         animate="animate"
         className="flex justify-start overflow-hidden"
       >
-        {label}
+        {text}
       </motion.div>
     </div>
   );
 };
 
-export default AnimatedSlidingLabel;
+export default AnimatedSlidingText;

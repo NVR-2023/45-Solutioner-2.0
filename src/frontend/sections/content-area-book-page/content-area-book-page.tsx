@@ -11,7 +11,6 @@ const ContentAreaBookPage = ({
   filteredAndSortedServiceStaticData,
 }: ContentAreaBookPageProps) => {
   
-  console.log(filteredAndSortedServiceStaticData?.length);
   return (
     <motion.div className="flex justify-center py-2">
       {filteredAndSortedServiceStaticData && (
