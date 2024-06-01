@@ -64,7 +64,6 @@ const BookServiceModal = () => {
           bookServiceDate={bookServiceObject.date!}
           setBookServiceDate={setBookServiceDate}
         />
-        <BookServiceTimePicker />
         <BookServiceAdditionalControls />
         <BookServiceSubmitSegment />
       </div>

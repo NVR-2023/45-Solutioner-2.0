@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import LabelWIthAnimatedSlidingText from "@/frontend/components/ui/animated-components/label-with-animated-sliding-text";
+import BookServiceTimePicker from "./book-service-time-picker";
 import { motion } from "framer-motion";
 
 type BookServiceCalendarProps = {
@@ -54,7 +55,9 @@ const BookServiceCalendar = ({
           ))}
         </div>
       </header>
-      <main className="grid grid-cols-7 grid-rows-5 space-y-0.5">
+
+      <main className="space-y-4">
+      <div className="grid grid-cols-7 grid-rows-5 space-y-0.5">
         {Array.from({ length: 5 }).map((week, weekIndex) => (
           <div
             key={weekIndex}
@@ -104,6 +107,11 @@ const BookServiceCalendar = ({
             })}
           </div>
         ))}
+      </div>
+      <div className="">
+        <BookServiceTimePicker />
+      </div>
+
       </main>
       <footer className="flex w-full ps-2">
         <LabelWIthAnimatedSlidingText
