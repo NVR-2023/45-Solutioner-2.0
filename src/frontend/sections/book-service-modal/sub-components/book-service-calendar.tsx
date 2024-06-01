@@ -13,7 +13,7 @@ const buttonVariants = {
     scale: 1,
   },
   whileTap: {
-    scale: [1, 1.5, 1, 1],
+    scale: [1, 1.2, 1, 1],
     transition: {
       duration: 0.1,
       type: "tween",
