@@ -1,19 +1,22 @@
+import React from "react";
 
 const Calendar = () => {
   const currentDate = new Date();
+  currentDate.setHours(0, 0, 0, 0);
+
   const currentDayOfWeek = currentDate.getDay();
   const mostRecentSunday = new Date(currentDate);
   mostRecentSunday.setDate(currentDate.getDate() - currentDayOfWeek);
+  mostRecentSunday.setHours(0, 0, 0, 0);
 
-  const lastFourWeekCalendarDate = new Date();
-  lastFourWeekCalendarDate.setDate(
-    currentDate.getDate() + 28 + (7 - currentDayOfWeek),
-  );
+  const lastFourWeekCalendarDate = new Date(mostRecentSunday);
+  lastFourWeekCalendarDate.setDate(mostRecentSunday.getDate() + 34);
+  lastFourWeekCalendarDate.setHours(0, 0, 0, 0);
 
-  const calendarMonthsString =
-    currentDate.getMonth() === lastFourWeekCalendarDate.getMonth()
+  const monthSpanString =
+    mostRecentSunday.getMonth() === lastFourWeekCalendarDate.getMonth()
       ? currentDate.toLocaleString("en-US", { month: "long" }).toLowerCase()
-      : `${currentDate.toLocaleString("en-US", { month: "long" }).toLowerCase()}-${lastFourWeekCalendarDate.toLocaleString("en-US", { month: "long" }).toLowerCase()}`;
+      : `${mostRecentSunday.toLocaleString("en-US", { month: "long" }).toLowerCase()}-${lastFourWeekCalendarDate.toLocaleString("en-US", { month: "long" }).toLowerCase()}`;
 
   const DAYS_OF_THE_WEEK_ABBREVIATIONS = [
     "sun",
@@ -26,13 +29,14 @@ const Calendar = () => {
   ] as const;
 
   const handleOnClick = () => {
-    alert("Clicked")
-  }
+    alert("Clicked");
+  };
+
   return (
     <div className="flex w-full flex-col justify-center rounded bg-neutral-300 px-2 pb-2">
       <header className="mt-2 -space-y-0.5">
         <div className="font-aperçu text-sm font-[700] leading-[.5rem] tracking-wide small-caps dark:text-neutral-300 md:text-xs">
-          {calendarMonthsString}
+          {monthSpanString}
         </div>
         <div className="grid grid-cols-7 grid-rows-1">
           {DAYS_OF_THE_WEEK_ABBREVIATIONS.map((weekDayAbbreviation, index) => (
@@ -45,23 +49,29 @@ const Calendar = () => {
         </div>
       </header>
       <main className="grid grid-cols-7 grid-rows-5 space-y-0.5">
-        {Array.from({ length: 5 }).map((_, weekIndex) => (
+        {Array.from({ length: 5 }).map((week, weekIndex) => (
           <div
             key={weekIndex}
             className="col-span-7 row-span-1 grid grid-cols-7"
           >
-            {Array.from({ length: 7 }).map((_, dayIndex) => {
-              const movingDate = new Date();
+            {Array.from({ length: 7 }).map((day, dayIndex) => {
+              const movingDate = new Date(mostRecentSunday);
               movingDate.setDate(
                 mostRecentSunday.getDate() + (weekIndex * 7 + dayIndex),
               );
+              movingDate.setHours(0, 0, 0, 0); 
               const dayOfTheMonth = movingDate.getDate();
 
-              const lastValidDay = new Date();
-              lastValidDay.setDate(lastValidDay.getDate() + 28);
+              const lastValidDay = new Date(mostRecentSunday);
+              lastValidDay.setDate(mostRecentSunday.getDate() + 28);
+              lastValidDay.setHours(0, 0, 0, 0);
+
               const isDayInvalid =
                 movingDate < currentDate || movingDate > lastValidDay;
-              const isCurrentDay = movingDate.getTime() === currentDate.getTime();
+
+              const isCurrentDay =
+                movingDate.getTime() === currentDate.getTime();
+
               return (
                 <div
                   key={dayIndex}
@@ -91,15 +101,3 @@ const Calendar = () => {
 };
 
 export default Calendar;
-
-
-/* Here are some example date entries:
-2023-05-12 (May 12, 2023)
-1998-09-30 (September 30, 1998)
-2022-01-01 (January 1, 2022)
-Time Entries:
-The time data type represents time of day (without a date) in the format HH:MM:SS.
-Examples of time entries:
-08:30:00 (8:30 AM)
-15:45:30 (3:45:30 PM)
-23:59:59 (11:59:59 PM) */
