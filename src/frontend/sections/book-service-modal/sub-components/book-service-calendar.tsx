@@ -8,6 +8,21 @@ type BookServiceCalendarProps = {
   setBookServiceDate: (date: Date) => void;
 };
 
+const buttonVariants = {
+  initial: {
+    scale: 1,
+  },
+  whileTap: {
+    scale: [1, 1.5, 1, 1],
+    transition: {
+      duration: 0.1,
+      type: "tween",
+      interrupt: "never",
+    },
+  },
+};
+
+
 const BookServiceCalendar = ({
   bookServiceDate,
   setBookServiceDate,
@@ -82,11 +97,14 @@ const BookServiceCalendar = ({
                   movingDate.getTime() === bookServiceDate?.getTime();
 
                 return (
-                  <div
+                  <motion.div
+                    variants={buttonVariants}
+                    whileTap="whileTap"
                     key={dayIndex}
                     className={`relative flex items-center rounded-[2px] leading-[.5rem] ${isDayUnbookable ? "" : "hover:bg-neutral-400 "}`}
                   >
-                    <button
+                    <motion.button
+                      
                       disabled={isDayUnbookable}
                       onClick={() => {
                         handleOnClick(movingDate);
@@ -94,7 +112,7 @@ const BookServiceCalendar = ({
                       className={` flex h-6 w-full items-center justify-center font-aperçu ${isDayUnbookable ? "text-[.35rem] text-neutral-500" : "text-[.625rem]"} font-bold tabular-nums leading-[.5rem] small-caps `}
                     >
                       {dayOfTheMonth}
-                    </button>
+                    </motion.button>
 
                     {isSelectedBookDate && (
                       <motion.div
@@ -102,7 +120,7 @@ const BookServiceCalendar = ({
                         className="absolute left-0 top-0 h-full w-full rounded-[2px] bg-neutral-400 bg-opacity-50"
                       ></motion.div>
                     )}
-                  </div>
+                  </motion.div>
                 );
               })}
             </div>
