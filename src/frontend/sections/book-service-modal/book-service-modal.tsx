@@ -57,7 +57,7 @@ const BookServiceModal = () => {
       isModalOpen={bookServiceModalObject.isBookServiceModalOpen}
       setIsModalOpen={setIsBookServiceModalOpen}
     >
-      <div className="flex w-full flex-col space-y-2">
+      <div className="flex w-full flex-col space-y-4">
         <ModalTitleWithoutLogo
           title={`Book ${capitalizeFirstLetter(bookServiceModalObject.service!)}`}
         />

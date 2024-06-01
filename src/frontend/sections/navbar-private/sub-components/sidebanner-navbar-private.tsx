@@ -21,22 +21,18 @@ const SidebannerNavbarPrivate = ({
   };
 
   return (
-    <div className="z-30 flex flex-col w-full px-4 py-4  ">
-      <div>
-
-      </div>
-      <SingleAccordion singleAccordionLabel={"quick settings"}>
+    <div className="z-30 flex w-full flex-col px-4 py-4  ">
+      <div></div>
+      <SingleAccordion label={"quick settings"}>
         <QuickSettingsContent />
       </SingleAccordion>
-
-    
-     {/*  <Link href="/private/settings">
+      {/*  <Link href="/private/settings">
         <span>account settings</span>
         <span></span>
       </Link> */}
-
-{/*       <button onClick={handleOnCancel}>Sign out</button>
- */}    </div>
+      {/*       <button onClick={handleOnCancel}>Sign out</button>
+       */}{" "}
+    </div>
   );
 };
 

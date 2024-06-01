@@ -64,13 +64,13 @@ const DropdownMenu = ({
       onMouseEnter={handleOnMouseEnter}
       onMouseLeave={handleOnMouseLeave}
       key={dropdownMenuLabel}
-      className="relative z-10 flex h-14 w-full items-center"
+      className="<-10  flex h-14 w-full items-center"
     >
       <div className="flex">
         <label className="flex border-s-[0.7px] border-black ps-1.5 font-aperçu text-sm font-[700] leading-[.5rem] tracking-wide text-black small-caps dark:text-neutral-300 md:text-xs">
           {`${dropdownMenuLabel}:`}
         </label>
-        <div className="relative flex pe-2 ps-2">
+        <div className="relative z-10 flex pe-2 ps-1">
           <div
             id={`${dropdownMenuLabel}-label`}
             className="flex w-28 space-x-2 font-aperçu text-sm font-bold leading-[.5rem] text-black dark:text-neutral-300 md:text-xs"
@@ -92,45 +92,45 @@ const DropdownMenu = ({
               <MenuDownArrow scale={0.6125} />
             </span>
           </div>
-        </div>
-      </div>
 
-      <div
-        onMouseEnter={handleOnMouseEnter}
-        onMouseLeave={handleOnMouseLeave}
-        className="absolute left-12 top-14 grid rounded-[2px]"
-        style={{
-          gridTemplateRows: isDropdownMenuOpen ? "1fr" : "0fr",
-          transition: "grid-template-rows 100ms",
-        }}
-      >
-        <div className="overflow-hidden rounded-[2px] shadow-[18px_18px_12px_0px_#00000040]">
-          <motion.ul className="z-10 block w-full bg-neutral-300 px-2 py-2">
-            {dropdownMenuEntries.map((entry, index) => {
-              return (
-                <motion.li
-                  key={`${dropdownMenuLabel}${index}`}
-                  onClick={() => handleOnClick(entry)}
-                  tabIndex={index}
-                  className="flex"
-                >
-                  <motion.span className="flex w-28 justify-start font-aperçu text-base font-semibold tabular-nums leading-[1.7] text-black hover:font-extrabold dark:text-neutral-300 md:text-[.625rem]">
-                    {capitalizeFirstLetter(entry)}
-                  </motion.span>
-                  <span className="flex items-center justify-center">
-                    {entry === existingDropdownSearchParams ? (
-                      <motion.div
-                        layoutId={`${dropdownMenuLabel}-checkmark`}
-                        transition={{ duration: 0.2 }}
-                      >
-                        <CheckIcon scale={0.5} />
-                      </motion.div>
-                    ) : null}
-                  </span>
-                </motion.li>
-              );
-            })}
-          </motion.ul>
+          <div
+            onMouseEnter={handleOnMouseEnter}
+            onMouseLeave={handleOnMouseLeave}
+            className="absolute w-32 -left-1 top-[2.3rem] grid rounded-[2px]"
+            style={{
+              gridTemplateRows: isDropdownMenuOpen ? "1fr" : "0fr",
+              transition: "grid-template-rows 100ms",
+            }}
+          >
+            <div className="overflow-hidden rounded-[2px] shadow-[18px_18px_12px_0px_#00000040]">
+              <motion.ul className="z-10  w-full bg-neutral-300 px-2 py-2">
+                {dropdownMenuEntries.map((entry, index) => {
+                  return (
+                    <motion.li
+                      key={`${dropdownMenuLabel}${index}`}
+                      onClick={() => handleOnClick(entry)}
+                      tabIndex={index}
+                      className="flex"
+                    >
+                      <motion.span className="flex w-28 justify-start font-aperçu text-base font-semibold tabular-nums leading-[1.7] text-black hover:font-extrabold dark:text-neutral-300 md:text-[.625rem]">
+                        {capitalizeFirstLetter(entry)}
+                      </motion.span>
+                      <span className="flex items-center justify-center">
+                        {entry === existingDropdownSearchParams ? (
+                          <motion.div
+                            layoutId={`${dropdownMenuLabel}-checkmark`}
+                            transition={{ duration: 0.2 }}
+                          >
+                            <CheckIcon scale={0.5} />
+                          </motion.div>
+                        ) : null}
+                      </span>
+                    </motion.li>
+                  );
+                })}
+              </motion.ul>
+            </div>
+          </div>
         </div>
       </div>
     </div>

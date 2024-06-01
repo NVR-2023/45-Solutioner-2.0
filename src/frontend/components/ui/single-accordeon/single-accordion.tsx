@@ -2,12 +2,12 @@ import { useState, ReactNode } from "react";
 import MenuDownArrow from "../../icons/menu-down-arrow";
 
 type SingleAccordionProps = {
-  singleAccordionLabel: string;
+  label: string;
   children: ReactNode;
 };
 
 const SingleAccordion = ({
-  singleAccordionLabel,
+  label: singleAccordionLabel,
   children,
 }: SingleAccordionProps) => {
   const [isSingleAccordionOpen, setIsSingleAccordionOpen] = useState(false);
