@@ -1,6 +1,15 @@
-import React from "react";
+import { useState, useEffect, Dispatch, SetStateAction } from "react";
+import AnimatedSlidingLabel from "@/frontend/components/ui/animated-components/animated-sliding-label.";
 
-const Calendar = () => {
+type BookServiceCalendarProps = {
+  bookServiceDate: Date;
+  setBookServiceDate: (date: Date) => void;
+};
+
+const BookServiceCalendar = ({
+  bookServiceDate,
+  setBookServiceDate,
+}: BookServiceCalendarProps) => {
   const currentDate = new Date();
   currentDate.setHours(0, 0, 0, 0);
 
@@ -13,11 +22,6 @@ const Calendar = () => {
   lastFourWeekCalendarDate.setDate(mostRecentSunday.getDate() + 34);
   lastFourWeekCalendarDate.setHours(0, 0, 0, 0);
 
-  const monthSpanString =
-    mostRecentSunday.getMonth() === lastFourWeekCalendarDate.getMonth()
-      ? currentDate.toLocaleString("en-US", { month: "long" }).toLowerCase()
-      : `${mostRecentSunday.toLocaleString("en-US", { month: "long" }).toLowerCase()}-${lastFourWeekCalendarDate.toLocaleString("en-US", { month: "long" }).toLowerCase()}`;
-
   const DAYS_OF_THE_WEEK_ABBREVIATIONS = [
     "sun",
     "mon",
@@ -28,20 +32,21 @@ const Calendar = () => {
     "sat",
   ] as const;
 
-  const handleOnClick = () => {
-    alert("Clicked");
+  useEffect(() => {
+    setBookServiceDate(currentDate);
+  }, []);
+
+  const handleOnClick = (selectedDate: Date) => {
+    setBookServiceDate(selectedDate);
   };
 
   return (
-    <div className="flex w-full flex-col justify-center rounded bg-neutral-300 px-2 pb-2">
-      <header className="mt-2 -space-y-0.5">
-        <div className="font-aperçu text-sm font-[700] leading-[.5rem] tracking-wide small-caps dark:text-neutral-300 md:text-xs">
-          {monthSpanString}
-        </div>
-        <div className="grid grid-cols-7 grid-rows-1">
+    <div className="flex w-full flex-col justify-center space-y-0.5 rounded bg-neutral-300 px-2 pb-2">
+      <header className="mt-2">
+        <div className="grid grid-cols-7 grid-rows-1 border-b-[.7px]  border-black">
           {DAYS_OF_THE_WEEK_ABBREVIATIONS.map((weekDayAbbreviation, index) => (
             <div key={index} className="flex items-end ">
-              <span className="flex h-6 w-full items-center justify-center font-aperçu text-[.3rem] font-bold leading-[.5rem] small-caps dark:text-neutral-300 md:text-xs">
+              <span className="flex w-full items-center justify-center py-0.5 font-aperçu text-xs font-bold small-caps dark:text-neutral-300">
                 {weekDayAbbreviation}
               </span>
             </div>
@@ -69,26 +74,26 @@ const Calendar = () => {
               const isDayUnbookable =
                 movingDate < currentDate || movingDate > lastBookableDay;
 
-              const isCurrentDay =
-                movingDate.getTime() === currentDate.getTime();
+              const isSelectedBookDate =
+                movingDate.getTime() === bookServiceDate?.getTime();
 
               return (
                 <div
                   key={dayIndex}
-                  className="relative flex items-center leading-[.5rem] hover:bg-red-400"
+                  className={`relative flex items-center rounded-[2px] border-[1px] border-transparent leading-[.5rem] ${isDayUnbookable ? "" : "hover:border-black "}`}
                 >
-                  <span
-                    className={`flex h-5 w-full items-center justify-center font-aperçu ${isDayUnbookable ? "text-[.35rem] text-neutral-500" : "text-[.625rem]"} font-bold tabular-nums leading-[.5rem] small-caps `}
+                  <button
+                    disabled={isDayUnbookable}
+                    onClick={() => {
+                      handleOnClick(movingDate);
+                    }}
+                    className={` flex h-6 w-full items-center justify-center font-aperçu ${isDayUnbookable ? "text-[.35rem] text-neutral-500" : "text-[.625rem]"} ${isSelectedBookDate ? "font-black" : "font-bold"}  tabular-nums leading-[.5rem] small-caps `}
                   >
                     {dayOfTheMonth}
-                  </span>
-                  <div className="absolute left-1/2 top-1/2 translate-x-[-180%] translate-y-[-50%] text-[.5rem] text-transparent">
-                    ■
-                  </div>
-                  {isCurrentDay && (
-                    <div className="absolute left-1/2 top-1/2 translate-x-[-180%] translate-y-[-50%] text-[.5rem] text-red-400">
-                      ■
-                    </div>
+                  </button>
+
+                  {isSelectedBookDate && (
+                    <div className="absolute left-0 top-0 h-full w-full rounded-[2px] bg-neutral-100 bg-opacity-50"></div>
                   )}
                 </div>
               );
@@ -100,4 +105,6 @@ const Calendar = () => {
   );
 };
 
-export default Calendar;
+export default BookServiceCalendar;
+
+

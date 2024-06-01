@@ -35,7 +35,6 @@ const AdvancedModalShell = ({
   setIsModalOpen,
   children,
 }: AdvancedModalShellProps) => {
-    
   const modalRef: RefObject<HTMLDivElement> = useRef(null);
 
   useEffect(() => {
@@ -48,25 +47,12 @@ const AdvancedModalShell = ({
       }
     };
 
-    if (isModalOpen) {
-      // Disable pointer events globally
-      document.body.style.pointerEvents = "none";
-
-      // Re-enable pointer events for the modal
-      if (modalRef.current) {
-        modalRef.current.style.pointerEvents = "auto";
-      }
-
-      document.addEventListener("keydown", handleKeyDown);
-    } else {
-      document.body.style.pointerEvents = "auto";
-    }
+    document.addEventListener("keydown", handleKeyDown);
 
     return () => {
-      document.body.style.pointerEvents = "auto";
       document.removeEventListener("keydown", handleKeyDown);
     };
-  }, [isModalOpen, setIsModalOpen]);
+  }, [setIsModalOpen]);
 
   return (
     <>

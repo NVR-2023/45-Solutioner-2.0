@@ -14,7 +14,7 @@ import { useSearchParams } from "next/navigation";
 import ContentAreaBookPage from "@/frontend/sections/content-area-book-page/content-area-book-page";
 
 import GreetingModal from "@/frontend/sections/greeting-modal/greeting-modal";
-import BookServiceCalendarModal from "@/frontend/sections/book-service-calendar-modal/book-service-calendar-modal";
+import BookServiceModal from "@/frontend/sections/book-service-modal/book-service-modal";
 
 import { useBookServiceModalContext } from "@/frontend/contexts/use-book-service-modal-context";
 
@@ -169,7 +169,7 @@ const Book = () => {
           />
         </div>
         <div className="absolute left-1/2 top-1/2 z-30 -translate-x-1/2 -translate-y-1/2 transform">
-          <BookServiceCalendarModal />
+          <BookServiceModal />
         </div>
       </div>
     </LayoutGroup>
