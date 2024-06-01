@@ -55,16 +55,15 @@ const Calendar = () => {
             className="col-span-7 row-span-1 grid grid-cols-7"
           >
             {Array.from({ length: 7 }).map((day, dayIndex) => {
-              
               const movingDate = new Date(mostRecentSunday);
               movingDate.setDate(
                 mostRecentSunday.getDate() + (weekIndex * 7 + dayIndex),
               );
-              movingDate.setHours(0, 0, 0, 0); 
+              movingDate.setHours(0, 0, 0, 0);
               const dayOfTheMonth = movingDate.getDate();
 
-              const lastBookableDay = new Date(mostRecentSunday);
-              lastBookableDay.setDate(mostRecentSunday.getDate() + 28);
+              const lastBookableDay = new Date(currentDate);
+              lastBookableDay.setDate(currentDate.getDate() + 28);
               lastBookableDay.setHours(0, 0, 0, 0);
 
               const isDayUnbookable =
