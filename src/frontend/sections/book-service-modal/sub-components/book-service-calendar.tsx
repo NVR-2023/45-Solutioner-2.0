@@ -101,7 +101,7 @@ const BookServiceCalendar = ({
                     variants={buttonVariants}
                     whileTap="whileTap"
                     key={dayIndex}
-                    className={`relative flex items-center rounded-[2px] leading-[.5rem] ${isDayUnbookable ? "" : "hover:bg-neutral-400 "}`}
+                    className={`relative flex items-center rounded-[2px] leading-[.5rem] ${isDayUnbookable ? "" : "hover:bg-neutral-200 "}`}
                   >
                     <motion.button
                       
@@ -126,6 +126,7 @@ const BookServiceCalendar = ({
             </div>
           ))}
         </div>
+
         <div className="flex w-full ps-2">
           <LabelWIthAnimatedSlidingText
             label={"date:"}

@@ -56,7 +56,7 @@ const BookServiceModal = () => {
       isModalOpen={bookServiceModalObject.isBookServiceModalOpen}
       setIsModalOpen={setIsBookServiceModalOpen}
     >
-      <div className="flex w-full flex-col space-y-4">
+      <div className="flex w-full flex-col space-y-3">
         <ModalTitleWithoutLogo
           title={`Book ${capitalizeFirstLetter(bookServiceModalObject.service!)}`}
         />
@@ -64,7 +64,10 @@ const BookServiceModal = () => {
           bookServiceDate={bookServiceObject.date!}
           setBookServiceDate={setBookServiceDate}
         />
-        <BookServiceAdditionalControls />
+
+        <div className=" px-4">
+          <BookServiceAdditionalControls />
+        </div>
         <BookServiceSubmitSegment />
       </div>
     </AdvancedModalShell>
