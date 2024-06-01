@@ -55,6 +55,7 @@ const Calendar = () => {
             className="col-span-7 row-span-1 grid grid-cols-7"
           >
             {Array.from({ length: 7 }).map((day, dayIndex) => {
+              
               const movingDate = new Date(mostRecentSunday);
               movingDate.setDate(
                 mostRecentSunday.getDate() + (weekIndex * 7 + dayIndex),
@@ -62,12 +63,12 @@ const Calendar = () => {
               movingDate.setHours(0, 0, 0, 0); 
               const dayOfTheMonth = movingDate.getDate();
 
-              const lastValidDay = new Date(mostRecentSunday);
-              lastValidDay.setDate(mostRecentSunday.getDate() + 28);
-              lastValidDay.setHours(0, 0, 0, 0);
+              const lastBookableDay = new Date(mostRecentSunday);
+              lastBookableDay.setDate(mostRecentSunday.getDate() + 28);
+              lastBookableDay.setHours(0, 0, 0, 0);
 
-              const isDayInvalid =
-                movingDate < currentDate || movingDate > lastValidDay;
+              const isDayUnbookable =
+                movingDate < currentDate || movingDate > lastBookableDay;
 
               const isCurrentDay =
                 movingDate.getTime() === currentDate.getTime();
@@ -78,7 +79,7 @@ const Calendar = () => {
                   className="relative flex items-center leading-[.5rem] hover:bg-red-400"
                 >
                   <span
-                    className={`flex h-5 w-full items-center justify-center font-aperçu ${isDayInvalid ? "text-[.35rem] text-neutral-500" : "text-[.625rem]"} font-bold tabular-nums leading-[.5rem] small-caps `}
+                    className={`flex h-5 w-full items-center justify-center font-aperçu ${isDayUnbookable ? "text-[.35rem] text-neutral-500" : "text-[.625rem]"} font-bold tabular-nums leading-[.5rem] small-caps `}
                   >
                     {dayOfTheMonth}
                   </span>
