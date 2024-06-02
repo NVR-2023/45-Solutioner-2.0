@@ -6,27 +6,28 @@ import { capitalizeFirstLetter } from "@/utils/functions/capitalize-first-letter
 
 import ModalTitleWithoutLogo from "@/frontend/components/ui/modal-components/modal-title-without-logo";
 import BookServiceCalendar from "./sub-components/book-service-calendar";
-import BookServiceTimePicker from "./sub-components/book-service-time-picker";
 import BookServiceAdditionalControls from "./sub-components/book-service-additional-controls";
 import BookServiceSubmitSegment from "./sub-components/book-service-submit-segment";
 
-type bookServiceObject = {
+type bookServiceModalObjectType = {
   userId: string | null;
   serviceId: number | null;
-  date: Date | null;
+  date: string | null;
   time: string | null;
   addressId: number | null;
   quantity: number | null;
   recurrence: string | null;
 };
 const BookServiceModal = () => {
-  const { bookServiceModalObject, setBookServiceModalObject } =
-    useBookServiceModalContext();
+  const {
+    bookServiceModalContext: bookServiceModalObject,
+    setBookServiceModalContext: setBookServiceModalObject,
+  } = useBookServiceModalContext();
 
   const userDetails = useUserDetailsContext();
 
-  const [bookServiceObject, setBookServiceObject] = useState<bookServiceObject>(
-    {
+  const [bookServiceObject, setBookServiceObject] =
+    useState<bookServiceModalObjectType>({
       userId: userDetails.userId,
       serviceId: bookServiceModalObject.id,
       date: null,
@@ -34,10 +35,9 @@ const BookServiceModal = () => {
       addressId: null,
       quantity: 1,
       recurrence: null,
-    },
-  );
+    });
 
-  const setBookServiceDate = (newDate: Date) => {
+  const setBookServiceDate = (newDate: string) => {
     setBookServiceObject((previousBookServiceObject) => ({
       ...previousBookServiceObject,
       date: newDate,

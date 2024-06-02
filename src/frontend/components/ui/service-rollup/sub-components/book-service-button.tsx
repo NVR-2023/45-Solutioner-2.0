@@ -1,5 +1,5 @@
 import { useBookServiceModalContext } from "@/frontend/contexts/use-book-service-modal-context";
-import { BookServiceModalObjectType } from "@/frontend/contexts/use-book-service-modal-context";
+import { BookServiceModalContextType } from "@/frontend/contexts/use-book-service-modal-context";
 
 export type BookServiceButtonProps = {
   id: number | null;
@@ -16,12 +16,11 @@ const BookServiceButton = ({
   price,
   isServiceRollupHovered,
 }: BookServiceButtonProps) => {
-  const { bookServiceModalObject, setBookServiceModalObject } =
-    useBookServiceModalContext();
+  const { setBookServiceModalContext } = useBookServiceModalContext();
 
   const handleOnClick = () => {
-    setBookServiceModalObject(
-      (previousBookServiceModalObject: BookServiceModalObjectType) => ({
+    setBookServiceModalContext(
+      (previousBookServiceModalObject: BookServiceModalContextType) => ({
         ...previousBookServiceModalObject,
         id: id,
         service: service,

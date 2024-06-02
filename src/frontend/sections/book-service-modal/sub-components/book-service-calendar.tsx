@@ -1,11 +1,18 @@
 import { useEffect } from "react";
 import LabelWIthAnimatedSlidingText from "@/frontend/components/ui/animated-components/label-with-animated-sliding-text";
 import BookServiceTimePicker from "./book-service-time-picker";
+import { useBookServiceModalContext } from "@/frontend/contexts/use-book-service-modal-context";
+
 import { motion } from "framer-motion";
 
+import { roundToNearestHalfHour } from "@/utils/functions/roundup-to-nearest-half-hour";
+import { formatDateToString } from "@/utils/functions/format-date-string";
+import { parseStringToDate } from "@/utils/functions/parse-string-to-date";
+import { formatDateToFullString } from "@/utils/functions/format-date-to-full-string";
+
 type BookServiceCalendarProps = {
-  bookServiceDate: Date;
-  setBookServiceDate: (date: Date) => void;
+  bookServiceDate: string;
+  setBookServiceDate: (date: string) => void;
 };
 
 const buttonVariants = {
@@ -22,11 +29,14 @@ const buttonVariants = {
   },
 };
 
-
 const BookServiceCalendar = ({
   bookServiceDate,
   setBookServiceDate,
 }: BookServiceCalendarProps) => {
+  const { bookServiceModalContext: bookServiceModalObject } =
+    useBookServiceModalContext();
+  const duration = bookServiceModalObject.duration;
+
   const currentDate = new Date();
   currentDate.setHours(0, 0, 0, 0);
 
@@ -50,11 +60,36 @@ const BookServiceCalendar = ({
   ] as const;
 
   useEffect(() => {
-    setBookServiceDate(currentDate);
+    const parsedCurrentDate = formatDateToString(currentDate);
+    setBookServiceDate(parsedCurrentDate);
   }, []);
 
+  useEffect(() => {
+    /* if (bookServiceDate?.getTime() === currentDate.getTime()) {
+      let currentHour = new Date().getHours();
+      let currentMinute = currentDate.getMinutes();
+
+      if (currentMinute <= 30) {
+        currentMinute = 30;
+      } else {
+        currentMinute = 0;
+        currentHour++;
+      }
+
+      let lowerLimit = 23 - parseFloat(duration!) - 2;
+      let lastBookableHour = new Date();
+      lastBookableHour.setHours(Math.floor(lowerLimit), (lowerLimit % 1) * 60);
+      lastBookableHour = roundToNearestHalfHour(lastBookableHour);
+
+      if (currentDate.getTime() > lastBookableHour.getTime()) {
+        alert("Not possible");
+      }
+    } */
+  }, [bookServiceDate]);
+
   const handleOnClick = (selectedDate: Date) => {
-    setBookServiceDate(selectedDate);
+    const parsedSelectedDate: string = formatDateToString(selectedDate);
+    setBookServiceDate(parsedSelectedDate);
   };
 
   return (
@@ -94,17 +129,17 @@ const BookServiceCalendar = ({
                   movingDate < currentDate || movingDate > lastBookableDay;
 
                 const isSelectedBookDate =
-                  movingDate.getTime() === bookServiceDate?.getTime();
+                  movingDate.getTime() ===
+                  parseStringToDate(bookServiceDate)?.getTime();
 
                 return (
                   <motion.div
                     variants={buttonVariants}
-                    whileTap="whileTap"
+                    whileTap={isDayUnbookable ? "" : "whileTap"}
                     key={dayIndex}
                     className={`relative flex items-center rounded-[2px] leading-[.5rem] ${isDayUnbookable ? "" : "hover:bg-neutral-200 "}`}
                   >
                     <motion.button
-                      
                       disabled={isDayUnbookable}
                       onClick={() => {
                         handleOnClick(movingDate);
@@ -117,7 +152,7 @@ const BookServiceCalendar = ({
                     {isSelectedBookDate && (
                       <motion.div
                         layoutId="selectedBookDate"
-                        className="absolute left-0 top-0 h-full w-full rounded-[2px] bg-neutral-400 bg-opacity-50"
+                        className="absolute left-0 top-0 h-full w-full rounded-[2px] bg-neutral-100 bg-opacity-50"
                       ></motion.div>
                     )}
                   </motion.div>
@@ -130,15 +165,7 @@ const BookServiceCalendar = ({
         <div className="flex w-full ps-2">
           <LabelWIthAnimatedSlidingText
             label={"date:"}
-            text={(bookServiceDate
-              ? new Date(bookServiceDate)
-              : new Date()
-            ).toLocaleDateString("en-US", {
-              weekday: "long",
-              year: "numeric",
-              month: "long",
-              day: "numeric",
-            })}
+            text={formatDateToFullString(bookServiceDate)}
           />
         </div>
         <div className="">

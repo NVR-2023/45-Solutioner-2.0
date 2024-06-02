@@ -9,7 +9,7 @@ import {
   FC,
 } from "react";
 
-export type BookServiceModalObjectType = {
+export type BookServiceModalContextType = {
   id: number | null;
   service: string | null;
   duration: string | null;
@@ -18,9 +18,9 @@ export type BookServiceModalObjectType = {
 };
 
 export type BookServiceModalContextProps = {
-  bookServiceModalObject: BookServiceModalObjectType;
-  setBookServiceModalObject: Dispatch<
-    SetStateAction<BookServiceModalObjectType>
+  bookServiceModalContext: BookServiceModalContextType;
+  setBookServiceModalContext: Dispatch<
+    SetStateAction<BookServiceModalContextType>
   >;
 };
 
@@ -32,8 +32,8 @@ export const BookServiceModalContextProvider: FC<{ children: ReactNode }> = ({
 }: {
   children: ReactNode;
 }) => {
-  const [bookServiceModalObject, setBookServiceModalObject] =
-    useState<BookServiceModalObjectType>({
+  const [bookServiceModalContext, setBookServiceModalContext] =
+    useState<BookServiceModalContextType>({
       id: null,
       service: "",
       duration: null,
@@ -43,7 +43,10 @@ export const BookServiceModalContextProvider: FC<{ children: ReactNode }> = ({
 
   return (
     <BookServiceModalContext.Provider
-      value={{ bookServiceModalObject, setBookServiceModalObject }}
+      value={{
+        bookServiceModalContext: bookServiceModalContext,
+        setBookServiceModalContext: setBookServiceModalContext,
+      }}
     >
       {children}
     </BookServiceModalContext.Provider>
