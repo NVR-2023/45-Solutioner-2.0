@@ -6,7 +6,7 @@ import { capitalizeFirstLetter } from "@/utils/functions/capitalize-first-letter
 
 import ModalTitleWithoutLogo from "@/frontend/components/ui/modal-components/modal-title-without-logo";
 import BookServiceCalendar from "./sub-components/book-service-calendar";
-import BookServiceAdditionalControls from "./sub-components/book-service-additional-controls";
+import BookServiceDetails from "./sub-components/book-service-details";
 import BookServiceSubmitSegment from "./sub-components/book-service-submit-segment";
 
 type bookServiceModalObjectType = {
@@ -57,7 +57,6 @@ const BookServiceModal = () => {
       isBookServiceModalOpen: isModalOpen,
     }));
   };
-console.log(bookServiceObject)
   return (
     <AdvancedModalShell
       isModalOpen={bookServiceModalObject.isBookServiceModalOpen}
@@ -75,7 +74,7 @@ console.log(bookServiceObject)
         />
 
         <div className=" px-4">
-          <BookServiceAdditionalControls />
+          <BookServiceDetails />
         </div>
         <BookServiceSubmitSegment />
       </div>

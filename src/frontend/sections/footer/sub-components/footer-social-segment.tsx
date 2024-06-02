@@ -1,5 +1,5 @@
 import SocialMediaIcons from "./social-media-icons-footer";
-import getCurrentYearSpan from "@/utils/functions/getCurrentYearSpan";
+import getCurrentYearSpan from "@/utils/functions/date-time/get-current-year-span";
 
 const FooterSocialSegment = () => {
   return (

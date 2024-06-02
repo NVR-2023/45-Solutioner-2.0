@@ -5,10 +5,10 @@ import { useBookServiceModalContext } from "@/frontend/contexts/use-book-service
 
 import { motion } from "framer-motion";
 
-import { roundToNearestHalfHour } from "@/utils/functions/roundup-to-nearest-half-hour";
-import { formatDateToString } from "@/utils/functions/format-date-string";
+import { roundToNearestHalfHour } from "@/utils/functions/date-time/roundup-to-nearest-half-hour";
+import { formatDateToString } from "@/utils/functions/date-time/format-date-string";
 import { parseStringToDate } from "@/utils/functions/parse-string-to-date";
-import { formatDateToFullString } from "@/utils/functions/format-date-to-full-string";
+import { formatDateToFullString } from "@/utils/functions/date-time/format-date-to-full-string";
 
 type BookServiceCalendarProps = {
   bookServiceDate: string;
@@ -72,7 +72,9 @@ const BookServiceCalendar = ({
     if (
       parseStringToDate(bookServiceDate)?.getTime() === currentDate.getTime()
     ) {
-      alert("today");
+      let currentHour = currentDate.getHours();
+
+      
     }
   }, [bookServiceDate]);
 
@@ -133,7 +135,7 @@ const BookServiceCalendar = ({
                       onClick={() => {
                         handleOnClick(movingDate);
                       }}
-                      className={` flex h-6 w-full items-center justify-center font-aperçu ${isDayUnbookable ? "text-[.35rem] text-neutral-500" : "text-[.625rem]"} font-bold tabular-nums leading-[.5rem] small-caps `}
+                      className={` flex h-6 w-full items-center justify-center font-aperçu ${isDayUnbookable ? "text-[.5rem] text-neutral-400" : "text-[.625rem]"} font-bold tabular-nums leading-[.5rem] small-caps `}
                     >
                       {dayOfTheMonth}
                     </motion.button>

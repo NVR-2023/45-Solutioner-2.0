@@ -1,4 +1,4 @@
-import { parseStringToDate } from "./parse-string-to-date";
+import { parseStringToDate } from "../parse-string-to-date";
 
 export const formatDateToFullString = (dateString: string): string => {
   const parsedDate = parseStringToDate(dateString);
