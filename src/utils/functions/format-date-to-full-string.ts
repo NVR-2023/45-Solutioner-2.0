@@ -4,7 +4,7 @@ export const formatDateToFullString = (dateString: string): string => {
   const parsedDate = parseStringToDate(dateString);
 
   if (parsedDate === null) {
-    return "Invalid Date";
+    return "";
   }
 
   const options: Intl.DateTimeFormatOptions = {

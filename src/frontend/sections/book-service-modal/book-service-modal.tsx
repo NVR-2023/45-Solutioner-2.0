@@ -44,13 +44,20 @@ const BookServiceModal = () => {
     }));
   };
 
+  const setBookServiceTime = (newTime: string) => {
+    setBookServiceObject((previousBookServiceObject) => ({
+      ...previousBookServiceObject,
+      time: newTime,
+    }));
+  };
+
   const setIsBookServiceModalOpen = (isModalOpen: boolean) => {
     setBookServiceModalObject((previousObject) => ({
       ...previousObject,
       isBookServiceModalOpen: isModalOpen,
     }));
   };
-
+console.log(bookServiceObject)
   return (
     <AdvancedModalShell
       isModalOpen={bookServiceModalObject.isBookServiceModalOpen}
@@ -63,6 +70,8 @@ const BookServiceModal = () => {
         <BookServiceCalendar
           bookServiceDate={bookServiceObject.date!}
           setBookServiceDate={setBookServiceDate}
+          bookServiceTime={bookServiceObject.time!}
+          setBookServiceTime={setBookServiceTime}
         />
 
         <div className=" px-4">

@@ -132,7 +132,7 @@ const ServiceRollup = ({
           onMouseLeave={handleOnLeave}
           className="w-[45rem] overflow-hidden rounded-b  bg-neutral-300 "
         >
-          <div className="grid grid-cols-7 space-x-6 overflow-hidden border-t-[.625px] border-neutral-200 px-6">
+          <div className="grid grid-cols-7 space-x-6 overflow-hidden border-t-[1px] border-neutral-200 px-6">
             <div className="col-span-1"></div>
             <div className="col-span-2">
               <div className=" py-2 text-[0.625rem] font-medium leading-[150%] ">

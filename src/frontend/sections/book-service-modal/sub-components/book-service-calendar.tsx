@@ -13,6 +13,8 @@ import { formatDateToFullString } from "@/utils/functions/format-date-to-full-st
 type BookServiceCalendarProps = {
   bookServiceDate: string;
   setBookServiceDate: (date: string) => void;
+  bookServiceTime: string;
+  setBookServiceTime: (time: string) => void;
 };
 
 const buttonVariants = {
@@ -32,6 +34,8 @@ const buttonVariants = {
 const BookServiceCalendar = ({
   bookServiceDate,
   setBookServiceDate,
+  bookServiceTime,
+  setBookServiceTime,
 }: BookServiceCalendarProps) => {
   const { bookServiceModalContext: bookServiceModalObject } =
     useBookServiceModalContext();
@@ -65,26 +69,11 @@ const BookServiceCalendar = ({
   }, []);
 
   useEffect(() => {
-    /* if (bookServiceDate?.getTime() === currentDate.getTime()) {
-      let currentHour = new Date().getHours();
-      let currentMinute = currentDate.getMinutes();
-
-      if (currentMinute <= 30) {
-        currentMinute = 30;
-      } else {
-        currentMinute = 0;
-        currentHour++;
-      }
-
-      let lowerLimit = 23 - parseFloat(duration!) - 2;
-      let lastBookableHour = new Date();
-      lastBookableHour.setHours(Math.floor(lowerLimit), (lowerLimit % 1) * 60);
-      lastBookableHour = roundToNearestHalfHour(lastBookableHour);
-
-      if (currentDate.getTime() > lastBookableHour.getTime()) {
-        alert("Not possible");
-      }
-    } */
+    if (
+      parseStringToDate(bookServiceDate)?.getTime() === currentDate.getTime()
+    ) {
+      alert("today");
+    }
   }, [bookServiceDate]);
 
   const handleOnClick = (selectedDate: Date) => {
@@ -93,12 +82,12 @@ const BookServiceCalendar = ({
   };
 
   return (
-    <div className="flex w-full flex-col justify-center space-y-0.5 rounded bg-neutral-300 px-2 pb-2">
+    <div className="flex w-full flex-col justify-center space-y-0.5 rounded bg-neutral-300 px-2 pb-4">
       <header className="mt-2">
         <div className="grid grid-cols-7 grid-rows-1">
           {DAYS_OF_THE_WEEK_ABBREVIATIONS.map((weekDayAbbreviation, index) => (
             <div key={index} className="flex items-end ">
-              <span className="flex w-full items-center justify-center py-0.5 font-aperçu text-xs font-bold small-caps dark:text-neutral-300">
+              <span className="flex w-full items-center justify-center py-0.5 font-aperçu text-[.625rem] font-bold small-caps dark:text-neutral-300">
                 {weekDayAbbreviation}
               </span>
             </div>
@@ -137,7 +126,7 @@ const BookServiceCalendar = ({
                     variants={buttonVariants}
                     whileTap={isDayUnbookable ? "" : "whileTap"}
                     key={dayIndex}
-                    className={`relative flex items-center rounded-[2px] leading-[.5rem] ${isDayUnbookable ? "" : "hover:bg-neutral-200 "}`}
+                    className={`relative flex items-center rounded-[2px] leading-[.5rem] ${isDayUnbookable ? "" : "hover:bg-neutral-100 "}`}
                   >
                     <motion.button
                       disabled={isDayUnbookable}
@@ -162,11 +151,12 @@ const BookServiceCalendar = ({
           ))}
         </div>
 
-        <div className="flex w-full ps-2">
+        <div className="mt-4 space-y-2 ps-2">
           <LabelWIthAnimatedSlidingText
-            label={"date:"}
+            label={"date"}
             text={formatDateToFullString(bookServiceDate)}
           />
+          <LabelWIthAnimatedSlidingText label={"time"} text={"sdsd"} />
         </div>
         <div className="">
           <BookServiceTimePicker />
