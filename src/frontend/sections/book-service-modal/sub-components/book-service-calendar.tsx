@@ -85,11 +85,9 @@ const BookServiceCalendar = ({
     setBookServiceDate(parsedSelectedDate);
   };
 
-const handleToggleCalendarExpansion = () => {
-  setIsCalendarExpanded(!isCalendarExpanded);
-};
-
-
+  const handleToggleCalendarExpansion = () => {
+    setIsCalendarExpanded(!isCalendarExpanded);
+  };
 
   return (
     <div className="g-0 m-0 p-0">
@@ -143,14 +141,14 @@ const handleToggleCalendarExpansion = () => {
                         variants={buttonVariants}
                         whileTap={isDayUnbookable ? "" : "whileTap"}
                         key={dayIndex}
-                        className={`relative flex items-center rounded-[2px] leading-[.5rem] ${isDayUnbookable ? "" : "hover:bg-neutral-100 "}`}
+                        className={`relative flex items-center rounded-[2px] leading-[.5rem] ${isDayUnbookable ? "" : "hover:bg-neutral-200 "}`}
                       >
                         <motion.button
                           disabled={isDayUnbookable}
                           onClick={() => {
                             handleOnClick(movingDate);
                           }}
-                          className={` flex h-6 w-full items-center justify-center font-aperçu ${isDayUnbookable ? "text-[.5rem] text-neutral-400" : "text-[.625rem]"} font-bold tabular-nums leading-[.5rem] small-caps `}
+                          className={` flex h-6 w-full items-center justify-center font-aperçu ${isDayUnbookable ? "text-[.35rem] text-neutral-400" : "text-[.625rem]"} font-bold tabular-nums leading-[.5rem] small-caps `}
                         >
                           {dayOfTheMonth}
                         </motion.button>

@@ -6,6 +6,10 @@ import { capitalizeFirstLetter } from "@/utils/functions/capitalize-first-letter
 
 import ModalTitleWithoutLogo from "@/frontend/components/ui/modal-components/modal-title-without-logo";
 import BookServiceCalendar from "./sub-components/book-service-calendar";
+
+import Calendar from "./sub-components/calendar";
+import Details from "./sub-components/details";
+
 import BookServiceDetails from "./sub-components/book-service-details";
 import BookServiceSubmitSegment from "./sub-components/book-service-submit-segment";
 
@@ -67,7 +71,15 @@ const BookServiceModal = () => {
         <ModalTitleWithoutLogo
           title={`Book ${capitalizeFirstLetter(bookServiceModalContext.service!)}`}
         />
-        <BookServiceCalendar
+        {/*    <BookServiceCalendar
+          bookServiceDate={bookServiceObject.date!}
+          setBookServiceDate={setBookServiceDate}
+          bookServiceTime={bookServiceObject.time!}
+          setBookServiceTime={setBookServiceTime}
+          isCalendarExpanded={isCalendarExpanded}
+          setIsCalendarExpanded={setIsCalendarExpanded}
+        /> */}
+        <Calendar
           bookServiceDate={bookServiceObject.date!}
           setBookServiceDate={setBookServiceDate}
           bookServiceTime={bookServiceObject.time!}
@@ -77,9 +89,13 @@ const BookServiceModal = () => {
         />
 
         <div className="">
-          <BookServiceDetails 
-          isCalendarExpanded={isCalendarExpanded}
-          setIsCalendarExpanded={setIsCalendarExpanded}
+          {/*  <BookServiceDetails
+            isCalendarExpanded={isCalendarExpanded}
+            setIsCalendarExpanded={setIsCalendarExpanded}
+          /> */}
+          <Details
+            isCalendarExpanded={isCalendarExpanded}
+            setIsCalendarExpanded={setIsCalendarExpanded}
           />
         </div>
         <BookServiceSubmitSegment />
