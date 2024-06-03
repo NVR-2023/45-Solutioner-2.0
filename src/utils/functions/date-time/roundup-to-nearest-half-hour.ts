@@ -1,13 +1,14 @@
-export const roundToNearestHalfHour = (date: Date): Date => {
-  let minutes = date.getMinutes();
-  let roundedMinutes = Math.ceil(minutes / 30) * 30;
+export const roundToNearestHalfHour = (hourToRoundUp: string): string => {
+  let [hour, minutes, seconds] = hourToRoundUp.split(":").map(Number);
 
-  if (roundedMinutes === 60) {
-    date.setHours(date.getHours() + 1);
-    date.setMinutes(0);
+  if (minutes > 30) {
+    minutes = 0;
+    hour = (hour + 1) % 24;
   } else {
-    date.setMinutes(roundedMinutes);
+    minutes = 30;
   }
 
-  return date;
-}
+  const roundedUpHourString = `${hour.toString().padStart(2, "0")}:${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
+
+  return roundedUpHourString;
+};

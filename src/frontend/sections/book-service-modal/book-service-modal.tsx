@@ -18,24 +18,25 @@ type bookServiceModalObjectType = {
   quantity: number | null;
   recurrence: string | null;
 };
-const BookServiceModal = () => {
-  const {
-    bookServiceModalContext: bookServiceModalObject,
-    setBookServiceModalContext: setBookServiceModalObject,
-  } = useBookServiceModalContext();
 
+const BookServiceModal = () => {
+
+  const { bookServiceModalContext, setBookServiceModalContext } =
+    useBookServiceModalContext();
   const userDetails = useUserDetailsContext();
 
   const [bookServiceObject, setBookServiceObject] =
     useState<bookServiceModalObjectType>({
       userId: userDetails.userId,
-      serviceId: bookServiceModalObject.id,
+      serviceId: bookServiceModalContext.id,
       date: null,
       time: null,
       addressId: null,
       quantity: 1,
       recurrence: null,
     });
+
+  const [ isCalendarExpanded , setIsCalendarExpanded ] = useState<boolean>(true);
 
   const setBookServiceDate = (newDate: string) => {
     setBookServiceObject((previousBookServiceObject) => ({
@@ -52,29 +53,34 @@ const BookServiceModal = () => {
   };
 
   const setIsBookServiceModalOpen = (isModalOpen: boolean) => {
-    setBookServiceModalObject((previousObject) => ({
+    setBookServiceModalContext((previousObject) => ({
       ...previousObject,
       isBookServiceModalOpen: isModalOpen,
     }));
   };
   return (
     <AdvancedModalShell
-      isModalOpen={bookServiceModalObject.isBookServiceModalOpen}
+      isModalOpen={bookServiceModalContext.isBookServiceModalOpen}
       setIsModalOpen={setIsBookServiceModalOpen}
     >
       <div className="flex w-full flex-col space-y-3">
         <ModalTitleWithoutLogo
-          title={`Book ${capitalizeFirstLetter(bookServiceModalObject.service!)}`}
+          title={`Book ${capitalizeFirstLetter(bookServiceModalContext.service!)}`}
         />
         <BookServiceCalendar
           bookServiceDate={bookServiceObject.date!}
           setBookServiceDate={setBookServiceDate}
           bookServiceTime={bookServiceObject.time!}
           setBookServiceTime={setBookServiceTime}
+          isCalendarExpanded={isCalendarExpanded}
+          setIsCalendarExpanded={setIsCalendarExpanded}
         />
 
-        <div className=" px-4">
-          <BookServiceDetails />
+        <div className="">
+          <BookServiceDetails 
+          isCalendarExpanded={isCalendarExpanded}
+          setIsCalendarExpanded={setIsCalendarExpanded}
+          />
         </div>
         <BookServiceSubmitSegment />
       </div>
@@ -83,13 +89,3 @@ const BookServiceModal = () => {
 };
 
 export default BookServiceModal;
-
-{
-  /*       <p>{userDetails.userId}</p>
-        <p>{userDetails.userName}</p>
-        <p>{userDetails.userInitials}</p>
-        <p>{service}</p>
-        <p>id:{id}</p>
-        <p>price:{price}</p>
-        <p>duration:{duration}</p> */
-}

@@ -15,6 +15,8 @@ type BookServiceCalendarProps = {
   setBookServiceDate: (date: string) => void;
   bookServiceTime: string;
   setBookServiceTime: (time: string) => void;
+  isCalendarExpanded: boolean;
+  setIsCalendarExpanded: (isCalendarExpanded: boolean) => void;
 };
 
 const buttonVariants = {
@@ -36,6 +38,8 @@ const BookServiceCalendar = ({
   setBookServiceDate,
   bookServiceTime,
   setBookServiceTime,
+  isCalendarExpanded,
+  setIsCalendarExpanded,
 }: BookServiceCalendarProps) => {
   const { bookServiceModalContext: bookServiceModalObject } =
     useBookServiceModalContext();
@@ -73,8 +77,6 @@ const BookServiceCalendar = ({
       parseStringToDate(bookServiceDate)?.getTime() === currentDate.getTime()
     ) {
       let currentHour = currentDate.getHours();
-
-      
     }
   }, [bookServiceDate]);
 
@@ -83,77 +85,97 @@ const BookServiceCalendar = ({
     setBookServiceDate(parsedSelectedDate);
   };
 
+const handleToggleCalendarExpansion = () => {
+  setIsCalendarExpanded(!isCalendarExpanded);
+};
+
+
+
   return (
-    <div className="flex w-full flex-col justify-center space-y-0.5 rounded bg-neutral-300 px-2 pb-4">
-      <header className="mt-2">
-        <div className="grid grid-cols-7 grid-rows-1">
-          {DAYS_OF_THE_WEEK_ABBREVIATIONS.map((weekDayAbbreviation, index) => (
-            <div key={index} className="flex items-end ">
-              <span className="flex w-full items-center justify-center py-0.5 font-aperçu text-[.625rem] font-bold small-caps dark:text-neutral-300">
-                {weekDayAbbreviation}
-              </span>
+    <div className="g-0 m-0 p-0">
+      <div
+        className="grid"
+        style={{
+          gridTemplateRows: isCalendarExpanded ? "1fr" : "0fr",
+          transition: "grid-template-rows 500ms",
+        }}
+      >
+        <div className="overflow-hidden">
+          <div className="overflow-hidden rounded-tl rounded-tr bg-neutral-300 p-2 ">
+            <div className="grid grid-cols-7 grid-rows-1">
+              {DAYS_OF_THE_WEEK_ABBREVIATIONS.map(
+                (weekDayAbbreviation, index) => (
+                  <div key={index} className="flex items-end ">
+                    <span className="flex w-full items-center justify-center py-0.5 font-aperçu text-[.625rem] font-bold small-caps dark:text-neutral-300">
+                      {weekDayAbbreviation}
+                    </span>
+                  </div>
+                ),
+              )}
             </div>
-          ))}
-        </div>
-      </header>
+            <div className="grid grid-cols-7 grid-rows-5">
+              {Array.from({ length: 5 }).map((week, weekIndex) => (
+                <div
+                  key={weekIndex}
+                  className="col-span-7 row-span-1 grid grid-cols-7"
+                >
+                  {Array.from({ length: 7 }).map((day, dayIndex) => {
+                    const movingDate = new Date(mostRecentSunday);
+                    movingDate.setDate(
+                      mostRecentSunday.getDate() + (weekIndex * 7 + dayIndex),
+                    );
+                    movingDate.setHours(0, 0, 0, 0);
+                    const dayOfTheMonth = movingDate.getDate();
 
-      <main className="">
-        <div className="grid grid-cols-7 grid-rows-5 space-y-0.5">
-          {Array.from({ length: 5 }).map((week, weekIndex) => (
-            <div
-              key={weekIndex}
-              className="col-span-7 row-span-1 grid grid-cols-7"
-            >
-              {Array.from({ length: 7 }).map((day, dayIndex) => {
-                const movingDate = new Date(mostRecentSunday);
-                movingDate.setDate(
-                  mostRecentSunday.getDate() + (weekIndex * 7 + dayIndex),
-                );
-                movingDate.setHours(0, 0, 0, 0);
-                const dayOfTheMonth = movingDate.getDate();
+                    const lastBookableDay = new Date(currentDate);
+                    lastBookableDay.setDate(currentDate.getDate() + 28);
+                    lastBookableDay.setHours(0, 0, 0, 0);
 
-                const lastBookableDay = new Date(currentDate);
-                lastBookableDay.setDate(currentDate.getDate() + 28);
-                lastBookableDay.setHours(0, 0, 0, 0);
+                    const isDayUnbookable =
+                      movingDate < currentDate || movingDate > lastBookableDay;
 
-                const isDayUnbookable =
-                  movingDate < currentDate || movingDate > lastBookableDay;
+                    const isSelectedBookDate =
+                      movingDate.getTime() ===
+                      parseStringToDate(bookServiceDate)?.getTime();
 
-                const isSelectedBookDate =
-                  movingDate.getTime() ===
-                  parseStringToDate(bookServiceDate)?.getTime();
-
-                return (
-                  <motion.div
-                    variants={buttonVariants}
-                    whileTap={isDayUnbookable ? "" : "whileTap"}
-                    key={dayIndex}
-                    className={`relative flex items-center rounded-[2px] leading-[.5rem] ${isDayUnbookable ? "" : "hover:bg-neutral-100 "}`}
-                  >
-                    <motion.button
-                      disabled={isDayUnbookable}
-                      onClick={() => {
-                        handleOnClick(movingDate);
-                      }}
-                      className={` flex h-6 w-full items-center justify-center font-aperçu ${isDayUnbookable ? "text-[.5rem] text-neutral-400" : "text-[.625rem]"} font-bold tabular-nums leading-[.5rem] small-caps `}
-                    >
-                      {dayOfTheMonth}
-                    </motion.button>
-
-                    {isSelectedBookDate && (
+                    return (
                       <motion.div
-                        layoutId="selectedBookDate"
-                        className="absolute left-0 top-0 h-full w-full rounded-[2px] bg-neutral-100 bg-opacity-50"
-                      ></motion.div>
-                    )}
-                  </motion.div>
-                );
-              })}
-            </div>
-          ))}
-        </div>
+                        variants={buttonVariants}
+                        whileTap={isDayUnbookable ? "" : "whileTap"}
+                        key={dayIndex}
+                        className={`relative flex items-center rounded-[2px] leading-[.5rem] ${isDayUnbookable ? "" : "hover:bg-neutral-100 "}`}
+                      >
+                        <motion.button
+                          disabled={isDayUnbookable}
+                          onClick={() => {
+                            handleOnClick(movingDate);
+                          }}
+                          className={` flex h-6 w-full items-center justify-center font-aperçu ${isDayUnbookable ? "text-[.5rem] text-neutral-400" : "text-[.625rem]"} font-bold tabular-nums leading-[.5rem] small-caps `}
+                        >
+                          {dayOfTheMonth}
+                        </motion.button>
 
-        <div className="mt-4 space-y-2 ps-2">
+                        {isSelectedBookDate && (
+                          <motion.div
+                            layoutId="selectedBookDate"
+                            className="absolute left-0 top-0 h-full w-full rounded-[2px] bg-neutral-100 bg-opacity-50"
+                          ></motion.div>
+                        )}
+                      </motion.div>
+                    );
+                  })}
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div
+        onClick={handleToggleCalendarExpansion}
+        className={`bg-neutral-300 p-2 transition-all ${isCalendarExpanded ? "rounded-bl rounded-br" : "rounded"}`}
+      >
+        <div className="space-y-2 ps-2">
           <LabelWIthAnimatedSlidingText
             label={"date"}
             text={formatDateToFullString(bookServiceDate)}
@@ -163,7 +185,7 @@ const BookServiceCalendar = ({
         <div className="">
           <BookServiceTimePicker />
         </div>
-      </main>
+      </div>
     </div>
   );
 };
