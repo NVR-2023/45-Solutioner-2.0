@@ -41,6 +41,7 @@ const BookServiceCalendar = ({
   isCalendarExpanded,
   setIsCalendarExpanded,
 }: BookServiceCalendarProps) => {
+
   const { bookServiceModalContext: bookServiceModalObject } =
     useBookServiceModalContext();
   const duration = bookServiceModalObject.duration;
@@ -91,6 +92,7 @@ const BookServiceCalendar = ({
 
   return (
     <div className="g-0 m-0 p-0">
+
       <div
         className="grid"
         style={{
@@ -168,6 +170,15 @@ const BookServiceCalendar = ({
           </div>
         </div>
       </div>
+
+
+
+
+
+
+
+
+
 
       <div
         onClick={handleToggleCalendarExpansion}
