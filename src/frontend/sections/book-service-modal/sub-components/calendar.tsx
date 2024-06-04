@@ -2,12 +2,12 @@ import { useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 import { useBookServiceModalContext } from "@/frontend/contexts/use-book-service-modal-context";
+import { capitalizeFirstLetter } from "@/utils/functions/capitalize-first-letter";
 
-import { roundToNearestHalfHour } from "@/utils/functions/date-time/roundup-to-nearest-half-hour";
-import { formatDateToString } from "@/utils/functions/date-time/format-date-string";
+import { roundToNearestHalfHour } from "@/utils/functions/date-time/roundup-to-nearest-half-hour-string";
+import { convertDateToYearString } from "@/utils/functions/date-time/convert-date-to-year-string";
 import { parseStringToDate } from "@/utils/functions/parse-string-to-date";
-import { formatDateToFullString } from "@/utils/functions/date-time/format-date-to-full-string";
-
+import { convertDateToFullString } from "@/utils/functions/date-time/convert-date-to-full-string";
 import AnimatedSlidingText from "@/frontend/components/ui/animated-components/animated-sliding-text.";
 
 type CalendarProps = {
@@ -43,6 +43,8 @@ const Calendar = ({
 }: CalendarProps) => {
   const { bookServiceModalContext: bookServiceModalObject } =
     useBookServiceModalContext();
+
+  const service = bookServiceModalObject.service;
   const duration = bookServiceModalObject.duration;
 
   const currentDate = new Date();
@@ -68,7 +70,7 @@ const Calendar = ({
   ] as const;
 
   const handleOnClick = (selectedDate: Date) => {
-    const parsedSelectedDate: string = formatDateToString(selectedDate);
+    const parsedSelectedDate: string = convertDateToYearString(selectedDate);
     setBookServiceDate(parsedSelectedDate);
   };
 
@@ -81,9 +83,36 @@ const Calendar = ({
   }, []);
 
   useEffect(() => {
-    const parsedCurrentDate = formatDateToString(currentDate);
+    const parsedCurrentDate = convertDateToYearString(currentDate);
     setBookServiceDate(parsedCurrentDate);
   }, []);
+
+  useEffect(() => {
+    if (
+      parseStringToDate(bookServiceDate)?.getTime() === currentDate.getTime()
+    ) {
+      const hoursInDuration = parseInt(duration!);
+      const remainingMinutesInDuration =
+        (parseFloat(duration!) - hoursInDuration) * 60;
+
+      const lastBookableTime = new Date();
+      lastBookableTime.setHours(
+        21 - hoursInDuration,
+        remainingMinutesInDuration,
+      );
+
+      const lastBookableTimeString = `${lastBookableTime.getHours()}:${lastBookableTime.getMinutes()}`;
+
+      alert(
+        "hours: " +
+          hoursInDuration +
+          "   minutes: " +
+          remainingMinutesInDuration +
+          "   lat:" +
+          lastBookableTimeString,
+      );
+    }
+  }, [bookServiceDate]);
 
   return (
     <div
@@ -178,6 +207,16 @@ const Calendar = ({
         className="w-full space-y-2 overflow-hidden"
       >
         <div className="flex">
+          <div className="flex overflow-hidden font-aperçu text-sm font-[700] leading-[.5rem] tracking-wide text-black transition-all duration-300 small-caps dark:text-neutral-300 md:text-xs">
+            service:
+          </div>
+
+          <div className="flex font-aperçu text-sm font-bold leading-[.5rem] text-black dark:text-neutral-300 md:text-xs">
+            {capitalizeFirstLetter(service!)}
+          </div>
+        </div>
+
+        <div className="flex">
           <div
             className={`flex overflow-hidden font-aperçu text-sm font-[700] leading-[.5rem] tracking-wide text-black transition-all duration-300 small-caps dark:text-neutral-300 md:text-xs ${isCalendarExpanded ? "w-7" : "w-0"}`}
           >
@@ -186,14 +225,19 @@ const Calendar = ({
 
           <div className="flex font-aperçu text-sm font-bold leading-[.5rem] text-black dark:text-neutral-300 md:text-xs">
             <AnimatedSlidingText
-              text={`${formatDateToFullString(bookServiceDate)}${isCalendarExpanded ? "" : ", 09:00"}`}
+              text={`${convertDateToFullString(bookServiceDate)}${isCalendarExpanded ? "" : ", 09:00"}`}
             />
           </div>
         </div>
 
-        <div className={`flex ${isCalendarExpanded ? "h-auto" : "h-0"} `}>
-          <div>from:</div>
-          <div>zzz</div>
+        <div className="flex">
+          <div className="flex overflow-hidden font-aperçu text-sm font-[700] leading-[.5rem] tracking-wide text-black transition-all duration-300 small-caps dark:text-neutral-300 md:text-xs">
+            service:
+          </div>
+
+          <div className="flex font-aperçu text-sm font-bold leading-[.5rem] text-black dark:text-neutral-300 md:text-xs">
+            {capitalizeFirstLetter(service!)}
+          </div>
         </div>
       </div>
     </div>
@@ -201,3 +245,28 @@ const Calendar = ({
 };
 
 export default Calendar;
+
+/*     const currentTime = new Date();
+        const currentHour = currentTime.getHours();
+        const currentMinutes = currentTime.getMinutes();
+        const currentRoundedupHour = roundToNearestHalfHour(
+          `${currentHour}:${currentMinutes}`,
+        );
+
+        const durationInMinutes = parseFloat(duration!) * 60;
+        const hoursInDuration = Math.floor(durationInMinutes / 60);
+        const remainingMinutesInDuration = durationInMinutes % 60;
+
+        const lastBookableHour = new Date();
+        lastBookableHour.setHours(
+          21 - hoursInDuration,
+          remainingMinutesInDuration,
+        );
+
+        const roundedupLastBookableHour = roundToNearestHalfHour(
+          `${lastBookableHour.getHours()}:${lastBookableHour.getMinutes()}`,
+        );
+
+        alert(
+          ` duration: ${duration} current:${currentRoundedupHour} --- upper:${lastBookableHour.getHours()} `,
+        ); */

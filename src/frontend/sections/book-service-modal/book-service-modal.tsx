@@ -24,7 +24,6 @@ type bookServiceModalObjectType = {
 };
 
 const BookServiceModal = () => {
-
   const { bookServiceModalContext, setBookServiceModalContext } =
     useBookServiceModalContext();
   const userDetails = useUserDetailsContext();
@@ -40,7 +39,7 @@ const BookServiceModal = () => {
       recurrence: null,
     });
 
-  const [ isCalendarExpanded , setIsCalendarExpanded ] = useState<boolean>(true);
+  const [isCalendarExpanded, setIsCalendarExpanded] = useState<boolean>(true);
 
   const setBookServiceDate = (newDate: string) => {
     setBookServiceObject((previousBookServiceObject) => ({
@@ -67,10 +66,9 @@ const BookServiceModal = () => {
       isModalOpen={bookServiceModalContext.isBookServiceModalOpen}
       setIsModalOpen={setIsBookServiceModalOpen}
     >
-      <div className="flex w-full flex-col space-y-3">
+      <div className="flex w-full flex-col space-y-4">
         <ModalTitleWithoutLogo
-          title={`Book ${capitalizeFirstLetter(bookServiceModalContext.service!)}`}
-        />
+          title="Book"        />
         {/*    <BookServiceCalendar
           bookServiceDate={bookServiceObject.date!}
           setBookServiceDate={setBookServiceDate}

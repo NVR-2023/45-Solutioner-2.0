@@ -5,7 +5,7 @@ type ModalTitleProps = {
 
 const ModalTitleWithoutLogo = ({ title }: ModalTitleProps) => {
   return (
-    <div className="font-aperçu text-sm font-bold leading-[.5rem] text-[#ff7714] dark:text-neutral-300 md:text-xs">
+    <div className="font-aperçu text-base font-bold leading-[.5rem] text-[#ff7714] dark:text-neutral-300 ">
       {capitalizeFirstLetter(title as string)}
     </div>
   );

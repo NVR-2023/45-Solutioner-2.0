@@ -5,10 +5,10 @@ import { useBookServiceModalContext } from "@/frontend/contexts/use-book-service
 
 import { motion } from "framer-motion";
 
-import { roundToNearestHalfHour } from "@/utils/functions/date-time/roundup-to-nearest-half-hour";
-import { formatDateToString } from "@/utils/functions/date-time/format-date-string";
+import { roundToNearestHalfHour } from "@/utils/functions/date-time/roundup-to-nearest-half-hour-string";
+import { convertDateToFullString } from "@/utils/functions/date-time/convert-date-to-full-string";
 import { parseStringToDate } from "@/utils/functions/parse-string-to-date";
-import { formatDateToFullString } from "@/utils/functions/date-time/format-date-to-full-string";
+import { convertDateToYearString } from "@/utils/functions/date-time/convert-date-to-year-string";
 
 type BookServiceCalendarProps = {
   bookServiceDate: string;
@@ -41,7 +41,6 @@ const BookServiceCalendar = ({
   isCalendarExpanded,
   setIsCalendarExpanded,
 }: BookServiceCalendarProps) => {
-
   const { bookServiceModalContext: bookServiceModalObject } =
     useBookServiceModalContext();
   const duration = bookServiceModalObject.duration;
@@ -69,7 +68,7 @@ const BookServiceCalendar = ({
   ] as const;
 
   useEffect(() => {
-    const parsedCurrentDate = formatDateToString(currentDate);
+    const parsedCurrentDate = convertDateToYearString(currentDate);
     setBookServiceDate(parsedCurrentDate);
   }, []);
 
@@ -82,7 +81,7 @@ const BookServiceCalendar = ({
   }, [bookServiceDate]);
 
   const handleOnClick = (selectedDate: Date) => {
-    const parsedSelectedDate: string = formatDateToString(selectedDate);
+    const parsedSelectedDate: string = convertDateToYearString(selectedDate);
     setBookServiceDate(parsedSelectedDate);
   };
 
@@ -92,7 +91,6 @@ const BookServiceCalendar = ({
 
   return (
     <div className="g-0 m-0 p-0">
-
       <div
         className="grid"
         style={{
@@ -171,15 +169,6 @@ const BookServiceCalendar = ({
         </div>
       </div>
 
-
-
-
-
-
-
-
-
-
       <div
         onClick={handleToggleCalendarExpansion}
         className={`bg-neutral-300 p-2 transition-all ${isCalendarExpanded ? "rounded-bl rounded-br" : "rounded"}`}
@@ -187,7 +176,7 @@ const BookServiceCalendar = ({
         <div className="space-y-2 ps-2">
           <LabelWIthAnimatedSlidingText
             label={"date"}
-            text={formatDateToFullString(bookServiceDate)}
+            text={convertDateToFullString(bookServiceDate)}
           />
           <LabelWIthAnimatedSlidingText label={"time"} text={"sdsd"} />
         </div>
