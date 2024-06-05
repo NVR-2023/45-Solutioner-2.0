@@ -1,11 +1,11 @@
 import { useEffect } from "react";
 import LabelWIthAnimatedSlidingText from "@/frontend/components/ui/animated-components/label-with-animated-sliding-text";
-import BookServiceTimePicker from "./book-service-time-picker";
+import HourPicker from "./hour-picker";
 import { useBookServiceModalContext } from "@/frontend/contexts/use-book-service-modal-context";
 
 import { motion } from "framer-motion";
 
-import { roundypToNearestHalfHour } from "@/utils/functions/date-time/roundup-to-nearest-half-hour-string";
+import { roundupToNearestHalfHour } from "@/utils/functions/date-time/roundup-to-nearest-half-hour-string";
 import { convertDateToFullString } from "@/utils/functions/date-time/convert-date-to-full-string";
 import { parseStringToDate } from "@/utils/functions/parse-string-to-date";
 import { convertDateToYearString } from "@/utils/functions/date-time/convert-date-to-year-string";
@@ -181,7 +181,7 @@ const BookServiceCalendar = ({
           <LabelWIthAnimatedSlidingText label={"time"} text={"sdsd"} />
         </div>
         <div className="">
-          <BookServiceTimePicker />
+          <HourPicker />
         </div>
       </div>
     </div>

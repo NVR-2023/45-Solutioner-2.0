@@ -1,13 +1,17 @@
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 import { useBookServiceModalContext } from "@/frontend/contexts/use-book-service-modal-context";
 import { capitalizeFirstLetter } from "@/utils/functions/capitalize-first-letter";
 
-import { roundypToNearestHalfHour } from "@/utils/functions/date-time/roundup-to-nearest-half-hour-string";
+import { roundupToNearestHalfHour } from "@/utils/functions/date-time/roundup-to-nearest-half-hour-string";
+import { rounddownToNearestHalfHour } from "@/utils/functions/date-time/rounddown-to-nearest-half-hour-string";
+import { getLastBookableHour } from "@/utils/functions/date-time/get-last-bookable-hour";
 import { convertDateToYearString } from "@/utils/functions/date-time/convert-date-to-year-string";
 import { parseStringToDate } from "@/utils/functions/parse-string-to-date";
 import { convertDateToFullString } from "@/utils/functions/date-time/convert-date-to-full-string";
+import { generateThirtyMinuteTimestamps } from "@/utils/functions/date-time/generate-thirty-minute-timestamps";
+
 import AnimatedSlidingText from "@/frontend/components/ui/animated-components/animated-sliding-text.";
 
 type CalendarProps = {
@@ -46,6 +50,7 @@ const Calendar = ({
 
   const service = bookServiceModalObject.service;
   const duration = bookServiceModalObject.duration;
+  const [bookableHours, setBookableHours] = useState<string[]>();
 
   const currentDate = new Date();
   currentDate.setHours(0, 0, 0, 0);
@@ -91,14 +96,20 @@ const Calendar = ({
     if (
       parseStringToDate(bookServiceDate)?.getTime() !== currentDate.getTime()
     ) {
+      const lastBookableHour = rounddownToNearestHalfHour(
+        getLastBookableHour(duration!),
+      );
+
+      setBookableHours(
+        generateThirtyMinuteTimestamps("07:00", lastBookableHour),
+      );
     } else {
-      alert("today!");
     }
   }, [bookServiceDate]);
 
   return (
     <div
-      className={`flex flex-col items-center justify-between overflow-hidden duration-300 ${isCalendarExpanded ? "h-[15rem] py-4" : "h-8 py-2"} w-full rounded bg-neutral-300 px-4 transition-all`}
+      className={`flex flex-col space-y-4 justify-between overflow-hidden duration-300 ${isCalendarExpanded ? "h-[16rem] py-4" : "h-12 py-2"} w-full rounded bg-neutral-300 px-4 transition-all`}
     >
       <div
         className={`w-full overflow-hidden transition-all duration-300 ${isCalendarExpanded ? "h-36" : "h-0"}`}
@@ -227,28 +238,3 @@ const Calendar = ({
 };
 
 export default Calendar;
-
-/*     const currentTime = new Date();
-        const currentHour = currentTime.getHours();
-        const currentMinutes = currentTime.getMinutes();
-        const currentRoundedupHour = roundToNearestHalfHour(
-          `${currentHour}:${currentMinutes}`,
-        );
-
-        const durationInMinutes = parseFloat(duration!) * 60;
-        const hoursInDuration = Math.floor(durationInMinutes / 60);
-        const remainingMinutesInDuration = durationInMinutes % 60;
-
-        const lastBookableHour = new Date();
-        lastBookableHour.setHours(
-          21 - hoursInDuration,
-          remainingMinutesInDuration,
-        );
-
-        const roundedupLastBookableHour = roundToNearestHalfHour(
-          `${lastBookableHour.getHours()}:${lastBookableHour.getMinutes()}`,
-        );
-
-        alert(
-          ` duration: ${duration} current:${currentRoundedupHour} --- upper:${lastBookableHour.getHours()} `,
-        ); */
