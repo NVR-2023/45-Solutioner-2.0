@@ -211,7 +211,7 @@ const Calendar = ({
             service:
           </div>
 
-          <div className="flex font-aperçu text-sm font-bold leading-[.5rem] text-black dark:text-neutral-300 md:text-xs">
+          <div className="ps-1 flex font-aperçu text-sm font-bold leading-[.5rem] text-black dark:text-neutral-300 md:text-xs">
             {capitalizeFirstLetter(service!)}
           </div>
         </div>
