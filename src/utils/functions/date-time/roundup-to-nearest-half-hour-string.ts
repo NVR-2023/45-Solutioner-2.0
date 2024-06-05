@@ -1,4 +1,4 @@
-export const roundToNearestHalfHour = (hourToRoundUp: string): string => {
+export const roundypToNearestHalfHour = (hourToRoundUp: string): string => {
   let [hour, minutes] = hourToRoundUp.split(":").map(Number);
 
   if (minutes > 30) {

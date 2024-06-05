@@ -5,7 +5,7 @@ import { useBookServiceModalContext } from "@/frontend/contexts/use-book-service
 
 import { motion } from "framer-motion";
 
-import { roundToNearestHalfHour } from "@/utils/functions/date-time/roundup-to-nearest-half-hour-string";
+import { roundypToNearestHalfHour } from "@/utils/functions/date-time/roundup-to-nearest-half-hour-string";
 import { convertDateToFullString } from "@/utils/functions/date-time/convert-date-to-full-string";
 import { parseStringToDate } from "@/utils/functions/parse-string-to-date";
 import { convertDateToYearString } from "@/utils/functions/date-time/convert-date-to-year-string";

@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useBookServiceModalContext } from "@/frontend/contexts/use-book-service-modal-context";
 import { capitalizeFirstLetter } from "@/utils/functions/capitalize-first-letter";
 
-import { roundToNearestHalfHour } from "@/utils/functions/date-time/roundup-to-nearest-half-hour-string";
+import { roundypToNearestHalfHour } from "@/utils/functions/date-time/roundup-to-nearest-half-hour-string";
 import { convertDateToYearString } from "@/utils/functions/date-time/convert-date-to-year-string";
 import { parseStringToDate } from "@/utils/functions/parse-string-to-date";
 import { convertDateToFullString } from "@/utils/functions/date-time/convert-date-to-full-string";
@@ -89,28 +89,10 @@ const Calendar = ({
 
   useEffect(() => {
     if (
-      parseStringToDate(bookServiceDate)?.getTime() === currentDate.getTime()
+      parseStringToDate(bookServiceDate)?.getTime() !== currentDate.getTime()
     ) {
-      const hoursInDuration = parseInt(duration!);
-      const remainingMinutesInDuration =
-        (parseFloat(duration!) - hoursInDuration) * 60;
-
-      const lastBookableTime = new Date();
-      lastBookableTime.setHours(
-        21 - hoursInDuration,
-        remainingMinutesInDuration,
-      );
-
-      const lastBookableTimeString = `${lastBookableTime.getHours()}:${lastBookableTime.getMinutes()}`;
-
-      alert(
-        "hours: " +
-          hoursInDuration +
-          "   minutes: " +
-          remainingMinutesInDuration +
-          "   lat:" +
-          lastBookableTimeString,
-      );
+    } else {
+      alert("today!");
     }
   }, [bookServiceDate]);
 
@@ -211,7 +193,7 @@ const Calendar = ({
             service:
           </div>
 
-          <div className="ps-1 flex font-aperçu text-sm font-bold leading-[.5rem] text-black dark:text-neutral-300 md:text-xs">
+          <div className="flex ps-1 font-aperçu text-sm font-bold leading-[.5rem] text-black dark:text-neutral-300 md:text-xs">
             {capitalizeFirstLetter(service!)}
           </div>
         </div>
