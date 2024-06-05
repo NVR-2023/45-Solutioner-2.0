@@ -1,12 +1,19 @@
 export const getEndOfServiceHourString = (
-  start: string,
+  time: string,
   duration: string,
 ): string => {
+
+
+   if (!time) {
+     throw new Error("Start time is required.");
+   }
+
+
   const durationNumber = parseFloat(duration);
   const durationHours = Math.floor(durationNumber);
   const durationRemainingMinutes = (durationNumber - durationHours) * 60;
 
-  const [startHour, startMinutes] = start.split(":").map(Number);
+  const [startHour, startMinutes] = time.split(":").map(Number);
 
   let endHour = startHour + durationHours;
   let endMinutes = startMinutes + durationRemainingMinutes;

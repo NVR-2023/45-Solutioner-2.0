@@ -1,9 +1,48 @@
-import React from "react";
+import { useState, useEffect } from "react";
+import { getEndOfServiceHourString } from "@/utils/functions/date-time/get-end-of-service-hour-string";
 
-const HourPicker = () => {
-  return <div className="flex w-full flex-col rounded"></div>;
-
-
+type HourPickerProps = {
+  bookableHours: string[];
+  duration: string;
+  time: string;
+  setTime: (time: string) => void;
 };
+
+const HourPicker = ({
+  bookableHours,
+  duration,
+  time,
+  setTime,
+}: HourPickerProps) => {
+  const [isTimeSlotHovered, setIsTimeSlotHovered] = useState(false);
+
+  const handleOnMouseENter = () => {
+    setIsTimeSlotHovered(true);
+  };
+
+  const handleOnMouseLeave = () => {
+    setIsTimeSlotHovered(false);
+  };
+
+  return (
+    <div className="flex w-full overflow-hidden">
+      {Array.from({ length: 17 }).map((slot, index) => (
+        <div
+          onMouseEnter={handleOnMouseENter}
+          onMouseLeave={handleOnMouseLeave}
+          key={index}
+          className=" justify-centre flex flex-grow items-center "
+        >
+          <div className="text-[.5625rem] font-bold tabular-nums">
+            {(index + 7)}
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+};
+
+
+
 
 export default HourPicker;

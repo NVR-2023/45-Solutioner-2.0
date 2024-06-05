@@ -13,12 +13,13 @@ import { convertDateToFullString } from "@/utils/functions/date-time/convert-dat
 import { generateThirtyMinuteTimestamps } from "@/utils/functions/date-time/generate-thirty-minute-timestamps";
 
 import AnimatedSlidingText from "@/frontend/components/ui/animated-components/animated-sliding-text.";
+import HourPicker from "./hour-picker";
 
 type CalendarProps = {
-  bookServiceDate: string;
-  setBookServiceDate: (date: string) => void;
-  bookServiceTime: string;
-  setBookServiceTime: (time: string) => void;
+  date: string;
+  setDate: (date: string) => void;
+  time: string;
+  setTime: (time: string) => void;
   isCalendarExpanded: boolean;
   setIsCalendarExpanded: (isCalendarExpanded: boolean) => void;
 };
@@ -38,10 +39,10 @@ const buttonVariants = {
 };
 
 const Calendar = ({
-  bookServiceDate,
-  setBookServiceDate,
-  bookServiceTime,
-  setBookServiceTime,
+  date,
+  setDate,
+  time,
+  setTime,
   isCalendarExpanded,
   setIsCalendarExpanded,
 }: CalendarProps) => {
@@ -50,7 +51,7 @@ const Calendar = ({
 
   const service = bookServiceModalObject.service;
   const duration = bookServiceModalObject.duration;
-  const [bookableHours, setBookableHours] = useState<string[]>();
+  const [bookableHours, setBookableHours] = useState<string[]>([""]);
 
   const currentDate = new Date();
   currentDate.setHours(0, 0, 0, 0);
@@ -76,7 +77,7 @@ const Calendar = ({
 
   const handleOnClick = (selectedDate: Date) => {
     const parsedSelectedDate: string = convertDateToYearString(selectedDate);
-    setBookServiceDate(parsedSelectedDate);
+    setDate(parsedSelectedDate);
   };
 
   const handleOnToggleCalendarExpansion = () => {
@@ -89,27 +90,42 @@ const Calendar = ({
 
   useEffect(() => {
     const parsedCurrentDate = convertDateToYearString(currentDate);
-    setBookServiceDate(parsedCurrentDate);
+    setDate(parsedCurrentDate);
   }, []);
 
   useEffect(() => {
-    if (
-      parseStringToDate(bookServiceDate)?.getTime() !== currentDate.getTime()
-    ) {
+    if (parseStringToDate(date)?.getTime() !== currentDate.getTime()) {
       const lastBookableHour = rounddownToNearestHalfHour(
         getLastBookableHour(duration!),
       );
-
       setBookableHours(
         generateThirtyMinuteTimestamps("07:00", lastBookableHour),
       );
     } else {
+      setBookableHours(["01:00", "02:00", "03:00"]);
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     }
-  }, [bookServiceDate]);
+  }, [date]);
 
   return (
     <div
-      className={`flex flex-col space-y-4 justify-between overflow-hidden duration-300 ${isCalendarExpanded ? "h-[16rem] py-4" : "h-12 py-2"} w-full rounded bg-neutral-300 px-4 transition-all`}
+      className={`flex flex-col justify-between space-y-4 overflow-hidden duration-300 ${isCalendarExpanded ? "h-[16rem] py-4" : "h-12 py-2"} w-full rounded bg-neutral-300 px-4 transition-all`}
     >
       <div
         className={`w-full overflow-hidden transition-all duration-300 ${isCalendarExpanded ? "h-36" : "h-0"}`}
@@ -158,7 +174,7 @@ const Calendar = ({
 
                       const isSelectedBookDate =
                         movingDate.getTime() ===
-                        parseStringToDate(bookServiceDate)?.getTime();
+                        parseStringToDate(date)?.getTime();
 
                       return (
                         <motion.div
@@ -172,7 +188,7 @@ const Calendar = ({
                             onClick={() => {
                               handleOnClick(movingDate);
                             }}
-                            className={` flex h-6 w-full items-center justify-center font-aperçu ${isDayUnbookable ? "text-[.35rem] text-neutral-400" : "text-[.625rem]"} font-bold tabular-nums leading-[.5rem] small-caps `}
+                            className={` flex h-6 w-full items-center justify-center font-aperçu ${isDayUnbookable ? "text-[.35rem] text-neutral-400" : " text-[.625rem]"} font-bold tabular-nums leading-[.5rem] small-caps `}
                           >
                             {dayOfTheMonth}
                           </motion.button>
@@ -194,11 +210,14 @@ const Calendar = ({
         </div>
       </div>
 
-      <div
-        role="button"
-        onClick={handleOnToggleCalendarExpansion}
-        className="w-full space-y-2 overflow-hidden"
-      >
+      <div role="button" className="w-full space-y-2 overflow-hidden">
+        <HourPicker
+          bookableHours={bookableHours}
+          duration={duration!}
+          time={time}
+          setTime={setTime}
+        />
+
         <div className="flex">
           <div className="flex overflow-hidden font-aperçu text-sm font-[700] leading-[.5rem] tracking-wide text-black transition-all duration-300 small-caps dark:text-neutral-300 md:text-xs">
             service:
@@ -218,18 +237,8 @@ const Calendar = ({
 
           <div className="flex font-aperçu text-sm font-bold leading-[.5rem] text-black dark:text-neutral-300 md:text-xs">
             <AnimatedSlidingText
-              text={`${convertDateToFullString(bookServiceDate)}${isCalendarExpanded ? "" : ", 09:00"}`}
+              text={`${convertDateToFullString(date)}${isCalendarExpanded ? "" : ", 09:00"}`}
             />
-          </div>
-        </div>
-
-        <div className="flex">
-          <div className="flex overflow-hidden font-aperçu text-sm font-[700] leading-[.5rem] tracking-wide text-black transition-all duration-300 small-caps dark:text-neutral-300 md:text-xs">
-            service:
-          </div>
-
-          <div className="flex font-aperçu text-sm font-bold leading-[.5rem] text-black dark:text-neutral-300 md:text-xs">
-            {capitalizeFirstLetter(service!)}
           </div>
         </div>
       </div>

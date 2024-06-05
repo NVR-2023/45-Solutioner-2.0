@@ -41,14 +41,14 @@ const BookServiceModal = () => {
 
   const [isCalendarExpanded, setIsCalendarExpanded] = useState<boolean>(true);
 
-  const setBookServiceDate = (newDate: string) => {
+  const setDate = (newDate: string) => {
     setBookServiceObject((previousBookServiceObject) => ({
       ...previousBookServiceObject,
       date: newDate,
     }));
   };
 
-  const setBookServiceTime = (newTime: string) => {
+  const setTime = (newTime: string) => {
     setBookServiceObject((previousBookServiceObject) => ({
       ...previousBookServiceObject,
       time: newTime,
@@ -67,8 +67,7 @@ const BookServiceModal = () => {
       setIsModalOpen={setIsBookServiceModalOpen}
     >
       <div className="flex w-full flex-col space-y-4">
-        <ModalTitleWithoutLogo
-          title="Book"        />
+        <ModalTitleWithoutLogo title="Book" />
         {/*    <BookServiceCalendar
           bookServiceDate={bookServiceObject.date!}
           setBookServiceDate={setBookServiceDate}
@@ -78,10 +77,10 @@ const BookServiceModal = () => {
           setIsCalendarExpanded={setIsCalendarExpanded}
         /> */}
         <Calendar
-          bookServiceDate={bookServiceObject.date!}
-          setBookServiceDate={setBookServiceDate}
-          bookServiceTime={bookServiceObject.time!}
-          setBookServiceTime={setBookServiceTime}
+          date={bookServiceObject.date!}
+          setDate={setDate}
+          time={bookServiceObject.time!}
+          setTime={setTime}
           isCalendarExpanded={isCalendarExpanded}
           setIsCalendarExpanded={setIsCalendarExpanded}
         />
