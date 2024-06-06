@@ -181,7 +181,6 @@ const BookServiceCalendar = ({
           <LabelWIthAnimatedSlidingText label={"time"} text={"sdsd"} />
         </div>
         <div className="">
-          <HourPicker />
         </div>
       </div>
     </div>
