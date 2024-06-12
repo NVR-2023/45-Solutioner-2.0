@@ -164,7 +164,7 @@ const Book = () => {
             closeGreetingsModal={closeGreetingsModal}
           />
         </div>
-        <div className="absolute left-1/2 top-1/2 z-30 -translate-x-1/2 -translate-y-1/2 transform">
+        <div className="Xabsolute Xleft-1/2 Xtop-1/2 z-30 X-translate-x-1/2 X-translate-y-1/2 Xtransform">
           <BookServiceModal />
         </div>
       </div>

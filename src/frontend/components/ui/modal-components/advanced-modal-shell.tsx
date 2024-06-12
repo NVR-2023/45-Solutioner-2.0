@@ -25,7 +25,7 @@ const variants = {
     transformOrigin: "center center",
     transition: {
       ease: "easeOut",
-      duration: 0.18,
+      duration: 0.12,
     },
   },
 };
@@ -35,38 +35,43 @@ const AdvancedModalShell = ({
   setIsModalOpen,
   children,
 }: AdvancedModalShellProps) => {
-  const modalRef: RefObject<HTMLDivElement> = useRef(null);
+  const modalRef: RefObject<HTMLDialogElement> = useRef(null);
+
+  const handleOnEscapeKeyPress = (
+    event: React.KeyboardEvent<HTMLDialogElement>,
+  ) => {
+    if (event.key === "Escape") {
+      setIsModalOpen(false);
+    }
+  };
 
   useEffect(() => {
-    const handleOnCloseModal = () => {
-      setIsModalOpen(false);
-    };
-    const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
-        handleOnCloseModal();
+    if (isModalOpen) {
+      if (modalRef.current) {
+        modalRef.current.showModal();
       }
-    };
-
-    document.addEventListener("keydown", handleKeyDown);
-
-    return () => {
-      document.removeEventListener("keydown", handleKeyDown);
-    };
-  }, [setIsModalOpen]);
+    } else {
+      if (modalRef.current) {
+        modalRef.current.close();
+      }
+    }
+  }, [isModalOpen, setIsModalOpen]);
 
   return (
     <>
       <AnimatePresence>
         {isModalOpen && (
-          <motion.div
+          <motion.dialog
+            ref={modalRef}
             initial="initial"
             animate="animate"
             exit="exit"
+            onKeyDown={handleOnEscapeKeyPress}
             variants={variants}
-            className="flex w-[18rem] justify-center rounded bg-[#c9c9c9] px-7 py-7 text-black shadow-[18px_18px_12px_0px_#00000040] dark:text-neutral-300"
+            className="z-50 flex w-[18rem] justify-center rounded bg-[#c9c9c9] px-7 py-7 text-black shadow-[18px_18px_12px_0px_#00000040] dark:text-neutral-300"
           >
             {children}
-          </motion.div>
+          </motion.dialog>
         )}
       </AnimatePresence>
     </>

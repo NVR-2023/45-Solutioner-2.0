@@ -1,17 +1,15 @@
 import { useState } from "react";
 import AdvancedModalShell from "@/frontend/components/ui/modal-components/advanced-modal-shell";
+
 import { useBookServiceModalContext } from "@/frontend/contexts/use-book-service-modal-context";
 import { useUserDetailsContext } from "@/frontend/contexts/use-user-details";
-import { capitalizeFirstLetter } from "@/utils/functions/capitalize-first-letter";
 
 import ModalTitleWithoutLogo from "@/frontend/components/ui/modal-components/modal-title-without-logo";
-import BookServiceCalendar from "./sub-components/book-service-calendar";
 
 import Calendar from "./sub-components/calendar";
 
 import Details from "./sub-components/details";
 
-import BookServiceDetails from "./sub-components/book-service-details";
 import BookServiceSubmitSegment from "./sub-components/book-service-submit-segment";
 
 type bookServiceModalObjectType = {
@@ -69,14 +67,7 @@ const BookServiceModal = () => {
     >
       <div className="flex w-full flex-col space-y-4">
         <ModalTitleWithoutLogo title="Book" />
-        {/*    <BookServiceCalendar
-          bookServiceDate={bookServiceObject.date!}
-          setBookServiceDate={setBookServiceDate}
-          bookServiceTime={bookServiceObject.time!}
-          setBookServiceTime={setBookServiceTime}
-          isCalendarExpanded={isCalendarExpanded}
-          setIsCalendarExpanded={setIsCalendarExpanded}
-        /> */}
+
         <Calendar
           date={bookServiceObject.date!}
           setDate={setDate}
@@ -87,10 +78,6 @@ const BookServiceModal = () => {
         />
 
         <div className="">
-          {/*  <BookServiceDetails
-            isCalendarExpanded={isCalendarExpanded}
-            setIsCalendarExpanded={setIsCalendarExpanded}
-          /> */}
           <Details
             isCalendarExpanded={isCalendarExpanded}
             setIsCalendarExpanded={setIsCalendarExpanded}
