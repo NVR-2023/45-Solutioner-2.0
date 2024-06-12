@@ -8,6 +8,7 @@ import ModalTitleWithoutLogo from "@/frontend/components/ui/modal-components/mod
 import BookServiceCalendar from "./sub-components/book-service-calendar";
 
 import Calendar from "./sub-components/calendar";
+
 import Details from "./sub-components/details";
 
 import BookServiceDetails from "./sub-components/book-service-details";

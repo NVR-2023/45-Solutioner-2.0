@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import { getEndOfServiceHourString } from "@/utils/functions/date-time/get-end-of-service-hour-string";
+import HourCell from "./hour-cell"; 
+
 
 type HourPickerProps = {
   bookableHours: string[];
@@ -33,9 +35,7 @@ const HourPicker = ({
           key={index}
           className=" justify-centre flex flex-grow items-center "
         >
-          <div className="text-[.5625rem] font-bold tabular-nums">
-            {(index + 7)}
-          </div>
+       <HourCell hour={(7+index)} />
         </div>
       ))}
     </div>

@@ -1,9 +1,9 @@
-import { parseStringToDate } from "../parse-string-to-date";
+import { convertStringToDate } from "./convert-string-to-date";
 
 export const convertDateToFullString = (dateString: string): string => {
-  const parsedDate = parseStringToDate(dateString);
+  const convertedDate = convertStringToDate(dateString);
 
-  if (parsedDate === null) {
+  if (convertedDate === null) {
     return "";
   }
 
@@ -14,5 +14,5 @@ export const convertDateToFullString = (dateString: string): string => {
     year: "numeric",
   };
 
-  return parsedDate.toLocaleDateString("en-US", options);
+  return convertedDate.toLocaleDateString("en-US", options);
 };
