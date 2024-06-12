@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { getEndOfServiceHourString } from "@/utils/functions/date-time/get-end-of-service-hour-string";
-import HourCell from "./hour-cell"; 
 
 
 type HourPickerProps = {
@@ -35,7 +34,6 @@ const HourPicker = ({
           key={index}
           className=" justify-centre flex flex-grow items-center "
         >
-       <HourCell hour={(7+index)} />
         </div>
       ))}
     </div>

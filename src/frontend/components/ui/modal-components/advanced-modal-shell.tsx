@@ -35,6 +35,7 @@ const AdvancedModalShell = ({
   setIsModalOpen,
   children,
 }: AdvancedModalShellProps) => {
+  
   const modalRef: RefObject<HTMLDialogElement> = useRef(null);
 
   const handleOnEscapeKeyPress = (
