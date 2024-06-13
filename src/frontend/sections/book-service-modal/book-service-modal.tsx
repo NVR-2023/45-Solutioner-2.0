@@ -5,7 +5,10 @@ import { useBookServiceModalContext } from "@/frontend/contexts/use-book-service
 import { useUserDetailsContext } from "@/frontend/contexts/use-user-details";
 
 import ModalTitleWithoutLogo from "@/frontend/components/ui/modal-components/modal-title-without-logo";
+
 import Calendar from "./sub-components/calendar";
+import BookServiceCalendar from "./sub-components/book-service-calendar";
+
 import Details from "./sub-components/details";
 import BookServiceSubmitSegment from "./sub-components/book-service-submit-segment";
 
@@ -57,6 +60,8 @@ const BookServiceModal = () => {
       isBookServiceModalOpen: isModalOpen,
     }));
   };
+
+  console.log("render")
   return (
     <AdvancedModalShell
       isModalOpen={bookServiceModalContext.isBookServiceModalOpen}
@@ -65,7 +70,15 @@ const BookServiceModal = () => {
       <div className="flex w-full flex-col space-y-4">
         <ModalTitleWithoutLogo title="Book" />
 
-        <Calendar
+        {/*        <Calendar
+          date={bookServiceObject.date!}
+          setDate={setDate}
+          time={bookServiceObject.time!}
+          setTime={setTime}
+          isCalendarExpanded={isCalendarExpanded}
+          setIsCalendarExpanded={setIsCalendarExpanded}
+        /> */}
+        <BookServiceCalendar
           date={bookServiceObject.date!}
           setDate={setDate}
           time={bookServiceObject.time!}

@@ -8,7 +8,6 @@ import { rounddownToNearestHalfHour } from "@/utils/functions/date-time/rounddow
 import { getLastBookableHour } from "@/utils/functions/date-time/get-last-bookable-hour";
 import { convertDateToYearString } from "@/utils/functions/date-time/convert-date-to-year-string";
 import { convertDateToFullString } from "@/utils/functions/date-time/convert-date-to-full-string";
-import { convertStringToDate } from "@/utils/functions/date-time/convert-string-to-date";
 import { convertDateToHourString } from "@/utils/functions/date-time/convert-date-to-hour-string";
 import { generateThirtyMinuteTimestamps } from "@/utils/functions/date-time/generate-thirty-minute-timestamps";
 import { increaseHourByTwo } from "@/utils/functions/date-time/increase-hour-by-two";
@@ -48,25 +47,33 @@ const Calendar = ({
   isCalendarExpanded,
   setIsCalendarExpanded,
 }: CalendarProps) => {
-  const { bookServiceModalContext: bookServiceModalObject } =
+    const { bookServiceModalContext } =
     useBookServiceModalContext();
 
-  const service = bookServiceModalObject.service;
-  const duration = bookServiceModalObject.duration;
+  const service = bookServiceModalContext.service;
+  const duration = bookServiceModalContext.duration;
 
   const [bookableHours, setBookableHours] = useState<string[]>([""]);
 
   const currentDate = new Date();
   currentDate.setHours(0, 0, 0, 0);
-
-  const currentDayOfWeek = currentDate.getDay();
+  const currentHour = convertDateToHourString(new Date());
+  const FIRST_SERVICE_HOUR = "07:00" as const;
+  const currentFirstBookableHour = increaseHourByTwo(
+    roundupToNearestHalfHour(currentHour),
+  );
+  const currentDayOfTheWeek = currentDate.getDay();
   const mostRecentSunday = new Date(currentDate);
-  mostRecentSunday.setDate(currentDate.getDate() - currentDayOfWeek);
+  mostRecentSunday.setDate(currentDate.getDate() - currentDayOfTheWeek);
   mostRecentSunday.setHours(0, 0, 0, 0);
 
   const lastFourWeekCalendarDate = new Date(mostRecentSunday);
   lastFourWeekCalendarDate.setDate(mostRecentSunday.getDate() + 34);
   lastFourWeekCalendarDate.setHours(0, 0, 0, 0);
+
+  const lastBookableDay = new Date();
+  lastBookableDay.setDate(currentDate.getDate() + 28);
+  lastBookableDay.setHours(0, 0, 0, 0);
 
   const lastBookableHour = rounddownToNearestHalfHour(
     getLastBookableHour(duration!),
@@ -87,62 +94,37 @@ const Calendar = ({
     setDate(parsedSelectedDate);
   };
 
-  const handleOnToggleCalendarExpansion = () => {
-    setIsCalendarExpanded(!isCalendarExpanded);
-  };
-
   useEffect(() => {
-    setIsCalendarExpanded(true);
-  }, []);
-
-  useEffect(() => {
-    const convertedCurrentDate = convertDateToYearString(currentDate);
-    setDate(convertedCurrentDate);
-  }, []);
-
-  useEffect(() => {
-    const DEFAULT_FIRST_BOOKABDLE_HOUR = "07:00" as const;
-    const currentHour = convertDateToHourString(new Date());
-    const lastBookableHour = rounddownToNearestHalfHour(
-      getLastBookableHour(duration!),
-    );
-
-    if (date !== convertDateToYearString(new Date())) {
-      setBookableHours(
-        generateThirtyMinuteTimestamps(
-          DEFAULT_FIRST_BOOKABDLE_HOUR,
-          lastBookableHour,
-        ),
-      );
+    let defaultDate;
+    if (currentFirstBookableHour > lastBookableHour) {
+      const nextDay = new Date();
+      nextDay.setDate(nextDay.getDate() + 1);
+      defaultDate = convertDateToYearString(nextDay);
     } else {
-      if (currentHour > lastBookableHour) {
-        const nextDay = new Date();
-        nextDay.setDate(nextDay.getDate() + 1);
-        setDate(convertDateToYearString(nextDay));
-        setBookableHours(
-          generateThirtyMinuteTimestamps(
-            DEFAULT_FIRST_BOOKABDLE_HOUR,
-            lastBookableHour,
-          ),
-        );
-        return;
-      } else {
-        let currentFirstBookableHour = increaseHourByTwo(
-          roundupToNearestHalfHour(currentHour),
-        );
+      defaultDate = convertDateToYearString(currentDate);
+    }
+    setDate(defaultDate);
+  }, []);
 
-        if (currentFirstBookableHour < DEFAULT_FIRST_BOOKABDLE_HOUR) {
-          currentFirstBookableHour = DEFAULT_FIRST_BOOKABDLE_HOUR;
-        }
-        setBookableHours(
-          generateThirtyMinuteTimestamps(
-            currentFirstBookableHour,
-            lastBookableHour,
-          ),
+  useEffect(() => {
+    const generateHours = () => {
+      if (date !== convertDateToYearString(currentDate)) {
+        return generateThirtyMinuteTimestamps(
+          FIRST_SERVICE_HOUR,
+          lastBookableHour,
+        );
+      } else {
+        return generateThirtyMinuteTimestamps(
+          currentFirstBookableHour,
+          lastBookableHour,
         );
       }
-    }
+    };
+
+    setBookableHours(generateHours());
   }, [date]);
+
+  console.log("re-rendering");
 
   return (
     <div
@@ -163,10 +145,11 @@ const Calendar = ({
               <div className="grid grid-cols-7 grid-rows-1">
                 {DAYS_OF_THE_WEEK_ABBREVIATIONS.map(
                   (weekDayAbbreviation, index) => (
-                    <div key={index} className="flex items-center">
-                      <span className="flex w-full items-center justify-center py-0.5 font-aperçu text-[.625rem] font-bold small-caps dark:text-neutral-300">
-                        {weekDayAbbreviation}
-                      </span>
+                    <div
+                      key={index}
+                      className={` ${index === 0 ? "border-l-[0.7px] border-black" : null} ${index === 6 ? "border-r-[0.7px] border-black" : null} flex h-full w-full items-center justify-center font-aperçu text-[.625rem] font-bold small-caps dark:text-neutral-300`}
+                    >
+                      {weekDayAbbreviation}
                     </div>
                   ),
                 )}
@@ -185,17 +168,16 @@ const Calendar = ({
                       movingDate.setHours(0, 0, 0, 0);
                       const dayOfTheMonth = movingDate.getDate();
 
-                      const lastBookableDay = new Date(currentDate);
-                      lastBookableDay.setDate(currentDate.getDate() + 28);
-                      lastBookableDay.setHours(0, 0, 0, 0);
+                      const isCurrentDate =
+                        convertDateToYearString(currentDate) ===
+                        convertDateToYearString(movingDate);
 
-                      const currentHour = convertDateToHourString(new Date());
-                      
                       const isDayUnbookable =
                         movingDate < currentDate ||
-                        movingDate > lastBookableDay ||
-                        ( convertDateToYearString(movingDate) === convertDateToYearString(currentDate) &&
-                          currentHour > lastBookableHour);
+                        movingDate > lastBookableDay! ||
+                        (convertDateToYearString(movingDate) ===
+                          convertDateToYearString(currentDate) &&
+                          currentFirstBookableHour > lastBookableHour);
 
                       const isSelectedBookDate =
                         convertDateToYearString(movingDate) === date;
@@ -212,7 +194,7 @@ const Calendar = ({
                             onClick={() => {
                               handleOnClick(movingDate);
                             }}
-                            className={` flex h-6 w-full items-center justify-center font-aperçu ${isDayUnbookable ? "text-[.35rem] text-neutral-400" : " text-[.625rem]"} font-bold tabular-nums leading-[.5rem] small-caps `}
+                            className={` ${isCurrentDate ? "underline decoration-1 underline-offset-2" : null} flex h-6 w-full items-center justify-center font-aperçu ${isDayUnbookable ? "text-[.35rem] text-neutral-400 decoration-neutral-400" : " text-[.625rem] decoration-black "} font-bold tabular-nums leading-[.5rem] decoration-black small-caps `}
                           >
                             {dayOfTheMonth}
                           </motion.button>
@@ -237,7 +219,6 @@ const Calendar = ({
       <div role="button" className="w-full space-y-2 overflow-hidden">
         <HourPicker
           bookableHours={bookableHours}
-          duration={duration!}
           time={time}
           setTime={setTime}
         />
@@ -272,30 +253,3 @@ const Calendar = ({
 };
 
 export default Calendar;
-
-/* if (parseStringToDate(date)?.getTime() !== currentDate.getTime()) {
-  return;
-} */
-
-/*   useEffect(() => {
-    const currentHour = `${new Date().getHours()}:${new Date().getMinutes()}`;
-    const lastBookableHour = rounddownToNearestHalfHour(
-      getLastBookableHour(duration!),
-    );
-
-    if (parseStringToDate(date)?.getTime() !== currentDate.getTime()) {
-      return;
-    }
-
-    if (currentHour > lastBookableHour) {
-      const nextDay = new Date();
-      nextDay.setDate(nextDay.getDate() + 1);
-      setDate(convertDateToDateString(nextDay));
-      setBookableHours(
-        generateThirtyMinuteTimestamps("07:00", lastBookableHour),
-      );
-      return;
-    }
-
-    setBookableHours(generateThirtyMinuteTimestamps("07:00", lastBookableHour));
-  }, [date]); */

@@ -1,46 +1,49 @@
 import { useState, useEffect } from "react";
-import { getEndOfServiceHourString } from "@/utils/functions/date-time/get-end-of-service-hour-string";
-
 
 type HourPickerProps = {
   bookableHours: string[];
-  duration: string;
   time: string;
   setTime: (time: string) => void;
 };
 
-const HourPicker = ({
-  bookableHours,
-  duration,
-  time,
-  setTime,
-}: HourPickerProps) => {
-  const [isTimeSlotHovered, setIsTimeSlotHovered] = useState(false);
+const HourPicker = ({ bookableHours, time, setTime }: HourPickerProps) => {
+  const [bookableHoursIndex, setBookableHoursIndex] = useState(0);
 
-  const handleOnMouseENter = () => {
-    setIsTimeSlotHovered(true);
+  const handleOnIncrease = () => {
+    setBookableHoursIndex((bookableHoursIndex + 1) % bookableHours.length);
   };
 
-  const handleOnMouseLeave = () => {
-    setIsTimeSlotHovered(false);
+  const handleOnDecrease = () => {
+    setBookableHoursIndex(
+      (bookableHoursIndex - 1 + bookableHours.length) % bookableHours.length,
+    );
   };
+
+  useEffect(() => {
+    setTime(bookableHours[bookableHoursIndex]);
+  }, [bookableHoursIndex, setTime, bookableHours]);
 
   return (
-    <div className="flex w-full overflow-hidden">
-      {Array.from({ length: 17 }).map((slot, index) => (
-        <div
-          onMouseEnter={handleOnMouseENter}
-          onMouseLeave={handleOnMouseLeave}
-          key={index}
-          className=" justify-centre flex flex-grow items-center "
+    <div className="flex h-full w-full items-center space-x-2 bg-blue-400 font-semibold tabular-nums">
+      <div className="flex items-center justify-center bg-green-400">
+        {bookableHours[bookableHoursIndex]}
+      </div>
+      <div className="flex items-center space-x-0.5">
+        <button
+          onClick={handleOnIncrease}
+          className="flex w-4 items-center justify-center rounded-[2px] border-b-[3px] border-red-400 bg-neutral-700 px-1 py-0.5 text-neutral-300"
         >
-        </div>
-      ))}
+          +
+        </button>
+        <button
+          onClick={handleOnDecrease}
+          className="flex w-4 items-center justify-center rounded-[2px] bg-neutral-700 px-1 py-0.5 text-neutral-300"
+        >
+          -
+        </button>
+      </div>
     </div>
   );
 };
-
-
-
 
 export default HourPicker;
