@@ -5,11 +5,8 @@ import { useBookServiceModalContext } from "@/frontend/contexts/use-book-service
 import { useUserDetailsContext } from "@/frontend/contexts/use-user-details";
 
 import ModalTitleWithoutLogo from "@/frontend/components/ui/modal-components/modal-title-without-logo";
-
 import Calendar from "./sub-components/calendar";
-
 import Details from "./sub-components/details";
-
 import BookServiceSubmitSegment from "./sub-components/book-service-submit-segment";
 
 type bookServiceModalObjectType = {
