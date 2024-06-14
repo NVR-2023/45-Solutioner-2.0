@@ -6,7 +6,7 @@ import AnimatedSlidingText from "@/frontend/components/ui/animated-components/an
 
 import { convertDateToHourString } from "@/utils/functions/date-time/convert-date-to-hour-string";
 import { convertDateToFullString } from "@/utils/functions/date-time/convert-date-to-full-string";
-import { increaseHourByTwo } from "@/utils/functions/date-time/increase-hour-by-two";
+import { increaseHourByTwoWithOverflow } from "@/utils/functions/date-time/increase-hour-by-two-with-overflow";
 import { roundupToNearestHalfHour } from "@/utils/functions/date-time/roundup-to-nearest-half-hour-string";
 import { getLastBookableHour } from "@/utils/functions/date-time/get-last-bookable-hour";
 import { convertDateToYearString } from "@/utils/functions/date-time/convert-date-to-year-string";
@@ -82,7 +82,13 @@ const Calendar = ({
   }, []);
 
   const currentFirstBookableHour = useMemo(() => {
-    return increaseHourByTwo(roundupToNearestHalfHour(currentHour));
+    let temporaryHour = increaseHourByTwoWithOverflow(
+      roundupToNearestHalfHour(currentHour),
+    );
+    if (temporaryHour > "00:00" && temporaryHour < FIRST_SERVICE_HOUR) {
+      temporaryHour = FIRST_SERVICE_HOUR;
+    }
+    return temporaryHour;
   }, []);
 
   const lastBookableHour = useMemo(() => {
