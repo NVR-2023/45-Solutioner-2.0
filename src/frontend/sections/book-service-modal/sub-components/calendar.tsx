@@ -1,22 +1,22 @@
-import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
-
+import { useState, useEffect, useMemo } from "react";
 import { useBookServiceModalContext } from "@/frontend/contexts/use-book-service-modal-context";
-import { capitalizeFirstLetter } from "@/utils/functions/capitalize-first-letter";
 
-import { rounddownToNearestHalfHour } from "@/utils/functions/date-time/rounddown-to-nearest-half-hour-string";
+import { motion } from "framer-motion";
+import AnimatedSlidingText from "@/frontend/components/ui/animated-components/animated-sliding-text.";
+
+import { convertDateToHourString } from "@/utils/functions/date-time/convert-date-to-hour-string";
+import { convertDateToFullString } from "@/utils/functions/date-time/convert-date-to-full-string";
+import { increaseHourByTwo } from "@/utils/functions/date-time/increase-hour-by-two";
+import { roundupToNearestHalfHour } from "@/utils/functions/date-time/roundup-to-nearest-half-hour-string";
 import { getLastBookableHour } from "@/utils/functions/date-time/get-last-bookable-hour";
 import { convertDateToYearString } from "@/utils/functions/date-time/convert-date-to-year-string";
-import { convertDateToFullString } from "@/utils/functions/date-time/convert-date-to-full-string";
-import { convertDateToHourString } from "@/utils/functions/date-time/convert-date-to-hour-string";
 import { generateThirtyMinuteTimestamps } from "@/utils/functions/date-time/generate-thirty-minute-timestamps";
-import { increaseHourByTwo } from "@/utils/functions/date-time/increase-hour-by-two";
 
-import AnimatedSlidingText from "@/frontend/components/ui/animated-components/animated-sliding-text.";
+import { capitalizeFirstLetter } from "@/utils/functions/capitalize-first-letter";
+
 import HourPicker from "./hour-picker";
-import { roundupToNearestHalfHour } from "@/utils/functions/date-time/roundup-to-nearest-half-hour-string";
 
-type CalendarProps = {
+type BookServiceCalendarProps = {
   date: string;
   setDate: (date: string) => void;
   time: string;
@@ -46,53 +46,48 @@ const Calendar = ({
   setTime,
   isCalendarExpanded,
   setIsCalendarExpanded,
-}: CalendarProps) => {
-    const { bookServiceModalContext } =
-    useBookServiceModalContext();
-
+}: BookServiceCalendarProps) => {
+  const { bookServiceModalContext } = useBookServiceModalContext();
   const service = bookServiceModalContext.service;
   const duration = bookServiceModalContext.duration;
 
-  const [bookableHours, setBookableHours] = useState<string[]>([""]);
+  const [bookableHours, setBookableHours] = useState<string[]>([]);
 
-  const currentDate = new Date();
+  const currentDate = useMemo(() => {
+    return new Date();
+  }, []);
   currentDate.setHours(0, 0, 0, 0);
-  const currentHour = convertDateToHourString(new Date());
+
+  const currentDayOfTheWeek = useMemo(() => {
+    return currentDate.getDay();
+  }, [currentDate]);
+
+  const mostRecentSunday = useMemo(() => {
+    const temporaryDate = new Date(currentDate);
+    temporaryDate.setDate(currentDate.getDate() - currentDayOfTheWeek);
+    temporaryDate.setHours(0, 0, 0, 0);
+    return temporaryDate;
+  }, [currentDate, currentDayOfTheWeek]);
+
+  const lastBookableDay = useMemo(() => {
+    const temporaryDate = new Date();
+    temporaryDate.setDate(currentDate.getDate() + 28);
+    temporaryDate.setHours(0, 0, 0, 0);
+    return temporaryDate;
+  }, [currentDate]);
+
   const FIRST_SERVICE_HOUR = "07:00" as const;
+  const currentHour = useMemo(() => {
+    return convertDateToHourString(new Date());
+  }, []);
+
   const currentFirstBookableHour = increaseHourByTwo(
     roundupToNearestHalfHour(currentHour),
   );
-  const currentDayOfTheWeek = currentDate.getDay();
-  const mostRecentSunday = new Date(currentDate);
-  mostRecentSunday.setDate(currentDate.getDate() - currentDayOfTheWeek);
-  mostRecentSunday.setHours(0, 0, 0, 0);
 
-  const lastFourWeekCalendarDate = new Date(mostRecentSunday);
-  lastFourWeekCalendarDate.setDate(mostRecentSunday.getDate() + 34);
-  lastFourWeekCalendarDate.setHours(0, 0, 0, 0);
-
-  const lastBookableDay = new Date();
-  lastBookableDay.setDate(currentDate.getDate() + 28);
-  lastBookableDay.setHours(0, 0, 0, 0);
-
-  const lastBookableHour = rounddownToNearestHalfHour(
-    getLastBookableHour(duration!),
-  );
-
-  const DAYS_OF_THE_WEEK_ABBREVIATIONS = [
-    "sun",
-    "mon",
-    "tue",
-    "wed",
-    "thu",
-    "fri",
-    "sat",
-  ] as const;
-
-  const handleOnClick = (selectedDate: Date) => {
-    const parsedSelectedDate: string = convertDateToYearString(selectedDate);
-    setDate(parsedSelectedDate);
-  };
+  const lastBookableHour = useMemo(() => {
+    return getLastBookableHour(duration!);
+  }, []);
 
   useEffect(() => {
     let defaultDate;
@@ -107,24 +102,39 @@ const Calendar = ({
   }, []);
 
   useEffect(() => {
-    const generateHours = () => {
-      if (date !== convertDateToYearString(currentDate)) {
-        return generateThirtyMinuteTimestamps(
-          FIRST_SERVICE_HOUR,
-          lastBookableHour,
-        );
-      } else {
-        return generateThirtyMinuteTimestamps(
-          currentFirstBookableHour,
-          lastBookableHour,
-        );
-      }
-    };
-
-    setBookableHours(generateHours());
+    if (date !== convertDateToYearString(currentDate)) {
+      const bookableHoursArray = generateThirtyMinuteTimestamps(
+        FIRST_SERVICE_HOUR,
+        lastBookableHour,
+      );
+      setBookableHours(bookableHoursArray);
+    } else {
+      const bookableHoursArray = generateThirtyMinuteTimestamps(
+        currentFirstBookableHour,
+        lastBookableHour,
+      );
+      setBookableHours(bookableHoursArray);
+    }
   }, [date]);
 
-  console.log("re-rendering");
+  const DAYS_OF_THE_WEEK_ABBREVIATIONS = [
+    "sun",
+    "mon",
+    "tue",
+    "wed",
+    "thu",
+    "fri",
+    "sat",
+  ] as const;
+
+  //***************************************
+  console.log("re-render");
+  //***************************************
+
+  const handleOnClick = (selectedDate: Date) => {
+    const convertedSelectedDate: string = convertDateToYearString(selectedDate);
+    setDate(convertedSelectedDate);
+  };
 
   return (
     <div
@@ -202,7 +212,7 @@ const Calendar = ({
                           {isSelectedBookDate && (
                             <motion.div
                               layoutId="selectedBookDate"
-                              className="absolute left-0 top-0 h-full w-full rounded-[2px] bg-white bg-opacity-70"
+                              className="absolute left-0 top-0 h-full w-full rounded-[2px] bg-white bg-opacity-50"
                             ></motion.div>
                           )}
                         </motion.div>

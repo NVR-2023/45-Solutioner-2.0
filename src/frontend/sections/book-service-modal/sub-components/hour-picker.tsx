@@ -10,18 +10,17 @@ const HourPicker = ({ bookableHours, time, setTime }: HourPickerProps) => {
   const [bookableHoursIndex, setBookableHoursIndex] = useState(0);
 
   const handleOnIncrease = () => {
-    setBookableHoursIndex((bookableHoursIndex + 1) % bookableHours.length);
+    const newIndex = (bookableHoursIndex + 1) % bookableHours.length;
+    setBookableHoursIndex(newIndex);
+    setTime(bookableHours[newIndex]);
   };
 
   const handleOnDecrease = () => {
-    setBookableHoursIndex(
-      (bookableHoursIndex - 1 + bookableHours.length) % bookableHours.length,
-    );
+    const newIndex =
+      (bookableHoursIndex - 1 + bookableHours.length) % bookableHours.length;
+    setBookableHoursIndex(newIndex);
+    setTime(bookableHours[newIndex]);
   };
-
-  useEffect(() => {
-    setTime(bookableHours[bookableHoursIndex]);
-  }, [bookableHoursIndex, setTime, bookableHours]);
 
   return (
     <div className="flex h-full w-full items-center space-x-2 bg-blue-400 font-semibold tabular-nums">
