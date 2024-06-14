@@ -81,9 +81,9 @@ const Calendar = ({
     return convertDateToHourString(new Date());
   }, []);
 
-  const currentFirstBookableHour = increaseHourByTwo(
-    roundupToNearestHalfHour(currentHour),
-  );
+  const currentFirstBookableHour = useMemo(() => {
+    return increaseHourByTwo(roundupToNearestHalfHour(currentHour));
+  }, []);
 
   const lastBookableHour = useMemo(() => {
     return getLastBookableHour(duration!);
@@ -91,7 +91,6 @@ const Calendar = ({
 
   useEffect(() => {
     let defaultDate;
-
 
     if (currentFirstBookableHour > lastBookableHour) {
       const nextDay = new Date();
@@ -104,9 +103,6 @@ const Calendar = ({
   }, []);
 
   useEffect(() => {
-
-    
-
     if (date !== convertDateToYearString(currentDate)) {
       const bookableHoursArray = generateThirtyMinuteTimestamps(
         FIRST_SERVICE_HOUR,
