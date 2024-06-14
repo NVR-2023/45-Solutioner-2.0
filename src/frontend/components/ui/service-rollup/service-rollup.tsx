@@ -2,8 +2,10 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import ServiceCategoryRollupLabel from "./sub-components/service-category-label";
 import { capitalizeFirstLetter } from "@/utils/functions/capitalize-first-letter";
+
 import BookServiceButton from "./sub-components/book-service-button";
 import OnSaleSeTag from "./sub-components/onsale-tag";
+import PriceCutTag from "./sub-components/price-cut-tag";
 
 const variants = {
   initial: {
@@ -153,7 +155,16 @@ const ServiceRollup = ({
                 <div>{processedPersonnelString}</div>
               </div>
             </div>
-            <div className="col-span-1"></div>
+            <div className="col-span-1 ">
+              <div className="flex w-full space-x-2  py-2">
+                <div className="flex w-1/5 items-center justify-end font-semibold">
+                  <span className="text-[.625rem]"></span>
+                  <span className="flex justify-end"></span>
+                </div>
+                {sale ? <PriceCutTag sale={sale} /> : null}
+                <div className="flex-grow"></div>
+              </div>
+            </div>
             <div className="col-span-1"></div>
           </div>
         </div>
