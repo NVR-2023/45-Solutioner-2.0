@@ -127,10 +127,6 @@ const Calendar = ({
     "sat",
   ] as const;
 
-  //***************************************
-  console.log("re-render");
-  //***************************************
-
   const handleOnClick = (selectedDate: Date) => {
     const convertedSelectedDate: string = convertDateToYearString(selectedDate);
     setDate(convertedSelectedDate);
@@ -231,6 +227,7 @@ const Calendar = ({
           bookableHours={bookableHours}
           time={time}
           setTime={setTime}
+          duration={duration!}
         />
       </div>
       <div>

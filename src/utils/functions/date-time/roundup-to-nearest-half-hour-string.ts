@@ -4,7 +4,7 @@ export const roundupToNearestHalfHour = (hourToRoundUp: string): string => {
   if (minutes > 30) {
     minutes = 0;
     hour = (hour + 1) % 24;
-  } else {
+  } else if (minutes > 0) {
     minutes = 30;
   }
 
