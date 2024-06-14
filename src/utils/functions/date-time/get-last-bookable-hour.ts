@@ -1,24 +1,22 @@
-import { convertDateToHourString } from "./convert-date-to-hour-string";
 import { rounddownToNearestHalfHour } from "./rounddown-to-nearest-half-hour-string";
 
 export const getLastBookableHour = (duration: string): string => {
-  const LAST_SERVICE_HOUR = 23;
+  const LAST_SERVICE_HOUR = 23 as const;
+  const MINUTES_IN_HOUR = 60 as const;
   const durationInHours = parseFloat(duration);
 
-  const hoursToSubtract = Math.floor(durationInHours);
-  const minutesToSubtract = Math.round(
-    (durationInHours - hoursToSubtract) * 60,
+  const hoursToDecrease = Math.ceil(durationInHours);
+  const minutesToDecrease = Math.floor(
+    (durationInHours - hoursToDecrease) * MINUTES_IN_HOUR,
   );
 
-  const lastBookableHour = new Date();
-  lastBookableHour.setHours(LAST_SERVICE_HOUR, 0, 0, 0);
+  let hours = LAST_SERVICE_HOUR - hoursToDecrease;
 
-  lastBookableHour.setHours(lastBookableHour.getHours() - hoursToSubtract);
-  lastBookableHour.setMinutes(
-    lastBookableHour.getMinutes() - minutesToSubtract,
-  );
+  const minutes = (MINUTES_IN_HOUR - minutesToDecrease) % 60;
+  const lastBookableHour = `${hours.toString().padStart(2, "0")}:${minutes.toString().padStart(2, "0")}`;
 
-  let lastBookableHourString = convertDateToHourString(lastBookableHour);
-  lastBookableHourString = rounddownToNearestHalfHour(lastBookableHourString);
-  return lastBookableHourString;
+  const roundeddownLastBookableHour =
+    rounddownToNearestHalfHour(lastBookableHour);
+
+  return roundeddownLastBookableHour;
 };

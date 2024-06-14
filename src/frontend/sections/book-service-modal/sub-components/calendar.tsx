@@ -91,6 +91,8 @@ const Calendar = ({
 
   useEffect(() => {
     let defaultDate;
+
+
     if (currentFirstBookableHour > lastBookableHour) {
       const nextDay = new Date();
       nextDay.setDate(nextDay.getDate() + 1);
@@ -102,6 +104,9 @@ const Calendar = ({
   }, []);
 
   useEffect(() => {
+
+    
+
     if (date !== convertDateToYearString(currentDate)) {
       const bookableHoursArray = generateThirtyMinuteTimestamps(
         FIRST_SERVICE_HOUR,
@@ -113,6 +118,7 @@ const Calendar = ({
         currentFirstBookableHour,
         lastBookableHour,
       );
+
       setBookableHours(bookableHoursArray);
     }
   }, [date]);

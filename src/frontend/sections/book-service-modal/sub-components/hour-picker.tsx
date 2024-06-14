@@ -1,14 +1,20 @@
 import { useState, useEffect } from "react";
 import { getRoundedupEndOfServiceHourString } from "@/utils/functions/date-time/get-roundedup-end-of-service-hour-string";
+import { getSuggestedBookHourIndex } from "@/utils/functions/date-time/get-suggested-bookhour-index";
 
 type HourPickerProps = {
   bookableHours: string[];
-    time: string;
+  time: string;
   setTime: (time: string) => void;
-duration: string;
+  duration: string;
 };
 
-const HourPicker = ({ bookableHours, time, setTime, duration }: HourPickerProps) => {
+const HourPicker = ({
+  bookableHours,
+  time,
+  setTime,
+  duration,
+}: HourPickerProps) => {
   const [bookableHoursIndex, setBookableHoursIndex] = useState(0);
 
   const handleOnIncrease = () => {
@@ -46,6 +52,8 @@ const HourPicker = ({ bookableHours, time, setTime, duration }: HourPickerProps)
         </button>
       </div>
       <div>{getRoundedupEndOfServiceHourString(selectedSlot, duration)}</div>
+
+      <div>{bookableHours[getSuggestedBookHourIndex(bookableHours)]} </div>
     </div>
   );
 };
