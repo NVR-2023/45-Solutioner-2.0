@@ -60,7 +60,9 @@ const GreetingModal = ({
             <div className="flex h-12 items-center justify-center text-xs font-medium ">
               {`Welcome, ${userName?.split(" ")[0].substring(0, 12)}`}
             </div>
-            <div className=" h-24 w-full bg-green-400">123</div>
+            <div className=" h-24 w-full bg-green-400">
+              ABD
+            </div>
           </div>
         </motion.div>
       )}
