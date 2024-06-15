@@ -92,22 +92,25 @@ const ServiceRollup = ({
           <div className="col-span-1 flex items-center justify-start">
             <ServiceCategoryRollupLabel category={category} />
           </div>
-          <div className="col-span-2 flex h-full items-center  font-aperçu text-sm font-semibold text-black dark:text-neutral-300 md:text-xs">
+          <div className="col-span-2 flex h-full items-center font-aperçu text-sm font-semibold text-black dark:text-neutral-300 md:text-xs">
             <div>{capitalizeFirstLetter(service)}</div>
           </div>
           <div className="col-span-2 flex items-center font-aperçu text-sm font-semibold tabular-nums text-black dark:text-neutral-300 md:text-[0.625rem]">
             <div className="flex items-baseline">{processedDurationString}</div>
           </div>
-          <div className="col-span-1 flex items-center text-xs font-bold  tabular-nums  ">
-            <div className="flex w-full space-x-2">
-              <div className="flex w-1/5 items-center justify-end font-semibold">
+
+          <div className=" col-span-1 flex items-center text-xs ">
+            <div className="grid w-full grid-cols-2">
+              <div className="col-span-1 flex justify-end pe-2 font-aperçu text-sm font-semibold tabular-nums text-black dark:text-neutral-300 md:text-xs">
                 <span className="text-[.625rem]">€</span>
-                <span className="flex justify-end">{price}</span>
+                <span className="flex">{price}</span>
               </div>
-              {sale ? <OnSaleSeTag /> : null}
-              <div className="flex-grow"></div>
+              <div className="col-span-1 flex justify-start ps-2">
+                {sale ? <OnSaleSeTag /> : null}
+              </div>
             </div>
           </div>
+
           <div className="col-span-1 flex h-full items-center justify-end">
             <div className=" flex h-full items-center">
               <BookServiceButton
@@ -134,7 +137,7 @@ const ServiceRollup = ({
           onMouseLeave={handleOnLeave}
           className="w-[45rem] overflow-hidden rounded-b  bg-neutral-300 "
         >
-          <div className="grid grid-cols-7 space-x-6 overflow-hidden border-t-[1px] border-neutral-200 px-6">
+          <div className="grid grid-cols-7 space-x-6 overflow-hidden border-t-[1.2px] border-neutral-200 px-6">
             <div className="col-span-1"></div>
             <div className="col-span-2">
               <div className=" py-2 text-[0.625rem] font-medium leading-[150%] ">
@@ -155,14 +158,14 @@ const ServiceRollup = ({
                 <div>{processedPersonnelString}</div>
               </div>
             </div>
-            <div className="col-span-1 ">
-              <div className="flex w-full space-x-2  py-2">
-                <div className="flex w-1/5 items-center justify-end font-semibold">
-                  <span className="text-[.625rem]"></span>
-                  <span className="flex justify-end"></span>
+
+            <div className=" col-span-1 flex pt-2 text-xs ">
+              <div className="grid w-full grid-cols-2">
+                <div className="col-span-1 flex justify-end pe-2 font-aperçu text-sm font-semibold tabular-nums text-black dark:text-neutral-300 md:text-xs">
                 </div>
-                {sale ? <PriceCutTag sale={sale} /> : null}
-                <div className="flex-grow"></div>
+                <div className="col-span-1 flex items-start justify-start ps-2">
+                  {sale ? <PriceCutTag sale={sale} /> : null}
+                </div>
               </div>
             </div>
             <div className="col-span-1"></div>

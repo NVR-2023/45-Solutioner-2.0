@@ -4,6 +4,9 @@ import { signOutUser } from "@/utils/functions/fetch-data/user-endpoint-submissi
 import { useRouter } from "next/navigation";
 
 import NavbarPrivate from "@/frontend/sections/navbar-private/navbar-private";
+
+import AssetCyclicalSlier from "@/frontend/components/ui/div-cyclic-slider/asset-cyclic-sldier";
+
 const MyServices = () => {
   const router = useRouter();
   const [isHovered, setIsHovered] = useState(false);
@@ -22,50 +25,12 @@ const MyServices = () => {
 
   return (
     <div className="h-screen w-screen">
-      <NavbarPrivate areNavbarsExpanded={true}/>
+      <NavbarPrivate areNavbarsExpanded={true} />
       track
       <button onClick={handleOnclick} className="bg-purple-400">
         Sign Out
       </button>
-      <div className="flex space-x-2">
-        {/* component */}
-
-        <div
-          onMouseEnter={handleOnMouseEnter}
-          onMouseLeave={handleOnMouseLeave}
-          className="flex"
-        >
-          <div
-            className="grid"
-            style={{
-              gridTemplateColumns: isHovered ? "0fr" : "1fr",
-              transition: "grid-template-columns 180ms",
-            }}
-          >
-            <div className="overflow-hidden">
-              <div className="overflow-hidden bg-green-500">H</div>
-            </div>
-          </div>
-
-          <div
-            className="grid"
-            style={{
-              gridTemplateColumns: isHovered ? "1fr" : "0fr",
-              transition: "grid-template-columns 180ms",
-            }}
-          >
-            <div className="overflow-hidden">
-              <div className="overflow-hidden bg-green-400">Affordable</div>
-            </div>
-          </div>
-        </div>
-
-        {/*         end of component
-         */}
-        <span>Test1 </span>
-        <span>Test2 </span>
-        <span>Test3 </span>
-      </div>
+      <AssetCyclicalSlier />
     </div>
   );
 };
