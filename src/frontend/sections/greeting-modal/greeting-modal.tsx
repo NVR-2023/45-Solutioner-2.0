@@ -1,6 +1,8 @@
 import { useEffect, Dispatch, SetStateAction } from "react";
+import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { wait } from "@/utils/functions/wait";
+import { useUserDetailsContext } from "@/frontend/contexts/use-user-details";
 
 type GreetingModalProps = {
   isGreetingModalShown: boolean;
@@ -29,13 +31,20 @@ const GreetingModal = ({
   isGreetingModalShown,
   closeGreetingsModal,
 }: GreetingModalProps) => {
+  const router = useRouter();
+
   useEffect(() => {
-    const initializeModal = async () => {
-      await wait(1500);
-      closeGreetingsModal();
+    const initializeModal = () => {
+      const timeoutId = setTimeout(() => {
+        closeGreetingsModal();
+      }, 1500);
+      return () => clearTimeout(timeoutId);
     };
+
     initializeModal();
   }, []);
+
+  const { userName } = useUserDetailsContext();
 
   return (
     <AnimatePresence key="greetingModal">
@@ -45,11 +54,14 @@ const GreetingModal = ({
           initial="initial"
           animate="animate"
           exit="exit"
-          className="z-100 box-border flex h-12 w-48 items-center justify-center rounded bg-yellow-300 px-4 py-2 shadow-[18px_18px_12px_0px_#00000040]"
+          className="z-50 flex w-48 overflow-hidden  rounded bg-yellow-300 shadow-[18px_18px_12px_0px_#00000040]"
         >
-          <motion.div className=" text-xs font-medium ">
-            {`Welcome, ${"Nuno R."}`}
-          </motion.div>
+          <div className="flex w-full flex-col">
+            <div className="flex h-12 items-center justify-center text-xs font-medium ">
+              {`Welcome, ${userName?.split(" ")[0].substring(0, 12)}`}
+            </div>
+            <div className=" h-24 w-full bg-green-400">123</div>
+          </div>
         </motion.div>
       )}
     </AnimatePresence>
