@@ -1,7 +1,7 @@
 type ServiceCategoryRollupLabelProps = {
   category: string;
 };
-const ServiceCategoryRollupLabel = ({
+const ServiceCategoryRollupTag = ({
   category,
 }: ServiceCategoryRollupLabelProps) => {
   const serviceColorMap = new Map([
@@ -38,4 +38,4 @@ const ServiceCategoryRollupLabel = ({
   );
 };
 
-export default ServiceCategoryRollupLabel;
+export default ServiceCategoryRollupTag;

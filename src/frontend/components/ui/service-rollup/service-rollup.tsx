@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
-import ServiceCategoryRollupLabel from "./sub-components/service-category-label";
+import ServiceCategoryRollupTag from "./sub-components/service-category-tag";
 import { capitalizeFirstLetter } from "@/utils/functions/capitalize-first-letter";
 
 import BookServiceButton from "./sub-components/book-service-button";
@@ -90,7 +90,7 @@ const ServiceRollup = ({
       >
         <div className="grid w-full grid-cols-7 space-x-6">
           <div className="col-span-1 flex items-center justify-start">
-            <ServiceCategoryRollupLabel category={category} />
+            <ServiceCategoryRollupTag category={category} />
           </div>
           <div className="col-span-2 flex h-full items-center font-aperçu text-sm font-semibold text-black dark:text-neutral-300 md:text-xs">
             <div>{capitalizeFirstLetter(service)}</div>
@@ -161,8 +161,7 @@ const ServiceRollup = ({
 
             <div className=" col-span-1 flex pt-2 text-xs ">
               <div className="grid w-full grid-cols-2">
-                <div className="col-span-1 flex justify-end pe-2 font-aperçu text-sm font-semibold tabular-nums text-black dark:text-neutral-300 md:text-xs">
-                </div>
+                <div className="col-span-1 flex justify-end pe-2 font-aperçu text-sm font-semibold tabular-nums text-black dark:text-neutral-300 md:text-xs"></div>
                 <div className="col-span-1 flex items-start justify-start ps-2">
                   {sale ? <PriceCutTag sale={sale} /> : null}
                 </div>
