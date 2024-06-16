@@ -5,7 +5,6 @@ import { useRouter } from "next/navigation";
 
 import NavbarPrivate from "@/frontend/sections/navbar-private/navbar-private";
 
-import AssetCyclicalSlier from "@/frontend/components/ui/cyclic-recoil-slider/asset-cyclic-sldier";
 
 const MyServices = () => {
   const router = useRouter();
@@ -30,7 +29,6 @@ const MyServices = () => {
       <button onClick={handleOnclick} className="bg-purple-400">
         Sign Out
       </button>
-      <AssetCyclicalSlier />
     </div>
   );
 };

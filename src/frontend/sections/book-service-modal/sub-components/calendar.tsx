@@ -234,13 +234,12 @@ const Calendar = ({
       <div role="button" className="w-full space-y-2 overflow-hidden">
         <HourPicker
           bookableHours={bookableHours}
-          time={time}
           setTime={setTime}
           duration={duration!}
         />
       </div>
       <div>
-        <div className="flex">
+     <div className="flex">
           <LabelWIthAnimatedSlidingText
             label={"date"}
             text={convertDateToFullString(date)}

@@ -2,58 +2,50 @@ import { useState, useEffect } from "react";
 import { getRoundedupEndOfServiceHourString } from "@/utils/functions/date-time/get-roundedup-end-of-service-hour-string";
 import { getSuggestedBookHourIndex } from "@/utils/functions/date-time/get-suggested-bookhour-index";
 
+import CyclicRecoilSlider from "@/frontend/components/ui/cyclic-recoil-slider/cyclic-recoil-sldier";
+import SliderControls from "@/frontend/components/ui/slider-controls.tsx/slider-controls";
+
 type HourPickerProps = {
   bookableHours: string[];
-  time: string;
   setTime: (time: string) => void;
   duration: string;
 };
 
-const HourPicker = ({
-  bookableHours,
-  time,
-  setTime,
-  duration,
-}: HourPickerProps) => {
-  const [bookableHoursIndex, setBookableHoursIndex] = useState(0);
+const HourPicker = ({ bookableHours, setTime, duration }: HourPickerProps) => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const bookableHoursLength = bookableHours.length;
 
-  const handleOnIncrease = () => {
-    const newIndex = (bookableHoursIndex + 1) % bookableHours.length;
-    setBookableHoursIndex(newIndex);
-    setTime(bookableHours[newIndex]);
+  const handleOnGetNextItem = () => {
+    const nextIndex = (currentIndex + 1) % bookableHoursLength;
+    setCurrentIndex(nextIndex);
+    setTime(bookableHours[nextIndex]);
   };
 
-  const handleOnDecrease = () => {
-    const newIndex =
-      (bookableHoursIndex - 1 + bookableHours.length) % bookableHours.length;
-    setBookableHoursIndex(newIndex);
-    setTime(bookableHours[newIndex]);
+  const handleOnGetPreviousItem = () => {
+    const previousIndex =
+      (currentIndex - 1 + bookableHoursLength) % bookableHoursLength;
+    setCurrentIndex(previousIndex);
+    setTime(bookableHours[previousIndex]);
   };
 
-  const selectedSlot = bookableHours[bookableHoursIndex];
+  useEffect(() => {
+    if (bookableHours.length > 0) {
+      setCurrentIndex(0);
+      setTime(bookableHours[0]);
+    }
+  }, [bookableHours]);
 
   return (
-    <div className="flex h-full w-full items-center space-x-2 bg-blue-400 font-semibold tabular-nums">
-      <div className="flex items-center justify-center bg-green-400">
-        {selectedSlot}
-      </div>
-      <div className="flex items-center space-x-0.5">
-        <button
-          onClick={handleOnIncrease}
-          className="flex w-4 items-center justify-center rounded-[2px] border-b-[3px] border-red-400 bg-neutral-700 px-1 py-0.5 text-neutral-300"
-        >
-          +
-        </button>
-        <button
-          onClick={handleOnDecrease}
-          className="flex w-4 items-center justify-center rounded-[2px] bg-neutral-700 px-1 py-0.5 text-neutral-300"
-        >
-          -
-        </button>
-      </div>
-      <div>{getRoundedupEndOfServiceHourString(selectedSlot, duration)}</div>
-
-      <div>{bookableHours[getSuggestedBookHourIndex(bookableHours)]} </div>
+    <div className="flex-row space-x-2">
+      <CyclicRecoilSlider
+        label={"time"}
+        items={bookableHours}
+        currentIndex={currentIndex}
+      />
+      <SliderControls
+        handleOnGetNextInNextItem={handleOnGetNextItem}
+        handleOnGetPreviousItem={handleOnGetPreviousItem}
+      />
     </div>
   );
 };
