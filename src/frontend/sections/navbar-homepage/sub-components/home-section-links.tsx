@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { getSectionFomString } from "@/utils/functions/getsectionfromurl";
 import HOMEPAGE_SECTIONS from "./homepage-sections";
+import NavbarTab from "@/frontend/components/ui/styled-text-components/navbar-tab";
 
 const HomeSectionLinks = () => {
   const [currentSection, setCurrentSection] = useState(HOMEPAGE_SECTIONS[0]);
@@ -27,7 +28,7 @@ const HomeSectionLinks = () => {
                 handleChangeSection(link);
               }}
             >
-              <span className="text-xs font-semibold">{link}</span>
+              <NavbarTab text={link} />
             </Link>
             {link === currentSection && (
               <motion.div

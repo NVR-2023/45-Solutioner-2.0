@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import FieldContent from "../styled-text-components/field-content";
 
 type AnimatedSlidingTextProps = {
   text: string;

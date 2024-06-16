@@ -1,7 +1,9 @@
 import { useState, ChangeEvent, Dispatch, SetStateAction } from "react";
 import { ValidatedTextFormFieldsType } from "@/types/component-props-types";
-import InputFieldLabel from "./input-field-label";
-import ErrorMessage from "./error-message";
+
+import FieldLabel from "../styled-text-components/field-label";
+
+import ErrorMessage from "../styled-text-components/error-message";
 
 type ValidatedTextInputFieldProps = {
   name: string;
@@ -71,7 +73,7 @@ const ValidatedTextInputField = ({
           value={formFields[name]?.value as string}
           aria-invalid={formFields[name]?.errorMessage ? "true" : "false"}
           aria-describedby={`${name}Error`}
-          className="h-4 w-full appearance-none bg-transparent border-b border-black pb-[.1rem] font-aperçu  text-black focus:border-b focus:outline-none dark:border-[#D9D9D9] md:text-xs"
+          className="h-4 w-full appearance-none border-b border-black bg-transparent pb-[.1rem] font-aperçu  text-black focus:border-b focus:outline-none dark:border-[#D9D9D9] md:text-xs"
         />
       </div>
       <div className="absolute -top-5 left-0 w-full">
@@ -81,7 +83,7 @@ const ValidatedTextInputField = ({
             !isInputFieldFocused && !formFields[name]?.value && "translate-y-5"
           }`}
         >
-          <InputFieldLabel label={name} />
+          <FieldLabel text={name} />
         </label>
       </div>
 
@@ -92,7 +94,7 @@ const ValidatedTextInputField = ({
           formFields[name]?.errorMessage ? "opacity-100" : "opacity-0"
         }`}
       >
-        <ErrorMessage errorMessage={formFields[name]?.errorMessage || "\u00A0"} />
+        <ErrorMessage text={formFields[name]?.errorMessage || "\u00A0"} />
       </div>
     </div>
   );

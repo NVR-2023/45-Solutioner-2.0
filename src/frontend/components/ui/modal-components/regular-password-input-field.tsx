@@ -4,7 +4,7 @@ import PasswordInvisibleIcon from "../../icons/password-invisible-icon";
 import PasswordVisibleIcon from "../../icons/password-visible-icon";
 import ToggleSwitch from "../toggle-switch/toggle-switch";
 
-import InputFieldLabel from "./input-field-label";
+import InputFieldLabel from "../styled-text-components/input-field-label";
 
 type RegularPasswordInputFieldProps = {
   formFields: Record<string, string>;

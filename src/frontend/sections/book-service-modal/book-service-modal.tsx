@@ -5,11 +5,12 @@ import { useBookServiceModalContext } from "@/frontend/contexts/use-book-service
 import { useUserDetailsContext } from "@/frontend/contexts/use-user-details";
 
 import ModalTitleWithoutLogo from "@/frontend/components/ui/modal-components/modal-title-without-logo";
-
 import Calendar from "./sub-components/calendar";
-
 import Details from "./sub-components/details";
 import BookServiceSubmitSegment from "./sub-components/book-service-submit-segment";
+
+import FieldLabel from "@/frontend/components/ui/styled-text-components/field-label";
+import FieldContent from "@/frontend/components/ui/styled-text-components/field-content";
 
 type bookServiceModalObjectType = {
   userId: string | null;
@@ -84,6 +85,10 @@ const BookServiceModal = () => {
             isCalendarExpanded={isCalendarExpanded}
             setIsCalendarExpanded={setIsCalendarExpanded}
           />
+        </div>
+        <div className="">
+          <FieldLabel text="details" />
+          <FieldContent text="12345" />
         </div>
         <BookServiceSubmitSegment />
       </div>

@@ -1,9 +1,11 @@
-import FormNotice from "./form-notice";
+import PlainTextNotice from "../styled-text-components/plain-text-notice-text";
+import Link from "next/link";
+
 const ForgotPasswordSegment = () => {
   return (
-    <div>
-      <FormNotice notice={"Forgot your password?"} />
-    </div>
+    <Link href="/" className="border-b-[0.7px] border-transparent hover:border-b-black">
+      <PlainTextNotice text={"Forgot your password?"} />
+    </Link>
   );
 };
 

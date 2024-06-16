@@ -5,6 +5,7 @@ import { BasicComponentProps } from "@/types/component-props-types";
 import PresetIcon from "@/frontend/components/icons/preset-icon";
 import { PresetProps } from "@/frontend/sections/mavbar-book-services-content/navbar-book-services-content";
 
+import FieldContent from "../styled-text-components/field-content";
 type PresetButtonProps = BasicComponentProps & PresetProps;
 
 const PresetButton = ({
@@ -46,7 +47,7 @@ const PresetButton = ({
       onMouseEnter={handleOnMouseEnter}
       onMouseLeave={handleOnMouseLeave}
       onClick={handleOnClick}
-      className="flex mt-[3px]"
+      className="mt-[3px] flex"
     >
       <div
         className="grid"
@@ -70,9 +71,7 @@ const PresetButton = ({
         }}
       >
         <div className="flex overflow-hidden">
-          <div className="flex h-4 items-end overflow-hidden font-aperçu text-sm font-bold text-black dark:text-neutral-300 md:text-xs">
-            {label}
-          </div>
+          <FieldContent text={label} />
         </div>
       </div>
     </button>

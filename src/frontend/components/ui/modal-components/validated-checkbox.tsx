@@ -3,8 +3,8 @@ import UncheckedBox from "../../icons/unchecked-box";
 import CheckedBox from "../../icons/checked-box";
 import ValidatedToggleSwitch from "./validated-toggle-switch";
 import { ValidatedTextFormFieldsType } from "@/types/component-props-types";
-import ErrorMessage from "./error-message";
-import FormNotice from "./form-notice";
+import ErrorMessage from "../styled-text-components/error-message";
+import NoticeWithChildren from "../styled-text-components/notice-with-children";
 
 type ValidatedCheckboxType = {
   name: string;
@@ -22,7 +22,7 @@ const ValidatedCheckbox = ({
   return (
     <div className="space-y-1">
       <div className="flex items-center space-x-4">
-        <div className="transform translate-y-0.5">
+        <div className="translate-y-0.5 transform">
           <ValidatedToggleSwitch
             scale={0.5}
             firstIcon={UncheckedBox}
@@ -33,7 +33,7 @@ const ValidatedCheckbox = ({
           />
         </div>
         <div>
-          <FormNotice notice={notice} />
+          <NoticeWithChildren notice={notice} />
         </div>
       </div>
       <div
@@ -43,9 +43,7 @@ const ValidatedCheckbox = ({
           formFields[name]?.errorMessage ? "opacity-100" : "opacity-0"
         }`}
       >
-        <ErrorMessage
-          errorMessage={formFields[name]?.errorMessage || "\u00A0"}
-        />
+        <ErrorMessage text={formFields[name]?.errorMessage || "\u00A0"} />
       </div>
     </div>
   );

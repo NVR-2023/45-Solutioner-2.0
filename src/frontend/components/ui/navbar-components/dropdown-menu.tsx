@@ -7,7 +7,9 @@ import MenuDownArrow from "../../icons/menu-down-arrow";
 import CheckIcon from "../../icons/check-icon";
 
 import AnimatedSlidingText from "../animated-components/animated-sliding-text.";
+import FieldLabel from "../styled-text-components/field-label";
 import LabelWIthAnimatedSlidingText from "../animated-components/label-with-animated-sliding-text";
+import DropDownMenuOption from "../styled-text-components/dropdown-menu-option";
 
 type DropDownMenuProps = {
   dropdownMenuLabel: string;
@@ -68,9 +70,8 @@ const DropdownMenu = ({
       className="<-10  flex h-14 w-full items-center"
     >
       <div className="flex">
-        <label className="flex border-s-[0.7px] border-black ps-1.5 font-aperçu text-sm font-[700] leading-[.5rem] tracking-wide text-black small-caps dark:text-neutral-300 md:text-xs">
-          {`${dropdownMenuLabel}:`}
-        </label>
+        <FieldLabel text={`${dropdownMenuLabel}:`} />
+
         <div className="relative z-10 flex pe-2 ps-1">
           <div
             id={`${dropdownMenuLabel}-label`}
@@ -85,6 +86,7 @@ const DropdownMenu = ({
             ) : (
               <span>&nbsp;</span>
             )}
+
             <span
               className={`flex origin-center justify-center pt-0.5 transition-all duration-300 ${
                 isDropdownMenuOpen ? "rotate-180" : ""
@@ -113,9 +115,7 @@ const DropdownMenu = ({
                       tabIndex={index}
                       className="flex"
                     >
-                      <motion.span className="flex w-28 justify-start font-aperçu text-base font-semibold tabular-nums leading-[1.7] text-black hover:font-extrabold dark:text-neutral-300 md:text-[.625rem]">
-                        {capitalizeFirstLetter(entry)}
-                      </motion.span>
+                      <DropDownMenuOption text={capitalizeFirstLetter(entry)} />
                       <span className="flex items-center justify-center">
                         {entry === existingDropdownSearchParams ? (
                           <motion.div

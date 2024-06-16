@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 
 import NavbarPrivate from "@/frontend/sections/navbar-private/navbar-private";
 
-import AssetCyclicalSlier from "@/frontend/components/ui/div-cyclic-slider/asset-cyclic-sldier";
+import AssetCyclicalSlier from "@/frontend/components/ui/cyclic-recoil-slider/asset-cyclic-sldier";
 
 const MyServices = () => {
   const router = useRouter();

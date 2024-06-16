@@ -9,8 +9,6 @@ export type BasicComponentProps = {
   color?: string;
 };
 
-
-
 export type OnClickComponentProps = {
   scale?: number;
   color?: string;
@@ -46,4 +44,8 @@ export type NewUserObjectType = {
 export type SigninUserObjectType = {
   email: string;
   password: string;
+};
+
+export type TextComponentProps = {
+  text: string;
 };

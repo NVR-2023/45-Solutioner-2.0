@@ -5,8 +5,8 @@ import PasswordVisibleIcon from "../../icons/password-visible-icon";
 import ToggleSwitch from "../toggle-switch/toggle-switch";
 
 import { ValidatedTextFormFieldsType } from "@/types/component-props-types";
-import InputFieldLabel from "./input-field-label";
-import ErrorMessage from "./error-message";
+import FieldLabel from "../styled-text-components/field-label";
+import ErrorMessage from "../styled-text-components/error-message";
 
 type ValidatedPasswordInputFieldProps = {
   formFields: ValidatedTextFormFieldsType;
@@ -91,7 +91,7 @@ const ValidatedPasswordInputField = ({
             "translate-y-5"
           }`}
         >
-          <InputFieldLabel label="password" />
+          <FieldLabel text="password" />
           <span className="">
             <ToggleSwitch
               toggle={isPasswordVisible}
@@ -111,9 +111,7 @@ const ValidatedPasswordInputField = ({
           formFields.password?.errorMessage ? "opacity-100" : "opacity-0"
         }`}
       >
-        <ErrorMessage
-          errorMessage={formFields.password?.errorMessage || "\u00A0"}
-        />
+        <ErrorMessage text={formFields.password?.errorMessage || "\u00A0"} />
       </div>
     </div>
   );

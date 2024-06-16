@@ -4,7 +4,7 @@ import BasicButton from "../basic-button/basic-button";
 import CheckedCircle from "../../icons/checked-circle";
 import CrossedCircle from "../../icons/crossed-circle";
 import AnimatedSpinner from "../animated-components/animated-spinner";
-import FadeInWrapper from "../fadein-wrapper/fade-in-wrapper";
+import FadeInWrapper from "../animated-components/fade-in-wrapper";
 
 type SubmitSegmentType = {
   onCancel: MouseEventHandler<HTMLButtonElement>;

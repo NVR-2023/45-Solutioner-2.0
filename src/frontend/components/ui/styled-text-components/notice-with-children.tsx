@@ -3,7 +3,7 @@ import { ReactNode } from "react";
 type FormNoticeProps = {
   notice: ReactNode;
 };
-const FormNotice = ({ notice }: FormNoticeProps) => {
+const NoticeWithChildren = ({ notice }: FormNoticeProps) => {
   return (
     <span className="font-aperçu text-[.625rem] font-semibold tracking-normal">
       {notice}
@@ -11,4 +11,4 @@ const FormNotice = ({ notice }: FormNoticeProps) => {
   );
 };
 
-export default FormNotice;
+export default NoticeWithChildren;

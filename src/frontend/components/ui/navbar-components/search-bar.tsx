@@ -1,5 +1,6 @@
 import { ChangeEvent, useCallback } from "react";
 import { useRouter, usePathname, useSearchParams } from "next/navigation";
+import FieldLabel from "../styled-text-components/field-label";
 
 type SearchBarProps = {
   label: string;
@@ -22,12 +23,7 @@ const SearchBar = ({ label }: SearchBarProps) => {
   return (
     <div className="flex h-full">
       <div className="flex items-center space-x-1">
-        <label
-          htmlFor="searchBar"
-          className="flex border-s-[0.7px] border-black ps-1.5  font-aperçu text-sm font-[700] leading-[.5rem] tracking-wide text-black small-caps dark:text-neutral-300 md:text-xs"
-        >
-          {`${label}:`}
-        </label>
+        <FieldLabel text={"search:"} />
         <div className="flex items-baseline">
           <input
             type="text"
