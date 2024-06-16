@@ -1,4 +1,6 @@
 import AnimatedSlidingText from "./animated-sliding-text.";
+import FieldLabel from "../styled-text-components/field-label";
+import FieldContent from "../styled-text-components/field-content";
 
 type LabelWIthAnimatedSlidingTextProps = {
   label: string;
@@ -11,14 +13,10 @@ const LabelWIthAnimatedSlidingText = ({
 }: LabelWIthAnimatedSlidingTextProps) => {
   return (
     <div className="flex w-full">
-      <label className="flex font-aperçu text-sm font-[700] leading-[.5rem] tracking-wide text-black small-caps dark:text-neutral-300 md:text-xs">
-        {`${label}:`}
-      </label>
+      <FieldLabel text={`${label}:`} />
       <div className="flex ps-1">
         <div className="flex font-aperçu text-sm font-bold leading-[.5rem] text-black dark:text-neutral-300 md:text-xs">
-          <AnimatedSlidingText
-          text={text}
-          />
+          <AnimatedSlidingText text={text} />
         </div>
       </div>
     </div>

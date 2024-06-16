@@ -86,10 +86,7 @@ const BookServiceModal = () => {
             setIsCalendarExpanded={setIsCalendarExpanded}
           />
         </div>
-        <div className="">
-          <FieldLabel text="details" />
-          <FieldContent text="12345" />
-        </div>
+       
         <BookServiceSubmitSegment />
       </div>
     </AdvancedModalShell>

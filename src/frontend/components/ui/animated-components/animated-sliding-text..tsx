@@ -1,11 +1,7 @@
 import { motion } from "framer-motion";
-import FieldContent from "../styled-text-components/field-content";
 
-type AnimatedSlidingTextProps = {
-  text: string;
-};
-
-const AnimatedSlidingText = ({ text }: AnimatedSlidingTextProps) => {
+import { TextComponentProps } from "@/types/component-props-types";
+const AnimatedSlidingText = ({ text }: TextComponentProps) => {
   const variants = {
     initial: {
       x: "-100%",

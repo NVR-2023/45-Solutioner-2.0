@@ -14,6 +14,7 @@ import { generateThirtyMinuteTimestamps } from "@/utils/functions/date-time/gene
 
 import { capitalizeFirstLetter } from "@/utils/functions/capitalize-first-letter";
 
+import LabelWIthAnimatedSlidingText from "@/frontend/components/ui/animated-components/label-with-animated-sliding-text";
 import HourPicker from "./hour-picker";
 
 type BookServiceCalendarProps = {
@@ -240,27 +241,10 @@ const Calendar = ({
       </div>
       <div>
         <div className="flex">
-          <div className="flex overflow-hidden font-aperçu text-sm font-[700] leading-[.5rem] tracking-wide text-black transition-all duration-300 small-caps dark:text-neutral-300 md:text-xs">
-            service:
-          </div>
-
-          <div className="flex ps-1 font-aperçu text-sm font-bold leading-[.5rem] text-black dark:text-neutral-300 md:text-xs">
-            {capitalizeFirstLetter(service!)}
-          </div>
-        </div>
-
-        <div className="flex">
-          <div
-            className={`flex overflow-hidden font-aperçu text-sm font-[700] leading-[.5rem] tracking-wide text-black transition-all duration-300 small-caps dark:text-neutral-300 md:text-xs ${isCalendarExpanded ? "w-7" : "w-0"}`}
-          >
-            {isCalendarExpanded ? "date:" : ":"}
-          </div>
-
-          <div className="flex font-aperçu text-sm font-bold leading-[.5rem] text-black dark:text-neutral-300 md:text-xs">
-            <AnimatedSlidingText
-              text={`${convertDateToFullString(date)}${isCalendarExpanded ? "" : ", 09:00"}`}
-            />
-          </div>
+          <LabelWIthAnimatedSlidingText
+            label={"date"}
+            text={convertDateToFullString(date)}
+          />
         </div>
       </div>
     </div>
