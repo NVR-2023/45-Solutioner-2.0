@@ -231,18 +231,18 @@ const Calendar = ({
         </div>
       </div>
 
-      <div role="button" className="w-full space-y-2 overflow-hidden">
-        <HourPicker
-          bookableHours={bookableHours}
-          setTime={setTime}
-          duration={duration!}
-        />
-      </div>
-      <div>
-     <div className="flex">
+      <div className="space-y-2">
+        <div>
           <LabelWIthAnimatedSlidingText
             label={"date"}
             text={convertDateToFullString(date)}
+          />
+        </div>
+        <div className="w-full space-y-2 overflow-hidden">
+          <HourPicker
+            bookableHours={bookableHours}
+            setTime={setTime}
+            duration={duration!}
           />
         </div>
       </div>

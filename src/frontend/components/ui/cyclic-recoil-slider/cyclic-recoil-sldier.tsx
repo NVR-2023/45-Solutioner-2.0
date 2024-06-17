@@ -12,10 +12,11 @@ const CyclicRecoilSlider = ({
   items,
   currentIndex,
 }: CyclicRecoilSliderProps) => {
-  const itemsLength = items?.length;
   return (
     <div className="flex space-x-1">
-      <FieldLabel text={`${label}:`} />
+      <span>
+        <FieldLabel text={`${label}:`} />
+      </span>
       <span className="relative w-9 overflow-hidden">
         <div
           className="flex transition-transform duration-300 ease-out"

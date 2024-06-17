@@ -29,23 +29,39 @@ const HourPicker = ({ bookableHours, setTime, duration }: HourPickerProps) => {
   };
 
   useEffect(() => {
-    if (bookableHours.length > 0) {
+    if (bookableHoursLength > 0) {
       setCurrentIndex(0);
       setTime(bookableHours[0]);
     }
   }, [bookableHours]);
 
   return (
-    <div className="flex-row space-x-2">
-      <CyclicRecoilSlider
-        label={"time"}
-        items={bookableHours}
-        currentIndex={currentIndex}
-      />
-      <SliderControls
-        handleOnGetNextInNextItem={handleOnGetNextItem}
-        handleOnGetPreviousItem={handleOnGetPreviousItem}
-      />
+    <div className="flex w-full justify-between">
+      <div className="flex">
+        <div className="col-span-1">
+          <CyclicRecoilSlider
+            label={"starts"}
+            items={bookableHours}
+            currentIndex={currentIndex}
+          />
+        </div>
+        <div className="col-span-1">
+          <SliderControls
+            handleOnGetNextInNextItem={handleOnGetNextItem}
+            handleOnGetPreviousItem={handleOnGetPreviousItem}
+          />
+        </div>
+      </div>
+      <div>
+        {" "}
+        <CyclicRecoilSlider
+          label={"ends"}
+          items={bookableHours.map(
+            (hour) => getRoundedupEndOfServiceHourString(hour, duration),
+          )}
+          currentIndex={currentIndex}
+        />
+      </div>
     </div>
   );
 };
