@@ -40,7 +40,7 @@ const HourPicker = ({ bookableHours, setTime, duration }: HourPickerProps) => {
       <div className="flex">
         <div className="col-span-1">
           <CyclicRecoilSlider
-            label={"starts"}
+            label={"start"}
             items={bookableHours}
             currentIndex={currentIndex}
           />
@@ -55,7 +55,7 @@ const HourPicker = ({ bookableHours, setTime, duration }: HourPickerProps) => {
       <div>
         {" "}
         <CyclicRecoilSlider
-          label={"ends"}
+          label={"end"}
           items={bookableHours.map(
             (hour) => getRoundedupEndOfServiceHourString(hour, duration),
           )}

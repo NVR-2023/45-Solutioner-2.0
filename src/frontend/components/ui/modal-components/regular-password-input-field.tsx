@@ -4,7 +4,7 @@ import PasswordInvisibleIcon from "../../icons/password-invisible-icon";
 import PasswordVisibleIcon from "../../icons/password-visible-icon";
 import ToggleSwitch from "../toggle-switch/toggle-switch";
 
-import InputFieldLabel from "../styled-text-components/input-field-label";
+import FieldLabel from "../styled-text-components/field-label";
 
 type RegularPasswordInputFieldProps = {
   formFields: Record<string, string>;
@@ -60,7 +60,7 @@ const RegularPasswordInputField = ({
             !isInputFieldFocused && !formFields.password && "translate-y-5"
           }`}
         >
-          <InputFieldLabel label="password" />
+          <FieldLabel text="password" />
           <span className="">
             <ToggleSwitch
               toggle={isPasswordVisible}
