@@ -15,8 +15,10 @@ export const getLastBookableHour = (duration: string): string => {
   const minutes = (MINUTES_IN_HOUR - minutesToDecrease) % 60;
   const lastBookableHour = `${hours.toString().padStart(2, "0")}:${minutes.toString().padStart(2, "0")}`;
 
+
   const roundeddownLastBookableHour =
     rounddownToNearestHalfHour(lastBookableHour);
+
 
   return roundeddownLastBookableHour;
 };

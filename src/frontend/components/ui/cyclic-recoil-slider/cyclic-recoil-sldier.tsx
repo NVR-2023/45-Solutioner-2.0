@@ -5,19 +5,27 @@ type CyclicRecoilSliderProps = {
   label: string;
   items: string[];
   currentIndex: number;
+  size?: "sm" | "md" | "lg";
 };
 
 const CyclicRecoilSlider = ({
   label,
   items,
   currentIndex,
+  size = "md",
 }: CyclicRecoilSliderProps) => {
+  const widthClass = new Map([
+    ["sm", "w-4"],
+    ["md", "w-9"],
+    ["lg", "w-14"],
+  ]);
+
   return (
     <div className="flex space-x-1">
       <span>
         <FieldLabel text={`${label}:`} />
       </span>
-      <span className="relative w-9 overflow-hidden">
+      <span className={`relative ${widthClass.get(size)} overflow-hidden`}>
         <div
           className="flex transition-transform duration-300 ease-out"
           style={{ transform: `translateX(-${currentIndex * 100}%)` }}
@@ -25,7 +33,7 @@ const CyclicRecoilSlider = ({
           {items?.map((item, index) => (
             <div
               key={index}
-              className="flex w-9 flex-shrink-0 justify-start tabular-nums"
+              className={`flex ${widthClass.get(size)} flex-shrink-0 justify-start tabular-nums`}
             >
               <FieldContent text={item} />
             </div>

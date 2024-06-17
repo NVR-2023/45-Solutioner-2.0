@@ -54,6 +54,20 @@ const BookServiceModal = () => {
     }));
   };
 
+  const setQuantity = (newQuantity: number) => {
+    setBookServiceObject((previousBookServiceObject) => ({
+      ...previousBookServiceObject,
+      quantity: newQuantity,
+    }));
+  };
+  
+  const setRecurrence = (newRecurrence: string) => {
+    setBookServiceObject((previousBookServiceObject) => ({
+      ...previousBookServiceObject,
+      recurrence: newRecurrence,
+    }));
+  };
+
   const setIsBookServiceModalOpen = (isModalOpen: boolean) => {
     setBookServiceModalContext((previousObject) => ({
       ...previousObject,
@@ -66,27 +80,31 @@ const BookServiceModal = () => {
       isModalOpen={bookServiceModalContext.isBookServiceModalOpen}
       setIsModalOpen={setIsBookServiceModalOpen}
     >
-      <div className="flex w-full flex-col space-y-4">
+      <div className="flex w-full flex-col space-y-4 ">
         <ModalTitleWithoutLogo
           title={bookServiceModalContext.service as string}
         />
 
-        <Calendar
-          date={bookServiceObject.date!}
-          setDate={setDate}
-          time={bookServiceObject.time!}
-          setTime={setTime}
-          isCalendarExpanded={isCalendarExpanded}
-          setIsCalendarExpanded={setIsCalendarExpanded}
-        />
+        <div>
+          <Calendar
+            date={bookServiceObject.date!}
+            setDate={setDate}
+            time={bookServiceObject.time!}
+            setTime={setTime}
+            isCalendarExpanded={isCalendarExpanded}
+            setIsCalendarExpanded={setIsCalendarExpanded}
+          />
+        </div>
 
         <div className="">
           <Details
             isCalendarExpanded={isCalendarExpanded}
             setIsCalendarExpanded={setIsCalendarExpanded}
+            setQuantity={setQuantity}
+            setRecurrence={setRecurrence}
           />
         </div>
-       
+
         <BookServiceSubmitSegment />
       </div>
     </AdvancedModalShell>

@@ -44,14 +44,7 @@ const SingleAccordion = ({
           transition: "grid-template-rows 300ms",
         }}
       >
-        <div className="flex w-full overflow-hidden">
-          
-          
-          {children}
-          
-          
-          
-          </div>
+        <div className="flex w-full overflow-hidden">{children}</div>
       </div>
     </div>
   );

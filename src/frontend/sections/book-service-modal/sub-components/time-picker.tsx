@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { getRoundedupEndOfServiceHourString } from "@/utils/functions/date-time/get-roundedup-end-of-service-hour-string";
 import { getSuggestedBookHourIndex } from "@/utils/functions/date-time/get-suggested-bookhour-index";
 
@@ -11,7 +11,7 @@ type HourPickerProps = {
   duration: string;
 };
 
-const HourPicker = ({ bookableHours, setTime, duration }: HourPickerProps) => {
+const TimePicker = ({ bookableHours, setTime, duration }: HourPickerProps) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const bookableHoursLength = bookableHours.length;
 
@@ -30,34 +30,36 @@ const HourPicker = ({ bookableHours, setTime, duration }: HourPickerProps) => {
 
   useEffect(() => {
     if (bookableHoursLength > 0) {
-      setCurrentIndex(0);
-      setTime(bookableHours[0]);
+      const suggestHourIndex = getSuggestedBookHourIndex(bookableHours);
+      setCurrentIndex(suggestHourIndex);
+      setTime(bookableHours[suggestHourIndex]);
     }
   }, [bookableHours]);
 
   return (
-    <div className="flex w-full justify-between">
-      <div className="flex">
-        <div className="col-span-1">
+    <div className="flex w-full flex-col space-y-1">
+      <div className="flex w-full">
+        <div className="w-24">
           <CyclicRecoilSlider
-            label={"start"}
+            label={"time"}
             items={bookableHours}
             currentIndex={currentIndex}
           />
         </div>
-        <div className="col-span-1">
-          <SliderControls
-            handleOnGetNextInNextItem={handleOnGetNextItem}
-            handleOnGetPreviousItem={handleOnGetPreviousItem}
-          />
-        </div>
+        {bookableHoursLength > 1 && (
+          <div className="">
+            <SliderControls
+              handleOnGetNextInNextItem={handleOnGetNextItem}
+              handleOnGetPreviousItem={handleOnGetPreviousItem}
+            />
+          </div>
+        )}
       </div>
       <div>
-        {" "}
         <CyclicRecoilSlider
-          label={"end"}
-          items={bookableHours.map(
-            (hour) => getRoundedupEndOfServiceHourString(hour, duration),
+          label={"ends"}
+          items={bookableHours.map((hour) =>
+            getRoundedupEndOfServiceHourString(hour, duration),
           )}
           currentIndex={currentIndex}
         />
@@ -66,4 +68,4 @@ const HourPicker = ({ bookableHours, setTime, duration }: HourPickerProps) => {
   );
 };
 
-export default HourPicker;
+export default TimePicker;

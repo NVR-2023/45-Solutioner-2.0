@@ -2,7 +2,6 @@ import { useState, useEffect, useMemo } from "react";
 import { useBookServiceModalContext } from "@/frontend/contexts/use-book-service-modal-context";
 
 import { motion } from "framer-motion";
-import AnimatedSlidingText from "@/frontend/components/ui/animated-components/animated-sliding-text.";
 
 import { convertDateToHourString } from "@/utils/functions/date-time/convert-date-to-hour-string";
 import { convertDateToFullString } from "@/utils/functions/date-time/convert-date-to-full-string";
@@ -12,10 +11,8 @@ import { getLastBookableHour } from "@/utils/functions/date-time/get-last-bookab
 import { convertDateToYearString } from "@/utils/functions/date-time/convert-date-to-year-string";
 import { generateThirtyMinuteTimestamps } from "@/utils/functions/date-time/generate-thirty-minute-timestamps";
 
-import { capitalizeFirstLetter } from "@/utils/functions/capitalize-first-letter";
-
 import LabelWIthAnimatedSlidingText from "@/frontend/components/ui/animated-components/label-with-animated-sliding-text";
-import HourPicker from "./hour-picker";
+import TimePicker from "./time-picker";
 
 type BookServiceCalendarProps = {
   date: string;
@@ -49,7 +46,6 @@ const Calendar = ({
   setIsCalendarExpanded,
 }: BookServiceCalendarProps) => {
   const { bookServiceModalContext } = useBookServiceModalContext();
-  const service = bookServiceModalContext.service;
   const duration = bookServiceModalContext.duration;
 
   const [bookableHours, setBookableHours] = useState<string[]>([]);
@@ -231,7 +227,7 @@ const Calendar = ({
         </div>
       </div>
 
-      <div className="space-y-2">
+      <div className="space-y-3">
         <div>
           <LabelWIthAnimatedSlidingText
             label={"date"}
@@ -239,7 +235,7 @@ const Calendar = ({
           />
         </div>
         <div className="w-full space-y-2 overflow-hidden">
-          <HourPicker
+          <TimePicker
             bookableHours={bookableHours}
             setTime={setTime}
             duration={duration!}
