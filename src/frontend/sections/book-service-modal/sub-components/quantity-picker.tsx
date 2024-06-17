@@ -28,7 +28,7 @@ const QuantityPicker = ({ setQuantity }: QuantityPickerProps) => {
   };
 
   return (
-    <div className="flex w-full flex-col space-y-1">
+    <div className="flex w-full flex-col space-y-0.5">
       <div className="flex w-full">
         <div className="w-24">
           <CyclicRecoilSlider

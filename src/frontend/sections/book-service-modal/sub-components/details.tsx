@@ -1,8 +1,9 @@
 import MenuDownArrow from "@/frontend/components/icons/menu-down-arrow";
 import QuantityPicker from "./quantity-picker";
-import RecurrencePicker from "./recurrence-picker";
-
 import FieldLabel from "@/frontend/components/ui/styled-text-components/field-label";
+import FieldContent from "@/frontend/components/ui/styled-text-components/field-content";
+import { useBookServiceModalContext } from "@/frontend/contexts/use-book-service-modal-context";
+import RecurrencePicker from "./recurrence-picker";
 
 type DetailsProps = {
   isCalendarExpanded: boolean;
@@ -21,8 +22,15 @@ const Details = ({
     setIsCalendarExpanded(!isCalendarExpanded);
   };
 
+  const { bookServiceModalContext: {price}}= useBookServiceModalContext()
   return (
     <div className="rounded bg-neutral-300 px-4 py-2">
+      {isCalendarExpanded && (
+        <div className="flex mb-1.5 space-x-1">
+          <FieldLabel text="price:" />
+          <FieldContent text={`€${price}`} />
+        </div>
+      )}
       <button
         onClick={handleOnClick}
         className="flex w-full items-center justify-between"
@@ -47,12 +55,12 @@ const Details = ({
           transition: "grid-template-rows 300ms",
         }}
       >
-        <div className="flex w-full flex-col space-y-3">
-          <div className="mt-3 ">
-            <QuantityPicker setQuantity={setQuantity} />
-          </div>
-          <div>
+        <div className="flex w-full flex-col space-y-3 overflow-hidden">
+          <div className="mt-3">
             <RecurrencePicker setRecurrence={setRecurrence} />
+          </div>
+          <div className="">
+            <QuantityPicker setQuantity={setQuantity} />
           </div>
         </div>
       </div>

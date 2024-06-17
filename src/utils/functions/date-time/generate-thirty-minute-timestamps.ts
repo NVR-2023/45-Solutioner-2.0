@@ -30,9 +30,6 @@ export const generateThirtyMinuteTimestamps = (
     timeStampsArray.push(`${i.toString().padStart(2, "0")}:00`);
     timeStampsArray.push(`${i.toString().padStart(2, "0")}:30`);
   }
-console.log(lowerLimit)
-console.log(upperLimit)
-console.log(timeStampsArray);
 
   return timeStampsArray;
 };

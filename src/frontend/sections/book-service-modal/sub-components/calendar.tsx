@@ -139,11 +139,9 @@ const Calendar = ({
 
   return (
     <div
-      className={`flex flex-col justify-between space-y-4 overflow-hidden duration-300 ${isCalendarExpanded ? "h-[16rem] py-4" : "h-12 py-2"} w-full rounded bg-neutral-300 px-4 transition-all`}
+      className={`flex w-full flex-col justify-between overflow-hidden rounded bg-neutral-300 p-4 transition-all  duration-300`}
     >
-      <div
-        className={`w-full overflow-hidden transition-all duration-300 ${isCalendarExpanded ? "h-36" : "h-0"}`}
-      >
+      <div className="w-full overflow-hidden transition-all duration-300">
         <div
           className="grid"
           style={{
@@ -165,13 +163,14 @@ const Calendar = ({
                   ),
                 )}
               </div>
+
               <div className="grid grid-cols-7 grid-rows-5">
-                {Array.from({ length: 5 }).map((week, weekIndex) => (
+                {Array.from({ length: 5 }).map((_, weekIndex) => (
                   <div
                     key={weekIndex}
                     className="col-span-7 row-span-1 grid grid-cols-7"
                   >
-                    {Array.from({ length: 7 }).map((day, dayIndex) => {
+                    {Array.from({ length: 7 }).map((_, dayIndex) => {
                       const movingDate = new Date(mostRecentSunday);
                       movingDate.setDate(
                         mostRecentSunday.getDate() + (weekIndex * 7 + dayIndex),

@@ -37,7 +37,7 @@ const TimePicker = ({ bookableHours, setTime, duration }: HourPickerProps) => {
   }, [bookableHours]);
 
   return (
-    <div className="flex w-full flex-col space-y-1">
+    <div className="flex w-full flex-col space-y-0.5">
       <div className="flex w-full">
         <div className="w-24">
           <CyclicRecoilSlider

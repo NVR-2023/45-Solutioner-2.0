@@ -10,6 +10,11 @@ export const getLastBookableHour = (duration: string): string => {
     (durationInHours - hoursToDecrease) * MINUTES_IN_HOUR,
   );
 
+  console.log(duration)
+  console.log(durationInHours);
+  console.log(hoursToDecrease);
+  console.log(minutesToDecrease);
+
   let hours = LAST_SERVICE_HOUR - hoursToDecrease;
 
   const minutes = (MINUTES_IN_HOUR - minutesToDecrease) % 60;
