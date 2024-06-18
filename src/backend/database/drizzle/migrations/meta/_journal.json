@@ -127,6 +127,34 @@
       "when": 1710788711234,
       "tag": "0017_supreme_lilith",
       "breakpoints": true
+    },
+    {
+      "idx": 18,
+      "version": "6",
+      "when": 1718728282321,
+      "tag": "0018_lumpy_puff_adder",
+      "breakpoints": true
+    },
+    {
+      "idx": 19,
+      "version": "6",
+      "when": 1718728576239,
+      "tag": "0019_real_lady_deathstrike",
+      "breakpoints": true
+    },
+    {
+      "idx": 20,
+      "version": "6",
+      "when": 1718728819134,
+      "tag": "0020_spicy_smasher",
+      "breakpoints": true
+    },
+    {
+      "idx": 21,
+      "version": "6",
+      "when": 1718730522116,
+      "tag": "0021_faulty_jamie_braddock",
+      "breakpoints": true
     }
   ]
 }

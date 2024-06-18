@@ -1,10 +1,8 @@
 {
-  "id": "5c30fbb4-9c0a-4447-ac58-6cd9726d1780",
-  "prevId": "00000000-0000-0000-0000-000000000000",
-  "version": "5",
-  "dialect": "pg",
+  "version": "6",
+  "dialect": "postgresql",
   "tables": {
-    "provider_addresses": {
+    "public.provider_addresses": {
       "name": "provider_addresses",
       "schema": "",
       "columns": {
@@ -68,21 +66,21 @@
         "provider_addresses_provider_id_providers_id_fk": {
           "name": "provider_addresses_provider_id_providers_id_fk",
           "tableFrom": "provider_addresses",
-          "tableTo": "providers",
           "columnsFrom": [
             "provider_id"
           ],
+          "tableTo": "providers",
           "columnsTo": [
             "id"
           ],
-          "onDelete": "no action",
-          "onUpdate": "no action"
+          "onUpdate": "no action",
+          "onDelete": "no action"
         }
       },
       "compositePrimaryKeys": {},
       "uniqueConstraints": {}
     },
-    "provider_availabilities": {
+    "public.provider_availabilities": {
       "name": "provider_availabilities",
       "schema": "",
       "columns": {
@@ -116,21 +114,21 @@
         "provider_availabilities_provider_id_providers_id_fk": {
           "name": "provider_availabilities_provider_id_providers_id_fk",
           "tableFrom": "provider_availabilities",
-          "tableTo": "providers",
           "columnsFrom": [
             "provider_id"
           ],
+          "tableTo": "providers",
           "columnsTo": [
             "id"
           ],
-          "onDelete": "no action",
-          "onUpdate": "no action"
+          "onUpdate": "no action",
+          "onDelete": "no action"
         }
       },
       "compositePrimaryKeys": {},
       "uniqueConstraints": {}
     },
-    "provider_notifications": {
+    "public.provider_notifications": {
       "name": "provider_notifications",
       "schema": "",
       "columns": {
@@ -178,21 +176,21 @@
         "provider_notifications_provider_id_providers_id_fk": {
           "name": "provider_notifications_provider_id_providers_id_fk",
           "tableFrom": "provider_notifications",
-          "tableTo": "providers",
           "columnsFrom": [
             "provider_id"
           ],
+          "tableTo": "providers",
           "columnsTo": [
             "id"
           ],
-          "onDelete": "no action",
-          "onUpdate": "no action"
+          "onUpdate": "no action",
+          "onDelete": "no action"
         }
       },
       "compositePrimaryKeys": {},
       "uniqueConstraints": {}
     },
-    "provider_profiles": {
+    "public.provider_profiles": {
       "name": "provider_profiles",
       "schema": "",
       "columns": {
@@ -250,21 +248,21 @@
         "provider_profiles_provider_id_providers_id_fk": {
           "name": "provider_profiles_provider_id_providers_id_fk",
           "tableFrom": "provider_profiles",
-          "tableTo": "providers",
           "columnsFrom": [
             "provider_id"
           ],
+          "tableTo": "providers",
           "columnsTo": [
             "id"
           ],
-          "onDelete": "no action",
-          "onUpdate": "no action"
+          "onUpdate": "no action",
+          "onDelete": "no action"
         }
       },
       "compositePrimaryKeys": {},
       "uniqueConstraints": {}
     },
-    "services_provided": {
+    "public.services_provided": {
       "name": "services_provided",
       "schema": "",
       "columns": {
@@ -292,34 +290,34 @@
         "services_provided_provider_id_providers_id_fk": {
           "name": "services_provided_provider_id_providers_id_fk",
           "tableFrom": "services_provided",
-          "tableTo": "providers",
           "columnsFrom": [
             "provider_id"
           ],
+          "tableTo": "providers",
           "columnsTo": [
             "id"
           ],
-          "onDelete": "no action",
-          "onUpdate": "no action"
+          "onUpdate": "no action",
+          "onDelete": "no action"
         },
         "services_provided_service_services_id_fk": {
           "name": "services_provided_service_services_id_fk",
           "tableFrom": "services_provided",
-          "tableTo": "services",
           "columnsFrom": [
             "service"
           ],
+          "tableTo": "services",
           "columnsTo": [
             "id"
           ],
-          "onDelete": "no action",
-          "onUpdate": "no action"
+          "onUpdate": "no action",
+          "onDelete": "no action"
         }
       },
       "compositePrimaryKeys": {},
       "uniqueConstraints": {}
     },
-    "providers": {
+    "public.providers": {
       "name": "providers",
       "schema": "",
       "columns": {
@@ -375,7 +373,7 @@
       "compositePrimaryKeys": {},
       "uniqueConstraints": {}
     },
-    "service_profiles": {
+    "public.service_profiles": {
       "name": "service_profiles",
       "schema": "",
       "columns": {
@@ -428,21 +426,21 @@
         "service_profiles_service_id_services_id_fk": {
           "name": "service_profiles_service_id_services_id_fk",
           "tableFrom": "service_profiles",
-          "tableTo": "services",
           "columnsFrom": [
             "service_id"
           ],
+          "tableTo": "services",
           "columnsTo": [
             "id"
           ],
-          "onDelete": "no action",
-          "onUpdate": "no action"
+          "onUpdate": "no action",
+          "onDelete": "no action"
         }
       },
       "compositePrimaryKeys": {},
       "uniqueConstraints": {}
     },
-    "service_requests": {
+    "public.service_requests": {
       "name": "service_requests",
       "schema": "",
       "columns": {
@@ -519,60 +517,60 @@
         "service_requests_user_id_users_id_fk": {
           "name": "service_requests_user_id_users_id_fk",
           "tableFrom": "service_requests",
-          "tableTo": "users",
           "columnsFrom": [
             "user_id"
           ],
+          "tableTo": "users",
           "columnsTo": [
             "id"
           ],
-          "onDelete": "no action",
-          "onUpdate": "no action"
+          "onUpdate": "no action",
+          "onDelete": "no action"
         },
         "service_requests_user_address_id_user_addresses_id_fk": {
           "name": "service_requests_user_address_id_user_addresses_id_fk",
           "tableFrom": "service_requests",
-          "tableTo": "user_addresses",
           "columnsFrom": [
             "user_address_id"
           ],
+          "tableTo": "user_addresses",
           "columnsTo": [
             "id"
           ],
-          "onDelete": "no action",
-          "onUpdate": "no action"
+          "onUpdate": "no action",
+          "onDelete": "no action"
         },
         "service_requests_provider_id_users_id_fk": {
           "name": "service_requests_provider_id_users_id_fk",
           "tableFrom": "service_requests",
-          "tableTo": "users",
           "columnsFrom": [
             "provider_id"
           ],
+          "tableTo": "users",
           "columnsTo": [
             "id"
           ],
-          "onDelete": "no action",
-          "onUpdate": "no action"
+          "onUpdate": "no action",
+          "onDelete": "no action"
         },
         "service_requests_service_id_services_id_fk": {
           "name": "service_requests_service_id_services_id_fk",
           "tableFrom": "service_requests",
-          "tableTo": "services",
           "columnsFrom": [
             "service_id"
           ],
+          "tableTo": "services",
           "columnsTo": [
             "id"
           ],
-          "onDelete": "no action",
-          "onUpdate": "no action"
+          "onUpdate": "no action",
+          "onDelete": "no action"
         }
       },
       "compositePrimaryKeys": {},
       "uniqueConstraints": {}
     },
-    "services": {
+    "public.services": {
       "name": "services",
       "schema": "",
       "columns": {
@@ -630,7 +628,7 @@
       "compositePrimaryKeys": {},
       "uniqueConstraints": {}
     },
-    "total_number_of_services": {
+    "public.total_number_of_services": {
       "name": "total_number_of_services",
       "schema": "",
       "columns": {
@@ -674,7 +672,7 @@
       "compositePrimaryKeys": {},
       "uniqueConstraints": {}
     },
-    "user_addresses": {
+    "public.user_addresses": {
       "name": "user_addresses",
       "schema": "",
       "columns": {
@@ -744,21 +742,21 @@
         "user_addresses_user_id_users_id_fk": {
           "name": "user_addresses_user_id_users_id_fk",
           "tableFrom": "user_addresses",
-          "tableTo": "users",
           "columnsFrom": [
             "user_id"
           ],
+          "tableTo": "users",
           "columnsTo": [
             "id"
           ],
-          "onDelete": "no action",
-          "onUpdate": "no action"
+          "onUpdate": "no action",
+          "onDelete": "no action"
         }
       },
       "compositePrimaryKeys": {},
       "uniqueConstraints": {}
     },
-    "user_exclusions": {
+    "public.user_exclusions": {
       "name": "user_exclusions",
       "schema": "",
       "columns": {
@@ -786,34 +784,34 @@
         "user_exclusions_user_id_users_id_fk": {
           "name": "user_exclusions_user_id_users_id_fk",
           "tableFrom": "user_exclusions",
-          "tableTo": "users",
           "columnsFrom": [
             "user_id"
           ],
+          "tableTo": "users",
           "columnsTo": [
             "id"
           ],
-          "onDelete": "no action",
-          "onUpdate": "no action"
+          "onUpdate": "no action",
+          "onDelete": "no action"
         },
         "user_exclusions_provider_id_providers_id_fk": {
           "name": "user_exclusions_provider_id_providers_id_fk",
           "tableFrom": "user_exclusions",
-          "tableTo": "providers",
           "columnsFrom": [
             "provider_id"
           ],
+          "tableTo": "providers",
           "columnsTo": [
             "id"
           ],
-          "onDelete": "no action",
-          "onUpdate": "no action"
+          "onUpdate": "no action",
+          "onDelete": "no action"
         }
       },
       "compositePrimaryKeys": {},
       "uniqueConstraints": {}
     },
-    "notifications": {
+    "public.notifications": {
       "name": "notifications",
       "schema": "",
       "columns": {
@@ -861,21 +859,21 @@
         "notifications_user_id_users_id_fk": {
           "name": "notifications_user_id_users_id_fk",
           "tableFrom": "notifications",
-          "tableTo": "users",
           "columnsFrom": [
             "user_id"
           ],
+          "tableTo": "users",
           "columnsTo": [
             "id"
           ],
-          "onDelete": "no action",
-          "onUpdate": "no action"
+          "onUpdate": "no action",
+          "onDelete": "no action"
         }
       },
       "compositePrimaryKeys": {},
       "uniqueConstraints": {}
     },
-    "user_profiles": {
+    "public.user_profiles": {
       "name": "user_profiles",
       "schema": "",
       "columns": {
@@ -921,21 +919,21 @@
         "user_profiles_user_id_users_id_fk": {
           "name": "user_profiles_user_id_users_id_fk",
           "tableFrom": "user_profiles",
-          "tableTo": "users",
           "columnsFrom": [
             "user_id"
           ],
+          "tableTo": "users",
           "columnsTo": [
             "id"
           ],
-          "onDelete": "no action",
-          "onUpdate": "no action"
+          "onUpdate": "no action",
+          "onDelete": "no action"
         }
       },
       "compositePrimaryKeys": {},
       "uniqueConstraints": {}
     },
-    "users": {
+    "public.users": {
       "name": "users",
       "schema": "",
       "columns": {
@@ -993,46 +991,51 @@
     }
   },
   "enums": {
-    "days_of_week": {
+    "public.days_of_week": {
       "name": "days_of_week",
-      "values": {
-        "sunday": "sunday",
-        "monday": "monday",
-        "tuesday": "tuesday",
-        "wednesday": "wednesday",
-        "thursday": "thursday",
-        "friday": "friday",
-        "saturday": "saturday"
-      }
+      "schema": "public",
+      "values": [
+        "sunday",
+        "monday",
+        "tuesday",
+        "wednesday",
+        "thursday",
+        "friday",
+        "saturday"
+      ]
     },
-    "service_request_status": {
+    "public.service_request_status": {
       "name": "service_request_status",
-      "values": {
-        "expired": "expired",
-        "requested": "requested",
-        "accepted": "accepted",
-        "safeguarded": "safeguarded",
-        "provided": "provided",
-        "renewed": "renewed",
-        "reviewed": "reviewed",
-        "completed": "completed",
-        "sanctioned": "sanctioned",
-        "cancelled": "cancelled"
-      }
+      "schema": "public",
+      "values": [
+        "expired",
+        "requested",
+        "accepted",
+        "safeguarded",
+        "provided",
+        "renewed",
+        "reviewed",
+        "completed",
+        "sanctioned",
+        "cancelled"
+      ]
     },
-    "time_slots": {
+    "public.time_slots": {
       "name": "time_slots",
-      "values": {
-        "morning": "morning",
-        "afternoon": "afternoon",
-        "evening": "evening"
-      }
+      "schema": "public",
+      "values": [
+        "morning",
+        "afternoon",
+        "evening"
+      ]
     }
   },
   "schemas": {},
   "_meta": {
-    "columns": {},
     "schemas": {},
-    "tables": {}
-  }
+    "tables": {},
+    "columns": {}
+  },
+  "id": "5c30fbb4-9c0a-4447-ac58-6cd9726d1780",
+  "prevId": "00000000-0000-0000-0000-000000000000"
 }

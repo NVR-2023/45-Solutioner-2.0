@@ -1,4 +1,6 @@
 {
+  "id": "e0e9dcd9-cb8e-43a9-825f-db76675f1570",
+  "prevId": "000a0020-5e7e-4053-a1a9-3896b5e00aa2",
   "version": "6",
   "dialect": "postgresql",
   "tables": {
@@ -36,6 +38,18 @@
           "primaryKey": false,
           "notNull": false
         },
+        "postal_code": {
+          "name": "postal_code",
+          "type": "varchar(25)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "abc": {
+          "name": "abc",
+          "type": "varchar(25)",
+          "primaryKey": false,
+          "notNull": false
+        },
         "state": {
           "name": "state",
           "type": "varchar(25)",
@@ -66,15 +80,15 @@
         "provider_addresses_provider_id_providers_id_fk": {
           "name": "provider_addresses_provider_id_providers_id_fk",
           "tableFrom": "provider_addresses",
+          "tableTo": "providers",
           "columnsFrom": [
             "provider_id"
           ],
-          "tableTo": "providers",
           "columnsTo": [
             "id"
           ],
-          "onUpdate": "no action",
-          "onDelete": "no action"
+          "onDelete": "no action",
+          "onUpdate": "no action"
         }
       },
       "compositePrimaryKeys": {},
@@ -99,12 +113,14 @@
         "day_of_week": {
           "name": "day_of_week",
           "type": "days_of_week",
+          "typeSchema": "public",
           "primaryKey": false,
           "notNull": true
         },
         "time_slot": {
           "name": "time_slot",
           "type": "time_slots",
+          "typeSchema": "public",
           "primaryKey": false,
           "notNull": true
         }
@@ -114,15 +130,15 @@
         "provider_availabilities_provider_id_providers_id_fk": {
           "name": "provider_availabilities_provider_id_providers_id_fk",
           "tableFrom": "provider_availabilities",
+          "tableTo": "providers",
           "columnsFrom": [
             "provider_id"
           ],
-          "tableTo": "providers",
           "columnsTo": [
             "id"
           ],
-          "onUpdate": "no action",
-          "onDelete": "no action"
+          "onDelete": "no action",
+          "onUpdate": "no action"
         }
       },
       "compositePrimaryKeys": {},
@@ -176,15 +192,15 @@
         "provider_notifications_provider_id_providers_id_fk": {
           "name": "provider_notifications_provider_id_providers_id_fk",
           "tableFrom": "provider_notifications",
+          "tableTo": "providers",
           "columnsFrom": [
             "provider_id"
           ],
-          "tableTo": "providers",
           "columnsTo": [
             "id"
           ],
-          "onUpdate": "no action",
-          "onDelete": "no action"
+          "onDelete": "no action",
+          "onUpdate": "no action"
         }
       },
       "compositePrimaryKeys": {},
@@ -248,15 +264,15 @@
         "provider_profiles_provider_id_providers_id_fk": {
           "name": "provider_profiles_provider_id_providers_id_fk",
           "tableFrom": "provider_profiles",
+          "tableTo": "providers",
           "columnsFrom": [
             "provider_id"
           ],
-          "tableTo": "providers",
           "columnsTo": [
             "id"
           ],
-          "onUpdate": "no action",
-          "onDelete": "no action"
+          "onDelete": "no action",
+          "onUpdate": "no action"
         }
       },
       "compositePrimaryKeys": {},
@@ -290,28 +306,70 @@
         "services_provided_provider_id_providers_id_fk": {
           "name": "services_provided_provider_id_providers_id_fk",
           "tableFrom": "services_provided",
+          "tableTo": "providers",
           "columnsFrom": [
             "provider_id"
           ],
-          "tableTo": "providers",
           "columnsTo": [
             "id"
           ],
-          "onUpdate": "no action",
-          "onDelete": "no action"
+          "onDelete": "no action",
+          "onUpdate": "no action"
         },
         "services_provided_service_services_id_fk": {
           "name": "services_provided_service_services_id_fk",
           "tableFrom": "services_provided",
+          "tableTo": "services",
           "columnsFrom": [
             "service"
           ],
-          "tableTo": "services",
           "columnsTo": [
             "id"
           ],
-          "onUpdate": "no action",
-          "onDelete": "no action"
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "public.provider_sessions": {
+      "name": "provider_sessions",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "provider_id": {
+          "name": "provider_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "expires_at": {
+          "name": "expires_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "provider_sessions_provider_id_providers_id_fk": {
+          "name": "provider_sessions_provider_id_providers_id_fk",
+          "tableFrom": "provider_sessions",
+          "tableTo": "providers",
+          "columnsFrom": [
+            "provider_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
         }
       },
       "compositePrimaryKeys": {},
@@ -339,21 +397,39 @@
           "primaryKey": false,
           "notNull": true
         },
-        "password": {
-          "name": "password",
+        "email_verified_at": {
+          "name": "email_verified_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "hashed_password": {
+          "name": "hashed_password",
           "type": "text",
           "primaryKey": false,
-          "notNull": true
+          "notNull": false
         },
-        "createdAt": {
-          "name": "createdAt",
+        "google_id": {
+          "name": "google_id",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "facebook_id": {
+          "name": "facebook_id",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "created_at": {
+          "name": "created_at",
           "type": "timestamp",
           "primaryKey": false,
           "notNull": true,
           "default": "now()"
         },
-        "modifiedAt": {
-          "name": "modifiedAt",
+        "modified_at": {
+          "name": "modified_at",
           "type": "timestamp",
           "primaryKey": false,
           "notNull": true,
@@ -426,15 +502,15 @@
         "service_profiles_service_id_services_id_fk": {
           "name": "service_profiles_service_id_services_id_fk",
           "tableFrom": "service_profiles",
+          "tableTo": "services",
           "columnsFrom": [
             "service_id"
           ],
-          "tableTo": "services",
           "columnsTo": [
             "id"
           ],
-          "onUpdate": "no action",
-          "onDelete": "no action"
+          "onDelete": "no action",
+          "onUpdate": "no action"
         }
       },
       "compositePrimaryKeys": {},
@@ -489,12 +565,7 @@
         "service_recurrence": {
           "name": "service_recurrence",
           "type": "service_recurrence",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "recurrence": {
-          "name": "recurrence",
-          "type": "integer",
+          "typeSchema": "public",
           "primaryKey": false,
           "notNull": false
         },
@@ -513,6 +584,7 @@
         "status": {
           "name": "status",
           "type": "service_request_status",
+          "typeSchema": "public",
           "primaryKey": false,
           "notNull": true,
           "default": "'requested'"
@@ -523,54 +595,54 @@
         "service_requests_user_id_users_id_fk": {
           "name": "service_requests_user_id_users_id_fk",
           "tableFrom": "service_requests",
+          "tableTo": "users",
           "columnsFrom": [
             "user_id"
           ],
-          "tableTo": "users",
           "columnsTo": [
             "id"
           ],
-          "onUpdate": "no action",
-          "onDelete": "no action"
+          "onDelete": "no action",
+          "onUpdate": "no action"
         },
         "service_requests_user_address_id_user_addresses_id_fk": {
           "name": "service_requests_user_address_id_user_addresses_id_fk",
           "tableFrom": "service_requests",
+          "tableTo": "user_addresses",
           "columnsFrom": [
             "user_address_id"
           ],
-          "tableTo": "user_addresses",
           "columnsTo": [
             "id"
           ],
-          "onUpdate": "no action",
-          "onDelete": "no action"
+          "onDelete": "no action",
+          "onUpdate": "no action"
         },
         "service_requests_provider_id_users_id_fk": {
           "name": "service_requests_provider_id_users_id_fk",
           "tableFrom": "service_requests",
+          "tableTo": "users",
           "columnsFrom": [
             "provider_id"
           ],
-          "tableTo": "users",
           "columnsTo": [
             "id"
           ],
-          "onUpdate": "no action",
-          "onDelete": "no action"
+          "onDelete": "no action",
+          "onUpdate": "no action"
         },
         "service_requests_service_id_services_id_fk": {
           "name": "service_requests_service_id_services_id_fk",
           "tableFrom": "service_requests",
+          "tableTo": "services",
           "columnsFrom": [
             "service_id"
           ],
-          "tableTo": "services",
           "columnsTo": [
             "id"
           ],
-          "onUpdate": "no action",
-          "onDelete": "no action"
+          "onDelete": "no action",
+          "onUpdate": "no action"
         }
       },
       "compositePrimaryKeys": {},
@@ -718,6 +790,18 @@
           "primaryKey": false,
           "notNull": false
         },
+        "postal_code": {
+          "name": "postal_code",
+          "type": "varchar(25)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "abc": {
+          "name": "abc",
+          "type": "varchar(25)",
+          "primaryKey": false,
+          "notNull": false
+        },
         "state": {
           "name": "state",
           "type": "varchar(25)",
@@ -748,15 +832,15 @@
         "user_addresses_user_id_users_id_fk": {
           "name": "user_addresses_user_id_users_id_fk",
           "tableFrom": "user_addresses",
+          "tableTo": "users",
           "columnsFrom": [
             "user_id"
           ],
-          "tableTo": "users",
           "columnsTo": [
             "id"
           ],
-          "onUpdate": "no action",
-          "onDelete": "no action"
+          "onDelete": "no action",
+          "onUpdate": "no action"
         }
       },
       "compositePrimaryKeys": {},
@@ -790,28 +874,28 @@
         "user_exclusions_user_id_users_id_fk": {
           "name": "user_exclusions_user_id_users_id_fk",
           "tableFrom": "user_exclusions",
+          "tableTo": "users",
           "columnsFrom": [
             "user_id"
           ],
-          "tableTo": "users",
           "columnsTo": [
             "id"
           ],
-          "onUpdate": "no action",
-          "onDelete": "no action"
+          "onDelete": "no action",
+          "onUpdate": "no action"
         },
         "user_exclusions_provider_id_providers_id_fk": {
           "name": "user_exclusions_provider_id_providers_id_fk",
           "tableFrom": "user_exclusions",
+          "tableTo": "providers",
           "columnsFrom": [
             "provider_id"
           ],
-          "tableTo": "providers",
           "columnsTo": [
             "id"
           ],
-          "onUpdate": "no action",
-          "onDelete": "no action"
+          "onDelete": "no action",
+          "onUpdate": "no action"
         }
       },
       "compositePrimaryKeys": {},
@@ -865,15 +949,15 @@
         "notifications_user_id_users_id_fk": {
           "name": "notifications_user_id_users_id_fk",
           "tableFrom": "notifications",
+          "tableTo": "users",
           "columnsFrom": [
             "user_id"
           ],
-          "tableTo": "users",
           "columnsTo": [
             "id"
           ],
-          "onUpdate": "no action",
-          "onDelete": "no action"
+          "onDelete": "no action",
+          "onUpdate": "no action"
         }
       },
       "compositePrimaryKeys": {},
@@ -925,15 +1009,57 @@
         "user_profiles_user_id_users_id_fk": {
           "name": "user_profiles_user_id_users_id_fk",
           "tableFrom": "user_profiles",
+          "tableTo": "users",
           "columnsFrom": [
             "user_id"
           ],
-          "tableTo": "users",
           "columnsTo": [
             "id"
           ],
-          "onUpdate": "no action",
-          "onDelete": "no action"
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "public.user_sessions": {
+      "name": "user_sessions",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "user_id": {
+          "name": "user_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "expires_at": {
+          "name": "expires_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "user_sessions_user_id_users_id_fk": {
+          "name": "user_sessions_user_id_users_id_fk",
+          "tableFrom": "user_sessions",
+          "tableTo": "users",
+          "columnsFrom": [
+            "user_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
         }
       },
       "compositePrimaryKeys": {},
@@ -961,24 +1087,42 @@
           "primaryKey": false,
           "notNull": true
         },
-        "password": {
-          "name": "password",
+        "email_verified_at": {
+          "name": "email_verified_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "hashed_password": {
+          "name": "hashed_password",
           "type": "text",
           "primaryKey": false,
-          "notNull": true
+          "notNull": false
         },
-        "createdAt": {
-          "name": "createdAt",
+        "google_id": {
+          "name": "google_id",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "facebook_id": {
+          "name": "facebook_id",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "created_at": {
+          "name": "created_at",
           "type": "timestamp",
           "primaryKey": false,
-          "notNull": true,
+          "notNull": false,
           "default": "now()"
         },
-        "modifiedAt": {
-          "name": "modifiedAt",
+        "modified_at": {
+          "name": "modified_at",
           "type": "timestamp",
           "primaryKey": false,
-          "notNull": true,
+          "notNull": false,
           "default": "now()"
         }
       },
@@ -1048,10 +1192,8 @@
   },
   "schemas": {},
   "_meta": {
+    "columns": {},
     "schemas": {},
-    "tables": {},
-    "columns": {}
-  },
-  "id": "d4130ee0-3239-4bf2-a343-23c8dcd5c215",
-  "prevId": "5c30fbb4-9c0a-4447-ac58-6cd9726d1780"
+    "tables": {}
+  }
 }

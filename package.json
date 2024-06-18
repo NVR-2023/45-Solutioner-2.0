@@ -12,10 +12,8 @@
     "db:push": "npx drizzle-kit generate:pg --config=./src/backend/database/drizzle/drizzle.config.ts && npx tsx src/backend/database/drizzle/scripts/migrate.ts",
     
     "db:update": "npx drizzle-kit generate --config=./src/backend/database/drizzle/drizzle.config.ts && npx drizzle-kit generate --config=./src/backend/database/drizzle/drizzle.config.ts",
-    
-    
-    
     "db:studio": "npx drizzle-kit studio --config=./src/backend/database/drizzle/drizzle.config.ts",
+    
     "db:services": "npx tsx src/backend/database/drizzle/scripts/seed-services-table.ts",
     "db:updateservices": "npx tsx src/backend/database/drizzle/scripts/update-services-table.ts",
     "db:serviceprofiles": "npx tsx src/backend/database/drizzle/scripts/seed-service-profiles-table.ts",

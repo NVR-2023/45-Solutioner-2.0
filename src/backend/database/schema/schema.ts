@@ -58,14 +58,12 @@ export const userSessions = pgTable("user_sessions", {
   }).notNull(),
 });
 
-
 export const userSessionsRelations = relations(userSessions, ({ one }) => ({
   user: one(users, {
     fields: [userSessions.userId],
     references: [users.id],
   }),
 }));
-
 
 export const userProfiles = pgTable("user_profiles", {
   id: serial("id").primaryKey(),
@@ -87,7 +85,7 @@ export const userAddresses = pgTable("user_addresses", {
   street: text("street"),
   apartment: varchar("apartment"),
   city: varchar("city", { length: 25 }),
-  zipCode: varchar("zip_code", { length: 25 }),
+  postalCode: varchar("postal_code", { length: 25 }),
   state: varchar("state", { length: 25 }),
   country: varchar("country", { length: 25 }),
   latitude: numeric("latitude").notNull(),
@@ -112,12 +110,15 @@ export const userNotifications = pgTable("notifications", {
   readAt: timestamp("read_at").defaultNow(),
 });
 
-export const userNotificationsRelations = relations(userNotifications, ({ one }) => ({
-  user: one(users, {
-    fields: [userNotifications.userId],
-    references: [users.id],
+export const userNotificationsRelations = relations(
+  userNotifications,
+  ({ one }) => ({
+    user: one(users, {
+      fields: [userNotifications.userId],
+      references: [users.id],
+    }),
   }),
-}));
+);
 
 export const userExclusions = pgTable("user_exclusions", {
   id: serial("id").primaryKey(),
@@ -158,7 +159,6 @@ export const providers = pgTable(
   },
 );
 
-
 export const providerRelations = relations(providers, ({ one, many }) => ({
   profile: one(providerProfiles, {
     fields: [providers.id],
@@ -185,12 +185,15 @@ export const providerSessions = pgTable("provider_sessions", {
   }).notNull(),
 });
 
-export const providerSessionsRelations = relations(providerSessions, ({ one }) => ({
-  provider: one(providers, {
-    fields: [providerSessions.providerId],
-    references: [providers.id],
+export const providerSessionsRelations = relations(
+  providerSessions,
+  ({ one }) => ({
+    provider: one(providers, {
+      fields: [providerSessions.providerId],
+      references: [providers.id],
+    }),
   }),
-}));
+);
 
 export const providerProfiles = pgTable("provider_profiles", {
   id: serial("id").primaryKey(),
@@ -213,6 +216,7 @@ export const providerAddresses = pgTable("provider_addresses", {
   street: text("street"),
   apartment: varchar("apartment", { length: 25 }),
   city: varchar("city", { length: 25 }),
+  postalCode: varchar("postal_code", { length: 25 }),
   state: varchar("state", { length: 25 }),
   country: varchar("country", { length: 25 }),
   latitude: numeric("latitude").notNull(),
@@ -230,12 +234,15 @@ export const providerNotifications = pgTable("provider_notifications", {
   readAt: timestamp("read_at").defaultNow(),
 });
 
-export const providerNotificationsRelations = relations(providerNotifications, ({ one }) => ({
-  provider: one(providers, {
-    fields: [providerNotifications.providerId],
-    references: [providers.id],
+export const providerNotificationsRelations = relations(
+  providerNotifications,
+  ({ one }) => ({
+    provider: one(providers, {
+      fields: [providerNotifications.providerId],
+      references: [providers.id],
+    }),
   }),
-}));
+);
 
 export const daysOfWeekEnum = pgEnum("days_of_week", [
   "sunday",
@@ -246,7 +253,11 @@ export const daysOfWeekEnum = pgEnum("days_of_week", [
   "friday",
   "saturday",
 ]);
-export const timeSlotsEnum = pgEnum("time_slots", ["morning", "afternoon", "evening"]);
+export const timeSlotsEnum = pgEnum("time_slots", [
+  "morning",
+  "afternoon",
+  "evening",
+]);
 
 export const providerAvailabilities = pgTable("provider_availabilities", {
   id: serial("id").primaryKey(),
@@ -257,12 +268,15 @@ export const providerAvailabilities = pgTable("provider_availabilities", {
   timeSLot: timeSlotsEnum("time_slot").notNull(),
 });
 
-export const providerAvailabilitiesRelations = relations(providerAvailabilities, ({ one }) => ({
-  provider: one(providers, {
-    fields: [providerAvailabilities.providerId],
-    references: [providers.id],
+export const providerAvailabilitiesRelations = relations(
+  providerAvailabilities,
+  ({ one }) => ({
+    provider: one(providers, {
+      fields: [providerAvailabilities.providerId],
+      references: [providers.id],
+    }),
   }),
-}));
+);
 
 export const providerServicesProvided = pgTable("services_provided", {
   id: serial("id").primaryKey(),
@@ -274,23 +288,32 @@ export const providerServicesProvided = pgTable("services_provided", {
     .references(() => services.id),
 });
 
-export const providerServicesProvidedRelations = relations(providerServicesProvided, ({ one }) => ({
-  provider: one(providers, {
-    fields: [providerServicesProvided.providerId],
-    references: [providers.id],
+export const providerServicesProvidedRelations = relations(
+  providerServicesProvided,
+  ({ one }) => ({
+    provider: one(providers, {
+      fields: [providerServicesProvided.providerId],
+      references: [providers.id],
+    }),
   }),
-}));
+);
 
 // Services
 
 export const totalNUmberOfServices = pgTable("total_number_of_services", {
   id: serial("id").primaryKey(),
-  totalNUmberOfServicesRequested: integer("total_number_of_services_requested").default(0),
-  totalNUmberOfRecurrentServicesRequested: integer(
-    "total_number_of_recurrent_services_requested"
+  totalNUmberOfServicesRequested: integer(
+    "total_number_of_services_requested",
   ).default(0),
-  totalNUmberOfServicesCancelled: integer("total_number_of_services_cancelled").default(0),
-  totalNUmberOfServicesExecuted: integer("total_number_of_services_executed").default(0),
+  totalNUmberOfRecurrentServicesRequested: integer(
+    "total_number_of_recurrent_services_requested",
+  ).default(0),
+  totalNUmberOfServicesCancelled: integer(
+    "total_number_of_services_cancelled",
+  ).default(0),
+  totalNUmberOfServicesExecuted: integer(
+    "total_number_of_services_executed",
+  ).default(0),
 });
 
 export const services = pgTable("services", {
@@ -363,17 +386,20 @@ export const serviceRequests = pgTable("service_requests", {
   status: serviceRequestStatusEnum("status").default("requested").notNull(),
 });
 
-export const serviceRequestRelations = relations(serviceRequests, ({ one }) => ({
-  user: one(users, {
-    fields: [serviceRequests.id],
-    references: [users.id],
+export const serviceRequestRelations = relations(
+  serviceRequests,
+  ({ one }) => ({
+    user: one(users, {
+      fields: [serviceRequests.id],
+      references: [users.id],
+    }),
+    provider: one(providers, {
+      fields: [serviceRequests.id],
+      references: [providers.id],
+    }),
+    address: one(userAddresses, {
+      fields: [serviceRequests.id],
+      references: [userAddresses.id],
+    }),
   }),
-  provider: one(providers, {
-    fields: [serviceRequests.id],
-    references: [providers.id],
-  }),
-  address: one(userAddresses, {
-    fields: [serviceRequests.id],
-    references: [userAddresses.id],
-  }),
-}));
+);
