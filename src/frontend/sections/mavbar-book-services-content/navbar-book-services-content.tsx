@@ -6,7 +6,7 @@ import { AllServiceStaticDataType } from "@/utils/functions/fetch-data/services-
 import DropdownMenu from "@/frontend/components/ui/navbar-components/dropdown-menu";
 import SearchBar from "@/frontend/components/ui/navbar-components/search-bar";
 import PresetsSegment from "../../components/ui/navbar-components/presets-segment";
-import CollapseToggle from "@/frontend/components/ui/collapse-toggle/collapse-toggle";
+import CollapseToggle from "@/frontend/components/ui/collapse-toggle";
 
 export type PresetProps = {
   label: string;

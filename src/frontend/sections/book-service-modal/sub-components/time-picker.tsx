@@ -2,8 +2,8 @@ import { useState, useEffect, useMemo } from "react";
 import { getRoundedupEndOfServiceHourString } from "@/utils/functions/date-time/get-roundedup-end-of-service-hour-string";
 import { getSuggestedBookHourIndex } from "@/utils/functions/date-time/get-suggested-bookhour-index";
 
-import CyclicRecoilSlider from "@/frontend/components/ui/cyclic-recoil-slider/cyclic-recoil-sldier";
-import SliderControls from "@/frontend/components/ui/slider-controls.tsx/slider-controls";
+import CyclicRecoilSlider from "@/frontend/components/ui/cyclic-recoil-sldier";
+import SliderControls from "@/frontend/components/ui/slider-controls";
 
 type HourPickerProps = {
   bookableHours: string[];

@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import getSystemThemePreference from "@/utils/functions/getSystemThemePreference";
+import getSystemThemePreference from "@/utils/functions/get-system-theme-preference";
 import { ThemeModeType } from "@/types/component-props-types";
 
 const useApplyThemeMode = (currentThemeMode: ThemeModeType) => {

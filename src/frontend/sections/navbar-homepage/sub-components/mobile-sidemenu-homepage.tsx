@@ -1,7 +1,6 @@
-import { FC } from "react";
-import HOMEPAGE_SECTIONS from "@/frontend/sections/navbar-homepage/sub-components/homepage-sections";
+import HOMEPAGE_SECTIONS from "@/utils/data/homepage-sections";
 import Link from "next/link";
-import { getSectionFomString } from "@/utils/functions/getsectionfromurl";
+import { getSectionFomString } from "@/utils/functions/get-section-from-url";
 
 type MobileSidemenuPropsType = {
   action: () => void;

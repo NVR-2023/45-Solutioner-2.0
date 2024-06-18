@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { getSectionFomString } from "@/utils/functions/getsectionfromurl";
-import HOMEPAGE_SECTIONS from "./homepage-sections";
+import { getSectionFomString } from "@/utils/functions/get-section-from-url";
+import HOMEPAGE_SECTIONS from "@/utils/data/homepage-sections";
 import NavbarTab from "@/frontend/components/ui/styled-text-components/navbar-tab";
 
 const HomeSectionLinks = () => {

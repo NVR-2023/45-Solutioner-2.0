@@ -1,8 +1,7 @@
 import { useState } from "react";
 
-import CyclicRecoilSlider from "@/frontend/components/ui/cyclic-recoil-slider/cyclic-recoil-sldier";
-import SliderControls from "@/frontend/components/ui/slider-controls.tsx/slider-controls";
-
+import CyclicRecoilSlider from "@/frontend/components/ui/cyclic-recoil-sldier";
+import SliderControls from "@/frontend/components/ui/slider-controls";
 
 const SERVICE_RECURRENCES = ["Once", "Monthly", "Weekly", "Daily"];
 type RecurrenceType = (typeof SERVICE_RECURRENCES)[number];
@@ -14,7 +13,7 @@ type QuantityPickerProps = {
 const RecurrencePicker = ({ setRecurrence }: QuantityPickerProps) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  const serviceRecurrencesLength = SERVICE_RECURRENCES.length; 
+  const serviceRecurrencesLength = SERVICE_RECURRENCES.length;
   const handleOnGetNextItem = () => {
     const nextIndex = (currentIndex + 1) % serviceRecurrencesLength;
     setCurrentIndex(nextIndex);

@@ -2,7 +2,7 @@ import { useState, ChangeEvent, Dispatch, SetStateAction } from "react";
 
 import PasswordInvisibleIcon from "../../icons/password-invisible-icon";
 import PasswordVisibleIcon from "../../icons/password-visible-icon";
-import ToggleSwitch from "../toggle-switch/toggle-switch";
+import ToggleSwitch from "../toggle-switch";
 
 import FieldLabel from "../styled-text-components/field-label";
 

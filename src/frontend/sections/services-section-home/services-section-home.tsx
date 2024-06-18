@@ -1,4 +1,4 @@
-import HomepageImageWrapper from "@/frontend/components/ui/homepage-image-wrapper/homepage-image-wrapper";
+import HomepageImageWrapper from "@/frontend/components/ui/homepage-image-wrapper";
 const ServicesHomeSection = () => {
   return (
     <section id="services" className="relative bg-neutral-300">

@@ -1,5 +1,4 @@
-import ThemeSwitch from "@/frontend/components/ui/theme-switch/theme-switch";
-import Link from "next/link";
+import ThemeSwitch from "@/frontend/components/ui/theme-switch";
 
 import SigninIcon from "../../../components/icons/signin-icon";
 import SigninButton from "./signin-button";

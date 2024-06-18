@@ -1,7 +1,7 @@
 import { signOutUser } from "@/utils/functions/fetch-data/user-endpoint-submissions";
 import { useRouter } from "next/navigation";
 
-import SingleAccordion from "@/frontend/components/ui/single-accordeon/single-accordion";
+import SingleAccordion from "@/frontend/components/ui/single-accordion";
 import Link from "next/link";
 
 import QuickSettingsContent from "./quick-settings-content";

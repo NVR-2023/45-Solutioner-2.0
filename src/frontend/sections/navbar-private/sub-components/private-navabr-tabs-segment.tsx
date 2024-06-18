@@ -1,4 +1,4 @@
-import getURLfromString from "@/utils/functions/geturlfromstring";
+import getURLfromString from "@/utils/functions/get-url-from-string";
 import { capitalizeFirstLetter } from "@/utils/functions/capitalize-first-letter";
 import Link from "next/link";
 

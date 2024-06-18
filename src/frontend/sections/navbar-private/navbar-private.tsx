@@ -1,6 +1,6 @@
 import { motion, AnimatePresence } from "framer-motion";
 import LogoSegment from "../../components/ui/navbar-components/logo-segment";
-import ThemeSwitch from "@/frontend/components/ui/theme-switch/theme-switch";
+import ThemeSwitch from "@/frontend/components/ui/theme-switch";
 import { AvatarSegment } from "./sub-components/avatar-segment";
 import PrivateNavbarTabsSegment from "./sub-components/private-navabr-tabs-segment";
 

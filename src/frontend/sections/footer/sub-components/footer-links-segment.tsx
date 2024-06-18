@@ -1,4 +1,4 @@
-import getURLfromString from "@/utils/functions/geturlfromstring";
+import getURLfromString from "@/utils/functions/get-url-from-string";
 import Link from "next/link";
 
 type LinkListType = {
@@ -8,8 +8,8 @@ type LinkListType = {
 
 type LinkListProps = {
   linkList: LinkListType;
-}
-const FooterLinksSegment = ({linkList}: LinkListProps) => {
+};
+const FooterLinksSegment = ({ linkList }: LinkListProps) => {
   return (
     <nav key={linkList.label}>
       <div className="w-26 flex flex-col md:w-64">

@@ -1,7 +1,7 @@
-import LightThemeIcon from "../../icons/light-theme-icon";
-import DarkThemeIcon from "../../icons/dark-theme-icon";
-import SystemThemeIcon from "../../icons/system-theme-icon";
-import setThemeModeToLocalStorage from "@/utils/functions/setThemeToLocalStorage";
+import LightThemeIcon from "../icons/light-theme-icon";
+import DarkThemeIcon from "../icons/dark-theme-icon";
+import SystemThemeIcon from "../icons/system-theme-icon";
+import setThemeModeToLocalStorage from "@/utils/functions/set-theme-to-localstorage";
 import { ThemeModeType } from "@/types/component-props-types";
 
 import useThemeModeSSetup from "@/frontend/hooks/theme-hooks/use-theme-mode-setup";

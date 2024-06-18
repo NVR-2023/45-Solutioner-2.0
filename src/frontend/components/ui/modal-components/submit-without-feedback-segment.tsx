@@ -1,6 +1,6 @@
 import { MouseEventHandler, ReactNode } from "react";
 import { FetchSubmissionSTatusType } from "@/types/component-props-types";
-import BasicButton from "../basic-button/basic-button";
+import BasicButton from "../basic-button";
 import CheckedCircle from "../../icons/checked-circle";
 import CrossedCircle from "../../icons/crossed-circle";
 import AnimatedSpinner from "../animated-components/animated-spinner";

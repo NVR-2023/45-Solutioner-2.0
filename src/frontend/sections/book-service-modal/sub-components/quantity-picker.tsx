@@ -1,9 +1,8 @@
 import { useState, useEffect } from "react";
 import { useBookServiceModalContext } from "@/frontend/contexts/use-book-service-modal-context";
 
-import CyclicRecoilSlider from "@/frontend/components/ui/cyclic-recoil-slider/cyclic-recoil-sldier";
-import SliderControls from "@/frontend/components/ui/slider-controls.tsx/slider-controls";
-
+import CyclicRecoilSlider from "@/frontend/components/ui/cyclic-recoil-sldier";
+import SliderControls from "@/frontend/components/ui/slider-controls";
 type QuantityPickerProps = {
   setQuantity: (quantity: number) => void;
 };

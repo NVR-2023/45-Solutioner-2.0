@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { aperçuFont} from "@/utils/functions/localfontloader";
+import { aperçuFont } from "@/utils/functions/local-font-loader";
 
 import Footer from "@/frontend/sections/footer/footer";
 

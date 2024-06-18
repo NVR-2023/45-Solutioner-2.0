@@ -1,5 +1,5 @@
 import { useState, ReactNode } from "react";
-import MenuDownArrow from "../../icons/menu-down-arrow";
+import MenuDownArrow from "../icons/menu-down-arrow";
 
 type SingleAccordionProps = {
   label: string;

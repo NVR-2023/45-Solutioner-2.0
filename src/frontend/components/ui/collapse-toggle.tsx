@@ -1,7 +1,6 @@
 import { Dispatch, SetStateAction } from "react";
 import CollapseNavbarIcon from "@/frontend/components/icons/collapse-navbar-icon";
-import HamburgerIcon from "../../icons/hamburger-icon";
-
+import HamburgerIcon from "../icons/hamburger-icon";
 type CollapseToggleProps = {
   areNavbarsExpanded: boolean;
   setAreNavbarsExpanded: Dispatch<SetStateAction<boolean>>;
