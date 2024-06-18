@@ -1,6 +1,6 @@
 import { OnClickComponentProps } from "@/types/component-props-types";
 
-import CloseICon from "../../icons/close-icon";
+import CloseICon from "../icons/close-icon";
 const CloseButton = ({ scale = 1, color = "currentColor", onClick }: OnClickComponentProps) => {
   return (
     <div onClick={onClick}>
