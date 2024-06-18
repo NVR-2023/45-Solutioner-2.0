@@ -1,1 +1,0 @@
-ALTER TABLE "users" ALTER COLUMN "modified_at" SET DEFAULT now();

@@ -1,159 +1,19 @@
 {
-  "version": "5",
-  "dialect": "pg",
+  "version": "6",
+  "dialect": "postgresql",
   "entries": [
     {
       "idx": 0,
-      "version": "5",
-      "when": 1709736776718,
-      "tag": "0000_supreme_cyclops",
+      "version": "6",
+      "when": 1718747739190,
+      "tag": "0000_opposite_dark_beast",
       "breakpoints": true
     },
     {
       "idx": 1,
-      "version": "5",
-      "when": 1709739370967,
-      "tag": "0001_wandering_retro_girl",
-      "breakpoints": true
-    },
-    {
-      "idx": 2,
-      "version": "5",
-      "when": 1709739415163,
-      "tag": "0002_real_nightcrawler",
-      "breakpoints": true
-    },
-    {
-      "idx": 3,
-      "version": "5",
-      "when": 1709739929122,
-      "tag": "0003_milky_bloodaxe",
-      "breakpoints": true
-    },
-    {
-      "idx": 4,
-      "version": "5",
-      "when": 1709739957994,
-      "tag": "0004_overjoyed_bloodstrike",
-      "breakpoints": true
-    },
-    {
-      "idx": 5,
-      "version": "5",
-      "when": 1709740105900,
-      "tag": "0005_fair_betty_brant",
-      "breakpoints": true
-    },
-    {
-      "idx": 6,
-      "version": "5",
-      "when": 1709740143205,
-      "tag": "0006_smart_thunderbolts",
-      "breakpoints": true
-    },
-    {
-      "idx": 7,
-      "version": "5",
-      "when": 1709740213416,
-      "tag": "0007_black_aqueduct",
-      "breakpoints": true
-    },
-    {
-      "idx": 8,
-      "version": "5",
-      "when": 1710438490578,
-      "tag": "0008_mighty_wolverine",
-      "breakpoints": true
-    },
-    {
-      "idx": 9,
-      "version": "5",
-      "when": 1710438606304,
-      "tag": "0009_steep_maginty",
-      "breakpoints": true
-    },
-    {
-      "idx": 10,
-      "version": "5",
-      "when": 1710438829498,
-      "tag": "0010_bumpy_morbius",
-      "breakpoints": true
-    },
-    {
-      "idx": 11,
-      "version": "5",
-      "when": 1710438922322,
-      "tag": "0011_early_christian_walker",
-      "breakpoints": true
-    },
-    {
-      "idx": 12,
-      "version": "5",
-      "when": 1710439285304,
-      "tag": "0012_purple_iron_patriot",
-      "breakpoints": true
-    },
-    {
-      "idx": 13,
-      "version": "5",
-      "when": 1710439722184,
-      "tag": "0013_abandoned_viper",
-      "breakpoints": true
-    },
-    {
-      "idx": 14,
-      "version": "5",
-      "when": 1710778151875,
-      "tag": "0014_short_hiroim",
-      "breakpoints": true
-    },
-    {
-      "idx": 15,
-      "version": "5",
-      "when": 1710780847349,
-      "tag": "0015_grey_yellow_claw",
-      "breakpoints": true
-    },
-    {
-      "idx": 16,
-      "version": "5",
-      "when": 1710782088796,
-      "tag": "0016_tricky_bedlam",
-      "breakpoints": true
-    },
-    {
-      "idx": 17,
-      "version": "5",
-      "when": 1710788711234,
-      "tag": "0017_supreme_lilith",
-      "breakpoints": true
-    },
-    {
-      "idx": 18,
       "version": "6",
-      "when": 1718728282321,
-      "tag": "0018_lumpy_puff_adder",
-      "breakpoints": true
-    },
-    {
-      "idx": 19,
-      "version": "6",
-      "when": 1718728576239,
-      "tag": "0019_real_lady_deathstrike",
-      "breakpoints": true
-    },
-    {
-      "idx": 20,
-      "version": "6",
-      "when": 1718728819134,
-      "tag": "0020_spicy_smasher",
-      "breakpoints": true
-    },
-    {
-      "idx": 21,
-      "version": "6",
-      "when": 1718730522116,
-      "tag": "0021_faulty_jamie_braddock",
+      "when": 1718748847458,
+      "tag": "0001_giant_kate_bishop",
       "breakpoints": true
     }
   ]
