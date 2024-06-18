@@ -17,21 +17,44 @@ const [ geolocation , setGeolocation ] = useState({});
 
   }
   return (
-    <div className="h-screen w-screen overflow-y-scroll">
+    <div className="flex h-screen w-screen flex-col">
       settings
       <input
-      onChange={handleOnChange}
-      value={address}
+        placeholder="street"
+        name="street"
+        onChange={handleOnChange}
+        value={address}
       />
-
-      <button 
-      onClick={handleOnClick}
-      className="bg-green-400"> submit</button>
-      <div>
-        geolocation: {JSON.stringify(geolocation)}
-      </div>
+      <input
+        placeholder="apartment"
+        name="apartment"
+        onChange={handleOnChange}
+        value={address}
+      />
+      <input
+        placeholder="city"
+        name="city"
+        onChange={handleOnChange}
+        value={address}
+      />
+      <input
+        placeholder="state"
+        name="state"
+        onChange={handleOnChange}
+        value={address}
+      />
+      <input
+        name="country"
+        placeholder="country"
+        onChange={handleOnChange}
+        value={address}
+      />
+      <button onClick={handleOnClick} className="bg-green-400">
+        {" "}
+        submit
+      </button>
+      <div>geolocation: {JSON.stringify(geolocation)}</div>
     </div>
-    
   );
 };
 

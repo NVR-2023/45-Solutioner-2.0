@@ -26,12 +26,11 @@ const SidebannerNavbarPrivate = ({
       <SingleAccordion label={"quick settings"}>
         <QuickSettingsContent />
       </SingleAccordion>
-      {/*  <Link href="/private/settings">
+      <Link href="/private/settings">
         <span>account settings</span>
         <span></span>
-      </Link> */}
-      {/*       <button onClick={handleOnCancel}>Sign out</button>
-       */}{" "}
+      </Link>
+      <button onClick={handleOnCancel}>Sign out</button>
     </div>
   );
 };

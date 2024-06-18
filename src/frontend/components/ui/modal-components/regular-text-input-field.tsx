@@ -40,7 +40,7 @@ const RegularTextInputField = ({
           onBlur={() => handleOnBlur()}
           onChange={handleOnChange}
           value={formFields[name] as string}
-          className="h-4 w-full appearance-none border-b border-black bg-neutral-300 pb-[.15rem] font-aperçu  text-black focus:border-b focus:outline-none dark:border-[#D9D9D9] dark:bg-[#222222] md:text-xs"
+          className="h-4 w-full appearance-none border-b border-black bg-transparent pb-[.15rem] font-aperçu  text-black focus:border-b focus:outline-none dark:border-[#D9D9D9] dark:bg-[#222222] md:text-xs"
         />
       </div>
       <div className="absolute -top-4 left-0 w-full">

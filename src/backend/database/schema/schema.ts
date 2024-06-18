@@ -87,6 +87,7 @@ export const userAddresses = pgTable("user_addresses", {
   street: text("street"),
   apartment: varchar("apartment"),
   city: varchar("city", { length: 25 }),
+  zipCode: varchar("zip_code", { length: 25 }),
   state: varchar("state", { length: 25 }),
   country: varchar("country", { length: 25 }),
   latitude: numeric("latitude").notNull(),
