@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { BasicComponentProps } from "@/types/component-props-types";
-import LightThemeIcon from "../../icons/light-theme-icon";
-import DarkThemeIcon from "../../icons/dark-theme-icon";
+import LightThemeIcon from "../icons/light-theme-icon";
+import DarkThemeIcon from "../icons/dark-theme-icon";
 
 const MobileSidemenuSwitch = ({ scale = 1, color = "currentColor" }: BasicComponentProps) => {
   const [isFirstDivVisible, setIsFirstDivVisible] = useState(true);
