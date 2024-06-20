@@ -1,59 +1,82 @@
-"use client"
+"use client";
 
-import { useState , ChangeEvent } from "react";
+import { useState, ChangeEvent } from "react";
 import { fetchGeocoordinatesByAddress } from "@/backend/actions/geolocation/fetch-geocordinates-by-address";
 
 const Settings = () => {
+  const [address, setAddress] = useState({
+    street: "",
+    apartment: "",
+    city: "",
+    postalCode: "",
+    state: "",
+    country: "",
+  });
 
-  const [address , setAddress ] = useState("");
-const [ geolocation , setGeolocation ] = useState({});
+  const [geolocation, setGeolocation] =
+    useState<any>(null);
 
   const handleOnChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setAddress(event.target.value);
+    const { name, value } = event.target;
+    setAddress((previousAddress) => ({ ...previousAddress, [name]: value }));
   };
-  const handleOnClick= async () => {
-    const data = await fetchGeocoordinatesByAddress(address);
-    setGeolocation(data); 
 
-  }
+  const handleOnFetchGeoCoordinates = async () => {
+    const addressString = Object.values(address).join(" ");
+    const data = await fetchGeocoordinatesByAddress(addressString);
+    setGeolocation(data);
+  };
+
   return (
     <div className="flex h-screen w-screen flex-col">
-      settings
+      <div>settings</div>
       <input
         placeholder="street"
         name="street"
         onChange={handleOnChange}
-        value={address}
+        value={address.street}
       />
       <input
         placeholder="apartment"
         name="apartment"
         onChange={handleOnChange}
-        value={address}
+        value={address.apartment}
       />
       <input
         placeholder="city"
         name="city"
         onChange={handleOnChange}
-        value={address}
+        value={address.city}
+      />
+      <input
+        placeholder="postal code"
+        name="postalCode"
+        onChange={handleOnChange}
+        value={address.postalCode}
       />
       <input
         placeholder="state"
         name="state"
         onChange={handleOnChange}
-        value={address}
+        value={address.state}
       />
       <input
         name="country"
         placeholder="country"
         onChange={handleOnChange}
-        value={address}
+        value={address.country}
       />
-      <button onClick={handleOnClick} className="bg-green-400">
-        {" "}
+      <button onClick={handleOnFetchGeoCoordinates} className="bg-green-400">
         submit
       </button>
       <div>geolocation: {JSON.stringify(geolocation)}</div>
+      {geolocation && geolocation.results && geolocation.results[0] && (
+        <div>
+          Latitude: {geolocation.results[0].geometry.lat}
+          <br />
+          Longitude: {geolocation.results[0].geometry.lng}
+        </div>
+      )}
     </div>
   );
 };

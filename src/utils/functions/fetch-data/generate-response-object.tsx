@@ -16,7 +16,7 @@ const responseCodeMap = new Map<number, string>([
   [504, "Gateway Timeout"],
 ]);
 
-type responseObjectType = {
+export type responseObjectType = {
   ok: boolean;
   status: number;
   data?: object;
