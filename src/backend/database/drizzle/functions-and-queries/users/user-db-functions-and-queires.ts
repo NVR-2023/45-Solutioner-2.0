@@ -1,5 +1,5 @@
 import { db } from "../../db";
-import { users } from "@/backend/database/schema/schema";
+import { users, userAddresses } from "@/backend/database/schema/schema";
 import { eq } from "drizzle-orm";
 
 import { Argon2id } from "oslo/password";
@@ -98,3 +98,57 @@ export const fetchUsername = async () => {
     console.log("error fetching username: ", error);
   }
 };
+
+export const validateUserId = async (userId: string) => {
+  let isUserIdValid;
+  try {
+    isUserIdValid = await db.query.users.findFirst({
+      where: eq(users.id, userId),
+    });
+  } catch (error) {
+    console.log("Error checking if user exists");
+  } finally {
+    return !!isUserIdValid;
+  }
+};
+
+export const checkUserAddressesExistence = async (userId: string) => {
+  try {
+    const existingUserAddresses = await db.query.userAddresses.findMany({
+      where: eq(userAddresses.userId, userId),
+    });
+
+    const existingAddressesArrayLength = existingUserAddresses.length;
+    const hasPrimaryAddress = existingUserAddresses.some(
+      (address) => address.isPrimary,
+    );
+    const hasSecondaryAddress = existingUserAddresses.some(
+      (address) => !address.isPrimary,
+    );
+    if (existingAddressesArrayLength === 0) {
+      return 0;
+    }
+    if (existingAddressesArrayLength === 1 && hasPrimaryAddress) {
+      return 1;
+    }
+    if (
+      existingAddressesArrayLength === 2 &&
+      hasPrimaryAddress &&
+      hasSecondaryAddress
+    ) {
+      return 2;
+    }
+    return null;
+  } catch (error) {
+    console.log("Error checking if user addresses exist:", error);
+    throw error;
+  }
+};
+
+export const checkUserAddressObjectCompleteness = (
+  userAddress: Record<string, string | boolean>,
+): boolean => {
+  const REQUIRED_USER_ADDRESS_FIELDS = ["street", "apartment", "city", "country", "latitude", "longitude"] as const;
+  return REQUIRED_USER_ADDRESS_FIELDS.every((field) => userAddress[field]);
+};
+

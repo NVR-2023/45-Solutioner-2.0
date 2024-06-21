@@ -1,20 +1,33 @@
 "use client";
 
-import { useState, ChangeEvent } from "react";
+import { useState, useEffect, ChangeEvent } from "react";
 import { fetchGeocoordinatesByAddress } from "@/backend/actions/geolocation/fetch-geocordinates-by-address";
+import { useUserDetailsContext } from "@/frontend/contexts/use-user-details";
 
 const Settings = () => {
+  const [geolocation, setGeolocation] = useState<any>(null);
+
+  const { userId } = useUserDetailsContext();
+
   const [address, setAddress] = useState({
+    userId: userId,
+    isPrimary: true,
     street: "",
     apartment: "",
     city: "",
     postalCode: "",
     state: "",
     country: "",
+    latitude: "",
+    longitude: "",
   });
 
-  const [geolocation, setGeolocation] =
-    useState<any>(null);
+  useEffect(() => {
+    if (geolocation) {
+      address.latitude = geolocation.results[0].geometry.lng;
+      address.longitude = geolocation.results[0].geometry.lng;
+    }
+  }, [geolocation, address]);
 
   const handleOnChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
