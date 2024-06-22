@@ -14,10 +14,10 @@ const SidebannerNavbarPrivate = ({
 }: SidebannerNavbarPrivateProps) => {
   const router = useRouter();
 
-  const handleOnCancel = async () => {
+  const handleOnSignOut = async () => {
     closeSidebanner();
     await signOutUser();
-    router.push("/");
+    window.location.href = "/";
   };
 
   return (
@@ -30,7 +30,7 @@ const SidebannerNavbarPrivate = ({
         <span>account settings</span>
         <span></span>
       </Link>
-      <button onClick={handleOnCancel}>Sign out</button>
+      <button onClick={handleOnSignOut}>Sign out</button>
     </div>
   );
 };
