@@ -1,5 +1,4 @@
 import { signOutUser } from "@/utils/functions/fetch-data/user-endpoint-submissions";
-import { useRouter } from "next/navigation";
 
 import SingleAccordion from "@/frontend/components/ui/single-accordion";
 import Link from "next/link";
@@ -12,7 +11,6 @@ type SidebannerNavbarPrivateProps = {
 const SidebannerNavbarPrivate = ({
   closeSidebanner,
 }: SidebannerNavbarPrivateProps) => {
-  const router = useRouter();
 
   const handleOnSignOut = async () => {
     closeSidebanner();
