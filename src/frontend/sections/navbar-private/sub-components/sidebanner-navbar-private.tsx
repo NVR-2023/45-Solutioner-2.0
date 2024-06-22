@@ -4,6 +4,7 @@ import SingleAccordion from "@/frontend/components/ui/single-accordion";
 import Link from "next/link";
 
 import QuickSettingsContent from "./quick-settings-content";
+
 type SidebannerNavbarPrivateProps = {
   closeSidebanner: () => void;
 };
