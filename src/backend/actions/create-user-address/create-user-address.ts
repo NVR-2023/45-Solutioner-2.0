@@ -9,33 +9,23 @@ import { db } from "@/backend/database/drizzle/db";
 import { userAddresses } from "@/backend/database/schema/schema";
 
 export const createUserAddress = async (newUserAddress: UserAddressType) => {
-  console.log("entered function");
-  console.log(newUserAddress);
-
   const { userId } = newUserAddress;
   const isUserIdValid = await validateUserId(userId);
   if (!isUserIdValid) {
     return generateResponseObject({ status: 404 });
   }
 
-  console.log("userID checks");
-
-/*   const isNewUserAddressComplete =
+  const isNewUserAddressComplete =
     checkUserAddressObjectCompleteness(newUserAddress);
   if (!isNewUserAddressComplete) {
     return generateResponseObject({ status: 400 });
-  } */
-
-  console.log("Address Complete");
+  }
 
   const numberOfExistingUserAddresses =
     await fetchNumberOfExistingUSerAddresses(userId);
   if (numberOfExistingUserAddresses === 2) {
     return generateResponseObject({ status: 400 });
   }
-
-  console.log("available addresses");
-  console.log("entered final stage");
 
   try {
     await db.insert(userAddresses).values(newUserAddress);

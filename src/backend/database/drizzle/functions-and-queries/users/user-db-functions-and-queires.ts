@@ -148,9 +148,6 @@ export const fetchNumberOfExistingUSerAddresses = async (userId: string) => {
 export const checkUserAddressObjectCompleteness = (
   userAddress: Record<string, string | boolean>,
 ): boolean => {
-
-  
-
   const REQUIRED_USER_ADDRESS_FIELDS = [
     "isPrimary",
     "street",
