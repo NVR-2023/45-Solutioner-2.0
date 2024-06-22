@@ -112,7 +112,7 @@ export const validateUserId = async (userId: string) => {
   }
 };
 
-export const checkUserAddressesExistence = async (userId: string) => {
+export const fetchNumberOfExistingUSerAddresses = async (userId: string) => {
   try {
     const existingUserAddresses = await db.query.userAddresses.findMany({
       where: eq(userAddresses.userId, userId),
@@ -148,7 +148,17 @@ export const checkUserAddressesExistence = async (userId: string) => {
 export const checkUserAddressObjectCompleteness = (
   userAddress: Record<string, string | boolean>,
 ): boolean => {
-  const REQUIRED_USER_ADDRESS_FIELDS = ["street", "apartment", "city", "country", "latitude", "longitude"] as const;
+
+  
+
+  const REQUIRED_USER_ADDRESS_FIELDS = [
+    "isPrimary",
+    "street",
+    "apartment",
+    "city",
+    "country",
+    "latitude",
+    "longitude",
+  ] as const;
   return REQUIRED_USER_ADDRESS_FIELDS.every((field) => userAddress[field]);
 };
-

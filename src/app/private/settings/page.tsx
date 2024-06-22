@@ -4,14 +4,16 @@ import { useState, useEffect, ChangeEvent } from "react";
 import { fetchGeocoordinatesByAddress } from "@/backend/actions/geolocation/fetch-geocordinates-by-address";
 import { useUserDetailsContext } from "@/frontend/contexts/use-user-details";
 
+import { createUserAddress } from "@/backend/actions/create-user-address/create-user-address";
+
 const Settings = () => {
   const [geolocation, setGeolocation] = useState<any>(null);
 
   const { userId } = useUserDetailsContext();
 
-  const [address, setAddress] = useState({
-    userId: userId,
-    isPrimary: true,
+  const [newUserAddress, setNewUserAddress] = useState({
+    userId: userId!,
+    isPrimary: false,
     street: "",
     apartment: "",
     city: "",
@@ -24,18 +26,36 @@ const Settings = () => {
 
   useEffect(() => {
     if (geolocation) {
-      address.latitude = geolocation.results[0].geometry.lng;
-      address.longitude = geolocation.results[0].geometry.lng;
+      setNewUserAddress((previousAddress) => ({
+        ...previousAddress,
+        latitude: (geolocation.results[0]?.geometry.lat).toString(),
+        longitude: (geolocation.results[0]?.geometry.lng).toString(),
+      }));
     }
-  }, [geolocation, address]);
+  }, [geolocation]);
+
+  useEffect(() => {
+    if (newUserAddress.latitude && newUserAddress.longitude) {
+      createUserAddress(newUserAddress);
+    }
+  }, [newUserAddress.latitude, newUserAddress.longitude]);
 
   const handleOnChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
-    setAddress((previousAddress) => ({ ...previousAddress, [name]: value }));
+    setNewUserAddress((previousAddress) => ({
+      ...previousAddress,
+      [name]: value,
+    }));
   };
 
   const handleOnFetchGeoCoordinates = async () => {
-    const addressString = Object.values(address).join(" ");
+    const addressString = [
+      newUserAddress.street,
+      newUserAddress.apartment,
+      newUserAddress.city,
+      newUserAddress.country,
+    ].join(" ");
+
     const data = await fetchGeocoordinatesByAddress(addressString);
     setGeolocation(data);
   };
@@ -47,49 +67,42 @@ const Settings = () => {
         placeholder="street"
         name="street"
         onChange={handleOnChange}
-        value={address.street}
+        value={newUserAddress.street}
       />
       <input
         placeholder="apartment"
         name="apartment"
         onChange={handleOnChange}
-        value={address.apartment}
+        value={newUserAddress.apartment}
       />
       <input
         placeholder="city"
         name="city"
         onChange={handleOnChange}
-        value={address.city}
+        value={newUserAddress.city}
       />
       <input
         placeholder="postal code"
         name="postalCode"
         onChange={handleOnChange}
-        value={address.postalCode}
+        value={newUserAddress.postalCode}
       />
       <input
         placeholder="state"
         name="state"
         onChange={handleOnChange}
-        value={address.state}
+        value={newUserAddress.state}
       />
       <input
         name="country"
         placeholder="country"
         onChange={handleOnChange}
-        value={address.country}
+        value={newUserAddress.country}
       />
       <button onClick={handleOnFetchGeoCoordinates} className="bg-green-400">
         submit
       </button>
-      <div>geolocation: {JSON.stringify(geolocation)}</div>
-      {geolocation && geolocation.results && geolocation.results[0] && (
-        <div>
-          Latitude: {geolocation.results[0].geometry.lat}
-          <br />
-          Longitude: {geolocation.results[0].geometry.lng}
-        </div>
-      )}
+      <div>newUserAddress: {JSON.stringify(newUserAddress)}</div>
     </div>
   );
 };

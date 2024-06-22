@@ -2,9 +2,6 @@ import { db } from "../../db";
 import { services, serviceProfiles } from "@/backend/database/schema/schema";
 import { eq } from "drizzle-orm";
 
-import { drizzle } from "drizzle-orm/vercel-postgres";
-import * as schema from "@/backend/database/schema/schema";
-
 import fs from "fs";
 import { generateRandomPopularityValues } from "@/utils/functions/generate-random-popularity-values/generate-random-popularity-values";
 
