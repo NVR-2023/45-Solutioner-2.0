@@ -1,6 +1,5 @@
 import { useSearchParams } from "next/navigation";
-import { AllServiceStaticDataType } from "@/utils/functions/fetch-data/services-endpoint-submissions";
-
+import { AllServiceStaticDataType } from "@/utils/functions/fetch-all-services-static-data/fetch-all-services-static-data";
 type useFilterAndSortServicesProps = AllServiceStaticDataType | null;
 
 const useFilterAndSortServices = (
@@ -13,18 +12,17 @@ const useFilterAndSortServices = (
   let lowerPriceLimit = null;
   let upperPriceLimit = null;
 
-if (priceSearchParam) 
-  {
-   lowerPriceLimit =
-    priceSearchParam !== "any"
-      ? parseInt(priceSearchParam.split("-")[0].slice(1))
-      : null;
-  
-       upperPriceLimit =
-    priceSearchParam !== "any"
-      ? parseInt(priceSearchParam.split("-")[1])
-      : null;
-  } 
+  if (priceSearchParam) {
+    lowerPriceLimit =
+      priceSearchParam !== "any"
+        ? parseInt(priceSearchParam.split("-")[0].slice(1))
+        : null;
+
+    upperPriceLimit =
+      priceSearchParam !== "any"
+        ? parseInt(priceSearchParam.split("-")[1])
+        : null;
+  }
 
   const searchSearchParam = searchParams.get("search");
   const sortBySearchParam = searchParams.get("sort by");
