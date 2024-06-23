@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, ChangeEvent } from "react";
-import { fetchGeocoordinatesByAddress } from "@/backend/server-actions/geolocation/fetch-geocordinates-by-address";
+import { fetchGeocoordinatesByAddress } from "@/backend/server-actions/fetch-geocoordinates-by-address/fetch-geocordinates-by-address";
 import { useUserDetailsContext } from "@/frontend/contexts/use-user-details";
 
 const Settings = () => {
