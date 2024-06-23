@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { AllServiceStaticDataType } from "@/utils/functions/fetch-data/services-endpoint-submissions";
+import { AllServiceStaticDataType } from "@/utils/functions/fetch-all-services-static-data/fetch-all-services-static-data";
 
 import ServiceRollup from "../../components/ui/service-rollup/service-rollup";
 
