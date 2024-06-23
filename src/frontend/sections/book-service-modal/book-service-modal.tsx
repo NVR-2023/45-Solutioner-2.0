@@ -86,7 +86,6 @@ const BookServiceModal = () => {
           <ContentAreaForCalendarAndTimePicker
             date={bookServiceObject.date!}
             setDate={setDate}
-            time={bookServiceObject.time!}
             setTime={setTime}
             isCalendarExpanded={isCalendarExpanded}
             setIsCalendarExpanded={setIsCalendarExpanded}
