@@ -98,7 +98,7 @@ const ContentAreaForCalendarAndTimePicker = ({
 
   return (
     <ModalContentSubareaShell>
-      <div className="flex flex-col">
+      <div className="flex flex-col space-y-3">
         <div>
           {!isCalendarExpanded && (
             <button

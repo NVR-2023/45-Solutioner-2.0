@@ -1,27 +1,17 @@
-import { MouseEventHandler, ReactNode } from "react";
-import { FetchSubmissionSTatusType } from "@/types/component-props-types";
+import { MouseEventHandler } from "react";
 import BasicButton from "../basic-button";
-import CheckedCircle from "../../icons/checked-circle";
-import CrossedCircle from "../../icons/crossed-circle";
-import AnimatedSpinner from "../animated-components/animated-spinner";
-import FadeInWrapper from "../animated-components/fade-in-wrapper";
 
 type SubmitSegmentWithoutFeedbackType = {
+  label: string;
   onCancel: MouseEventHandler<HTMLButtonElement>;
   onSubmit: MouseEventHandler<HTMLButtonElement>;
-  submitAction?: string;
-  formSubmissionStatus?: FetchSubmissionSTatusType;
 };
 
 const SubmitWithoutFeedbackSegment = ({
+  label,
   onCancel,
   onSubmit,
-  submitAction,
-  formSubmissionStatus,
 }: SubmitSegmentWithoutFeedbackType) => {
-  const isFormSubmittable =
-    formSubmissionStatus === "idle" || formSubmissionStatus === "re-idle";
-
   return (
     <div className="relative flex justify-between">
       <BasicButton
@@ -31,11 +21,10 @@ const SubmitWithoutFeedbackSegment = ({
         label="cancel"
       />
       <BasicButton
-        size={"md"}
+        size={"lg"}
         type={"filled"}
         onClick={onSubmit}
-        label={submitAction}
-        disabled={!isFormSubmittable}
+        label={label}
       />
     </div>
   );

@@ -7,7 +7,7 @@ import { useUserDetailsContext } from "@/frontend/contexts/use-user-details";
 import ModalTitleWithoutLogo from "@/frontend/components/ui/modal-components/modal-title-without-logo";
 import ContentAreaForCalendarAndTimePicker from "./sub-components/content-area-for-calendar-and-time-picker";
 import Details from "./sub-components/details";
-import BookServiceSubmitSegment from "./sub-components/book-service-submit-segment";
+import SubmitWithoutFeedbackSegment from "@/frontend/components/ui/modal-components/submit-without-feedback-segment";
 
 type bookServiceModalObjectType = {
   userId: string | null;
@@ -22,6 +22,7 @@ type bookServiceModalObjectType = {
 const BookServiceModal = () => {
   const { bookServiceModalContext, setBookServiceModalContext } =
     useBookServiceModalContext();
+
   const userDetails = useUserDetailsContext();
 
   const [bookServiceObject, setBookServiceObject] =
@@ -34,6 +35,18 @@ const BookServiceModal = () => {
       quantity: 1,
       recurrence: null,
     });
+
+  useEffect(() => {
+    setBookServiceObject({
+      userId: userDetails.userId,
+      serviceId: bookServiceModalContext.id,
+      date: null,
+      time: null,
+      addressId: null,
+      quantity: 1,
+      recurrence: null,
+    });
+  }, [bookServiceModalContext.id, userDetails.userId]);
 
   const [isCalendarExpanded, setIsCalendarExpanded] = useState<boolean>(true);
   useEffect(() => {
@@ -77,6 +90,14 @@ const BookServiceModal = () => {
     }));
   };
 
+  const handleOnCancel = () => {
+    setIsBookServiceModalOpen(false);
+  };
+
+  const handleOnSubmit = () => {
+    alert(JSON.stringify(bookServiceObject));
+  };
+
   return (
     <AdvancedModalShell
       isModalOpen={bookServiceModalContext.isBookServiceModalOpen}
@@ -106,7 +127,11 @@ const BookServiceModal = () => {
           />
         </div>
 
-        <BookServiceSubmitSegment />
+        <SubmitWithoutFeedbackSegment
+          label="book"
+          onCancel={handleOnCancel}
+          onSubmit={handleOnSubmit}
+        />
       </div>
     </AdvancedModalShell>
   );

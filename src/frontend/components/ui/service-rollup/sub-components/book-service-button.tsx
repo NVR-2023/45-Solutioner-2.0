@@ -20,6 +20,7 @@ const BookServiceButton = ({
   const { setBookServiceModalContext } = useBookServiceModalContext();
 
   const handleOnClick = () => {
+
     setBookServiceModalContext(
       (previousBookServiceModalObject: BookServiceModalContextType) => ({
         ...previousBookServiceModalObject,
