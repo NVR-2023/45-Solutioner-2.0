@@ -1,4 +1,4 @@
-import { updateServicesDBTable } from "../../database/drizzle/functions-and-queries/services/service-db-functions-and-queries";
+import { updateServicesDBTable } from "../services/service-db-functions-and-queries";
 
 async function main() {
   const res = await updateServicesDBTable();
