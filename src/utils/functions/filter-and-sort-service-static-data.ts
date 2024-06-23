@@ -1,5 +1,4 @@
-import { AllServiceStaticDataType } from "@/utils/functions/fetch-data/services-endpoint-submissions";
-
+import { AllServiceStaticDataType } from "./fetch-all-services-static-data/fetch-all-services-static-data";
 type filterAndSortServicesStaticDataProps = {
   allServicesStaticData: AllServiceStaticDataType | null;
   filterAndSortCriteriaObject: Record<string, string>;
