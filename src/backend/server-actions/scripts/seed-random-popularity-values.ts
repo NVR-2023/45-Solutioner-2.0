@@ -1,4 +1,4 @@
-import { seedPopularityValuesInServiceProfilesTable } from "../functions-and-queries/services/service-db-functions-and-queries";
+import { seedPopularityValuesInServiceProfilesTable } from "../../database/drizzle/functions-and-queries/services/service-db-functions-and-queries";
 
 async function main() {
   const res = await seedPopularityValuesInServiceProfilesTable();

@@ -1,4 +1,4 @@
-import { authenticateAndRedirect } from "@/utils/functions/auth/authenticate-and-redirect";
+import { authenticateAndRedirect } from "@/utils/functions/authenticate-and-redirect/authenticate-and-redirect";
 import { UserDetailsContextProvider } from "@/frontend/contexts/use-user-details";
 import { validateRequest } from "@/backend/lucia-auth/validate-request";
 import { fetchUsername } from "@/backend/database/drizzle/functions-and-queries/users/user-db-functions-and-queires";
