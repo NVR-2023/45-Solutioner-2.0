@@ -25,12 +25,6 @@ const Details = ({
   const { bookServiceModalContext: {price}}= useBookServiceModalContext()
   return (
     <div className="rounded bg-neutral-300 px-4 py-2">
-      {isCalendarExpanded && (
-        <div className="flex mb-1.5 space-x-1">
-          <FieldLabel text="price:" />
-          <FieldContent text={`€${price}`} />
-        </div>
-      )}
       <button
         onClick={handleOnClick}
         className="flex w-full items-center justify-between"
@@ -64,6 +58,12 @@ const Details = ({
           </div>
         </div>
       </div>
+      {isCalendarExpanded && (
+        <div className="mb-1.5 flex space-x-1">
+          <FieldLabel text="price:" />
+          <FieldContent text={`€${price}`} />
+        </div>
+      )}
     </div>
   );
 };
