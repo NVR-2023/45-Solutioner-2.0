@@ -39,7 +39,6 @@ const SingleAccordionWithInverseExternalState = ({
       </button>
       <div
         className="grid w-full overflow-hidden"
-        onClick={handleOnClick}
         style={{
           gridTemplateRows: externalBooleanState ? "0fr" : "1fr",
           transition: "grid-template-rows 300ms",

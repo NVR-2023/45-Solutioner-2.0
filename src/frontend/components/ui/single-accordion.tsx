@@ -34,7 +34,6 @@ const SingleAccordion = ({ label, children }: SingleAccordionProps) => {
       </button>
       <div
         className="grid w-full overflow-hidden"
-        onClick={handleOnClick}
         style={{
           gridTemplateRows: isSingleAccordionOpen ? "1fr" : "0fr",
           transition: "grid-template-rows 300ms",

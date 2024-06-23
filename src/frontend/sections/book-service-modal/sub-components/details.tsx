@@ -30,16 +30,16 @@ const Details = ({
   } = useBookServiceModalContext();
   return (
     <ModalContentSubareaShell>
-      <div className="w-full bg-green-400">
-        <SingleAccordionWithInverseExternalState
-          label="details"
-          externalBooleanState={isCalendarExpanded}
-          setExternalBooleanState={setIsCalendarExpanded}
-        >
+      <SingleAccordionWithInverseExternalState
+        label="details"
+        externalBooleanState={isCalendarExpanded}
+        setExternalBooleanState={setIsCalendarExpanded}
+      >
+        <div className="mt-3 space-y-3">
           <RecurrencePicker setRecurrence={setRecurrence} />
           <QuantityPicker setQuantity={setQuantity} />
-        </SingleAccordionWithInverseExternalState>
-      </div>
+        </div>
+      </SingleAccordionWithInverseExternalState>
       {isCalendarExpanded && (
         <div className={`flex ${isCalendarExpanded ? "mt-2" : null} space-x-1`}>
           <FieldLabel text="price:" />
