@@ -1,7 +1,7 @@
 "use client";
 import { Dispatch, SetStateAction, useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { AllServiceStaticDataType } from "@/utils/functions/fetch-data/services-endpoint-submissions";
+import { AllServiceStaticDataType } from "@/utils/functions/fetch-all-services-static-data/fetch-all-services-static-data";
 
 import DropdownMenu from "@/frontend/components/ui/navbar-components/dropdown-menu";
 import SearchBar from "@/frontend/components/ui/navbar-components/search-bar";

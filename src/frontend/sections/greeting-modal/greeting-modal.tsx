@@ -1,7 +1,6 @@
-import { useEffect, Dispatch, SetStateAction } from "react";
+import { useEffect} from "react";
 import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { wait } from "@/utils/functions/wait";
 import { useUserDetailsContext } from "@/frontend/contexts/use-user-details";
 
 type GreetingModalProps = {
