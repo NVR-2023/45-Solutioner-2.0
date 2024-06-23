@@ -2,10 +2,11 @@
 
 import { LayoutGroup, motion } from "framer-motion";
 import { useState, useEffect } from "react";
+
 import {
   fetchAllServiceStaticData,
   AllServiceStaticDataType,
-} from "@/utils/functions/fetch-data/services-endpoint-submissions";
+} from "@/utils/functions/fetch-all-services-static-data/fetch-all-services-static-data";
 
 import NavbarPrivate from "@/frontend/sections/navbar-private/navbar-private";
 import NavbarBookServicesContent from "@/frontend/sections/mavbar-book-services-content/navbar-book-services-content";

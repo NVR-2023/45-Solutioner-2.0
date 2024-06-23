@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
-import { signOutUser } from "@/utils/functions/generic-fetch/user-endpoint-submissions";
+
+import { signOutUser } from "@/utils/functions/client-side-user-auth/sign-out-user";
 import { useRouter } from "next/navigation";
 
 import NavbarPrivate from "@/frontend/sections/navbar-private/navbar-private";
