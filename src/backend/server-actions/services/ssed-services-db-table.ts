@@ -1,6 +1,6 @@
 import { db } from "../../database/drizzle/db";
 import { services, serviceProfiles } from "@/backend/database/schema/schema";
-import { insertServiceInDBTable } from "./service-db-functions-and-queries";
+import { insertServiceInDBTable } from "./insert-service-in-db-table";
 
 export type NewServiceType = typeof services.$inferInsert;
 export type NewServiceProfileType = typeof serviceProfiles.$inferInsert;
