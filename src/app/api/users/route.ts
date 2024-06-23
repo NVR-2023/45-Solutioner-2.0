@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import generateResponseObject from "@/utils/functions/fetch-data/generate-response-object";
 import { INPUT_VALIDATION_FUNCTION_MAP } from "@/utils/functions/input-validation/input-validation-function-map";
-import { cookies } from "next/headers";
 
 import {
   isEmailUnique,
