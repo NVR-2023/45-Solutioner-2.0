@@ -23,7 +23,7 @@ const SidebannerNavbarPrivate = ({
       <SingleAccordion label={"quick settings"}>
         <QuickSettingsContent />
       </SingleAccordion>
-      <Link href="/private/settings">
+      <Link href="/private-user/settings">
         <span>account settings</span>
         <span></span>
       </Link>

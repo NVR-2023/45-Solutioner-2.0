@@ -107,7 +107,7 @@ const SigninFormBody = ({ setIsModalOpen }: SigninFormBodyProps) => {
       } else {
         await wait(450);
         setIsModalOpen(false);
-        router.push("/private/main/book");
+        router.push("/private-user/main/book");
       }
     }
   };
