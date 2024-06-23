@@ -27,12 +27,12 @@ const BookServiceModal = () => {
 
   const [bookServiceObject, setBookServiceObject] =
     useState<bookServiceModalObjectType>({
-      userId: userDetails.userId,
-      serviceId: bookServiceModalContext.id,
+      userId: null,
+      serviceId: null,
       date: null,
       time: null,
       addressId: null,
-      quantity: 1,
+      quantity: null,
       recurrence: null,
     });
 
@@ -43,7 +43,7 @@ const BookServiceModal = () => {
       date: null,
       time: null,
       addressId: null,
-      quantity: 1,
+      quantity: null,
       recurrence: null,
     });
   }, [bookServiceModalContext.id, userDetails.userId]);

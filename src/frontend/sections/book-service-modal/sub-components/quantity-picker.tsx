@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState , useEffect } from "react";
 import { useBookServiceModalContext } from "@/frontend/contexts/use-book-service-modal-context";
 
 import CyclicRecoilSlider from "@/frontend/components/ui/cyclic-recoil-sldier";
@@ -25,6 +25,10 @@ const QuantityPicker = ({ setQuantity }: QuantityPickerProps) => {
     setCurrentIndex(previousIndex);
     setQuantity(parseInt(SERVICE_QUANTITIES[previousIndex]));
   };
+
+  useEffect(()=>{
+    setQuantity(parseInt(SERVICE_QUANTITIES[0]));
+  },[])
 
   return (
     <div className="flex w-full flex-col space-y-0.5">

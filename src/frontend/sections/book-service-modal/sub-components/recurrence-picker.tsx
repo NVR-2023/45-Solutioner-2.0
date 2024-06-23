@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import CyclicRecoilSlider from "@/frontend/components/ui/cyclic-recoil-sldier";
 import SliderControls from "@/frontend/components/ui/slider-controls";
@@ -27,6 +27,10 @@ const RecurrencePicker = ({ setRecurrence }: QuantityPickerProps) => {
     setRecurrence(SERVICE_RECURRENCES[previousIndex].toLowerCase());
   };
 
+  useEffect(()=>{
+    setRecurrence(SERVICE_RECURRENCES[0].toLowerCase());
+  }, [])
+  
   return (
     <div className="flex w-full flex-col space-y-1.5">
       <div className="flex w-full">
