@@ -1,7 +1,7 @@
 import {
   fetchSubmission,
   FetchSubmissionResponseType,
-} from "./fetch-submission";
+} from "../generic-fetch/fetch-submission";
 
 export type AllServiceStaticDataType = Record<string, any>[] | null;
 

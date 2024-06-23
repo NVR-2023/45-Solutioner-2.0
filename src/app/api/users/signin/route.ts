@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import generateResponseObject from "@/utils/functions/fetch-data/generate-response-object";
+import generateResponseObject from "@/utils/functions/generic-fetch/generate-response-object";
 import { INPUT_VALIDATION_FUNCTION_MAP } from "@/utils/functions/input-validation/input-validation-function-map";
 
 import { areUserCredentialsValid } from "@/backend/database/drizzle/functions-and-queries/users/user-db-functions-and-queires";

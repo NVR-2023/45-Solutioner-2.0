@@ -1,7 +1,7 @@
 "use server";
 import { UserAddressType } from "@/types/general-types";
 import { validateUserId } from "@/backend/database/drizzle/functions-and-queries/users/user-db-functions-and-queires";
-import generateResponseObject from "@/utils/functions/fetch-data/generate-response-object";
+import generateResponseObject from "@/utils/functions/generic-fetch/generate-response-object";
 import { fetchNumberOfExistingUSerAddresses } from "@/backend/database/drizzle/functions-and-queries/users/user-db-functions-and-queires";
 import { checkUserAddressObjectCompleteness } from "@/backend/database/drizzle/functions-and-queries/users/user-db-functions-and-queires";
 

@@ -1,5 +1,5 @@
 import { fetchAllServicesWithProfiles } from "@/backend/database/drizzle/functions-and-queries/services/service-db-functions-and-queries";
-import generateResponseObject from "@/utils/functions/fetch-data/generate-response-object";
+import generateResponseObject from "@/utils/functions/generic-fetch/generate-response-object";
 import { NextResponse } from "next/server";
 import { validateRequest } from "@/backend/lucia-auth/validate-request";
 

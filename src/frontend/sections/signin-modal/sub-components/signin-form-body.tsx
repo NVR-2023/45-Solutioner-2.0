@@ -17,7 +17,7 @@ import {
   SigninUserObjectType,
 } from "@/types/component-props-types";
 
-import { signInUser } from "@/utils/functions/fetch-data/user-endpoint-submissions";
+import { signInUser } from "@/utils/functions/client-side-user-auth/signin-user";
 import { wait } from "@/utils/functions/wait";
 
 type SigninFormBodyProps = {

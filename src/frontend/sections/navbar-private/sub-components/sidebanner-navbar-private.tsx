@@ -1,5 +1,4 @@
-import { signOutUser } from "@/utils/functions/fetch-data/user-endpoint-submissions";
-
+import { signOutUser } from "@/utils/functions/client-side-user-auth/sign-out-user";
 import SingleAccordion from "@/frontend/components/ui/single-accordion";
 import Link from "next/link";
 
@@ -12,7 +11,6 @@ type SidebannerNavbarPrivateProps = {
 const SidebannerNavbarPrivate = ({
   closeSidebanner,
 }: SidebannerNavbarPrivateProps) => {
-
   const handleOnSignOut = async () => {
     closeSidebanner();
     await signOutUser();

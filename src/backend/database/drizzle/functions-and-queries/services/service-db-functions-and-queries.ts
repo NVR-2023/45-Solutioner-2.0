@@ -3,7 +3,7 @@ import { services, serviceProfiles } from "@/backend/database/schema/schema";
 import { eq } from "drizzle-orm";
 
 import fs from "fs";
-import { generateRandomPopularityValues } from "@/utils/functions/generate-random-popularity-values/generate-random-popularity-values";
+import { generateRandomPopularityValues } from "@/utils/functions/generate-random-popularity-values";
 
 export type NewServiceType = typeof services.$inferInsert;
 export type NewServiceProfileType = typeof serviceProfiles.$inferInsert;

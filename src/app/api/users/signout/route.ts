@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import generateResponseObject from "@/utils/functions/fetch-data/generate-response-object";
+import generateResponseObject from "@/utils/functions/generic-fetch/generate-response-object";
 import { validateRequest } from "@/backend/lucia-auth/validate-request";
 import { cookies } from "next/headers";
 import { lucia } from "@/backend/lucia-auth/auth";

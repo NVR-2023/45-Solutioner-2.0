@@ -1,10 +1,9 @@
 "use client";
 import { useState } from "react";
-import { signOutUser } from "@/utils/functions/fetch-data/user-endpoint-submissions";
+import { signOutUser } from "@/utils/functions/generic-fetch/user-endpoint-submissions";
 import { useRouter } from "next/navigation";
 
 import NavbarPrivate from "@/frontend/sections/navbar-private/navbar-private";
-
 
 const MyServices = () => {
   const router = useRouter();

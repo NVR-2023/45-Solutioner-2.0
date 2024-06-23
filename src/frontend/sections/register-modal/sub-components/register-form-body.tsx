@@ -24,7 +24,7 @@ import {
   NewUserObjectType,
 } from "@/types/component-props-types";
 
-import { registerNNewUser } from "@/utils/functions/fetch-data/user-endpoint-submissions";
+import { registerNNewUser } from "@/utils/functions/client-side-user-auth/register-new-user";
 import { wait } from "@/utils/functions/wait";
 
 type registerFormBodyProps = {
