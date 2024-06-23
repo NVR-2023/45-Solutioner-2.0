@@ -1,4 +1,4 @@
-import { seedServicesDBTable } from "../services/service-db-functions-and-queries";
+import { seedServicesDBTable } from "../services/ssed-services-db-table";
 
 async function main() {
   const res = await seedServicesDBTable();

@@ -1,4 +1,4 @@
-import { seedPopularityValuesInServiceProfilesTable } from "../services/service-db-functions-and-queries";
+import { seedPopularityValuesInServiceProfilesTable } from "../services/seed-popularity-values-in-service-profile-table";
 
 async function main() {
   const res = await seedPopularityValuesInServiceProfilesTable();

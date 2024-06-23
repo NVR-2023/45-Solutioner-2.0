@@ -1,4 +1,4 @@
-import { updateServicesDBTable } from "../services/service-db-functions-and-queries";
+import { updateServicesDBTable } from "../services/update-services-db-table";
 
 async function main() {
   const res = await updateServicesDBTable();
