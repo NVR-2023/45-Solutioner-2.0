@@ -2,10 +2,8 @@ import { NextRequest, NextResponse } from "next/server";
 import generateResponseObject from "@/utils/functions/generic-fetch/generate-response-object";
 import { INPUT_VALIDATION_FUNCTION_MAP } from "@/utils/functions/input-validation/input-validation-function-map";
 
-import {
-  isEmailUnique,
-  insertNewUserInDb,
-} from "@/backend/database/drizzle/functions-and-queries/users/user-db-functions-and-queires";
+import { checkIfUserEmailIsUnique   } from "@/backend/server-actions/users/check-if-user-email-is-unique";
+import { insertNewUserInDb } from "@/backend/server-actions/users/insert-new-user-in-db";
 
 export async function POST(request: NextRequest) {
   const body = await request.json();
@@ -31,7 +29,7 @@ export async function POST(request: NextRequest) {
   }
 
   if (!requestErrorsObject.email) {
-    const isNewUserEmailUnique: boolean = await isEmailUnique(email);
+    const isNewUserEmailUnique: boolean = await checkIfUserEmailIsUnique(email);
     if (!isNewUserEmailUnique) {
       requestErrorsObject.email = "Email already in use";
     }

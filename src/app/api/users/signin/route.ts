@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import generateResponseObject from "@/utils/functions/generic-fetch/generate-response-object";
 import { INPUT_VALIDATION_FUNCTION_MAP } from "@/utils/functions/input-validation/input-validation-function-map";
 
-import { areUserCredentialsValid } from "@/backend/database/drizzle/functions-and-queries/users/user-db-functions-and-queires";
+import { checkIfUserCredentialsAreValid } from "@/backend/server-actions/users/check-if-user-credentials-are-valid";
 
 import { lucia } from "@/backend/lucia-auth/auth";
 import { cookies } from "next/headers";
@@ -38,7 +38,7 @@ export async function POST(request: NextRequest) {
     });
     return NextResponse.json(responseObject);
   } else {
-    const newUserId = await areUserCredentialsValid(email, password);
+    const newUserId = await checkIfUserCredentialsAreValid(email, password);
     if (!newUserId) {
       responseObject = generateResponseObject({
         status: 400,

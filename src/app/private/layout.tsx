@@ -1,7 +1,7 @@
-import { authenticateAndRedirect } from "@/utils/functions/authenticate-and-redirect/authenticate-and-redirect";
+import { authenticateAndRedirect } from "@/backend/server-actions/authenticate-and-redirect/authenticate-and-redirect";
 import { UserDetailsContextProvider } from "@/frontend/contexts/use-user-details";
 import { validateRequest } from "@/backend/lucia-auth/validate-request";
-import { fetchUsername } from "@/backend/database/drizzle/functions-and-queries/users/user-db-functions-and-queires";
+import { fetchUsername } from "@/backend/server-actions/users/fetch-user-name";
 
 import { getInitialsFromName } from "@/utils/functions/get-Initials-from-name";
 import { UserDetailsObjectType } from "@/frontend/contexts/use-user-details";
@@ -11,7 +11,6 @@ export default async function PrivateLayout({
 }: {
   children: React.ReactNode;
 }) {
-    
   await authenticateAndRedirect();
 
   const { user } = (await validateRequest()) ?? null;

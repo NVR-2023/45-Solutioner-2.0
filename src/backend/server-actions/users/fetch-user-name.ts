@@ -4,11 +4,7 @@ import { eq } from "drizzle-orm";
 
 import { validateRequest } from "@/backend/lucia-auth/validate-request";
 
-export type NewUserType = {
-  name: string;
-  email: string;
-  password: string;
-};
+
 
 export const fetchUsername = async () => {
   try {
