@@ -5,7 +5,7 @@ import { useBookServiceModalContext } from "@/frontend/contexts/use-book-service
 import { useUserDetailsContext } from "@/frontend/contexts/use-user-details";
 
 import ModalTitleWithoutLogo from "@/frontend/components/ui/modal-components/modal-title-without-logo";
-import Calendar from "./sub-components/calendar";
+import ContentAreaForCalendarAndTimePicker from "./sub-components/content-area-for-calendar-and-time-picker";
 import Details from "./sub-components/details";
 import BookServiceSubmitSegment from "./sub-components/book-service-submit-segment";
 
@@ -83,7 +83,7 @@ const BookServiceModal = () => {
         />
 
         <div>
-          <Calendar
+          <ContentAreaForCalendarAndTimePicker
             date={bookServiceObject.date!}
             setDate={setDate}
             time={bookServiceObject.time!}

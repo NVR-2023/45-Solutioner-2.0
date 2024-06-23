@@ -9,9 +9,15 @@ type HourPickerProps = {
   bookableHours: string[];
   setTime: (time: string) => void;
   duration: string;
+  isCalendarExpanded: boolean;
 };
 
-const TimePicker = ({ bookableHours, setTime, duration }: HourPickerProps) => {
+const TimePicker = ({
+  bookableHours,
+  setTime,
+  duration,
+  isCalendarExpanded,
+}: HourPickerProps) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const bookableHoursLength = bookableHours.length;
 
@@ -46,7 +52,7 @@ const TimePicker = ({ bookableHours, setTime, duration }: HourPickerProps) => {
             currentIndex={currentIndex}
           />
         </div>
-        {bookableHoursLength > 1 && (
+        {bookableHoursLength > 1 && isCalendarExpanded && (
           <div className="">
             <SliderControls
               handleOnGetNextInNextItem={handleOnGetNextItem}
@@ -55,15 +61,17 @@ const TimePicker = ({ bookableHours, setTime, duration }: HourPickerProps) => {
           </div>
         )}
       </div>
-      <div>
-        <CyclicRecoilSlider
-          label={"ends"}
-          items={bookableHours.map((hour) =>
-            getRoundedupEndOfServiceHourString(hour, duration),
-          )}
-          currentIndex={currentIndex}
-        />
-      </div>
+      {isCalendarExpanded && (
+        <div>
+          <CyclicRecoilSlider
+            label={"ends"}
+            items={bookableHours.map((hour) =>
+              getRoundedupEndOfServiceHourString(hour, duration),
+            )}
+            currentIndex={currentIndex}
+          />
+        </div>
+      )}
     </div>
   );
 };

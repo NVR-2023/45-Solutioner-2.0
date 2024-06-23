@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useBookServiceModalContext } from "@/frontend/contexts/use-book-service-modal-context";
 
 import CyclicRecoilSlider from "@/frontend/components/ui/cyclic-recoil-sldier";

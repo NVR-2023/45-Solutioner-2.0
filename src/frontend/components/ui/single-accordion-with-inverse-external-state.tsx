@@ -2,16 +2,21 @@ import { useState, ReactNode } from "react";
 import MenuDownArrow from "../icons/menu-down-arrow";
 import FieldLabel from "./styled-text-components/field-label";
 
-type SingleAccordionProps = {
+type SingleAccordionWithInverseExternalStateProps = {
   label: string;
+  externalBooleanState: boolean;
+  setExternalBooleanState: (isSingleAccordionOpen: boolean) => void;
   children: ReactNode;
 };
 
-const SingleAccordion = ({ label, children }: SingleAccordionProps) => {
-  const [isSingleAccordionOpen, setIsSingleAccordionOpen] = useState(false);
-
+const SingleAccordionWithInverseExternalState = ({
+  label,
+  externalBooleanState,
+  setExternalBooleanState,
+  children,
+}: SingleAccordionWithInverseExternalStateProps) => {
   const handleOnClick = () => {
-    setIsSingleAccordionOpen(!isSingleAccordionOpen);
+    setExternalBooleanState(!externalBooleanState);
   };
 
   return (
@@ -20,10 +25,10 @@ const SingleAccordion = ({ label, children }: SingleAccordionProps) => {
         <div className="flex w-full items-center justify-between">
           <FieldLabel text={label} />
           <div className="relative flex items-center">
-            <div className="absolute -top-1 right-0 font-aperçu text-sm font-bold text-black dark:text-neutral-300 md:text-xs">
+            <div className="absolute right-0 -top-1 font-aperçu text-sm font-bold text-black dark:text-neutral-300 md:text-xs">
               <div
                 className={`flex origin-center items-end justify-center transition-all duration-300 ${
-                  isSingleAccordionOpen ? "rotate-180" : ""
+                  externalBooleanState ? "":"rotate-180"
                 }`}
               >
                 <MenuDownArrow scale={0.6125} />
@@ -36,7 +41,7 @@ const SingleAccordion = ({ label, children }: SingleAccordionProps) => {
         className="grid w-full overflow-hidden"
         onClick={handleOnClick}
         style={{
-          gridTemplateRows: isSingleAccordionOpen ? "1fr" : "0fr",
+          gridTemplateRows: externalBooleanState ? "0fr" : "1fr",
           transition: "grid-template-rows 300ms",
         }}
       >
@@ -46,4 +51,4 @@ const SingleAccordion = ({ label, children }: SingleAccordionProps) => {
   );
 };
 
-export default SingleAccordion;
+export default SingleAccordionWithInverseExternalState;
