@@ -36,6 +36,11 @@ const BookServiceModal = () => {
     });
 
   const [isCalendarExpanded, setIsCalendarExpanded] = useState<boolean>(true);
+  useEffect(() => {
+    if (bookServiceModalContext.isBookServiceModalOpen) {
+      setIsCalendarExpanded(true);
+    }
+  }, [bookServiceModalContext.isBookServiceModalOpen]);
 
   const setDate = (newDate: string) => {
     setBookServiceObject((previousBookServiceObject) => ({
