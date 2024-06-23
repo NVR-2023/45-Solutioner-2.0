@@ -37,15 +37,11 @@ const BookServiceModal = () => {
     });
 
   useEffect(() => {
-    setBookServiceObject({
+    setBookServiceObject((previousBookServiceObject) => ({
+      ...previousBookServiceObject,
       userId: userDetails.userId,
       serviceId: bookServiceModalContext.id,
-      date: null,
-      time: null,
-      addressId: null,
-      quantity: null,
-      recurrence: null,
-    });
+    }));
   }, [bookServiceModalContext.id, userDetails.userId]);
 
   const [isCalendarExpanded, setIsCalendarExpanded] = useState<boolean>(true);
