@@ -1,9 +1,9 @@
 "use server";
 import { UserAddressType } from "@/types/general-types";
-import { validateUserId } from "../user-db-functions-and-queires";
+import { validateUserId } from "../validate-user-id";
 import generateResponseObject from "@/utils/functions/generic-fetch/generate-response-object";
-import { fetchNumberOfExistingUSerAddresses } from "../fetch-number-of-existing-user-addresses";
-import { checkUserAddressObjectCompleteness } from "../user-db-functions-and-queires";
+import { fetchNumberOfExistingUSerAddresses } from "./sub-functions/fetch-number-of-existing-user-addresses";
+import { checkUserAddressObjectCompleteness } from "./sub-functions/check-user-address-completness";
 
 export async function createUserAddress(userAddress: UserAddressType) {
   const { userId } = userAddress;
