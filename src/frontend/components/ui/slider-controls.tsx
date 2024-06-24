@@ -8,7 +8,7 @@ const SliderControls = ({
   handleOnGetPreviousItem,
 }: SLiderControlsProps) => {
   return (
-    <div className="flex space-x-1">
+    <div className="flex space-x-1 font-semibold">
       <button
         onClick={handleOnGetNextInNextItem}
         className="flex h-4 w-4 items-center duration-300  transition-all justify-center rounded-[2px] bg-neutral-400 text-neutral-200 hover:bg-neutral-700"

@@ -45,6 +45,7 @@ const BookServiceModal = () => {
   }, [bookServiceModalContext.id, userDetails.userId]);
 
   const [isCalendarExpanded, setIsCalendarExpanded] = useState<boolean>(true);
+  
   useEffect(() => {
     if (bookServiceModalContext.isBookServiceModalOpen) {
       setIsCalendarExpanded(true);
@@ -78,6 +79,14 @@ const BookServiceModal = () => {
       recurrence: newRecurrence,
     }));
   };
+
+   const setAddress = (serviceAddressId: number) => {
+     setBookServiceObject((previousBookServiceObject) => ({
+       ...previousBookServiceObject,
+       addressId: serviceAddressId,
+     }));
+   };
+
 
   const setIsBookServiceModalOpen = (isModalOpen: boolean) => {
     setBookServiceModalContext((previousObject) => ({
@@ -120,6 +129,7 @@ const BookServiceModal = () => {
             setIsCalendarExpanded={setIsCalendarExpanded}
             setQuantity={setQuantity}
             setRecurrence={setRecurrence}
+            setAddress={setAddress}
           />
         </div>
 

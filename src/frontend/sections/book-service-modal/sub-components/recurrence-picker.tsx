@@ -34,7 +34,7 @@ const RecurrencePicker = ({ setRecurrence }: QuantityPickerProps) => {
   return (
     <div className="flex w-full flex-col space-y-1.5">
       <div className="flex w-full">
-        <div className="w-24">
+        <div className="w-[6.5rem]">
           <CyclicRecoilSlider
             label={"book"}
             items={SERVICE_RECURRENCES}

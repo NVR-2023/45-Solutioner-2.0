@@ -1,9 +1,11 @@
 import MenuDownArrow from "@/frontend/components/icons/menu-down-arrow";
-import QuantityPicker from "./quantity-picker";
 import FieldLabel from "@/frontend/components/ui/styled-text-components/field-label";
 import FieldContent from "@/frontend/components/ui/styled-text-components/field-content";
 import { useBookServiceModalContext } from "@/frontend/contexts/use-book-service-modal-context";
+
+import QuantityPicker from "./quantity-picker";
 import RecurrencePicker from "./recurrence-picker";
+import AddressPicker from "./address-picker";
 
 import ModalContentSubareaShell from "@/frontend/components/ui/modal-components/modal-content-subarea-shell";
 import SingleAccordionWithInverseExternalState from "@/frontend/components/ui/single-accordion-with-inverse-external-state";
@@ -13,6 +15,7 @@ type DetailsProps = {
   setIsCalendarExpanded: (isCalendarExpanded: boolean) => void;
   setQuantity: (newQuantity: number) => void;
   setRecurrence: (newRecurrence: string) => void;
+  setAddress: (addressId: number) => void;
 };
 
 const Details = ({
@@ -20,6 +23,7 @@ const Details = ({
   setIsCalendarExpanded,
   setQuantity,
   setRecurrence,
+  setAddress,
 }: DetailsProps) => {
   const handleOnClick = () => {
     setIsCalendarExpanded(!isCalendarExpanded);
@@ -36,6 +40,7 @@ const Details = ({
         setExternalBooleanState={setIsCalendarExpanded}
       >
         <div className="mt-3 space-y-3">
+          <AddressPicker setAddress={setAddress}/>
           <RecurrencePicker setRecurrence={setRecurrence} />
           <QuantityPicker setQuantity={setQuantity} />
         </div>
