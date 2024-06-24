@@ -146,14 +146,14 @@ const Calendar = ({ date, setDate, isCalendarExpanded}: calendarProps) => {
                         variants={buttonVariants}
                         whileTap={isDayUnbookable ? "" : "whileTap"}
                         key={dayIndex}
-                        className={`relative flex items-center rounded-[2px] leading-[.5rem] ${isDayUnbookable ? "" : "hover:bg-neutral-100 "}`}
+                        className={`relative flex items-center rounded-[2px]  ${isDayUnbookable ? "" : "hover:bg-neutral-100 "}`}
                       >
                         <motion.button
                           disabled={isDayUnbookable}
                           onClick={() => {
                             handleOnClick(movingDate);
                           }}
-                          className={` ${isCurrentDate ? "underline decoration-1 underline-offset-2" : null} flex h-6 w-full items-center justify-center font-aperçu ${isDayUnbookable ? "text-[.35rem] text-neutral-400 decoration-neutral-400" : " text-[.625rem] decoration-black "} font-bold tabular-nums leading-[.5rem] decoration-black small-caps `}
+                          className={` ${isCurrentDate ? "underline decoration-1 underline-offset-2" : null} flex h-6 w-full items-center justify-center font-aperçu ${isDayUnbookable ? "text-[.35rem] text-neutral-400 decoration-neutral-400" : " text-[.625rem] decoration-black "} font-bold tabular-nums decoration-black small-caps `}
                         >
                           {dayOfTheMonth}
                         </motion.button>

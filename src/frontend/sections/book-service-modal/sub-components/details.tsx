@@ -39,8 +39,8 @@ const Details = ({
         externalBooleanState={isCalendarExpanded}
         setExternalBooleanState={setIsCalendarExpanded}
       >
-        <div className="mt-3 space-y-3">
-          <AddressPicker setAddress={setAddress}/>
+        <div className="mt-3 w-full space-y-3">
+          <AddressPicker setAddress={setAddress} />
           <RecurrencePicker setRecurrence={setRecurrence} />
           <QuantityPicker setQuantity={setQuantity} />
         </div>

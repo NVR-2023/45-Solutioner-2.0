@@ -45,7 +45,7 @@ const BookServiceModal = () => {
   }, [bookServiceModalContext.id, userDetails.userId]);
 
   const [isCalendarExpanded, setIsCalendarExpanded] = useState<boolean>(true);
-  
+
   useEffect(() => {
     if (bookServiceModalContext.isBookServiceModalOpen) {
       setIsCalendarExpanded(true);
@@ -80,13 +80,12 @@ const BookServiceModal = () => {
     }));
   };
 
-   const setAddress = (serviceAddressId: number) => {
-     setBookServiceObject((previousBookServiceObject) => ({
-       ...previousBookServiceObject,
-       addressId: serviceAddressId,
-     }));
-   };
-
+  const setAddress = (serviceAddressId: number) => {
+    setBookServiceObject((previousBookServiceObject) => ({
+      ...previousBookServiceObject,
+      addressId: serviceAddressId,
+    }));
+  };
 
   const setIsBookServiceModalOpen = (isModalOpen: boolean) => {
     setBookServiceModalContext((previousObject) => ({
@@ -108,7 +107,7 @@ const BookServiceModal = () => {
       isModalOpen={bookServiceModalContext.isBookServiceModalOpen}
       setIsModalOpen={setIsBookServiceModalOpen}
     >
-      <div className="flex w-full flex-col space-y-4 ">
+      <div className="overflow-hidden  flex w-full flex-col space-y-4 ">
         <ModalTitleWithoutLogo
           title={bookServiceModalContext.service as string}
         />
@@ -132,12 +131,13 @@ const BookServiceModal = () => {
             setAddress={setAddress}
           />
         </div>
-
-        <SubmitWithoutFeedbackSegment
-          label="book"
-          onCancel={handleOnCancel}
-          onSubmit={handleOnSubmit}
-        />
+        <div className="pt-3">
+          <SubmitWithoutFeedbackSegment
+            label="book"
+            onCancel={handleOnCancel}
+            onSubmit={handleOnSubmit}
+          />
+        </div>
       </div>
     </AdvancedModalShell>
   );

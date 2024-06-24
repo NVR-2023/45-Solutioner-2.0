@@ -100,8 +100,7 @@ const ContentAreaForCalendarAndTimePicker = ({
     <ModalContentSubareaShell>
       <div className="flex flex-col space-y-3">
         <div>
-          {!isCalendarExpanded && (
-            <button
+    {/*         <button
               onClick={handleOnExpandCalendar}
               className="flex w-full items-center justify-between"
             >
@@ -117,8 +116,8 @@ const ContentAreaForCalendarAndTimePicker = ({
                   </div>
                 </div>
               </div>
-            </button>
-          )}
+            </button> */}
+          
         </div>
 
         <div className="mt-2">
@@ -128,13 +127,15 @@ const ContentAreaForCalendarAndTimePicker = ({
             setDate={setDate}
           />
         </div>
+
+
         <div className="">
           <LabelWIthAnimatedSlidingText
             label={"date"}
             text={convertDateToFullString(date)}
           />
         </div>
-        <div className="">
+        <div className="w-fyll">
           <TimePicker
             bookableHours={bookableHours}
             setTime={setTime}

@@ -19,8 +19,8 @@ const AddressPicker = ({ setAddress }: AddressPickerProps) => {
 
   return (
     <div className="flex w-full flex-col space-y-0.5">
-      <div className="flex w-full">
-        <div className="w-[6.5rem]">
+      <div className="flex w-full justify-between">
+        <div className="w-full">
           <CyclicRecoilSlider
             label={"address"}
             items={ADDRESS_TYPES}

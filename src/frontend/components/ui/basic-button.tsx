@@ -57,7 +57,7 @@ const BasicButton = ({
   const sizeMap = new Map([
     ["sm", "w-16 h-6"],
     ["md", "w-24 h-6"],
-    ["lg", "w-36 h-6"],
+    ["lg", "w-32 h-6"],
   ]);
 
   return (

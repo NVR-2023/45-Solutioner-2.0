@@ -20,7 +20,7 @@ const SingleAccordion = ({ label, children }: SingleAccordionProps) => {
         <div className="flex w-full items-center justify-between">
           <FieldLabel text={label} />
           <div className="relative flex items-center">
-            <div className="absolute -top-1 right-0 font-aperçu text-sm font-bold text-black dark:text-neutral-300 md:text-xs">
+            <div className="absolute -top-1.5 right-0 font-aperçu text-sm font-bold text-black dark:text-neutral-300 md:text-xs">
               <div
                 className={`flex origin-center items-end justify-center transition-all duration-300 ${
                   isSingleAccordionOpen ? "rotate-180" : ""

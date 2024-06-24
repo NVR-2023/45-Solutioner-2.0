@@ -20,12 +20,12 @@ const SingleAccordionWithInverseExternalState = ({
   };
 
   return (
-    <div className="w-full">
-      <button onClick={handleOnClick} className="w-full">
+    <div className="bg-grezen-400 w-full">
+      <button onClick={handleOnClick} className="bg-purzple-400 w-full">
         <div className="flex w-full items-center justify-between">
           <FieldLabel text={label} />
           <div className="relative flex items-center">
-            <div className="absolute right-0 -top-1 font-aperçu text-sm font-bold text-black dark:text-neutral-300 md:text-xs">
+            <div className="absolute right-0 -top-1.5 font-aperçu text-sm font-bold text-black dark:text-neutral-300 md:text-xs">
               <div
                 className={`flex origin-center items-end justify-center transition-all duration-300 ${
                   externalBooleanState ? "":"rotate-180"
