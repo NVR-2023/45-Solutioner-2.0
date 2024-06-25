@@ -46,11 +46,11 @@ const BasicButton = ({
   const ButtonTypeMap = new Map([
     [
       "outlined",
-      "border-black border-[1.5px] font-aperçu font-extrabold text-sm md:text-xs leading-[.5rem] tracking-wide small-caps text-black dark:text-neutral-300 ",
+      "border-neutral-700 border-[1.5px] font-aperçu font-extrabold text-sm md:text-xs leading-[.5rem] tracking-wide small-caps text-neutral-700 dark:text-neutral-300 ",
     ],
     [
       "filled",
-      "bg-neutral-900 font-aperçu font-bold text-sm md:text-xs leading-[.5rem] tracking-wide small-caps text-neutral-300 font-bold dark:font-semibold dark:text-neutral-300",
+      "bg-neutral-700 font-aperçu font-bold text-sm md:text-xs leading-[.5rem] tracking-wide small-caps text-neutral-300 font-bold dark:font-semibold dark:text-neutral-300",
     ],
   ]);
 
