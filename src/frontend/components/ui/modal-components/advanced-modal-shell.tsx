@@ -62,6 +62,8 @@ const AdvancedModalShell = ({
     <>
       <AnimatePresence>
         {isModalOpen && (
+
+          
           <motion.dialog
             ref={modalRef}
             initial="initial"

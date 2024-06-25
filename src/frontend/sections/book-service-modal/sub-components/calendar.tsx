@@ -89,7 +89,7 @@ const Calendar = ({ date, setDate, isCalendarExpanded }: calendarProps) => {
   };
 
   return (
-    <div className="w-full">
+    <motion.div>
       <div
         className="grid"
         style={{
@@ -172,7 +172,7 @@ const Calendar = ({ date, setDate, isCalendarExpanded }: calendarProps) => {
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
