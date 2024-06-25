@@ -107,7 +107,7 @@ const ContentAreaForCalendarAndTimePicker = ({
           />
         </div>
 
-        <div className="pt-3 space-y-3">
+        <div className={`${isCalendarExpanded ? "pt-3" : ""} space-y-3`}>
           <LabelWIthAnimatedSlidingText
             label={"date"}
             text={convertDateToFullString(date)}
