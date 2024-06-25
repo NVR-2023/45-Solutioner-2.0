@@ -152,7 +152,7 @@ const Calendar = ({ date, setDate, isCalendarExpanded }: calendarProps) => {
                           onClick={() => {
                             handleOnClick(movingDate);
                           }}
-                          className={` ${isCurrentDate ? "underline decoration-1 underline-offset-2" : null} flex h-5 w-full items-center justify-center font-aperçu ${isDayUnbookable ? "text-[.35rem] text-neutral-400 decoration-neutral-400" : " text-[.5rem] decoration-black "} font-bold tabular-nums decoration-black small-caps `}
+                          className={` ${isCurrentDate ? "underline decoration-1 underline-offset-2" : null} flex h-5 w-full items-center justify-center font-aperçu focus:outline-none ${isDayUnbookable ? "text-[.35rem] text-neutral-400 decoration-neutral-400" : " text-[.5rem] decoration-black "} font-bold tabular-nums decoration-black small-caps `}
                         >
                           {dayOfTheMonth}
                         </motion.button>
