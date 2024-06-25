@@ -39,8 +39,26 @@
 /* Navbar customization: Dark mode */
 
 .smooth-theme-transition {
-  @apply transition-colors duration-300;
+  transition-property: background-color, border-color, color;
+  transition-duration: 300ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+/* Reset rings around elements */
+
+* {
+  outline: none !important;
+}
+
+*:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+*:active {
+  outline: none !important;
+  box-shadow: none !important;
+  border: none !important;
+}
 
 

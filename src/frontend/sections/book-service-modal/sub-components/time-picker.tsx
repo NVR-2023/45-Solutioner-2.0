@@ -67,7 +67,7 @@ const TimePicker = ({
         <div className="flex w-full space-x-1">
           <div>
             <CyclicRecoilSlider
-              label={"start"}
+              label={"time"}
               items={bookableHours}
               currentIndex={currentIndex}
               size="md"

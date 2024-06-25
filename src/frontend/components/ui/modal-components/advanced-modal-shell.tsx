@@ -41,6 +41,7 @@ const AdvancedModalShell = ({
     event: React.KeyboardEvent<HTMLDialogElement>,
   ) => {
     if (event.key === "Escape") {
+      event.preventDefault();
       setIsModalOpen(false);
     }
   };
