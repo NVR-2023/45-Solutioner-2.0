@@ -14,7 +14,7 @@ const CyclicRecoilSlider = ({
   size = "md",
 }: CyclicRecoilSliderProps) => {
   const widthClasses = new Map([
-    ["sm", "w-4"],
+    ["sm", "w-3"],
     ["md", "w-9"],
     ["lg", "w-12"],
   ]);

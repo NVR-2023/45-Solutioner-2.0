@@ -10,12 +10,26 @@ import AddressPicker from "./address-picker";
 import ModalContentSubareaShell from "@/frontend/components/ui/modal-components/modal-content-subarea-shell";
 import SingleAccordionWithInverseExternalState from "@/frontend/components/ui/single-accordion-with-inverse-external-state";
 
+import { motion, AnimatePresence } from "framer-motion";
+
 type DetailsProps = {
   isCalendarExpanded: boolean;
   setIsCalendarExpanded: (isCalendarExpanded: boolean) => void;
   setQuantity: (newQuantity: number) => void;
   setRecurrence: (newRecurrence: string) => void;
   setAddress: (addressId: number) => void;
+};
+
+const variants = {
+  initial: {
+    opacity: 0,
+  },
+  animate: {
+    opacity: 1,
+    transition: {
+      duration: 1,
+    },
+  },
 };
 
 const Details = ({
@@ -39,15 +53,20 @@ const Details = ({
         externalBooleanState={isCalendarExpanded}
         setExternalBooleanState={setIsCalendarExpanded}
       >
-        <div className="mt-3 w-full space-y-3">
+        <motion.div
+          variants={variants}
+          initial="initial"
+          animate="animate"
+          className="mt-3 w-full space-y-3"
+        >
           <AddressPicker setAddress={setAddress} />
           <RecurrencePicker setRecurrence={setRecurrence} />
           <QuantityPicker setQuantity={setQuantity} />
-        </div>
+        </motion.div>
       </SingleAccordionWithInverseExternalState>
       {isCalendarExpanded && (
         <div className={`flex ${isCalendarExpanded ? "mt-2" : null} space-x-1`}>
-          <FieldLabel text="price:" />
+          <FieldLabel text="total:" />
           <FieldContent text={`€${price}`} />
         </div>
       )}

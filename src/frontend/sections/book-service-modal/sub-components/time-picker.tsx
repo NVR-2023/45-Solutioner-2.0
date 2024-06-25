@@ -4,6 +4,7 @@ import { getSuggestedBookHourIndex } from "@/utils/functions/date-time/get-sugge
 
 import CyclicRecoilSlider from "@/frontend/components/ui/cyclic-recoil-sldier";
 import SliderControls from "@/frontend/components/ui/slider-controls";
+import { motion, AnimatePresence } from "framer-motion";
 
 type HourPickerProps = {
   bookableHours: string[];
@@ -12,6 +13,23 @@ type HourPickerProps = {
   isCalendarExpanded: boolean;
 };
 
+const variants = {
+  initial: {
+    opacity: 0,
+  },
+  animate: {
+    opacity: 1,
+    transition: {
+      duration: .8,
+    },
+  },
+  exit: {
+    opacity: 0,
+    transition: {
+      duration: .8,
+    },
+  },
+};
 const TimePicker = ({
   bookableHours,
   setTime,
@@ -45,33 +63,41 @@ const TimePicker = ({
   return (
     <div className="flex w-full flex-col space-y-0.5">
       <div className="flex w-full">
-        <div className="w-full">
-          <CyclicRecoilSlider
-            label={"time"}
-            items={bookableHours}
-            currentIndex={currentIndex}
-          />
-        </div>
-        {bookableHoursLength > 1 && isCalendarExpanded && (
-          <div className="">
-            <SliderControls
-              handleOnGetNextInNextItem={handleOnGetNextItem}
-              handleOnGetPreviousItem={handleOnGetPreviousItem}
+        <div className="flex w-full space-x-2">
+          <div>
+            <CyclicRecoilSlider
+              label={"starts"}
+              items={bookableHours}
+              currentIndex={currentIndex}
+              size="md"
             />
           </div>
-        )}
-      </div>
-      {isCalendarExpanded && (
-        <div>
-          <CyclicRecoilSlider
-            label={"ends"}
-            items={bookableHours.map((hour) =>
-              getRoundedupEndOfServiceHourString(hour, duration),
-            )}
-            currentIndex={currentIndex}
-          />
+          <div>
+            <CyclicRecoilSlider
+              label={"ends"}
+              items={bookableHours.map((hour) =>
+                getRoundedupEndOfServiceHourString(hour, duration),
+              )}
+              currentIndex={currentIndex}
+            />
+          </div>
         </div>
-      )}
+        <AnimatePresence>
+          {isCalendarExpanded && (
+            <motion.div
+              variants={variants}
+              initial="initial"
+              animate="animate"
+              exit="exit"
+            >
+              <SliderControls
+                handleOnGetNextInNextItem={handleOnGetNextItem}
+                handleOnGetPreviousItem={handleOnGetPreviousItem}
+              />
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
     </div>
   );
 };

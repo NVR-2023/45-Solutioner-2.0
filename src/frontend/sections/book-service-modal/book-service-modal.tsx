@@ -107,12 +107,12 @@ const BookServiceModal = () => {
       isModalOpen={bookServiceModalContext.isBookServiceModalOpen}
       setIsModalOpen={setIsBookServiceModalOpen}
     >
-      <div className="overflow-hidden  flex w-full flex-col space-y-4 ">
-        <ModalTitleWithoutLogo
+      <div className="flex  w-full flex-col space-y-4 overflow-hidden ">
+        {/* <ModalTitleWithoutLogo
           title={bookServiceModalContext.service as string}
-        />
+        /> */}
 
-        <div>
+   {/*      <div>
           <ContentAreaForCalendarAndTimePicker
             date={bookServiceObject.date!}
             setDate={setDate}
@@ -120,7 +120,7 @@ const BookServiceModal = () => {
             isCalendarExpanded={isCalendarExpanded}
             setIsCalendarExpanded={setIsCalendarExpanded}
           />
-        </div>
+        </div> */}
 
         <div className="">
           <Details

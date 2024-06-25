@@ -22,17 +22,16 @@ const buttonVariants = {
 };
 
 type calendarProps = {
- date: string;
+  date: string;
   setDate: (date: string) => void;
   isCalendarExpanded: boolean;
-}
+};
 
-const Calendar = ({ date, setDate, isCalendarExpanded}: calendarProps) => {
-  
-    const { bookServiceModalContext } = useBookServiceModalContext();
-    const duration = bookServiceModalContext.duration;
-  
-    const DAYS_OF_THE_WEEK_ABBREVIATIONS = [
+const Calendar = ({ date, setDate, isCalendarExpanded }: calendarProps) => {
+  const { bookServiceModalContext } = useBookServiceModalContext();
+  const duration = bookServiceModalContext.duration;
+
+  const DAYS_OF_THE_WEEK_ABBREVIATIONS = [
     "sun",
     "mon",
     "tue",
@@ -100,7 +99,7 @@ const Calendar = ({ date, setDate, isCalendarExpanded}: calendarProps) => {
       >
         <div className="overflow-hidden">
           <div className="overflow-hidden ">
-            <div className="grid grid-cols-7 grid-rows-1">
+            <div className="mb-2 grid grid-cols-7 grid-rows-1">
               {DAYS_OF_THE_WEEK_ABBREVIATIONS.map(
                 (weekDayAbbreviation, index) => (
                   <div
@@ -153,7 +152,7 @@ const Calendar = ({ date, setDate, isCalendarExpanded}: calendarProps) => {
                           onClick={() => {
                             handleOnClick(movingDate);
                           }}
-                          className={` ${isCurrentDate ? "underline decoration-1 underline-offset-2" : null} flex h-6 w-full items-center justify-center font-aperçu ${isDayUnbookable ? "text-[.35rem] text-neutral-400 decoration-neutral-400" : " text-[.625rem] decoration-black "} font-bold tabular-nums decoration-black small-caps `}
+                          className={` ${isCurrentDate ? "underline decoration-1 underline-offset-2" : null} flex h-6 w-full items-center justify-center font-aperçu ${isDayUnbookable ? "text-[.35rem] text-neutral-400 decoration-neutral-400" : " text-[.625rem] decoration-black "} font-semibold tabular-nums decoration-black small-caps `}
                         >
                           {dayOfTheMonth}
                         </motion.button>

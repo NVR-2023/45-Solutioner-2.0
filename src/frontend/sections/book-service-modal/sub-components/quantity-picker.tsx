@@ -1,4 +1,4 @@
-import { useState , useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useBookServiceModalContext } from "@/frontend/contexts/use-book-service-modal-context";
 
 import CyclicRecoilSlider from "@/frontend/components/ui/cyclic-recoil-sldier";
@@ -26,36 +26,39 @@ const QuantityPicker = ({ setQuantity }: QuantityPickerProps) => {
     setQuantity(parseInt(SERVICE_QUANTITIES[previousIndex]));
   };
 
-  useEffect(()=>{
+  useEffect(() => {
     setQuantity(parseInt(SERVICE_QUANTITIES[0]));
-  },[])
+  }, []);
 
   return (
     <div className="flex w-full flex-col space-y-0.5">
       <div className="flex w-full">
-        <div className="w-full">
+        <div className="flex w-full space-x-2">
+          <div>
           <CyclicRecoilSlider
             label={"quantity"}
             items={SERVICE_QUANTITIES}
             currentIndex={currentIndex}
             size="sm"
           />
+          </div>
+          <div>
+          <CyclicRecoilSlider
+            label={"total"}
+            items={SERVICE_QUANTITIES.map(
+              (quantity) => `€${parseInt(quantity) * parseInt(price!)} `,
+            )}
+            currentIndex={currentIndex}
+          />
+          </div>
         </div>
+
         <div className="">
           <SliderControls
             handleOnGetNextInNextItem={handleOnGetNextItem}
             handleOnGetPreviousItem={handleOnGetPreviousItem}
           />
         </div>
-      </div>
-      <div>
-        <CyclicRecoilSlider
-          label={"price"}
-          items={SERVICE_QUANTITIES.map(
-            (quantity) => `€${parseInt(quantity) * parseInt(price!)} `,
-          )}
-          currentIndex={currentIndex}
-        />
       </div>
     </div>
   );
