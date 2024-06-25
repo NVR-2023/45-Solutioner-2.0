@@ -89,7 +89,7 @@ const Calendar = ({ date, setDate, isCalendarExpanded }: calendarProps) => {
   };
 
   return (
-    <div className="w-full overflow-hidden transition-all duration-300">
+    <div className="w-full">
       <div
         className="grid"
         style={{
@@ -152,7 +152,7 @@ const Calendar = ({ date, setDate, isCalendarExpanded }: calendarProps) => {
                           onClick={() => {
                             handleOnClick(movingDate);
                           }}
-                          className={` ${isCurrentDate ? "underline decoration-1 underline-offset-2" : null} flex h-6 w-full items-center justify-center font-aperçu ${isDayUnbookable ? "text-[.35rem] text-neutral-400 decoration-neutral-400" : " text-[.625rem] decoration-black "} font-semibold tabular-nums decoration-black small-caps `}
+                          className={` ${isCurrentDate ? "underline decoration-1 underline-offset-2" : null} flex h-5 w-full items-center justify-center font-aperçu ${isDayUnbookable ? "text-[.35rem] text-neutral-400 decoration-neutral-400" : " text-[.5rem] decoration-black "} font-bold tabular-nums decoration-black small-caps `}
                         >
                           {dayOfTheMonth}
                         </motion.button>

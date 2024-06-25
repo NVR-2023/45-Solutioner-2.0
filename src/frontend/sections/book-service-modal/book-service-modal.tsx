@@ -108,11 +108,10 @@ const BookServiceModal = () => {
       setIsModalOpen={setIsBookServiceModalOpen}
     >
       <div className="flex  w-full flex-col space-y-4 overflow-hidden ">
-        {/* <ModalTitleWithoutLogo
-          title={bookServiceModalContext.service as string}
-        /> */}
-
-   {/*      <div>
+        <div className="space-y-2">
+        {/*   <ModalTitleWithoutLogo
+            title={bookServiceModalContext.service as string}
+          /> */}
           <ContentAreaForCalendarAndTimePicker
             date={bookServiceObject.date!}
             setDate={setDate}
@@ -120,18 +119,16 @@ const BookServiceModal = () => {
             isCalendarExpanded={isCalendarExpanded}
             setIsCalendarExpanded={setIsCalendarExpanded}
           />
-        </div> */}
-
-        <div className="">
-          <Details
-            isCalendarExpanded={isCalendarExpanded}
-            setIsCalendarExpanded={setIsCalendarExpanded}
-            setQuantity={setQuantity}
-            setRecurrence={setRecurrence}
-            setAddress={setAddress}
-          />
         </div>
-        <div className="pt-3">
+
+        <Details
+          isCalendarExpanded={isCalendarExpanded}
+          setIsCalendarExpanded={setIsCalendarExpanded}
+          setQuantity={setQuantity}
+          setRecurrence={setRecurrence}
+          setAddress={setAddress}
+        />
+        <div className="">
           <SubmitWithoutFeedbackSegment
             label="book"
             onCancel={handleOnCancel}

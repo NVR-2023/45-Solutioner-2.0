@@ -13,11 +13,11 @@ import { generateThirtyMinuteTimestamps } from "@/utils/functions/date-time/gene
 
 import LabelWIthAnimatedSlidingText from "@/frontend/components/ui/animated-components/label-with-animated-sliding-text";
 import TimePicker from "./time-picker";
-import FieldLabel from "@/frontend/components/ui/styled-text-components/field-label";
-import MenuDownArrow from "@/frontend/components/icons/menu-down-arrow";
+import SingleAccordionWitExternalState from "@/frontend/components/ui/single-accordion-with-external-state";
 
-import ModalContentSubareaShell from "@/frontend/components/ui/modal-components/modal-content-subarea-shell";
+import ModalSubareaShell from "@/frontend/components/ui/modal-components/modal-subarea-shell";
 import Calendar from "./calendar";
+
 type ContentAreaForCalendarAndTimePickerProps = {
   date: string;
   setDate: (date: string) => void;
@@ -97,54 +97,32 @@ const ContentAreaForCalendarAndTimePicker = ({
   };
 
   return (
-    <ModalContentSubareaShell>
+    <ModalSubareaShell>
       <div className="flex flex-col space-y-3">
-        <div>
-    {/*         <button
-              onClick={handleOnExpandCalendar}
-              className="flex w-full items-center justify-between"
-            >
-              <FieldLabel text={"calendar"} />
-              <div className="flex items-center">
-                <div className="flex pt-1 font-aperçu text-sm font-bold text-black dark:text-neutral-300 md:text-xs">
-                  <div
-                    className={`flex origin-center items-end justify-center transition-all duration-300 ${
-                      isCalendarExpanded ? "rotate-180" : ""
-                    }`}
-                  >
-                    <MenuDownArrow scale={0.6125} />
-                  </div>
-                </div>
-              </div>
-            </button> */}
-          
-        </div>
+        <Calendar
+          isCalendarExpanded={isCalendarExpanded}
+          date={date}
+          setDate={setDate}
+        />
 
-        <div className="mt-2">
-          <Calendar
-            isCalendarExpanded={isCalendarExpanded}
-            date={date}
-            setDate={setDate}
-          />
-        </div>
-
-
-        <div className="">
-          <LabelWIthAnimatedSlidingText
-            label={"date"}
-            text={convertDateToFullString(date)}
-          />
-        </div>
-        <div className="w-fyll">
-          <TimePicker
-            bookableHours={bookableHours}
-            setTime={setTime}
-            duration={duration!}
-            isCalendarExpanded={isCalendarExpanded}
-          />
+        <div className={`space-y-3 ${isCalendarExpanded ? "pt-2" : ""}`}>
+          <div className="">
+            <LabelWIthAnimatedSlidingText
+              label={"date"}
+              text={convertDateToFullString(date)}
+            />
+          </div>
+          <div className="w-fyll">
+            <TimePicker
+              bookableHours={bookableHours}
+              setTime={setTime}
+              duration={duration!}
+              isCalendarExpanded={isCalendarExpanded}
+            />
+          </div>
         </div>
       </div>
-    </ModalContentSubareaShell>
+    </ModalSubareaShell>
   );
 };
 

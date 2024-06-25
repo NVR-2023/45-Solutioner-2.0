@@ -30,6 +30,7 @@ const variants = {
     },
   },
 };
+
 const TimePicker = ({
   bookableHours,
   setTime,
@@ -63,10 +64,10 @@ const TimePicker = ({
   return (
     <div className="flex w-full flex-col space-y-0.5">
       <div className="flex w-full">
-        <div className="flex w-full space-x-2">
+        <div className="flex w-full space-x-1">
           <div>
             <CyclicRecoilSlider
-              label={"starts"}
+              label={"start"}
               items={bookableHours}
               currentIndex={currentIndex}
               size="md"
@@ -74,7 +75,7 @@ const TimePicker = ({
           </div>
           <div>
             <CyclicRecoilSlider
-              label={"ends"}
+              label={"end"}
               items={bookableHours.map((hour) =>
                 getRoundedupEndOfServiceHourString(hour, duration),
               )}

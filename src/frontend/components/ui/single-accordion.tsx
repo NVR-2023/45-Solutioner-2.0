@@ -16,7 +16,7 @@ const SingleAccordion = ({ label, children }: SingleAccordionProps) => {
 
   return (
     <div className="w-full">
-      <button onClick={handleOnClick} className="w-full">
+      <div role="button" onClick={handleOnClick} className="w-full">
         <div className="flex w-full items-center justify-between">
           <FieldLabel text={label} />
           <div className="relative flex items-center">
@@ -31,7 +31,7 @@ const SingleAccordion = ({ label, children }: SingleAccordionProps) => {
             </div>
           </div>
         </div>
-      </button>
+      </div>
       <div
         className="grid w-full overflow-hidden"
         style={{

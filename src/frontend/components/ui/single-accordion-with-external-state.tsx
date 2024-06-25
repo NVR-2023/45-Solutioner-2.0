@@ -9,7 +9,7 @@ type SingleAccordionWithInverseExternalStateProps = {
   children: ReactNode;
 };
 
-const SingleAccordionWithInverseExternalState = ({
+const SingleAccordionWitExternalState = ({
   label,
   externalBooleanState,
   setExternalBooleanState,
@@ -25,10 +25,10 @@ const SingleAccordionWithInverseExternalState = ({
         <div className="flex w-full items-center justify-between">
           <FieldLabel text={label} />
           <div className="relative flex items-center">
-            <div className="absolute right-0 -top-1.5 font-aperçu text-sm font-bold text-black dark:text-neutral-300 md:text-xs">
+            <div className="absolute -top-1.5 right-0 font-aperçu text-sm font-bold text-black dark:text-neutral-300 md:text-xs">
               <div
                 className={`flex origin-center items-end justify-center transition-all duration-300 ${
-                  externalBooleanState ? "":"rotate-180"
+                  externalBooleanState ? "rotate-180" : ""
                 }`}
               >
                 <MenuDownArrow scale={0.6125} />
@@ -40,7 +40,7 @@ const SingleAccordionWithInverseExternalState = ({
       <div
         className="grid w-full overflow-hidden"
         style={{
-          gridTemplateRows: externalBooleanState ? "0fr" : "1fr",
+          gridTemplateRows: externalBooleanState ? "1fr" : "0fr",
           transition: "grid-template-rows 300ms",
         }}
       >
@@ -50,4 +50,4 @@ const SingleAccordionWithInverseExternalState = ({
   );
 };
 
-export default SingleAccordionWithInverseExternalState;
+export default SingleAccordionWitExternalState;
