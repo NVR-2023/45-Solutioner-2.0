@@ -15,7 +15,7 @@ const AnimatedSlidingText = ({ text }: TextComponentProps) => {
   };
 
   return (
-    <div className="h-full w-full overflow-hidden">
+    <div className="w-full overflow-hidden">
       <motion.div
         key={text}
         variants={variants}

@@ -38,7 +38,27 @@
 
 /* Navbar customization: Dark mode */
 
-
 .smooth-theme-transition {
   @apply transition-colors duration-300;
+}
+
+/* Disbale focus rings on all focused elements */
+
+button:focus,
+button:active:focus,
+button:focus-visible,
+input:focus,
+input:active:focus,
+input:focus-visible,
+select:focus,
+select:active:focus,
+select:focus-visible,
+textarea:focus,
+textarea:active:focus,
+textarea:focus-visible,
+a:focus,
+a:active:focus,
+a:focus-visible {
+    outline: none;
+    box-shadow: none;
 }

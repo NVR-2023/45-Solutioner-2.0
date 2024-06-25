@@ -109,9 +109,9 @@ const BookServiceModal = () => {
     >
       <div className="flex  w-full flex-col space-y-4 overflow-hidden ">
         <div className="space-y-2">
-        {/*   <ModalTitleWithoutLogo
+          <ModalTitleWithoutLogo
             title={bookServiceModalContext.service as string}
-          /> */}
+          />
           <ContentAreaForCalendarAndTimePicker
             date={bookServiceObject.date!}
             setDate={setDate}

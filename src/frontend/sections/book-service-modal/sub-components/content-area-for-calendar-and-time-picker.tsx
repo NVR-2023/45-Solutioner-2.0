@@ -98,28 +98,26 @@ const ContentAreaForCalendarAndTimePicker = ({
 
   return (
     <ModalSubareaShell>
-      <div className="flex flex-col space-y-3">
-        <Calendar
-          isCalendarExpanded={isCalendarExpanded}
-          date={date}
-          setDate={setDate}
-        />
+      <div className={`flex flex-col ${isCalendarExpanded ? "space-y-3" : ""}`}>
+        <div className={isCalendarExpanded ? "mt-2" : ""}>
+          <Calendar
+            isCalendarExpanded={isCalendarExpanded}
+            date={date}
+            setDate={setDate}
+          />
+        </div>
 
-        <div className={`space-y-3 ${isCalendarExpanded ? "pt-2" : ""}`}>
-          <div className="">
-            <LabelWIthAnimatedSlidingText
-              label={"date"}
-              text={convertDateToFullString(date)}
-            />
-          </div>
-          <div className="w-fyll">
-            <TimePicker
-              bookableHours={bookableHours}
-              setTime={setTime}
-              duration={duration!}
-              isCalendarExpanded={isCalendarExpanded}
-            />
-          </div>
+        <div className="space-y-3">
+          <LabelWIthAnimatedSlidingText
+            label={"date"}
+            text={convertDateToFullString(date)}
+          />
+          <TimePicker
+            bookableHours={bookableHours}
+            setTime={setTime}
+            duration={duration!}
+            isCalendarExpanded={isCalendarExpanded}
+          />
         </div>
       </div>
     </ModalSubareaShell>
