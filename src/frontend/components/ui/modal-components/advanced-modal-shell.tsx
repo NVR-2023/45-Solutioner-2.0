@@ -35,7 +35,6 @@ const AdvancedModalShell = ({
   setIsModalOpen,
   children,
 }: AdvancedModalShellProps) => {
-  
   const modalRef: RefObject<HTMLDialogElement> = useRef(null);
 
   const handleOnEscapeKeyPress = (
@@ -62,8 +61,6 @@ const AdvancedModalShell = ({
     <>
       <AnimatePresence>
         {isModalOpen && (
-
-          
           <motion.dialog
             ref={modalRef}
             initial="initial"
@@ -71,7 +68,7 @@ const AdvancedModalShell = ({
             exit="exit"
             onKeyDown={handleOnEscapeKeyPress}
             variants={variants}
-            className="z-50 flex w-[18rem] justify-center rounded bg-[#c9c9c9] px-9 py-5 text-black shadow-[18px_18px_12px_0px_#00000040] dark:text-neutral-300"
+            className="z-50 flex w-[18rem] justify-center rounded bg-[#c9c9c9] px-9 py-5 text-black shadow-[18px_18px_12px_0px_#00000040] backdrop:bg-transparent dark:text-neutral-300"
           >
             {children}
           </motion.dialog>
