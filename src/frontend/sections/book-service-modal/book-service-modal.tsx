@@ -96,6 +96,7 @@ const BookServiceModal = () => {
 
   const handleOnCancel = () => {
     setIsBookServiceModalOpen(false);
+    setIsCalendarExpanded(true);
   };
 
   const handleOnSubmit = () => {
