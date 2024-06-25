@@ -94,7 +94,7 @@ const BookServiceModal = () => {
     }));
   };
 
-  const handleOnCancel = () => {
+  const handleOnCloseModal = () => {
     setIsBookServiceModalOpen(false);
     setIsCalendarExpanded(true);
   };
@@ -132,7 +132,7 @@ const BookServiceModal = () => {
         <div className="">
           <SubmitWithoutFeedbackSegment
             label="book"
-            onCancel={handleOnCancel}
+            onCancel={handleOnCloseModal}
             onSubmit={handleOnSubmit}
           />
         </div>
