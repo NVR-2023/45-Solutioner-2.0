@@ -12,7 +12,7 @@ type DetailsProps = {
   setIsCalendarExpanded: (isCalendarExpanded: boolean) => void;
   setQuantity: (newQuantity: number) => void;
   setRecurrence: (newRecurrence: string) => void;
-  setAddress: (addressId: number) => void;
+  setAddressId: (addressId: number) => void;
 };
 
 const Details = ({
@@ -20,7 +20,7 @@ const Details = ({
   setIsCalendarExpanded,
   setQuantity,
   setRecurrence,
-  setAddress,
+  setAddressId,
 }: DetailsProps) => {
   const handleOnClick = () => {
     setIsCalendarExpanded(!isCalendarExpanded);
@@ -37,7 +37,7 @@ const Details = ({
         setExternalBooleanState={setIsCalendarExpanded}
       >
         <div className="mt-3 w-full space-y-3">
-          <AddressPicker setAddress={setAddress} />
+          <AddressPicker setAddressId={setAddressId} />
           <RecurrencePicker setRecurrence={setRecurrence} />
         </div>
       </SingleAccordionWithInverseExternalState>

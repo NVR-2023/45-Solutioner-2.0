@@ -127,7 +127,7 @@ const BookServiceModal = () => {
           setIsCalendarExpanded={setIsCalendarExpanded}
           setQuantity={setQuantity}
           setRecurrence={setRecurrence}
-          setAddress={setAddress}
+          setAddressId={setAddress}
         />
         <div className="">
           <SubmitWithoutFeedbackSegment
