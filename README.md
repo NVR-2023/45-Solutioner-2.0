@@ -13,7 +13,7 @@ A SPA Full Stack app that allows users and service providers to connect and book
 ## Stack
 
 Front End: Typescript 5.3, Next.js 14.1, Tailwind CSS 3.3  
-Back End: Drizzle ORM 0.2, and Vercel PostgreSQL database
+Back End: Drizzle ORM 0.2, Lucia Auth 3.1, and Vercel PostgreSQL database
 
 ## Authors
 
