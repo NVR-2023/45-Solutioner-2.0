@@ -22,9 +22,9 @@ const NavbarPrivate = ({ areNavbarsExpanded }: NavbarPrivateProps) => {
     <motion.nav
       variants={variants}
       initial="initial"
-      animate={areNavbarsExpanded ? "animate" : "exit"} // Use exit animation when collapsing
+      animate={areNavbarsExpanded ? "animate" : "exit"}
       exit="exit"
-      className=" h-10 rounded bg-neutral-300 px-10"
+      className=" smooth-theme-transition h-10 rounded bg-neutral-300 px-10 dark:bg-blue-400 dark:text-white"
     >
       <AnimatePresence>
         {areNavbarsExpanded && (

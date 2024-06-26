@@ -92,7 +92,10 @@ const NavbarBookServicesContent = ({
   }, [allServicesStaticData]);
 
   return (
-    <motion.div key="bookServicesContentNavbar" className="relative">
+    <motion.div
+      key="bookServicesContentNavbar"
+      className="smooth-theme-transition relative"
+    >
       <div className="absolute left-2 top-1/2 z-50 flex -translate-y-1/2">
         <CollapseToggle
           areNavbarsExpanded={areNavbarsExpanded}
