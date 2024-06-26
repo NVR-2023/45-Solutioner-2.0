@@ -378,6 +378,7 @@ export const serviceRequests = pgTable("service_requests", {
   serviceId: integer("service_id")
     .notNull()
     .references(() => services.id),
+  quantity: integer("quantity"),
   timeOfService: time("time_of_service"),
   dateOfService: date("date_of_service"),
   recurrence: serviceRecurrenceEnum("service_recurrence"),

@@ -15,6 +15,13 @@
       "when": 1718748847458,
       "tag": "0001_giant_kate_bishop",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "6",
+      "when": 1719407249874,
+      "tag": "0002_striped_puma",
+      "breakpoints": true
     }
   ]
 }
