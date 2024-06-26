@@ -3,6 +3,7 @@
 
 Solutioner, a home services app
 
+[!IMPORTANT]
 ## Description
 
 A SPA Full Stack app that allows users and service providers to connect and book appointments
