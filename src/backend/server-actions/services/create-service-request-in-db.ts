@@ -1,6 +1,11 @@
+"use server";
+
 import { db } from "@/backend/database/drizzle/db";
 import { serviceRequests } from "@/backend/database/schema/schema";
-import { RecurrenceType, BookServiceModalObjectType } from "@/frontend/sections/book-service-modal/book-service-modal";
+import {
+  RecurrenceType,
+  BookServiceModalObjectType,
+} from "@/frontend/sections/book-service-modal/book-service-modal";
 
 export const createServiceRequestInDb = async (
   newServiceRequest: BookServiceModalObjectType,
@@ -14,7 +19,9 @@ export const createServiceRequestInDb = async (
         dateOfService: newServiceRequest.date!,
         timeOfService: newServiceRequest.time!,
         userAddressId: newServiceRequest.addressId!,
+        quantity: newServiceRequest.quantity!,
         recurrence: newServiceRequest.recurrence as RecurrenceType,
+        status: "requested",
       })
       .returning();
 

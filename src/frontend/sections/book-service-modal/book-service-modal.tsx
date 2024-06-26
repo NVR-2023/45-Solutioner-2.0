@@ -9,6 +9,8 @@ import ContentAreaForCalendarAndTimePicker from "./sub-components/content-area-f
 import Details from "./sub-components/details";
 import SubmitWithoutFeedbackSegment from "@/frontend/components/ui/modal-components/submit-without-feedback-segment";
 
+import { createServiceRequestInDb } from "@/backend/server-actions/services/create-service-request-in-db";
+
 export type RecurrenceType = "once" | "daily" | "weekly" | "monthly";
 export type BookServiceModalObjectType = {
   userId: string | null;
@@ -100,8 +102,10 @@ const BookServiceModal = () => {
     setIsCalendarExpanded(true);
   };
 
-  const handleOnSubmit = () => {
-    alert(JSON.stringify(bookServiceObject));
+  const handleOnSubmit = async () => {
+    const result = await createServiceRequestInDb(bookServiceObject);
+    if (result) {alert("success")}
+    else {alert("error")}
   };
 
   return (
