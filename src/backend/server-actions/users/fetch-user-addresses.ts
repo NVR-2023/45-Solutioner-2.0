@@ -9,7 +9,7 @@ export const fetchUserAddresses = async (userId: string) => {
     });
     return existingUserAddresses;
   } catch (error) {
-    console.log("Error fetching userAddresses", error);
+    console.error("Error fetching userAddresses:", error);
     throw new Error("Error fetching userAddresses");
   }
 };

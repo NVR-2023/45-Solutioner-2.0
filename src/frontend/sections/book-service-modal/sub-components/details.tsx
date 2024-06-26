@@ -7,11 +7,13 @@ import AddressPicker from "./address-picker";
 import ModalSubareaShell from "@/frontend/components/ui/modal-components/modal-subarea-shell";
 import SingleAccordionWithInverseExternalState from "@/frontend/components/ui/single-accordion-with-inverse-external-state";
 
+import { RecurrenceType } from "../book-service-modal";
+
 type DetailsProps = {
   isCalendarExpanded: boolean;
   setIsCalendarExpanded: (isCalendarExpanded: boolean) => void;
   setQuantity: (newQuantity: number) => void;
-  setRecurrence: (newRecurrence: string) => void;
+  setRecurrence: (newRecurrence: RecurrenceType) => void;
   setAddressId: (addressId: number) => void;
 };
 

@@ -9,14 +9,15 @@ import ContentAreaForCalendarAndTimePicker from "./sub-components/content-area-f
 import Details from "./sub-components/details";
 import SubmitWithoutFeedbackSegment from "@/frontend/components/ui/modal-components/submit-without-feedback-segment";
 
-type bookServiceModalObjectType = {
+export type RecurrenceType = "once" | "daily" | "weekly" | "monthly";
+export type BookServiceModalObjectType = {
   userId: string | null;
   serviceId: number | null;
   date: string | null;
   time: string | null;
   addressId: number | null;
   quantity: number | null;
-  recurrence: string | null;
+  recurrence: RecurrenceType;
 };
 
 const BookServiceModal = () => {
@@ -26,14 +27,14 @@ const BookServiceModal = () => {
   const userDetails = useUserDetailsContext();
 
   const [bookServiceObject, setBookServiceObject] =
-    useState<bookServiceModalObjectType>({
+    useState<BookServiceModalObjectType>({
       userId: null,
       serviceId: null,
       date: null,
       time: null,
       addressId: null,
       quantity: null,
-      recurrence: null,
+      recurrence: "once",
     });
 
   useEffect(() => {
@@ -73,7 +74,7 @@ const BookServiceModal = () => {
     }));
   };
 
-  const setRecurrence = (newRecurrence: string) => {
+  const setRecurrence = (newRecurrence: RecurrenceType) => {
     setBookServiceObject((previousBookServiceObject) => ({
       ...previousBookServiceObject,
       recurrence: newRecurrence,
