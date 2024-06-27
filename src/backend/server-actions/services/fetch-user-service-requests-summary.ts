@@ -4,7 +4,7 @@ import { db } from "@/backend/database/drizzle/db";
 import { serviceRequests, services } from "@/backend/database/schema/schema";
 import { eq, and, gte } from "drizzle-orm";
 
-export const fetchFutureUserServiceRequestsSummary = async (userId: string) => {
+export const fetchUserServiceRequestsSummary = async (userId: string) => {
   try {
     const currentDateFormattedString = new Date().toISOString().split("T")[0];
 
@@ -26,7 +26,7 @@ export const fetchFutureUserServiceRequestsSummary = async (userId: string) => {
       )
       .orderBy(serviceRequests.dateOfService);
 
-    let serviceRequestsSummary: Record<string, string | number>[] = [];
+    let userServiceRequestsSummary: Record<string, string | number>[] = [];
 
     userAllFutureServiceRequests.forEach((serviceRequest, currentIndex) => {
       if (
@@ -34,30 +34,30 @@ export const fetchFutureUserServiceRequestsSummary = async (userId: string) => {
         serviceRequest.dateOfService !==
           userAllFutureServiceRequests[currentIndex - 1].dateOfService
       ) {
-        serviceRequestsSummary.push(
+        userServiceRequestsSummary.push(
           serviceRequest as Record<string, string | number>,
         );
       } else {
-        const previousIndex = serviceRequestsSummary.length - 1;
-        serviceRequestsSummary[previousIndex].category = "several";
+        const previousIndex = userServiceRequestsSummary.length - 1;
+        userServiceRequestsSummary[previousIndex].category = "several";
 
         if (
-          serviceRequestsSummary[previousIndex].recurrence !==
+          userServiceRequestsSummary[previousIndex].recurrence !==
           userAllFutureServiceRequests[currentIndex].recurrence
         ) {
-          serviceRequestsSummary[previousIndex].recurrence = "several";
+          userServiceRequestsSummary[previousIndex].recurrence = "several";
         }
 
         if (
-          serviceRequestsSummary[previousIndex].userAddressId !==
+          userServiceRequestsSummary[previousIndex].userAddressId !==
           userAllFutureServiceRequests[currentIndex].userAddressId
         ) {
-          serviceRequestsSummary[previousIndex].userAddressId = "several";
+          userServiceRequestsSummary[previousIndex].userAddressId = "several";
         }
       }
     });
 
-    return serviceRequestsSummary;
+    return userServiceRequestsSummary;
   } catch (error) {
     console.error("Error fetching service requests summary: ", error);
     throw new Error("Error fetching service requests summary");

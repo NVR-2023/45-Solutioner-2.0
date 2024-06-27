@@ -1,11 +1,15 @@
-import { useMemo } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { motion } from "framer-motion";
 import { convertDateToYearString } from "@/utils/functions/date-time/convert-date-to-year-string";
 import { convertDateToHourString } from "@/utils/functions/date-time/convert-date-to-hour-string";
 import { increaseHourByTwoBeyondTwentyFour } from "@/utils/functions/date-time/increase-hour-by-two-beyond-twenty-four";
 import { roundupToNearestHalfHour } from "@/utils/functions/date-time/roundup-to-nearest-half-hour-string";
 import { getLastBookableHour } from "@/utils/functions/date-time/get-last-bookable-hour";
+
 import { useBookServiceModalContext } from "@/frontend/contexts/use-book-service-modal-context";
+import { useUserDetailsContext } from "@/frontend/contexts/use-user-details";
+
+import { fetchUserServiceRequestsSummary } from "@/backend/server-actions/services/fetch-user-service-requests-summary";
 
 const buttonVariants = {
   initial: {
@@ -31,6 +35,11 @@ const Calendar = ({ date, setDate, isCalendarExpanded }: calendarProps) => {
   const { bookServiceModalContext } = useBookServiceModalContext();
   const duration = bookServiceModalContext.duration;
 
+  const { userId } = useUserDetailsContext();
+  const [userServiceRequestsSummary, setUserServiceRequestsSummary] = useState<
+    Record<string, string | number>[]
+  >([]);
+
   const DAYS_OF_THE_WEEK_ABBREVIATIONS = [
     "sun",
     "mon",
@@ -40,6 +49,28 @@ const Calendar = ({ date, setDate, isCalendarExpanded }: calendarProps) => {
     "fri",
     "sat",
   ] as const;
+
+const serviceCategoryColorMap = new Map([
+  ["cleaning", "bg-[#32CD32]"],
+  ["wardrobe", "bg-[#FF0000]"],
+  ["plumbing", "bg-[#AFEEEE]"],
+  ["electrical", "bg-[#FFFF00]"],
+  ["hvac", "bg-[#A020F0]"],
+  ["security", "bg-[#9400D3]"],
+  ["handyman", "bg-[#EE4B2B]"],
+  ["patching", "bg-[#DFFF00]"],
+  ["gardening", "bg-[#008000]"],
+  ["extermination", "bg-[#008080]"],
+  ["eventing", "bg-[#A020F0]"],
+  ["companionship", "bg-[#FF69B5]"],
+  ["grooming", "bg-[#000080]"],
+  ["nursing", "bg-[#86efac]"],
+  ["nannying", "bg-[#00FFFF]"],
+  ["petcare", "bg-[#964B00]"],
+  ["wellness", "bg-[#FFC0CB]"],
+  ["several", "bg-transparent border-[1.2px] border-black "],
+]);
+
 
   const currentDate = useMemo(() => {
     return new Date();
@@ -81,6 +112,21 @@ const Calendar = ({ date, setDate, isCalendarExpanded }: calendarProps) => {
 
   const lastBookableHour = useMemo(() => {
     return getLastBookableHour(duration!);
+  }, []);
+
+  useEffect(() => {
+    const fetchCurrentUserServiceRequestsSummary = async () => {
+      try {
+        const serviceRequestsSummary = await fetchUserServiceRequestsSummary(
+          userId!,
+        );
+        setUserServiceRequestsSummary(serviceRequestsSummary);
+      } catch (error) {
+        console.error("Error fetching service requests summary:", error);
+        return null;
+      }
+    };
+    fetchCurrentUserServiceRequestsSummary();
   }, []);
 
   const handleOnClick = (selectedDate: Date) => {
@@ -126,19 +172,26 @@ const Calendar = ({ date, setDate, isCalendarExpanded }: calendarProps) => {
                     movingDate.setHours(0, 0, 0, 0);
                     const dayOfTheMonth = movingDate.getDate();
 
-                    const isCurrentDate =
-                      convertDateToYearString(currentDate) ===
+                    const currentDateString =
+                      convertDateToYearString(currentDate);
+                    const movingDateString =
                       convertDateToYearString(movingDate);
+
+                    const isCurrentDate =
+                      currentDateString === movingDateString;
 
                     const isDayUnbookable =
                       movingDate < currentDate ||
                       movingDate > lastBookableDay! ||
-                      (convertDateToYearString(movingDate) ===
-                        convertDateToYearString(currentDate) &&
+                      (movingDateString === currentDateString &&
                         currentFirstBookableHour > lastBookableHour);
 
-                    const isSelectedBookDate =
-                      convertDateToYearString(movingDate) === date;
+                    const isSelectedBookDate = movingDateString === date;
+                    const indexOfCurrentDayInServiceRequestSummary =
+                      userServiceRequestsSummary.findLastIndex(
+                        (serviceRequest) =>
+                          serviceRequest.dateOfService === movingDateString,
+                      );
 
                     return (
                       <motion.div
@@ -162,6 +215,14 @@ const Calendar = ({ date, setDate, isCalendarExpanded }: calendarProps) => {
                             layoutId="selectedBookDate"
                             className="absolute left-0 top-0 h-full w-full rounded-[2px] bg-white bg-opacity-40"
                           ></motion.div>
+                        )}
+
+                        {indexOfCurrentDayInServiceRequestSummary !== -1 && (
+                          <div className="absolute left-0.5 top-0 flex h-full items-center">
+                            <div
+                              className={`${ userServiceRequestsSummary[indexOfCurrentDayInServiceRequestSummary].recurrence === "once" ? "rounded-none" : "rounded-full"} h-1.5 w-1.5 ${serviceCategoryColorMap.get(userServiceRequestsSummary[indexOfCurrentDayInServiceRequestSummary].category as string)}`}
+                            ></div>
+                          </div>
                         )}
                       </motion.div>
                     );

@@ -11,6 +11,7 @@ import SubmitWithoutFeedbackSegment from "@/frontend/components/ui/modal-compone
 
 import { createServiceRequestInDb } from "@/backend/server-actions/services/create-service-request-in-db";
 
+import { fetchUserServiceRequestsSummary } from "@/backend/server-actions/services/fetch-user-service-requests-summary";
 export type RecurrenceType = "once" | "daily" | "weekly" | "monthly";
 export type BookServiceModalObjectType = {
   userId: string | null;
@@ -25,8 +26,7 @@ export type BookServiceModalObjectType = {
 const BookServiceModal = () => {
   const { bookServiceModalContext, setBookServiceModalContext } =
     useBookServiceModalContext();
-
-  const userDetails = useUserDetailsContext();
+  const { userId } = useUserDetailsContext();
 
   const [bookServiceObject, setBookServiceObject] =
     useState<BookServiceModalObjectType>({
@@ -39,15 +39,15 @@ const BookServiceModal = () => {
       recurrence: "once",
     });
 
+  const [isCalendarExpanded, setIsCalendarExpanded] = useState<boolean>(true);
+
   useEffect(() => {
     setBookServiceObject((previousBookServiceObject) => ({
       ...previousBookServiceObject,
-      userId: userDetails.userId,
+      userId: userId,
       serviceId: bookServiceModalContext.id,
     }));
-  }, [bookServiceModalContext.id, userDetails.userId]);
-
-  const [isCalendarExpanded, setIsCalendarExpanded] = useState<boolean>(true);
+  }, [bookServiceModalContext.id, userId]);
 
   useEffect(() => {
     if (bookServiceModalContext.isBookServiceModalOpen) {
@@ -104,8 +104,11 @@ const BookServiceModal = () => {
 
   const handleOnSubmit = async () => {
     const result = await createServiceRequestInDb(bookServiceObject);
-    if (result) {alert("success")}
-    else {alert("error")}
+    if (result) {
+      alert("success");
+    } else {
+      alert("error");
+    }
   };
 
   return (
