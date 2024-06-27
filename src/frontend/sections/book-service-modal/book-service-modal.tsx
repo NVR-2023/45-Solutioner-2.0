@@ -10,6 +10,7 @@ import Details from "./sub-components/details";
 import SubmitWithoutFeedbackSegment from "@/frontend/components/ui/modal-components/submit-without-feedback-segment";
 
 import { createServiceRequestInDb } from "@/backend/server-actions/services/create-service-request-in-db";
+import { wait } from "@/utils/functions/wait";
 
 export type RecurrenceType = "once" | "daily" | "weekly" | "monthly";
 export type BookServiceModalObjectType = {
@@ -108,6 +109,7 @@ const BookServiceModal = ({ openFeedbackModal }: BookServiceModalProps) => {
     const result = await createServiceRequestInDb(bookServiceObject);
     if (result) {
       handleOnCloseModal();
+      wait(800);
       openFeedbackModal();
     }
   };
