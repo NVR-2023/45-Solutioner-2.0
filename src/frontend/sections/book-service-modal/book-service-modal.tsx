@@ -25,7 +25,7 @@ export type BookServiceModalObjectType = {
 
 type BookServiceModalProps = {
   openFeedbackModal: () => void;
-} 
+};
 const BookServiceModal = ({ openFeedbackModal }: BookServiceModalProps) => {
   const { bookServiceModalContext, setBookServiceModalContext } =
     useBookServiceModalContext();
@@ -100,7 +100,7 @@ const BookServiceModal = ({ openFeedbackModal }: BookServiceModalProps) => {
     }));
   };
 
-  const handleOnCloseModal = () => {
+  const handleOnCloseBookModal = () => {
     setIsBookServiceModalOpen(false);
     setIsCalendarExpanded(true);
   };
@@ -108,8 +108,8 @@ const BookServiceModal = ({ openFeedbackModal }: BookServiceModalProps) => {
   const handleOnSubmit = async () => {
     const result = await createServiceRequestInDb(bookServiceObject);
     if (result) {
-      handleOnCloseModal();
-      wait(800);
+      handleOnCloseBookModal();
+      await wait(500);
       openFeedbackModal();
     }
   };
@@ -143,7 +143,7 @@ const BookServiceModal = ({ openFeedbackModal }: BookServiceModalProps) => {
         <div className="">
           <SubmitWithoutFeedbackSegment
             label="book"
-            onCancel={handleOnCloseModal}
+            onCancel={handleOnCloseBookModal}
             onSubmit={handleOnSubmit}
           />
         </div>

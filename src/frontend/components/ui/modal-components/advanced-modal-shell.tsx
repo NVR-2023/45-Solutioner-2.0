@@ -25,7 +25,7 @@ const variants = {
     transformOrigin: "center center",
     transition: {
       ease: "easeOut",
-      duration: 0.12,
+      duration: 0.18,
     },
   },
 };
