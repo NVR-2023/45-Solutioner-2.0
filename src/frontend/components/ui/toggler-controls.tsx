@@ -11,7 +11,7 @@ const ToggleControls = ({
 }: TogglerControlsProps) => {
   return (
     <button
-      className={` hover:bg-neutral-700  relative flex h-4 w-9 items-center rounded-[2px]	 px-1 transition-all duration-300 
+      className={`relative flex h-4 w-9 items-center rounded-[2px]	 px-1 transition-all duration-300 
             ${currentIndex === 0 ? "justify-start bg-neutral-400 text-neutral-200" : "justify-end bg-neutral-100 text-neutral-400"}`}
       onClick={handleOnToggle}
     >
