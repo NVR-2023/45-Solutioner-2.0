@@ -218,7 +218,7 @@ const serviceCategoryColorMap = new Map([
                         )}
 
                         {indexOfCurrentDayInServiceRequestSummary !== -1 && (
-                          <div className="absolute left-0.5 top-0 flex h-full items-center">
+                          <div className="absolute left-1 top-0 flex h-full items-center">
                             <div
                               className={`${ userServiceRequestsSummary[indexOfCurrentDayInServiceRequestSummary].recurrence === "once" ? "rounded-none" : "rounded-full"} h-1.5 w-1.5 ${serviceCategoryColorMap.get(userServiceRequestsSummary[indexOfCurrentDayInServiceRequestSummary].category as string)}`}
                             ></div>
