@@ -50,27 +50,26 @@ const Calendar = ({ date, setDate, isCalendarExpanded }: calendarProps) => {
     "sat",
   ] as const;
 
-const serviceCategoryColorMap = new Map([
-  ["cleaning", "bg-[#32CD32]"],
-  ["wardrobe", "bg-[#FF0000]"],
-  ["plumbing", "bg-[#AFEEEE]"],
-  ["electrical", "bg-[#FFFF00]"],
-  ["hvac", "bg-[#A020F0]"],
-  ["security", "bg-[#9400D3]"],
-  ["handyman", "bg-[#EE4B2B]"],
-  ["patching", "bg-[#DFFF00]"],
-  ["gardening", "bg-[#008000]"],
-  ["extermination", "bg-[#008080]"],
-  ["eventing", "bg-[#A020F0]"],
-  ["companionship", "bg-[#FF69B5]"],
-  ["grooming", "bg-[#000080]"],
-  ["nursing", "bg-[#86efac]"],
-  ["nannying", "bg-[#00FFFF]"],
-  ["petcare", "bg-[#964B00]"],
-  ["wellness", "bg-[#FFC0CB]"],
-  ["several", "bg-transparent border-[1.2px] border-black "],
-]);
-
+  const serviceCategoryColorMap = new Map([
+    ["cleaning", "bg-[#32CD32]"],
+    ["wardrobe", "bg-[#FF0000]"],
+    ["plumbing", "bg-[#AFEEEE]"],
+    ["electrical", "bg-[#FFFF00]"],
+    ["hvac", "bg-[#A020F0]"],
+    ["security", "bg-[#9400D3]"],
+    ["handyman", "bg-[#EE4B2B]"],
+    ["patching", "bg-[#DFFF00]"],
+    ["gardening", "bg-[#008000]"],
+    ["extermination", "bg-[#008080]"],
+    ["eventing", "bg-[#A020F0]"],
+    ["companionship", "bg-[#FF69B5]"],
+    ["grooming", "bg-[#000080]"],
+    ["nursing", "bg-[#86efac]"],
+    ["nannying", "bg-[#00FFFF]"],
+    ["petcare", "bg-[#964B00]"],
+    ["wellness", "bg-[#FFC0CB]"],
+    ["several", "bg-white border-[1.2px] border-neutral-700 "],
+  ]);
 
   const currentDate = useMemo(() => {
     return new Date();
@@ -218,11 +217,20 @@ const serviceCategoryColorMap = new Map([
                         )}
 
                         {indexOfCurrentDayInServiceRequestSummary !== -1 && (
-                          <div className="absolute left-[3px] top-0 flex h-full items-center">
+                          <motion.div
+                            initial={{ x: -100 }}
+                            animate={{ x: 0 }}
+                            transition={{
+                              delay:
+                                indexOfCurrentDayInServiceRequestSummary * 0.1, // Stagger effect delay
+                              duration: 0.3,
+                            }}
+                            className="absolute left-0.5 top-0 flex h-full items-center"
+                          >
                             <div
-                              className={`${ userServiceRequestsSummary[indexOfCurrentDayInServiceRequestSummary].recurrence === "once" ? "rounded-none" : "rounded-full"} h-1.5 w-1.5 ${serviceCategoryColorMap.get(userServiceRequestsSummary[indexOfCurrentDayInServiceRequestSummary].category as string)}`}
+                              className={`${userServiceRequestsSummary[indexOfCurrentDayInServiceRequestSummary].recurrence === "once" ? "rounded-none" : "rounded-full"} h-1.5 w-1.5 ${serviceCategoryColorMap.get(userServiceRequestsSummary[indexOfCurrentDayInServiceRequestSummary].category as string)}`}
                             ></div>
-                          </div>
+                          </motion.div>
                         )}
                       </motion.div>
                     );

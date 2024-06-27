@@ -16,7 +16,7 @@ const CyclicRecoilSlider = ({
   const widthClasses = new Map([
     ["sm", "w-3"],
     ["md", "w-9"],
-    ["lg", "w-12"],
+    ["lg", "w-16"],
   ]);
 
   const currentWIdthClass = widthClasses.get(size);

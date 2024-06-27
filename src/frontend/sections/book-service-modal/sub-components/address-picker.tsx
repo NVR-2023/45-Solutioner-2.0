@@ -10,7 +10,7 @@ type AddressPickerProps = {
 };
 
 const AddressPicker = ({ setAddressId }: AddressPickerProps) => {
-  const ADDRESS_TYPES = ["Main", "Second"];
+  const ADDRESS_TYPES = ["Main", "Secondary"];
   const [currentIndex, setCurrentIndex] = useState(0);
   const [userAddressesIds, setUserAddressesIds] = useState<(number | null)[]>(
     [],
