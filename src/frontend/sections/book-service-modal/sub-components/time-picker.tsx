@@ -84,7 +84,7 @@ const TimePicker = ({
           </div>
         </div>
         <AnimatePresence>
-          {isCalendarExpanded && (
+          { (isCalendarExpanded && bookableHoursLength > 1 ) && (
             <motion.div
               variants={variants}
               initial="initial"
