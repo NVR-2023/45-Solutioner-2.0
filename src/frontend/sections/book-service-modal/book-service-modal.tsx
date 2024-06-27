@@ -11,7 +11,6 @@ import SubmitWithoutFeedbackSegment from "@/frontend/components/ui/modal-compone
 
 import { createServiceRequestInDb } from "@/backend/server-actions/services/create-service-request-in-db";
 
-import { fetchUserServiceRequestsSummary } from "@/backend/server-actions/services/fetch-user-service-requests-summary";
 export type RecurrenceType = "once" | "daily" | "weekly" | "monthly";
 export type BookServiceModalObjectType = {
   userId: string | null;
@@ -23,7 +22,10 @@ export type BookServiceModalObjectType = {
   recurrence: RecurrenceType;
 };
 
-const BookServiceModal = () => {
+type BookServiceModalProps = {
+  openFeedbackModal: () => void;
+} 
+const BookServiceModal = ({ openFeedbackModal }: BookServiceModalProps) => {
   const { bookServiceModalContext, setBookServiceModalContext } =
     useBookServiceModalContext();
   const { userId } = useUserDetailsContext();
@@ -105,9 +107,8 @@ const BookServiceModal = () => {
   const handleOnSubmit = async () => {
     const result = await createServiceRequestInDb(bookServiceObject);
     if (result) {
-      alert("success");
-    } else {
-      alert("error");
+      handleOnCloseModal();
+      openFeedbackModal();
     }
   };
 

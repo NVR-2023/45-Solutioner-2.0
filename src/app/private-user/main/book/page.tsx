@@ -16,12 +16,21 @@ import ContentAreaBookPage from "@/frontend/sections/content-area-book-page/cont
 
 import GreetingModal from "@/frontend/sections/greeting-modal/greeting-modal";
 import BookServiceModal from "@/frontend/sections/book-service-modal/book-service-modal";
+import FeedbackModal from "@/frontend/sections/feedback-modal/feedback-modal";
 
 const Book = () => {
   const [areNavbarsExpanded, setAreNavbarsExpanded] = useState(true);
   const [isGreetingModalShown, setIsGreetingModalShown] = useState(false);
-  const closeGreetingsModal: () => void = () => {
+  const closeGreetingsModal = () => {
     setIsGreetingModalShown(false);
+  };
+
+  const [isFeedbackModalOpen, setIsFeedbackModalOpen] = useState(false);
+  const openFeedbackModal = () => {
+    setIsFeedbackModalOpen(true);
+  };
+  const closeFeedbackModal = () => {
+    setIsFeedbackModalOpen(false);
   };
 
   const [allServicesStaticData, setAllServicesStaticData] =
@@ -165,8 +174,16 @@ const Book = () => {
             closeGreetingsModal={closeGreetingsModal}
           />
         </div>
+
+        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transform">
+          <FeedbackModal
+            isFeedbackModalOpen={isFeedbackModalOpen}
+            closeFeedbackModal={closeFeedbackModal}
+          />
+        </div>
+
         <div className="z-50">
-          <BookServiceModal />
+          <BookServiceModal openFeedbackModal={openFeedbackModal} />
         </div>
       </div>
     </LayoutGroup>
