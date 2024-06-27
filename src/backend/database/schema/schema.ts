@@ -379,8 +379,8 @@ export const serviceRequests = pgTable("service_requests", {
     .notNull()
     .references(() => services.id),
   quantity: integer("quantity"),
-  timeOfService: time("time_of_service"),
-  dateOfService: date("date_of_service"),
+  timeOfService: varchar("time_of_service", { length: 5 }),
+  dateOfService: varchar("date_of_service", { length: 10 }),
   recurrence: serviceRecurrenceEnum("service_recurrence"),
   verbalPassword: varchar("verbal_password", { length: 25 }),
   qrPassword: text("qr_password"),

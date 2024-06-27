@@ -46,5 +46,5 @@
 
 *:focus,
 *:active {
-  @apply border-none outline-none;
+  @apply outline-none;
 }
