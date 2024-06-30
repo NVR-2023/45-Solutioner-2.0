@@ -1,6 +1,6 @@
-import { useState } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { ImageLoadingStatuses } from "@/utils/data/imageLoadingStatuses";
 
 const variants = {
   initial: {
@@ -9,30 +9,26 @@ const variants = {
   animate: {
     opacity: 1,
     transition: {
-      duration: .9,
+      duration: 0.9,
     },
   },
 };
 
-type HomepageImageWrapperProps = {
+type HomepageImageContainerPrProps = {
   src: string;
   alt: string;
+  imageLoadingStatus: ImageLoadingStatuses;
+  setImageLoadingStatus: (imageLoadingStatus: ImageLoadingStatuses) => void;
 };
 
-const HomepageImageWrapper = ({ src, alt }: HomepageImageWrapperProps) => {
-  enum ImageLoadingStatuses {
-    PENDING = "pending",
-    LOADED = "loaded",
-    FAILED = "failed",
-  }
-
-  const [imageLoadingStatus, setImageLoadingStatus] =
-    useState<ImageLoadingStatuses>(ImageLoadingStatuses.PENDING);
-
+const HomepageImageContainer = ({
+  src,
+  alt,
+  imageLoadingStatus,
+  setImageLoadingStatus,
+}: HomepageImageContainerPrProps) => {
   return (
-    <motion.div variants={variants} initial="initial" animate="animate"
-  
-    >
+    <motion.div variants={variants} initial="initial" animate="animate">
       {(imageLoadingStatus === ImageLoadingStatuses.PENDING ||
         imageLoadingStatus === ImageLoadingStatuses.LOADED) && (
         <div className="relative">
@@ -69,4 +65,4 @@ const HomepageImageWrapper = ({ src, alt }: HomepageImageWrapperProps) => {
   );
 };
 
-export default HomepageImageWrapper;
+export default HomepageImageContainer;
