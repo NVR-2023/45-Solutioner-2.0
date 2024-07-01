@@ -1,15 +1,25 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import HomepageImageContainer from "@/frontend/components/ui/homepage-image-container";
 import { ImageLoadingStatuses } from "@/utils/data/imageLoadingStatuses";
 
+import { SectionsHomepageProps } from "@/types/component-props-types";
+import { useInView } from "react-intersection-observer";
 
-
-const ServicesHomeSection = () => {
+const ServicesHomeSection = ({ setCurrentSection }: SectionsHomepageProps) => {
+ 
   const [imageLoadingStatus, setImageLoadingStatus] =
     useState<ImageLoadingStatuses>(ImageLoadingStatuses.PENDING);
 
+  const { ref, inView } = useInView();
+
+  useEffect(() => {
+    if (inView) {
+      setCurrentSection("Services");
+    }
+  }, [inView]);
+
   return (
-    <section id="services" className="relative bg-neutral-300">
+    <section ref={ref} id="services" className="relative bg-neutral-300">
       <HomepageImageContainer
         src="https://res.cloudinary.com/dzow47vf1/image/upload/v1714472610/A%20-%20Solutioner%202.0/plumbing_pxvrbd.webp"
         alt="plumbing"

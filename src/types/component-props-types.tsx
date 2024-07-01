@@ -57,3 +57,7 @@ export type NavbarHomepageProps = {
   currentSection: HomeSectionType;
   setCurrentSection: (section: HomeSectionType) => void;
 };
+
+export type SectionsHomepageProps = {
+  setCurrentSection: (section: HomeSectionType) => void;
+};
