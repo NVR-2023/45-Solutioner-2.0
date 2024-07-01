@@ -54,6 +54,6 @@ export type TextComponentProps = {
 export type HomeSectionType = (typeof HOMEPAGE_SECTIONS)[number];
 
 export type NavbarHomepageProps = {
-  activeSection: HomeSectionType;
-  setActiveSection: (section: HomeSectionType) => void;
+  currentSection: HomeSectionType;
+  setCurrentSection: (section: HomeSectionType) => void;
 };

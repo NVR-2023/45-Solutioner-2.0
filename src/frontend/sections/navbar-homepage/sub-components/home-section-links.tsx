@@ -8,12 +8,11 @@ import { HomeSectionType } from "@/types/component-props-types";
 import { NavbarHomepageProps } from "@/types/component-props-types";
 
 const HomeSectionLinks = ({
-  activeSection,
-  setActiveSection,
+  currentSection,
+  setCurrentSection,
 }: NavbarHomepageProps) => {
-  
   const handleChangeSection = (section: HomeSectionType) => {
-    setActiveSection(section);
+    setCurrentSection(section);
   };
 
   return (
@@ -35,7 +34,7 @@ const HomeSectionLinks = ({
             >
               <NavbarTab text={link} />
             </Link>
-            {link === activeSection && (
+            {link === currentSection && (
               <motion.div
                 layoutId="activeSectionUnderline"
                 transition={{ duration: 0.3 }}

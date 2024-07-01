@@ -11,7 +11,7 @@ import HOMEPAGE_SECTIONS from "@/utils/data/homepage-sections";
 import { HomeSectionType } from "@/types/component-props-types";
 
 export default function Home() {
-  const [activeSection, setActiveSection] =
+  const [currentSection, setCurrentSection] =
     useState<HomeSectionType>("Services");
 
   useInstantScrollToTop();
@@ -20,8 +20,8 @@ export default function Home() {
     <main id="homePage" className="">
       <div className="flex w-full justify-center">
         <NavbarHomepage
-          activeSection={activeSection}
-          setActiveSection={setActiveSection}
+          currentSection={currentSection}
+          setCurrentSection={setCurrentSection}
         />
       </div>
       <div className="relative border-b-2 border-neutral-300">

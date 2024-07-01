@@ -4,8 +4,8 @@ import AuthSegment from "./sub-components/auth-segment";
 import { NavbarHomepageProps } from "@/types/component-props-types";
 
 const NavbarHomepage = ({
-  activeSection,
-  setActiveSection,
+  currentSection,
+  setCurrentSection,
 }: NavbarHomepageProps) => {
   return (
     <header className="relative z-50 flex w-full items-center justify-center bg-purple-400">
@@ -15,8 +15,8 @@ const NavbarHomepage = ({
             <LogoSegment />
             <div className="hidden md:flex">
               <HomeSectionLinks
-                activeSection={activeSection}
-                setActiveSection={setActiveSection}
+                currentSection={currentSection}
+                setCurrentSection={setCurrentSection}
               />
             </div>
           </div>
