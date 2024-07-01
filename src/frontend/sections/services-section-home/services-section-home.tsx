@@ -3,8 +3,9 @@ import HomepageImageContainer from "@/frontend/components/ui/homepage-image-cont
 import { ImageLoadingStatuses } from "@/utils/data/imageLoadingStatuses";
 
 import { SectionsHomepageProps } from "@/types/component-props-types";
-
 import { motion } from "framer-motion";
+
+import ServicesSectionContent from "./sub-components/services-section-content";
 
 const ServicesHomeSection = ({ setCurrentSection }: SectionsHomepageProps) => {
   const handleOnViewportEnter = () => {
@@ -13,6 +14,7 @@ const ServicesHomeSection = ({ setCurrentSection }: SectionsHomepageProps) => {
 
   const [imageLoadingStatus, setImageLoadingStatus] =
     useState<ImageLoadingStatuses>(ImageLoadingStatuses.PENDING);
+
   return (
     <motion.section
       onViewportEnter={handleOnViewportEnter}
@@ -27,8 +29,8 @@ const ServicesHomeSection = ({ setCurrentSection }: SectionsHomepageProps) => {
       />
 
       {imageLoadingStatus === ImageLoadingStatuses.LOADED && (
-        <div className="absolute left-[5%] top-[15%] flex w-1/3">
-          <div className="w-1/2 bg-purple-400">2</div>
+        <div className="absolute left-[5%] top-[21%] flex w-1/3">
+          <ServicesSectionContent />
         </div>
       )}
     </motion.section>
