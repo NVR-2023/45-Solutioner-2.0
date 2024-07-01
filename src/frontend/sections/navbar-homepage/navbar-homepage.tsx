@@ -1,8 +1,12 @@
 import LogoSegment from "../../components/ui/navbar-components/logo-segment";
 import HomeSectionLinks from "./sub-components/home-section-links";
 import AuthSegment from "./sub-components/auth-segment";
+import { NavbarHomepageProps } from "@/types/component-props-types";
 
-const NavbarHomepage = () => {
+const NavbarHomepage = ({
+  activeSection,
+  setActiveSection,
+}: NavbarHomepageProps) => {
   return (
     <header className="relative z-50 flex w-full items-center justify-center bg-purple-400">
       <nav className="fixed top-3 flex w-full items-center px-8  ">
@@ -10,7 +14,10 @@ const NavbarHomepage = () => {
           <div className="flex space-x-6">
             <LogoSegment />
             <div className="hidden md:flex">
-              <HomeSectionLinks />
+              <HomeSectionLinks
+                activeSection={activeSection}
+                setActiveSection={setActiveSection}
+              />
             </div>
           </div>
           <div className="">

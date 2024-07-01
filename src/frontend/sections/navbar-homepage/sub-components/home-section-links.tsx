@@ -1,14 +1,19 @@
-import { useState } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { getSectionFomString } from "@/utils/functions/get-section-from-url";
 import HOMEPAGE_SECTIONS from "@/utils/data/homepage-sections";
 import NavbarTab from "@/frontend/components/ui/styled-text-components/navbar-tab";
 
-const HomeSectionLinks = () => {
-  const [currentSection, setCurrentSection] = useState(HOMEPAGE_SECTIONS[0]);
-  const handleChangeSection = (section: string) => {
-    setCurrentSection(section);
+import { HomeSectionType } from "@/types/component-props-types";
+import { NavbarHomepageProps } from "@/types/component-props-types";
+
+const HomeSectionLinks = ({
+  activeSection,
+  setActiveSection,
+}: NavbarHomepageProps) => {
+  
+  const handleChangeSection = (section: HomeSectionType) => {
+    setActiveSection(section);
   };
 
   return (
@@ -30,7 +35,7 @@ const HomeSectionLinks = () => {
             >
               <NavbarTab text={link} />
             </Link>
-            {link === currentSection && (
+            {link === activeSection && (
               <motion.div
                 layoutId="activeSectionUnderline"
                 transition={{ duration: 0.3 }}

@@ -1,4 +1,5 @@
-import { MouseEventHandler, ReactNode, Dispatch, SetStateAction } from "react";
+import { ReactNode, Dispatch, SetStateAction } from "react";
+import HOMEPAGE_SECTIONS from "@/utils/data/homepage-sections";
 
 export type BasicChildrenProps = {
   children: ReactNode;
@@ -50,3 +51,9 @@ export type TextComponentProps = {
   text: string;
 };
 
+export type HomeSectionType = (typeof HOMEPAGE_SECTIONS)[number];
+
+export type NavbarHomepageProps = {
+  activeSection: HomeSectionType;
+  setActiveSection: (section: HomeSectionType) => void;
+};
