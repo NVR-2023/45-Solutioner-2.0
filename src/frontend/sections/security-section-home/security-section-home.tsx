@@ -1,8 +1,5 @@
-/* import { useEffect } from "react";
- */ import HomepageImageWrapper from "@/frontend/components/ui/homepage-image-wrapper";
+import HomepageImageWrapper from "@/frontend/components/ui/homepage-image-wrapper";
 import { SectionsHomepageProps } from "@/types/component-props-types";
-/* import { useInView } from "react-intersection-observer";
- */
 
 import { motion } from "framer-motion";
 
@@ -10,14 +7,6 @@ const SecuritySectionHome = ({ setCurrentSection }: SectionsHomepageProps) => {
   const handleOnViewportEnter = () => {
     setCurrentSection("Security");
   };
-
-  /*    const { ref, inView } = useInView();
-
-    useEffect(() => {
-      if (inView) {
-        setCurrentSection("Security");
-      }
-    }, [inView]); */
 
   return (
     <motion.section

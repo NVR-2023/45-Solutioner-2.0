@@ -1,10 +1,8 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import HomepageImageContainer from "@/frontend/components/ui/homepage-image-container";
 import { ImageLoadingStatuses } from "@/utils/data/imageLoadingStatuses";
 
 import { SectionsHomepageProps } from "@/types/component-props-types";
-/* import { useInView } from "react-intersection-observer";
- */
 
 import { motion } from "framer-motion";
 
@@ -15,15 +13,6 @@ const ServicesHomeSection = ({ setCurrentSection }: SectionsHomepageProps) => {
 
   const [imageLoadingStatus, setImageLoadingStatus] =
     useState<ImageLoadingStatuses>(ImageLoadingStatuses.PENDING);
-
-  /*   const { ref, inView } = useInView();
-
-  useEffect(() => {
-    if (inView) {
-      setCurrentSection("Services");
-    }
-  }, [inView]);
- */
   return (
     <motion.section
       onViewportEnter={handleOnViewportEnter}
