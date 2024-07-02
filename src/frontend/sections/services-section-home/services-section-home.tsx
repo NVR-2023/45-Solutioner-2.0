@@ -29,7 +29,7 @@ const ServicesHomeSection = ({ setCurrentSection }: SectionsHomepageProps) => {
       />
 
       {imageLoadingStatus === ImageLoadingStatuses.LOADED && (
-        <div className="absolute left-[5%] top-[21%] flex w-1/3">
+        <div className="absolute left-[5%] top-[40%] flex w-1/3">
           <ServicesSectionContent />
         </div>
       )}
