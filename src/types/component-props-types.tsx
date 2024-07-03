@@ -1,5 +1,5 @@
 import { ReactNode, Dispatch, SetStateAction } from "react";
-import HOMEPAGE_SECTIONS from "@/utils/data/homepage-sections";
+import HOMEPAGE_SECTION_NAMES from "@/utils/data/homepage-section-names";
 
 export type BasicChildrenProps = {
   children: ReactNode;
@@ -51,7 +51,7 @@ export type TextComponentProps = {
   text: string;
 };
 
-export type HomepageSectionNameType = (typeof HOMEPAGE_SECTIONS)[number];
+export type HomepageSectionNameType = (typeof HOMEPAGE_SECTION_NAMES)[number];
 
 export type NavbarHomepageProps = {
   currentSection: HomepageSectionNameType;
