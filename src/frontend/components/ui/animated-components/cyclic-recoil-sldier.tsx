@@ -1,5 +1,6 @@
-import FieldLabel from "./styled-text-components/field-label";
-import FieldContent from "./styled-text-components/field-content";
+import FieldLabel from "../styled-text-components/field-label";
+import FieldContent from "../styled-text-components/field-content";
+
 type CyclicRecoilSliderProps = {
   label: string;
   items: string[];

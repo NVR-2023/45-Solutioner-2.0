@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-import CyclicRecoilSlider from "@/frontend/components/ui/cyclic-recoil-sldier";
+import CyclicRecoilSlider from "@/frontend/components/ui/animated-components/cyclic-recoil-sldier";
 import ToggleControls from "@/frontend/components/ui/toggler-controls";
 import { fetchUserAddressesIds } from "@/backend/server-actions/users/fetch-user-addresses-ids";
 import { useUserDetailsContext } from "@/frontend/contexts/use-user-details";

@@ -4,8 +4,8 @@ import QuantityPicker from "./quantity-picker";
 import RecurrencePicker from "./recurrence-picker";
 import AddressPicker from "./address-picker";
 
-import ModalSubareaShell from "@/frontend/components/ui/modal-components/modal-subarea-shell";
-import SingleAccordionWithInverseExternalState from "@/frontend/components/ui/single-accordion-with-inverse-external-state";
+import ModalSubareaShell from "@/frontend/components/ui/form-components/modal-subarea-shell";
+import SingleAccordionWithInverseExternalState from "@/frontend/components/ui/animated-components/single-accordion-with-inverse-external-state";
 
 import { RecurrenceType } from "../book-service-modal";
 

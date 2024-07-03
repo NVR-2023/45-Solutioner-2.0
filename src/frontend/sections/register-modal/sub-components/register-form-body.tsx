@@ -8,12 +8,12 @@ import {
 } from "react";
 import { useRouter } from "next/navigation";
 
-import ValidatedTextInputField from "@/frontend/components/ui/modal-components/validated-text-input-field";
-import ValidatedPasswordInputField from "@/frontend/components/ui/modal-components/validated-password-input-field";
-import ValidatedCheckbox from "@/frontend/components/ui/modal-components/validated-checkbox";
-import hasAcceptedTermsOfUseSegment from "@/frontend/components/ui/modal-components/has-accepted-terms-of-use-segment";
-import RegisterWIthSegment from "@/frontend/components/ui/modal-components/register-with-segment";
-import SubmitSegment from "@/frontend/components/ui/modal-components/submit-segment";
+import ValidatedTextInputField from "@/frontend/components/ui/form-components/validated-text-input-field";
+import ValidatedPasswordInputField from "@/frontend/components/ui/form-components/validated-password-input-field";
+import ValidatedCheckbox from "@/frontend/components/ui/form-components/validated-checkbox";
+import hasAcceptedTermsOfUseSegment from "@/frontend/components/ui/form-components/has-accepted-terms-of-use-segment";
+import RegisterWIthSegment from "@/frontend/components/ui/form-components/register-with-segment";
+import SubmitSegment from "@/frontend/components/ui/form-components/submit-segment";
 
 import getErrorsInForm from "@/utils/functions/form-validation/get-errors-in-form";
 import { INPUT_VALIDATION_FUNCTION_MAP } from "@/utils/functions/input-validation/input-validation-function-map";

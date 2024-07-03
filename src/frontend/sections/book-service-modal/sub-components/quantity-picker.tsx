@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import { useBookServiceModalContext } from "@/frontend/contexts/use-book-service-modal-context";
 
-import CyclicRecoilSlider from "@/frontend/components/ui/cyclic-recoil-sldier";
+import CyclicRecoilSlider from "@/frontend/components/ui/animated-components/cyclic-recoil-sldier";
 import SliderControls from "@/frontend/components/ui/slider-controls";
-import SingleHorizontalExpandableWithoutLabelAndWIthWitExternalState from "@/frontend/components/ui/single-horizontal-exapandable-without-label-and-with-external-state";
+import SingleHorizontalExpandableWithoutLabelAndWIthWitExternalState from "@/frontend/components/ui/animated-components/single-horizontal-exapandable-without-label-and-with-external-state";
 
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -30,17 +30,18 @@ const variants = {
   },
 };
 
-const QuantityPicker = ({ setQuantity , isCalendarExpanded }: QuantityPickerProps) => {
+const QuantityPicker = ({
+  setQuantity,
+  isCalendarExpanded,
+}: QuantityPickerProps) => {
   const { bookServiceModalContext } = useBookServiceModalContext();
   const price = bookServiceModalContext.price;
-  
+
   const SERVICE_QUANTITIES = ["1", "2", "3"];
   const PRICES = SERVICE_QUANTITIES.map(
     (quantity) => `€${parseInt(quantity) * parseInt(price!)} `,
   );
   const [currentIndex, setCurrentIndex] = useState(0);
-
-  
 
   const handleOnGetNextItem = () => {
     const nextIndex = (currentIndex + 1) % 3;
@@ -61,10 +62,12 @@ const QuantityPicker = ({ setQuantity , isCalendarExpanded }: QuantityPickerProp
   return (
     <div className="flex w-full flex-col space-y-0.5">
       <div className="flex w-full">
-        <div className={`flex w-full ${!isCalendarExpanded ? "space-x-1" : ""}`} >
+        <div
+          className={`flex w-full ${!isCalendarExpanded ? "space-x-1" : ""}`}
+        >
           <div>
             <SingleHorizontalExpandableWithoutLabelAndWIthWitExternalState
-            externalBooleanState={isCalendarExpanded}
+              externalBooleanState={isCalendarExpanded}
             >
               <CyclicRecoilSlider
                 label={"quantity"}

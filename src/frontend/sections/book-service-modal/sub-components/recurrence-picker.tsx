@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-import CyclicRecoilSlider from "@/frontend/components/ui/cyclic-recoil-sldier";
+import CyclicRecoilSlider from "@/frontend/components/ui/animated-components/cyclic-recoil-sldier";
 import SliderControls from "@/frontend/components/ui/slider-controls";
 
 import { RecurrenceType } from "../book-service-modal";

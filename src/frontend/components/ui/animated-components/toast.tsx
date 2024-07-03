@@ -3,11 +3,9 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useBookServiceModalContext } from "@/frontend/contexts/use-book-service-modal-context";
 import { capitalizeFirstLetter } from "@/utils/functions/capitalize-first-letter";
 
-import LogoIcon from "@/frontend/components/icons/logo-icon";
-
-type FeedbackModalProps = {
-  isFeedbackModalOpen: boolean;
-  closeFeedbackModal: () => void;
+type ToastProps = {
+  isToastOpen: boolean;
+  closeToast: () => void;
 };
 
 const variants = {
@@ -28,25 +26,25 @@ const variants = {
   },
 };
 
-const FeedbackModal = ({
-  isFeedbackModalOpen,
-  closeFeedbackModal,
-}: FeedbackModalProps) => {
+const Toast = ({
+  isToastOpen,
+  closeToast,
+}: ToastProps) => {
   const {
     bookServiceModalContext: { service },
   } = useBookServiceModalContext();
 
   useEffect(() => {
     const timeoutId = setTimeout(() => {
-      closeFeedbackModal();
+      closeToast();
     }, 1800);
 
     return () => clearTimeout(timeoutId);
-  }, [closeFeedbackModal]);
+  }, [closeToast]);
 
   return (
     <AnimatePresence key="greetingModal">
-      {isFeedbackModalOpen && (
+      {isToastOpen && (
         <motion.div
           variants={variants}
           initial="initial"
@@ -54,7 +52,7 @@ const FeedbackModal = ({
           exit="exit"
           className="z-50 flex h-14 w-48  items-center justify-center overflow-hidden  rounded bg-yellow-300 shadow-[18px_18px_12px_0px_#00000040]"
         >
-          <div className="flex items-center tracking-wide justify-center text-xs font-semibold">
+          <div className="flex items-center justify-center text-xs font-semibold tracking-wide">
             {capitalizeFirstLetter(service!)} booked
           </div>
         </motion.div>
@@ -63,4 +61,4 @@ const FeedbackModal = ({
   );
 };
 
-export default FeedbackModal;
+export default Toast;

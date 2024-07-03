@@ -8,7 +8,7 @@ import useInstantScrollToTop from "@/frontend/hooks/use-instant-scroll-to-top";
 import { HomepageSectionNameType } from "@/types/component-props-types";
 import HOMEPAGE_SECTION_NAMES from "@/utils/data/homepage-section-names";
 import HomepAgeSection from "@/frontend/components/ui/homepage-section";
-import ServicesSectionContent from "@/frontend/sections/services-section-home/sub-components/services-section-content";
+import ServicesSectionContentHome from "@/frontend/sections/services-section-content-home/services-section-content-home";
 
 export default function Home() {
   const [currentSection, setCurrentSection] =
@@ -21,6 +21,7 @@ export default function Home() {
         "https://res.cloudinary.com/dzow47vf1/image/upload/v1714472610/A%20-%20Solutioner%202.0/plumbing_pxvrbd.webp",
       alt: "plumbing",
       setCurrentSection: setCurrentSection,
+      content: <ServicesSectionContentHome />,
     },
     {
       section: HOMEPAGE_SECTION_NAMES[1],
@@ -28,7 +29,6 @@ export default function Home() {
         "https://res.cloudinary.com/dzow47vf1/image/upload/v1714472611/A%20-%20Solutioner%202.0/gardening_hiuqqn.webp",
       alt: "gardening",
       setCurrentSection: setCurrentSection,
-      content: <ServicesSectionContent />,
     },
     {
       section: HOMEPAGE_SECTION_NAMES[2],

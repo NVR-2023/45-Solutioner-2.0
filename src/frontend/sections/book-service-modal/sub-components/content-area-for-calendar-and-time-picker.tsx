@@ -1,8 +1,6 @@
 import { useState, useEffect, useMemo } from "react";
 import { useBookServiceModalContext } from "@/frontend/contexts/use-book-service-modal-context";
 
-import { motion } from "framer-motion";
-
 import { convertDateToHourString } from "@/utils/functions/date-time/convert-date-to-hour-string";
 import { convertDateToFullString } from "@/utils/functions/date-time/convert-date-to-full-string";
 import { increaseHourByTwoBeyondTwentyFour } from "@/utils/functions/date-time/increase-hour-by-two-beyond-twenty-four";
@@ -13,9 +11,8 @@ import { generateThirtyMinuteTimestamps } from "@/utils/functions/date-time/gene
 
 import LabelWIthAnimatedSlidingText from "@/frontend/components/ui/animated-components/label-with-animated-sliding-text";
 import TimePicker from "./time-picker";
-import SingleAccordionWitExternalState from "@/frontend/components/ui/single-accordion-with-external-state";
 
-import ModalSubareaShell from "@/frontend/components/ui/modal-components/modal-subarea-shell";
+import ModalSubareaShell from "@/frontend/components/ui/form-components/modal-subarea-shell";
 import Calendar from "./calendar";
 
 type ContentAreaForCalendarAndTimePickerProps = {

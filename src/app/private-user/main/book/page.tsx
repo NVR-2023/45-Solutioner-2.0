@@ -16,21 +16,21 @@ import ContentAreaBookPage from "@/frontend/sections/content-area-book-page/cont
 
 import GreetingModal from "@/frontend/sections/greeting-modal/greeting-modal";
 import BookServiceModal from "@/frontend/sections/book-service-modal/book-service-modal";
-import FeedbackModal from "@/frontend/sections/feedback-modal/feedback-modal";
+import Toast from "@/frontend/components/ui/animated-components/toast";
 
 const Book = () => {
   const [areNavbarsExpanded, setAreNavbarsExpanded] = useState(true);
-  const [isGreetingModalShown, setIsGreetingModalShown] = useState(false);
+  const [isGreetingModalOpen, setIsGreetingModalOpen] = useState(false);
   const closeGreetingsModal = () => {
-    setIsGreetingModalShown(false);
+    setIsGreetingModalOpen(false);
   };
 
-  const [isFeedbackModalOpen, setIsFeedbackModalOpen] = useState(false);
-  const openFeedbackModal = () => {
-    setIsFeedbackModalOpen(true);
+  const [isToastOpen, setIsToastOpen] = useState(false);
+  const openToast = () => {
+    setIsToastOpen(true);
   };
-  const closeFeedbackModal = () => {
-    setIsFeedbackModalOpen(false);
+  const closeToast = () => {
+    setIsToastOpen(false);
   };
 
   const [allServicesStaticData, setAllServicesStaticData] =
@@ -55,7 +55,7 @@ const Book = () => {
   }, []);
 
   useEffect(() => {
-    setIsGreetingModalShown(true);
+    setIsGreetingModalOpen(true);
   }, []);
 
   useEffect(() => {
@@ -170,20 +170,17 @@ const Book = () => {
 
         <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transform">
           <GreetingModal
-            isGreetingModalShown={isGreetingModalShown}
+            isGreetingModalOpen={isGreetingModalOpen}
             closeGreetingsModal={closeGreetingsModal}
           />
         </div>
 
         <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transform">
-          <FeedbackModal
-            isFeedbackModalOpen={isFeedbackModalOpen}
-            closeFeedbackModal={closeFeedbackModal}
-          />
+          <Toast isToastOpen={isToastOpen} closeToast={closeToast} />
         </div>
 
         <div className="z-50">
-          <BookServiceModal openFeedbackModal={openFeedbackModal} />
+          <BookServiceModal openFeedbackModal={openToast} />
         </div>
       </div>
     </LayoutGroup>

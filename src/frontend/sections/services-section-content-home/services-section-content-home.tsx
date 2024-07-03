@@ -1,8 +1,8 @@
 import { useState, useEffect, useRef } from "react";
 import { motion, useScroll, useMotionValueEvent } from "framer-motion";
-import RegisterButton from "./register-button";
+import RegisterButton from "../../components/ui/register-button";
 
-const ServicesSectionContent = () => {
+const ServicesSectionContentHome = () => {
   const counterRef = useRef(null);
   const [referenceScrollYProgress, setReferenceScrollYProgress] = useState<
     number | null
@@ -77,4 +77,4 @@ const ServicesSectionContent = () => {
   );
 };
 
-export default ServicesSectionContent;
+export default ServicesSectionContentHome;

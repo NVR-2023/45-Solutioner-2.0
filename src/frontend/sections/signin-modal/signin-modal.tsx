@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import BasicModalShell from "@/frontend/components/ui/modal-components/basic-modal-shell";
+import BasicModalShell from "@/frontend/components/ui/animated-components/basic-modal-shell";
 import SigninFormHeader from "./sub-components/signin-form-header";
 import SigninrFormBody from "./sub-components/signin-form-body";
 

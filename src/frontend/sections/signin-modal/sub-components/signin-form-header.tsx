@@ -1,4 +1,4 @@
-import ModalTitleWithLogo from "@/frontend/components/ui/modal-components/modal-title-with-logo";
+import ModalTitleWithLogo from "@/frontend/components/ui/form-components/modal-title-with-logo";
 const SigninFormHeader = () => {
   return (
     <header className="flex w-full justify-start">

@@ -1,10 +1,10 @@
-import { useEffect} from "react";
+import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { useUserDetailsContext } from "@/frontend/contexts/use-user-details";
 
 type GreetingModalProps = {
-  isGreetingModalShown: boolean;
+  isGreetingModalOpen: boolean;
   closeGreetingsModal: () => void;
 };
 
@@ -27,7 +27,7 @@ const variants = {
 };
 
 const GreetingModal = ({
-  isGreetingModalShown,
+  isGreetingModalOpen,
   closeGreetingsModal,
 }: GreetingModalProps) => {
   const router = useRouter();
@@ -47,7 +47,7 @@ const GreetingModal = ({
 
   return (
     <AnimatePresence key="greetingModal">
-      {isGreetingModalShown && (
+      {isGreetingModalOpen && (
         <motion.div
           variants={variants}
           initial="initial"
@@ -59,9 +59,7 @@ const GreetingModal = ({
             <div className="flex h-12 items-center justify-center text-xs font-medium ">
               {`Welcome, ${userName?.split(" ")[0].substring(0, 12)}`}
             </div>
-            <div className=" h-24 w-full bg-green-400">
-              ABD
-            </div>
+            <div className=" h-24 w-full bg-green-400">ABD</div>
           </div>
         </motion.div>
       )}

@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react";
-import AdvancedModalShell from "@/frontend/components/ui/modal-components/advanced-modal-shell";
+import AdvancedModalShell from "@/frontend/components/ui/animated-components/advanced-modal-shell";
 
 import { useBookServiceModalContext } from "@/frontend/contexts/use-book-service-modal-context";
 import { useUserDetailsContext } from "@/frontend/contexts/use-user-details";
 
-import ModalTitleWithoutLogo from "@/frontend/components/ui/modal-components/modal-title-without-logo";
+import ModalTitleWithoutLogo from "@/frontend/components/ui/form-components/modal-title-without-logo";
 import ContentAreaForCalendarAndTimePicker from "./sub-components/content-area-for-calendar-and-time-picker";
 import Details from "./sub-components/details";
-import SubmitWithoutFeedbackSegment from "@/frontend/components/ui/modal-components/submit-without-feedback-segment";
+import SubmitWithoutFeedbackSegment from "@/frontend/components/ui/form-components/submit-without-feedback-segment";
 
 import { createServiceRequestInDb } from "@/backend/server-actions/services/create-service-request-in-db";
 import { wait } from "@/utils/functions/wait";

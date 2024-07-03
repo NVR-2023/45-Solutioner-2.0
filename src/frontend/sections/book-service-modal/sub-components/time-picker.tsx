@@ -2,7 +2,7 @@ import { useState, useEffect, useMemo } from "react";
 import { getRoundedupEndOfServiceHourString } from "@/utils/functions/date-time/get-roundedup-end-of-service-hour-string";
 import { getSuggestedBookHourIndex } from "@/utils/functions/date-time/get-suggested-bookhour-index";
 
-import CyclicRecoilSlider from "@/frontend/components/ui/cyclic-recoil-sldier";
+import CyclicRecoilSlider from "@/frontend/components/ui/animated-components/cyclic-recoil-sldier";
 import SliderControls from "@/frontend/components/ui/slider-controls";
 import { motion, AnimatePresence } from "framer-motion";
 

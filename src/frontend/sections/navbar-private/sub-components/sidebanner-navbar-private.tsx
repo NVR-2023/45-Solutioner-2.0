@@ -1,5 +1,5 @@
 import { signOutUser } from "@/utils/functions/client-side-user-auth/sign-out-user";
-import SingleAccordion from "@/frontend/components/ui/single-accordion";
+import SingleAccordion from "@/frontend/components/ui/animated-components/single-accordion";
 import Link from "next/link";
 
 import QuickSettingsContent from "./quick-settings-content";

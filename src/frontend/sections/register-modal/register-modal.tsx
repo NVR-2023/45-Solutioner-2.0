@@ -1,5 +1,5 @@
 import { useState } from "react";
-import BasicModalShell from "@/frontend/components/ui/modal-components/basic-modal-shell";
+import BasicModalShell from "@/frontend/components/ui/animated-components/basic-modal-shell";
 import RegisterFormBody from "./sub-components/register-form-body";
 import RegisterFormHeader from "./sub-components/register-form-header";
 
