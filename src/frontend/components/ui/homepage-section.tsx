@@ -3,7 +3,6 @@ import HomepageImageContainer from "@/frontend/components/ui/homepage-image-cont
 import { ImageLoadingStatuses } from "@/utils/data/imageLoadingStatuses";
 import { useInView } from "react-intersection-observer";
 
-import { motion } from "framer-motion";
 import { HomepageSectionNameType } from "@/types/component-props-types";
 
 import { lowercaseFirstLetter } from "@/utils/functions/lowercase-first-letter";
@@ -39,7 +38,7 @@ const HomepAgeSection = ({
 
   return (
     <div ref={ref} className="border-b-2 border-neutral-300">
-      <motion.section
+      <section
         id={lowercaseFirstLetter(section)}
         className="relative bg-neutral-300"
       >
@@ -51,9 +50,9 @@ const HomepAgeSection = ({
         />
 
         {imageLoadingStatus === ImageLoadingStatuses.LOADED && (
-          <div className="absolute left-0 top-0 w-full">{content}</div>
+          <div className="absolute inset-0 w-full">{content}</div>
         )}
-      </motion.section>
+      </section>
     </div>
   );
 };

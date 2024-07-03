@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { getSectionFomString } from "@/utils/functions/get-section-from-url";
-import HOMEPAGE_SECTIONS from "@/utils/data/homepage-sections";
+import HOMEPAGE_SECTION_NAMES from "@/utils/data/homepage-section-names";
 import NavbarTab from "@/frontend/components/ui/styled-text-components/navbar-tab";
 
 import { HomepageSectionNameType } from "@/types/component-props-types";
@@ -22,7 +22,7 @@ const HomeSectionLinks = ({
       aria-label="Homepage Sections Navigation"
     >
       <menu className="flex list-none items-center space-x-4">
-        {HOMEPAGE_SECTIONS.map((link, index) => (
+        {HOMEPAGE_SECTION_NAMES.map((link, index) => (
           <li key={index} className="relative">
             <Link
               href={getSectionFomString(link)}

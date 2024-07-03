@@ -1,4 +1,4 @@
-import HOMEPAGE_SECTIONS from "@/utils/data/homepage-sections";
+import HOMEPAGE_SECTION_NAMES from "@/utils/data/homepage-section-names";
 import Link from "next/link";
 import { getSectionFomString } from "@/utils/functions/get-section-from-url";
 
@@ -11,8 +11,8 @@ const MobileSidemenuHomepage = ({ action }: MobileSidemenuPropsType) => {
     <nav className="z-[999] -me-3 mt-3.5 bg-neutral-300 bg-opacity-70 text-base font-semibold dark:bg-neutral-700 dark:bg-opacity-70">
       <div className="flex justify-start">
         <menu className="mx-3 mt-3 flex list-none flex-col space-y-1">
-          {HOMEPAGE_SECTIONS &&
-            HOMEPAGE_SECTIONS.map((section, index) => (
+          {HOMEPAGE_SECTION_NAMES &&
+            HOMEPAGE_SECTION_NAMES.map((section, index) => (
               <li key={index} onClick={action}>
                 <Link
                   className="border-b-[1px] border-solid border-transparent pb-[2px] transition-all duration-300 hover:border-current"
