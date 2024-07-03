@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { motion, useScroll, useMotionValueEvent } from "framer-motion";
 import RegisterButton from "../../components/ui/register-button";
 
+import HomepageSectionTagline from "@/frontend/components/ui/styled-text-components/homepage-section-tagline";
 const ServicesSectionContentHome = () => {
   const counterRef = useRef(null);
   const [referenceScrollYProgress, setReferenceScrollYProgress] = useState<
@@ -43,8 +44,8 @@ const ServicesSectionContentHome = () => {
     <motion.div className="xbg-green-400 grid w-full grid-cols-5 grid-rows-2 gap-x-0.5 font-aperçu text-lg font-extrabold text-[#ff7714]">
       <div className="row-span col-span-4 flex flex-col ps-6 text-2xl -tracking-[3%] ">
         <div className="flex flex-col -space-y-1">
-          <div className="">Home services?</div>
-          <div className="">We got you covered.</div>
+          <HomepageSectionTagline text="Home services?" />
+          <HomepageSectionTagline text="We got you covered" />
         </div>
         <div className="flex justify-end pe-6 ps-5 pt-1 text-right text-xs font-bold leading-5">
           {TAGLINE}

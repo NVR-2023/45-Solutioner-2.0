@@ -3,6 +3,8 @@ import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { useUserDetailsContext } from "@/frontend/contexts/use-user-details";
 
+import { wait } from "@/utils/functions/wait";
+
 type GreetingModalProps = {
   isGreetingModalOpen: boolean;
   closeGreetingsModal: () => void;
@@ -33,11 +35,9 @@ const GreetingModal = ({
   const router = useRouter();
 
   useEffect(() => {
-    const initializeModal = () => {
-      const timeoutId = setTimeout(() => {
-        closeGreetingsModal();
-      }, 1500);
-      return () => clearTimeout(timeoutId);
+    const initializeModal = async () => {
+      await wait(1500);
+      closeGreetingsModal();
     };
 
     initializeModal();
