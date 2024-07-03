@@ -4,14 +4,14 @@ import { getSectionFomString } from "@/utils/functions/get-section-from-url";
 import HOMEPAGE_SECTIONS from "@/utils/data/homepage-sections";
 import NavbarTab from "@/frontend/components/ui/styled-text-components/navbar-tab";
 
-import { HomeSectionType } from "@/types/component-props-types";
+import { HomepageSectionNameType } from "@/types/component-props-types";
 import { NavbarHomepageProps } from "@/types/component-props-types";
 
 const HomeSectionLinks = ({
   currentSection,
   setCurrentSection,
 }: NavbarHomepageProps) => {
-  const handleChangeSection = (section: HomeSectionType) => {
+  const handleChangeSection = (section: HomepageSectionNameType) => {
     setCurrentSection(section);
   };
 

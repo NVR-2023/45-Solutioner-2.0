@@ -17,7 +17,7 @@ const outlinedVariants = {
     scale: [1, 1.05, 0.9, 1],
     transition: {
       duration: 0.12,
-      ease: "easeInOut"
+      ease: "easeInOut",
     },
   },
 };
@@ -62,6 +62,7 @@ const BasicButton = ({
 
   return (
     <motion.button
+      role="button"
       variants={type === "outlined" ? outlinedVariants : filledVariants}
       initial="initial"
       whileHover="whileHover"

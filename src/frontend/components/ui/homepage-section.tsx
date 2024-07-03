@@ -1,0 +1,61 @@
+import { useState, useEffect, ReactNode } from "react";
+import HomepageImageContainer from "@/frontend/components/ui/homepage-image-container";
+import { ImageLoadingStatuses } from "@/utils/data/imageLoadingStatuses";
+import { useInView } from "react-intersection-observer";
+
+import { motion } from "framer-motion";
+import { HomepageSectionNameType } from "@/types/component-props-types";
+
+import { lowercaseFirstLetter } from "@/utils/functions/lowercase-first-letter";
+
+type HomepageSectionProps = {
+  section: HomepageSectionNameType;
+  imageUrl: string;
+  alt: string;
+  content?: ReactNode;
+  setCurrentSection: (section: HomepageSectionNameType) => void;
+};
+
+const HomepAgeSection = ({
+  section,
+  imageUrl,
+  alt,
+  content,
+  setCurrentSection,
+}: HomepageSectionProps) => {
+  const [imageLoadingStatus, setImageLoadingStatus] =
+    useState<ImageLoadingStatuses>(ImageLoadingStatuses.PENDING);
+
+  const { ref, inView } = useInView({ threshold: 0.3 });
+  const handleOnSectionIsInView = () => {
+    setCurrentSection(section);
+  };
+
+  useEffect(() => {
+    if (inView) {
+      handleOnSectionIsInView();
+    }
+  }, [inView]);
+
+  return (
+    <div ref={ref} className="border-b-2 border-neutral-300">
+      <motion.section
+        id={lowercaseFirstLetter(section)}
+        className="relative bg-neutral-300"
+      >
+        <HomepageImageContainer
+          src={imageUrl}
+          alt={alt}
+          imageLoadingStatus={imageLoadingStatus}
+          setImageLoadingStatus={setImageLoadingStatus}
+        />
+
+        {imageLoadingStatus === ImageLoadingStatuses.LOADED && (
+          <div className="absolute left-0 top-0 w-full">{content}</div>
+        )}
+      </motion.section>
+    </div>
+  );
+};
+
+export default HomepAgeSection;

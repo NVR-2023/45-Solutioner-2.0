@@ -51,13 +51,13 @@ export type TextComponentProps = {
   text: string;
 };
 
-export type HomeSectionType = (typeof HOMEPAGE_SECTIONS)[number];
+export type HomepageSectionNameType = (typeof HOMEPAGE_SECTIONS)[number];
 
 export type NavbarHomepageProps = {
-  currentSection: HomeSectionType;
-  setCurrentSection: (section: HomeSectionType) => void;
+  currentSection: HomepageSectionNameType;
+  setCurrentSection: (section: HomepageSectionNameType) => void;
 };
 
 export type SectionsHomepageProps = {
-  setCurrentSection: (section: HomeSectionType) => void;
+  setCurrentSection: (section: HomepageSectionNameType) => void;
 };
