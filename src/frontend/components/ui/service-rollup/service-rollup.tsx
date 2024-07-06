@@ -76,8 +76,6 @@ const ServiceRollup = ({
       : "Serviced by 1 professional"
   ).trim();
 
-  const saleValue = parseFloat(sale);
-
   return (
     <motion.div
       variants={variants}
@@ -88,7 +86,7 @@ const ServiceRollup = ({
       <div
         onMouseEnter={handleOnEnter}
         onMouseLeave={handleOnLeave}
-        className={`flex h-7 w-[45rem] items-center bg-neutral-300 px-6 transition-all duration-700 ${isServiceRollupHovered ? "rounded-t-[4px]" : "rounded"}`}
+        className={`flex h-7 w-[45rem] items-center bg-neutral-300 px-6 outline-transparent transition-all duration-700 ${isServiceRollupHovered ? "rounded-t-[4px]" : "rounded"}`}
       >
         <div className="grid w-full grid-cols-7 space-x-6">
           <div className="col-span-1 flex items-center justify-start">
