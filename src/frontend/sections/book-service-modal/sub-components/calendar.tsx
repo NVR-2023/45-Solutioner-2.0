@@ -116,10 +116,10 @@ const Calendar = ({ date, setDate, isCalendarExpanded }: calendarProps) => {
   useEffect(() => {
     const fetchCurrentUserServiceRequestsSummary = async () => {
       try {
-        const serviceRequestsSummary = await fetchUserServiceRequestsSummary(
-          userId!,
+        const serviceRequestsSummary = await fetchUserServiceRequestsSummary();
+        setUserServiceRequestsSummary(
+          serviceRequestsSummary as Record<string, string | number>[],
         );
-        setUserServiceRequestsSummary(serviceRequestsSummary);
       } catch (error) {
         console.error("Error fetching service requests summary:", error);
         return null;

@@ -1,16 +1,22 @@
 "use server";
+import { NextResponse } from "next/server";
+import { validateRequest } from "@/backend/lucia-auth/validate-request";
 
 import { db } from "@/backend/database/drizzle/db";
 import { serviceRequests, services } from "@/backend/database/schema/schema";
 import { eq, and, gte } from "drizzle-orm";
 import { convertDateToYearString } from "@/utils/functions/date-time/convert-date-to-year-string";
 
-export const fetchUserServiceRequestsSummary = async (userId: string) => {
+export const fetchUserServiceRequestsSummary = async () => {
   try {
-    console.time("fetchUserServiceRequestsSummary");
-    const currentDateFormattedString = convertDateToYearString(new Date());
+    const { user, session } = await validateRequest();
+    const userId: string = user?.id!;
 
-    console.time("dbQuery");
+    if (!session) {
+      return new NextResponse("Unauthorized request", { status: 403 });
+    }
+
+    const currentDateString = convertDateToYearString(new Date());
     const userAllFutureServiceRequests = await db
       .select({
         dateOfService: serviceRequests.dateOfService,
@@ -24,13 +30,11 @@ export const fetchUserServiceRequestsSummary = async (userId: string) => {
       .where(
         and(
           eq(serviceRequests.userId, userId),
-          gte(serviceRequests.dateOfService, currentDateFormattedString),
+          gte(serviceRequests.dateOfService, currentDateString),
         ),
       )
       .orderBy(serviceRequests.dateOfService);
-    console.timeEnd("dbQuery");
 
-    console.time("processing");
     let userServiceRequestsSummary: Record<string, string | number>[] = [];
 
     userAllFutureServiceRequests.forEach((serviceRequest, currentIndex) => {
@@ -61,9 +65,7 @@ export const fetchUserServiceRequestsSummary = async (userId: string) => {
         }
       }
     });
-    console.timeEnd("processing");
 
-    console.timeEnd("fetchUserServiceRequestsSummary");
     return userServiceRequestsSummary;
   } catch (error) {
     console.error("Error fetching service requests summary: ", error);
