@@ -12,7 +12,7 @@ export const fetchUserServiceRequestsSummary = async () => {
     const { user, session } = await validateRequest();
     const userId: string = user?.id!;
 
-    if (!session) {
+    if (!session || !userId) {
       return new NextResponse("Unauthorized request", { status: 403 });
     }
 
