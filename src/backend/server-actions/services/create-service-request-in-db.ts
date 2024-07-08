@@ -16,12 +16,12 @@ export const createServiceRequestInDb = async (
     const { user, session } = await validateRequest();
     const userId: string = user?.id!;
     if (!session || !userId) {
-      return new NextResponse("Unauthorized request", { status: 403 });
+      return new NextResponse("Unauthorized request", { status: 401 });
     }
 
-    // server validation omitted here
+    // server-side validation omitted here
 
-    const insertedServiceRequest = await db
+    const serviceRequestInsertionResult = await db
       .insert(serviceRequests)
       .values({
         userId: userId,
@@ -35,7 +35,11 @@ export const createServiceRequestInDb = async (
       })
       .returning();
 
-    return insertedServiceRequest;
+    if (!serviceRequestInsertionResult) {
+      return new NextResponse("Database server error", { status: 503 });
+    }
+
+    return serviceRequestInsertionResult;
   } catch (error) {
     console.error("Error creating new Service Request:", error);
     throw new Error("Error creating new Service Request");
