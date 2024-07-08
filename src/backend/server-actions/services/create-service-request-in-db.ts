@@ -19,7 +19,7 @@ export const createServiceRequestInDb = async (
       return new NextResponse("Unauthorized request", { status: 401 });
     }
 
-    // server-side validation omitted here
+    // server-side validation omitted
 
     const serviceRequestInsertionResult = await db
       .insert(serviceRequests)
@@ -38,6 +38,8 @@ export const createServiceRequestInDb = async (
     if (!serviceRequestInsertionResult) {
       return new NextResponse("Database server error", { status: 503 });
     }
+
+    // Full database transaction omitted 
 
     return serviceRequestInsertionResult;
   } catch (error) {
