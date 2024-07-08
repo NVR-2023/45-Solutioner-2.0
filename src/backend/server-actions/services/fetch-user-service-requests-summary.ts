@@ -16,7 +16,7 @@ export const fetchUserServiceRequestsSummary = async () => {
     }
 
     const currentDateString = convertDateToYearString(new Date());
-    const userAllUserPendingServiceRequests = await db
+    const allUserPendingServiceRequests = await db
       .select({
         dateOfService: serviceRequests.dateOfService,
         timeOfService: serviceRequests.timeOfService,
@@ -36,11 +36,11 @@ export const fetchUserServiceRequestsSummary = async () => {
 
     let userServiceRequestsSummary: Record<string, string | number>[] = [];
 
-    userAllUserPendingServiceRequests.forEach((serviceRequest, currentIndex) => {
+    allUserPendingServiceRequests.forEach((serviceRequest, currentIndex) => {
       if (
         currentIndex === 0 ||
         serviceRequest.dateOfService !==
-          userAllUserPendingServiceRequests[currentIndex - 1].dateOfService
+          allUserPendingServiceRequests[currentIndex - 1].dateOfService
       ) {
         userServiceRequestsSummary.push(
           serviceRequest as Record<string, string | number>,
@@ -51,14 +51,14 @@ export const fetchUserServiceRequestsSummary = async () => {
 
         if (
           userServiceRequestsSummary[previousIndex].recurrence !==
-          userAllUserPendingServiceRequests[currentIndex].recurrence
+          allUserPendingServiceRequests[currentIndex].recurrence
         ) {
           userServiceRequestsSummary[previousIndex].recurrence = "several";
         }
 
         if (
           userServiceRequestsSummary[previousIndex].userAddressId !==
-          userAllUserPendingServiceRequests[currentIndex].userAddressId
+          allUserPendingServiceRequests[currentIndex].userAddressId
         ) {
           userServiceRequestsSummary[previousIndex].userAddressId = "several";
         }
