@@ -11,12 +11,13 @@ import { validateRequest } from "@/backend/lucia-auth/validate-request";
 
 export const createServiceRequestInDb = async (
   newServiceRequest: BookServiceModalObjectType,
-) => {
+): Promise<number | null> => {
+  
   try {
     const { user, session } = await validateRequest();
-    const userId: string = user?.id!;
+    const userId: string | undefined = user?.id;
     if (!session || !userId) {
-      return new NextResponse("Unauthorized request", { status: 401 });
+      return null;
     }
 
     // server-side validation omitted
@@ -33,17 +34,17 @@ export const createServiceRequestInDb = async (
         recurrence: newServiceRequest.recurrence as RecurrenceType,
         status: "requested",
       })
-      .returning();
+      .returning({ newServiceRequestId: serviceRequests.id });
 
-    if (!serviceRequestInsertionResult) {
-      return new NextResponse("Database server error", { status: 503 });
+    const result: number = serviceRequestInsertionResult[0].newServiceRequestId;
+    if (!result) {
+      throw new Error("Error creating new Service Request");
     }
 
-    // Full database transaction omitted 
+    // Full database transaction omitted
 
-    return serviceRequestInsertionResult;
+    return result;
   } catch (error) {
-    console.error("Error creating new Service Request:", error);
     throw new Error("Error creating new Service Request");
   }
 };
