@@ -37,11 +37,8 @@ const HomepAgeSection = ({
   }, [inView]);
 
   return (
-    <div ref={ref} className="border-b-2 border-neutral-300">
-      <section
-        id={lowercaseFirstLetter(section)}
-        className="relative bg-neutral-300"
-      >
+    <div ref={ref} className="relative border-b-2 border-neutral-300">
+      <section id={lowercaseFirstLetter(section)} className="bg-neutral-300">
         <HomepageImageContainer
           src={imageUrl}
           alt={alt}
