@@ -29,6 +29,7 @@ export default function Home() {
         "https://res.cloudinary.com/dzow47vf1/image/upload/v1714472611/A%20-%20Solutioner%202.0/gardening_hiuqqn.webp",
       alt: "gardening",
       setCurrentSection: setCurrentSection,
+      content: <ServicesSectionContentHome />,
     },
     {
       section: HOMEPAGE_SECTION_NAMES[2],
@@ -36,6 +37,7 @@ export default function Home() {
         "https://res.cloudinary.com/dzow47vf1/image/upload/v1714472610/A%20-%20Solutioner%202.0/dogwalking_rx2gsv.webp",
       alt: "dog walking",
       setCurrentSection: setCurrentSection,
+      content: <ServicesSectionContentHome />,
     },
   ];
 
