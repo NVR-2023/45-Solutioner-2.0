@@ -38,7 +38,7 @@ const AnimatedCounter = ({
   weight = "semibold",
 }: AnimatedCounterProps) => {
   const counter = useMotionValue(start);
-  const roundedCounter = useTransform(counter, Math.round);
+  const roundedCounter = useTransform(counter, Math.floor);
 
   const counterRef = useRef(null);
   const isCounterInView = useInView(counterRef, { once: true });
@@ -48,9 +48,9 @@ const AnimatedCounter = ({
       return;
     }
     const animation = animate(counter, end, {
-      delay: .3,
-      duration: duration/1000,
-      ease: [0.16, 1, 0.3, 1],
+      delay: 0.3,
+      duration: duration / 1000,
+      ease: [0.55, 0, 1, 0.45],
     });
     return animation.stop;
   }, [isCounterInView]);

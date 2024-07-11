@@ -13,9 +13,9 @@ const ServicesSectionContentHome = () => {
         <HomepageSectionTagline text="We got you." />
       </div>
 
-      <div className="hidden w-48 pt-1 md:flex">
+      <div className="hidden w-48 pt-2 md:flex">
         <HomepageSectionCopy
-          text="From unclogging a sink pipes to removing a hornets' nest, solutions are a
+          text="From unclogging sink pipes to removing hornets' nests, solutions are a
           click away."
         />
       </div>
