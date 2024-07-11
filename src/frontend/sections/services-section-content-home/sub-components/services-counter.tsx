@@ -2,7 +2,7 @@ import AnimatedCounter from "@/frontend/components/ui/animated-components/animat
 
 const ServicesCounter = () => {
   return (
-    <div className="flex flex-col -space-y-2">
+    <div className="flex flex-col -space-y-1.5">
       <AnimatedCounter
         start={1}
         end={54}
@@ -10,7 +10,9 @@ const ServicesCounter = () => {
         weight={"black"}
         size={"5xl"}
       />
-      <div className="text-[.625rem] font-bold tracking-wide ">Services</div>
+      <div className="text-[.625rem] font-extrabold tracking-wide">
+        Services
+      </div>
     </div>
   );
 };

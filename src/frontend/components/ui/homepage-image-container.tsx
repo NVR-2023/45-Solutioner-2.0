@@ -27,6 +27,14 @@ const HomepageImageContainer = ({
   imageLoadingStatus,
   setImageLoadingStatus,
 }: HomepageImageContainerPrProps) => {
+  const handleOnLoad = () => {
+    setImageLoadingStatus(ImageLoadingStatuses.LOADED);
+  };
+
+  const handleOnError = () => {
+    setImageLoadingStatus(ImageLoadingStatuses.FAILED);
+  };
+
   return (
     <motion.div variants={variants} initial="initial" animate="animate">
       {(imageLoadingStatus === ImageLoadingStatuses.PENDING ||
@@ -38,12 +46,8 @@ const HomepageImageContainer = ({
             width={1920}
             height={1080}
             priority={true}
-            onLoad={() => {
-              setImageLoadingStatus(ImageLoadingStatuses.LOADED);
-            }}
-            onError={() => {
-              setImageLoadingStatus(ImageLoadingStatuses.FAILED);
-            }}
+            onLoad={handleOnLoad}
+            onError={handleOnError}
             className={
               imageLoadingStatus === ImageLoadingStatuses.PENDING
                 ? "hidden"
@@ -58,7 +62,7 @@ const HomepageImageContainer = ({
           variants={variants}
           initial="initial"
           animate="animate"
-          className="h-screen w-screen"
+          className="h-screen w-screen md:w-[1920px]"
         ></motion.div>
       )}
     </motion.div>
