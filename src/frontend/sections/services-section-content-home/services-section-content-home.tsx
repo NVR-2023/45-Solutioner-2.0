@@ -4,10 +4,10 @@ import HomepageSectionCopy from "@/frontend/components/ui/styled-text-components
 import CategoriesCounter from "./sub-components/categories-counter";
 import ServicesCounter from "./sub-components/services-counter";
 
-
+import AnimatedCheckedBox from "@/frontend/components/icons/animated-icons/animated-checkbox";
 const ServicesSectionContentHome = () => {
   return (
-    <div className="absolute left-[12%] top-[20%] font-aperçu text-[#ff7714]">
+    <div className="absolute left-[12%] top-[20%] font-aperçu text-[#fc6900]">
       <div className="flex flex-col -space-y-1 font-extrabold">
         <HomepageSectionTagline text="Home services?" />
         <HomepageSectionTagline text="We got you." />
@@ -29,6 +29,7 @@ const ServicesSectionContentHome = () => {
         <div className="pt-4">
           <RegisterButton />
         </div>
+        <AnimatedCheckedBox/>
       </div>
     </div>
   );
