@@ -9,7 +9,7 @@ import { HomepageSectionNameType } from "@/types/component-props-types";
 import HOMEPAGE_SECTION_NAMES from "@/utils/data/homepage-section-names";
 import HomepAgeSection from "@/frontend/components/ui/homepage-section";
 import ServicesSectionContentHome from "@/frontend/sections/services-section-content-home/services-section-content-home";
-
+import SecuritySectionContentHome from "@/frontend/sections/security-section-content-home/security-section-content-home";
 export default function Home() {
   const [currentSection, setCurrentSection] =
     useState<HomepageSectionNameType>("Services");
@@ -18,7 +18,7 @@ export default function Home() {
     {
       section: HOMEPAGE_SECTION_NAMES[0],
       imageUrl:
-        "https://res.cloudinary.com/dzow47vf1/image/upload/v1714472610/A%20-%20Solutioner%202.0/plumbing_pxvrbd.webp",
+        "https://res.cloudinary.com/dz5v9ajpb/image/upload/v1721331126/01_plumbing_up0kfa.webp",
       alt: "plumbing",
       setCurrentSection: setCurrentSection,
       content: <ServicesSectionContentHome />,
@@ -26,15 +26,15 @@ export default function Home() {
     {
       section: HOMEPAGE_SECTION_NAMES[1],
       imageUrl:
-        "https://res.cloudinary.com/dzow47vf1/image/upload/v1714472611/A%20-%20Solutioner%202.0/gardening_hiuqqn.webp",
+        "https://res.cloudinary.com/dz5v9ajpb/image/upload/v1721331126/02_gardening_aohwc2.webp",
       alt: "gardening",
       setCurrentSection: setCurrentSection,
-      content: <ServicesSectionContentHome />,
+      content: <SecuritySectionContentHome />,
     },
     {
       section: HOMEPAGE_SECTION_NAMES[2],
       imageUrl:
-        "https://res.cloudinary.com/dzow47vf1/image/upload/v1714472610/A%20-%20Solutioner%202.0/dogwalking_rx2gsv.webp",
+        "https://res.cloudinary.com/dz5v9ajpb/image/upload/v1721331126/03_dogwalking_ofcbvw.webp",
       alt: "dog walking",
       setCurrentSection: setCurrentSection,
       content: <ServicesSectionContentHome />,
