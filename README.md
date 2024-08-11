@@ -17,8 +17,8 @@ A single-page full-stack application enabling users and service providers to con
 
 >[!NOTE]
 >**The app is hosted live on Vercel:**
->- **Live Deployment:** [Solutioner](https://solutioner-2-0.vercel.app/)
->- **Development Branch:** T[Solutioner](https://solutioner-2-0-git-development-nrs->projects.vercel.app/)
+>- **Main Branch:** [Solutioner](https://solutioner-2-0.vercel.app/)
+>- **Development Branch (Most up-to-date):** T[Solutioner](https://solutioner-2-0-git-development-nrs->projects.vercel.app/)
 
 
 ## Authors
