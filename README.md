@@ -40,6 +40,10 @@ Designed and Coded by Nuno Violante Rodrigues
 2.0 Full rewrite of teh app, Development begun in January, 2024  
 1.0 Initial Beta release August, 2023
 
-## How to run
-> npm run dev
+## How to Run
+
+To run the application in development mode, use:
+
+```bash
+npm run dev
 
