@@ -17,8 +17,15 @@ A single-page full-stack application enabling users and service providers to con
 
 >[!NOTE]
 >**The app is hosted live on Vercel:**
->- **Main Branch:** [Solutioner](https://solutioner-2-0.vercel.app/)
->- **Development Branch (Most up-to-date):** T[Solutioner](https://solutioner-2-0-git-development-nrs->projects.vercel.app/)
+>- **Main Branch:** [Solutioner 2.0](https://solutioner-2-0.vercel.app/)
+>- **Development Branch (Most up-to-date):** [Solutioner 2.0](https://solutioner-2-0-git-development-nrs->projects.vercel.app/)
+
+## Tech Standout Features
+
+- **Reusable and composable UI component library built from scratch**
+- **Custom input validation toolkit**
+- **Bespoke date manipulation toolkit**
+- **Route handlers and server actions**
 
 
 ## Authors
