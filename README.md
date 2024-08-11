@@ -34,7 +34,6 @@ A single-page full-stack application enabling users and service providers to con
 
 ## Authors
 Conceived, designed and coded by Nuno Violante Rodrigues
-Designed and Coded by Nuno Violante Rodrigues
 
 ## Version History
 
