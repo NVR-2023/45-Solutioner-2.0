@@ -8,6 +8,10 @@ Solutioner, a home services app
 
 A single-page full-stack application enabling users and service providers to connect and book appointments. It addresses the real-world need for finding service providers securely and conveniently.
 
+## Hosted live on Vercel
+**Main Branch:** [Solutioner 2.0](https://solutioner-2-0.vercel.app/)
+**Development Branch (Most up-to-date):** [Solutioner 2.0](https://solutioner-2-0-git-development-nrs->projects.vercel.app/)
+
 ## Stack
 
 **Front End:** Typescript 5.3, Next.js 14.1, Tailwind CSS 3.3
@@ -16,9 +20,8 @@ A single-page full-stack application enabling users and service providers to con
 **Database:** PostgreSQL
 
 >[!NOTE]
->**The app is hosted live on Vercel:**
->- **Main Branch:** [Solutioner 2.0](https://solutioner-2-0.vercel.app/)
->- **Development Branch (Most up-to-date):** [Solutioner 2.0](https://solutioner-2-0-git-development-nrs->projects.vercel.app/)
+> Third-party packages 
+> to be added
 
 ## Tech Standout Features
 
@@ -37,4 +40,6 @@ Designed and Coded by Nuno Violante Rodrigues
 2.0 Full rewrite of teh app, Development begun in January, 2024  
 1.0 Initial Beta release August, 2023
 
+## How to run
+> npm run dev
 
