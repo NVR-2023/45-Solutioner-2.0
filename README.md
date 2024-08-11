@@ -10,9 +10,16 @@ A single-page full-stack application enabling users and service providers to con
 
 ## Stack
 
-**Front End:** Typescript 5.3, Next.js 14.1, Tailwind CSS 3.3, Framer Motion 11.1  
+**Front End:** Typescript 5.3, Next.js 14.1, Tailwind CSS 3.3
+**Animation** Framer Motion 11.1  
 **Back End:** Drizzle ORM 0.2, Lucia Auth 3.1  
 **Database:** PostgreSQL
+
+ [!NOTE]
+**The app is hosted live on Vercel:**
+
+- **Live Deployment:** [Solutioner](https://solutioner-2-0.vercel.app/)
+- **Development Branch:** T[Solutioner](https://solutioner-2-0-git-development-nrs-projects.vercel.app/)
 
 
 ## Authors
