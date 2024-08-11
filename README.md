@@ -10,9 +10,10 @@ A single-page full-stack application enabling users and service providers to con
 
 ## Stack
 
-Front End: Typescript 5.3, Next.js 14.1, Tailwind CSS 3.3, Framer Motion 11.1
-Back End: Drizzle ORM 0.2, Lucia AUth 3.1
-Database: PostgreSQL
+**Front End:** Typescript 5.3, Next.js 14.1, Tailwind CSS 3.3, Framer Motion 11.1  
+**Back End:** Drizzle ORM 0.2, Lucia Auth 3.1  
+**Database:** PostgreSQL
+
 
 ## Authors
 Conceived, designed and coded by Nuno Violante Rodrigues
