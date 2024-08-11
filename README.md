@@ -9,8 +9,8 @@ Solutioner, a home services app
 A single-page full-stack application enabling users and service providers to connect and book appointments. It addresses the real-world need for finding service providers securely and conveniently.
 
 ## Hosted live on Vercel
-**Main Branch:** [Solutioner 2.0](https://solutioner-2-0.vercel.app/)
-**Development Branch (Most up-to-date):** [Solutioner 2.0](https://solutioner-2-0-git-development-nrs->projects.vercel.app/)
+- **Main Branch:** [Solutioner 2.0](https://solutioner-2-0.vercel.app/)
+- **Development Branch (Most up-to-date):** [Solutioner 2.0](https://solutioner-2-0-git-development-nrs->projects.vercel.app/)
 
 ## Stack
 
