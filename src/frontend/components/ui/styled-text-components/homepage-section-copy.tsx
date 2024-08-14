@@ -1,6 +1,51 @@
 import { TextComponentProps } from "@/types/component-props-types";
+import { motion, Variants as VariantType } from "framer-motion";
+
+const VARIANTS: VariantType = {
+  initial: {
+    x: -100,
+    opacity: 0.1,
+  },
+  whileInView: {
+    x: 0,
+    opacity: 1,
+  },
+};
 const HomepageSectionCopy = ({ text }: TextComponentProps) => {
-  return <div className="leading-~6 text-sm font-bold">{text}</div>;
+  const sentenceArray: string[] = text.split("/");
+
+  return (
+    <ul>
+      {sentenceArray.map((sentence, index) => {
+        return (
+          <motion.li
+            variants={VARIANTS}
+            initial="initial"
+            whileInView="whileInView"
+            transition={{
+              delay: 0.05 * index,
+              duration: 0.5,
+              ease: [0.16, 1, 0.3, 1],
+            }}
+            viewport={{ once: true, amount: 0.5 }}
+            key={index}
+            className="leading-~6 text-sm font-bold"
+          >
+            {sentence}
+          </motion.li>
+        );
+      })}
+    </ul>
+  );
 };
 
 export default HomepageSectionCopy;
+
+/*     <motion.div
+      variants={VARIANTS}
+      initial="initial"
+      whileInView="whileInView"
+      className="leading-~6 text-sm font-bold"
+    >
+      {text}
+    </motion.div> */

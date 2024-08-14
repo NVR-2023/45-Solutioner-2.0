@@ -14,7 +14,7 @@ const ServicesSectionContentHome = () => {
 
       <div className="bg-blend-multiply hidden w-48 pt-2 md:flex">
         <HomepageSectionCopy
-          text="From unclogging sink pipes to removing hornets' nests, solutions are a
+          text="From unclogging sink pipes to/ removing hornets' nests,/ solutions are a
           click away."
         />
       </div>
