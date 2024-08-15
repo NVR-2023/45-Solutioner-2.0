@@ -7,7 +7,7 @@ import AnimatedMouseIcon from "@/frontend/components/icons/animated-icons/animat
 const ServicesSectionContentHome = () => {
   return (
     <article>
-      <div className="absolute left-[7%] top-[20%] font-aperçu text-[#fc6900]">
+      <div className="absolute left-[7%] top-[18.5%] font-aperçu text-[#fc6900]">
         <div className="flex flex-col -space-y-1 font-extrabold">
           <HomepageSectionTagline text="Home services?" />
           <HomepageSectionTagline text="We got you." />
