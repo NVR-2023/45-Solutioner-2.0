@@ -1,8 +1,20 @@
-import React from "react";
-import { motion } from "framer-motion";
+import { ReactNode } from "react";
+import Marquee from "@/frontend/components/ui/animated-components/marquee";
 
 const CategoryMarquee = () => {
-  const CATEGORY_ARRAY: string[] = [
+  type ElementWrapperProps = {
+    children: ReactNode;
+  };
+
+  const ElementWrapper = ({ children }: ElementWrapperProps) => {
+    return (
+      <div className="me-2 flex justify-center rounded border-[1px] border-[#fc6900] px-1 py-0.5 text-xs font-bold tracking-wide small-caps">
+        {children}
+      </div>
+    );
+  };
+
+  const elementArray: string[] = [
     "wellness",
     "wardrobe",
     "security",
@@ -22,46 +34,24 @@ const CategoryMarquee = () => {
     "cleaning",
   ];
 
-  const VARIANTS = {
-    initial: {
-      x: "-100%",
-    },
-    animate: {
-      x: 0,
-      transition: {
-        duration: 30,
-        repeat: Infinity,
-        ease: "linear",
-      },
-    },
-  };
-
-  const MAEQUEE_HALF = (
-    <motion.div
-      variants={VARIANTS}
-      initial="initial"
-      animate="animate"
-      className="flex"
-    >
-      {CATEGORY_ARRAY.map((category, index) => {
-        return (
-          <div
-            className="me-2 flex justify-center rounded border-[1px] border-[#fc6900] px-1 py-0.5 text-xs font-bold tracking-wide small-caps"
-            key={index}
-          >
-            {category}
-          </div>
-        );
-      })}
-    </motion.div>
-  );
-
   return (
-    <div className="flex w-16 flex-col -space-y-1.5 overflow-clip">
-      <div className="mb-[12px] flex">
-        {MAEQUEE_HALF}
-        {MAEQUEE_HALF}
+    <div className="relative flex w-16 flex-col -space-y-1.5 overflow-clip">
+      <div className="mb-4">
+        <Marquee
+          elementArray={elementArray}
+          ElementWrapper={ElementWrapper}
+          direction="left-to-right"
+          duration={27}
+        />
       </div>
+      <div
+        style={{
+          background:
+            "linear-gradient(to right, rgba(230, 230, 230, 1) 0%, rgba(230, 230, 230, 0) 9%,rgba(230, 230, 230, 0) 91%, rgba(230, 230, 230, 1) 100%)",
+        }}
+        className="absolute inset-0 z-20 h-8 w-full"
+      ></div>
+
       <div className="text-[.625rem] font-extrabold tracking-wide ">
         Categories
       </div>
