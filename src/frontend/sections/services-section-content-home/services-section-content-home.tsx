@@ -1,9 +1,11 @@
 import RegisterButton from "../../components/ui/register-button";
 import HomepageSectionTagline from "@/frontend/components/ui/styled-text-components/homepage-section-tagline";
 import HomepageSectionCopy from "@/frontend/components/ui/styled-text-components/homepage-section-copy";
-import CategoriesCounter from "./sub-components/categories-counter";
 import ServicesCounter from "./sub-components/services-counter";
 import AnimatedMouseIcon from "@/frontend/components/icons/animated-icons/animated-mouse-icon";
+
+import CategoryMarquee from "./sub-components/category-marquee";
+
 const ServicesSectionContentHome = () => {
   return (
     <article>
@@ -21,8 +23,8 @@ const ServicesSectionContentHome = () => {
         </div>
 
         <div className="flex flex-col space-y-1 pt-9">
-          <div className="flex items-end space-x-4">
-            <CategoriesCounter />
+          <div className="mt-2 flex items-end space-x-4">
+            <CategoryMarquee />
             <ServicesCounter />
           </div>
           <div className="pt-4">
@@ -36,7 +38,7 @@ const ServicesSectionContentHome = () => {
             scroll
           </div>
           <div className="flex justify-center">
-            <AnimatedMouseIcon scale={.9}/>
+            <AnimatedMouseIcon scale={0.9} />
           </div>
         </div>
       </div>
