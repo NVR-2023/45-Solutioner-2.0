@@ -41,7 +41,6 @@ const CategoryMarquee = () => {
       variants={VARIANTS}
       initial="initial"
       animate="animate"
-      transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
       className="flex"
     >
       {CATEGORY_ARRAY.map((category, index) => {
