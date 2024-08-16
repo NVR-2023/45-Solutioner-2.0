@@ -1,5 +1,5 @@
 import { ReactNode, ComponentType } from "react";
-import { motion } from "framer-motion";
+import { motion, useAnimationControls } from "framer-motion";
 
 type ElementWrapperProps = {
   children: ReactNode;
@@ -23,7 +23,7 @@ const Marquee = ({
       x: direction === "left-to-right" ? "-100%" : 0,
     },
     animate: {
-      x: direction === "left-to-right" ? 0 : "-100%",
+      x: direction === "left-to-right" ? "0%" : "-100%",
       transition: {
         duration: duration,
         repeat: Infinity,
@@ -32,12 +32,14 @@ const Marquee = ({
     },
   };
 
+  const controls = useAnimationControls();
+
   const halfMarquee = (
     <motion.div
       variants={VARIANTS}
       initial="initial"
       animate="animate"
-      className="flex"
+      className="flex "
     >
       {elementArray.map((element, index) => (
         <ElementWrapper key={index}>{element}</ElementWrapper>
@@ -46,7 +48,7 @@ const Marquee = ({
   );
 
   return (
-    <div className="w-full flex">
+    <div className="flex w-full">
       {halfMarquee}
       {halfMarquee}
     </div>
