@@ -1,18 +1,31 @@
-import { ReactNode, useEffect, useRef } from "react";
+import { ReactNode, ComponentType, useEffect, useRef } from "react";
 import {
   motion,
   useMotionValue,
   animate,
-  AnimationPlaybackControls,useTransform
+  AnimationPlaybackControls,
+useTransform
+
 } from "framer-motion";
 
+type ElementWrapperProps = {
+  children: ReactNode;
+};
+
 type MarqueeProps = {
-  elements: ReactNode[];
+  elementArray: string[];
+  ElementWrapper: ComponentType<ElementWrapperProps>;
   direction: "left-to-right" | "right-to-left";
   duration: number;
 };
 
-const Marquee = ({ elements, direction, duration }: MarqueeProps) => {
+const TextMarquee = ({
+  elementArray,
+  ElementWrapper,
+  direction,
+  duration,
+}: MarqueeProps) => {
+
   const translationXStart = direction === "left-to-right" ? -100 : 0;
   const translationXEnd = direction === "left-to-right" ? 0 : -100;
   const translationXAnimatedValue = useMotionValue(translationXStart);
@@ -31,7 +44,7 @@ const Marquee = ({ elements, direction, duration }: MarqueeProps) => {
     });
 
     controlsRef.current = controls;
-  }, [translationXAnimatedValue, translationXEnd, duration]);
+  }, []);
 
   const halfMarquee = (
     <motion.div
@@ -40,8 +53,8 @@ const Marquee = ({ elements, direction, duration }: MarqueeProps) => {
       }}
       className="flex"
     >
-      {elements.map((element, index) => (
-        <div key={index}>{element}</div>
+      {elementArray.map((element, index) => (
+        <ElementWrapper key={index}>{element}</ElementWrapper>
       ))}
     </motion.div>
   );
@@ -62,4 +75,4 @@ const Marquee = ({ elements, direction, duration }: MarqueeProps) => {
   );
 };
 
-export default Marquee;
+export default TextMarquee;

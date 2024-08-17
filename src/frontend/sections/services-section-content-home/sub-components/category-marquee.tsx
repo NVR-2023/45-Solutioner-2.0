@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
-import Marquee from "@/frontend/components/ui/animated-components/marquee";
-
+import TextMarqueeWithoutHoverControls from "@/frontend/components/ui/animated-components/text-marquee-without-hover-controls";
+import TextMarquee from "@/frontend/components/ui/animated-components/text-marquee";
 const CategoryMarquee = () => {
   type ElementWrapperProps = {
     children: ReactNode;
@@ -37,7 +37,7 @@ const CategoryMarquee = () => {
   return (
     <div className="relative flex w-16 flex-col -space-y-1.5 overflow-clip">
       <div className="mb-4">
-        <Marquee
+        <TextMarqueeWithoutHoverControls
           elementArray={elementArray}
           ElementWrapper={ElementWrapper}
           direction="left-to-right"
