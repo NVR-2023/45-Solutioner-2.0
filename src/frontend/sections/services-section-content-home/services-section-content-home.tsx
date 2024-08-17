@@ -8,10 +8,9 @@ import CategoryMarquee from "./sub-components/category-marquee";
 const ServicesSectionContentHome = () => {
   return (
     <article>
-      <div className="absolute left-[7%] top-[18.5%] font-aperçu text-[#fc6900]">
+      <div className="absolute left-[7%] top-[17.5%] font-aperçu text-[#fc6900]">
         <div className="flex flex-col -space-y-1 font-extrabold">
-          <HomepageSectionTagline text="Home services?" />
-          <HomepageSectionTagline text="We got you." />
+          <HomepageSectionTagline text="Home services?/We got you." />
         </div>
 
         <div className="hidden w-48 pt-2 bg-blend-multiply md:flex">

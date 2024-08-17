@@ -18,7 +18,8 @@ export default function Home() {
     {
       section: HOMEPAGE_SECTION_NAMES[0],
       imageUrl:
-        "https://res.cloudinary.com/dz5v9ajpb/image/upload/v1721331126/01_plumbing_up0kfa.webp",
+        "https://res.cloudinary.com/dz5v9ajpb/image/upload/v1723900964/01_plumbing-03_iwsiqt.webp",
+
       alt: "plumbing",
       setCurrentSection: setCurrentSection,
       content: <ServicesSectionContentHome />,

@@ -1,7 +1,19 @@
 import { TextComponentProps } from "@/types/component-props-types";
 import { motion, Variants as VariantType } from "framer-motion";
 
-const VARIANTS: VariantType = {
+const BASE_DELAY = .5;
+const PARENT_VARIANTS: VariantType = {
+  initial: {
+    opacity: 0,
+  },
+  whileInView: {
+    opacity: 1,
+    transition: {
+      delay: BASE_DELAY,
+    },
+  },
+};
+const CHILD_VARIANTS: VariantType = {
   initial: {
     x: -100,
     opacity: 0.1,
@@ -15,15 +27,19 @@ const HomepageSectionCopy = ({ text }: TextComponentProps) => {
   const sentenceArray: string[] = text.split("/");
 
   return (
-    <ul>
+    <motion.ul
+      variants={PARENT_VARIANTS}
+      initial="initial"
+      whileInView="whileInView"
+    >
       {sentenceArray.map((sentence, index) => {
         return (
           <motion.li
-            variants={VARIANTS}
+            variants={CHILD_VARIANTS}
             initial="initial"
             whileInView="whileInView"
             transition={{
-              delay: 0.05 * index,
+              delay: 0.05 * index + BASE_DELAY,
               duration: 0.5,
               ease: [0.16, 1, 0.3, 1],
             }}
@@ -35,7 +51,7 @@ const HomepageSectionCopy = ({ text }: TextComponentProps) => {
           </motion.li>
         );
       })}
-    </ul>
+    </motion.ul>
   );
 };
 
