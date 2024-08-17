@@ -1,17 +1,23 @@
+import QRCode from "react-qr-code";
+
 type AnimatedQRCodeProps = {
   scrollYProgress: number;
 };
 
 const AnimatedQRCode = ({ scrollYProgress }: AnimatedQRCodeProps) => {
-  const scrollYProgressString: string = scrollYProgress?.toFixed(7);
+  const scrollYProgressString: string = scrollYProgress?.toString();
 
   return (
     <div className="flex flex-col -space-y-1.5">
-      <div className="mb-4 text-[.625rem] font-extrabold tracking-wide">
-        QR Password
+      <div className="flex size-24 items-center justify-center">
+        <QRCode
+          size={32}
+          bgColor="rgba(212, 212, 212, 0.18)"
+          fgColor="#fc6900"
+          style={{ height: "auto", maxWidth: "100%", width: "100%" }}
+          value={scrollYProgressString ?? "Solutioner"}
+        />
       </div>
-      <div className="size-24 bg-orange-300 ">{scrollYProgressString}</div>
-     
     </div>
   );
 };

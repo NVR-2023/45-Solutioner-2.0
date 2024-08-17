@@ -6,7 +6,7 @@ import HomepageSectionTagline from "@/frontend/components/ui/styled-text-compone
 import HomepageSectionCopy from "@/frontend/components/ui/styled-text-components/homepage-section-copy";
 
 import AnimatedQRCode from "./sub-components/animated-qr-code";
-import AnimatedProfile from "./sub-components/animated-profile";
+import AnimatedPassword from "./sub-components/animated-password";
 
 const SecuritySectionContentHome = () => {
   const ContainerRef = useRef(null);
@@ -22,19 +22,21 @@ const SecuritySectionContentHome = () => {
 
   return (
     <div className="absolute left-[7%] top-[18%] font-aperçu text-[#fc6900]">
-      <div className="flex flex-col -space-y-1 font-extrabold">
+      <div className="flex flex-col font-extrabold">
         <HomepageSectionTagline text="Security?/Our Priority." />
       </div>
 
-      <div className="hidden w-48 pt-2 bg-blend-multiply md:flex">
-        <HomepageSectionCopy text="Know your provider first./ Set verbal and QR passwords." />
+      <div className="">
+        <HomepageSectionCopy text="Know your provider./ Set verbal and QR passwords./ Track everything." />
       </div>
 
-      <div className="flex flex-col space-y-1 pt-9">
-        <div ref={ContainerRef} className="flex items-end space-x-4">
-          <AnimatedProfile scrollYProgress={referenceScrollYProgress!} />
+      <div className="mt-4 flex flex-col space-y-1">
+        <div ref={ContainerRef} className="flex w-full  items-center space-x-8">
+          <div className="flex w-[11.7rem] justify-center">
+            <AnimatedPassword scrollYProgress={referenceScrollYProgress!} />
+          </div>
           <AnimatedQRCode scrollYProgress={referenceScrollYProgress!} />
-          {}
+          
         </div>
         <div className="pt-4">
           <RegisterButton />

@@ -8,6 +8,7 @@ import RollupSmallNote from "../styled-text-components/rollup-small-note";
 import BookServiceButton from "./sub-components/book-service-button";
 import SaleTag from "./sub-components/sale-tag";
 import PriceCutTag from "./sub-components/price-cut-tag";
+import PriceTag from "./sub-components/price-tag";
 
 const variants = {
   initial: {
@@ -103,9 +104,7 @@ const ServiceRollup = ({
           <div className=" col-span-1 flex items-center text-xs ">
             <div className="grid w-full grid-cols-2">
               <div className="col-span-1 flex justify-end pe-2">
-                <span className="text-[.625rem]">€</span>
-
-                <RollupContent text={price} />
+                <PriceTag price={price} />
               </div>
               <div className="col-span-1 flex justify-start ps-2">
                 {sale ? <SaleTag /> : null}

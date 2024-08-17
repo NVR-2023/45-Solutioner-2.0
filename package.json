@@ -30,6 +30,7 @@
     "react": "^18",
     "react-dom": "^18",
     "react-intersection-observer": "^9.10.3",
+    "react-qr-code": "^2.0.15",
     "tailwindcss-opentype": "^1.1.0"
   },
   "devDependencies": {
