@@ -17,7 +17,7 @@ const AnimatedPassword = ({ scrollYProgress }: AnimatedProfileProps) => {
   ];
 
   const X_GAP = 1.25;
-  const X_OFFSET= 1;
+  const X_OFFSET = 1;
   const Y_GAP = 1.75;
   const SCROLL_Y_ENTER = 0.3;
   const SCROLL_Y_LEAVE = 0.7;
@@ -52,9 +52,9 @@ const AnimatedPassword = ({ scrollYProgress }: AnimatedProfileProps) => {
             stiffness: 200,
             damping: 20,
             mass: 1,
-            duration: 0.12,
+            duration: 0.1,
             ease: "easeInOut",
-            delay: wordIndex * 0.07,
+            delay: wordIndex * 0.05,
           }}
           style={{ left: `${X_GAP * wordIndex + X_OFFSET}rem` }}
         >
