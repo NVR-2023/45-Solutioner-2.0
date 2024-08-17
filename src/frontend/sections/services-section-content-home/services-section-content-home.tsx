@@ -2,7 +2,6 @@ import RegisterButton from "../../components/ui/register-button";
 import HomepageSectionTagline from "@/frontend/components/ui/styled-text-components/homepage-section-tagline";
 import HomepageSectionCopy from "@/frontend/components/ui/styled-text-components/homepage-section-copy";
 import ServicesCounter from "./sub-components/services-counter";
-import AnimatedMouseIcon from "@/frontend/components/icons/animated-icons/animated-mouse-icon";
 
 import CategoryMarquee from "./sub-components/category-marquee";
 
@@ -29,16 +28,6 @@ const ServicesSectionContentHome = () => {
           </div>
           <div className="pt-4">
             <RegisterButton />
-          </div>
-        </div>
-      </div>
-      <div className="text  absolute bottom-[36%] right-9 justify-center">
-        <div className="flex flex-col justify-center">
-          <div className="flex justify-center  text-[0.6125rem] font-semibold  tracking-wider small-caps">
-            scroll
-          </div>
-          <div className="flex justify-center">
-            <AnimatedMouseIcon scale={0.9} />
           </div>
         </div>
       </div>
