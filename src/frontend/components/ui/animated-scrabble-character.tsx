@@ -4,7 +4,7 @@ import getRandomCapsCharacter from "@/utils/functions/get-random-caps-character"
 
 type AnimatedScrabbleCharacterProps = {
   lastCharacter: string;
-  length: number;
+  totalNumberOfCharacters: number;
   WrapperElement: ComponentType<{ children: ReactNode }>;
   yGap: number;
   currentIndex: number;
@@ -12,8 +12,8 @@ type AnimatedScrabbleCharacterProps = {
 };
 
 const AnimatedScrabbleCharacter = ({
-  lastCharacter: finalCharacter,
-  length,
+  lastCharacter,
+  totalNumberOfCharacters,
   WrapperElement,
   yGap,
   currentIndex = 0,
@@ -22,17 +22,17 @@ const AnimatedScrabbleCharacter = ({
   const scrabbleArray: string[] = useMemo(() => {
     const array: string[] = [];
     let currentCharacter: string = "";
-    for (let i = 0; i < length - 1; i++) {
+    for (let i = 0; i < totalNumberOfCharacters - 1; i++) {
       currentCharacter = getRandomCapsCharacter();
       while (
         array.includes(currentCharacter) ||
-        currentCharacter === finalCharacter[0]
+        currentCharacter === lastCharacter[0]
       ) {
         currentCharacter = getRandomCapsCharacter();
       }
       array.push(currentCharacter);
     }
-    array.push(finalCharacter[0]);
+    array.push(lastCharacter[0]);
     return array;
   }, []);
 
@@ -45,7 +45,7 @@ const AnimatedScrabbleCharacter = ({
           stiffness: 100,
           damping: 10,
           mass: 1.5,
-          duration: 0.1,
+          duration: 0.12,
           ease: "easeInOut",
           delay: delay,
         }}

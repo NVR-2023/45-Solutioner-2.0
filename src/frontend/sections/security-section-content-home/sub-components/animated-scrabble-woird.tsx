@@ -1,4 +1,5 @@
 import CustomAnimatedScrabbleCharacter from "./custom-animated-scrabble-character";
+import { motion } from "framer-motion";
 
 type AnimatedScrabbleWordProps = {
   word: string;
