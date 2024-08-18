@@ -3,7 +3,6 @@ import { motion, useScroll, useMotionValueEvent } from "framer-motion";
 import RegisterButton from "../navbar-homepage/sub-components/register-button";
 import HomepageSectionTagline from "@/frontend/components/ui/styled-text-components/homepage-section-tagline";
 
-
 const ServicesSectionContentHome = () => {
   const counterRef = useRef(null);
   const [referenceScrollYProgress, setReferenceScrollYProgress] = useState<

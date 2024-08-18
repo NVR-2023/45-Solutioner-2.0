@@ -3,7 +3,7 @@ import { ReactNode, ComponentType, useMemo } from "react";
 import getRandomCapsCharacter from "@/utils/functions/get-random-caps-character";
 
 type AnimatedScrabbleCharacterProps = {
-  finalCharacter: string;
+  lastCharacter: string;
   length: number;
   WrapperElement: ComponentType<{ children: ReactNode }>;
   yGap: number;
@@ -12,7 +12,7 @@ type AnimatedScrabbleCharacterProps = {
 };
 
 const AnimatedScrabbleCharacter = ({
-  finalCharacter,
+  lastCharacter: finalCharacter,
   length,
   WrapperElement,
   yGap,
@@ -45,7 +45,7 @@ const AnimatedScrabbleCharacter = ({
           stiffness: 100,
           damping: 10,
           mass: 1.5,
-          duration: 0.12,
+          duration: 0.1,
           ease: "easeInOut",
           delay: delay,
         }}

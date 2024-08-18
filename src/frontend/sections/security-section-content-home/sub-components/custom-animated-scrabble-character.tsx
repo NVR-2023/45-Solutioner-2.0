@@ -1,9 +1,11 @@
-import { ReactNode, memo} from "react";
+import { ReactNode, memo } from "react";
 import AnimatedScrabbleCharacter from "@/frontend/components/ui/animated-scrabble-character";
 
 type AnimatedCharacterProps = {
+  lastCharacter: string;
   referenceScrollYProgress: number;
-  length: number;
+  length?: number;
+  delay: number;
 };
 
 type WrapperElementProps = {
@@ -12,27 +14,32 @@ type WrapperElementProps = {
 
 const WrapperElement = memo(({ children }: WrapperElementProps) => {
   return (
-    <div className="text-3xl font-extrabold text-purple-400">{children}</div>
+    <div className="text-3xl font-extrabold text-[#fc6900]">{children}</div>
   );
 });
 
 WrapperElement.displayName = "WrapperElement";
 
-const AnimatedCharacter = ({
+const CustomAnimatedScrabbleCharacter = ({
+  lastCharacter,
   referenceScrollYProgress,
-  length,
+  length = 3,
+  delay,
 }: AnimatedCharacterProps) => {
   const SCROLL_Y_ENTER = 0.3;
-  const SCROLL_Y_LEAVE = 0.7;
+  const SCROLL_Y_LEAVE = 0.5;
   const lastIndex = length - 1;
-
 
   let arrayIndexFromScrollYProgress: number = 0;
   if (referenceScrollYProgress < SCROLL_Y_ENTER) {
     arrayIndexFromScrollYProgress = 0;
-  } else if (referenceScrollYProgress >= SCROLL_Y_ENTER && referenceScrollYProgress <= SCROLL_Y_LEAVE) {
+  } else if (
+    referenceScrollYProgress >= SCROLL_Y_ENTER &&
+    referenceScrollYProgress <= SCROLL_Y_LEAVE
+  ) {
     arrayIndexFromScrollYProgress = Math.round(
-      ((referenceScrollYProgress - SCROLL_Y_ENTER) / (SCROLL_Y_LEAVE - SCROLL_Y_ENTER)) *
+      ((referenceScrollYProgress - SCROLL_Y_ENTER) /
+        (SCROLL_Y_LEAVE - SCROLL_Y_ENTER)) *
         lastIndex,
     );
   } else if (referenceScrollYProgress > SCROLL_Y_LEAVE) {
@@ -41,14 +48,14 @@ const AnimatedCharacter = ({
 
   return (
     <AnimatedScrabbleCharacter
-      finalCharacter="A"
+      lastCharacter={lastCharacter}
       length={length}
       WrapperElement={WrapperElement}
-      delay={0.1}
+      delay={delay}
       yGap={2.25}
       currentIndex={arrayIndexFromScrollYProgress}
     />
   );
 };
 
-export default AnimatedCharacter;
+export default CustomAnimatedScrabbleCharacter;
