@@ -1,11 +1,13 @@
 import QRCode from "react-qr-code";
 
 type AnimatedQRCodeProps = {
-  scrollYProgress: number;
+  referenceScrollYProgress: number;
 };
 
-const AnimatedQRCode = ({ scrollYProgress }: AnimatedQRCodeProps) => {
-  const scrollYProgressString: string = scrollYProgress?.toString();
+const AnimatedQRCode = ({
+  referenceScrollYProgress,
+}: AnimatedQRCodeProps) => {
+  const scrollYProgressString: string = referenceScrollYProgress?.toString();
 
   return (
     <div className="flex flex-col -space-y-1.5">

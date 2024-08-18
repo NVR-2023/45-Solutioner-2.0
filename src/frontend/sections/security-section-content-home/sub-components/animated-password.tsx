@@ -1,10 +1,10 @@
 import { motion } from "framer-motion";
 
 type AnimatedProfileProps = {
-  scrollYProgress: number;
+  referenceScrollYProgress: number;
 };
 
-const AnimatedPassword = ({ scrollYProgress }: AnimatedProfileProps) => {
+const AnimatedPassword = ({ referenceScrollYProgress }: AnimatedProfileProps) => {
   const SCRABBLE_ARRAY = [
     ["A", "Z", "D", "K", "E", "0", "P"],
     ["Z", "D", "3", "E", "S", "Y", "A"],
@@ -23,17 +23,17 @@ const AnimatedPassword = ({ scrollYProgress }: AnimatedProfileProps) => {
   const SCROLL_Y_LEAVE = 0.7;
 
   let arrayIndexFromScrollYProgress: number;
-  if (!scrollYProgress) {
+  if (!referenceScrollYProgress) {
     arrayIndexFromScrollYProgress = 0;
   } else if (
-    scrollYProgress >= SCROLL_Y_ENTER &&
-    scrollYProgress <= SCROLL_Y_LEAVE
+    referenceScrollYProgress >= SCROLL_Y_ENTER &&
+    referenceScrollYProgress <= SCROLL_Y_LEAVE
   ) {
     arrayIndexFromScrollYProgress = Math.round(
-      ((scrollYProgress - SCROLL_Y_ENTER) / (SCROLL_Y_LEAVE - SCROLL_Y_ENTER)) *
+      ((referenceScrollYProgress - SCROLL_Y_ENTER) / (SCROLL_Y_LEAVE - SCROLL_Y_ENTER)) *
         6,
     );
-  } else if (scrollYProgress >= SCROLL_Y_LEAVE) {
+  } else if (referenceScrollYProgress >= SCROLL_Y_LEAVE) {
     arrayIndexFromScrollYProgress = 6;
   }
 
