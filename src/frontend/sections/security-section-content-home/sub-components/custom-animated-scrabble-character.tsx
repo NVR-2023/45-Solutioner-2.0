@@ -23,12 +23,12 @@ WrapperElement.displayName = "WrapperElement";
 const CustomAnimatedScrabbleCharacter = ({
   lastCharacter,
   referenceScrollYProgress,
-  length = 5,
+  length: totalNumberOfCharacters = 5,
   delay,
 }: AnimatedCharacterProps) => {
   const SCROLL_Y_ENTER = 0.3;
   const SCROLL_Y_LEAVE = 0.6;
-  const lastIndex = length - 1;
+  const lastIndex = totalNumberOfCharacters - 1;
 
   let arrayIndexFromScrollYProgress: number = 0;
   if (referenceScrollYProgress < SCROLL_Y_ENTER) {
@@ -55,7 +55,7 @@ const CustomAnimatedScrabbleCharacter = ({
   return (
     <AnimatedScrabbleCharacter
       lastCharacter={lastCharacter}
-      totalNumberOfCharacters={length}
+      totalNumberOfCharacters={totalNumberOfCharacters}
       WrapperElement={WrapperElement}
       delay={delay}
       yGap={2}

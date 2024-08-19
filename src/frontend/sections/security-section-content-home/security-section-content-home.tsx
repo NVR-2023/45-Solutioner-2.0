@@ -15,7 +15,7 @@ const SecuritySectionContentHome = () => {
     number | null
   >(null);
 
-  const DEBOUNCE_TIMEOUT = 100;
+  const DEBOUNCE_TIMEOUT = 75;
   const { scrollYProgress } = useScroll({ target: ContainerRef });
   const debouncedScrollYProgressUpdate = debounceFunction((value: number) => {
     setReferenceScrollYProgress(value);
