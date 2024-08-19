@@ -1,7 +1,6 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { ReactNode } from "react";
-import AnimatedCheckedCircle from "@/frontend/components/icons/animated-icons/animated-checked-circle";
-import HomepageSectionCaption from "@/frontend/components/ui/styled-text-components/homepage-section-caption";
+import CustomAnimatedCheckedCircle from "@/frontend/components/icons/animated-icons/custom-animated-checked-circle";
 import AnimatedStaggeredString from "@/frontend/components/ui/animated-components/animated-staggered-string";
 
 type PasswordCheckProps = {
@@ -10,11 +9,9 @@ type PasswordCheckProps = {
 const VARIANTS = {
   initial: {
     opacity: 0,
-    scale: 0.9,
   },
   animate: {
     opacity: 1,
-    scale: 1,
     transition: {
       duration: 0.5,
     },
@@ -25,13 +22,17 @@ const VARIANTS = {
   },
 };
 const PasswordCheck = ({ referenceScrollYProgress }: PasswordCheckProps) => {
-  const isSectionScrolled = referenceScrollYProgress >= 0.6;
+  const SCROLL_LEAVE = 0.6
+  const isSectionScrolled =
+    Math.ceil(referenceScrollYProgress * 10) / 10 >= SCROLL_LEAVE;
 
   type WrapperElementProps = {
     children: ReactNode;
   };
   const WrapperElement = ({ children }: WrapperElementProps) => (
-    <span className="text-sm px-[0.3px] font-extrabold small-caps ">{children}</span>
+    <span className="px-[0.3px] text-sm font-black italic small-caps ">
+      {children}
+    </span>
   );
 
   return (
@@ -44,20 +45,15 @@ const PasswordCheck = ({ referenceScrollYProgress }: PasswordCheckProps) => {
           exit="exit"
           key="passwordCheck"
         >
-          <div className="flex">
-            <AnimatedCheckedCircle scale={1.8} />
-
-            <div className="flex flex-col -space-y-2 ps-2">
+          <div className="flex items-center">
+            <CustomAnimatedCheckedCircle scale={1.5} />
+            <span className="ps-1">
               <AnimatedStaggeredString
-                text="provider"
+                text="provider checks"
                 WrapperElement={WrapperElement}
+                baseDelay={0.7}
               />
-              <AnimatedStaggeredString
-                text="checks"
-                baseDelay={0.3}
-                WrapperElement={WrapperElement}
-              />
-            </div>
+            </span>
           </div>
         </motion.div>
       )}

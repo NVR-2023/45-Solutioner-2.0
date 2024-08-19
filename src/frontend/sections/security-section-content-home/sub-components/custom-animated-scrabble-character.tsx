@@ -26,7 +26,6 @@ const CustomAnimatedScrabbleCharacter = ({
   length = 5,
   delay,
 }: AnimatedCharacterProps) => {
-  
   const SCROLL_Y_ENTER = 0.3;
   const SCROLL_Y_LEAVE = 0.6;
   const lastIndex = length - 1;
@@ -43,7 +42,7 @@ const CustomAnimatedScrabbleCharacter = ({
         (SCROLL_Y_LEAVE - SCROLL_Y_ENTER)) *
         lastIndex,
     );
-  } else if (referenceScrollYProgress > SCROLL_Y_LEAVE) {
+  } else {
     arrayIndexFromScrollYProgress = lastIndex;
   }
 

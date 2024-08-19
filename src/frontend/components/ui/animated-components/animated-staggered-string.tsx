@@ -12,7 +12,10 @@ const AnimatedStaggeredString = ({
   baseDelay = 0,
   WrapperElement,
 }: AnimatedStaggeredStringPProps) => {
-  const characterArray: string[] = text.split("");
+  const characterArray: string[] = text
+    .split("")
+    .map((character) => (character === " " ? "\u00A0" : character));
+
   return (
     <div className="flex">
       {characterArray.map((character, index) => (
@@ -25,6 +28,7 @@ const AnimatedStaggeredString = ({
             transition: {
               duration: 0.12,
               delay: baseDelay + index * 0.05,
+              ease: "easeInOut",
             },
           }}
           key={index}
