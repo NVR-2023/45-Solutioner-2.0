@@ -14,7 +14,7 @@ type WrapperElementProps = {
 
 const WrapperElement = memo(({ children }: WrapperElementProps) => {
   return (
-    <div className="text-3xl font-extrabold text-[#fc6900]">{children}</div>
+    <div className="text-2xl font-extrabold text-[#fc6900]">{children}</div>
   );
 });
 
@@ -26,8 +26,9 @@ const CustomAnimatedScrabbleCharacter = ({
   length = 5,
   delay,
 }: AnimatedCharacterProps) => {
+  
   const SCROLL_Y_ENTER = 0.3;
-  const SCROLL_Y_LEAVE = 0.72;
+  const SCROLL_Y_LEAVE = 0.6;
   const lastIndex = length - 1;
 
   let arrayIndexFromScrollYProgress: number = 0;
@@ -58,7 +59,7 @@ const CustomAnimatedScrabbleCharacter = ({
       totalNumberOfCharacters={length}
       WrapperElement={WrapperElement}
       delay={delay}
-      yGap={2.25}
+      yGap={2}
       currentIndex={arrayIndexFromScrollYProgress}
     />
   );

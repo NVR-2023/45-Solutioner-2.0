@@ -8,8 +8,8 @@ const tickVariants = {
   animate: {
     pathLength: 1,
     transition: {
-      duration: 0.7,
-      ease: [0.64, 0, 0.78, 0],
+      duration: 1.2,
+      ease: [0.11, 0, 0.5, 0],
     },
   },
 };
@@ -32,7 +32,7 @@ const AnimatedCheckedBox = ({ scale = 1 }: BasicComponentProps) => {
         initial="initial"
         animate="animate"
         d="M340-408 L424-311 L650-562"
-        className="fill-transparent stroke-current stroke-[40] text-white dark:text-black" // Add stroke styles
+        className="fill-transparent stroke-current stroke-[40] text-white dark:text-black"
       />
     </svg>
   );

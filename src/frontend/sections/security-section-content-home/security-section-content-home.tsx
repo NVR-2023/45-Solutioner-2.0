@@ -7,6 +7,7 @@ import HomepageSectionCopy from "@/frontend/components/ui/styled-text-components
 
 import AnimatedScrabbleWord from "./sub-components/animated-scrabble-woird";
 import debounceFunction from "@/utils/functions/debounce-function/debounce-function";
+import PasswordCheck from "./sub-components/password-check";
 
 const SecuritySectionContentHome = () => {
   const ContainerRef = useRef<HTMLDivElement | null>(null);
@@ -14,7 +15,7 @@ const SecuritySectionContentHome = () => {
     number | null
   >(null);
 
-  const DEBOUNCE_TIMEOUT =100 
+  const DEBOUNCE_TIMEOUT = 75;
   const { scrollYProgress } = useScroll({ target: ContainerRef });
   const debouncedScrollYProgressUpdate = debounceFunction((value: number) => {
     setReferenceScrollYProgress(value);
@@ -28,7 +29,7 @@ const SecuritySectionContentHome = () => {
   return (
     <div className="absolute left-[7%] top-[18%] font-aperçu text-[#fc6900]">
       <div className="flex flex-col font-extrabold">
-        <HomepageSectionTagline text="Security?/Our Priority." />
+        <HomepageSectionTagline text="Your security?/Our Priority." />
       </div>
 
       <div className="">
@@ -37,9 +38,12 @@ const SecuritySectionContentHome = () => {
 
       <div className="mt-4 flex flex-col space-y-1">
         <div ref={ContainerRef} className="flex w-full items-center space-x-8">
-          <div className="pt-4 flex">
+          <div className="flex items-center justify-center space-x-4 pt-4">
             <AnimatedScrabbleWord
               word={"PASSWORD"}
+              referenceScrollYProgress={referenceScrollYProgress!}
+            />
+            <PasswordCheck
               referenceScrollYProgress={referenceScrollYProgress!}
             />
           </div>

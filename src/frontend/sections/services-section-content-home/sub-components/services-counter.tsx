@@ -1,5 +1,5 @@
 import AnimatedCounter from "@/frontend/components/ui/animated-components/animated-counter";
-
+import HomepageSectionCaption from "@/frontend/components/ui/styled-text-components/homepage-section-caption";
 const ServicesCounter = () => {
   return (
     <div className="flex flex-col -space-y-1.5">
@@ -10,9 +10,7 @@ const ServicesCounter = () => {
         weight={"black"}
         size={"5xl"}
       />
-      <div className="text-[.625rem] font-extrabold tracking-wide">
-        Services
-      </div>
+      <HomepageSectionCaption text="services" />
     </div>
   );
 };
