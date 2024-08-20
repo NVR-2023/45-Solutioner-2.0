@@ -1,17 +1,17 @@
 import { ComponentType, ReactNode } from "react";
 import { motion } from "framer-motion";
 
-type AnimatedStaggeredStringPProps = {
+type StaggeredCharacterSentenceProps = {
   text: string;
   baseDelay?: number;
   WrapperElement: ComponentType<{ children: ReactNode }>;
 };
 
-const AnimatedStaggeredString = ({
+const StaggeredCharacterSentence = ({
   text,
   baseDelay = 0,
   WrapperElement,
-}: AnimatedStaggeredStringPProps) => {
+}: StaggeredCharacterSentenceProps) => {
   const characterArray: string[] = text
     .split("")
     .map((character) => (character === " " ? "\u00A0" : character));
@@ -40,4 +40,4 @@ const AnimatedStaggeredString = ({
   );
 };
 
-export default AnimatedStaggeredString;
+export default StaggeredCharacterSentence;

@@ -1,7 +1,8 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { ReactNode } from "react";
 import CustomAnimatedCheckedCircle from "@/frontend/components/icons/animated-icons/custom-animated-checked-circle";
-import AnimatedStaggeredString from "@/frontend/components/ui/animated-components/animated-staggered-string";
+import StaggeredCharacterSentence from "@/frontend/components/ui/animated-components/staggered-character-sentence";
+import VerifiedProviderCaption from "@/frontend/components/ui/styled-text-components/verified-provider-caption";
 
 type PasswordCheckProps = {
   referenceScrollYProgress: number;
@@ -22,18 +23,9 @@ const VARIANTS = {
   },
 };
 const PasswordCheck = ({ referenceScrollYProgress }: PasswordCheckProps) => {
-  const SCROLL_LEAVE = 0.6
+  const SCROLL_LEAVE = 0.6;
   const isSectionScrolled =
     Math.ceil(referenceScrollYProgress * 10) / 10 >= SCROLL_LEAVE;
-
-  type WrapperElementProps = {
-    children: ReactNode;
-  };
-  const WrapperElement = ({ children }: WrapperElementProps) => (
-    <span className="px-[0.3px] text-sm font-black italic small-caps ">
-      {children}
-    </span>
-  );
 
   return (
     <AnimatePresence>
@@ -48,9 +40,9 @@ const PasswordCheck = ({ referenceScrollYProgress }: PasswordCheckProps) => {
           <div className="flex items-center">
             <CustomAnimatedCheckedCircle scale={1.5} />
             <span className="ps-1">
-              <AnimatedStaggeredString
+              <StaggeredCharacterSentence
                 text="verified provider"
-                WrapperElement={WrapperElement}
+                WrapperElement={VerifiedProviderCaption}
                 baseDelay={0.7}
               />
             </span>

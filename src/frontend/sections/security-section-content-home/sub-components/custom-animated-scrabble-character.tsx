@@ -1,7 +1,7 @@
 import { ReactNode, memo } from "react";
 import AnimatedScrabbleCharacter from "@/frontend/components/ui/animated-scrabble-character";
 
-type AnimatedCharacterProps = {
+type CustomAnimatedScrabbleCharacterProps = {
   lastCharacter: string;
   referenceScrollYProgress: number;
   length?: number;
@@ -25,7 +25,7 @@ const CustomAnimatedScrabbleCharacter = ({
   referenceScrollYProgress,
   length: totalNumberOfCharacters = 5,
   delay,
-}: AnimatedCharacterProps) => {
+}: CustomAnimatedScrabbleCharacterProps) => {
   const SCROLL_Y_ENTER = 0.3;
   const SCROLL_Y_LEAVE = 0.6;
   const lastIndex = totalNumberOfCharacters - 1;

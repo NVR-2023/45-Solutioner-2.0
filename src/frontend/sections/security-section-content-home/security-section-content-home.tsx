@@ -1,9 +1,10 @@
 import { useState, useRef } from "react";
 import { useScroll, useMotionValueEvent } from "framer-motion";
-
 import RegisterButton from "../../components/ui/register-button";
 import HomepageSectionTagline from "@/frontend/components/ui/styled-text-components/homepage-section-tagline";
 import HomepageSectionCopy from "@/frontend/components/ui/styled-text-components/homepage-section-copy";
+import StaggeredWordSentence from "@/frontend/components/ui/animated-components/staggered-word-sentence";
+import StaggeredSentenceParagraph from "@/frontend/components/ui/animated-components/staggered-senetnce-paragraph";
 
 import AnimatedScrabbleWord from "./sub-components/animated-scrabble-woird";
 import debounceFunction from "@/utils/functions/debounce-function/debounce-function";
@@ -28,12 +29,25 @@ const SecuritySectionContentHome = () => {
 
   return (
     <div className="absolute left-[7%] top-[18%] font-aperçu text-[#fc6900]">
-      <div className="flex flex-col font-extrabold">
-        <HomepageSectionTagline text="Your security?/Our Priority." />
+      <div className="flex flex-col -space-y-1">
+        <StaggeredWordSentence
+          WrapperElement={HomepageSectionTagline}
+          text="Your security?"
+        />
+
+        <StaggeredWordSentence
+          WrapperElement={HomepageSectionTagline}
+          text="Our priority."
+          baseDelay={0.3}
+        />
       </div>
 
       <div className="">
-        <HomepageSectionCopy text="Know your provider/Set verbal and QR passwords/Track request status" />
+        <StaggeredSentenceParagraph
+          text="Know your provider/Set verbal and QR passwords/Track request status"
+          WrapperElement={HomepageSectionCopy}
+          baseDelay={0.7}
+        />
       </div>
 
       <div className="mt-4 flex flex-col space-y-1">
