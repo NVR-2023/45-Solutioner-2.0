@@ -8,13 +8,12 @@ const PricingSectionContentHome = () => {
     <article>
       <div className="absolute left-[7%] top-[17.5%] font-aperçu text-[#fc6900]">
         <div className="flex flex-col -space-y-1 font-extrabold">
-          <HomepageSectionTagline text="Sales, bargains, discounts/You can have it all" />
+          <HomepageSectionTagline text="Sales, bargains, discounts./You have it all." />
         </div>
 
         <div className="hidden w-48 pt-2 bg-blend-multiply md:flex">
           <HomepageSectionCopy
-            text="Affordable dog walking,/ regular sales on popular services,  sink pipes to/ pesky hornets' nests,/ solutions are a
-          click away."
+            text="Affordable services/ and sales/hasgdshad"
           />
         </div>
 
