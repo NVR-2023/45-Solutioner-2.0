@@ -28,10 +28,11 @@ const TextInplaceInfiniteLoop = ({
   return (
     <motion.div
       animate={{
-        opacity: [0, 1,1, 0],
+        opacity: [0, 1, 1, 0],
         transition: {
           duration: durationForEachText,
-          times: [0, 0.2, 0.8, 1],
+          times: [0, 0.15, 0.85, 1],
+          easing: [0.16, 1, 0.3, 1],
         },
       }}
       key={textArray[currentIndex]}
