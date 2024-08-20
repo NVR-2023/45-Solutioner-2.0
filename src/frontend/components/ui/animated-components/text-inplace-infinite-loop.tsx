@@ -1,5 +1,5 @@
 import { useState, useEffect, ComponentType, ReactNode } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 
 type TextInplaceInfiniteLoopProps = {
   textArray: string[];
@@ -7,7 +7,7 @@ type TextInplaceInfiniteLoopProps = {
   duration: number;
 };
 
-const TextInfiniteLoop = ({
+const TextInplaceInfiniteLoop = ({
   textArray,
   WrapperElement,
   duration,
@@ -26,22 +26,19 @@ const TextInfiniteLoop = ({
   }, []);
 
   return (
-    <AnimatePresence>
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{
-          opacity: 1,
-          transition: {
-            duration: durationForEachText,
-          },
-        }}
-        exit={{ opacity: 0 }}
-        key={textArray[currentIndex]}
-      >
-        <WrapperElement>{textArray[currentIndex]}</WrapperElement>
-      </motion.div>
-    </AnimatePresence>
+    <motion.div
+      animate={{
+        opacity: [0, 1,1, 0],
+        transition: {
+          duration: durationForEachText,
+          times: [0, 0.2, 0.8, 1],
+        },
+      }}
+      key={textArray[currentIndex]}
+    >
+      <WrapperElement>{textArray[currentIndex]}</WrapperElement>
+    </motion.div>
   );
 };
 
-export default TextInfiniteLoop;
+export default TextInplaceInfiniteLoop;
