@@ -49,7 +49,7 @@ const PasswordCheck = ({ referenceScrollYProgress }: PasswordCheckProps) => {
             <CustomAnimatedCheckedCircle scale={1.5} />
             <span className="ps-1">
               <AnimatedStaggeredString
-                text="provider checks"
+                text="verified provider"
                 WrapperElement={WrapperElement}
                 baseDelay={0.7}
               />
