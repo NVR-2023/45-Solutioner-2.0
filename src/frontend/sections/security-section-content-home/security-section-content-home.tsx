@@ -33,7 +33,7 @@ const SecuritySectionContentHome = () => {
       </div>
 
       <div className="">
-        <HomepageSectionCopy text="Know your provider./ Set verbal and QR passwords./ Track everything." />
+        <HomepageSectionCopy text="Know your provider/Set verbal and QR passwords/Track request status" />
       </div>
 
       <div className="mt-4 flex flex-col space-y-1">

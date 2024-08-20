@@ -10,6 +10,8 @@ import HOMEPAGE_SECTION_NAMES from "@/utils/data/homepage-section-names";
 import HomepAgeSection from "@/frontend/components/ui/homepage-section";
 import ServicesSectionContentHome from "@/frontend/sections/services-section-content-home/services-section-content-home";
 import SecuritySectionContentHome from "@/frontend/sections/security-section-content-home/security-section-content-home";
+import PricingSectionContentHome from "@/frontend/sections/pricing-section-content-home/pricing-ection-content-home";
+
 export default function Home() {
   const [currentSection, setCurrentSection] =
     useState<HomepageSectionNameType>("Services");
@@ -38,7 +40,7 @@ export default function Home() {
         "https://res.cloudinary.com/dz5v9ajpb/image/upload/v1721331126/03_dogwalking_ofcbvw.webp",
       alt: "dog walking",
       setCurrentSection: setCurrentSection,
-      content: <ServicesSectionContentHome />,
+      content: <PricingSectionContentHome/>,
     },
   ];
 

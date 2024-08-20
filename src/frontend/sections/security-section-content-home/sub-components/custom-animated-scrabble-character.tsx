@@ -31,6 +31,8 @@ const CustomAnimatedScrabbleCharacter = ({
   const lastIndex = totalNumberOfCharacters - 1;
 
   let arrayIndexFromScrollYProgress: number = 0;
+
+  referenceScrollYProgress = Math.ceil(referenceScrollYProgress * 10) / 10;
   if (referenceScrollYProgress < SCROLL_Y_ENTER) {
     arrayIndexFromScrollYProgress = 0;
   } else if (

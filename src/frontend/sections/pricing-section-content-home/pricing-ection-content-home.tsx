@@ -1,29 +1,26 @@
 import RegisterButton from "../../components/ui/register-button";
 import HomepageSectionTagline from "@/frontend/components/ui/styled-text-components/homepage-section-tagline";
 import HomepageSectionCopy from "@/frontend/components/ui/styled-text-components/homepage-section-copy";
-import ServicesCounter from "./sub-components/services-counter";
 
-import CategoryMarquee from "./sub-components/category-marquee";
-
-const ServicesSectionContentHome = () => {
+import IrradiatingCircle from "./sub-components/irradiating-circle";
+const PricingSectionContentHome = () => {
   return (
     <article>
       <div className="absolute left-[7%] top-[17.5%] font-aperçu text-[#fc6900]">
         <div className="flex flex-col -space-y-1 font-extrabold">
-          <HomepageSectionTagline text="Home services?/We got you." />
+          <HomepageSectionTagline text="Sales, bargains, discounts/You can have it all" />
         </div>
 
         <div className="hidden w-48 pt-2 bg-blend-multiply md:flex">
           <HomepageSectionCopy
-            text="From stubborn sink pipes to/ pesky hornets' nests,/ solutions are a
-          click away"
+            text="Affordable dog walking,/ regular sales on popular services,  sink pipes to/ pesky hornets' nests,/ solutions are a
+          click away."
           />
         </div>
 
         <div className="flex flex-col space-y-1 pt-9">
-          <div className="mt-2 flex items-end space-x-4">
-            <CategoryMarquee />
-            <ServicesCounter />
+          <div className="ms-20">
+            <IrradiatingCircle />
           </div>
           <div className="pt-4">
             <RegisterButton />
@@ -34,4 +31,4 @@ const ServicesSectionContentHome = () => {
   );
 };
 
-export default ServicesSectionContentHome;
+export default PricingSectionContentHome;
