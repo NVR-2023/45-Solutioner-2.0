@@ -1,6 +1,6 @@
 import { useRef } from "react";
 import { useInView } from "framer-motion"; // Import useInView from framer-motion
-import { star, star2, heart, } from "./paths";
+import { star, star2, heart } from "./paths";
 import SVGMorph from "@/frontend/components/ui/animated-components/svg-morph";
 
 const AnimatedSVGSequence = () => {
@@ -12,7 +12,7 @@ const AnimatedSVGSequence = () => {
       <svg viewBox="0 0 192 192">
         {isInView && (
           <>
-            <SVGMorph paths={[star, heart,  star2, star]} />
+            <SVGMorph paths={[star, heart, star2, star]} />
           </>
         )}
       </svg>
