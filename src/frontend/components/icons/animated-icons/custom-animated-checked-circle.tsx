@@ -9,6 +9,7 @@ const VARIANTS = {
     pathLength: 1,
     transition: {
       duration: 1.2,
+      delay: 0.1,
       ease: [0.5, 0, 0.75, 0],
     },
   },
