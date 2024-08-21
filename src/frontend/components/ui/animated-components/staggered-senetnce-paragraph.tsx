@@ -65,11 +65,4 @@ const StaggeredSentenceParagraph = ({
 
 export default StaggeredSentenceParagraph;
 
-/*     <motion.div
-      variants={VARIANTS}
-      initial="initial"
-      whileInView="whileInView"
-      className="leading-~6 text-sm font-bold"
-    >
-      {text}
-    </motion.div> */
+

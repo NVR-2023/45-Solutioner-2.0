@@ -8,7 +8,7 @@ const VARIANTS = {
   animate: {
     pathLength: 1,
     transition: {
-      duration: 0.7,
+      duration: 1.2,
       ease: [0.5, 0, 0.75, 0],
     },
   },
@@ -17,7 +17,7 @@ const VARIANTS = {
 const CustomAnimatedCheckedCircle = ({
   scale = 1,
   color = "currentColor",
-  thickness = 10, // Add a prop to control the thickness of the circle outline
+  thickness = 10,
 }: BasicComponentProps & { thickness?: number }) => {
   return (
     <svg
@@ -26,9 +26,9 @@ const CustomAnimatedCheckedCircle = ({
       height={24 * scale}
       viewBox="0 -960 960 960"
       width={24 * scale}
-      fill="none" // Ensure no fill so only stroke is visible
-      stroke={color} // Use stroke color instead of fill
-      strokeWidth={thickness} // Set stroke width to control thickness
+      fill="none"
+      stroke={color}
+      strokeWidth={thickness}
     >
       <motion.path
         variants={VARIANTS}

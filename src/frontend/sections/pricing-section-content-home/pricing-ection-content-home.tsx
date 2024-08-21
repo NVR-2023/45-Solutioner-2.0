@@ -6,7 +6,7 @@ import StaggeredSentenceParagraph from "@/frontend/components/ui/animated-compon
 import TextInplaceInfiniteLoop from "@/frontend/components/ui/animated-components/text-inplace-infinite-loop";
 
 import { ReactNode } from "react";
-import AnimatedSmiley from "./sub-components/animated-smiley";
+import AnimatedSVGSequence from "./sub-components/animated-svg-sequence";
 
 type WrappeElementProps = {
   children: ReactNode;
@@ -51,7 +51,7 @@ const PricingSectionContentHome = () => {
             <div className="bg-green-400">
               SVGMOrph
               <div className="size-20 bg-purple-400">
-                <AnimatedSmiley />
+                <AnimatedSVGSequence />
               </div>
             </div>
           </div>
