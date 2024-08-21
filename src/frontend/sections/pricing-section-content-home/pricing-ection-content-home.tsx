@@ -6,6 +6,8 @@ import StaggeredSentenceParagraph from "@/frontend/components/ui/animated-compon
 import TextInplaceInfiniteLoop from "@/frontend/components/ui/animated-components/text-inplace-infinite-loop";
 
 import { ReactNode } from "react";
+import AnimatedSmiley from "./sub-components/animated-smiley";
+
 type WrappeElementProps = {
   children: ReactNode;
 };
@@ -44,6 +46,14 @@ const PricingSectionContentHome = () => {
               textArray={["Regular price", "Discounted", "On Sale"]}
               duration={5}
             />
+          </div>
+          <div>
+            <div className="bg-green-400">
+              SVGMOrph
+              <div className="size-20 bg-purple-400">
+                <AnimatedSmiley />
+              </div>
+            </div>
           </div>
           <div className="pt-4">
             <RegisterButton />
