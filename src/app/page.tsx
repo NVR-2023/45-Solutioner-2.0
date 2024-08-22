@@ -36,11 +36,13 @@ export default function Home() {
     },
     {
       section: HOMEPAGE_SECTION_NAMES[2],
+
       imageUrl:
-        "https://res.cloudinary.com/dz5v9ajpb/image/upload/v1721331126/03_dogwalking_ofcbvw.webp",
+        "https://res.cloudinary.com/dz5v9ajpb/image/upload/v1724326948/03_dogwalking_t0xljj.webp",
+
       alt: "dog walking",
       setCurrentSection: setCurrentSection,
-      content: <PricingSectionContentHome/>,
+      content: <PricingSectionContentHome />,
     },
   ];
 

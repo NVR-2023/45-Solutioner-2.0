@@ -48,9 +48,9 @@ const PricingSectionContentHome = () => {
             />
           </div>
           <div>
-            <div className="bg-green-400">
+            <div className="">
               SVGMOrph
-              <div className="size-20 bg-purple-400">
+              <div className="size-20 text-[#fc6900]">
                 <AnimatedSVGSequence />
               </div>
             </div>

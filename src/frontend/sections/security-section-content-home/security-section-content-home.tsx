@@ -44,7 +44,7 @@ const SecuritySectionContentHome = () => {
 
       <div className="">
         <StaggeredSentenceParagraph
-          text="Know your provider/Set verbal and QR passwords/Track request status"
+          text="Know your provider,/set verbal and QR passwords,/ and track everything."
           WrapperElement={HomepageSectionCopy}
           baseDelay={0.7}
         />

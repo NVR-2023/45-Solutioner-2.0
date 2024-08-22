@@ -25,7 +25,7 @@ const ServicesSectionContentHome = () => {
         <div className="hidden w-48 pt-2 bg-blend-multiply md:flex">
           <StaggeredSentenceParagraph
             text="From stubborn sink pipes to/ pesky hornets' nests,/ solutions are a
-          click away"
+          click away."
             baseDelay={0.7}
             WrapperElement={HomepageSectionCopy}
           />

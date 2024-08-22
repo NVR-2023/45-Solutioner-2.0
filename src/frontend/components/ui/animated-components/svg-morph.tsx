@@ -19,9 +19,9 @@ export default function SVGMorph({ paths }: SVGMorphProps) {
 
   useEffect(() => {
     const animation = animate(progress, pathIndex, {
-      duration: 0.4,
+      duration: 0.3,
       ease: "easeInOut",
-      delay: 0.5,
+      delay: 0.1,
       onComplete: () => {
         if (pathIndex === paths.length - 1) {
           progress.set(0);
@@ -36,5 +36,5 @@ export default function SVGMorph({ paths }: SVGMorphProps) {
     };
   }, [pathIndex]);
 
-  return <motion.path fill="none" stroke="black" strokeWidth="10" d={path} />;
+  return <motion.path fill="none" stroke="#fc6900" strokeWidth="10" d={path} />;
 }
