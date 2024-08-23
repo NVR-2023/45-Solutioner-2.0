@@ -1,8 +1,11 @@
-import { TextComponentProps } from "@/types/component-props-types";
+import { ReactNode } from "react";
 
-const HomepageSectionCaption = ({ text }: TextComponentProps) => {
+type HomepageSectionCaptionProps = {
+  children: ReactNode;
+}
+const HomepageSectionCaption = ({ children }: HomepageSectionCaptionProps) => {
   return (
-    <div className="text-[.625rem] font-extrabold tracking-wide ">{text}</div>
+    <div className="text-[.625rem] font-extrabold tracking-wide ">{children}</div>
   );
 };
 

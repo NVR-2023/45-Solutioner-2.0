@@ -6,24 +6,25 @@ import React, { useState, useEffect } from "react";
 import { motion, animate, useMotionValue, useTransform } from "framer-motion";
 
 type SVGMorphProps = {
-  paths: string[];
+  pathsArray: string[];
+  duration?: number;
 };
-export default function SVGMorph({ paths }: SVGMorphProps) {
+const SVGMorph = ({ pathsArray, duration = 1 }: SVGMorphProps) => {
   const [pathIndex, setPathIndex] = useState(0);
   const progress = useMotionValue(pathIndex);
 
-  const arrayOfIndex = paths.map((_, i) => i);
-  const path = useTransform(progress, arrayOfIndex, paths, {
-    mixer: (a, b) => interpolate(a, b, { maxSegmentLength: 1 }),
+  const indexesArray = pathsArray.map((_, i) => i);
+  const svgPath = useTransform(progress, indexesArray, pathsArray, {
+    mixer: (currentPath, nextPath) =>
+      interpolate(currentPath, nextPath, { maxSegmentLength: 5 }),
   });
 
   useEffect(() => {
     const animation = animate(progress, pathIndex, {
-      duration: 0.3,
-      ease: "easeInOut",
-      delay: 0.1,
+      duration: duration,
+      ease: [0.16, 1, 0.3, 1],
       onComplete: () => {
-        if (pathIndex === paths.length - 1) {
+        if (pathIndex === pathsArray.length - 1) {
           progress.set(0);
           setPathIndex(1);
         } else {
@@ -36,5 +37,9 @@ export default function SVGMorph({ paths }: SVGMorphProps) {
     };
   }, [pathIndex]);
 
-  return <motion.path fill="none" stroke="#fc6900" strokeWidth="10" d={path} />;
-}
+  return (
+    <motion.path fill="none" stroke="#fc6900" strokeWidth="10" d={svgPath} />
+  );
+};
+
+export default SVGMorph;

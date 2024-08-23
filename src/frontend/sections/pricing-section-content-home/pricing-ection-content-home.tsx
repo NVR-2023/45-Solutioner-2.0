@@ -5,6 +5,8 @@ import StaggeredWordSentence from "@/frontend/components/ui/animated-components/
 import StaggeredSentenceParagraph from "@/frontend/components/ui/animated-components/staggered-senetnce-paragraph";
 import TextInplaceInfiniteLoop from "@/frontend/components/ui/animated-components/text-inplace-infinite-loop";
 
+import HomepageSectionCaption from "@/frontend/components/ui/styled-text-components/homepage-section-caption";
+
 import { ReactNode } from "react";
 import AnimatedSVGSequence from "./sub-components/animated-svg-sequence";
 
@@ -34,26 +36,19 @@ const PricingSectionContentHome = () => {
         <div className="hidden w-48 pt-2 bg-blend-multiply md:flex">
           <StaggeredSentenceParagraph
             baseDelay={0.7}
-            text="Affordable services/ and sales/hasgdshad"
+            text="Get competitive prices./Grab your quantity discounts./ Enjoy frequent sales."
             WrapperElement={HomepageSectionCopy}
           />
         </div>
 
-        <div className="flex flex-col space-y-1 pt-9">
-          <div className="ms-20 flex w-40 items-center justify-center">
+        <div className="mt-4 flex size-20 flex-col text-[#fc6900]">
+          <AnimatedSVGSequence />
+          <div className="flex justify-center">
             <TextInplaceInfiniteLoop
-              WrapperElement={WrapperElement}
-              textArray={["Regular price", "Discounted", "On Sale"]}
-              duration={5}
+              WrapperElement={HomepageSectionCaption}
+              textArray={["Affordable", "Discounted", "On Sale"]}
+              duration={2.75}
             />
-          </div>
-          <div>
-            <div className="">
-              SVGMOrph
-              <div className="size-20 text-[#fc6900]">
-                <AnimatedSVGSequence />
-              </div>
-            </div>
           </div>
           <div className="pt-4">
             <RegisterButton />

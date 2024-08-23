@@ -10,7 +10,7 @@ const ServicesCounter = () => {
         weight={"black"}
         size={"5xl"}
       />
-      <HomepageSectionCaption text="services" />
+      <HomepageSectionCaption>Services</HomepageSectionCaption>
     </div>
   );
 };
