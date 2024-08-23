@@ -10,7 +10,7 @@ const PricingAnimatedComponent = () => {
         <TextInplaceInfiniteLoop
           WrapperElement={HomepageSectionCaption}
           textArray={["Affordable", "Discounted", "On Sale"]}
-          duration={2.63}
+          duration={2.64}
         />
       </div>
     </div>
