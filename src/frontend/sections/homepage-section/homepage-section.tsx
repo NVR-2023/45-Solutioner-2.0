@@ -9,9 +9,8 @@ type HomepageSectionProps<T = {}> = {
   tagline1: string;
   tagline2: string;
   copy: string;
-  AnimatedComponent: ComponentType<T & { children?: ReactNode }>;
+  AnimatedComponent: ComponentType<{ children?: ReactNode } & T>;
 };
-
 
 const HomepageSection = ({
   tagline1,
@@ -36,8 +35,7 @@ const HomepageSection = ({
 
         <div className="hidden w-48 pt-2 bg-blend-multiply md:flex">
           <StaggeredSentenceParagraph
-            text="From stubborn sink pipes to/ pesky hornets' nests,/ solutions are a
-          click away."
+            text={copy}
             baseDelay={0.7}
             WrapperElement={HomepageSectionCopy}
           />
