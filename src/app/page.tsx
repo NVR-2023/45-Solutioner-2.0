@@ -7,7 +7,7 @@ import useInstantScrollToTop from "@/frontend/hooks/use-instant-scroll-to-top";
 
 import { HomepageSectionNameType } from "@/types/component-props-types";
 import HOMEPAGE_SECTION_NAMES from "@/utils/data/homepage-section-names";
-import HomepAgeSection from "@/frontend/components/ui/homepage-section";
+import HomepageImageWrapper from "@/frontend/components/ui/homepage-image-wrapper";
 import ServicesSectionContentHome from "@/frontend/sections/services-section-content-home/services-section-content-home";
 import SecuritySectionContentHome from "@/frontend/sections/security-section-content-home/security-section-content-home";
 import PricingSectionContentHome from "@/frontend/sections/pricing-section-content-home/pricing-ection-content-home";
@@ -57,7 +57,7 @@ export default function Home() {
         />
       </div>
       {HOMEPAGE_SECTIONS_ARRAY.map((section, index) => (
-        <HomepAgeSection
+        <HomepageImageWrapper
           key={index}
           section={section.section}
           imageUrl={section.imageUrl}

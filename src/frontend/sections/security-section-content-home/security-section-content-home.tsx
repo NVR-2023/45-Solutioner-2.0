@@ -10,6 +10,8 @@ import AnimatedScrabbleWord from "./sub-components/animated-scrabble-woird";
 import debounceFunction from "@/utils/functions/debounce-function/debounce-function";
 import PasswordCheck from "./sub-components/password-check";
 
+import HomepageSection from "../homepage-section/homepage-section";
+
 const SecuritySectionContentHome = () => {
   const ContainerRef = useRef<HTMLDivElement | null>(null);
   const [referenceScrollYProgress, setReferenceScrollYProgress] = useState<

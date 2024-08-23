@@ -15,7 +15,7 @@ type HomepageSectionProps = {
   setCurrentSection: (section: HomepageSectionNameType) => void;
 };
 
-const HomepAgeSection = ({
+const HomepageImageWrapper = ({
   section,
   imageUrl,
   alt,
@@ -54,4 +54,4 @@ const HomepAgeSection = ({
   );
 };
 
-export default HomepAgeSection;
+export default HomepageImageWrapper;

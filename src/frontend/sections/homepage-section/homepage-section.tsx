@@ -1,38 +1,35 @@
-import RegisterButton from "../../components/ui/register-button";
+import { ReactNode, ComponentType } from "react";
+import RegisterButton from "@/frontend/components/ui/register-button";
 import StaggeredWordSentence from "@/frontend/components/ui/animated-components/staggered-word-sentence";
 import HomepageSectionTagline from "@/frontend/components/ui/styled-text-components/homepage-section-tagline";
-import HomepageSectionCopy from "@/frontend/components/ui/styled-text-components/homepage-section-copy";
 import StaggeredSentenceParagraph from "@/frontend/components/ui/animated-components/staggered-senetnce-paragraph";
-import ServicesCounter from "./sub-components/services-counter";
-import CategoryMarquee from "./sub-components/category-marquee";
+import HomepageSectionCopy from "@/frontend/components/ui/styled-text-components/homepage-section-copy";
 
-import HomepageSection from "../homepage-section/homepage-section";
-import ServicesAnimatedComponent from "./sub-components/ServicesAnimatedComponent";
-
-const ServicesSectionContentHome = () => {
-  return (
-    <HomepageSection
-      tagline1="Home services?"
-      tagline2="We got you."
-      copy="From stubborn sink pipes to/ pesky hornets' nests,/ solutions are a
-          click away."
-      AnimatedComponent={ServicesAnimatedComponent}
-    />
-  );
+type HomepageSectionProps<T = {}> = {
+  tagline1: string;
+  tagline2: string;
+  copy: string;
+  AnimatedComponent: ComponentType<T & { children?: ReactNode }>;
 };
 
-export default ServicesSectionContentHome;
 
-/*     <article>
+const HomepageSection = ({
+  tagline1,
+  tagline2,
+  copy,
+  AnimatedComponent,
+}: HomepageSectionProps) => {
+  return (
+    <article>
       <div className="absolute left-[7%] top-[17.5%] font-aperçu text-[#fc6900]">
         <div className="flex flex-col -space-y-1">
           <StaggeredWordSentence
             WrapperElement={HomepageSectionTagline}
-            text="Home services?"
+            text={tagline1}
           />
           <StaggeredWordSentence
             WrapperElement={HomepageSectionTagline}
-            text="We got you."
+            text={tagline2}
             baseDelay={0.3}
           />
         </div>
@@ -48,12 +45,15 @@ export default ServicesSectionContentHome;
 
         <div className="flex flex-col space-y-1 pt-9">
           <div className="mt-2 flex items-end space-x-4">
-            <CategoryMarquee />
-            <ServicesCounter />
+            <AnimatedComponent />
           </div>
           <div className="pt-4">
             <RegisterButton />
           </div>
         </div>
       </div>
-    </article> */
+    </article>
+  );
+};
+
+export default HomepageSection;

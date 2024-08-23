@@ -1,14 +1,7 @@
-import RegisterButton from "../../components/ui/register-button";
-import HomepageSectionTagline from "@/frontend/components/ui/styled-text-components/homepage-section-tagline";
-import HomepageSectionCopy from "@/frontend/components/ui/styled-text-components/homepage-section-copy";
-import StaggeredWordSentence from "@/frontend/components/ui/animated-components/staggered-word-sentence";
-import StaggeredSentenceParagraph from "@/frontend/components/ui/animated-components/staggered-senetnce-paragraph";
-import TextInplaceInfiniteLoop from "@/frontend/components/ui/animated-components/text-inplace-infinite-loop";
-
-import HomepageSectionCaption from "@/frontend/components/ui/styled-text-components/homepage-section-caption";
-
 import { ReactNode } from "react";
-import AnimatedSVGSequence from "./sub-components/animated-svg-sequence";
+
+import HomepageSection from "../homepage-section/homepage-section";
+import PricingAnimatedComponent from "./sub-components/pricing-animated-compoennt";
 
 type WrappeElementProps = {
   children: ReactNode;
@@ -19,7 +12,18 @@ const WrapperElement = ({ children }: WrappeElementProps) => (
 
 const PricingSectionContentHome = () => {
   return (
-    <article>
+    <HomepageSection
+      tagline1="Sales, bargains, discounts"
+      tagline2="You can have it all."
+      copy="Get competitive prices./Grab your quantity discounts./ Enjoy frequent sales."
+      AnimatedComponent={PricingAnimatedComponent}
+    />
+  );
+};
+
+export default PricingSectionContentHome;
+
+/*     <article>
       <div className="absolute left-[7%] top-[17.5%] font-aperçu text-[#fc6900]">
         <div className="flex flex-col -space-y-1">
           <StaggeredWordSentence
@@ -47,7 +51,7 @@ const PricingSectionContentHome = () => {
             <TextInplaceInfiniteLoop
               WrapperElement={HomepageSectionCaption}
               textArray={["Affordable", "Discounted", "On Sale"]}
-              duration={2.75}
+              duration={2.63}
             />
           </div>
           <div className="pt-4">
@@ -55,8 +59,4 @@ const PricingSectionContentHome = () => {
           </div>
         </div>
       </div>
-    </article>
-  );
-};
-
-export default PricingSectionContentHome;
+    </article> */
