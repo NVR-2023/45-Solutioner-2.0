@@ -2,8 +2,9 @@
 
 // @ts-ignore
 import { interpolate } from "flubber";
-import React, { useState, useEffect } from "react";
-import { motion, animate, useMotionValue, useTransform } from "framer-motion";
+import React, { useState, useEffect, useLayoutEffect } from "react";
+import { motion, animate, useMotionValue, useTransform, useInView } from "framer-motion";
+import { wait } from "@/utils/functions/wait";
 
 type SVGMorphProps = {
   pathsArray: string[];
@@ -18,6 +19,14 @@ const SVGMorph = ({ pathsArray, duration = 1 }: SVGMorphProps) => {
     mixer: (currentPath, nextPath) =>
       interpolate(currentPath, nextPath, { maxSegmentLength: 5 }),
   });
+
+  useLayoutEffect(() => {
+    const pauseAtTheBeginning = async () => {
+      await wait(100);
+    };
+
+    pauseAtTheBeginning();
+  }, []);
 
   useEffect(() => {
     const animation = animate(progress, pathIndex, {
