@@ -1,5 +1,12 @@
-import { useState, useEffect, ComponentType, ReactNode } from "react";
+import {
+  useState,
+  useEffect,
+  useLayoutEffect,
+  ComponentType,
+  ReactNode,
+} from "react";
 import { motion } from "framer-motion";
+import { wait } from "@/utils/functions/wait";
 
 type TextInplaceInfiniteLoopProps = {
   textArray: string[];
@@ -14,6 +21,13 @@ const TextInplaceInfiniteLoop = ({
 }: TextInplaceInfiniteLoopProps) => {
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const durationForEachText = duration / textArray.length;
+
+  useLayoutEffect(() => {
+    const waitAtTheBeginning = async () => {
+      await wait(1000);
+    };
+    waitAtTheBeginning();
+  }, []);
 
   useEffect(() => {
     const interval = setInterval(() => {
