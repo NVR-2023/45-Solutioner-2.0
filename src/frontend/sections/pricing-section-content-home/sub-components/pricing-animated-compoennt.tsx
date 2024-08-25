@@ -26,7 +26,7 @@ const PricingAnimatedComponent = () => {
       initial="initial"
       animate={isInView ? "animate" : "initial"}
       ref={ref}
-      className=" -mt-4 mb-2 flex w-52 space-x-4 text-[#fc6900]"
+      className=" -mt-1 mb-4 flex w-52 space-x-4 text-[#fc6900]"
     >
       <div className="mt-1,5">
         <AnimatedDiscountLoop />
