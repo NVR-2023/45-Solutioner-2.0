@@ -4,7 +4,7 @@ import SVGMorph from "@/frontend/components/ui/animated-components/svg-morph";
 const AnimatedSVGSequence = () => {
   return (
     <div>
-      <svg viewBox="0 0 192 192">
+      <svg viewBox="0 0 190 190">
         <SVGMorph
           pathsArray={[svgEuro, svgStar, svgHeart, svgEuro]}
           duration={1}

@@ -41,7 +41,7 @@ const HomepageSection = ({
           />
         </div>
 
-        <div className="flex flex-col space-y-1 pt-9">
+        <div className="flex flex-col space-y-1 pt-5">
           <div className="mt-2 flex items-end space-x-4">
             <AnimatedComponent />
           </div>

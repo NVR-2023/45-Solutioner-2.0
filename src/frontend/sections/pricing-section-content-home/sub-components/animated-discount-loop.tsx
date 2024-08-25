@@ -1,31 +1,17 @@
-import { motion, useMotionValue } from "framer-motion";
-import { useEffect } from "react";
-
 const AnimatedDiscountLoop = () => {
-  const DISCOUNT_ARRAY = ["5", "10", "30"];
-  const discountArrayIndex = useMotionValue(0);
-
-  useEffect(() => {
-    const intervalId = setInterval(() => {
-      // Get the current value, increment, and wrap around
-      const currentIndex = discountArrayIndex.get();
-      discountArrayIndex.set(
-        (Math.round(currentIndex) + 1) % DISCOUNT_ARRAY.length,
-      );
-    }, 1000); // Change interval as needed
-
-    return () => clearInterval(intervalId);
-  }, [discountArrayIndex]);
-
   return (
-    <div className="flex h-16 w-24 flex-col items-center justify-center ">
-      <div className="flex items-baseline pt-2">
-
-        <motion.div className="text-5xl font-black leading-none">
-          {DISCOUNT_ARRAY[Math.round(discountArrayIndex.get())]}
-        </motion.div>
-        <div className="text-xl font-black">%</div>
+    <div className="borer-[1px] py-1 flex flex-col items-center rounded border-[1pt] border-[#fc6900] px-2 ">
+      <div className="items-centre justify-center w-full flex border-b-[0.75pt] border-[#fc6900] text-sm font-semibold small-caps">
+        up to
       </div>
+      <div className="py-1 text-3xl font-black leading-none  text-[#fc6900]">
+        30
+        <span className="text-2xl">%</span>
+      </div>
+      <div className="w-full items-centre flex justify-center border-t-[0.75pt] border-[#fc6900] text-sm font-semibold small-caps">
+        off
+      </div>
+    
     </div>
   );
 };
