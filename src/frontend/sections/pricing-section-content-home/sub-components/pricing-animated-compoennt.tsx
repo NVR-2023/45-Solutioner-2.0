@@ -26,20 +26,20 @@ const PricingAnimatedComponent = () => {
       initial="initial"
       animate={isInView ? "animate" : "initial"}
       ref={ref}
-      className="-mt-8 mb-2 flex w-48 justify-between text-[#fc6900]"
+      className=" -mt-8 mb-2 flex w-52 justify-between space-x-4 text-[#fc6900]"
     >
+      <div className="mt-1,5">
+        <AnimatedDiscountLoop />
+      </div>
       <div className="flex size-20 flex-col">
         <AnimatedSVGSequence />
         <div className="flex justify-center">
           <TextInplaceInfiniteLoop
             WrapperElement={HomepageSectionCaption}
             textArray={["Affordable", "Discounted", "On Sale"]}
-            duration={3.141}
+            duration={3.145}
           />
         </div>
-      </div>
-      <div className="mt-1,5">
-        <AnimatedDiscountLoop />
       </div>
     </motion.div>
   );

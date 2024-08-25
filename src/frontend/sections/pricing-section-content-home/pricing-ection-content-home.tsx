@@ -14,7 +14,7 @@ const PricingSectionContentHome = () => {
     <HomepageSection
       tagline1="Sales, bargains, discounts."
       tagline2="You can have it all."
-      copy="Get competitive prices,/grab the discounts,/and enjoy the sales."
+      copy="Get competitive prices/Grab the discounts/and frequent the sales."
       AnimatedComponent={PricingAnimatedComponent}
     />
   );
