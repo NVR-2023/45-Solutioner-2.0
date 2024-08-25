@@ -1,17 +1,17 @@
 const AnimatedDiscountLoop = () => {
   return (
-    <div className="borer-[1px] py-1 flex flex-col items-center rounded border-[1pt] border-[#fc6900] px-2 ">
-      <div className="items-centre justify-center w-full flex border-b-[0.75pt] border-[#fc6900] text-sm font-semibold small-caps">
+    <div className="borer-[1px] flex flex-col items-center rounded border-[1pt] border-[#fc6900] px-2 py-1 ">
+      <div className="flex w-full items-center justify-center border-b-[0.75pt] border-[#fc6900] text-sm font-bold small-caps">
         up to
       </div>
-      <div className="py-1 text-3xl font-black leading-none  text-[#fc6900]">
-        30
+      <div className="flex items-center py-1 text-4xl font-black">
+        <span className="">30</span>
         <span className="text-2xl">%</span>
       </div>
-      <div className="w-full items-centre flex justify-center border-t-[0.75pt] border-[#fc6900] text-sm font-semibold small-caps">
+
+      <div className="items-centre flex w-full justify-center border-t-[0.75pt] border-[#fc6900] text-sm font-bold small-caps">
         off
       </div>
-    
     </div>
   );
 };
