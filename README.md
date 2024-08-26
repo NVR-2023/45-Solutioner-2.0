@@ -1,4 +1,4 @@
-![Solutioner 2 0 Home page](https://github.com/user-attachments/assets/94195c29-7dfe-400b-975f-ccdd78e9f0c8)
+![Homepage - Hero section](https://github.com/user-attachments/assets/d600102a-3406-420a-8fdd-3f26b8f67519)
 
 ## Project Title
 
