@@ -32,7 +32,6 @@ const TextMarqueeWithoutHoverControls = ({
     },
   };
 
-
   const halfMarquee = (
     <motion.div
       variants={VARIANTS}
@@ -47,7 +46,8 @@ const TextMarqueeWithoutHoverControls = ({
   );
 
   return (
-    <div className="flex w-full">
+    <div className="box-border flex">
+      
       {halfMarquee}
       {halfMarquee}
     </div>
