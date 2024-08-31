@@ -1,0 +1,9 @@
+.marquee-animation {
+  animation: marquee-move-text 10s linear infinite;
+}
+
+@keyframes marquee-move-text {
+  to {
+    transform: translateX(-50%);
+  }
+}
