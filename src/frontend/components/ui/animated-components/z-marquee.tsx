@@ -29,7 +29,7 @@ const ZMarquee = ({
     <>
       <style>
         {`
-          @keyframes marquee {
+          @keyframes first-half-marquee-animation {
             0% {
               transform: translateX(0%);
             }
@@ -38,7 +38,7 @@ const ZMarquee = ({
             }
           }
 
-          @keyframes marquee2 {
+          @keyframes second-half-marquee-animation {
             0% {
               transform: translateX(100%);
             }
@@ -47,14 +47,14 @@ const ZMarquee = ({
             }
           }
 
-          .animate-marquee {
-            animation: marquee ${duration}s linear infinite;
+          .animated-first-half-marquee {
+            animation: first-half-marquee-animation ${duration}s linear infinite;
             animation-direction: ${direction === "right-to-left" ? "normal" : "reverse"};
 
             }
 
-          .animate-marquee2 {
-            animation: marquee2 ${duration}s linear infinite;
+          .animated-second-half-marquee {
+            animation: second-half-marquee-animation ${duration}s linear infinite;
             animation-direction: ${direction === "right-to-left" ? "normal" : "reverse"};
 
             }
@@ -62,8 +62,10 @@ const ZMarquee = ({
       </style>
 
       <div className="relative flex">
-        <div className="animate-marquee whitespace-nowrap">{halfMArquee}</div>
-        <div className="animate-marquee2 absolute top-0 whitespace-nowrap">
+        <div className="animated-first-half-marquee whitespace-nowrap">
+          {halfMArquee}
+        </div>
+        <div className="animated-second-half-marquee absolute top-0 whitespace-nowrap">
           {halfMArquee}
         </div>
       </div>
