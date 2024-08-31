@@ -1,4 +1,4 @@
-import { ReactNode, ComponentType } from "react";
+import { useState, ReactNode, ComponentType } from "react";
 
 type ElementWrapperProps = {
   children: ReactNode;
@@ -17,6 +17,16 @@ const ZMarquee = ({
   direction,
   duration,
 }: ZMarqueeProps) => {
+  const [isHovered, setIsHovered] = useState<boolean | null>(false);
+
+  const handleOnMouseENter = () => {
+    setIsHovered(true);
+  };
+
+  const handleOnMouseLeave = () => {
+    setIsHovered(false);
+  };
+
   const halfMArquee = (
     <div className="flex">
       {elementArray.map((element, index) => (
@@ -61,11 +71,25 @@ const ZMarquee = ({
         `}
       </style>
 
-      <div className="relative flex">
-        <div className="animated-first-half-marquee whitespace-nowrap">
+      <div
+        onMouseEnter={handleOnMouseENter}
+        onMouseLeave={handleOnMouseLeave}
+        className="relative flex"
+      >
+        <div
+          className="animated-first-half-marquee whitespace-nowrap"
+          style={{
+            animationPlayState: isHovered ? "paused" : "running",
+          }}
+        >
           {halfMArquee}
         </div>
-        <div className="animated-second-half-marquee absolute top-0 whitespace-nowrap">
+        <div
+          className="animated-second-half-marquee absolute top-0 whitespace-nowrap"
+          style={{
+            animationPlayState: isHovered ? "paused" : "running",
+          }}
+        >
           {halfMArquee}
         </div>
       </div>
