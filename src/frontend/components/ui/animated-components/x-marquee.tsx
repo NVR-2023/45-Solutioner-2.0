@@ -1,9 +1,11 @@
 import React from "react";
 
+// Define the constant for animation duration
+const DURATION = 5; // Change this to the desired duration
+
 const XMarquee = () => {
   return (
     <>
-      {/* Define the CSS for animation directly in a style tag */}
       <style>
         {`
           @keyframes marquee {
@@ -25,14 +27,13 @@ const XMarquee = () => {
           }
 
           .animate-marquee {
-            animation: marquee 10s linear infinite;
-            animation-direction: reverse;
+            animation: marquee ${DURATION}s linear infinite;
+            animation-direction: normal; /* Default direction, change if needed */
           }
 
           .animate-marquee2 {
-            animation: marquee2 10s linear infinite;
-            animation-direction: reverse;
-
+            animation: marquee2 ${DURATION}s linear infinite;
+            animation-direction: normal; /* Default direction, change if needed */
           }
         `}
       </style>
