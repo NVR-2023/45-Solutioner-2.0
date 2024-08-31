@@ -1,12 +1,16 @@
-import React, { useState, ReactNode } from "react";
+import { useState, ReactNode } from "react";
 
-type MarqueeProps = {
-  elementsArray: ReactNode[];
+type TextMarqueeProps = {
+  elementArray: ReactNode[]; // Array of ReactNode
   direction: "left-to-right" | "right-to-left";
   duration: number;
 };
 
-const Marquee = ({ elementsArray, direction, duration }: MarqueeProps) => {
+const TextMarquee = ({
+  elementArray,
+  direction,
+  duration,
+}: TextMarqueeProps) => {
   const [isHovered, setIsHovered] = useState<boolean>(false);
 
   const handleOnMouseEnter = () => {
@@ -21,29 +25,26 @@ const Marquee = ({ elementsArray, direction, duration }: MarqueeProps) => {
     <>
       <style>
         {`
-          @keyframes marquee-left-to-right {
+          @keyframes marquee {
             0% {
-              transform: translateX(100%);
+              transform: translateX(0%);
             }
             100% {
               transform: translateX(-100%);
             }
           }
 
-          @keyframes marquee-right-to-left {
+          @keyframes marqueeReverse {
             0% {
-              transform: translateX(-100%);
+              transform: translateX(100%);
             }
             100% {
-              transform: translateX(100%);
+              transform: translateX(0%);
             }
           }
 
-          .marquee {
-            display: flex;
-            white-space: nowrap;
-            animation: ${direction === "left-to-right" ? "marquee-left-to-right" : "marquee-right-to-left"} ${duration}s linear infinite;
-            animation-play-state: ${isHovered ? "paused" : "running"};
+          .animated-marquee {
+            animation: ${direction === "left-to-right" ? "marquee" : "marqueeReverse"} ${duration}s linear infinite;
           }
         `}
       </style>
@@ -52,22 +53,29 @@ const Marquee = ({ elementsArray, direction, duration }: MarqueeProps) => {
         onMouseEnter={handleOnMouseEnter}
         onMouseLeave={handleOnMouseLeave}
         className="relative flex overflow-hidden"
+        style={{ whiteSpace: "nowrap" }}
       >
-        <div className="marquee">
-          {elementsArray.map((element, index) => (
-            <span key={index} className="mx-2">
-              {element}
-            </span>
-          ))}
-          {elementsArray.map((element, index) => (
-            <span key={index + elementsArray.length} className="mx-2">
-              {element}
-            </span>
-          ))}
+        <div
+          className="animated-marquee"
+          style={{
+            display: "inline-flex",
+            animationPlayState: isHovered ? "paused" : "running",
+          }}
+        >
+          {elementArray}
+        </div>
+        <div
+          className="animated-marquee absolute top-0"
+          style={{
+            display: "inline-flex",
+            animationPlayState: isHovered ? "paused" : "running",
+          }}
+        >
+          {elementArray}
         </div>
       </div>
     </>
   );
 };
 
-export default Marquee;
+export default TextMarquee;

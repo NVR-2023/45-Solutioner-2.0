@@ -1,19 +1,25 @@
-import { useState, ReactNode } from "react";
+import { useState, ReactNode, ComponentType } from "react";
+
+type ElementWrapperProps = {
+  children: ReactNode;
+};
 
 type TextMarqueeProps = {
-  elementArray: ReactNode[]; // Array of ReactNode
+  elementArray: string[];
+  ElementWrapper: ComponentType<ElementWrapperProps>;
   direction: "left-to-right" | "right-to-left";
   duration: number;
 };
 
 const TextMarquee = ({
   elementArray,
+  ElementWrapper,
   direction,
   duration,
 }: TextMarqueeProps) => {
-  const [isHovered, setIsHovered] = useState<boolean>(false);
+  const [isHovered, setIsHovered] = useState<boolean | null>(false);
 
-  const handleOnMouseEnter = () => {
+  const handleOnMouseENter = () => {
     setIsHovered(true);
   };
 
@@ -21,11 +27,19 @@ const TextMarquee = ({
     setIsHovered(false);
   };
 
+  const halfMArquee = (
+    <div className="flex">
+      {elementArray.map((element, index) => (
+        <ElementWrapper key={index}>{element}</ElementWrapper>
+      ))}
+    </div>
+  );
+
   return (
     <>
       <style>
         {`
-          @keyframes marquee {
+          @keyframes first-half-marquee-animation {
             0% {
               transform: translateX(0%);
             }
@@ -34,7 +48,7 @@ const TextMarquee = ({
             }
           }
 
-          @keyframes marqueeReverse {
+          @keyframes second-half-marquee-animation {
             0% {
               transform: translateX(100%);
             }
@@ -43,35 +57,40 @@ const TextMarquee = ({
             }
           }
 
-          .animated-marquee {
-            animation: ${direction === "left-to-right" ? "marquee" : "marqueeReverse"} ${duration}s linear infinite;
-          }
+          .animated-first-half-marquee {
+            animation: first-half-marquee-animation ${duration}s linear infinite;
+            animation-direction: ${direction === "right-to-left" ? "normal" : "reverse"};
+
+            }
+
+          .animated-second-half-marquee {
+            animation: second-half-marquee-animation ${duration}s linear infinite;
+            animation-direction: ${direction === "right-to-left" ? "normal" : "reverse"};
+
+            }
         `}
       </style>
 
       <div
-        onMouseEnter={handleOnMouseEnter}
+        onMouseEnter={handleOnMouseENter}
         onMouseLeave={handleOnMouseLeave}
-        className="relative flex overflow-hidden"
-        style={{ whiteSpace: "nowrap" }}
+        className="relative flex"
       >
         <div
-          className="animated-marquee"
+          className="animated-first-half-marquee whitespace-nowrap"
           style={{
-            display: "inline-flex",
             animationPlayState: isHovered ? "paused" : "running",
           }}
         >
-          {elementArray}
+          {halfMArquee}
         </div>
         <div
-          className="animated-marquee absolute top-0"
+          className="animated-second-half-marquee absolute top-0 whitespace-nowrap"
           style={{
-            display: "inline-flex",
             animationPlayState: isHovered ? "paused" : "running",
           }}
         >
-          {elementArray}
+          {halfMArquee}
         </div>
       </div>
     </>
