@@ -1,18 +1,10 @@
-import { ReactNode, ComponentType, useEffect, useRef } from "react";
-import {
-  motion,
-  useMotionValue,
-  animate,
-  AnimationPlaybackControls,
-useTransform
-
-} from "framer-motion";
+import { useState, ReactNode, ComponentType } from "react";
 
 type ElementWrapperProps = {
   children: ReactNode;
 };
 
-type MarqueeProps = {
+type TextMarqueeProps = {
   elementArray: string[];
   ElementWrapper: ComponentType<ElementWrapperProps>;
   direction: "left-to-right" | "right-to-left";
@@ -24,54 +16,84 @@ const TextMarquee = ({
   ElementWrapper,
   direction,
   duration,
-}: MarqueeProps) => {
+}: TextMarqueeProps) => {
+  const [isHovered, setIsHovered] = useState<boolean | null>(false);
 
-  const translationXStart = direction === "left-to-right" ? -100 : 0;
-  const translationXEnd = direction === "left-to-right" ? 0 : -100;
-  const translationXAnimatedValue = useMotionValue(translationXStart);
-  const translationXAnimatedPercentage = useTransform(
-    translationXAnimatedValue,
-    (value) => `${value}%`,
-  );
+  const handleOnMouseENter = () => {
+    setIsHovered(true);
+  };
 
-  const controlsRef = useRef<AnimationPlaybackControls | null>(null);
+  const handleOnMouseLeave = () => {
+    setIsHovered(false);
+  };
 
-  useEffect(() => {
-    const controls = animate(translationXAnimatedValue, translationXEnd, {
-      duration: duration,
-      ease: "linear",
-      repeat: Infinity,
-    });
-
-    controlsRef.current = controls;
-  }, []);
-
-  const halfMarquee = (
-    <motion.div
-      style={{
-        x: translationXAnimatedPercentage,
-      }}
-      className="flex"
-    >
+  const halfMArquee = (
+    <div className="flex">
       {elementArray.map((element, index) => (
         <ElementWrapper key={index}>{element}</ElementWrapper>
       ))}
-    </motion.div>
+    </div>
   );
 
   return (
-    <motion.div
-      onMouseEnter={() => {
-        controlsRef.current?.pause();
-      }}
-      onMouseLeave={() => {
-        controlsRef.current?.play();
-      }}
-      className="flex w-full overflow-hidden"
-    >
-      {halfMarquee}
-      {halfMarquee}
-    </motion.div>
+    <>
+      <style>
+        {`
+          @keyframes first-half-marquee-animation {
+            0% {
+              transform: translateX(0%);
+            }
+            100% {
+              transform: translateX(-100%);
+            }
+          }
+
+          @keyframes second-half-marquee-animation {
+            0% {
+              transform: translateX(100%);
+            }
+            100% {
+              transform: translateX(0%);
+            }
+          }
+
+          .animated-first-half-marquee {
+            animation: first-half-marquee-animation ${duration}s linear infinite;
+            animation-direction: ${direction === "right-to-left" ? "normal" : "reverse"};
+
+            }
+
+          .animated-second-half-marquee {
+            animation: second-half-marquee-animation ${duration}s linear infinite;
+            animation-direction: ${direction === "right-to-left" ? "normal" : "reverse"};
+
+            }
+        `}
+      </style>
+
+      <div
+        onMouseEnter={handleOnMouseENter}
+        onMouseLeave={handleOnMouseLeave}
+        className="relative flex"
+      >
+        <div
+          className="animated-first-half-marquee whitespace-nowrap"
+          style={{
+            animationPlayState: isHovered ? "paused" : "running",
+          }}
+        >
+          {halfMArquee}
+        </div>
+        <div
+          className="animated-second-half-marquee absolute top-0 whitespace-nowrap"
+          style={{
+            animationPlayState: isHovered ? "paused" : "running",
+          }}
+        >
+          {halfMArquee}
+        </div>
+      </div>
+    </>
   );
 };
 

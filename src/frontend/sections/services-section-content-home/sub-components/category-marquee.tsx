@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 import HomepageSectionCaption from "@/frontend/components/ui/styled-text-components/homepage-section-caption";
 
-import ZMarquee from "@/frontend/components/ui/animated-components/z-marquee";
+import TextMarquee from "@/frontend/components/ui/animated-components/text-marquee";
 
 const CategoryMarquee = () => {
   type ElementWrapperProps = {
@@ -39,7 +39,7 @@ const CategoryMarquee = () => {
   return (
     <div className="relative flex w-16 flex-col -space-y-1.5 overflow-clip">
       <div className="mb-4">
-        <ZMarquee
+        <TextMarquee
           elementArray={elementArray}
           ElementWrapper={ElementWrapper}
           direction="left-to-right"
