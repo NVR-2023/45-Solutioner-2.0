@@ -1,64 +1,72 @@
-import { ReactNode, useEffect, useRef } from "react";
-import {
-  motion,
-  useMotionValue,
-  animate,
-  AnimationPlaybackControls,useTransform
-} from "framer-motion";
+import React, { useState, ReactNode } from "react";
 
 type MarqueeProps = {
-  elements: ReactNode[];
+  elementsArray: ReactNode[];
   direction: "left-to-right" | "right-to-left";
   duration: number;
 };
 
-const Marquee = ({ elements, direction, duration }: MarqueeProps) => {
-  const translationXStart = direction === "left-to-right" ? -100 : 0;
-  const translationXEnd = direction === "left-to-right" ? 0 : -100;
-  const translationXAnimatedValue = useMotionValue(translationXStart);
-  const translationXAnimatedPercentage = useTransform(
-    translationXAnimatedValue,
-    (value) => `${value}%`,
-  );
+const Marquee = ({ elementsArray, direction, duration }: MarqueeProps) => {
+  const [isHovered, setIsHovered] = useState<boolean>(false);
 
-  const controlsRef = useRef<AnimationPlaybackControls | null>(null);
+  const handleOnMouseEnter = () => {
+    setIsHovered(true);
+  };
 
-  useEffect(() => {
-    const controls = animate(translationXAnimatedValue, translationXEnd, {
-      duration: duration,
-      ease: "linear",
-      repeat: Infinity,
-    });
-
-    controlsRef.current = controls;
-  }, [translationXAnimatedValue, translationXEnd, duration]);
-
-  const halfMarquee = (
-    <motion.div
-      style={{
-        x: translationXAnimatedPercentage,
-      }}
-      className="flex"
-    >
-      {elements.map((element, index) => (
-        <div key={index}>{element}</div>
-      ))}
-    </motion.div>
-  );
+  const handleOnMouseLeave = () => {
+    setIsHovered(false);
+  };
 
   return (
-    <motion.div
-      onMouseEnter={() => {
-        controlsRef.current?.pause();
-      }}
-      onMouseLeave={() => {
-        controlsRef.current?.play();
-      }}
-      className="flex w-full overflow-hidden"
-    >
-      {halfMarquee}
-      {halfMarquee}
-    </motion.div>
+    <>
+      <style>
+        {`
+          @keyframes marquee-left-to-right {
+            0% {
+              transform: translateX(100%);
+            }
+            100% {
+              transform: translateX(-100%);
+            }
+          }
+
+          @keyframes marquee-right-to-left {
+            0% {
+              transform: translateX(-100%);
+            }
+            100% {
+              transform: translateX(100%);
+            }
+          }
+
+          .marquee {
+            display: flex;
+            white-space: nowrap;
+            animation: ${direction === "left-to-right" ? "marquee-left-to-right" : "marquee-right-to-left"} ${duration}s linear infinite;
+            animation-play-state: ${isHovered ? "paused" : "running"};
+          }
+        `}
+      </style>
+
+      <div
+        onMouseEnter={handleOnMouseEnter}
+        onMouseLeave={handleOnMouseLeave}
+        className="relative flex overflow-hidden"
+      >
+        <div className="marquee">
+          {elementsArray.map((element, index) => (
+            <span key={index} className="mx-2">
+              {element}
+            </span>
+          ))}
+          {elementsArray.map((element, index) => (
+            <span key={index + elementsArray.length} className="mx-2">
+              {element}
+            </span>
+          ))}
+        </div>
+      </div>
+    </>
   );
 };
 

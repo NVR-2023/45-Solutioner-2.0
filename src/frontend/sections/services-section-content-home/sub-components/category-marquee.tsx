@@ -1,6 +1,5 @@
 import { ReactNode } from "react";
 import HomepageSectionCaption from "@/frontend/components/ui/styled-text-components/homepage-section-caption";
-
 import TextMarquee from "@/frontend/components/ui/animated-components/text-marquee";
 
 const CategoryMarquee = () => {
