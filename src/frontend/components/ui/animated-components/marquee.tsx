@@ -1,7 +1,7 @@
 import { useState, ReactNode } from "react";
 
 type TextMarqueeProps = {
-  elementArray: ReactNode[]; // Array of ReactNode
+  elementArray: ReactNode[];
   direction: "left-to-right" | "right-to-left";
   duration: number;
 };
