@@ -17,7 +17,7 @@ const TextMarquee = ({
   direction,
   duration,
 }: TextMarqueeProps) => {
-  const [isHovered, setIsHovered] = useState<boolean | null>(false);
+  const [isHovered, setIsHovered] = useState<boolean>(false);
 
   const handleOnMouseENter = () => {
     setIsHovered(true);
@@ -27,7 +27,7 @@ const TextMarquee = ({
     setIsHovered(false);
   };
 
-  const halfMArquee = (
+  const halfMarquee = (
     <div className="flex">
       {elementArray.map((element, index) => (
         <ElementWrapper key={index}>{element}</ElementWrapper>
@@ -36,7 +36,7 @@ const TextMarquee = ({
   );
 
   return (
-    <>
+    <div>
       <style>
         {`
           @keyframes first-half-marquee-animation {
@@ -82,7 +82,7 @@ const TextMarquee = ({
             animationPlayState: isHovered ? "paused" : "running",
           }}
         >
-          {halfMArquee}
+          {halfMarquee}
         </div>
         <div
           className="animated-second-half-marquee absolute top-0 whitespace-nowrap"
@@ -90,10 +90,10 @@ const TextMarquee = ({
             animationPlayState: isHovered ? "paused" : "running",
           }}
         >
-          {halfMArquee}
+          {halfMarquee}
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
