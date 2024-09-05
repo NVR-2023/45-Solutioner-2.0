@@ -36,7 +36,7 @@ const TextMarquee = ({
   );
 
   return (
-    <div>
+    <>
       <style>
         {`
           @keyframes first-half-marquee-animation {
@@ -93,7 +93,7 @@ const TextMarquee = ({
           {halfMarquee}
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
