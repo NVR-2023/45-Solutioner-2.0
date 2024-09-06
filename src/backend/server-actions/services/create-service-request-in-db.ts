@@ -12,7 +12,6 @@ import { validateRequest } from "@/backend/lucia-auth/validate-request";
 export const createServiceRequestInDb = async (
   newServiceRequest: BookServiceModalObjectType,
 ): Promise<number | null> => {
-  
   try {
     const { user, session } = await validateRequest();
     const userId: string | undefined = user?.id;
