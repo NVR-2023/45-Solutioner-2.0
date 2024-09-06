@@ -20,7 +20,7 @@ const NAME_VALIDATION_TABLE: InputValidationTests = [
     errorMessage: "At least 3 characters long",
   },
   {
-    regEx: /^[\p{L}0-9\s]+$/u,
+    regEx: /^[A-Za-z0-9\s]+$/,
     errorMessage: "Only letters, digits, and spaces",
   },
 ];
