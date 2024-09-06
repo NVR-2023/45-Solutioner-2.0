@@ -50,7 +50,7 @@ const BookServiceModal = ({ openFeedbackModal }: BookServiceModalProps) => {
       userId: userId,
       serviceId: bookServiceModalContext.id,
     }));
-  }, [bookServiceModalContext.id, userId]);
+  }, []);
 
   useEffect(() => {
     if (bookServiceModalContext.isBookServiceModalOpen) {
@@ -106,12 +106,19 @@ const BookServiceModal = ({ openFeedbackModal }: BookServiceModalProps) => {
   };
 
   const handleOnSubmit = async () => {
-    const result = await createServiceRequestInDb(bookServiceObject);
+    console.log(bookServiceObject);
+    
+
+
+/*    const result = await createServiceRequestInDb(bookServiceObject);
     if (result) {
       handleOnCloseBookModal();
       await wait(500);
       openFeedbackModal();
-    }
+    }  */
+
+
+
   };
 
   return (
