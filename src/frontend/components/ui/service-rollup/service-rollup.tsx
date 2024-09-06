@@ -120,7 +120,7 @@ const ServiceRollup = ({
                 price={price}
                 isServiceRollupHovered={isServiceRollupHovered}
               />
-            </div>
+             </div>
           </div>
         </div>
       </div>
